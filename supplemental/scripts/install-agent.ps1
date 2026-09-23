@@ -13,6 +13,9 @@ param (
     [ValidateSet("Auto", "GitHub", "Scoop", "WinGet")]
     [string]$InstallMethod = "Auto",
     [string]$Version = "latest",
+    # Name of the Windows service running the agent
+    [ValidatePattern('^[A-Za-z0-9][A-Za-z0-9_.@-]{0,63}$')]
+    [string]$ServiceName = "beszel-agent",
     # Set automatically from $PSBoundParameters below, or forwarded through an elevated relaunch.
     # Used so a reinstall only overwrites Token/Url/Port on an existing service if the caller
     # actually asked to change them, instead of wiping them with their unset defaults.
@@ -33,7 +36,7 @@ $Repo = "rlefbvr/beszel"
 # Check if required parameters are provided
 if ([string]::IsNullOrWhiteSpace($Key)) {
     Write-Host "ERROR: SSH Key is required." -ForegroundColor Red
-    Write-Host "Usage: .\install-agent.ps1 -Key 'your-ssh-key-here' [-Token 'your-token-here'] [-Url 'your-hub-url-here'] [-Port port-number] [-InstallMethod Auto|GitHub|Scoop|WinGet] [-Version latest] [-ConfigureFirewall]" -ForegroundColor Yellow
+    Write-Host "Usage: .\install-agent.ps1 -Key 'your-ssh-key-here' [-Token 'your-token-here'] [-Url 'your-hub-url-here'] [-Port port-number] [-InstallMethod Auto|GitHub|Scoop|WinGet] [-Version latest] [-ServiceName beszel-agent] [-ConfigureFirewall]" -ForegroundColor Yellow
     Write-Host "Note: Token and Url are optional for backwards compatibility with older hub versions." -ForegroundColor Yellow
     exit 1
 }
@@ -299,10 +302,10 @@ function Install-BeszelAgentFromGitHub {
         $agentPath = Join-Path $installDir "beszel-agent.exe"
 
         # Stop the service so the executable can be replaced
-        $service = Get-Service -Name "beszel-agent" -ErrorAction SilentlyContinue
+        $service = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
         if ($service -and $service.Status -ne "Stopped") {
-            Write-Host "Stopping beszel-agent service..."
-            Stop-Service -Name "beszel-agent" -Force
+            Write-Host "Stopping $ServiceName service..."
+            Stop-Service -Name $ServiceName -Force
         }
 
         Copy-Item -Path (Join-Path $tempDir "beszel-agent.exe") -Destination $agentPath -Force
@@ -422,7 +425,7 @@ function Install-NSSMService {
         [switch]$PortProvided
     )
     
-    Write-Host "Installing beszel-agent service..."
+    Write-Host "Installing $ServiceName service..."
     
     # Determine the NSSM executable to use
     $nssmCommand = "nssm"
@@ -434,25 +437,25 @@ function Install-NSSMService {
     }
     
     # Check if service already exists
-    $existingService = Get-Service -Name "beszel-agent" -ErrorAction SilentlyContinue
+    $existingService = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
     if ($existingService) {
         Write-Host "Service already exists. Checking if path update is needed..."
 
         # Get current service path
         $pathNeedsUpdate = $true
         try {
-            $currentPath = & $nssmCommand get beszel-agent Application
+            $currentPath = & $nssmCommand get $ServiceName Application
             if ($LASTEXITCODE -eq 0 -and $currentPath.Trim() -eq $AgentPath) {
                 Write-Host "Service path is already correct. Updating environment variables..."
-                & $nssmCommand set beszel-agent AppEnvironmentExtra "+KEY=$Key"
-                if ($TokenProvided) { & $nssmCommand set beszel-agent AppEnvironmentExtra "+TOKEN=$Token" }
-                if ($UrlProvided) { & $nssmCommand set beszel-agent AppEnvironmentExtra "+HUB_URL=$HubUrl" }
-                if ($PortProvided) { & $nssmCommand set beszel-agent AppEnvironmentExtra "+PORT=$Port" }
+                & $nssmCommand set $ServiceName AppEnvironmentExtra "+KEY=$Key"
+                if ($TokenProvided) { & $nssmCommand set $ServiceName AppEnvironmentExtra "+TOKEN=$Token" }
+                if ($UrlProvided) { & $nssmCommand set $ServiceName AppEnvironmentExtra "+HUB_URL=$HubUrl" }
+                if ($PortProvided) { & $nssmCommand set $ServiceName AppEnvironmentExtra "+PORT=$Port" }
 
                 # Restart the service so the running process picks up the new environment variables
                 if ($existingService.Status -eq "Running") {
                     Write-Host "Restarting service to apply updated environment variables..."
-                    & $nssmCommand restart beszel-agent
+                    & $nssmCommand restart $ServiceName
                 }
                 return
             }
@@ -466,32 +469,32 @@ function Install-NSSMService {
         }
 
         try {
-            & $nssmCommand stop beszel-agent
-            & $nssmCommand remove beszel-agent confirm
+            & $nssmCommand stop $ServiceName
+            & $nssmCommand remove $ServiceName confirm
         } catch {
             Write-Host "Warning: Failed to remove existing service: $($_.Exception.Message)" -ForegroundColor Yellow
         }
     }
     
-    & $nssmCommand install beszel-agent $AgentPath
+    & $nssmCommand install $ServiceName $AgentPath
     if ($LASTEXITCODE -ne 0) {
-        throw "Failed to install beszel-agent service"
+        throw "Failed to install $ServiceName service"
     }
     
     Write-Host "Configuring service environment variables..."
-    & $nssmCommand set beszel-agent AppEnvironmentExtra "+KEY=$Key"
-    & $nssmCommand set beszel-agent AppEnvironmentExtra "+TOKEN=$Token"
-    & $nssmCommand set beszel-agent AppEnvironmentExtra "+HUB_URL=$HubUrl"
-    & $nssmCommand set beszel-agent AppEnvironmentExtra "+PORT=$Port"
+    & $nssmCommand set $ServiceName AppEnvironmentExtra "+KEY=$Key"
+    & $nssmCommand set $ServiceName AppEnvironmentExtra "+TOKEN=$Token"
+    & $nssmCommand set $ServiceName AppEnvironmentExtra "+HUB_URL=$HubUrl"
+    & $nssmCommand set $ServiceName AppEnvironmentExtra "+PORT=$Port"
     
     # Configure log files
     $logDir = "$env:ProgramData\beszel-agent\logs"
     if (-not (Test-Path $logDir)) {
         New-Item -ItemType Directory -Path $logDir -Force | Out-Null
     }
-    $logFile = "$logDir\beszel-agent.log"
-    & $nssmCommand set beszel-agent AppStdout $logFile
-    & $nssmCommand set beszel-agent AppStderr $logFile
+    $logFile = "$logDir\$ServiceName.log"
+    & $nssmCommand set $ServiceName AppStdout $logFile
+    & $nssmCommand set $ServiceName AppStderr $logFile
 }
 
 # Function to configure firewall rules
@@ -502,7 +505,7 @@ function Configure-Firewall {
     )
     
     # Create a firewall rule if it doesn't exist
-    $ruleName = "Allow beszel-agent"
+    $ruleName = "Allow $ServiceName"
     $existingRule = Get-NetFirewallRule -DisplayName $ruleName -ErrorAction SilentlyContinue
     
     # Remove existing rule if found
@@ -517,7 +520,7 @@ function Configure-Firewall {
     }
     
     # Create new rule with current settings
-    Write-Host "Creating firewall rule for beszel-agent on port $Port..."
+    Write-Host "Creating firewall rule for $ServiceName on port $Port..."
     try {
         New-NetFirewallRule -DisplayName $ruleName -Direction Inbound -Action Allow -Protocol TCP -LocalPort $Port
         Write-Host "Firewall rule created successfully."
@@ -533,7 +536,7 @@ function Start-BeszelAgentService {
         [string]$NSSMPath = ""
     )
     
-    Write-Host "Starting beszel-agent service..."
+    Write-Host "Starting $ServiceName service..."
     
     # Determine the NSSM executable to use
     $nssmCommand = "nssm"
@@ -543,7 +546,7 @@ function Start-BeszelAgentService {
         throw "NSSM is not available in PATH and no valid NSSMPath was provided"
     }
     
-    & $nssmCommand start beszel-agent
+    & $nssmCommand start $ServiceName
     $startResult = $LASTEXITCODE
     
     # Only enter the status check loop if the NSSM start command failed
@@ -560,11 +563,11 @@ function Start-BeszelAgentService {
             Start-Sleep -Seconds 1
             $elapsedTime += 1
 
-            $serviceStatus = & $nssmCommand status beszel-agent
+            $serviceStatus = & $nssmCommand status $ServiceName
             
             if ($serviceStatus -eq "SERVICE_RUNNING") {
                 $serviceStarted = $true
-                Write-Host "Success! The beszel-agent service is now running." -ForegroundColor Green
+                Write-Host "Success! The $ServiceName service is now running." -ForegroundColor Green
             }
             elseif ($serviceStatus -like "*PENDING*") {
                 Write-Host "Service is still starting (status: $serviceStatus)... waiting" -ForegroundColor Yellow
@@ -578,11 +581,11 @@ function Start-BeszelAgentService {
         
         if (-not $serviceStarted) {
             Write-Host "Service did not reach running state." -ForegroundColor Yellow
-            Write-Host "You can check status manually with 'nssm status beszel-agent'" -ForegroundColor Yellow
+            Write-Host "You can check status manually with 'nssm status $ServiceName'" -ForegroundColor Yellow
         }
     } else {
         # NSSM start command was successful
-        Write-Host "Success! The beszel-agent service is running properly." -ForegroundColor Green
+        Write-Host "Success! The $ServiceName service is running properly." -ForegroundColor Green
     }
 }
 
@@ -687,8 +690,8 @@ try {
     # Second: If we need admin rights for service installation and we don't have them, relaunch
     if (-not $isAdmin -and -not $Elevated) {
         Write-Host "Admin privileges required for service installation. Relaunching as admin..." -ForegroundColor Yellow
-        Write-Host "Check service status with 'nssm status beszel-agent'"
-        Write-Host "Edit service configuration with 'nssm edit beszel-agent'"
+        Write-Host "Check service status with 'nssm status $ServiceName'"
+        Write-Host "Edit service configuration with 'nssm edit $ServiceName'"
         
         # Prepare arguments for the elevated script
         $argumentList = @(
@@ -701,7 +704,8 @@ try {
             "-Port", $Port,
             "-AgentPath", "`"$AgentPath`"",
             "-InstallMethod", $InstallMethod,
-            "-Version", $Version
+            "-Version", $Version,
+            "-ServiceName", $ServiceName
         )
         
         # Add NSSMPath if we found it

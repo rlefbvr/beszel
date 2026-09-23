@@ -4,7 +4,14 @@ import { basePath } from "@/components/router"
 import { toast } from "@/components/ui/use-toast"
 import { dynamicActivate, getLocale } from "@/lib/i18n"
 import type { ChartTimes, UserSettings } from "@/types"
-import { $alerts, $allSystemsById, $allSystemsByName, $servicesInterval, $userSettings } from "./stores"
+import {
+	$agentServiceName,
+	$alerts,
+	$allSystemsById,
+	$allSystemsByName,
+	$servicesInterval,
+	$userSettings,
+} from "./stores"
 import { chartTimeData, debounce } from "./utils"
 
 /** PocketBase JS Client */
@@ -92,8 +99,13 @@ const hubSettingsId = "hubsettings0000"
 /** Fetch hub-wide settings */
 export async function updateHubSettings() {
 	try {
-		const settings = await pb.collection("hub_settings").getOne(hubSettingsId, { fields: "services_interval" })
+		const settings = await pb
+			.collection("hub_settings")
+			.getOne(hubSettingsId, { fields: "services_interval,agent_service_name" })
 		$servicesInterval.set(settings.services_interval)
+		if (settings.agent_service_name) {
+			$agentServiceName.set(settings.agent_service_name)
+		}
 	} catch (e) {
 		console.error("get hub settings", e)
 	}
@@ -103,6 +115,12 @@ export async function updateHubSettings() {
 export async function saveServicesInterval(minutes: number) {
 	const settings = await pb.collection("hub_settings").update(hubSettingsId, { services_interval: minutes })
 	$servicesInterval.set(settings.services_interval)
+}
+
+/** Save the name of the agent service used by the install commands (admins only) */
+export async function saveAgentServiceName(name: string) {
+	const settings = await pb.collection("hub_settings").update(hubSettingsId, { agent_service_name: name })
+	$agentServiceName.set(settings.agent_service_name)
 }
 
 /** Fetch or create user settings in database */

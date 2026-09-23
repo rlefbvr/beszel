@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/correctness/useUniqueElementIds: component is only rendered once */
 import { Trans, useLingui } from "@lingui/react/macro"
-import { LanguagesIcon, LoaderCircleIcon, SaveIcon, ServerCogIcon } from "lucide-react"
+import { DownloadIcon, LanguagesIcon, LoaderCircleIcon, SaveIcon, ServerCogIcon } from "lucide-react"
 import { useState } from "react"
 import { useStore } from "@nanostores/react"
 import { Button } from "@/components/ui/button"
@@ -10,14 +10,17 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Separator } from "@/components/ui/separator"
 import Slider from "@/components/ui/slider"
 import { toast } from "@/components/ui/use-toast"
-import { isAdmin, queueUserSettings, saveServicesInterval } from "@/lib/api"
+import { isAdmin, queueUserSettings, saveAgentServiceName, saveServicesInterval } from "@/lib/api"
 import { HourFormat, Unit } from "@/lib/enums"
 import { dynamicActivate } from "@/lib/i18n"
 import languages from "@/lib/languages"
-import { $servicesInterval, $userSettings, defaultLayoutWidth } from "@/lib/stores"
+import { $agentServiceName, $servicesInterval, $userSettings, defaultLayoutWidth } from "@/lib/stores"
 import { chartTimeData, currentHour12, secondsToString } from "@/lib/utils"
 import type { UserSettings } from "@/types"
 import { saveSettings } from "./layout"
+
+/** Allowed agent service names: safe in file names and shell commands */
+const serviceNamePattern = /^[A-Za-z0-9][A-Za-z0-9_.@-]{0,63}$/
 
 /** Service collection intervals offered in settings, in minutes */
 const servicesIntervals = [1, 2, 5, 10, 15, 30, 60]
@@ -29,6 +32,9 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 	const layoutWidth = currentUserSettings.layoutWidth ?? defaultLayoutWidth
 	const servicesInterval = useStore($servicesInterval)
 	const [newServicesInterval, setNewServicesInterval] = useState<number>()
+	const agentServiceName = useStore($agentServiceName)
+	const [newAgentServiceName, setNewAgentServiceName] = useState<string>()
+	const serviceNameInvalid = newAgentServiceName !== undefined && !serviceNamePattern.test(newAgentServiceName)
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
@@ -36,9 +42,16 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 		const formData = new FormData(e.target as HTMLFormElement)
 		const data = Object.fromEntries(formData) as Partial<UserSettings>
 		await saveSettings(data)
+		const hubChanges: Promise<void>[] = []
 		if (newServicesInterval && newServicesInterval !== servicesInterval) {
+			hubChanges.push(saveServicesInterval(newServicesInterval))
+		}
+		if (newAgentServiceName && !serviceNameInvalid && newAgentServiceName !== agentServiceName) {
+			hubChanges.push(saveAgentServiceName(newAgentServiceName))
+		}
+		if (hubChanges.length) {
 			try {
-				await saveServicesInterval(newServicesInterval)
+				await Promise.all(hubChanges)
 			} catch (e) {
 				console.error("save hub settings", e)
 				toast({
@@ -341,6 +354,48 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 									))}
 								</SelectContent>
 							</Select>
+							{!isAdmin() && (
+								<p className="text-xs text-muted-foreground">
+									<Trans>Only administrators can change this setting.</Trans>
+								</p>
+							)}
+						</div>
+					</div>
+				</div>
+				<Separator />
+				<div className="grid gap-2">
+					<div className="mb-2">
+						<h3 className="mb-1 text-lg font-medium flex items-center gap-2">
+							<DownloadIcon className="h-4 w-4" />
+							<Trans>Agent installation</Trans>
+						</h3>
+						<p className="text-sm text-muted-foreground leading-relaxed">
+							<Trans>
+								Name of the service created when installing an agent with the Linux or Windows commands. Existing
+								agents keep their service name.
+							</Trans>
+						</p>
+					</div>
+					<div className="grid sm:grid-cols-3 gap-4">
+						<div className="grid gap-2">
+							<Label className="block" htmlFor="agentServiceName">
+								<Trans>Service name</Trans>
+							</Label>
+							<Input
+								id="agentServiceName"
+								key={agentServiceName}
+								defaultValue={agentServiceName}
+								onChange={(e) => setNewAgentServiceName(e.target.value.trim())}
+								disabled={!isAdmin()}
+								aria-invalid={serviceNameInvalid}
+								maxLength={64}
+								spellCheck={false}
+							/>
+							{serviceNameInvalid && (
+								<p className="text-xs text-destructive">
+									<Trans>Use letters, digits and _ . @ - only.</Trans>
+								</p>
+							)}
 							{!isAdmin() && (
 								<p className="text-xs text-muted-foreground">
 									<Trans>Only administrators can change this setting.</Trans>

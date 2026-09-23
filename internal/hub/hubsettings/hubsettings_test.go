@@ -37,3 +37,23 @@ func TestServicesInterval(t *testing.T) {
 	require.NoError(t, hub.Save(settings))
 	assert.Equal(t, 10*time.Minute, hubsettings.ServicesInterval(hub))
 }
+
+func TestAgentServiceName(t *testing.T) {
+	hub, err := tests.NewTestHub(t.TempDir())
+	require.NoError(t, err)
+	defer hub.Cleanup()
+
+	// the migration sets the default service name
+	settings, err := hub.FindRecordById(hubsettings.CollectionName, hubsettings.RecordID)
+	require.NoError(t, err)
+	assert.Equal(t, "beszel-agent", settings.GetString("agent_service_name"))
+
+	settings.Set("agent_service_name", "monitoring-agent")
+	require.NoError(t, hub.Save(settings))
+
+	// names unsafe in file names or shell commands are rejected
+	for _, name := range []string{"", "-flag", "my agent", "agent;reboot", `a"b`, "a/b"} {
+		settings.Set("agent_service_name", name)
+		assert.Error(t, hub.Save(settings), name)
+	}
+}

@@ -104,11 +104,11 @@ ensure_trailing_slash() {
 # as text so host:port and unix socket paths survive.
 configured_address() {
   if is_alpine || is_openwrt; then
-    address_file=/etc/init.d/beszel-agent
+    address_file=/etc/init.d/${SERVICE_NAME}
   elif is_freebsd; then
     address_file="$AGENT_DIR/env"
   else
-    address_file=/etc/systemd/system/beszel-agent.service
+    address_file=/etc/systemd/system/${SERVICE_NAME}.service
   fi
 
   [ -f "$address_file" ] || return 0
@@ -411,13 +411,13 @@ validate_platform() {
 
 agent_service() {
   if is_alpine; then
-    rc-service beszel-agent "$1"
+    rc-service ${SERVICE_NAME} "$1"
   elif is_openwrt; then
-    /etc/init.d/beszel-agent "$1"
+    /etc/init.d/${SERVICE_NAME} "$1"
   elif is_freebsd; then
     service beszel-agent "$1"
   else
-    systemctl "$1" beszel-agent.service
+    systemctl "$1" ${SERVICE_NAME}.service
   fi
 }
 
@@ -425,11 +425,11 @@ agent_service() {
 # alone is not reusable configuration (FreeBSD stores its environment separately).
 agent_configuration_exists() {
   if is_alpine || is_openwrt; then
-    [ -f /etc/init.d/beszel-agent ]
+    [ -f /etc/init.d/${SERVICE_NAME} ]
   elif is_freebsd; then
     [ -f "$AGENT_DIR/env" ]
   else
-    [ -f /etc/systemd/system/beszel-agent.service ]
+    [ -f /etc/systemd/system/${SERVICE_NAME}.service ]
   fi
 }
 
@@ -437,11 +437,11 @@ agent_configuration_exists() {
 # that the service manager knows about the agent yet.
 agent_service_registered() {
   if is_alpine || is_openwrt; then
-    [ -f /etc/init.d/beszel-agent ]
+    [ -f /etc/init.d/${SERVICE_NAME} ]
   elif is_freebsd; then
     [ -f /usr/local/etc/rc.d/beszel-agent ]
   else
-    service_load_state=$(systemctl show --property=LoadState --value beszel-agent.service) || return 2
+    service_load_state=$(systemctl show --property=LoadState --value ${SERVICE_NAME}.service) || return 2
     case "$service_load_state" in
       not-found) return 1 ;;
       "") return 2 ;;
@@ -509,6 +509,8 @@ PORT=45876
 UNINSTALL=false
 # GitHub repository the agent is downloaded from
 GITHUB_REPO="rlefbvr/beszel"
+# Name of the agent service (systemd unit, OpenRC / procd init script)
+SERVICE_NAME="beszel-agent"
 GITHUB_URL="https://github.com"
 GITHUB_PROXY_URL=""
 KEY=""
@@ -534,6 +536,7 @@ case "${1-}" in
   printf "  -t                    : Token (optional for backwards compatibility)\n"
   printf "  -url                  : Hub URL (optional for backwards compatibility)\n"
   printf "  -v, --version         : Version to install (default: latest)\n"
+  printf "  --service-name NAME   : Name of the agent service (default: beszel-agent)\n"
   printf "  -u                    : Uninstall Beszel Agent\n"
   printf "  --auto-update [VALUE] : Control automatic daily updates\n"
   printf "                          VALUE can be true (enable) or false (disable). If not specified, will prompt.\n"
@@ -605,6 +608,11 @@ while [ $# -gt 0 ]; do
     shift
     VERSION="$1"
     ;;
+  --service-name)
+    require_value "$@"
+    shift
+    SERVICE_NAME="$1"
+    ;;
   -u)
     UNINSTALL=true
     ;;
@@ -660,6 +668,17 @@ while [ $# -gt 0 ]; do
   shift
 done
 
+# Validate the service name, it is used in file names and service commands
+case "$SERVICE_NAME" in
+"" | -* | *[!A-Za-z0-9_.@-]*)
+  fail "Invalid service name: $SERVICE_NAME (allowed: letters, digits, _ . @ -)"
+  ;;
+esac
+if is_freebsd && [ "$SERVICE_NAME" != "beszel-agent" ]; then
+  echo "Custom service names are not supported on FreeBSD, using beszel-agent."
+  SERVICE_NAME="beszel-agent"
+fi
+
 # Set paths based on operating system
 if is_freebsd; then
   AGENT_DIR="/usr/local/etc/beszel-agent"
@@ -679,11 +698,11 @@ if [ "$UNINSTALL" = true ]; then
 
   if is_alpine; then
     echo "Stopping and disabling the agent service..."
-    rc-service beszel-agent stop || warn "Cleanup command failed: rc-service beszel-agent stop"
-    rc-update del beszel-agent default || warn "Cleanup command failed: rc-update del beszel-agent default"
+    rc-service ${SERVICE_NAME} stop || warn "Cleanup command failed: rc-service ${SERVICE_NAME} stop"
+    rc-update del ${SERVICE_NAME} default || warn "Cleanup command failed: rc-update del ${SERVICE_NAME} default"
 
     echo "Removing the OpenRC service files..."
-    rm -f /etc/init.d/beszel-agent
+    rm -f /etc/init.d/${SERVICE_NAME}
 
     # Remove the daily update cron job if it exists
     echo "Removing the daily update cron job..."
@@ -696,11 +715,11 @@ if [ "$UNINSTALL" = true ]; then
     rm -f /var/log/beszel-agent.log /var/log/beszel-agent.err
   elif is_openwrt; then
     echo "Stopping and disabling the agent service..."
-    /etc/init.d/beszel-agent stop || warn "Cleanup command failed: /etc/init.d/beszel-agent stop"
-    /etc/init.d/beszel-agent disable || warn "Cleanup command failed: /etc/init.d/beszel-agent disable"
+    /etc/init.d/${SERVICE_NAME} stop || warn "Cleanup command failed: /etc/init.d/${SERVICE_NAME} stop"
+    /etc/init.d/${SERVICE_NAME} disable || warn "Cleanup command failed: /etc/init.d/${SERVICE_NAME} disable"
 
     echo "Removing the OpenWRT service files..."
-    rm -f /etc/init.d/beszel-agent
+    rm -f /etc/init.d/${SERVICE_NAME}
 
     # Remove the update service if it exists
     echo "Removing the daily update service..."
@@ -740,18 +759,18 @@ if [ "$UNINSTALL" = true ]; then
 
   else
     echo "Stopping and disabling the agent service..."
-    systemctl stop beszel-agent.service || warn "Cleanup command failed: systemctl stop beszel-agent.service"
-    systemctl disable beszel-agent.service >/dev/null 2>&1 || warn "Cleanup command failed: systemctl disable beszel-agent.service"
+    systemctl stop ${SERVICE_NAME}.service || warn "Cleanup command failed: systemctl stop ${SERVICE_NAME}.service"
+    systemctl disable ${SERVICE_NAME}.service >/dev/null 2>&1 || warn "Cleanup command failed: systemctl disable ${SERVICE_NAME}.service"
 
     echo "Removing the systemd service file..."
-    rm -f /etc/systemd/system/beszel-agent.service
+    rm -f /etc/systemd/system/${SERVICE_NAME}.service
 
     # Remove the update timer and service if they exist
     echo "Removing the daily update service and timer..."
-    systemctl stop beszel-agent-update.timer 2>/dev/null || warn "Cleanup command failed: systemctl stop beszel-agent-update.timer"
-    systemctl disable beszel-agent-update.timer >/dev/null 2>&1 || warn "Cleanup command failed: systemctl disable beszel-agent-update.timer"
-    rm -f /etc/systemd/system/beszel-agent-update.service
-    rm -f /etc/systemd/system/beszel-agent-update.timer
+    systemctl stop ${SERVICE_NAME}-update.timer 2>/dev/null || warn "Cleanup command failed: systemctl stop ${SERVICE_NAME}-update.timer"
+    systemctl disable ${SERVICE_NAME}-update.timer >/dev/null 2>&1 || warn "Cleanup command failed: systemctl disable ${SERVICE_NAME}-update.timer"
+    rm -f /etc/systemd/system/${SERVICE_NAME}-update.service
+    rm -f /etc/systemd/system/${SERVICE_NAME}-update.timer
 
     systemctl daemon-reload
   fi
@@ -1042,12 +1061,12 @@ detect_nvidia_devices() {
 INSTALL_STEP="configuring and starting the service"
 # Modify service installation part, add Alpine check before systemd service creation
 if is_alpine; then
-  if [ ! -f /etc/init.d/beszel-agent ]; then
+  if [ ! -f /etc/init.d/${SERVICE_NAME} ]; then
     echo "Creating OpenRC service for Alpine Linux..."
-    cat >/etc/init.d/beszel-agent <<EOF
+    cat >/etc/init.d/${SERVICE_NAME} <<EOF
 #!/sbin/openrc-run
 
-name="beszel-agent"
+name="${SERVICE_NAME}"
 description="Beszel Agent Service"
 command="$BIN_PATH"
 command_user="beszel"
@@ -1070,18 +1089,18 @@ depend() {
     after firewall
 }
 EOF
-    chmod +x /etc/init.d/beszel-agent
-    rc-update add beszel-agent default
+    chmod +x /etc/init.d/${SERVICE_NAME}
+    rc-update add ${SERVICE_NAME} default
   else
     echo "Alpine OpenRC service file already exists. Updating environment variables..."
     SED_PORT=$(escape_sed_replacement "$PORT")
     SED_KEY=$(escape_sed_replacement "$KEY")
     SED_TOKEN=$(escape_sed_replacement "$TOKEN")
     SED_HUB_URL=$(escape_sed_replacement "$HUB_URL")
-    [ "$PORT_PROVIDED" = "true" ] && sed -i "s|^export PORT=.*|export PORT=\"$SED_PORT\"|" /etc/init.d/beszel-agent
-    [ "$KEY_PROVIDED" = "true" ] && sed -i "s|^export KEY=.*|export KEY=\"$SED_KEY\"|" /etc/init.d/beszel-agent
-    [ "$TOKEN_PROVIDED" = "true" ] && sed -i "s|^export TOKEN=.*|export TOKEN=\"$SED_TOKEN\"|" /etc/init.d/beszel-agent
-    [ "$HUB_URL_PROVIDED" = "true" ] && sed -i "s|^export HUB_URL=.*|export HUB_URL=\"$SED_HUB_URL\"|" /etc/init.d/beszel-agent
+    [ "$PORT_PROVIDED" = "true" ] && sed -i "s|^export PORT=.*|export PORT=\"$SED_PORT\"|" /etc/init.d/${SERVICE_NAME}
+    [ "$KEY_PROVIDED" = "true" ] && sed -i "s|^export KEY=.*|export KEY=\"$SED_KEY\"|" /etc/init.d/${SERVICE_NAME}
+    [ "$TOKEN_PROVIDED" = "true" ] && sed -i "s|^export TOKEN=.*|export TOKEN=\"$SED_TOKEN\"|" /etc/init.d/${SERVICE_NAME}
+    [ "$HUB_URL_PROVIDED" = "true" ] && sed -i "s|^export HUB_URL=.*|export HUB_URL=\"$SED_HUB_URL\"|" /etc/init.d/${SERVICE_NAME}
   fi
 
   # Create log files with proper permissions
@@ -1089,11 +1108,11 @@ EOF
   chown "${AGENT_USER}:${AGENT_USER}" /var/log/beszel-agent.log /var/log/beszel-agent.err
 
   # Start the service
-  rc-service beszel-agent restart || fail "Could not start the agent; check service logs."
+  rc-service ${SERVICE_NAME} restart || fail "Could not start the agent; check service logs."
 
   # Check if service started successfully
   sleep 2
-  if ! rc-service beszel-agent status | grep -q "started"; then
+  if ! rc-service ${SERVICE_NAME} status | grep -q "started"; then
     echo "Error: The Beszel Agent service failed to start. Checking logs..."
     tail -n 20 /var/log/beszel-agent.err
     exit 1
@@ -1113,7 +1132,7 @@ EOF
 
     # Create cron job to run beszel-agent update command daily at midnight
     if ! crontab -u root -l 2>/dev/null | grep -q "beszel-agent.*update"; then
-      (read_root_crontab; echo "12 0 * * * $BIN_PATH update >/dev/null 2>&1") | crontab -u root -
+      (read_root_crontab; echo "12 0 * * * SERVICE_NAME=${SERVICE_NAME} $BIN_PATH update >/dev/null 2>&1") | crontab -u root -
     fi
 
     printf "\nDaily updates have been enabled via cron job.\n"
@@ -1121,16 +1140,16 @@ EOF
   esac
 
   # Check service status
-  if ! rc-service beszel-agent status >/dev/null 2>&1; then
+  if ! rc-service ${SERVICE_NAME} status >/dev/null 2>&1; then
     echo "Error: The Beszel Agent service is not running."
-    rc-service beszel-agent status
+    rc-service ${SERVICE_NAME} status
     exit 1
   fi
 
 elif is_openwrt; then
-  if [ ! -f /etc/init.d/beszel-agent ]; then
+  if [ ! -f /etc/init.d/${SERVICE_NAME} ]; then
     echo "Creating procd init script service for OpenWRT..."
-    cat >/etc/init.d/beszel-agent <<EOF
+    cat >/etc/init.d/${SERVICE_NAME} <<EOF
 #!/bin/sh /etc/rc.common
 
 USE_PROCD=1
@@ -1154,20 +1173,20 @@ EXTRA_HELP="        update          Update the Beszel agent
         restart         Restart the Beszel agent"
 
 update() {
-    $BIN_PATH update
+    SERVICE_NAME=${SERVICE_NAME} $BIN_PATH update
 }
 
 EOF
     # Enable the service
-    chmod +x /etc/init.d/beszel-agent
-    /etc/init.d/beszel-agent enable
+    chmod +x /etc/init.d/${SERVICE_NAME}
+    /etc/init.d/${SERVICE_NAME} enable
   else
     echo "OpenWRT init script already exists. Updating environment variables..."
     # The env vars live on a single procd_set_param line, so merge any values
     # that weren't explicitly provided in from the existing line before rewriting it.
-    CUR_ENV_LINE=$(sed -n '/^[[:space:]]*procd_set_param env PORT=/{p;q;}' /etc/init.d/beszel-agent)
+    CUR_ENV_LINE=$(sed -n '/^[[:space:]]*procd_set_param env PORT=/{p;q;}' /etc/init.d/${SERVICE_NAME})
     if [ -z "$CUR_ENV_LINE" ] || ! printf '%s\n' "$CUR_ENV_LINE" | grep -q 'PORT="[^"]*" KEY="[^"]*" TOKEN="[^"]*" HUB_URL="[^"]*"'; then
-      echo "Error: Could not parse the existing environment configuration in /etc/init.d/beszel-agent."
+      echo "Error: Could not parse the existing environment configuration in /etc/init.d/${SERVICE_NAME}."
       echo "Expected a procd_set_param env line containing PORT, KEY, TOKEN, and HUB_URL."
       exit 1
     fi
@@ -1179,11 +1198,11 @@ EOF
     SED_KEY=$(escape_sed_replacement "$KEY")
     SED_TOKEN=$(escape_sed_replacement "$TOKEN")
     SED_HUB_URL=$(escape_sed_replacement "$HUB_URL")
-    sed -i "s|procd_set_param env PORT=.*|procd_set_param env PORT=\"$SED_PORT\" KEY=\"$SED_KEY\" TOKEN=\"$SED_TOKEN\" HUB_URL=\"$SED_HUB_URL\"|" /etc/init.d/beszel-agent
+    sed -i "s|procd_set_param env PORT=.*|procd_set_param env PORT=\"$SED_PORT\" KEY=\"$SED_KEY\" TOKEN=\"$SED_TOKEN\" HUB_URL=\"$SED_HUB_URL\"|" /etc/init.d/${SERVICE_NAME}
   fi
 
   # Start the service
-  /etc/init.d/beszel-agent restart || fail "Could not start the agent; check service logs."
+  /etc/init.d/${SERVICE_NAME} restart || fail "Could not start the agent; check service logs."
 
   # Auto-update service for OpenWRT using a crontab job
   if [ "$AUTO_UPDATE_FLAG" = "true" ]; then
@@ -1200,7 +1219,7 @@ EOF
     echo "Setting up daily automatic updates for beszel-agent..."
 
     if ! crontab -u root -l 2>/dev/null | grep -q "beszel-agent.*update"; then
-      (read_root_crontab; echo "12 0 * * * /etc/init.d/beszel-agent update") | crontab -u root -
+      (read_root_crontab; echo "12 0 * * * /etc/init.d/${SERVICE_NAME} update") | crontab -u root -
     fi
 
     /etc/init.d/cron restart
@@ -1210,9 +1229,9 @@ EOF
   esac
 
   # Check service status
-  if ! /etc/init.d/beszel-agent running >/dev/null 2>&1; then
+  if ! /etc/init.d/${SERVICE_NAME} running >/dev/null 2>&1; then
     echo "Error: The Beszel Agent service is not running."
-    /etc/init.d/beszel-agent status
+    /etc/init.d/${SERVICE_NAME} status
     exit 1
   fi
 
@@ -1332,13 +1351,13 @@ EOF
 
 else
   # Original systemd service installation code
-  if [ ! -f /etc/systemd/system/beszel-agent.service ]; then
+  if [ ! -f /etc/systemd/system/${SERVICE_NAME}.service ]; then
     echo "Creating the systemd service for the agent..."
 
     # Detect NVIDIA devices and grant device permissions
     NVIDIA_DEVICES=$(detect_nvidia_devices)
 
-    cat >/etc/systemd/system/beszel-agent.service <<EOF
+    cat >/etc/systemd/system/${SERVICE_NAME}.service <<EOF
 [Unit]
 Description=Beszel Agent Service
 Wants=network-online.target
@@ -1378,17 +1397,17 @@ EOF
     SED_KEY=$(escape_sed_replacement "$KEY")
     SED_TOKEN=$(escape_sed_replacement "$TOKEN")
     SED_HUB_URL=$(escape_sed_replacement "$HUB_URL")
-    [ "$PORT_PROVIDED" = "true" ] && sed -i "s|^Environment=\"PORT=.*\"|Environment=\"PORT=$SED_PORT\"|" /etc/systemd/system/beszel-agent.service
-    [ "$KEY_PROVIDED" = "true" ] && sed -i "s|^Environment=\"KEY=.*\"|Environment=\"KEY=$SED_KEY\"|" /etc/systemd/system/beszel-agent.service
-    [ "$TOKEN_PROVIDED" = "true" ] && sed -i "s|^Environment=\"TOKEN=.*\"|Environment=\"TOKEN=$SED_TOKEN\"|" /etc/systemd/system/beszel-agent.service
-    [ "$HUB_URL_PROVIDED" = "true" ] && sed -i "s|^Environment=\"HUB_URL=.*\"|Environment=\"HUB_URL=$SED_HUB_URL\"|" /etc/systemd/system/beszel-agent.service
+    [ "$PORT_PROVIDED" = "true" ] && sed -i "s|^Environment=\"PORT=.*\"|Environment=\"PORT=$SED_PORT\"|" /etc/systemd/system/${SERVICE_NAME}.service
+    [ "$KEY_PROVIDED" = "true" ] && sed -i "s|^Environment=\"KEY=.*\"|Environment=\"KEY=$SED_KEY\"|" /etc/systemd/system/${SERVICE_NAME}.service
+    [ "$TOKEN_PROVIDED" = "true" ] && sed -i "s|^Environment=\"TOKEN=.*\"|Environment=\"TOKEN=$SED_TOKEN\"|" /etc/systemd/system/${SERVICE_NAME}.service
+    [ "$HUB_URL_PROVIDED" = "true" ] && sed -i "s|^Environment=\"HUB_URL=.*\"|Environment=\"HUB_URL=$SED_HUB_URL\"|" /etc/systemd/system/${SERVICE_NAME}.service
   fi
 
   # Load and start the service
   printf "\nLoading and starting the agent service...\n"
   systemctl daemon-reload
-  systemctl enable beszel-agent.service >/dev/null 2>&1
-  systemctl restart beszel-agent.service || fail "Could not start the agent; check service logs."
+  systemctl enable ${SERVICE_NAME}.service >/dev/null 2>&1
+  systemctl restart ${SERVICE_NAME}.service || fail "Could not start the agent; check service logs."
 
 
 
@@ -1407,18 +1426,19 @@ EOF
     echo "Setting up daily automatic updates for beszel-agent..."
 
     # Create systemd service for the daily update
-    cat >/etc/systemd/system/beszel-agent-update.service <<EOF
+    cat >/etc/systemd/system/${SERVICE_NAME}-update.service <<EOF
 [Unit]
 Description=Update beszel-agent if needed
-Wants=beszel-agent.service
+Wants=${SERVICE_NAME}.service
 
 [Service]
 Type=oneshot
+Environment="SERVICE_NAME=${SERVICE_NAME}"
 ExecStart=$BIN_PATH update
 EOF
 
     # Create systemd timer for the daily update
-    cat >/etc/systemd/system/beszel-agent-update.timer <<EOF
+    cat >/etc/systemd/system/${SERVICE_NAME}-update.timer <<EOF
 [Unit]
 Description=Run beszel-agent update daily
 
@@ -1432,16 +1452,16 @@ WantedBy=timers.target
 EOF
 
     systemctl daemon-reload
-    systemctl enable --now beszel-agent-update.timer >/dev/null 2>&1
+    systemctl enable --now ${SERVICE_NAME}-update.timer >/dev/null 2>&1
 
     printf "\nDaily updates have been enabled.\n"
     ;;
   esac
 
   # Wait for the service to start or fail
-  if [ "$(systemctl is-active beszel-agent.service)" != "active" ]; then
+  if [ "$(systemctl is-active ${SERVICE_NAME}.service)" != "active" ]; then
     echo "Error: The Beszel Agent service is not running."
-    echo "$(systemctl status beszel-agent.service)"
+    echo "$(systemctl status ${SERVICE_NAME}.service)"
     exit 1
   fi
 fi

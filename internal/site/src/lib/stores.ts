@@ -9,6 +9,9 @@ export const defaultLayoutWidth = 1580
 /** Service (systemd / Windows) collection interval in minutes, from hub settings */
 export const $servicesInterval = atom(10)
 
+/** Name of the agent service used by the install commands */
+export const $agentServiceName = atom("beszel-agent")
+
 /** Store if user is authenticated */
 export const $authenticated = atom(pb.authStore.isValid)
 
