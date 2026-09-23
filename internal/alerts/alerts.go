@@ -2,7 +2,9 @@
 package alerts
 
 import (
+	"bytes"
 	"fmt"
+	"io"
 	"net/mail"
 	"net/url"
 	"sync"
@@ -27,18 +29,11 @@ type AlertManager struct {
 	networkMonitors *networkMonitorCache
 }
 
-type AlertMessageData struct {
-	UserID   string
-	SystemID string
-	Title    string
-	Message  string
-	Link     string
-	LinkText string
-}
-
 type UserNotificationSettings struct {
 	Emails   []string `json:"emails"`
 	Webhooks []string `json:"webhooks"`
+	// Lang is the interface language, used to translate notifications.
+	Lang string `json:"lang,omitempty"`
 }
 
 type SystemAlertFsStats struct {
@@ -84,7 +79,7 @@ type SystemAlertData struct {
 	count        uint8
 	min          uint8
 	mapSums      map[string]float32
-	descriptor   string // override descriptor in notification body (for temp sensor, disk partition, etc)
+	descriptor   Msg // override descriptor in notification body (for temp sensor, disk partition, etc)
 }
 
 // notification services that support title param
@@ -248,8 +243,14 @@ func (am *AlertManager) SendAlert(data AlertMessageData) error {
 			send = shoutrrr.Send
 		}
 	}
+	appURL := am.hub.Settings().Meta.AppURL
+	settingsLink := ""
+	if appURL != "" {
+		settingsLink = am.hub.MakeLink("settings", "notifications")
+	}
+	rendered := data.render(NewTranslator(userAlertSettings.Lang), appURL, settingsLink)
 	for _, webhook := range userAlertSettings.Webhooks {
-		if err := am.sendShoutrrrAlert(webhook, data.Title, data.Message, data.Link, data.LinkText, send); err != nil {
+		if err := am.sendShoutrrrAlert(webhook, rendered.WebhookTitle, rendered.plainText(), rendered.Link, rendered.LinkText, send); err != nil {
 			am.hub.Logger().Error("Failed to send shoutrrr alert", "err", err)
 		}
 	}
@@ -261,14 +262,20 @@ func (am *AlertManager) SendAlert(data AlertMessageData) error {
 	for _, email := range userAlertSettings.Emails {
 		addresses = append(addresses, mail.Address{Address: email})
 	}
+	html, err := rendered.html()
+	if err != nil {
+		return err
+	}
 	message := mailer.Message{
 		To:      addresses,
-		Subject: data.Title,
-		Text:    data.Message + fmt.Sprintf("\n\n%s", data.Link),
+		Subject: rendered.Subject,
+		HTML:    html,
+		Text:    rendered.plainText() + fmt.Sprintf("\n\n%s", rendered.Link),
 		From: mail.Address{
 			Address: am.hub.Settings().Meta.SenderAddress,
 			Name:    am.hub.Settings().Meta.SenderName,
 		},
+		InlineAttachments: map[string]io.Reader{"beszel-icon.png": bytes.NewReader(emailIcon)},
 	}
 	err = am.hub.NewMailClient().Send(&message)
 	if err != nil {

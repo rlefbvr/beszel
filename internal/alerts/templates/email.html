@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="{{.Lang}}" dir="{{.Dir}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<title>{{.Subject}}</title>
+{{.MsoHead}}
+<style>
+	body { margin: 0; padding: 0; background: #faf9f8; -webkit-text-size-adjust: 100%; }
+	a { color: inherit; }
+	/* No dark media query: it follows the OS rather than the mail client theme.
+	   Clients darken the message with their own dark mode. Outlook
+	   marks the elements it recolors with data-ogsc / data-ogsb: keep the button
+	   readable there, light on dark like the site's dark theme. */
+	[data-ogsc] .btn { color: #18181b !important; }
+	[data-ogsb] .btn { background: #f4f4f5 !important; background-color: #f4f4f5 !important; }
+</style>
+</head>
+<body style="margin:0;padding:0;background:#faf9f8;">
+<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">{{.Preheader}}</div>
+<table role="presentation" class="bg" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#faf9f8" style="background:#faf9f8;">
+<tr><td align="center" style="padding:32px 16px;">
+	<table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:560px;font-family:Inter,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+		<tr><td style="padding:0 4px 18px;">
+			<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+				<td style="vertical-align:middle;padding-{{.End}}:10px;"><img src="cid:beszel-icon.png" width="28" height="35" alt="Beszel" style="display:block;width:28px;height:35px;border:0;"></td>
+				<td class="fg" style="vertical-align:middle;font-size:16px;font-weight:600;color:#1a1a1a;">{{if .AppHost}}<a class="fg" href="{{.AppURL}}" style="color:#1a1a1a;text-decoration:none;">{{.AppHost}}</a>{{else}}Beszel{{end}}</td>
+			</tr></table>
+		</td></tr>
+		<tr><td class="card" bgcolor="#ffffff" style="background:#ffffff;border:1px solid #dcd8d4;border-radius:16px;padding:28px;">
+			<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+				<tr><td style="padding-bottom:16px;">
+					<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+						<td style="vertical-align:middle;">{{.Pill}}</td>
+						{{if .SystemName}}<td class="muted" style="vertical-align:middle;padding-{{.Start}}:10px;font-size:13px;color:#5b5856;">{{.SystemName}}</td>{{end}}
+					</tr></table>
+				</td></tr>
+				<tr><td class="fg" style="font-size:20px;line-height:28px;font-weight:600;color:#1d1d20;padding-bottom:12px;">{{.Title}}</td></tr>
+				{{if .Target}}
+				<tr><td style="padding-bottom:14px;">
+					<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+						<td class="box" bgcolor="#f6f4f2" style="background:#f6f4f2;border:1px solid #ebe7e3;border-radius:10px;padding:12px 14px;">
+							<div class="muted" style="font-size:11px;line-height:16px;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;color:#6b6865;">{{.TargetLabel}}</div>
+							<div class="fg" style="padding-top:3px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:15px;line-height:22px;font-weight:600;color:#1d1d20;word-break:break-word;">{{.Target}}</div>
+						</td>
+					</tr></table>
+				</td></tr>
+				{{end}}
+				<tr><td class="muted" style="font-size:15px;line-height:24px;color:#4b4846;">{{.MessageHTML}}</td></tr>
+				{{range .Details}}
+				{{if .Label}}<tr><td class="fg" style="padding-top:18px;padding-bottom:6px;font-size:13px;font-weight:600;color:#1d1d20;">{{.Label}}</td></tr>{{end}}
+				{{if .Text}}<tr><td><pre class="pre" style="margin:0;padding:12px;background:#f3f1ef;border:1px solid #e7e3df;border-radius:8px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;line-height:18px;color:#2b2a29;white-space:pre-wrap;word-break:break-word;">{{.Text}}</pre></td></tr>{{end}}
+				{{end}}
+				{{if .Button}}<tr><td style="padding-top:24px;">{{.Button}}</td></tr>{{end}}
+			</table>
+		</td></tr>
+		<tr><td class="muted" style="padding:18px 4px 0;font-size:12px;line-height:18px;color:#6b6865;">
+			{{.Footer}}{{if .SettingsLink}} <a class="muted" href="{{.SettingsLink}}" style="color:#6b6865;text-decoration:underline;">{{.SettingsLabel}}</a>{{end}}
+		</td></tr>
+	</table>
+</td></tr>
+</table>
+</body>
+</html>

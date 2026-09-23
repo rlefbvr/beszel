@@ -29,7 +29,7 @@ func TestPersistedWebhooksUseCurrentOwnerRole(t *testing.T) {
 	require.NoError(t, err)
 	settings.Set("settings", alerts.UserNotificationSettings{Webhooks: []string{"generic+" + server.URL}})
 	require.NoError(t, hub.Save(settings))
-	message := alerts.AlertMessageData{UserID: user.Id, Title: "Test", Message: "Persisted webhook"}
+	message := alerts.AlertMessageData{UserID: user.Id, Title: alerts.RawMsg("Test"), Message: alerts.RawMsg("Persisted webhook")}
 
 	// Keep the same URL and manager while changing roles, so cached privileges
 	// or treating previously saved URLs as trusted would fail this test.

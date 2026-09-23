@@ -1,7 +1,6 @@
 package alerts
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/henrygd/beszel/internal/entities/system"
@@ -107,42 +106,40 @@ func (am *AlertManager) sendSystemdAlert(triggered bool, systemName string, aler
 		return err
 	}
 
-	var title, message string
+	args := Args{"system": systemName}
+	title, message := M("systemd.recovered.title", args), M("systemd.recovered.body", args)
+	status, emoji := AlertStatusResolved, "✅" // Green checkmark emoji
+	var target, targetLabel Msg
 	if triggered {
-		title = fmt.Sprintf("Failed services on %s %v", systemName, "\U0001F534") // Red alert emoji
-		message = fmt.Sprintf("%s on %s: %s", pluralizeServices(len(failed)), systemName, formatServiceList(failed))
-	} else {
-		title = fmt.Sprintf("Services recovered on %s %v", systemName, "✅") // Green checkmark emoji
-		message = fmt.Sprintf("No services are in the failed state on %s.", systemName)
+		target, targetLabel = formatServiceList(failed), M("target.services", nil)
+		title = M("systemd.failed.title", args)
+		message = M("systemd.failed.body", Args{"system": systemName, "count": len(failed), "services": formatServiceList(failed)})
+		status, emoji = AlertStatusTriggered, "\U0001F534" // Red alert emoji
 	}
 
 	systemID := alertData.SystemID
 
 	return am.SendAlert(AlertMessageData{
-		UserID:   alertData.UserID,
-		SystemID: systemID,
-		Title:    title,
-		Message:  message,
-		Link:     am.hub.MakeLink("system", systemID),
-		LinkText: "View " + systemName,
+		UserID:      alertData.UserID,
+		SystemID:    systemID,
+		SystemName:  systemName,
+		Title:       title,
+		Message:     message,
+		Target:      target,
+		TargetLabel: targetLabel,
+		Status:      status,
+		Emoji:       emoji,
+		Link:        am.hub.MakeLink("system", systemID),
+		LinkText:    viewSystemLink(systemName),
 	})
 }
 
-// pluralizeServices returns a count label like "1 failed service" or "3 failed services".
-func pluralizeServices(count int) string {
-	if count == 1 {
-		return "1 failed service"
-	}
-	return fmt.Sprintf("%d failed services", count)
-}
-
 // formatServiceList joins service names, truncating long lists.
-func formatServiceList(names []string) string {
+func formatServiceList(names []string) Msg {
 	if len(names) <= maxListedServices {
-		return strings.Join(names, ", ")
+		return RawMsg(strings.Join(names, ", "))
 	}
-	remaining := len(names) - maxListedServices
-	return fmt.Sprintf("%s and %d more", strings.Join(names[:maxListedServices], ", "), remaining)
+	return M("list.more", Args{"items": names[:maxListedServices], "count": len(names) - maxListedServices})
 }
 
 // resolveSystemdAlerts resolves triggered systemd alerts for systems that no longer

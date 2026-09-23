@@ -2,7 +2,6 @@ package alerts
 
 import (
 	"encoding/json"
-	"fmt"
 	"strings"
 	"time"
 
@@ -333,7 +332,7 @@ func (am *AlertManager) HandleSystemAlerts(systemRecord *core.Record, data *syst
 				sumTemp := float32(value) / float32(alert.count)
 				if sumTemp > maxTemp {
 					maxTemp = sumTemp
-					alert.descriptor = fmt.Sprintf("Highest sensor %s", key)
+					alert.descriptor = M("threshold.highest_sensor", Args{"sensor": key})
 				}
 			}
 			alert.val = float64(maxTemp)
@@ -373,11 +372,11 @@ func zfsDiskAlertKey(poolName string) string {
 	return "zfs:" + poolName
 }
 
-func diskAlertDescriptor(key string) string {
+func diskAlertDescriptor(key string) Msg {
 	if poolName, ok := strings.CutPrefix(key, "zfs:"); ok {
-		return fmt.Sprintf("Usage of storage pool %s", poolName)
+		return M("threshold.pool_usage", Args{"pool": poolName})
 	}
-	return fmt.Sprintf("Usage of %s", key)
+	return M("threshold.disk_usage", Args{"disk": key})
 }
 
 func hasRepresentativeBattery(legacy [2]uint8, batteries map[string]uint8) bool {
@@ -388,59 +387,44 @@ func (am *AlertManager) sendSystemAlert(alert SystemAlertData) {
 	// log.Printf("Sending alert %s: val %f | count %d | threshold %f\n", alert.name, alert.val, alert.count, alert.threshold)
 	systemName := alert.systemRecord.GetString("name")
 
-	if state, ok := cpuStateAlerts[alert.name]; ok {
-		alert.name = state.label
-	}
-	// change Disk to Disk usage
-	if alert.name == "Disk" {
-		alert.name += " usage"
-	}
-	// format LoadAvg5 and LoadAvg15
-	if after, ok := strings.CutPrefix(alert.name, "LoadAvg"); ok {
-		alert.name = after + "m Load"
-	}
+	// the title uses the lowercase metric name ("memory") and the body the
+	// sentence form ("Memory"); both are translated
+	metric := M("metric."+alert.name, nil)
+	titleMetric := M("metric.title."+alert.name, nil)
 
-	// make title alert name lowercase if not CPU or GPU
-	titleAlertName := alert.name
-	if titleAlertName != "CPU" && titleAlertName != "GPU" && !strings.HasPrefix(titleAlertName, "CPU") {
-		titleAlertName = strings.ToLower(titleAlertName)
+	// Battery alerts trigger below the threshold instead of above it
+	above := alert.triggered != isLowAlert(alert.name)
+	titleKey := "threshold.below"
+	if above {
+		titleKey = "threshold.above"
 	}
-
-	var subject string
-	lowAlert := isLowAlert(alert.name)
-	if alert.triggered {
-		if lowAlert {
-			subject = fmt.Sprintf("%s %s below threshold", systemName, titleAlertName)
-		} else {
-			subject = fmt.Sprintf("%s %s above threshold", systemName, titleAlertName)
-		}
-	} else {
-		if lowAlert {
-			subject = fmt.Sprintf("%s %s above threshold", systemName, titleAlertName)
-		} else {
-			subject = fmt.Sprintf("%s %s below threshold", systemName, titleAlertName)
-		}
+	if alert.descriptor.IsZero() {
+		alert.descriptor = metric
 	}
-	minutesLabel := "minute"
-	if alert.min > 1 {
-		minutesLabel += "s"
-	}
-	if alert.descriptor == "" {
-		alert.descriptor = alert.name
-	}
-	body := fmt.Sprintf("%s averaged %.2f%s for the previous %v %s.", alert.descriptor, alert.val, alert.unit, alert.min, minutesLabel)
+	body := M("threshold.body", Args{
+		"descriptor": alert.descriptor,
+		"value":      alert.val,
+		"unit":       alert.unit,
+		"count":      int(alert.min),
+	})
 
 	if err := am.setAlertTriggered(alert.alertData, alert.triggered); err != nil {
 		// app.Logger().Error("failed to save alert record", "err", err)
 		return
 	}
+	status := AlertStatusResolved
+	if alert.triggered {
+		status = AlertStatusTriggered
+	}
 	am.SendAlert(AlertMessageData{
-		UserID:   alert.alertData.UserID,
-		SystemID: alert.systemRecord.Id,
-		Title:    subject,
-		Message:  body,
-		Link:     am.hub.MakeLink("system", alert.systemRecord.Id),
-		LinkText: "View " + systemName,
+		UserID:     alert.alertData.UserID,
+		SystemID:   alert.systemRecord.Id,
+		SystemName: systemName,
+		Title:      M(titleKey, Args{"system": systemName, "metric": titleMetric}),
+		Message:    body,
+		Status:     status,
+		Link:       am.hub.MakeLink("system", alert.systemRecord.Id),
+		LinkText:   viewSystemLink(systemName),
 	})
 }
 

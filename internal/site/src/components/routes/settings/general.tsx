@@ -12,6 +12,7 @@ import Slider from "@/components/ui/slider"
 import { HourFormat, Unit } from "@/lib/enums"
 import { dynamicActivate } from "@/lib/i18n"
 import languages from "@/lib/languages"
+import { queueUserSettings } from "@/lib/api"
 import { $userSettings, defaultLayoutWidth } from "@/lib/stores"
 import { chartTimeData, currentHour12 } from "@/lib/utils"
 import type { UserSettings } from "@/types"
@@ -63,7 +64,15 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 					<Label className="block" htmlFor="lang">
 						<Trans>Preferred Language</Trans>
 					</Label>
-					<Select name="lang" value={i18n.locale} onValueChange={(lang: string) => dynamicActivate(lang)}>
+					<Select
+						name="lang"
+						value={i18n.locale}
+						onValueChange={(lang: string) => {
+							dynamicActivate(lang)
+							// saved right away: notifications sent by the hub use this language
+							queueUserSettings({ lang })
+						}}
+					>
 						<SelectTrigger id="lang">
 							<SelectValue />
 						</SelectTrigger>

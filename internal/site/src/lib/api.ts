@@ -92,6 +92,10 @@ export async function updateUserSettings() {
 		const req = await pb.collection("user_settings").getFirstListItem("", { fields: "settings" })
 		$userSettings.set(req.settings)
 		dynamicActivate(req.settings.lang || getLocale())
+		// remember the detected language so notifications from the hub use it
+		if (!req.settings.lang) {
+			queueUserSettings({ lang: getLocale() })
+		}
 		return
 	} catch (e) {
 		console.error("get settings", e)
@@ -101,6 +105,9 @@ export async function updateUserSettings() {
 		const createdSettings = await pb.collection("user_settings").create({ user: pb.authStore.record?.id })
 		$userSettings.set(createdSettings.settings)
 		dynamicActivate(createdSettings.settings.lang || getLocale())
+		if (!createdSettings.settings.lang) {
+			queueUserSettings({ lang: getLocale() })
+		}
 	} catch (e) {
 		console.error("create settings", e)
 	}

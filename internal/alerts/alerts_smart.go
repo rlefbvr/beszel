@@ -1,7 +1,6 @@
 package alerts
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/pocketbase/pocketbase/core"
@@ -32,15 +31,16 @@ func (am *AlertManager) handleSmartDeviceAlert(e *core.RecordEvent) error {
 	systemName := systemRecord.GetString("name")
 	deviceName := e.Record.GetString("name")
 	model := e.Record.GetString("model")
-	statusLabel := smartStateLabel(newState)
-
 	// Build alert message
-	title := fmt.Sprintf("SMART %s on %s: %s %s", statusLabel, systemName, deviceName, smartStateEmoji(newState))
-	var message string
+	args := Args{"system": systemName, "device": deviceName, "model": model, "state": newState}
+	title := M("smart.title."+smartStateLabel(newState), args)
+	message := M("smart.body", args)
 	if model != "" {
-		message = fmt.Sprintf("Disk %s (%s) SMART status changed to %s", deviceName, model, newState)
-	} else {
-		message = fmt.Sprintf("Disk %s SMART status changed to %s", deviceName, newState)
+		message = M("smart.body_model", args)
+	}
+	status := AlertStatusTriggered
+	if newState == "WARNING" {
+		status = AlertStatusWarning
 	}
 
 	// Get users associated with the system
@@ -52,12 +52,17 @@ func (am *AlertManager) handleSmartDeviceAlert(e *core.RecordEvent) error {
 	// Send alert to each user
 	for _, userID := range userIDs {
 		if err := am.SendAlert(AlertMessageData{
-			UserID:   userID,
-			SystemID: systemID,
-			Title:    title,
-			Message:  message,
-			Link:     am.hub.MakeLink("system", systemID),
-			LinkText: "View " + systemName,
+			UserID:      userID,
+			SystemID:    systemID,
+			SystemName:  systemName,
+			Title:       title,
+			Message:     message,
+			Target:      RawMsg(deviceName),
+			TargetLabel: M("target.disk", nil),
+			Status:      status,
+			Emoji:       smartStateEmoji(newState),
+			Link:        am.hub.MakeLink("system", systemID),
+			LinkText:    viewSystemLink(systemName),
 		}); err != nil {
 			e.App.Logger().Error("Failed to send SMART alert", "err", err, "userID", userID)
 		}

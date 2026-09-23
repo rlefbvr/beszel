@@ -2,7 +2,6 @@ package alerts
 
 import (
 	"errors"
-	"fmt"
 	"strings"
 	"time"
 
@@ -27,8 +26,6 @@ const (
 	// containerAlertMaxLogged is the max number of unhealthy containers we fetch
 	// and embed logs for in a single alert message.
 	containerAlertMaxLogged = 2
-	// containerAlertMessageMaxChars is a final safety cap on the whole message body.
-	containerAlertMessageMaxChars = 1800
 )
 
 // FetchContainerLogsFunc retrieves recent logs for a container ID from its
@@ -197,20 +194,23 @@ func (am *AlertManager) CancelPendingContainerAlerts(systemID string) {
 // error/fatal lines) for up to containerAlertMaxLogged of the affected containers.
 func (am *AlertManager) sendContainerHealthAlert(unhealthy bool, systemName string, alertData CachedAlertData, containers []containerAlertTarget, fetchLogs FetchContainerLogsFunc) error {
 	link := am.hub.MakeLink("system", alertData.SystemID)
-	linkText := "View " + systemName
+	linkText := viewSystemLink(systemName)
 
 	if !unhealthy {
 		if err := am.setAlertTriggered(alertData, false); err != nil {
 			return err
 		}
-		title := fmt.Sprintf("%s containers are healthy ✅", systemName)
+		message := M("container.healthy", Args{"system": systemName})
 		return am.SendAlert(AlertMessageData{
-			UserID:   alertData.UserID,
-			SystemID: alertData.SystemID,
-			Title:    title,
-			Message:  strings.TrimSuffix(title, " ✅"),
-			Link:     link,
-			LinkText: linkText,
+			UserID:     alertData.UserID,
+			SystemID:   alertData.SystemID,
+			SystemName: systemName,
+			Title:      message,
+			Message:    message,
+			Status:     AlertStatusResolved,
+			Emoji:      "✅",
+			Link:       link,
+			LinkText:   linkText,
 		})
 	}
 
@@ -219,21 +219,13 @@ func (am *AlertManager) sendContainerHealthAlert(unhealthy bool, systemName stri
 		names[i] = c.name
 	}
 
-	var title string
+	title := M("container.unhealthy_many", Args{"count": len(names), "system": systemName})
+	targetLabel := M("target.containers", nil)
 	if len(names) == 1 {
-		title = fmt.Sprintf("Unhealthy container %s on %s \U0001F534", names[0], systemName)
-	} else {
-		title = fmt.Sprintf("%d unhealthy containers on %s \U0001F534", len(names), systemName)
+		title = M("container.unhealthy_one", Args{"container": names[0], "system": systemName})
+		targetLabel = M("target.container", nil)
 	}
-
-	var body strings.Builder
-	fmt.Fprintf(&body, "Unhealthy: %s", strings.Join(names, ", "))
-	body.WriteString(am.buildContainerLogsSection(containers, fetchLogs))
-
-	message := body.String()
-	if len(message) > containerAlertMessageMaxChars {
-		message = message[:containerAlertMessageMaxChars] + "\n…(truncated)"
-	}
+	details := am.buildContainerLogDetails(containers, fetchLogs)
 
 	claimed, err := am.claimPendingContainerAlert(alertData)
 	if err != nil || !claimed {
@@ -241,23 +233,29 @@ func (am *AlertManager) sendContainerHealthAlert(unhealthy bool, systemName stri
 	}
 
 	return am.SendAlert(AlertMessageData{
-		UserID:   alertData.UserID,
-		SystemID: alertData.SystemID,
-		Title:    title,
-		Message:  message,
-		Link:     link,
-		LinkText: linkText,
+		UserID:      alertData.UserID,
+		SystemID:    alertData.SystemID,
+		SystemName:  systemName,
+		Title:       title,
+		Message:     M("container.unhealthy_list", Args{"containers": names}),
+		Target:      RawMsg(strings.Join(names, ", ")),
+		TargetLabel: targetLabel,
+		Details:     details,
+		Status:      AlertStatusTriggered,
+		Emoji:       "\U0001F534",
+		Link:        link,
+		LinkText:    linkText,
 	})
 }
 
-// buildContainerLogsSection attempts to fetch and format log excerpts for up to
-// containerAlertMaxLogged unhealthy containers, to append to an alert message.
-func (am *AlertManager) buildContainerLogsSection(containers []containerAlertTarget, fetchLogs FetchContainerLogsFunc) string {
+// buildContainerLogDetails attempts to fetch log excerpts for up to
+// containerAlertMaxLogged unhealthy containers, to show below an alert message.
+func (am *AlertManager) buildContainerLogDetails(containers []containerAlertTarget, fetchLogs FetchContainerLogsFunc) []AlertDetail {
 	if fetchLogs == nil {
-		return ""
+		return nil
 	}
 
-	var section strings.Builder
+	var details []AlertDetail
 	attempts := min(len(containers), containerAlertMaxLogged)
 	for _, c := range containers[:attempts] {
 		rawLogs, err := fetchLogs(c.id)
@@ -269,14 +267,14 @@ func (am *AlertManager) buildContainerLogsSection(containers []containerAlertTar
 		if excerpt == "" {
 			continue
 		}
-		fmt.Fprintf(&section, "\n\n%s logs:\n```\n%s\n```", c.name, excerpt)
+		details = append(details, AlertDetail{Label: M("container.logs", Args{"container": c.name}), Text: excerpt})
 	}
 
 	if len(containers) > containerAlertMaxLogged {
-		fmt.Fprintf(&section, "\n\n(+%d more unhealthy container(s), logs omitted)", len(containers)-containerAlertMaxLogged)
+		details = append(details, AlertDetail{Label: M("container.logs_omitted", Args{"count": len(containers) - containerAlertMaxLogged})})
 	}
 
-	return section.String()
+	return details
 }
 
 // buildContainerLogExcerpt filters raw container log output down to the lines

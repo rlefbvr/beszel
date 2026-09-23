@@ -3,7 +3,6 @@ package alerts
 import (
 	"database/sql"
 	"errors"
-	"fmt"
 	"math"
 	"net"
 	"strconv"
@@ -191,15 +190,19 @@ func (am *AlertManager) evaluateNetworkMonitorAlerts(app core.App, systemID stri
 						delete(states, m.Id)
 					}
 					changed = true
-					state, comparison := "loss", "exceeds"
+					key, status := "monitor.loss", AlertStatusTriggered
 					if !triggered {
-						state, comparison = "recovered", "is at or below"
+						key, status = "monitor.recovered", AlertStatusResolved
 					}
+					systemName := system.GetString("name")
+					args := Args{"system": systemName, "target": label, "loss": result.PacketLoss1h, "threshold": alert.GetFloat("value")}
 					messages = append(messages, AlertMessageData{
-						UserID: alert.GetString("user"), SystemID: systemID,
-						Title:   fmt.Sprintf("Network monitor %s on %s: %s", state, system.GetString("name"), label),
-						Message: fmt.Sprintf("%s on %s: loss over the past hour is %.2f%%, which %s the %.2f%% threshold.", label, system.GetString("name"), result.PacketLoss1h, comparison, alert.GetFloat("value")),
-						Link:    am.hub.MakeLink("system", systemID), LinkText: "View " + system.GetString("name"),
+						UserID: alert.GetString("user"), SystemID: systemID, SystemName: systemName,
+						Title:   M(key+".title", args),
+						Message: M(key+".body", args),
+						Target:  RawMsg(label), TargetLabel: M("target.monitor", nil),
+						Status: status,
+						Link:   am.hub.MakeLink("system", systemID), LinkText: viewSystemLink(systemName),
 					})
 				}
 			}

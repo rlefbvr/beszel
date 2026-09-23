@@ -1,7 +1,6 @@
 package alerts
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/pocketbase/dbx"
@@ -51,10 +50,11 @@ func (am *AlertManager) handleZfsPoolHealthAlert(e *core.RecordEvent, oldHealth 
 		poolName = e.Record.GetString("name")
 	}
 
-	title := fmt.Sprintf("Storage pool %s on %s: %s", newHealth, systemName, poolName)
-	message := fmt.Sprintf("Storage pool %s (%s) was first observed as %s", poolName, systemName, newHealth)
+	args := Args{"system": systemName, "pool": poolName, "health": newHealth, "previous": oldHealth}
+	title := M("zfs.title", args)
+	message := M("zfs.body_first", args)
 	if oldSeverity > 0 {
-		message = fmt.Sprintf("Storage pool %s (%s) health changed from %s to %s", poolName, systemName, oldHealth, newHealth)
+		message = M("zfs.body_changed", args)
 	}
 
 	userIDs := systemRecord.GetStringSlice("users")
@@ -64,12 +64,16 @@ func (am *AlertManager) handleZfsPoolHealthAlert(e *core.RecordEvent, oldHealth 
 
 	for _, userID := range userIDs {
 		if err := am.SendAlert(AlertMessageData{
-			UserID:   userID,
-			SystemID: systemID,
-			Title:    title,
-			Message:  message,
-			Link:     am.hub.MakeLink("system", systemID),
-			LinkText: "View " + systemName,
+			UserID:      userID,
+			SystemID:    systemID,
+			SystemName:  systemName,
+			Title:       title,
+			Message:     message,
+			Target:      RawMsg(poolName),
+			TargetLabel: M("target.pool", nil),
+			Status:      zfsAlertStatus(newHealth),
+			Link:        am.hub.MakeLink("system", systemID),
+			LinkText:    viewSystemLink(systemName),
 		}); err != nil {
 			e.App.Logger().Error("Failed to send ZFS alert", "err", err, "userID", userID)
 		}
@@ -142,4 +146,12 @@ func resolveAllAlertHistoryRecords(app core.App, alertID string) {
 			app.Logger().Error("Failed to resolve ZFS alert history", "err", err, "recordId", record.Id)
 		}
 	}
+}
+
+// zfsAlertStatus colors a degraded pool as a warning and worse states as failures.
+func zfsAlertStatus(health string) AlertStatus {
+	if health == "DEGRADED" {
+		return AlertStatusWarning
+	}
+	return AlertStatusTriggered
 }

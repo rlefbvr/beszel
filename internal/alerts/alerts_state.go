@@ -356,9 +356,9 @@ func (am *AlertManager) evaluateStateAlerts(systemRecord *core.Record, kind stri
 	var messages []AlertMessageData
 	systemID := systemRecord.Id
 	systemName := systemRecord.GetString("name")
-	historyName, targetLabel, absentState := alertNameServiceState, "Service", serviceStateAbsent
+	historyName, absentState := alertNameServiceState, serviceStateAbsent
 	if kind == stateAlertKindContainer {
-		historyName, targetLabel, absentState = alertNameContainerState, "Container", containerStateStopped
+		historyName, absentState = alertNameContainerState, containerStateStopped
 	}
 
 	err := am.hub.RunInTransaction(func(tx core.App) error {
@@ -415,13 +415,13 @@ func (am *AlertManager) evaluateStateAlerts(systemRecord *core.Record, kind stri
 						return err
 					}
 					target.History = history.Id
-					messages = append(messages, stateAlertMessage(record, targetLabel, name, systemName, obs, true))
+					messages = append(messages, stateAlertMessage(record, kind, name, systemName, obs, true))
 				case target.History != "" && target.Count == 0:
 					if err := resolveMonitorIncident(tx, target.History, now); err != nil {
 						return err
 					}
 					target.History = ""
-					messages = append(messages, stateAlertMessage(record, targetLabel, name, systemName, obs, false))
+					messages = append(messages, stateAlertMessage(record, kind, name, systemName, obs, false))
 				}
 
 				// Forget targets that are gone and quiet, unless named explicitly.
@@ -448,7 +448,8 @@ func (am *AlertManager) evaluateStateAlerts(systemRecord *core.Record, kind stri
 	// Persist transitions before delivery, like other alert types.
 	for _, message := range messages {
 		message.Link = am.hub.MakeLink("system", systemID)
-		message.LinkText = "View " + systemName
+		message.SystemName = systemName
+		message.LinkText = viewSystemLink(systemName)
 		if err := am.SendAlert(message); err != nil {
 			am.hub.Logger().Error("Failed to send state alert", "err", err)
 		}
@@ -463,37 +464,40 @@ func formatObservedState(obs observedState) string {
 	return fmt.Sprintf("%s (%s)", obs.state, obs.sub)
 }
 
-func formatStateAlertCondition(record *core.Record) string {
+// formatStateAlertCondition describes a rule, e.g. "state is not active (running)".
+// State names are technical values shown untranslated, like in the interface.
+func formatStateAlertCondition(record *core.Record) Msg {
 	rule := stateAlertRuleFromRecord(record)
-	verb := "is"
-	if rule.condition == stateAlertConditionIsNot {
-		verb = "is not"
-	}
 	var parts []string
 	if len(rule.states) > 0 {
-		parts = append(parts, strings.Join(rule.states, " or "))
+		parts = append(parts, strings.Join(rule.states, " / "))
 	}
 	if len(rule.subStates) > 0 {
-		parts = append(parts, "("+strings.Join(rule.subStates, " or ")+")")
+		parts = append(parts, "("+strings.Join(rule.subStates, " / ")+")")
 	}
-	return fmt.Sprintf("state %s %s", verb, strings.Join(parts, " "))
+	key := "state.rule.is"
+	if rule.condition == stateAlertConditionIsNot {
+		key = "state.rule.is_not"
+	}
+	return M(key, Args{"states": strings.Join(parts, " ")})
 }
 
-func stateAlertMessage(record *core.Record, targetLabel, name, systemName string, obs observedState, triggered bool) AlertMessageData {
-	systemID := record.GetString("system")
-	current := formatObservedState(obs)
-	var title, message string
+func stateAlertMessage(record *core.Record, kind, name, systemName string, obs observedState, triggered bool) AlertMessageData {
+	args := Args{"target": name, "system": systemName, "state": formatObservedState(obs), "rule": formatStateAlertCondition(record)}
+	key := "state." + kind
+	data := AlertMessageData{
+		UserID:      record.GetString("user"),
+		SystemID:    record.GetString("system"),
+		Title:       M(key+".recovered.title", args),
+		Message:     M(key+".recovered.body", args),
+		Target:      RawMsg(name),
+		TargetLabel: M("target."+kind, nil),
+		Status:      AlertStatusResolved,
+		Emoji:       "✅",
+	}
 	if triggered {
-		title = fmt.Sprintf("%s %s on %s: %s %v", targetLabel, name, systemName, current, "\U0001F534")
-		message = fmt.Sprintf("%s %s on %s is %s. Rule: %s.", targetLabel, name, systemName, current, formatStateAlertCondition(record))
-	} else {
-		title = fmt.Sprintf("%s %s on %s recovered %v", targetLabel, name, systemName, "✅")
-		message = fmt.Sprintf("%s %s on %s is now %s.", targetLabel, name, systemName, current)
+		data.Title, data.Message = M(key+".triggered.title", args), M(key+".triggered.body", args)
+		data.Status, data.Emoji = AlertStatusTriggered, "\U0001F534"
 	}
-	return AlertMessageData{
-		UserID:   record.GetString("user"),
-		SystemID: systemID,
-		Title:    title,
-		Message:  message,
-	}
+	return data
 }
