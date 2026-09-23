@@ -1,4 +1,4 @@
-//go:build !linux && testing
+//go:build !linux && !windows && testing
 
 package agent
 
