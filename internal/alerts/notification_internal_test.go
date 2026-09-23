@@ -142,7 +142,7 @@ func TestNotificationRendering(t *testing.T) {
 }
 
 func TestAppHost(t *testing.T) {
-	assert.Equal(t, "monitoring.arard.net", appHost("https://monitoring.arard.net/"))
+	assert.Equal(t, "beszel.example.com", appHost("https://beszel.example.com/"))
 	assert.Equal(t, "example.com/beszel", appHost("https://example.com/beszel/"))
 	assert.Equal(t, "", appHost(""))
 }
