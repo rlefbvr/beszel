@@ -9,6 +9,9 @@ const (
 	Version = "0.20.0"
 	// AppName is the name of the application.
 	AppName = "beszel"
+	// RepoOwner and RepoName are the GitHub repository releases are downloaded from.
+	RepoOwner = "rlefbvr"
+	RepoName  = "beszel"
 )
 
 // MinVersionCbor is the minimum supported version for CBOR compatibility.

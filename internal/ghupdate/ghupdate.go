@@ -98,11 +98,11 @@ func (p *updater) update() (updated bool, err error) {
 	}
 
 	if p.config.Owner == "" {
-		p.config.Owner = "henrygd"
+		p.config.Owner = beszel.RepoOwner
 	}
 
 	if p.config.Repo == "" {
-		p.config.Repo = "beszel"
+		p.config.Repo = beszel.RepoName
 	}
 
 	if p.config.Context == nil {
@@ -236,7 +236,7 @@ func (p *updater) update() (updated bool, err error) {
 
 func FetchLatestRelease(ctx context.Context, client HttpClient, url string) (*release, error) {
 	if url == "" {
-		url = getApiURL(false, "henrygd", "beszel")
+		url = getApiURL(false, beszel.RepoOwner, beszel.RepoName)
 	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)

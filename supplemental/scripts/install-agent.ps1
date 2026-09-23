@@ -8,8 +8,11 @@ param (
     [string]$AgentPath = "",
     [string]$NSSMPath = "",
     [switch]$ConfigureFirewall,
-    [ValidateSet("Auto", "Scoop", "WinGet")]
+    # Auto / GitHub download the agent from the GitHub releases of $Repo.
+    # Scoop / WinGet install the upstream henrygd/beszel packages.
+    [ValidateSet("Auto", "GitHub", "Scoop", "WinGet")]
     [string]$InstallMethod = "Auto",
+    [string]$Version = "latest",
     # Set automatically from $PSBoundParameters below, or forwarded through an elevated relaunch.
     # Used so a reinstall only overwrites Token/Url/Port on an existing service if the caller
     # actually asked to change them, instead of wiping them with their unset defaults.
@@ -24,10 +27,13 @@ if (-not $Elevated) {
     $PortProvided = $PSBoundParameters.ContainsKey('Port')
 }
 
+# GitHub repository the agent is downloaded from
+$Repo = "rlefbvr/beszel"
+
 # Check if required parameters are provided
 if ([string]::IsNullOrWhiteSpace($Key)) {
     Write-Host "ERROR: SSH Key is required." -ForegroundColor Red
-    Write-Host "Usage: .\install-agent.ps1 -Key 'your-ssh-key-here' [-Token 'your-token-here'] [-Url 'your-hub-url-here'] [-Port port-number] [-InstallMethod Auto|Scoop|WinGet] [-ConfigureFirewall]" -ForegroundColor Yellow
+    Write-Host "Usage: .\install-agent.ps1 -Key 'your-ssh-key-here' [-Token 'your-token-here'] [-Url 'your-hub-url-here'] [-Port port-number] [-InstallMethod Auto|GitHub|Scoop|WinGet] [-Version latest] [-ConfigureFirewall]" -ForegroundColor Yellow
     Write-Host "Note: Token and Url are optional for backwards compatibility with older hub versions." -ForegroundColor Yellow
     exit 1
 }
@@ -246,6 +252,92 @@ function Install-BeszelAgentWithWinGet {
     }
     
     return $agentPath
+}
+
+# Function to install beszel-agent from the GitHub releases of $Repo (requires admin)
+function Install-BeszelAgentFromGitHub {
+    param (
+        [string]$Version = "latest"
+    )
+
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    if ($Version -eq "latest") {
+        $release = Invoke-RestMethod -Uri "https://api.github.com/repos/$Repo/releases/latest" -UseBasicParsing
+        $Version = $release.tag_name
+    }
+    $Version = $Version.TrimStart("v")
+
+    $arch = if ($env:PROCESSOR_ARCHITECTURE -eq "ARM64") { "arm64" } else { "amd64" }
+    $fileName = "beszel-agent_windows_$arch.zip"
+    $baseUrl = "https://github.com/$Repo/releases/download/v$Version"
+    $tempDir = Join-Path $env:TEMP "beszel-agent-$([guid]::NewGuid())"
+    New-Item -ItemType Directory -Path $tempDir | Out-Null
+
+    try {
+        Write-Host "Downloading beszel-agent v$Version from github.com/$Repo..."
+        $zipPath = Join-Path $tempDir $fileName
+        $checksumsPath = Join-Path $tempDir "checksums.txt"
+        Invoke-WebRequest -Uri "$baseUrl/$fileName" -OutFile $zipPath -UseBasicParsing
+        Invoke-WebRequest -Uri "$baseUrl/beszel_${Version}_checksums.txt" -OutFile $checksumsPath -UseBasicParsing
+
+        $expected = Get-Content $checksumsPath |
+            Where-Object { ($_ -split "\s+")[1] -eq $fileName } |
+            ForEach-Object { ($_ -split "\s+")[0] } |
+            Select-Object -First 1
+        if (-not $expected) {
+            throw "Checksum not found for $fileName"
+        }
+        $actual = (Get-FileHash -Path $zipPath -Algorithm SHA256).Hash
+        if ($actual -ne $expected.ToUpper()) {
+            throw "Checksum verification failed: $actual != $expected"
+        }
+
+        Expand-Archive -Path $zipPath -DestinationPath $tempDir -Force
+
+        $installDir = Join-Path $env:ProgramFiles "beszel-agent"
+        New-Item -ItemType Directory -Path $installDir -Force | Out-Null
+        $agentPath = Join-Path $installDir "beszel-agent.exe"
+
+        # Stop the service so the executable can be replaced
+        $service = Get-Service -Name "beszel-agent" -ErrorAction SilentlyContinue
+        if ($service -and $service.Status -ne "Stopped") {
+            Write-Host "Stopping beszel-agent service..."
+            Stop-Service -Name "beszel-agent" -Force
+        }
+
+        Copy-Item -Path (Join-Path $tempDir "beszel-agent.exe") -Destination $agentPath -Force
+        Write-Host "beszel-agent installed to $agentPath"
+        return $agentPath
+    }
+    finally {
+        Remove-Item -Path $tempDir -Recurse -Force -ErrorAction SilentlyContinue
+    }
+}
+
+# Function to download NSSM when neither WinGet nor Scoop is available (requires admin)
+function Install-NSSMFromWeb {
+    $installDir = Join-Path $env:ProgramFiles "nssm"
+    $nssmPath = Join-Path $installDir "nssm.exe"
+    if (Test-Path $nssmPath) {
+        return $nssmPath
+    }
+
+    Write-Host "Downloading NSSM..."
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    $tempDir = Join-Path $env:TEMP "nssm-$([guid]::NewGuid())"
+    New-Item -ItemType Directory -Path $tempDir | Out-Null
+    try {
+        $zipPath = Join-Path $tempDir "nssm.zip"
+        Invoke-WebRequest -Uri "https://nssm.cc/release/nssm-2.24.zip" -OutFile $zipPath -UseBasicParsing
+        Expand-Archive -Path $zipPath -DestinationPath $tempDir -Force
+        $arch = if ([Environment]::Is64BitOperatingSystem) { "win64" } else { "win32" }
+        New-Item -ItemType Directory -Path $installDir -Force | Out-Null
+        Copy-Item -Path (Join-Path $tempDir "nssm-2.24\$arch\nssm.exe") -Destination $nssmPath -Force
+        return $nssmPath
+    }
+    finally {
+        Remove-Item -Path $tempDir -Recurse -Force -ErrorAction SilentlyContinue
+    }
 }
 
 # Function to install using Scoop
@@ -502,8 +594,15 @@ function Start-BeszelAgentService {
 $isAdmin = Test-Admin
 
 try {
-    # First: Install the agent (doesn't require admin)
-    if (-not $AgentPath) {
+    # First: Install the agent (Scoop / WinGet don't require admin, GitHub does)
+    $useGitHub = $InstallMethod -eq "Auto" -or $InstallMethod -eq "GitHub"
+    if (-not $AgentPath -and $useGitHub) {
+        if ($isAdmin -or $Elevated) {
+            $AgentPath = Install-BeszelAgentFromGitHub -Version $Version
+        }
+        # otherwise the agent is downloaded after relaunching as admin
+    }
+    elseif (-not $AgentPath) {
         # Check for problematic case: running as admin and need Scoop
         if ($isAdmin -and -not (Test-CommandExists "scoop") -and -not (Test-CommandExists "winget")) {
             Write-Host "ERROR: You're running as administrator but neither Scoop nor WinGet is available." -ForegroundColor Red
@@ -522,30 +621,16 @@ try {
             Write-Host "Using Scoop for installation..."
             $AgentPath = Install-WithScoop -Key $Key -Port $Port
         }
-        elseif ($InstallMethod -eq "WinGet") {
+        else {
             if (-not (Test-CommandExists "winget")) {
                 throw "InstallMethod is set to WinGet, but WinGet is not available in PATH."
             }
             Write-Host "Using WinGet for installation..."
             $AgentPath = Install-WithWinGet -Key $Key -Port $Port
         }
-        else {
-            if (Test-CommandExists "scoop") {
-                Write-Host "Using Scoop for installation..."
-                $AgentPath = Install-WithScoop -Key $Key -Port $Port
-            }
-            elseif (Test-CommandExists "winget") {
-                Write-Host "Using WinGet for installation..."
-                $AgentPath = Install-WithWinGet -Key $Key -Port $Port
-            }
-            else {
-                Write-Host "Neither Scoop nor WinGet is installed. Installing Scoop..."
-                $AgentPath = Install-WithScoop -Key $Key -Port $Port
-            }
-        }
     }
 
-    if (-not $AgentPath) {
+    if (-not $AgentPath -and ($isAdmin -or $Elevated -or -not $useGitHub)) {
         throw "Could not find beszel-agent executable. Make sure it was properly installed."
     }
     
@@ -583,6 +668,15 @@ try {
                 }
             }
             
+            # Last resort: download NSSM directly (requires admin)
+            if (-not $NSSMPath -and ($isAdmin -or $Elevated)) {
+                try {
+                    $NSSMPath = Install-NSSMFromWeb
+                } catch {
+                    Write-Host "Failed to download NSSM: $($_.Exception.Message)" -ForegroundColor Yellow
+                }
+            }
+
             # Final check - if we still don't have NSSM and we're admin, we have a problem
             if (-not $NSSMPath -and ($isAdmin -or $Elevated)) {
                 throw "NSSM is required for service installation but was not found and could not be installed. Please install NSSM manually or run as a regular user to install it."
@@ -606,7 +700,8 @@ try {
             "-Url", "`"$Url`"",
             "-Port", $Port,
             "-AgentPath", "`"$AgentPath`"",
-            "-InstallMethod", $InstallMethod
+            "-InstallMethod", $InstallMethod,
+            "-Version", $Version
         )
         
         # Add NSSMPath if we found it

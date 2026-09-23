@@ -507,6 +507,8 @@ prompt_auto_update() {
 # Default values
 PORT=45876
 UNINSTALL=false
+# GitHub repository the agent is downloaded from
+GITHUB_REPO="rlefbvr/beszel"
 GITHUB_URL="https://github.com"
 GITHUB_PROXY_URL=""
 KEY=""
@@ -926,13 +928,9 @@ fi
 
 # Determine version to install
 if [ "$VERSION" = "latest" ]; then
-  INSTALL_VERSION=$(curl -fsS --connect-timeout 10 --max-time 30 "https://get.beszel.dev/latest-version") || INSTALL_VERSION=""
-  if [ -z "$INSTALL_VERSION" ]; then
-    # Fallback to GitHub API
-    API_RELEASE_URL="https://api.github.com/repos/henrygd/beszel/releases/latest"
-    RELEASE_JSON=$(curl -fsS --connect-timeout 10 --max-time 30 "$API_RELEASE_URL") || fail "Could not fetch the latest release from GitHub."
-    INSTALL_VERSION=$(printf '%s\n' "$RELEASE_JSON" | grep -o '"tag_name": "v[^"]*"' | cut -d'"' -f4 | tr -d 'v')
-  fi
+  API_RELEASE_URL="https://api.github.com/repos/${GITHUB_REPO}/releases/latest"
+  RELEASE_JSON=$(curl -fsS --connect-timeout 10 --max-time 30 "$API_RELEASE_URL") || fail "Could not fetch the latest release from GitHub."
+  INSTALL_VERSION=$(printf '%s\n' "$RELEASE_JSON" | grep -o '"tag_name": "v[^"]*"' | cut -d'"' -f4 | tr -d 'v')
   if [ -z "$INSTALL_VERSION" ]; then
     echo "Failed to get latest version"
     exit 1
@@ -948,7 +946,7 @@ echo "Downloading beszel-agent v${INSTALL_VERSION}..."
 # Download checksums file
 TEMP_DIR=$(mktemp -d)
 cd "$TEMP_DIR" || exit 1
-curl -fsSL --connect-timeout 10 --max-time 60 "$GITHUB_URL/henrygd/beszel/releases/download/v${INSTALL_VERSION}/beszel_${INSTALL_VERSION}_checksums.txt" -o checksums.txt || fail "Could not download checksums. Try --mirror if GitHub is unreachable."
+curl -fsSL --connect-timeout 10 --max-time 60 "$GITHUB_URL/${GITHUB_REPO}/releases/download/v${INSTALL_VERSION}/beszel_${INSTALL_VERSION}_checksums.txt" -o checksums.txt || fail "Could not download checksums. Try --mirror if GitHub is unreachable."
 CHECKSUM=$(awk -v name="$FILE_NAME" '$2 == name { print $1 }' checksums.txt)
 if [ -z "$CHECKSUM" ] || ! echo "$CHECKSUM" | grep -qE "^[a-fA-F0-9]{64}$"; then
   echo "Failed to get checksum or invalid checksum format"
@@ -957,8 +955,8 @@ if [ -z "$CHECKSUM" ] || ! echo "$CHECKSUM" | grep -qE "^[a-fA-F0-9]{64}$"; then
   exit 1
 fi
 
-if ! curl -fL# --retry 3 --retry-delay 2 --connect-timeout 10 "$GITHUB_URL/henrygd/beszel/releases/download/v${INSTALL_VERSION}/$FILE_NAME" -o "$FILE_NAME"; then
-  echo "Failed to download the agent from $GITHUB_URL/henrygd/beszel/releases/download/v${INSTALL_VERSION}/$FILE_NAME"
+if ! curl -fL# --retry 3 --retry-delay 2 --connect-timeout 10 "$GITHUB_URL/${GITHUB_REPO}/releases/download/v${INSTALL_VERSION}/$FILE_NAME" -o "$FILE_NAME"; then
+  echo "Failed to download the agent from $GITHUB_URL/${GITHUB_REPO}/releases/download/v${INSTALL_VERSION}/$FILE_NAME"
   echo "Try again with --mirror (or --mirror <url>) if GitHub is not reachable."
   rm -rf "$TEMP_DIR"
   exit 1

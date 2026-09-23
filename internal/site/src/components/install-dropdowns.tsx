@@ -6,6 +6,9 @@ import { DropdownMenuContent, DropdownMenuItem } from "./ui/dropdown-menu"
 // const isbeta = beszel.hub_version.includes("beta")
 // const imagetag = isbeta ? ":edge" : ""
 
+/** Install scripts of this fork, served from the main branch on GitHub */
+const repoScriptsUrl = "https://raw.githubusercontent.com/rlefbvr/beszel/main/supplemental/scripts"
+
 /**
  * Get the URL of the script to install the agent.
  * @param path - The path to the script (e.g. "/brew").
@@ -48,9 +51,9 @@ export function copyDockerRun(port = "45876", publicKey: string, token: string) 
 }
 
 export function copyLinuxCommand(port = "45876", publicKey: string, token: string, brew = false) {
-	let cmd = `curl -sL ${getScriptUrl(
-		brew ? "/brew" : ""
-	)} -o /tmp/install-agent.sh && chmod +x /tmp/install-agent.sh && /tmp/install-agent.sh -p ${port} -k "${publicKey}" -t "${token}" -url "${getHubURL()}"`
+	let cmd = `curl -sL ${
+		brew ? getScriptUrl("/brew") : `${repoScriptsUrl}/install-agent.sh`
+	} -o /tmp/install-agent.sh && chmod +x /tmp/install-agent.sh && /tmp/install-agent.sh -p ${port} -k "${publicKey}" -t "${token}" -url "${getHubURL()}"`
 	// brew script does not support --china-mirrors
 	if (!brew && (i18n.locale + navigator.language).includes("zh-CN")) {
 		cmd += ` --china-mirrors`
@@ -60,7 +63,7 @@ export function copyLinuxCommand(port = "45876", publicKey: string, token: strin
 
 export function copyWindowsCommand(port = "45876", publicKey: string, token: string) {
 	copyToClipboard(
-		`& iwr -useb ${getScriptUrl()} -OutFile "$env:TEMP\\install-agent.ps1"; & Powershell -ExecutionPolicy Bypass -File "$env:TEMP\\install-agent.ps1" -Key "${publicKey}" -Port ${port} -Token "${token}" -Url "${getHubURL()}"`
+		`& iwr -useb ${repoScriptsUrl}/install-agent.ps1 -OutFile "$env:TEMP\\install-agent.ps1"; & Powershell -ExecutionPolicy Bypass -File "$env:TEMP\\install-agent.ps1" -Key "${publicKey}" -Port ${port} -Token "${token}" -Url "${getHubURL()}"`
 	)
 }
 
