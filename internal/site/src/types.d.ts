@@ -78,8 +78,14 @@ export interface SystemInfo {
 	efs?: Record<string, number>
 	/** services [totalServices, numFailedServices] */
 	sv?: [number, number]
-	/** custom root disk name */
+	/** root disk name (custom name or volume label) */
 	rdn?: string
+	/** root disk device or drive letter */
+	rdd?: string
+	/** extra filesystem devices or drive letters */
+	efd?: Record<string, string>
+	/** extra filesystem labels (volume label or mountpoint) */
+	efl?: Record<string, string>
 }
 
 export interface SystemStats {

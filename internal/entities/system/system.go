@@ -114,6 +114,8 @@ type FsStats struct {
 	Root           bool      `json:"-"`
 	Mountpoint     string    `json:"-"`
 	Name           string    `json:"-"`
+	Device         string    `json:"-"` // device shown with the disk name (e.g. "C:" or "/dev/sda1")
+	Label          string    `json:"-"` // volume label or mountpoint, used when there is no custom name
 	DiskTotal      float64   `json:"d" cbor:"0,keyasint"`
 	DiskUsed       float64   `json:"du" cbor:"1,keyasint"`
 	TotalRead      uint64    `json:"tr,omitzero" cbor:"9,keyasint,omitzero"`  // cumulative device read bytes
@@ -184,6 +186,9 @@ type Info struct {
 	Services       []uint16           `json:"sv,omitempty" cbor:"22,keyasint,omitempty"`  // [totalServices, numFailedServices]
 	Battery        Battery            `json:"bat,omitzero" cbor:"23,keyasint,omitzero"`   // [percent, charge state]
 	RootDiskName   string             `json:"rdn,omitempty" cbor:"24,keyasint,omitempty"` // custom name for root disk (set via FILESYSTEM=device__name)
+	RootDiskDevice string             `json:"rdd,omitempty" cbor:"25,keyasint,omitempty"` // root disk device or drive letter
+	ExtraFsDevices map[string]string  `json:"efd,omitempty" cbor:"26,keyasint,omitempty"` // extra filesystem devices or drive letters
+	ExtraFsLabels  map[string]string  `json:"efl,omitempty" cbor:"27,keyasint,omitempty"` // extra filesystem labels (volume label or mountpoint)
 }
 
 // Data that does not change during process lifetime and is not needed in All Systems table

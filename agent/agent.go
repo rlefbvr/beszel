@@ -229,7 +229,10 @@ func (a *Agent) gatherStats(options common.DataRequestOptions) *system.CombinedD
 		if stats.Root {
 			if stats.Name != "" {
 				data.Info.RootDiskName = stats.Name
+			} else if stats.Label != "" {
+				data.Info.RootDiskName = stats.Label
 			}
+			data.Info.RootDiskDevice = stats.Device
 			continue
 		}
 		if stats.DiskTotal > 0 {
@@ -239,6 +242,19 @@ func (a *Agent) gatherStats(options common.DataRequestOptions) *system.CombinedD
 				key = stats.Name
 			}
 			data.Stats.ExtraFs[key] = stats
+			// Device and label shown in the disk titles, e.g. "(D:) Data"
+			if stats.Device != "" {
+				if data.Info.ExtraFsDevices == nil {
+					data.Info.ExtraFsDevices = make(map[string]string)
+				}
+				data.Info.ExtraFsDevices[key] = stats.Device
+			}
+			if stats.Name == "" && stats.Label != "" {
+				if data.Info.ExtraFsLabels == nil {
+					data.Info.ExtraFsLabels = make(map[string]string)
+				}
+				data.Info.ExtraFsLabels[key] = stats.Label
+			}
 			// Add percentages to Info struct for dashboard
 			if stats.DiskTotal > 0 {
 				pct := utils.TwoDecimals((stats.DiskUsed / stats.DiskTotal) * 100)

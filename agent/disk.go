@@ -155,17 +155,19 @@ func registerFilesystemStats(existing map[string]*system.FsStats, device, mountp
 // addFsStat inserts a discovered filesystem if it resolves to a new tracking
 // key. The key selection itself lives in buildFsStatRegistration so that logic
 // can stay directly unit-tested.
-func (d *diskDiscovery) addFsStat(device, mountpoint string, root bool, customName string) {
+func (d *diskDiscovery) addFsStat(device, mountpoint string, root bool, customName string) *system.FsStats {
 	key, fsStats, ok := registerFilesystemStats(d.agent.fsStats, device, mountpoint, root, customName, d.ctx)
 	if !ok {
-		return
+		return nil
 	}
+	fsStats.Device = displayDevice(device, d.ctx.isWindows)
 	d.agent.fsStats[key] = fsStats
 	name := key
 	if customName != "" {
 		name = customName
 	}
 	slog.Info("Detected disk", "name", name, "device", device, "mount", mountpoint, "io", key, "root", root)
+	return fsStats
 }
 
 // addConfiguredRootFs resolves FILESYSTEM against partitions first, then falls
@@ -209,7 +211,9 @@ func (d *diskDiscovery) addPartitionRootFs(device, mountpoint string) bool {
 	}
 	// The resolved I/O device is already known here, so use it directly to avoid
 	// a second fallback search inside buildFsStatRegistration.
-	d.addFsStat(fs, mountpoint, true, "")
+	if fsStats := d.addFsStat(fs, mountpoint, true, ""); fsStats != nil {
+		fsStats.Device = displayDevice(device, d.ctx.isWindows)
+	}
 	return true
 }
 
@@ -373,7 +377,13 @@ func (a *Agent) initializeDiskInfo() {
 		discovery.addLastResortRootFs()
 	}
 
+	// Monitor all other local disks unless disabled with AUTO_FILESYSTEMS=false
+	if autoFilesystemsEnabled() {
+		discovery.addAutoFilesystems()
+	}
+
 	a.pruneDuplicateRootExtraFilesystems()
+	a.labelFilesystems()
 	a.initializeDiskIoStats(diskIoCounters)
 }
 

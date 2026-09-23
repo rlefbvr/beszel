@@ -1,6 +1,6 @@
 import { t } from "@lingui/core/macro"
 import AreaChartDefault from "@/components/charts/area-chart"
-import { decimalString, formatBytes, toFixedFloat } from "@/lib/utils"
+import { decimalString, diskTitle, formatBytes, toFixedFloat } from "@/lib/utils"
 import type { SystemStatsRecord } from "@/types"
 import { ChartCard, SelectAvgMax } from "../chart-card"
 import { Unit } from "@/lib/enums"
@@ -125,10 +125,8 @@ export function DiskUsageChart({ systemData, extraFsName }: { systemData: System
 		diskSize = Math.round(diskSize)
 	}
 
-	const rootName = systemData.system?.info?.rdn
-	const rootLabel = rootName ?? t({ message: `Root`, context: "Root disk label" })
-	const title = extraFsName ? `${extraFsName} ${t`Usage`}` : `${rootLabel} ${t`Usage`}`
-	const description = t`Disk usage of ${{extraFsName: extraFsName ?? rootLabel.toLowerCase()}}`
+	const title = diskTitle(systemData.system?.info, extraFsName)
+	const description = t`Disk usage of ${{ extraFsName: title }}`
 
 	return (
 		<ChartCard empty={dataEmpty} grid={grid} title={title} description={description}>
@@ -165,10 +163,9 @@ export function DiskIOChart({ systemData, extraFsName }: { systemData: SystemDat
 		return null
 	}
 
-	const rootName = systemData.system?.info?.rdn
-	const rootLabel = rootName ?? t({ message: `Root`, context: "Root disk label" })
-	const title = t`${{diskName: extraFsName ?? rootLabel}} I/O`
-	const description = t`Throughput of ${{extraFsName: extraFsName ?? rootLabel.toLowerCase()}}`
+	const diskName = diskTitle(systemData.system?.info, extraFsName)
+	const title = t`${{ diskName }} I/O`
+	const description = t`Throughput of ${{ extraFsName: diskName }}`
 
 	const hasMoreIOMetrics = chartData.systemStats?.some((record) => record.stats?.dios?.at(0))
 

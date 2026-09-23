@@ -5,7 +5,7 @@ import { timeDay, timeHour, timeMinute } from "d3-time"
 import { useEffect, useState } from "react"
 import { twMerge } from "tailwind-merge"
 import { toast } from "@/components/ui/use-toast"
-import type { ChartTimeData, FingerprintRecord, SemVer, SystemRecord } from "@/types"
+import type { ChartTimeData, FingerprintRecord, SemVer, SystemInfo, SystemRecord } from "@/types"
 import { HourFormat, Unit } from "./enums"
 import { $copyContent, $userSettings } from "./stores"
 
@@ -342,6 +342,20 @@ export const generateToken = () => {
 }
 
 /** Get the hub URL from the global BESZEL object */
+/**
+ * Title of a disk: its device or drive letter followed by its name, e.g. "(C:) OS"
+ * or "(/dev/sda1) Root". Without extraFsName, the root disk.
+ */
+export function diskTitle(info: SystemInfo | undefined, extraFsName?: string): string {
+	const device = extraFsName ? info?.efd?.[extraFsName] : info?.rdd
+	let name = extraFsName ? (info?.efl?.[extraFsName] ?? extraFsName) : info?.rdn
+	if (!name || name === device) {
+		// Windows drives without a volume label
+		name = device && /^[A-Z]:$/.test(device) ? t`Local Disk` : (name ?? t({ message: `Root`, context: "Root disk label" }))
+	}
+	return device ? `(${device}) ${name}` : name
+}
+
 export const getHubURL = () => globalThis.BESZEL?.HUB_URL || window.location.origin
 
 /** Map of system IDs to their corresponding tokens (used to avoid fetching in add-system dialog) */
