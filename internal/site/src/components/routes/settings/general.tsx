@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/correctness/useUniqueElementIds: component is only rendered once */
 import { Trans, useLingui } from "@lingui/react/macro"
-import { LanguagesIcon, LoaderCircleIcon, SaveIcon } from "lucide-react"
+import { LanguagesIcon, LoaderCircleIcon, SaveIcon, ServerCogIcon } from "lucide-react"
 import { useState } from "react"
 import { useStore } from "@nanostores/react"
 import { Button } from "@/components/ui/button"
@@ -9,19 +9,26 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
 import Slider from "@/components/ui/slider"
+import { toast } from "@/components/ui/use-toast"
+import { isAdmin, saveServicesInterval } from "@/lib/api"
 import { HourFormat, Unit } from "@/lib/enums"
 import { dynamicActivate } from "@/lib/i18n"
 import languages from "@/lib/languages"
-import { $userSettings, defaultLayoutWidth } from "@/lib/stores"
-import { chartTimeData, currentHour12 } from "@/lib/utils"
+import { $servicesInterval, $userSettings, defaultLayoutWidth } from "@/lib/stores"
+import { chartTimeData, currentHour12, secondsToString } from "@/lib/utils"
 import type { UserSettings } from "@/types"
 import { saveSettings } from "./layout"
 
+/** Service collection intervals offered in settings, in minutes */
+const servicesIntervals = [1, 2, 5, 10, 15, 30, 60]
+
 export default function SettingsProfilePage({ userSettings }: { userSettings: UserSettings }) {
 	const [isLoading, setIsLoading] = useState(false)
-	const { i18n } = useLingui()
+	const { i18n, t } = useLingui()
 	const currentUserSettings = useStore($userSettings)
 	const layoutWidth = currentUserSettings.layoutWidth ?? defaultLayoutWidth
+	const servicesInterval = useStore($servicesInterval)
+	const [newServicesInterval, setNewServicesInterval] = useState<number>()
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
@@ -29,6 +36,18 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 		const formData = new FormData(e.target as HTMLFormElement)
 		const data = Object.fromEntries(formData) as Partial<UserSettings>
 		await saveSettings(data)
+		if (newServicesInterval && newServicesInterval !== servicesInterval) {
+			try {
+				await saveServicesInterval(newServicesInterval)
+			} catch (e) {
+				console.error("save hub settings", e)
+				toast({
+					title: t`Failed to save settings`,
+					description: t`Check logs for more details.`,
+					variant: "destructive",
+				})
+			}
+		}
 		setIsLoading(false)
 	}
 
@@ -275,6 +294,50 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 								className="min-w-24"
 								defaultValue={userSettings.colorCrit ?? 90}
 							/>
+						</div>
+					</div>
+				</div>
+				<Separator />
+				<div className="grid gap-2">
+					<div className="mb-2">
+						<h3 className="mb-1 text-lg font-medium flex items-center gap-2">
+							<ServerCogIcon className="h-4 w-4" />
+							<Trans>Services</Trans>
+						</h3>
+						<p className="text-sm text-muted-foreground leading-relaxed">
+							<Trans>
+								How often agents collect systemd and Windows service data. Shorter intervals detect state changes
+								sooner but write more data. Applies to all systems.
+							</Trans>
+						</p>
+					</div>
+					<div className="grid sm:grid-cols-3 gap-4">
+						<div className="grid gap-2">
+							<Label className="block" htmlFor="servicesInterval">
+								<Trans>Collection interval</Trans>
+							</Label>
+							<Select
+								key={servicesInterval}
+								defaultValue={String(servicesInterval)}
+								onValueChange={(value) => setNewServicesInterval(Number(value))}
+								disabled={!isAdmin()}
+							>
+								<SelectTrigger id="servicesInterval">
+									<SelectValue />
+								</SelectTrigger>
+								<SelectContent>
+									{servicesIntervals.map((minutes) => (
+										<SelectItem key={minutes} value={String(minutes)}>
+											{secondsToString(minutes * 60, "minute")}
+										</SelectItem>
+									))}
+								</SelectContent>
+							</Select>
+							{!isAdmin() && (
+								<p className="text-xs text-muted-foreground">
+									<Trans>Only administrators can change this setting.</Trans>
+								</p>
+							)}
 						</div>
 					</div>
 				</div>

@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"github.com/henrygd/beszel/internal/common"
+	"github.com/henrygd/beszel/internal/hub/hubsettings"
 	"github.com/henrygd/beszel/internal/hub/transport"
 	"github.com/henrygd/beszel/internal/hub/utils"
 	"github.com/henrygd/beszel/internal/hub/ws"
@@ -139,7 +140,8 @@ func (sys *System) update() error {
 		return nil
 	}
 	options := common.DataRequestOptions{
-		CacheTimeMs: uint16(interval),
+		CacheTimeMs:      uint16(interval),
+		ServicesInterval: uint16(hubsettings.ServicesInterval(sys.manager.hub) / time.Second),
 	}
 	// fetch system details if not already fetched
 	if !sys.detailsFetched.Load() {

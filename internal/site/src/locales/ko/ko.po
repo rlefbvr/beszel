@@ -416,6 +416,7 @@ msgstr "차트 너비"
 msgid "Check {email} for a reset link."
 msgstr "{email}에서 재설정 링크를 확인하세요."
 
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/layout.tsx
 msgid "Check logs for more details."
 msgstr "자세한 내용은 로그를 확인하세요."
@@ -468,6 +469,10 @@ msgstr "더 많은 정보를 보려면 시스템을 클릭하세요."
 #: src/components/ui/input-copy.tsx
 msgid "Click to copy"
 msgstr "클릭하여 복사"
+
+#: src/components/routes/settings/general.tsx
+msgid "Collection interval"
+msgstr "수집 간격"
 
 #: src/components/login/forgot-pass-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -920,6 +925,7 @@ msgstr "인증 실패"
 msgid "Failed to delete monitors."
 msgstr "모니터를 삭제하지 못했습니다."
 
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1058,6 +1064,10 @@ msgstr "호스트 / IP"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "호스팅된 서비스"
+
+#: src/components/routes/settings/general.tsx
+msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
+msgstr "에이전트가 systemd 및 Windows 서비스 데이터를 수집하는 빈도입니다. 간격이 짧을수록 상태 변화를 더 빨리 감지하지만 더 많은 데이터를 기록합니다. 모든 시스템에 적용됩니다."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
@@ -1403,6 +1413,10 @@ msgstr "일회성"
 #: src/components/login/auth-form.tsx
 msgid "One-time password"
 msgstr "OTP"
+
+#: src/components/routes/settings/general.tsx
+msgid "Only administrators can change this setting."
+msgstr "관리자만 이 설정을 변경할 수 있습니다."
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1822,6 +1836,7 @@ msgstr "서비스 세부 정보"
 msgid "Service name"
 msgstr "서비스 이름"
 
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Services"
@@ -2203,8 +2218,12 @@ msgid "Updated"
 msgstr "업데이트됨"
 
 #: src/components/systemd-table/systemd-table.tsx
-msgid "Updated every 10 minutes."
-msgstr "10분마다 업데이트됩니다."
+msgid "Updated every {intervalLabel}."
+msgstr "업데이트 간격: {intervalLabel}."
+
+#: src/components/systemd-table/systemd-table.tsx
+#~ msgid "Updated every 10 minutes."
+#~ msgstr "10분마다 업데이트됩니다."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"

@@ -416,6 +416,7 @@ msgstr "圖表寬度"
 msgid "Check {email} for a reset link."
 msgstr "檢查 {email} 以獲取重置鏈接。"
 
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/layout.tsx
 msgid "Check logs for more details."
 msgstr "檢查日誌以取得更多資訊。"
@@ -468,6 +469,10 @@ msgstr "點擊系統以查看更多資訊。"
 #: src/components/ui/input-copy.tsx
 msgid "Click to copy"
 msgstr "點擊以複製"
+
+#: src/components/routes/settings/general.tsx
+msgid "Collection interval"
+msgstr "收集間隔"
 
 #: src/components/login/forgot-pass-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -920,6 +925,7 @@ msgstr "認證失敗"
 msgid "Failed to delete monitors."
 msgstr "刪除監控失敗。"
 
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1058,6 +1064,10 @@ msgstr "主機 / IP"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "託管的服務"
+
+#: src/components/routes/settings/general.tsx
+msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
+msgstr "代理程式收集 systemd 與 Windows 服務資料的頻率。間隔越短，越早偵測到狀態變化，但會寫入更多資料。適用於所有系統。"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
@@ -1403,6 +1413,10 @@ msgstr "一次性"
 #: src/components/login/auth-form.tsx
 msgid "One-time password"
 msgstr "一次性密碼"
+
+#: src/components/routes/settings/general.tsx
+msgid "Only administrators can change this setting."
+msgstr "只有管理員可以更改此設定。"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1822,6 +1836,7 @@ msgstr "服務詳情"
 msgid "Service name"
 msgstr "服務名稱"
 
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Services"
@@ -2203,8 +2218,12 @@ msgid "Updated"
 msgstr "已更新"
 
 #: src/components/systemd-table/systemd-table.tsx
-msgid "Updated every 10 minutes."
-msgstr "每 10 分鐘更新一次。"
+msgid "Updated every {intervalLabel}."
+msgstr "每 {intervalLabel}更新一次。"
+
+#: src/components/systemd-table/systemd-table.tsx
+#~ msgid "Updated every 10 minutes."
+#~ msgstr "每 10 分鐘更新一次。"
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"

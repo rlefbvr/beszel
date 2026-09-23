@@ -2,6 +2,7 @@ import type { Column, ColumnDef } from "@tanstack/react-table"
 import { Button } from "@/components/ui/button"
 import { cn, decimalString, formatBytes, hourWithSeconds } from "@/lib/utils"
 import type { SystemdRecord } from "@/types"
+import { $servicesInterval } from "@/lib/stores"
 import { ServiceStatus, ServiceStatusLabels, ServiceSubState, ServiceSubStateLabels } from "@/lib/enums"
 import {
 	ActivityIcon,
@@ -94,7 +95,7 @@ export const systemdTableCols: ColumnDef<SystemdRecord>[] = [
 			return record.cpu
 		},
 		invertSorting: true,
-		header: ({ column }) => <HeaderButton column={column} name={`${t`CPU`} (10m)`} Icon={CpuIcon} />,
+		header: ({ column }) => <HeaderButton column={column} name={`${t`CPU`} (${$servicesInterval.get()}m)`} Icon={CpuIcon} />,
 		cell: ({ getValue }) => {
 			const val = getValue() as number
 			if (val < 0) {

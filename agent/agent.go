@@ -173,6 +173,10 @@ func (a *Agent) gatherStats(options common.DataRequestOptions) *system.CombinedD
 	a.Lock()
 	defer a.Unlock()
 
+	if a.systemdManager != nil && options.ServicesInterval > 0 {
+		a.systemdManager.setServicesInterval(time.Duration(options.ServicesInterval) * time.Second)
+	}
+
 	cacheTimeMs := options.CacheTimeMs
 	data, isCached := a.cache.Get(cacheTimeMs)
 	if isCached {

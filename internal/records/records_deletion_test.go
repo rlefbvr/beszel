@@ -7,6 +7,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/henrygd/beszel/internal/hub/hubsettings"
 	"github.com/henrygd/beszel/internal/records"
 	"github.com/henrygd/beszel/internal/tests"
 
@@ -425,4 +426,55 @@ func TestDeleteOldSystemdServiceRecords(t *testing.T) {
 	require.NoError(t, err)
 	assert.Len(t, remainingRecords, 1, "Should have exactly 1 record remaining")
 	assert.Equal(t, "apache.service", remainingRecords[0].Get("name"), "The recent record should be kept")
+}
+
+// TestDeleteOldSystemdServiceRecordsLongInterval keeps service records for two
+// collection intervals when the configured interval exceeds 10 minutes.
+func TestDeleteOldSystemdServiceRecordsLongInterval(t *testing.T) {
+	hub, err := tests.NewTestHub(t.TempDir())
+	require.NoError(t, err)
+	defer hub.Cleanup()
+
+	hubsettings.BindEvents(hub)
+	settings, err := hub.FindRecordById(hubsettings.CollectionName, hubsettings.RecordID)
+	require.NoError(t, err)
+	settings.Set("services_interval", 60)
+	require.NoError(t, hub.Save(settings))
+	// restore the default so the cached interval doesn't leak into other tests
+	defer func() {
+		settings.Set("services_interval", 10)
+		_ = hub.Save(settings)
+	}()
+
+	user, err := tests.CreateUser(hub, "test@example.com", "testtesttest")
+	require.NoError(t, err)
+	system, err := tests.CreateRecord(hub, "systems", map[string]any{
+		"name":   "test-system",
+		"host":   "localhost",
+		"port":   "45876",
+		"status": "up",
+		"users":  []string{user.Id},
+	})
+	require.NoError(t, err)
+
+	now := time.Now().UTC()
+	for name, age := range map[string]time.Duration{
+		"kept.service":    90 * time.Minute,
+		"deleted.service": 150 * time.Minute,
+	} {
+		record, err := tests.CreateRecord(hub, "systemd_services", map[string]any{
+			"system": system.Id,
+			"name":   name,
+		})
+		require.NoError(t, err)
+		record.SetRaw("updated", now.Add(-age).UnixMilli())
+		require.NoError(t, hub.SaveNoValidate(record))
+	}
+
+	records.NewRecordManager(hub).DeleteOldRecords()
+
+	remaining, err := hub.FindRecordsByFilter("systemd_services", "", "", 10, 0, nil)
+	require.NoError(t, err)
+	require.Len(t, remaining, 1)
+	assert.Equal(t, "kept.service", remaining[0].GetString("name"))
 }

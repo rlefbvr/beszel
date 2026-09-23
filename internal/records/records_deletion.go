@@ -5,6 +5,7 @@ import (
 	"log/slog"
 	"time"
 
+	"github.com/henrygd/beszel/internal/hub/hubsettings"
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase/core"
 )
@@ -91,13 +92,13 @@ func deleteOldSystemStats(app core.App) error {
 	return nil
 }
 
-// Deletes systemd service records that haven't been updated in the last 20 minutes
+// Deletes systemd service records that haven't been updated in the last 20 minutes,
+// or two collection intervals when the configured interval is longer
 func deleteOldSystemdServiceRecords(app core.App) error {
-	now := time.Now().UTC()
-	twentyMinutesAgo := now.Add(-20 * time.Minute)
+	retention := max(20*time.Minute, 2*hubsettings.ServicesInterval(app))
+	cutoff := time.Now().UTC().Add(-retention)
 
-	// Delete systemd service records where updated < twentyMinutesAgo
-	_, err := app.DB().NewQuery("DELETE FROM systemd_services WHERE updated < {:updated}").Bind(dbx.Params{"updated": twentyMinutesAgo.UnixMilli()}).Execute()
+	_, err := app.DB().NewQuery("DELETE FROM systemd_services WHERE updated < {:updated}").Bind(dbx.Params{"updated": cutoff.UnixMilli()}).Execute()
 	if err != nil {
 		return fmt.Errorf("failed to delete old systemd service records: %v", err)
 	}

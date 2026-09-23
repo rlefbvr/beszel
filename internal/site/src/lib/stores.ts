@@ -6,6 +6,9 @@ import { Unit } from "./enums"
 /** Default layout width. Used as fallback when user setting is unset. */
 export const defaultLayoutWidth = 1580
 
+/** Service (systemd / Windows) collection interval in minutes, from hub settings */
+export const $servicesInterval = atom(10)
+
 /** Store if user is authenticated */
 export const $authenticated = atom(pb.authStore.isValid)
 

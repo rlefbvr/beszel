@@ -416,6 +416,7 @@ msgstr "Grafik kengligi"
 msgid "Check {email} for a reset link."
 msgstr "Tiklash havolasi uchun {email} ni tekshiring."
 
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/layout.tsx
 msgid "Check logs for more details."
 msgstr "Batafsil ma'lumot uchun jurnallarni tekshiring."
@@ -468,6 +469,10 @@ msgstr "Batafsil ma'lumot uchun tizimni bosing."
 #: src/components/ui/input-copy.tsx
 msgid "Click to copy"
 msgstr "Nusxalash uchun bosing"
+
+#: src/components/routes/settings/general.tsx
+msgid "Collection interval"
+msgstr "Yig‘ish oralig‘i"
 
 #: src/components/login/forgot-pass-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -920,6 +925,7 @@ msgstr "Autentifikatsiya muvaffaqiyatsiz tugadi"
 msgid "Failed to delete monitors."
 msgstr "Monitorlarni o‘chirish amalga oshmadi."
 
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1058,6 +1064,10 @@ msgstr "Xost / IP"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "Joylashtirilgan xizmatlar"
+
+#: src/components/routes/settings/general.tsx
+msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
+msgstr "Agentlar systemd va Windows xizmatlari ma’lumotlarini qanchalik tez-tez yig‘ishi. Qisqaroq oraliqlar holat o‘zgarishlarini tezroq aniqlaydi, lekin ko‘proq ma’lumot yozadi. Barcha tizimlarga qo‘llaniladi."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
@@ -1403,6 +1413,10 @@ msgstr "Bir martalik"
 #: src/components/login/auth-form.tsx
 msgid "One-time password"
 msgstr "Bir martalik parol"
+
+#: src/components/routes/settings/general.tsx
+msgid "Only administrators can change this setting."
+msgstr "Bu sozlamani faqat administratorlar o‘zgartirishi mumkin."
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1822,6 +1836,7 @@ msgstr "Xizmat tafsilotlari"
 msgid "Service name"
 msgstr "Xizmat nomi"
 
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Services"
@@ -2203,8 +2218,12 @@ msgid "Updated"
 msgstr "Yangilandi"
 
 #: src/components/systemd-table/systemd-table.tsx
-msgid "Updated every 10 minutes."
-msgstr "Har 10 daqiqada yangilanadi."
+msgid "Updated every {intervalLabel}."
+msgstr "Yangilanish oralig‘i: {intervalLabel}."
+
+#: src/components/systemd-table/systemd-table.tsx
+#~ msgid "Updated every 10 minutes."
+#~ msgstr "Har 10 daqiqada yangilanadi."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"

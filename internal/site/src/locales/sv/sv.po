@@ -416,6 +416,7 @@ msgstr "Diagrambredd"
 msgid "Check {email} for a reset link."
 msgstr "Kontrollera {email} för en återställningslänk."
 
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/layout.tsx
 msgid "Check logs for more details."
 msgstr "Kontrollera loggarna för mer information."
@@ -468,6 +469,10 @@ msgstr "Klicka på ett system för att visa mer information."
 #: src/components/ui/input-copy.tsx
 msgid "Click to copy"
 msgstr "Klicka för att kopiera"
+
+#: src/components/routes/settings/general.tsx
+msgid "Collection interval"
+msgstr "Insamlingsintervall"
 
 #: src/components/login/forgot-pass-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -920,6 +925,7 @@ msgstr "Autentisering misslyckades"
 msgid "Failed to delete monitors."
 msgstr "Det gick inte att ta bort monitorer."
 
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1058,6 +1064,10 @@ msgstr "Värd / IP"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "Värdade tjänster"
+
+#: src/components/routes/settings/general.tsx
+msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
+msgstr "Hur ofta agenter samlar in data om systemd- och Windows-tjänster. Kortare intervall upptäcker tillståndsändringar snabbare men skriver mer data. Gäller för alla system."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
@@ -1403,6 +1413,10 @@ msgstr "Engångs"
 #: src/components/login/auth-form.tsx
 msgid "One-time password"
 msgstr "Engångslösenord"
+
+#: src/components/routes/settings/general.tsx
+msgid "Only administrators can change this setting."
+msgstr "Endast administratörer kan ändra den här inställningen."
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1822,6 +1836,7 @@ msgstr "Tjänstedetaljer"
 msgid "Service name"
 msgstr "Tjänstnamn"
 
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Services"
@@ -2203,8 +2218,12 @@ msgid "Updated"
 msgstr "Uppdaterad"
 
 #: src/components/systemd-table/systemd-table.tsx
-msgid "Updated every 10 minutes."
-msgstr "Uppdateras var 10:e minut."
+msgid "Updated every {intervalLabel}."
+msgstr "Uppdateringsintervall: {intervalLabel}."
+
+#: src/components/systemd-table/systemd-table.tsx
+#~ msgid "Updated every 10 minutes."
+#~ msgstr "Uppdateras var 10:e minut."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"
