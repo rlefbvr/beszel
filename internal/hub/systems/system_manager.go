@@ -65,6 +65,7 @@ type hubLike interface {
 	GetSSHKey(dataDir string) (ssh.Signer, error)
 	HandleSystemAlerts(systemRecord *core.Record, data *system.CombinedData) error
 	HandleNetworkMonitorAlerts(systemRecord *core.Record, results map[string]monitor.Result) error
+	HandleStateAlerts(systemRecord *core.Record, data *system.CombinedData) error
 	HandleStatusAlerts(status string, systemRecord *core.Record) error
 	HandleContainerAlerts(systemRecord *core.Record, data *system.CombinedData, fetchLogs func(containerID string) (string, error)) error
 	CancelPendingStatusAlerts(systemID string)

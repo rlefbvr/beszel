@@ -140,6 +140,20 @@ export const alertInfo: Record<string, AlertInfo> = {
   },
 } as const
 
+/** History labels for state rule incidents (not toggles in the alerts dialog) */
+export const stateAlertHistoryInfo: Record<string, Pick<AlertInfo, "name" | "icon" | "triggeredDesc">> = {
+  ServiceState: {
+    name: () => t`Service state`,
+    icon: ServerCrashIcon,
+    triggeredDesc: () => t`State rule matched`,
+  },
+  ContainerState: {
+    name: () => t`Container state`,
+    icon: ContainerIcon,
+    triggeredDesc: () => t`State rule matched`,
+  },
+}
+
 /** Helper to manage user alerts */
 export const alertManager = (() => {
   const collection = pb.collection<AlertRecord>("alerts")

@@ -39,7 +39,7 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useToast } from "@/components/ui/use-toast"
-import { alertInfo } from "@/lib/alerts"
+import { alertInfo, stateAlertHistoryInfo } from "@/lib/alerts"
 import { pb } from "@/lib/api"
 import { cn, formatDuration, formatShortDate, useBrowserStorage } from "@/lib/utils"
 import type { AlertsHistoryRecord } from "@/types"
@@ -199,7 +199,7 @@ export default function AlertsHistoryDataTable() {
 		if (!selectedRows.length) return
 		const cells: Record<string, (record: AlertsHistoryRecord) => string> = {
 			system: (record) => record.expand?.system?.name || record.system,
-			name: (record) => [alertInfo[record.name]?.name() || record.name, record.monitor_name].filter(Boolean).join(": "),
+			name: (record) => [(alertInfo[record.name] ?? stateAlertHistoryInfo[record.name])?.name() || record.name, record.monitor_name].filter(Boolean).join(": "),
 			value: (record) => record.value + (alertInfo[record.name]?.unit ?? ""),
 			state: (record) => (record.resolved ? t`Resolved` : t`Active`),
 			created: (record) => formatShortDate(record.created),

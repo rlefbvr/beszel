@@ -296,6 +296,22 @@ export interface SystemStatsRecord extends RecordModel {
 	created: string | number
 }
 
+/** Rule alerting when services or containers enter (or leave) given states */
+export interface StateAlertRecord extends RecordModel {
+	user: string
+	system: string
+	kind: "service" | "container"
+	/** comma separated name patterns (* and ? wildcards) */
+	targets: string
+	condition: "is" | "is_not"
+	states: string[]
+	/** service sub-states or container health states */
+	sub_states: string[]
+	/** consecutive observations before the alert fires */
+	cycles: number
+	triggered: boolean
+}
+
 export interface AlertRecord extends RecordModel {
 	id: string
 	system: string

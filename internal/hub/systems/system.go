@@ -330,6 +330,9 @@ func (sys *System) createRecords(data *system.CombinedData) (*core.Record, error
 		if alertErr := hub.HandleNetworkMonitorAlerts(systemRecord, data.Monitors); alertErr != nil {
 			hub.Logger().Error("Error handling network monitor alerts", "err", alertErr)
 		}
+		if alertErr := hub.HandleStateAlerts(systemRecord, data); alertErr != nil {
+			hub.Logger().Error("Error handling state alerts", "err", alertErr)
+		}
 	}
 	return systemRecord, err
 }

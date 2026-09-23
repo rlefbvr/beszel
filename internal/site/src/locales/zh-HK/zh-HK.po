@@ -24,6 +24,11 @@ msgctxt "New version available"
 msgid "{0} available"
 msgstr "{0} 可用"
 
+#. placeholder {0}: rule.cycles
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{0} consecutive checks"
+msgstr "連續 {0} 次檢查"
+
 #. placeholder {0}: table.getFilteredSelectedRowModel().rows.length
 #. placeholder {1}: table.getFilteredRowModel().rows.length
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -140,6 +145,10 @@ msgstr "活動狀態"
 msgid "Add {foo}"
 msgstr "新增 {foo}"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Add rule"
+msgstr "新增規則"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "添加 URL"
@@ -175,6 +184,18 @@ msgstr "客户端"
 #: src/components/routes/settings/layout.tsx
 msgid "Alert History"
 msgstr "警報歷史"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when services or Docker containers enter or leave a state."
+msgstr "當服務或 Docker 容器進入或離開某個狀態時發出警報。"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when state is"
+msgstr "當狀態為下列時發出警報"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when state is not"
+msgstr "當狀態不為下列時發出警報"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -363,6 +384,7 @@ msgstr "可啟動"
 msgid "Can stop"
 msgstr "可停止"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -474,6 +496,10 @@ msgstr "點擊以複製"
 msgid "Command line instructions"
 msgstr "命令行指令"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Condition"
+msgstr "條件"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Configure how you receive alert notifications."
 msgstr "配置您接收警報通知的方式。"
@@ -495,6 +521,10 @@ msgstr "衝突"
 msgid "Connection is down"
 msgstr "連線中斷"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Consecutive checks"
+msgstr "連續檢查次數"
+
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "容器"
@@ -503,6 +533,11 @@ msgstr "容器"
 msgid "Container Health"
 msgstr "容器健康狀態"
 
+#: src/lib/alerts.ts
+msgid "Container state"
+msgstr "容器狀態"
+
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
 msgstr "容器"
@@ -685,6 +720,7 @@ msgstr "預設"
 msgid "Default time period"
 msgstr "預設時間段"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -774,6 +810,7 @@ msgstr "下載"
 msgid "Duration"
 msgstr "持續時間"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -935,6 +972,7 @@ msgid "Failed to send test notification"
 msgstr "發送測試通知失敗"
 
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/state-alert-rules.tsx
 msgid "Failed to update alert"
 msgstr "更新警報失敗"
 
@@ -1032,6 +1070,10 @@ msgstr "網格"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Health"
 msgstr "健康狀態"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Health (optional)"
+msgstr "健康狀態（選填）"
 
 #: src/components/routes/settings/layout.tsx
 msgid "Heartbeat"
@@ -1281,6 +1323,10 @@ msgstr "掛載點"
 msgid "Name"
 msgstr "名稱"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
+msgstr "名稱以逗號分隔。使用 * 作為萬用字元。不再回報的目標會視為已停止。"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Net"
@@ -1515,6 +1561,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "請<0>配置SMTP伺服器</0>以確保警報被傳送。"
 
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/state-alert-rules.tsx
 msgid "Please check logs for more details."
 msgstr "請檢查日誌以獲取更多資訊。"
 
@@ -1714,6 +1761,10 @@ msgstr "S.M.A.R.T. 詳情"
 msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. 自檢"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Save"
+msgstr "儲存"
+
 #: src/components/add-system.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Save {foo}"
@@ -1822,10 +1873,19 @@ msgstr "服務詳情"
 msgid "Service name"
 msgstr "服務名稱"
 
+#: src/lib/alerts.ts
+msgid "Service state"
+msgstr "服務狀態"
+
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Services"
 msgstr "服務"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Services are checked at each collection, containers every minute."
+msgstr "服務會在每次收集時檢查，容器每分鐘檢查一次。"
 
 #: src/components/routes/settings/general.tsx
 msgid "Set percentage thresholds for meter colors."
@@ -1880,6 +1940,27 @@ msgstr "啟動類型"
 msgid "State"
 msgstr "狀態"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "state is"
+msgstr "狀態為"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "state is not"
+msgstr "狀態不為"
+
+#: src/lib/alerts.ts
+#: src/lib/alerts.ts
+msgid "State rule matched"
+msgstr "狀態規則已符合"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "State rules"
+msgstr "狀態規則"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "States"
+msgstr "狀態"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1891,6 +1972,10 @@ msgstr "狀態"
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "Sub State"
 msgstr "子狀態"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Sub-states (optional)"
+msgstr "子狀態（選填）"
 
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Swap space used by the system"
@@ -1956,6 +2041,10 @@ msgstr "分頁"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Target"
+msgstr "目標"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Targets"
 msgstr "目標"
 
 #: src/components/systemd-table/systemd-table.tsx
@@ -2068,6 +2157,10 @@ msgstr "讀取/寫入所用的總時間（可能超過 100%）"
 msgid "Total: {0}"
 msgstr "總計: {0}"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Triggered"
+msgstr "已觸發"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Triggered by"
 msgstr "由...觸發"
@@ -2144,6 +2237,7 @@ msgstr "當狀態在上和下之間切換時觸發"
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "當任何磁碟的使用超過閾值時觸發"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx

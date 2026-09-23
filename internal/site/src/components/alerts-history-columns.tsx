@@ -3,7 +3,7 @@ import { Trans } from "@lingui/react/macro"
 import type { ColumnDef } from "@tanstack/react-table"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { alertInfo } from "@/lib/alerts"
+import { alertInfo, stateAlertHistoryInfo } from "@/lib/alerts"
 import { cn, formatDuration, formatShortDate, toFixedFloat } from "@/lib/utils"
 import type { AlertsHistoryRecord } from "@/types"
 
@@ -29,7 +29,7 @@ export const alertsHistoryColumns: ColumnDef<AlertsHistoryRecord>[] = [
 		id: "name",
 		accessorFn: (record) => {
 			const name = record.name
-			const info = alertInfo[name]
+			const info = alertInfo[name] ?? stateAlertHistoryInfo[name]
 			const label = info?.name().replace("cpu", "CPU") || name
 			return record.monitor_name ? `${label}: ${record.monitor_name}` : label
 		},
@@ -40,7 +40,7 @@ export const alertsHistoryColumns: ColumnDef<AlertsHistoryRecord>[] = [
 		),
 		cell: ({ getValue, row }) => {
 			const name = getValue() as string
-			const info = alertInfo[row.original.name]
+			const info = alertInfo[row.original.name] ?? stateAlertHistoryInfo[row.original.name]
 			const Icon = info?.icon
 
 			return (
@@ -61,7 +61,7 @@ export const alertsHistoryColumns: ColumnDef<AlertsHistoryRecord>[] = [
 		),
 		cell({ row, getValue }) {
 			const name = row.original.name
-			const info = alertInfo[name]
+			const info = alertInfo[name] ?? stateAlertHistoryInfo[name]
 			if (info?.triggeredDesc) {
 				return <span className="ps-2">{info.triggeredDesc()}</span>
 			}

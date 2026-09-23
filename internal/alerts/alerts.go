@@ -119,6 +119,7 @@ func NewAlertManager(app hubLike) *AlertManager {
 // Bind events to the alerts collection lifecycle
 func (am *AlertManager) bindEvents() {
 	am.bindNetworkMonitorAlertEvents()
+	am.bindStateAlertEvents()
 	am.hub.OnRecordAfterUpdateSuccess("alerts").BindFunc(updateHistoryOnAlertUpdate)
 	am.hub.OnRecordAfterDeleteSuccess("alerts").BindFunc(resolveHistoryOnAlertDelete)
 	am.hub.OnRecordAfterUpdateSuccess("smart_devices").BindFunc(am.handleSmartDeviceAlert)

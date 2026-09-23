@@ -24,6 +24,11 @@ msgctxt "New version available"
 msgid "{0} available"
 msgstr "{0} доступно"
 
+#. placeholder {0}: rule.cycles
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{0} consecutive checks"
+msgstr "{0} узастопних провера"
+
 #. placeholder {0}: table.getFilteredSelectedRowModel().rows.length
 #. placeholder {1}: table.getFilteredRowModel().rows.length
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -140,6 +145,10 @@ msgstr "Активно стање"
 msgid "Add {foo}"
 msgstr "Додај {foo}"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Add rule"
+msgstr "Додај правило"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "Додај URL"
@@ -175,6 +184,18 @@ msgstr "Агент"
 #: src/components/routes/settings/layout.tsx
 msgid "Alert History"
 msgstr "Историја упозорења"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when services or Docker containers enter or leave a state."
+msgstr "Упозори када услуге или Docker контејнери уђу у стање или изађу из њега."
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when state is"
+msgstr "Упозори када је стање"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when state is not"
+msgstr "Упозори када стање није"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -363,6 +384,7 @@ msgstr "Може се покренути"
 msgid "Can stop"
 msgstr "Може се зауставити"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -474,6 +496,10 @@ msgstr "Кликните да копирате"
 msgid "Command line instructions"
 msgstr "Инструкције командне линије"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Condition"
+msgstr "Услов"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Configure how you receive alert notifications."
 msgstr "Конфигуришите како primate обавештења о упозорењима."
@@ -495,6 +521,10 @@ msgstr "Конфликти"
 msgid "Connection is down"
 msgstr "Веза је прекинута"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Consecutive checks"
+msgstr "Узастопне провере"
+
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Контејнер"
@@ -503,6 +533,11 @@ msgstr "Контејнер"
 msgid "Container Health"
 msgstr "Здравље контејнера"
 
+#: src/lib/alerts.ts
+msgid "Container state"
+msgstr "Стање контејнера"
+
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
 msgstr "Контејнери"
@@ -685,6 +720,7 @@ msgstr "Подразумевано"
 msgid "Default time period"
 msgstr "Подразумевани временски период"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -774,6 +810,7 @@ msgstr "Преузимање"
 msgid "Duration"
 msgstr "Трајање"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -935,6 +972,7 @@ msgid "Failed to send test notification"
 msgstr "Неуспело слање тест обавештења"
 
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/state-alert-rules.tsx
 msgid "Failed to update alert"
 msgstr "Неуспело ажурирање упозорења"
 
@@ -1032,6 +1070,10 @@ msgstr "Мрежа"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Health"
 msgstr "Здравље"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Health (optional)"
+msgstr "Здравље (опционо)"
 
 #: src/components/routes/settings/layout.tsx
 msgid "Heartbeat"
@@ -1281,6 +1323,10 @@ msgstr "Тачка монтирања"
 msgid "Name"
 msgstr "Име"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
+msgstr "Називи одвојени зарезима. Користите * као џокер знак. Циљ који се више не пријављује сматра се заустављеним."
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Net"
@@ -1515,6 +1561,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "Молимо вас <0>конфигуришите SMTP сервер</0> да бисте осигурали да се упозорења испоручују."
 
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/state-alert-rules.tsx
 msgid "Please check logs for more details."
 msgstr "Молимо вас проверите логове за више детаља."
 
@@ -1714,6 +1761,10 @@ msgstr "S.M.A.R.T. детаљи"
 msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. самопровера"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Save"
+msgstr "Сачувај"
+
 #: src/components/add-system.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Save {foo}"
@@ -1822,10 +1873,19 @@ msgstr "Детаљи сервиса"
 msgid "Service name"
 msgstr "Назив услуге"
 
+#: src/lib/alerts.ts
+msgid "Service state"
+msgstr "Стање услуге"
+
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Services"
 msgstr "Сервиси"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Services are checked at each collection, containers every minute."
+msgstr "Услуге се проверавају при сваком прикупљању, контејнери сваког минута."
 
 #: src/components/routes/settings/general.tsx
 msgid "Set percentage thresholds for meter colors."
@@ -1880,6 +1940,27 @@ msgstr "Тип покретања"
 msgid "State"
 msgstr "Стање"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "state is"
+msgstr "стање је"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "state is not"
+msgstr "стање није"
+
+#: src/lib/alerts.ts
+#: src/lib/alerts.ts
+msgid "State rule matched"
+msgstr "Правило стања испуњено"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "State rules"
+msgstr "Правила стања"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "States"
+msgstr "Стања"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1891,6 +1972,10 @@ msgstr "Статус"
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "Sub State"
 msgstr "Подстање"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Sub-states (optional)"
+msgstr "Подстања (опционо)"
 
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Swap space used by the system"
@@ -1957,6 +2042,10 @@ msgstr "Картице"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Target"
 msgstr "Cilj"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Targets"
+msgstr "Циљеви"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Tasks"
@@ -2068,6 +2157,10 @@ msgstr "Укупно време проведено на читању/писањ�
 msgid "Total: {0}"
 msgstr "Укупно: {0}"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Triggered"
+msgstr "Активирано"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Triggered by"
 msgstr "Окинуто од"
@@ -2144,6 +2237,7 @@ msgstr "Окида се када статус прелази између укљ
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "Окида се када употреба било ког диска премаши праг"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx

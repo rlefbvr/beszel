@@ -18,6 +18,7 @@ import { pb } from "@/lib/api"
 import { Os } from "@/lib/enums"
 import { $alerts, $systems } from "@/lib/stores"
 import { useSystemOs } from "@/lib/use-system-os"
+import { StateAlertRules } from "./state-alert-rules"
 import { cn, debounce } from "@/lib/utils"
 import type { AlertInfo, AlertRecord, SystemRecord } from "@/types"
 
@@ -183,6 +184,7 @@ export const AlertDialogContent = memo(function AlertDialogContent({ system }: {
 								system={system}
 							/>
 						))}
+						<StateAlertRules system={system} />
 					</div>
 				</TabsContent>
 				<TabsContent value="global">

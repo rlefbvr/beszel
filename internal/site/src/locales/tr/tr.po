@@ -24,6 +24,11 @@ msgctxt "New version available"
 msgid "{0} available"
 msgstr "{0} mevcut"
 
+#. placeholder {0}: rule.cycles
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{0} consecutive checks"
+msgstr "{0} ardışık kontrol"
+
 #. placeholder {0}: table.getFilteredSelectedRowModel().rows.length
 #. placeholder {1}: table.getFilteredRowModel().rows.length
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -140,6 +145,10 @@ msgstr "Aktif durum"
 msgid "Add {foo}"
 msgstr "{foo} ekle"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Add rule"
+msgstr "Kural ekle"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "URL Ekle"
@@ -175,6 +184,18 @@ msgstr "Aracı"
 #: src/components/routes/settings/layout.tsx
 msgid "Alert History"
 msgstr "Uyarı Geçmişi"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when services or Docker containers enter or leave a state."
+msgstr "Hizmetler veya Docker kapsayıcıları bir duruma girdiğinde ya da bu durumdan çıktığında uyar."
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when state is"
+msgstr "Durum şu olduğunda uyar"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when state is not"
+msgstr "Durum şu olmadığında uyar"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -363,6 +384,7 @@ msgstr "Başlatılabilir"
 msgid "Can stop"
 msgstr "Durdurulabilir"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -474,6 +496,10 @@ msgstr "Kopyalamak için tıklayın"
 msgid "Command line instructions"
 msgstr "Komut satırı talimatları"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Condition"
+msgstr "Koşul"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Configure how you receive alert notifications."
 msgstr "Uyarı bildirimlerini nasıl alacağınızı yapılandırın."
@@ -495,6 +521,10 @@ msgstr "Çakışmalar"
 msgid "Connection is down"
 msgstr "Bağlantı kesildi"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Consecutive checks"
+msgstr "Ardışık kontroller"
+
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Konteyner"
@@ -503,6 +533,11 @@ msgstr "Konteyner"
 msgid "Container Health"
 msgstr "Konteyner Sağlığı"
 
+#: src/lib/alerts.ts
+msgid "Container state"
+msgstr "Kapsayıcı durumu"
+
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
 msgstr "Konteynerler"
@@ -685,6 +720,7 @@ msgstr "Varsayılan"
 msgid "Default time period"
 msgstr "Varsayılan zaman dilimi"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -774,6 +810,7 @@ msgstr "İndir"
 msgid "Duration"
 msgstr "Süre"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -935,6 +972,7 @@ msgid "Failed to send test notification"
 msgstr "Test bildirimi gönderilemedi"
 
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/state-alert-rules.tsx
 msgid "Failed to update alert"
 msgstr "Uyarı güncellenemedi"
 
@@ -1032,6 +1070,10 @@ msgstr "Izgara"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Health"
 msgstr "Sağlık"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Health (optional)"
+msgstr "Sağlık (isteğe bağlı)"
 
 #: src/components/routes/settings/layout.tsx
 msgid "Heartbeat"
@@ -1281,6 +1323,10 @@ msgstr "Bağlama noktası"
 msgid "Name"
 msgstr "Ad"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
+msgstr "Adları virgülle ayırın. Joker karakter olarak * kullanın. Artık raporlanmayan bir hedef durdurulmuş sayılır."
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Net"
@@ -1515,6 +1561,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "Uyarıların teslim edilmesini sağlamak için lütfen bir SMTP sunucusu <0>yapılandırın</0>."
 
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/state-alert-rules.tsx
 msgid "Please check logs for more details."
 msgstr "Daha fazla ayrıntı için lütfen günlükleri kontrol edin."
 
@@ -1714,6 +1761,10 @@ msgstr "S.M.A.R.T. Ayrıntıları"
 msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. Kendiliğinden Test"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Save"
+msgstr "Kaydet"
+
 #: src/components/add-system.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Save {foo}"
@@ -1822,10 +1873,19 @@ msgstr "Hizmet Ayrıntıları"
 msgid "Service name"
 msgstr "Hizmet adı"
 
+#: src/lib/alerts.ts
+msgid "Service state"
+msgstr "Hizmet durumu"
+
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Services"
 msgstr "Hizmetler"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Services are checked at each collection, containers every minute."
+msgstr "Hizmetler her toplamada, kapsayıcılar her dakika kontrol edilir."
 
 #: src/components/routes/settings/general.tsx
 msgid "Set percentage thresholds for meter colors."
@@ -1880,6 +1940,27 @@ msgstr "Başlangıç türü"
 msgid "State"
 msgstr "Durum"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "state is"
+msgstr "durum şu"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "state is not"
+msgstr "durum şu değil"
+
+#: src/lib/alerts.ts
+#: src/lib/alerts.ts
+msgid "State rule matched"
+msgstr "Durum kuralı eşleşti"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "State rules"
+msgstr "Durum kuralları"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "States"
+msgstr "Durumlar"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1891,6 +1972,10 @@ msgstr "Durum"
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "Sub State"
 msgstr "Alt Durum"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Sub-states (optional)"
+msgstr "Alt durumlar (isteğe bağlı)"
 
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Swap space used by the system"
@@ -1957,6 +2042,10 @@ msgstr "Sekmeler"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Target"
 msgstr "Hedef"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Targets"
+msgstr "Hedefler"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Tasks"
@@ -2068,6 +2157,10 @@ msgstr "Okuma/yazma işlemlerinde harcanan toplam süre (%100’ü aşabilir)"
 msgid "Total: {0}"
 msgstr "Toplam: {0}"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Triggered"
+msgstr "Tetiklendi"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Triggered by"
 msgstr "Tetikleyen"
@@ -2144,6 +2237,7 @@ msgstr "Durum yukarı ve aşağı arasında değiştiğinde tetiklenir"
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "Herhangi bir diskin kullanımı bir eşiği aştığında tetiklenir"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx

@@ -24,6 +24,11 @@ msgctxt "New version available"
 msgid "{0} available"
 msgstr "{0} disponible"
 
+#. placeholder {0}: rule.cycles
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{0} consecutive checks"
+msgstr "{0} comprobaciones consecutivas"
+
 #. placeholder {0}: table.getFilteredSelectedRowModel().rows.length
 #. placeholder {1}: table.getFilteredRowModel().rows.length
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -140,6 +145,10 @@ msgstr "Estado activo"
 msgid "Add {foo}"
 msgstr "Agregar {foo}"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Add rule"
+msgstr "Añadir regla"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "Agregar URL"
@@ -175,6 +184,18 @@ msgstr "Agente"
 #: src/components/routes/settings/layout.tsx
 msgid "Alert History"
 msgstr "Historial de alertas"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when services or Docker containers enter or leave a state."
+msgstr "Alertar cuando servicios o contenedores Docker entren en un estado o salgan de él."
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when state is"
+msgstr "Alertar cuando el estado sea"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when state is not"
+msgstr "Alertar cuando el estado no sea"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -363,6 +384,7 @@ msgstr "Puede iniciarse"
 msgid "Can stop"
 msgstr "Puede detenerse"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -474,6 +496,10 @@ msgstr "Haz clic para copiar"
 msgid "Command line instructions"
 msgstr "Instrucciones de línea de comandos"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Condition"
+msgstr "Condición"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Configure how you receive alert notifications."
 msgstr "Configura cómo recibe las notificaciones de alertas."
@@ -495,6 +521,10 @@ msgstr "Conflictos"
 msgid "Connection is down"
 msgstr "La conexión está caída"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Consecutive checks"
+msgstr "Comprobaciones consecutivas"
+
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Contenedor"
@@ -503,6 +533,11 @@ msgstr "Contenedor"
 msgid "Container Health"
 msgstr "Estado del contenedor"
 
+#: src/lib/alerts.ts
+msgid "Container state"
+msgstr "Estado del contenedor"
+
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
 msgstr "Contenedores"
@@ -685,6 +720,7 @@ msgstr "Predeterminado"
 msgid "Default time period"
 msgstr "Periodo de tiempo predeterminado"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -774,6 +810,7 @@ msgstr "Descargar"
 msgid "Duration"
 msgstr "Duración"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -935,6 +972,7 @@ msgid "Failed to send test notification"
 msgstr "Error al enviar la notificación de prueba"
 
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/state-alert-rules.tsx
 msgid "Failed to update alert"
 msgstr "Error al actualizar la alerta"
 
@@ -1032,6 +1070,10 @@ msgstr "Cuadrícula"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Health"
 msgstr "Estado"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Health (optional)"
+msgstr "Salud (opcional)"
 
 #: src/components/routes/settings/layout.tsx
 msgid "Heartbeat"
@@ -1281,6 +1323,10 @@ msgstr "Punto de montaje"
 msgid "Name"
 msgstr "Nombre"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
+msgstr "Nombres separados por comas. Use * como comodín. Un objetivo que ya no se informa se considera detenido."
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Net"
@@ -1515,6 +1561,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "Por favor, <0>configura un servidor SMTP</0> para asegurar que las alertas sean entregadas."
 
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/state-alert-rules.tsx
 msgid "Please check logs for more details."
 msgstr "Por favor, revisa los registros para más detalles."
 
@@ -1714,6 +1761,10 @@ msgstr "Detalles S.M.A.R.T."
 msgid "S.M.A.R.T. Self-Test"
 msgstr "Autoprueba S.M.A.R.T."
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Save"
+msgstr "Guardar"
+
 #: src/components/add-system.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Save {foo}"
@@ -1822,10 +1873,19 @@ msgstr "Detalles del servicio"
 msgid "Service name"
 msgstr "Nombre del servicio"
 
+#: src/lib/alerts.ts
+msgid "Service state"
+msgstr "Estado del servicio"
+
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Services"
 msgstr "Servicios"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Services are checked at each collection, containers every minute."
+msgstr "Los servicios se comprueban en cada recopilación y los contenedores cada minuto."
 
 #: src/components/routes/settings/general.tsx
 msgid "Set percentage thresholds for meter colors."
@@ -1880,6 +1940,27 @@ msgstr "Tipo de inicio"
 msgid "State"
 msgstr "Estado"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "state is"
+msgstr "el estado es"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "state is not"
+msgstr "el estado no es"
+
+#: src/lib/alerts.ts
+#: src/lib/alerts.ts
+msgid "State rule matched"
+msgstr "Regla de estado cumplida"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "State rules"
+msgstr "Reglas de estado"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "States"
+msgstr "Estados"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1891,6 +1972,10 @@ msgstr "Estado"
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "Sub State"
 msgstr "Subestado"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Sub-states (optional)"
+msgstr "Subestados (opcional)"
 
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Swap space used by the system"
@@ -1957,6 +2042,10 @@ msgstr "Pestañas"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Target"
 msgstr "Objetivo"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Targets"
+msgstr "Objetivos"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Tasks"
@@ -2068,6 +2157,10 @@ msgstr "Tiempo total dedicado a lectura/escritura (puede superar el 100 %)"
 msgid "Total: {0}"
 msgstr "Total: {0}"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Triggered"
+msgstr "Activada"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Triggered by"
 msgstr "Activado por"
@@ -2144,6 +2237,7 @@ msgstr "Se activa cuando el estado cambia entre activo e inactivo"
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "Se activa cuando el uso de cualquier disco supera un umbral"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx

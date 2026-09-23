@@ -24,6 +24,11 @@ msgctxt "New version available"
 msgid "{0} available"
 msgstr "{0} Доступно"
 
+#. placeholder {0}: rule.cycles
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{0} consecutive checks"
+msgstr "{0} перевірок поспіль"
+
 #. placeholder {0}: table.getFilteredSelectedRowModel().rows.length
 #. placeholder {1}: table.getFilteredRowModel().rows.length
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -140,6 +145,10 @@ msgstr "Активний стан"
 msgid "Add {foo}"
 msgstr "Додати {foo}"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Add rule"
+msgstr "Додати правило"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "Додати URL"
@@ -175,6 +184,18 @@ msgstr "Агент"
 #: src/components/routes/settings/layout.tsx
 msgid "Alert History"
 msgstr "Історія сповіщень"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when services or Docker containers enter or leave a state."
+msgstr "Сповіщати, коли служби або контейнери Docker переходять у стан або виходять із нього."
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when state is"
+msgstr "Сповіщати, якщо стан"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when state is not"
+msgstr "Сповіщати, якщо стан не"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -363,6 +384,7 @@ msgstr "Може запустити"
 msgid "Can stop"
 msgstr "Може зупинити"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -474,6 +496,10 @@ msgstr "Натисніть, щоб скопіювати"
 msgid "Command line instructions"
 msgstr "Інструкції командного рядка"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Condition"
+msgstr "Умова"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Configure how you receive alert notifications."
 msgstr "Налаштуйте, як ви отримуєте сповіщення про тривоги."
@@ -495,6 +521,10 @@ msgstr "Конфлікти"
 msgid "Connection is down"
 msgstr "З’єднання розірвано"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Consecutive checks"
+msgstr "Перевірок поспіль"
+
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Контейнер"
@@ -503,6 +533,11 @@ msgstr "Контейнер"
 msgid "Container Health"
 msgstr "Здоров'я контейнера"
 
+#: src/lib/alerts.ts
+msgid "Container state"
+msgstr "Стан контейнера"
+
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
 msgstr "Контейнери"
@@ -685,6 +720,7 @@ msgstr "За замовчуванням"
 msgid "Default time period"
 msgstr "Стандартний період часу"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -774,6 +810,7 @@ msgstr "Завантажити"
 msgid "Duration"
 msgstr "Тривалість"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -935,6 +972,7 @@ msgid "Failed to send test notification"
 msgstr "Не вдалося надіслати тестове сповіщення"
 
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/state-alert-rules.tsx
 msgid "Failed to update alert"
 msgstr "Не вдалося оновити сповіщення"
 
@@ -1032,6 +1070,10 @@ msgstr "Сітка"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Health"
 msgstr "Здоров’я"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Health (optional)"
+msgstr "Справність (необов’язково)"
 
 #: src/components/routes/settings/layout.tsx
 msgid "Heartbeat"
@@ -1281,6 +1323,10 @@ msgstr "Точка монтування"
 msgid "Name"
 msgstr "Ім’я"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
+msgstr "Імена через кому. Використовуйте * як символ підстановки. Ціль, про яку більше не повідомляється, вважається зупиненою."
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Net"
@@ -1515,6 +1561,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "Будь ласка, <0>налаштуйте SMTP сервер</0>, щоб забезпечити доставку сповіщень."
 
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/state-alert-rules.tsx
 msgid "Please check logs for more details."
 msgstr "Будь ласка, перевірте журнали для отримання додаткової інформації."
 
@@ -1714,6 +1761,10 @@ msgstr "Деталі S.M.A.R.T."
 msgid "S.M.A.R.T. Self-Test"
 msgstr "Самодіагностика S.M.A.R.T."
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Save"
+msgstr "Зберегти"
+
 #: src/components/add-system.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Save {foo}"
@@ -1822,10 +1873,19 @@ msgstr "Деталі служби"
 msgid "Service name"
 msgstr "Ім’я служби"
 
+#: src/lib/alerts.ts
+msgid "Service state"
+msgstr "Стан служби"
+
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Services"
 msgstr "Служби"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Services are checked at each collection, containers every minute."
+msgstr "Служби перевіряються під час кожного збору, контейнери — щохвилини."
 
 #: src/components/routes/settings/general.tsx
 msgid "Set percentage thresholds for meter colors."
@@ -1880,6 +1940,27 @@ msgstr "Тип запуску"
 msgid "State"
 msgstr "Стан"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "state is"
+msgstr "стан"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "state is not"
+msgstr "стан не"
+
+#: src/lib/alerts.ts
+#: src/lib/alerts.ts
+msgid "State rule matched"
+msgstr "Правило стану спрацювало"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "State rules"
+msgstr "Правила стану"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "States"
+msgstr "Стани"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1891,6 +1972,10 @@ msgstr "Статус"
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "Sub State"
 msgstr "Підстан"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Sub-states (optional)"
+msgstr "Підстани (необов’язково)"
 
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Swap space used by the system"
@@ -1957,6 +2042,10 @@ msgstr "Вкладки"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Target"
 msgstr "Ціль"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Targets"
+msgstr "Цілі"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Tasks"
@@ -2068,6 +2157,10 @@ msgstr "Загальний час, витрачений на читання/за
 msgid "Total: {0}"
 msgstr "Всього: {0}"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Triggered"
+msgstr "Спрацювало"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Triggered by"
 msgstr "Запущено через"
@@ -2144,6 +2237,7 @@ msgstr "Спрацьовує, коли статус перемикається �
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "Спрацьовує, коли використання будь-якого диска перевищує поріг"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx

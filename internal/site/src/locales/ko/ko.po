@@ -24,6 +24,11 @@ msgctxt "New version available"
 msgid "{0} available"
 msgstr "{0} 사용 가능"
 
+#. placeholder {0}: rule.cycles
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{0} consecutive checks"
+msgstr "연속 {0}회 확인"
+
 #. placeholder {0}: table.getFilteredSelectedRowModel().rows.length
 #. placeholder {1}: table.getFilteredRowModel().rows.length
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -140,6 +145,10 @@ msgstr "활성 상태"
 msgid "Add {foo}"
 msgstr "{foo} 추가"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Add rule"
+msgstr "규칙 추가"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "URL 추가"
@@ -175,6 +184,18 @@ msgstr "에이전트"
 #: src/components/routes/settings/layout.tsx
 msgid "Alert History"
 msgstr "알림 기록"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when services or Docker containers enter or leave a state."
+msgstr "서비스 또는 Docker 컨테이너가 특정 상태로 전환되거나 해당 상태를 벗어날 때 알립니다."
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when state is"
+msgstr "상태가 다음일 때 알림"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when state is not"
+msgstr "상태가 다음이 아닐 때 알림"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -363,6 +384,7 @@ msgstr "시작 가능"
 msgid "Can stop"
 msgstr "중지 가능"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -474,6 +496,10 @@ msgstr "클릭하여 복사"
 msgid "Command line instructions"
 msgstr "명령어 사용 지침"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Condition"
+msgstr "조건"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Configure how you receive alert notifications."
 msgstr "알림을 수신할 방법을 설정하세요."
@@ -495,6 +521,10 @@ msgstr "충돌"
 msgid "Connection is down"
 msgstr "연결이 끊겼습니다"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Consecutive checks"
+msgstr "연속 확인 횟수"
+
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "컨테이너"
@@ -503,6 +533,11 @@ msgstr "컨테이너"
 msgid "Container Health"
 msgstr "컨테이너 상태"
 
+#: src/lib/alerts.ts
+msgid "Container state"
+msgstr "컨테이너 상태"
+
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
 msgstr "컨테이너"
@@ -685,6 +720,7 @@ msgstr "기본값"
 msgid "Default time period"
 msgstr "기본 기간"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -774,6 +810,7 @@ msgstr "다운로드"
 msgid "Duration"
 msgstr "기간"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -935,6 +972,7 @@ msgid "Failed to send test notification"
 msgstr "테스트 알림 전송 실패"
 
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/state-alert-rules.tsx
 msgid "Failed to update alert"
 msgstr "알림 수정 실패"
 
@@ -1032,6 +1070,10 @@ msgstr "그리드"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Health"
 msgstr "상태"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Health (optional)"
+msgstr "상태 검사 (선택 사항)"
 
 #: src/components/routes/settings/layout.tsx
 msgid "Heartbeat"
@@ -1281,6 +1323,10 @@ msgstr "마운트 지점"
 msgid "Name"
 msgstr "이름"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
+msgstr "이름을 쉼표로 구분합니다. *를 와일드카드로 사용하세요. 더 이상 보고되지 않는 대상은 중지된 것으로 간주됩니다."
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Net"
@@ -1515,6 +1561,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "알림이 전달되도록 <0>SMTP 서버를 구성</0>하세요."
 
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/state-alert-rules.tsx
 msgid "Please check logs for more details."
 msgstr "자세한 내용은 로그를 확인하세요."
 
@@ -1714,6 +1761,10 @@ msgstr "S.M.A.R.T. 세부 정보"
 msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. 자체 테스트"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Save"
+msgstr "저장"
+
 #: src/components/add-system.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Save {foo}"
@@ -1822,10 +1873,19 @@ msgstr "서비스 세부 정보"
 msgid "Service name"
 msgstr "서비스 이름"
 
+#: src/lib/alerts.ts
+msgid "Service state"
+msgstr "서비스 상태"
+
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Services"
 msgstr "서비스"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Services are checked at each collection, containers every minute."
+msgstr "서비스는 수집할 때마다, 컨테이너는 매분 확인됩니다."
 
 #: src/components/routes/settings/general.tsx
 msgid "Set percentage thresholds for meter colors."
@@ -1880,6 +1940,27 @@ msgstr "시작 유형"
 msgid "State"
 msgstr "상태"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "state is"
+msgstr "상태가 다음임"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "state is not"
+msgstr "상태가 다음이 아님"
+
+#: src/lib/alerts.ts
+#: src/lib/alerts.ts
+msgid "State rule matched"
+msgstr "상태 규칙 충족"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "State rules"
+msgstr "상태 규칙"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "States"
+msgstr "상태"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1891,6 +1972,10 @@ msgstr "상태"
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "Sub State"
 msgstr "하위 상태"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Sub-states (optional)"
+msgstr "하위 상태 (선택 사항)"
 
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Swap space used by the system"
@@ -1956,6 +2041,10 @@ msgstr "탭"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Target"
+msgstr "대상"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Targets"
 msgstr "대상"
 
 #: src/components/systemd-table/systemd-table.tsx
@@ -2068,6 +2157,10 @@ msgstr "읽기/쓰기에 소요된 총 시간 (100%를 초과할 수 있음)"
 msgid "Total: {0}"
 msgstr "총: {0}"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Triggered"
+msgstr "트리거됨"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Triggered by"
 msgstr "트리거 대상"
@@ -2144,6 +2237,7 @@ msgstr "시스템의 전원이 켜지거나 꺼질때 트리거됩니다."
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "디스크 사용량이 임계값을 초과할 때 트리거됩니다."
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
