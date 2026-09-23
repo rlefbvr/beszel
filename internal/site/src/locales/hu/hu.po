@@ -99,6 +99,10 @@ msgstr "30 nap"
 msgid "5 min"
 msgstr "5 perc"
 
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Account"
+msgstr "Fiók"
+
 #. Table column
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
@@ -859,9 +863,17 @@ msgstr "Túllépi a {0}{1} értéket az elmúlt {2, plural, one {# percben} othe
 msgid "Exec main PID"
 msgstr "Fő folyamat PID"
 
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Executable"
+msgstr "Futtatható fájl"
+
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Existing systems not defined in <0>config.yml</0> will be deleted. Please make regular backups."
 msgstr "A <0>config.yml</0> fájlban nem definiált meglévő rendszerek törlésre kerülnek. Kérjük, készítsen rendszeres biztonsági mentéseket."
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Exit code"
+msgstr "Kilépési kód"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exited active"
@@ -1042,6 +1054,10 @@ msgstr "Homebrew parancs"
 #: src/components/add-system.tsx
 msgid "Host / IP"
 msgstr "Állomás / IP"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Hosted services"
+msgstr "Futtatott szolgáltatások"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
@@ -1795,8 +1811,16 @@ msgid "Serial Number"
 msgstr "Sorozatszám"
 
 #: src/components/systemd-table/systemd-table.tsx
+msgid "Service"
+msgstr "Szolgáltatás"
+
+#: src/components/systemd-table/systemd-table.tsx
 msgid "Service Details"
 msgstr "Szolgáltatás részletei"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Service name"
+msgstr "Szolgáltatás neve"
 
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -1842,11 +1866,17 @@ msgstr "Rendezés"
 msgid "Start Time"
 msgstr "Kezdési idő"
 
+#: src/components/systemd-table/systemd-table.tsx
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Start type"
+msgstr "Indítás típusa"
+
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
+#: src/components/systemd-table/systemd-table.tsx
 msgid "State"
 msgstr "Állapot"
 
@@ -2071,6 +2101,10 @@ msgid "Triggers when any systemd service enters the failed state"
 msgstr "Akkor aktiválódik, amikor bármely systemd-szolgáltatás sikertelen állapotba kerül"
 
 #: src/lib/alerts.ts
+msgid "Triggers when any Windows service stops with an error code"
+msgstr "Akkor aktiválódik, amikor bármely Windows-szolgáltatás hibakóddal leáll"
+
+#: src/lib/alerts.ts
 msgid "Triggers when battery charge drops below a threshold"
 msgstr "Riaszt, ha az akkumulátor töltöttségi szintje egy küszöbérték alá esik"
 
@@ -2272,6 +2306,10 @@ msgstr "POST használata esetén minden heartbeat tartalmaz egy JSON payload-ot 
 msgctxt "Button to copy install command"
 msgid "Windows command"
 msgstr "Windows parancs"
+
+#: src/components/systemd-table/systemd-table.tsx
+msgid "Windows Services"
+msgstr "Windows-szolgáltatások"
 
 #. Disk write
 #. Disk write

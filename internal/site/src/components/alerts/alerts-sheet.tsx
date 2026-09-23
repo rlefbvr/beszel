@@ -15,6 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { toast } from "@/components/ui/use-toast"
 import { alertInfo } from "@/lib/alerts"
 import { pb } from "@/lib/api"
+import { Os } from "@/lib/enums"
 import { $alerts, $systems } from "@/lib/stores"
 import { cn, debounce } from "@/lib/utils"
 import type { AlertInfo, AlertRecord, SystemRecord } from "@/types"
@@ -236,6 +237,8 @@ export function AlertContent({
 	const { name } = alertData
 
 	const singleDescription = alertData.singleDesc?.()
+	const description =
+		(!global && system.info?.os === Os.Windows && alertData.windowsDesc?.()) || alertData.desc()
 	/** Alerts that fire on first observation have no duration to configure */
 	const noDuration = alertData.noDuration === true
 	/** Binary alerts have no threshold to configure */
@@ -291,7 +294,7 @@ export function AlertContent({
 						<Icon className="h-4 w-4 opacity-85" /> {alertData.name()}
 					</p>
 					{(!checked || !hasControls) && (
-						<span className="block text-sm text-muted-foreground">{alertData.desc()}</span>
+						<span className="block text-sm text-muted-foreground">{description}</span>
 					)}
 				</div>
 				<Switch

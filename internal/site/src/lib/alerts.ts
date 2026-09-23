@@ -132,6 +132,7 @@ export const alertInfo: Record<string, AlertInfo> = {
     unit: "",
     icon: ServerCrashIcon,
     desc: () => t`Triggers when any systemd service enters the failed state`,
+    windowsDesc: () => t`Triggers when any Windows service stops with an error code`,
     triggeredDesc: () => t`One or more services are in a failed state`,
     /** Fires on first observation - the agent only polls systemd every 10 minutes */
     noDuration: true,

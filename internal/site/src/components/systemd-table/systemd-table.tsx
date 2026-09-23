@@ -23,7 +23,7 @@ import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { pb } from "@/lib/api"
-import { ServiceStatus, ServiceStatusLabels, type ServiceSubState, ServiceSubStateLabels } from "@/lib/enums"
+import { Os, ServiceStatus, ServiceStatusLabels, type ServiceSubState, ServiceSubStateLabels } from "@/lib/enums"
 import { $allSystemsById } from "@/lib/stores"
 import { cn, decimalString, formatBytes, useBrowserStorage } from "@/lib/utils"
 import type { SystemdRecord, SystemdServiceDetails } from "@/types"
@@ -141,6 +141,8 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 	const rows = table.getRowModel().rows
 	const visibleColumns = table.getVisibleLeafColumns()
 
+	const isWindows = !!systemId && $allSystemsById.get()[systemId]?.info?.os === Os.Windows
+
 	const statusTotals = useMemo(() => {
 		const totals = [0, 0, 0, 0, 0, 0]
 		for (const service of data) {
@@ -159,7 +161,7 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 				<div className="grid md:flex gap-x-5 gap-y-3 w-full items-end">
 					<div className="px-2 sm:px-1">
 						<CardTitle className="mb-2">
-							<Trans>Systemd Services</Trans>
+							{isWindows ? <Trans>Windows Services</Trans> : <Trans>Systemd Services</Trans>}
 						</CardTitle>
 						<div className="text-sm text-muted-foreground flex items-center flex-wrap">
 							<Trans>Total: {data.length}</Trans>
@@ -399,6 +401,11 @@ function SystemdSheet({
 		)
 	})()
 
+	// Windows agents report StartType instead of systemd unit file properties
+	const isWindows = typeof details?.StartType === "string"
+	const exitCodeValue = typeof details?.ExitCode === "number" && details.ExitCode !== 0 ? details.ExitCode : undefined
+	const hostedServices = Array.isArray(details?.HostedServices) ? details.HostedServices : []
+
 	const statusTextValue = details?.Result
 
 	const cpuTime = formatCpuTime(details?.CPUUsageNSec)
@@ -460,22 +467,33 @@ function SystemdSheet({
 							<table className="w-full text-sm">
 								<tbody>
 									{renderRow("name", t`Name`, service.name, true)}
-									{renderRow("description", t`Description`, details?.Description, true)}
-									{renderRow("loadState", t`Load state`, details?.LoadState, true)}
+									{isWindows && renderRow("serviceName", t`Service name`, details?.ServiceName)}
 									{renderRow(
-										"bootState",
-										t`Boot state`,
-										<div className="flex items-center">
-											{details?.UnitFileState}
-											{details?.UnitFilePreset && (
-												<span className="text-muted-foreground ms-1.5">(preset: {details?.UnitFilePreset})</span>
-											)}
-										</div>,
+										"description",
+										t`Description`,
+										(isWindows && details?.LongDescription) || details?.Description,
 										true
 									)}
-									{renderRow("unitFile", t`Unit file`, details?.FragmentPath, true)}
+									{renderRow("loadState", t`Load state`, details?.LoadState, !isWindows)}
+									{isWindows
+										? renderRow("startType", t`Start type`, details?.StartType, true)
+										: renderRow(
+												"bootState",
+												t`Boot state`,
+												<div className="flex items-center">
+													{details?.UnitFileState}
+													{details?.UnitFilePreset && (
+														<span className="text-muted-foreground ms-1.5">(preset: {details?.UnitFilePreset})</span>
+													)}
+												</div>,
+												true
+											)}
+									{renderRow("unitFile", t`Unit file`, details?.FragmentPath, !isWindows)}
+									{isWindows && renderRow("execStart", t`Executable`, details?.ExecStart)}
+									{isWindows && renderRow("user", t`Account`, details?.User)}
 									{renderRow("active", t`Active state`, activeStateValue, true)}
 									{renderRow("status", t`Status`, statusTextValue, true)}
+									{renderRow("exitCode", t`Exit code`, exitCodeValue)}
 									{renderRow(
 										"documentation",
 										t`Documentation`,
@@ -488,6 +506,45 @@ function SystemdSheet({
 						</div>
 					</div>
 
+					{hostedServices.length > 0 && (
+						<div>
+							<h3 className="text-sm font-medium mb-3">
+								<Trans>Hosted services</Trans>
+							</h3>
+							<div className="border rounded-md overflow-x-auto">
+								<table className="w-full text-sm">
+									<thead>
+										<tr className="border-b bg-muted dark:bg-muted/40 text-start">
+											<th className="px-3 py-2 font-medium text-start">
+												<Trans>Service</Trans>
+											</th>
+											<th className="px-3 py-2 font-medium text-start">
+												<Trans>Start type</Trans>
+											</th>
+											<th className="px-3 py-2 font-medium text-start">
+												<Trans>State</Trans>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										{hostedServices.map((hosted) => (
+											<tr key={hosted.ServiceName} className="border-b last:border-b-0">
+												<td className="px-3 py-2" title={hosted.LongDescription || undefined}>
+													<div>{hosted.DisplayName || hosted.ServiceName}</div>
+													{hosted.DisplayName && hosted.DisplayName !== hosted.ServiceName && (
+														<div className="text-muted-foreground text-xs">{hosted.ServiceName}</div>
+													)}
+												</td>
+												<td className="px-3 py-2">{hosted.StartType}</td>
+												<td className="px-3 py-2">{hosted.WindowsState}</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					)}
+
 					<div>
 						<h3 className="text-sm font-medium mb-3">
 							<Trans>Runtime Metrics</Trans>
@@ -497,12 +554,12 @@ function SystemdSheet({
 								<tbody>
 									{renderRow("mainPid", t`Main PID`, mainPidValue, true)}
 									{renderRow("execMainPid", t`Exec main PID`, execMainPidValue)}
-									{renderRow("tasks", t`Tasks`, tasks, true)}
+									{renderRow("tasks", t`Tasks`, tasks, !isWindows)}
 									{renderRow("cpuTime", t`CPU time`, cpuTime)}
 									{renderRow("memory", t`Memory`, memoryCurrent, true)}
 									{renderRow("memoryPeak", capitalize(t`Memory Peak`), memoryPeak)}
 									{renderRow("memoryLimit", t`Memory limit`, memoryLimit)}
-									{renderRow("restarts", t`Restarts`, restartsValue, true)}
+									{renderRow("restarts", t`Restarts`, restartsValue, !isWindows)}
 								</tbody>
 							</table>
 						</div>
@@ -596,9 +653,21 @@ function SystemdSheet({
 						<div className="border rounded-md">
 							<table className="w-full text-sm">
 								<tbody>
-									{renderRow("canStart", t`Can start`, details?.CanStart ? t`Yes` : t`No`)}
-									{renderRow("canStop", t`Can stop`, details?.CanStop ? t`Yes` : t`No`)}
-									{renderRow("canReload", t`Can reload`, details?.CanReload ? t`Yes` : t`No`)}
+									{renderRow(
+										"canStart",
+										t`Can start`,
+										typeof details?.CanStart === "boolean" ? (details.CanStart ? t`Yes` : t`No`) : undefined
+									)}
+									{renderRow(
+										"canStop",
+										t`Can stop`,
+										typeof details?.CanStop === "boolean" ? (details.CanStop ? t`Yes` : t`No`) : undefined
+									)}
+									{renderRow(
+										"canReload",
+										t`Can reload`,
+										typeof details?.CanReload === "boolean" ? (details.CanReload ? t`Yes` : t`No`) : undefined
+									)}
 									{/* {renderRow("refuseManualStart", t`Refuse Manual Start`, details?.RefuseManualStart ? t`Yes` : t`No`)}
 									{renderRow("refuseManualStop", t`Refuse Manual Stop`, details?.RefuseManualStop ? t`Yes` : t`No`)} */}
 								</tbody>

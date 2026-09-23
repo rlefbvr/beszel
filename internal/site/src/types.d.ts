@@ -405,6 +405,8 @@ export interface AlertInfo {
 	unit: string
 	icon: any
 	desc: () => string
+	/** Description shown instead of desc for Windows systems */
+	windowsDesc?: () => string
 	max?: number
 	min?: number
 	step?: number
@@ -621,6 +623,25 @@ export interface SystemdServiceDetails {
 	WantedBy: any[]
 	Wants: string[]
 	WantsMountsFor: any[]
+	// Windows agent only
+	ServiceName?: string
+	DisplayName?: string
+	LongDescription?: string
+	StartType?: string
+	WindowsState?: string
+	ExecStart?: string
+	User?: string
+	ExitCode?: number
+	HostedServices?: WindowsHostedService[]
+}
+
+export interface WindowsHostedService {
+	ServiceName: string
+	DisplayName: string
+	LongDescription: string
+	StartType: string
+	UnitFileState: string
+	WindowsState: string
 }
 
 export interface BeszelInfo {
