@@ -12,7 +12,6 @@ import (
 	"strconv"
 	"strings"
 	"sync"
-	"time"
 
 	"github.com/coreos/go-systemd/v22/dbus"
 	"github.com/henrygd/beszel/agent/utils"
@@ -24,6 +23,7 @@ var errNoActiveTime = errors.New("no active time")
 // systemdManager manages the collection of systemd service statistics.
 type systemdManager struct {
 	sync.Mutex
+	*serviceRefresher
 	serviceStatsMap map[string]*systemd.Service
 	isRunning       bool
 	hasFreshStats   bool
@@ -67,8 +67,9 @@ func newSystemdManager() (*systemdManager, error) {
 	}
 
 	manager := &systemdManager{
-		serviceStatsMap: make(map[string]*systemd.Service),
-		patterns:        getServicePatterns(),
+		serviceRefresher: newServiceRefresher(),
+		serviceStatsMap:  make(map[string]*systemd.Service),
+		patterns:         getServicePatterns(),
 	}
 
 	manager.startWorker(conn)
@@ -83,13 +84,10 @@ func (sm *systemdManager) startWorker(conn *dbus.Conn) {
 	sm.isRunning = true
 	// prime the service stats map with the current services
 	_ = sm.getServiceStats(conn, true)
-	// update the services every 10 minutes
-	go func() {
-		for {
-			time.Sleep(time.Minute * 10)
-			_ = sm.getServiceStats(nil, true)
-		}
-	}()
+	// update the services on the interval set by the hub (10 minutes by default)
+	go sm.runRefreshLoop(nil, func() {
+		_ = sm.getServiceStats(nil, true)
+	})
 }
 
 // getServiceStatsCount returns the number of systemd services.

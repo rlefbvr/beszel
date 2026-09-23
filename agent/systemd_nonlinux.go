@@ -4,6 +4,7 @@ package agent
 
 import (
 	"errors"
+	"time"
 
 	"github.com/henrygd/beszel/internal/entities/systemd"
 )
@@ -32,6 +33,9 @@ func (sm *systemdManager) getServiceStatsCount() int {
 func (sm *systemdManager) getFailedServiceCount() uint16 {
 	return 0
 }
+
+// setServicesInterval is a no-op for unsupported systems.
+func (sm *systemdManager) setServicesInterval(time.Duration) {}
 
 func (sm *systemdManager) getServiceDetails(string) (systemd.ServiceDetails, error) {
 	return nil, errors.New("systemd manager unavailable")

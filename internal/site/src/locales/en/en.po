@@ -433,6 +433,7 @@ msgstr "Chart width"
 msgid "Check {email} for a reset link."
 msgstr "Check {email} for a reset link."
 
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/layout.tsx
 msgid "Check logs for more details."
 msgstr "Check logs for more details."
@@ -485,6 +486,10 @@ msgstr "Click on a system to view more information."
 #: src/components/ui/input-copy.tsx
 msgid "Click to copy"
 msgstr "Click to copy"
+
+#: src/components/routes/settings/general.tsx
+msgid "Collection interval"
+msgstr "Collection interval"
 
 #: src/components/login/forgot-pass-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -952,6 +957,7 @@ msgstr "Failed to authenticate"
 msgid "Failed to delete monitors."
 msgstr "Failed to delete monitors."
 
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1095,6 +1101,10 @@ msgstr "Host / IP"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "Hosted services"
+
+#: src/components/routes/settings/general.tsx
+msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
+msgstr "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
@@ -1444,6 +1454,10 @@ msgstr "One-time"
 #: src/components/login/auth-form.tsx
 msgid "One-time password"
 msgstr "One-time password"
+
+#: src/components/routes/settings/general.tsx
+msgid "Only administrators can change this setting."
+msgstr "Only administrators can change this setting."
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1873,6 +1887,7 @@ msgid "Service state"
 msgstr "Service state"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Services"
@@ -2292,8 +2307,12 @@ msgid "Updated"
 msgstr "Updated"
 
 #: src/components/systemd-table/systemd-table.tsx
-msgid "Updated every 10 minutes."
-msgstr "Updated every 10 minutes."
+msgid "Updated every {intervalLabel}."
+msgstr "Updated every {intervalLabel}."
+
+#: src/components/systemd-table/systemd-table.tsx
+#~ msgid "Updated every 10 minutes."
+#~ msgstr "Updated every 10 minutes."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"

@@ -13,7 +13,7 @@ import { ThemeProvider } from "@/components/theme-provider.tsx"
 import { Toaster } from "@/components/ui/toaster.tsx"
 import { alertManager } from "@/lib/alerts"
 import { refreshStateAlerts, subscribeStateAlerts, unsubscribeStateAlerts } from "@/lib/state-alerts"
-import { isAdmin, pb, updateUserSettings } from "@/lib/api.ts"
+import { isAdmin, pb, updateHubSettings, updateUserSettings } from "@/lib/api.ts"
 import { dynamicActivate, getLocale } from "@/lib/i18n"
 import {
 	$authenticated,
@@ -53,6 +53,7 @@ const App = memo(() => {
 		})
 		// get user settings
 		updateUserSettings()
+		updateHubSettings()
 		// need to get system list before alerts
 		systemsManager.init()
 		systemsManager

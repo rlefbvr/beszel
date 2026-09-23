@@ -66,6 +66,8 @@ type FingerprintResponse struct {
 type DataRequestOptions struct {
 	CacheTimeMs    uint16 `cbor:"0,keyasint"`
 	IncludeDetails bool   `cbor:"1,keyasint"`
+	// ServicesInterval is the service collection interval in seconds (0 keeps the agent's current interval)
+	ServicesInterval uint16 `cbor:"2,keyasint,omitempty"`
 }
 
 type ZfsDataRequest struct {

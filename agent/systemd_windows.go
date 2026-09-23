@@ -53,6 +53,7 @@ type winGroup struct {
 
 type systemdManager struct {
 	sync.Mutex
+	*serviceRefresher
 	hasFreshStats bool // lu par agent.go : true après un rafraîchissement
 	patterns      []string
 	stats         map[string]*systemd.Service
@@ -80,9 +81,10 @@ func newSystemdManager() (*systemdManager, error) {
 	m.Disconnect()
 
 	sm := &systemdManager{
-		stats:  map[string]*systemd.Service{},
-		groups: map[string]*winGroup{},
-		pids:   map[string]uint32{},
+		serviceRefresher: newServiceRefresher(),
+		stats:            map[string]*systemd.Service{},
+		groups:           map[string]*winGroup{},
+		pids:             map[string]uint32{},
 	}
 	for _, p := range strings.Split(winEnv("SERVICE_PATTERNS"), ",") {
 		if p = strings.ToLower(strings.TrimSpace(p)); p != "" {
@@ -94,16 +96,13 @@ func newSystemdManager() (*systemdManager, error) {
 }
 
 // startWorker reprend le cycle de la version Linux : relevé initial, puis
-// toutes les 10 minutes. agent.go n'envoie les services au hub que lorsque
-// hasFreshStats est vrai.
+// à l'intervalle fixé par le hub (10 minutes par défaut). agent.go n'envoie
+// les services au hub que lorsque hasFreshStats est vrai.
 func (sm *systemdManager) startWorker() {
 	_ = sm.getServiceStats(nil, true)
-	go func() {
-		for {
-			time.Sleep(10 * time.Minute)
-			_ = sm.getServiceStats(nil, true)
-		}
-	}()
+	go sm.runRefreshLoop(nil, func() {
+		_ = sm.getServiceStats(nil, true)
+	})
 }
 
 // getServiceStats : refresh=true relit le SCM et marque les données comme

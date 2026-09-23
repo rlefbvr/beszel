@@ -438,6 +438,7 @@ msgstr "Szerokość wykresu"
 msgid "Check {email} for a reset link."
 msgstr "Sprawdź {email}, aby uzyskać link do resetowania."
 
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/layout.tsx
 msgid "Check logs for more details."
 msgstr "Sprawdź logi, aby uzyskać więcej informacji."
@@ -490,6 +491,10 @@ msgstr "Wybierz system, aby wyświetlić więcej informacji."
 #: src/components/ui/input-copy.tsx
 msgid "Click to copy"
 msgstr "Kliknij, aby skopiować"
+
+#: src/components/routes/settings/general.tsx
+msgid "Collection interval"
+msgstr "Interwał zbierania"
 
 #: src/components/login/forgot-pass-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -957,6 +962,7 @@ msgstr "Błąd autoryzacji"
 msgid "Failed to delete monitors."
 msgstr "Nie udało się usunąć monitorów."
 
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1100,6 +1106,10 @@ msgstr "Host / adres IP"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "Hostowane usługi"
+
+#: src/components/routes/settings/general.tsx
+msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
+msgstr "Jak często agenci zbierają dane o usługach systemd i Windows. Krótsze interwały szybciej wykrywają zmiany stanu, ale zapisują więcej danych. Dotyczy wszystkich systemów."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
@@ -1449,6 +1459,10 @@ msgstr "Jednorazowy"
 #: src/components/login/auth-form.tsx
 msgid "One-time password"
 msgstr "Hasło jednorazowe"
+
+#: src/components/routes/settings/general.tsx
+msgid "Only administrators can change this setting."
+msgstr "Tylko administratorzy mogą zmienić to ustawienie."
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1878,6 +1892,7 @@ msgid "Service state"
 msgstr "Stan usługi"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Services"
@@ -2297,8 +2312,12 @@ msgid "Updated"
 msgstr "Zaktualizowano"
 
 #: src/components/systemd-table/systemd-table.tsx
-msgid "Updated every 10 minutes."
-msgstr "Aktualizowane co 10 minut."
+msgid "Updated every {intervalLabel}."
+msgstr "Interwał aktualizacji: {intervalLabel}."
+
+#: src/components/systemd-table/systemd-table.tsx
+#~ msgid "Updated every 10 minutes."
+#~ msgstr "Aktualizowane co 10 minut."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"

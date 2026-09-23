@@ -4,7 +4,7 @@ import { basePath } from "@/components/router"
 import { toast } from "@/components/ui/use-toast"
 import { dynamicActivate, getLocale } from "@/lib/i18n"
 import type { ChartTimes, UserSettings } from "@/types"
-import { $alerts, $allSystemsById, $allSystemsByName, $userSettings } from "./stores"
+import { $alerts, $allSystemsById, $allSystemsByName, $servicesInterval, $userSettings } from "./stores"
 import { chartTimeData, debounce } from "./utils"
 
 /** PocketBase JS Client */
@@ -84,6 +84,25 @@ const flushQueuedSettings = debounce(() => {
 export function queueUserSettings(newSettings: Partial<UserSettings>) {
 	queuedSettings = { ...queuedSettings, ...newSettings }
 	flushQueuedSettings()
+}
+
+/** Id of the single hub_settings record created by migration */
+const hubSettingsId = "hubsettings0000"
+
+/** Fetch hub-wide settings */
+export async function updateHubSettings() {
+	try {
+		const settings = await pb.collection("hub_settings").getOne(hubSettingsId, { fields: "services_interval" })
+		$servicesInterval.set(settings.services_interval)
+	} catch (e) {
+		console.error("get hub settings", e)
+	}
+}
+
+/** Save the service collection interval in minutes (admins only) */
+export async function saveServicesInterval(minutes: number) {
+	const settings = await pb.collection("hub_settings").update(hubSettingsId, { services_interval: minutes })
+	$servicesInterval.set(settings.services_interval)
 }
 
 /** Fetch or create user settings in database */

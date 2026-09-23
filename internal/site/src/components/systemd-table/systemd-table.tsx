@@ -1,5 +1,6 @@
 import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
+import { useStore } from "@nanostores/react"
 import {
 	type ColumnFiltersState,
 	flexRender,
@@ -24,9 +25,9 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { pb } from "@/lib/api"
 import { Os, ServiceStatus, ServiceStatusLabels, type ServiceSubState, ServiceSubStateLabels } from "@/lib/enums"
-import { $allSystemsById } from "@/lib/stores"
+import { $allSystemsById, $servicesInterval } from "@/lib/stores"
 import { useSystemOs } from "@/lib/use-system-os"
-import { cn, decimalString, formatBytes, useBrowserStorage } from "@/lib/utils"
+import { cn, decimalString, formatBytes, secondsToString, useBrowserStorage } from "@/lib/utils"
 import type { SystemdRecord, SystemdServiceDetails } from "@/types"
 import { Separator } from "../ui/separator"
 
@@ -94,8 +95,8 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 
 		// if systemId, fetch containers after the system is updated
 		return listenKeys($allSystemsById, [systemId], (_newSystems) => {
-			// don't fetch data if the last update is less than 9.5 minutes
-			if (lastUpdated > Date.now() - 9.5 * 60 * 1000) {
+			// don't fetch data until the next service collection is due (30s margin)
+			if (lastUpdated > Date.now() - ($servicesInterval.get() * 60 - 30) * 1000) {
 				return
 			}
 			fetchData(systemId)
@@ -143,6 +144,8 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 	const visibleColumns = table.getVisibleLeafColumns()
 
 	const isWindows = useSystemOs(systemId ? $allSystemsById.get()[systemId] : undefined) === Os.Windows
+	const servicesInterval = useStore($servicesInterval)
+	const intervalLabel = secondsToString(servicesInterval * 60, "minute")
 
 	const statusTotals = useMemo(() => {
 		const totals = [0, 0, 0, 0, 0, 0]
@@ -169,7 +172,7 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 							<Separator orientation="vertical" className="h-4 mx-2 bg-primary/40" />
 							<Trans>Failed: {statusTotals[ServiceStatus.Failed]}</Trans>
 							<Separator orientation="vertical" className="h-4 mx-2 bg-primary/40" />
-							<Trans>Updated every 10 minutes.</Trans>
+							<Trans>Updated every {intervalLabel}.</Trans>
 						</div>
 					</div>
 					<Input
