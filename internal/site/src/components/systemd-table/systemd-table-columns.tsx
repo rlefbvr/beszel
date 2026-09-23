@@ -10,12 +10,13 @@ import {
 	ClockIcon,
 	CpuIcon,
 	MemoryStickIcon,
+	ServerIcon,
 	TerminalSquareIcon,
 } from "lucide-react"
 import { Badge } from "../ui/badge"
 import { t } from "@lingui/core/macro"
-// import { $allSystemsById } from "@/lib/stores"
-// import { useStore } from "@nanostores/react"
+import { $allSystemsById } from "@/lib/stores"
+import { useStore } from "@nanostores/react"
 
 function getSubStateColor(subState: ServiceSubState) {
 	switch (subState) {
@@ -41,21 +42,19 @@ export const systemdTableCols: ColumnDef<SystemdRecord>[] = [
 			return <span className="ms-1.5 xl:w-50 block truncate">{getValue() as string}</span>
 		},
 	},
-	// {
-	// 	id: "system",
-	// 	accessorFn: (record) => record.system,
-	// 	sortingFn: (a, b) => {
-	// 		const allSystems = $allSystemsById.get()
-	// 		const systemNameA = allSystems[a.original.system]?.name ?? ""
-	// 		const systemNameB = allSystems[b.original.system]?.name ?? ""
-	// 		return systemNameA.localeCompare(systemNameB)
-	// 	},
-	// 	header: ({ column }) => <HeaderButton column={column} name={t`System`} Icon={ServerIcon} />,
-	// 	cell: ({ getValue }) => {
-	// 		const allSystems = useStore($allSystemsById)
-	// 		return <span className="ms-1.5 xl:w-34 block truncate">{allSystems[getValue() as string]?.name ?? ""}</span>
-	// 	},
-	// },
+	{
+		// only shown on the page listing the services of all systems
+		id: "system",
+		accessorFn: (record) => record.system,
+		sortingFn: (a, b) => {
+			const allSystems = $allSystemsById.get()
+			const systemNameA = allSystems[a.original.system]?.name ?? ""
+			const systemNameB = allSystems[b.original.system]?.name ?? ""
+			return systemNameA.localeCompare(systemNameB)
+		},
+		header: ({ column }) => <HeaderButton column={column} name={t`System`} Icon={ServerIcon} />,
+		cell: ({ getValue }) => <SystemName id={getValue() as string} />,
+	},
 	{
 		id: "state",
 		accessorFn: (record) => record.state,
@@ -198,4 +197,9 @@ export function getStatusColor(status: ServiceStatus) {
 		default:
 			return "bg-zinc-500"
 	}
+}
+
+function SystemName({ id }: { id: string }) {
+	const allSystems = useStore($allSystemsById)
+	return <span className="ms-1.5 xl:w-34 block truncate">{allSystems[id]?.name ?? ""}</span>
 }

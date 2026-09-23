@@ -1,6 +1,8 @@
 /** biome-ignore-all lint/security/noDangerouslySetInnerHtml: html comes directly from docker via agent */
 import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
+import { useStore } from "@nanostores/react"
+import { type ImportantTile, ImportantTargets } from "@/components/important-targets"
 import {
 	type ColumnFiltersState,
 	flexRender,
@@ -14,18 +16,19 @@ import {
 	type VisibilityState,
 } from "@tanstack/react-table"
 import { useVirtualizer, type VirtualItem } from "@tanstack/react-virtual"
-import { memo, type RefObject, useEffect, useRef, useState } from "react"
+import { memo, type RefObject, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { pb } from "@/lib/api"
 import type { ContainerRecord } from "@/types"
 import { containerChartCols } from "@/components/containers-table/containers-table-columns"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { type ContainerHealth, ContainerHealthLabels } from "@/lib/enums"
+import { ContainerHealth, ContainerHealthLabels } from "@/lib/enums"
 import { cn, useBrowserStorage } from "@/lib/utils"
 import { Sheet, SheetTitle, SheetHeader, SheetContent, SheetDescription } from "../ui/sheet"
 import { Dialog, DialogContent, DialogTitle } from "../ui/dialog"
 import { Button } from "@/components/ui/button"
+import { $stateAlerts, importantTargets } from "@/lib/state-alerts"
 import { $allSystemsById } from "@/lib/stores"
 import { LoaderCircleIcon, MaximizeIcon, RefreshCwIcon, XIcon } from "lucide-react"
 import { Separator } from "../ui/separator"
@@ -162,6 +165,39 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 	const rows = table.getRowModel().rows
 	const visibleColumns = table.getVisibleLeafColumns()
 
+	// details sheet state lives here so important tiles can open it too
+	const activeContainer = useRef<ContainerRecord | null>(null)
+	const [sheetOpen, setSheetOpen] = useState(false)
+	const openSheet = useCallback((container: ContainerRecord) => {
+		activeContainer.current = container
+		setSheetOpen(true)
+	}, [])
+
+	// containers targeted by a state alert rule
+	const stateAlerts = useStore($stateAlerts)
+	const importantTiles = useMemo((): ImportantTile[] => {
+		const systems = $allSystemsById.get()
+		return importantTargets(stateAlerts, "container", data ?? [], systemId).map(({ item, name, system, triggered }) => ({
+			key: `${system}/${name}`,
+			name,
+			systemName: systemId ? undefined : systems[system]?.name,
+			dotClass: !item
+				? "bg-zinc-400"
+				: item.health === ContainerHealth.Unhealthy
+					? "bg-red-500"
+					: item.health === ContainerHealth.Starting || /paused|restarting/i.test(item.status)
+						? "bg-yellow-500"
+						: "bg-green-500",
+			status: item
+				? [item.status, item.health !== ContainerHealth.None && ContainerHealthLabels[item.health]]
+						.filter(Boolean)
+						.join(" · ")
+				: t`Stopped`,
+			triggered,
+			onClick: item ? () => openSheet(item) : undefined,
+		}))
+	}, [stateAlerts, data, systemId, openSheet])
+
 	return (
 		<Card className="@container w-full px-3 py-5 sm:py-6 sm:px-6">
 			<CardHeader className="p-0 mb-3 sm:mb-4">
@@ -196,9 +232,17 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 					</div>
 				</div>
 			</CardHeader>
+			<ImportantTargets title={<Trans>Important containers</Trans>} tiles={importantTiles} />
 			<div className="rounded-md">
-				<AllContainersTable table={table} rows={rows} colLength={visibleColumns.length} data={data} />
+				<AllContainersTable
+					table={table}
+					rows={rows}
+					colLength={visibleColumns.length}
+					data={data}
+					openSheet={openSheet}
+				/>
 			</div>
+			<ContainerSheet sheetOpen={sheetOpen} setSheetOpen={setSheetOpen} activeContainer={activeContainer} />
 		</Card>
 	)
 }
@@ -208,20 +252,16 @@ const AllContainersTable = memo(function AllContainersTable({
 	rows,
 	colLength,
 	data,
+	openSheet,
 }: {
 	table: TableType<ContainerRecord>
 	rows: Row<ContainerRecord>[]
 	colLength: number
 	data: ContainerRecord[] | undefined
+	openSheet: (container: ContainerRecord) => void
 }) {
 	// The virtualizer will need a reference to the scrollable container element
 	const scrollRef = useRef<HTMLDivElement>(null)
-	const activeContainer = useRef<ContainerRecord | null>(null)
-	const [sheetOpen, setSheetOpen] = useState(false)
-	const openSheet = (container: ContainerRecord) => {
-		activeContainer.current = container
-		setSheetOpen(true)
-	}
 
 	const virtualizer = useVirtualizer<HTMLDivElement, HTMLTableRowElement>({
 		count: rows.length,
@@ -267,7 +307,6 @@ const AllContainersTable = memo(function AllContainersTable({
 					</TableBody>
 				</table>
 			</div>
-			<ContainerSheet sheetOpen={sheetOpen} setSheetOpen={setSheetOpen} activeContainer={activeContainer} />
 		</div>
 	)
 })

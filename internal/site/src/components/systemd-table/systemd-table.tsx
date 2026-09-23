@@ -16,8 +16,9 @@ import {
 import { useVirtualizer, type VirtualItem } from "@tanstack/react-virtual"
 import { LoaderCircleIcon } from "lucide-react"
 import { listenKeys } from "nanostores"
-import { memo, type ReactNode, useEffect, useMemo, useRef, useState } from "react"
+import { memo, type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { getStatusColor, systemdTableCols } from "@/components/systemd-table/systemd-table-columns"
+import { type ImportantTile, ImportantTargets } from "@/components/important-targets"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -25,6 +26,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { pb } from "@/lib/api"
 import { Os, ServiceStatus, ServiceStatusLabels, type ServiceSubState, ServiceSubStateLabels } from "@/lib/enums"
+import { $stateAlerts, importantTargets } from "@/lib/state-alerts"
 import { $allSystemsById, $servicesInterval } from "@/lib/stores"
 import { useSystemOs } from "@/lib/use-system-os"
 import { cn, decimalString, formatBytes, secondsToString, useBrowserStorage } from "@/lib/utils"
@@ -49,64 +51,60 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 	}, [systemId])
 
 	useEffect(() => {
-		const lastUpdated = data[0]?.updated ?? 0
+		// time of the last services snapshot of each system (or of the last empty fetch)
+		const lastUpdated: Record<string, number> = {}
 
 		function fetchData(systemId?: string) {
 			pb.collection<SystemdRecord>("systemd_services")
 				.getList(0, 2000, {
-					fields: "name,state,sub,cpu,cpuPeak,memory,memPeak,updated",
+					fields: "id,system,name,state,sub,cpu,cpuPeak,memory,memPeak,updated",
 					filter: systemId ? pb.filter("system={:system}", { system: systemId }) : undefined,
 				})
-				.then(
-					({ items }) =>
-						items.length &&
-						setData((curItems) => {
-							const lastUpdated = Math.max(items[0].updated, items.at(-1)?.updated ?? 0)
-							const systemdNames = new Set()
-							const newItems: SystemdRecord[] = []
-							for (const item of items) {
-								if (Math.abs(lastUpdated - item.updated) < 70_000) {
-									systemdNames.add(item.name)
-									newItems.push(item)
-								}
-							}
-							for (const item of curItems) {
-								if (!systemdNames.has(item.name) && lastUpdated - item.updated < 70_000) {
-									newItems.push(item)
-								}
-							}
-							return newItems
-						})
-				)
+				.then(({ items }) => {
+					// services are collected at an interval per system: keep the latest snapshot of
+					// each one (rows of removed services stay until the retention sweep)
+					const latest: Record<string, number> = {}
+					for (const item of items) {
+						latest[item.system] = Math.max(latest[item.system] ?? 0, item.updated)
+					}
+					Object.assign(lastUpdated, latest)
+					if (systemId && !latest[systemId]) {
+						lastUpdated[systemId] = Date.now()
+					}
+					const fresh = items.filter((item) => latest[item.system] - item.updated < 70_000)
+					setData((curItems) =>
+						systemId ? [...curItems.filter((item) => item.system !== systemId), ...fresh] : fresh
+					)
+				})
 		}
+
+		// don't fetch a system's services until its next collection is due (30s margin)
+		const due = (id: string) => (lastUpdated[id] ?? 0) < Date.now() - ($servicesInterval.get() * 60 - 30) * 1000
 
 		// initial load
 		fetchData(systemId)
 
-		// if no systemId, pull system containers after every system update
+		// if no systemId, pull the services of each system after its updates
 		if (!systemId) {
-			return $allSystemsById.listen((_value, _oldValue, systemId) => {
+			return $allSystemsById.listen((_value, _oldValue, changedId) => {
 				// exclude initial load of systems
-				if (Date.now() - loadTime > 500) {
-					fetchData(systemId)
+				if (changedId && Date.now() - loadTime > 500 && due(changedId)) {
+					fetchData(changedId)
 				}
 			})
 		}
 
-		// if systemId, fetch containers after the system is updated
-		return listenKeys($allSystemsById, [systemId], (_newSystems) => {
-			// don't fetch data until the next service collection is due (30s margin)
-			if (lastUpdated > Date.now() - ($servicesInterval.get() * 60 - 30) * 1000) {
-				return
+		// if systemId, fetch services after the system is updated
+		return listenKeys($allSystemsById, [systemId], () => {
+			if (due(systemId)) {
+				fetchData(systemId)
 			}
-			fetchData(systemId)
 		})
 	}, [systemId])
 
 	const table = useReactTable({
 		data,
-		// columns: systemdTableCols.filter((col) => (systemId ? col.id !== "system" : true)),
-		columns: systemdTableCols,
+		columns: useMemo(() => systemdTableCols.filter((col) => (systemId ? col.id !== "system" : true)), [systemId]),
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
@@ -147,6 +145,30 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 	const servicesInterval = useStore($servicesInterval)
 	const intervalLabel = secondsToString(servicesInterval * 60, "minute")
 
+	const activeService = useRef<SystemdRecord | null>(null)
+	const [sheetOpen, setSheetOpen] = useState(false)
+	const openSheet = useCallback((service: SystemdRecord) => {
+		activeService.current = service
+		setSheetOpen(true)
+	}, [])
+
+	// services targeted by a state alert rule
+	const stateAlerts = useStore($stateAlerts)
+	const importantTiles = useMemo((): ImportantTile[] => {
+		const systems = $allSystemsById.get()
+		return importantTargets(stateAlerts, "service", data, systemId).map(({ item, name, system, triggered }) => ({
+			key: `${system}/${name}`,
+			name,
+			systemName: systemId ? undefined : systems[system]?.name,
+			dotClass: item ? getStatusColor(item.state) : "bg-zinc-400",
+			status: item
+				? `${ServiceStatusLabels[item.state] ?? ""} (${ServiceSubStateLabels[item.sub] ?? ""})`
+				: t`Not reported`,
+			triggered,
+			onClick: item ? () => openSheet(item) : undefined,
+		}))
+	}, [stateAlerts, data, systemId, openSheet])
+
 	const statusTotals = useMemo(() => {
 		const totals = [0, 0, 0, 0, 0, 0]
 		for (const service of data) {
@@ -165,7 +187,13 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 				<div className="grid md:flex gap-x-5 gap-y-3 w-full items-end">
 					<div className="px-2 sm:px-1">
 						<CardTitle className="mb-2">
-							{isWindows ? <Trans>Windows Services</Trans> : <Trans>Systemd Services</Trans>}
+							{!systemId ? (
+								<Trans>All Services</Trans>
+							) : isWindows ? (
+								<Trans>Windows Services</Trans>
+							) : (
+								<Trans>Systemd Services</Trans>
+							)}
 						</CardTitle>
 						<div className="text-sm text-muted-foreground flex items-center flex-wrap">
 							<Trans>Total: {data.length}</Trans>
@@ -183,9 +211,11 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 					/>
 				</div>
 			</CardHeader>
+			<ImportantTargets title={<Trans>Important services</Trans>} tiles={importantTiles} />
 			<div className="rounded-md">
-				<AllSystemdTable table={table} rows={rows} colLength={visibleColumns.length} systemId={systemId} />
+				<AllSystemdTable table={table} rows={rows} colLength={visibleColumns.length} openSheet={openSheet} />
 			</div>
+			<SystemdSheet sheetOpen={sheetOpen} setSheetOpen={setSheetOpen} activeService={activeService} />
 		</Card>
 	)
 }
@@ -194,21 +224,15 @@ const AllSystemdTable = memo(function AllSystemdTable({
 	table,
 	rows,
 	colLength,
-	systemId,
+	openSheet,
 }: {
 	table: TableType<SystemdRecord>
 	rows: Row<SystemdRecord>[]
 	colLength: number
-	systemId?: string
+	openSheet: (service: SystemdRecord) => void
 }) {
 	// The virtualizer will need a reference to the scrollable container element
 	const scrollRef = useRef<HTMLDivElement>(null)
-	const activeService = useRef<SystemdRecord | null>(null)
-	const [sheetOpen, setSheetOpen] = useState(false)
-	const openSheet = (service: SystemdRecord) => {
-		activeService.current = service
-		setSheetOpen(true)
-	}
 
 	const virtualizer = useVirtualizer<HTMLDivElement, HTMLTableRowElement>({
 		count: rows.length,
@@ -250,12 +274,6 @@ const AllSystemdTable = memo(function AllSystemdTable({
 					</TableBody>
 				</table>
 			</div>
-			<SystemdSheet
-				sheetOpen={sheetOpen}
-				setSheetOpen={setSheetOpen}
-				activeService={activeService}
-				systemId={systemId}
-			/>
 		</div>
 	)
 })
@@ -264,12 +282,10 @@ function SystemdSheet({
 	sheetOpen,
 	setSheetOpen,
 	activeService,
-	systemId,
 }: {
 	sheetOpen: boolean
 	setSheetOpen: (open: boolean) => void
 	activeService: React.RefObject<SystemdRecord | null>
-	systemId?: string
 }) {
 	const service = activeService.current
 	const [details, setDetails] = useState<SystemdServiceDetails | null>(null)
@@ -289,7 +305,7 @@ function SystemdSheet({
 
 		pb.send<{ details: SystemdServiceDetails }>("/api/beszel/systemd/info", {
 			query: {
-				system: systemId,
+				system: service.system,
 				service: service.name,
 			},
 		})
@@ -316,7 +332,7 @@ function SystemdSheet({
 		return () => {
 			cancelled = true
 		}
-	}, [sheetOpen, service, systemId])
+	}, [sheetOpen, service])
 
 	if (!service) return null
 
