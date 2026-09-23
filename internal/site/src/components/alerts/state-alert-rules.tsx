@@ -1,5 +1,6 @@
 import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
+import { useStore } from "@nanostores/react"
 import { ActivityIcon, PencilIcon, PlusIcon, Trash2Icon } from "lucide-react"
 import { useEffect, useMemo, useState } from "react"
 import { Badge } from "@/components/ui/badge"
@@ -9,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { toast } from "@/components/ui/use-toast"
 import { isReadOnlyUser, pb } from "@/lib/api"
+import { $stateAlerts, systemStateAlerts } from "@/lib/state-alerts"
 import { ContainerHealthLabels, ServiceStatusLabels, ServiceSubStateLabels } from "@/lib/enums"
 import { cn } from "@/lib/utils"
 import type { StateAlertRecord, SystemRecord } from "@/types"
@@ -44,38 +46,21 @@ function describeRule(rule: RuleDraft) {
 
 /** Per-system rules alerting on service or Docker container states */
 export function StateAlertRules({ system }: { system: SystemRecord }) {
-	const [rules, setRules] = useState<StateAlertRecord[]>([])
+	// kept in sync by the shared store, including triggered flags set by the hub
+	const allRules = useStore($stateAlerts)
+	const rules = useMemo(() => systemStateAlerts(allRules, system.id), [allRules, system.id])
 	const [editing, setEditing] = useState<StateAlertRecord | "new" | null>(null)
 	const readOnly = isReadOnlyUser()
 
-	useEffect(() => {
-		const filter = pb.filter("system={:system}", { system: system.id })
-		let active = true
-		pb.collection<StateAlertRecord>(collection)
-			.getFullList({ filter, sort: "created" })
-			.then((records) => active && setRules(records))
-			.catch(console.error)
-		// the hub updates triggered flags as it evaluates rules
-		const unsubscribe = pb.collection<StateAlertRecord>(collection).subscribe(
-			"*",
-			({ action, record }) => {
-				setRules((current) => {
-					const others = current.filter((r) => r.id !== record.id)
-					return action === "delete" ? others : [...others, record].sort((a, b) => a.created.localeCompare(b.created))
-				})
-			},
-			{ filter }
-		)
-		return () => {
-			active = false
-			unsubscribe.then((unsub) => unsub()).catch(() => {})
-		}
-	}, [system.id])
+	function setRule(rule: StateAlertRecord) {
+		$stateAlerts.setKey(rule.id, rule)
+	}
 
 	async function deleteRule(rule: StateAlertRecord) {
 		try {
 			await pb.collection(collection).delete(rule.id)
-			setRules((current) => current.filter((r) => r.id !== rule.id))
+			const { [rule.id]: _, ...rest } = $stateAlerts.get()
+			$stateAlerts.set(rest)
 		} catch (e) {
 			failedToast(e)
 		}
@@ -108,7 +93,7 @@ export function StateAlertRules({ system }: { system: SystemRecord }) {
 						system={system}
 						rule={rule}
 						onDone={(saved) => {
-							if (saved) setRules((current) => current.map((r) => (r.id === saved.id ? saved : r)))
+							if (saved) setRule(saved)
 							setEditing(null)
 						}}
 					/>
@@ -147,7 +132,7 @@ export function StateAlertRules({ system }: { system: SystemRecord }) {
 				<RuleForm
 					system={system}
 					onDone={(saved) => {
-						if (saved) setRules((current) => [...current.filter((r) => r.id !== saved.id), saved])
+						if (saved) setRule(saved)
 						setEditing(null)
 					}}
 				/>

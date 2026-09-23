@@ -310,6 +310,8 @@ export interface StateAlertRecord extends RecordModel {
 	/** consecutive observations before the alert fires */
 	cycles: number
 	triggered: boolean
+	/** incident tracking managed by the hub: targets by name, h = open history id */
+	state?: { t?: Record<string, { c?: number; h?: string }> }
 }
 
 export interface AlertRecord extends RecordModel {

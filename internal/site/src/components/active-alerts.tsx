@@ -1,6 +1,7 @@
-import { alertInfo } from "@/lib/alerts"
+import { alertInfo, stateAlertHistoryInfo } from "@/lib/alerts"
+import { $stateAlerts, triggeredTargets } from "@/lib/state-alerts"
 import { $alerts, $allSystemsById } from "@/lib/stores"
-import type { AlertRecord } from "@/types"
+import type { AlertRecord, StateAlertRecord } from "@/types"
 import { Plural, Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
 import { getPagePath } from "@nanostores/router"
@@ -11,9 +12,10 @@ import { Card, CardHeader, CardTitle, CardContent } from "./ui/card"
 
 export const ActiveAlerts = () => {
 	const alerts = useStore($alerts)
+	const stateAlerts = useStore($stateAlerts)
 	const systems = useStore($allSystemsById)
 
-	const { activeAlerts, alertsKey } = useMemo(() => {
+	const { activeAlerts, activeRules, alertsKey } = useMemo(() => {
 		const activeAlerts: AlertRecord[] = []
 		// key to prevent re-rendering if alerts change but active alerts didn't
 		const alertsKey: string[] = []
@@ -27,12 +29,22 @@ export const ActiveAlerts = () => {
 			}
 		}
 
-		return { activeAlerts, alertsKey }
-	}, [alerts])
+		// service / container state rules with open incidents
+		const activeRules: { rule: StateAlertRecord; targets: string[] }[] = []
+		for (const rule of Object.values(stateAlerts)) {
+			if (rule.triggered) {
+				const targets = triggeredTargets(rule)
+				activeRules.push({ rule, targets })
+				alertsKey.push(`${rule.id}${targets.join()}`)
+			}
+		}
+
+		return { activeAlerts, activeRules, alertsKey }
+	}, [alerts, stateAlerts])
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: alertsKey is inclusive
 	return useMemo(() => {
-		if (activeAlerts.length === 0) {
+		if (activeAlerts.length === 0 && activeRules.length === 0) {
 			return null
 		}
 		return (
@@ -45,7 +57,7 @@ export const ActiveAlerts = () => {
 					</div>
 				</CardHeader>
 				<CardContent className="max-sm:p-2">
-					{activeAlerts.length > 0 && (
+					{(activeAlerts.length > 0 || activeRules.length > 0) && (
 						<div className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
 							{activeAlerts.map((alert) => {
 								const info = alertInfo[alert.name as keyof typeof alertInfo]
@@ -79,6 +91,29 @@ export const ActiveAlerts = () => {
 										</AlertDescription>
 										<Link
 											href={getPagePath($router, "system", { id: systems[alert.system]?.id })}
+											className="absolute inset-0 w-full h-full"
+											aria-label="View system"
+										></Link>
+									</Alert>
+								)
+							})}
+							{activeRules.map(({ rule, targets }) => {
+								const info = stateAlertHistoryInfo[rule.kind === "service" ? "ServiceState" : "ContainerState"]
+								const Icon = info.icon
+								return (
+									<Alert
+										key={rule.id}
+										className="hover:-translate-y-px duration-200 bg-transparent border-foreground/10 hover:shadow-md shadow-black/5"
+									>
+										<Icon className="h-4 w-4" />
+										<AlertTitle>
+											{systems[rule.system]?.name} {info.name()}
+										</AlertTitle>
+										<AlertDescription className="truncate">
+											{targets.length > 0 ? targets.join(", ") : info.triggeredDesc?.()}
+										</AlertDescription>
+										<Link
+											href={getPagePath($router, "system", { id: rule.system })}
 											className="absolute inset-0 w-full h-full"
 											aria-label="View system"
 										></Link>
