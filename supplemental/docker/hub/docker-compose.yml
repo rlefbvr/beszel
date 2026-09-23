@@ -3,9 +3,14 @@
 
 services:
   beszel:
-    image: "henrygd/beszel"
+    # image of this fork, published by the docker-images workflow on each release tag
+    # (pin a version such as :0.20.0-fork.1 to choose when to update)
+    image: "ghcr.io/rlefbvr/beszel/beszel:latest"
     container_name: "beszel"
     restart: unless-stopped
+    environment:
+      # public URL of the hub, used in notification links
+      APP_URL: "https://beszel.example.com"
     ports:
       - "8090:8090"
     volumes:

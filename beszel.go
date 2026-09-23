@@ -5,8 +5,15 @@ package beszel
 import "github.com/blang/semver"
 
 const (
-	// Version is the current version of the application.
+	// Version is the upstream Beszel version this fork is based on. Hub and agent
+	// use it to negotiate features, so it must follow the upstream version.
 	Version = "0.20.0"
+	// ForkRevision numbers the releases of this fork based on the same Version.
+	// Increment it for each release and reset it to 1 when Version changes.
+	ForkRevision = "1"
+	// ForkVersion identifies the releases of this fork (tag v<ForkVersion>) and is
+	// the version compared for updates and shown to users.
+	ForkVersion = Version + "-fork." + ForkRevision
 	// AppName is the name of the application.
 	AppName = "beszel"
 	// RepoOwner and RepoName are the GitHub repository releases are downloaded from.

@@ -282,7 +282,7 @@ func (hb *Heartbeat) buildPayload() (*Payload, error) {
 		Systems:   summary,
 		Down:      downSystems,
 		Alerts:    alerts,
-		Version:   beszel.Version,
+		Version:   beszel.ForkVersion,
 	}, nil
 }
 

@@ -221,7 +221,7 @@ func (h *Hub) getInfo(e *core.RequestEvent) error {
 	}
 	info := infoResponse{
 		Key:     h.pubKey,
-		Version: beszel.Version,
+		Version: beszel.ForkVersion,
 	}
 	if optIn, _ := utils.GetEnv("CHECK_UPDATES"); optIn == "true" {
 		info.CheckUpdate = true
@@ -239,7 +239,7 @@ func (info *UpdateInfo) getUpdate(e *core.RequestEvent) error {
 	if err != nil {
 		return err
 	}
-	currentVersion, err := semver.Parse(strings.TrimPrefix(beszel.Version, "v"))
+	currentVersion, err := semver.Parse(strings.TrimPrefix(beszel.ForkVersion, "v"))
 	if err != nil {
 		return err
 	}

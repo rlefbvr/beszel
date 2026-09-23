@@ -10,6 +10,9 @@ import { DropdownMenuContent, DropdownMenuItem } from "./ui/dropdown-menu"
 /** Install scripts of this fork, served from the main branch on GitHub */
 const repoScriptsUrl = "https://raw.githubusercontent.com/rlefbvr/beszel/main/supplemental/scripts"
 
+/** Agent image of this fork, published on the GitHub container registry */
+const agentImage = "ghcr.io/rlefbvr/beszel/beszel-agent:latest"
+
 /** Custom agent service name, empty when it is the default */
 const customServiceName = () => {
 	const name = $agentServiceName.get()
@@ -35,7 +38,7 @@ const getScriptUrl = (path: string = "") => {
 export function copyDockerCompose(port = "45876", publicKey: string, token: string) {
 	copyToClipboard(`services:
   beszel-agent:
-    image: henrygd/beszel-agent
+    image: ${agentImage}
     container_name: beszel-agent
     restart: unless-stopped
     network_mode: host
@@ -53,7 +56,7 @@ export function copyDockerCompose(port = "45876", publicKey: string, token: stri
 
 export function copyDockerRun(port = "45876", publicKey: string, token: string) {
 	copyToClipboard(
-		`docker run -d --name beszel-agent --network host --restart unless-stopped -v /var/run/docker.sock:/var/run/docker.sock:ro -v beszel_agent_data:/var/lib/beszel-agent -e KEY="${publicKey}" -e LISTEN=${port} -e TOKEN="${token}" -e HUB_URL="${getHubURL()}" henrygd/beszel-agent`
+		`docker run -d --name beszel-agent --network host --restart unless-stopped -v /var/run/docker.sock:/var/run/docker.sock:ro -v beszel_agent_data:/var/lib/beszel-agent -e KEY="${publicKey}" -e LISTEN=${port} -e TOKEN="${token}" -e HUB_URL="${getHubURL()}" ${agentImage}`
 	)
 }
 

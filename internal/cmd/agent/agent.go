@@ -97,7 +97,7 @@ func (opts *cmdOptions) parse() bool {
 	// Must run after pflag.Parse()
 	switch {
 	case *version:
-		fmt.Println(beszel.AppName+"-agent", beszel.Version)
+		fmt.Println(beszel.AppName+"-agent", beszel.ForkVersion)
 		return true
 	case *help || subcommand == "help":
 		pflag.Usage()

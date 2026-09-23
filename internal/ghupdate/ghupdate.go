@@ -83,7 +83,7 @@ type updater struct {
 
 func Update(config Config) (updated bool, err error) {
 	p := &updater{
-		currentVersion: beszel.Version,
+		currentVersion: beszel.ForkVersion,
 		config:         config,
 	}
 
