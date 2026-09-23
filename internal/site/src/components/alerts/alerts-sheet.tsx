@@ -17,6 +17,7 @@ import { alertInfo } from "@/lib/alerts"
 import { pb } from "@/lib/api"
 import { Os } from "@/lib/enums"
 import { $alerts, $systems } from "@/lib/stores"
+import { useSystemOs } from "@/lib/use-system-os"
 import { cn, debounce } from "@/lib/utils"
 import type { AlertInfo, AlertRecord, SystemRecord } from "@/types"
 
@@ -237,8 +238,8 @@ export function AlertContent({
 	const { name } = alertData
 
 	const singleDescription = alertData.singleDesc?.()
-	const description =
-		(!global && system.info?.os === Os.Windows && alertData.windowsDesc?.()) || alertData.desc()
+	const systemOs = useSystemOs(global ? undefined : system)
+	const description = (systemOs === Os.Windows && alertData.windowsDesc?.()) || alertData.desc()
 	/** Alerts that fire on first observation have no duration to configure */
 	const noDuration = alertData.noDuration === true
 	/** Binary alerts have no threshold to configure */

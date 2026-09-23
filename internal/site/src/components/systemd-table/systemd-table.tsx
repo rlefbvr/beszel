@@ -25,6 +25,7 @@ import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/compon
 import { pb } from "@/lib/api"
 import { Os, ServiceStatus, ServiceStatusLabels, type ServiceSubState, ServiceSubStateLabels } from "@/lib/enums"
 import { $allSystemsById } from "@/lib/stores"
+import { useSystemOs } from "@/lib/use-system-os"
 import { cn, decimalString, formatBytes, useBrowserStorage } from "@/lib/utils"
 import type { SystemdRecord, SystemdServiceDetails } from "@/types"
 import { Separator } from "../ui/separator"
@@ -141,7 +142,7 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 	const rows = table.getRowModel().rows
 	const visibleColumns = table.getVisibleLeafColumns()
 
-	const isWindows = !!systemId && $allSystemsById.get()[systemId]?.info?.os === Os.Windows
+	const isWindows = useSystemOs(systemId ? $allSystemsById.get()[systemId] : undefined) === Os.Windows
 
 	const statusTotals = useMemo(() => {
 		const totals = [0, 0, 0, 0, 0, 0]
