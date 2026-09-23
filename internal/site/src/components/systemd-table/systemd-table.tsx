@@ -1,6 +1,7 @@
 import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
+import { getPagePath } from "@nanostores/router"
 import {
 	type ColumnFiltersState,
 	flexRender,
@@ -19,6 +20,7 @@ import { listenKeys } from "nanostores"
 import { memo, type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { getStatusColor, systemdTableCols } from "@/components/systemd-table/systemd-table-columns"
 import { type ImportantTile, ImportantTargets } from "@/components/important-targets"
+import { $router, Link } from "@/components/router"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -29,7 +31,7 @@ import { Os, ServiceStatus, ServiceStatusLabels, type ServiceSubState, ServiceSu
 import { $stateAlerts, importantTargets } from "@/lib/state-alerts"
 import { $allSystemsById, $servicesInterval } from "@/lib/stores"
 import { useSystemOs } from "@/lib/use-system-os"
-import { cn, decimalString, formatBytes, secondsToString, useBrowserStorage } from "@/lib/utils"
+import { cn, decimalString, formatBytes, getHostDisplayValue, secondsToString, useBrowserStorage } from "@/lib/utils"
 import type { SystemdRecord, SystemdServiceDetails } from "@/types"
 import { Separator } from "../ui/separator"
 
@@ -456,6 +458,9 @@ function SystemdSheet({
 		)
 	}
 
+	// system the service runs on
+	const system = $allSystemsById.get()[service.system]
+
 	const capitalize = (str: string) => `${str.charAt(0).toUpperCase()}${str.slice(1).toLowerCase()}`
 
 	return (
@@ -486,6 +491,19 @@ function SystemdSheet({
 						<div className="border rounded-md">
 							<table className="w-full text-sm">
 								<tbody>
+									{system &&
+										renderRow(
+											"system",
+											t`System`,
+											<Link
+												href={getPagePath($router, "system", { id: system.id })}
+												onClick={() => setSheetOpen(false)}
+												className="hover:underline"
+											>
+												{system.name}
+											</Link>
+										)}
+									{system && renderRow("host", t`Host / IP`, getHostDisplayValue(system))}
 									{renderRow("name", t`Name`, service.name, true)}
 									{isWindows && renderRow("serviceName", t`Service name`, details?.ServiceName)}
 									{renderRow(

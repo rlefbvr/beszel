@@ -24,7 +24,7 @@ import type { ContainerRecord } from "@/types"
 import { containerChartCols } from "@/components/containers-table/containers-table-columns"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ContainerHealth, ContainerHealthLabels } from "@/lib/enums"
-import { cn, useBrowserStorage } from "@/lib/utils"
+import { cn, getHostDisplayValue, useBrowserStorage } from "@/lib/utils"
 import { Sheet, SheetTitle, SheetHeader, SheetContent, SheetDescription } from "../ui/sheet"
 import { Dialog, DialogContent, DialogTitle } from "../ui/dialog"
 import { Button } from "@/components/ui/button"
@@ -363,6 +363,7 @@ function ContainerSheet({
 	const logsContainerRef = useRef<HTMLDivElement>(null)
 
 	const container = activeContainer.current
+	const system = container ? $allSystemsById.get()[container.system] : undefined
 
 	function scrollLogsToBottom() {
 		if (logsContainerRef.current) {
@@ -426,9 +427,19 @@ function ContainerSheet({
 					<SheetHeader>
 						<SheetTitle>{container.name}</SheetTitle>
 						<SheetDescription className="flex flex-wrap items-center gap-x-2 gap-y-1">
-							<Link className="hover:underline" href={getPagePath($router, "system", { id: container.system })}>
-								{$allSystemsById.get()[container.system]?.name ?? ""}
+							<Link
+								className="hover:underline"
+								href={getPagePath($router, "system", { id: container.system })}
+								onClick={() => setSheetOpen(false)}
+							>
+								{system?.name ?? ""}
 							</Link>
+							{system && (
+								<>
+									<Separator orientation="vertical" className="h-2.5 bg-muted-foreground opacity-70" />
+									<span title={t`Host / IP`}>{getHostDisplayValue(system)}</span>
+								</>
+							)}
 							<Separator orientation="vertical" className="h-2.5 bg-muted-foreground opacity-70" />
 							{container.status}
 							<Separator orientation="vertical" className="h-2.5 bg-muted-foreground opacity-70" />
