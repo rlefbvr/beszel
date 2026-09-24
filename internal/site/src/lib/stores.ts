@@ -12,6 +12,9 @@ export const $servicesInterval = atom(10)
 /** Name of the agent service used by the install commands */
 export const $agentServiceName = atom("beszel-agent")
 
+/** Folder the Windows install command installs the agent to ("" for the script default) */
+export const $agentInstallDir = atom("")
+
 /** Store if user is authenticated */
 export const $authenticated = atom(pb.authStore.isValid)
 

@@ -1,6 +1,6 @@
 import { i18n } from "@lingui/core"
 import { memo } from "react"
-import { $agentServiceName } from "@/lib/stores"
+import { $agentInstallDir, $agentServiceName } from "@/lib/stores"
 import { copyToClipboard, getHubURL } from "@/lib/utils"
 import { DropdownMenuContent, DropdownMenuItem } from "./ui/dropdown-menu"
 
@@ -79,7 +79,7 @@ export function copyWindowsCommand(port = "45876", publicKey: string, token: str
 	copyToClipboard(
 		`& iwr -useb ${repoScriptsUrl}/install-agent.ps1 -OutFile "$env:TEMP\\install-agent.ps1"; & Powershell -ExecutionPolicy Bypass -File "$env:TEMP\\install-agent.ps1" -Key "${publicKey}" -Port ${port} -Token "${token}" -Url "${getHubURL()}"${
 			customServiceName() ? ` -ServiceName "${customServiceName()}"` : ""
-		}`
+		}${$agentInstallDir.get() ? ` -InstallDir "${$agentInstallDir.get()}"` : ""}`
 	)
 }
 

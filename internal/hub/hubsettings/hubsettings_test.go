@@ -57,3 +57,24 @@ func TestAgentServiceName(t *testing.T) {
 		assert.Error(t, hub.Save(settings), name)
 	}
 }
+
+func TestAgentInstallDir(t *testing.T) {
+	hub, err := tests.NewTestHub(t.TempDir())
+	require.NoError(t, err)
+	defer hub.Cleanup()
+
+	// the migration sets the default install folder
+	settings, err := hub.FindRecordById(hubsettings.CollectionName, hubsettings.RecordID)
+	require.NoError(t, err)
+	assert.Equal(t, `C:\MONITORING`, settings.GetString("agent_install_dir"))
+
+	for _, dir := range []string{`D:\Tools\beszel-agent`, `C:\Program Files (x86)\beszel-agent`, ""} {
+		settings.Set("agent_install_dir", dir)
+		assert.NoError(t, hub.Save(settings), dir)
+	}
+	// relative paths and characters unsafe in PowerShell arguments are rejected
+	for _, dir := range []string{`MONITORING`, `C:\a"b`, `C:\$env:TEMP`, "C:\\a`b", `C:\a;b`, `\\server\share`} {
+		settings.Set("agent_install_dir", dir)
+		assert.Error(t, hub.Save(settings), dir)
+	}
+}

@@ -16,6 +16,8 @@ param (
     # Name of the Windows service running the agent
     [ValidatePattern('^[A-Za-z0-9][A-Za-z0-9_.@-]{0,63}$')]
     [string]$ServiceName = "beszel-agent",
+    # Folder the GitHub method installs beszel-agent.exe (and NSSM if downloaded) to
+    [string]$InstallDir = "$env:ProgramFiles\beszel-agent",
     # Set automatically from $PSBoundParameters below, or forwarded through an elevated relaunch.
     # Used so a reinstall only overwrites Token/Url/Port on an existing service if the caller
     # actually asked to change them, instead of wiping them with their unset defaults.
@@ -36,7 +38,7 @@ $Repo = "rlefbvr/beszel"
 # Check if required parameters are provided
 if ([string]::IsNullOrWhiteSpace($Key)) {
     Write-Host "ERROR: SSH Key is required." -ForegroundColor Red
-    Write-Host "Usage: .\install-agent.ps1 -Key 'your-ssh-key-here' [-Token 'your-token-here'] [-Url 'your-hub-url-here'] [-Port port-number] [-InstallMethod Auto|GitHub|Scoop|WinGet] [-Version latest] [-ServiceName beszel-agent] [-ConfigureFirewall]" -ForegroundColor Yellow
+    Write-Host "Usage: .\install-agent.ps1 -Key 'your-ssh-key-here' [-Token 'your-token-here'] [-Url 'your-hub-url-here'] [-Port port-number] [-InstallMethod Auto|GitHub|Scoop|WinGet] [-Version latest] [-ServiceName beszel-agent] [-InstallDir path] [-ConfigureFirewall]" -ForegroundColor Yellow
     Write-Host "Note: Token and Url are optional for backwards compatibility with older hub versions." -ForegroundColor Yellow
     exit 1
 }
@@ -257,6 +259,20 @@ function Install-BeszelAgentWithWinGet {
     return $agentPath
 }
 
+# Function to extract a zip archive, also on PowerShell 4 which lacks Expand-Archive
+function Expand-Zip {
+    param (
+        [string]$Path,
+        [string]$DestinationPath
+    )
+    if (Get-Command Expand-Archive -ErrorAction SilentlyContinue) {
+        Expand-Archive -Path $Path -DestinationPath $DestinationPath -Force
+    } else {
+        Add-Type -AssemblyName System.IO.Compression.FileSystem
+        [System.IO.Compression.ZipFile]::ExtractToDirectory($Path, $DestinationPath)
+    }
+}
+
 # Function to install beszel-agent from the GitHub releases of $Repo (requires admin)
 function Install-BeszelAgentFromGitHub {
     param (
@@ -295,11 +311,10 @@ function Install-BeszelAgentFromGitHub {
             throw "Checksum verification failed: $actual != $expected"
         }
 
-        Expand-Archive -Path $zipPath -DestinationPath $tempDir -Force
+        Expand-Zip -Path $zipPath -DestinationPath (Join-Path $tempDir "agent")
 
-        $installDir = Join-Path $env:ProgramFiles "beszel-agent"
-        New-Item -ItemType Directory -Path $installDir -Force | Out-Null
-        $agentPath = Join-Path $installDir "beszel-agent.exe"
+        New-Item -ItemType Directory -Path $InstallDir -Force | Out-Null
+        $agentPath = Join-Path $InstallDir "beszel-agent.exe"
 
         # Stop the service so the executable can be replaced
         $service = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
@@ -308,7 +323,7 @@ function Install-BeszelAgentFromGitHub {
             Stop-Service -Name $ServiceName -Force
         }
 
-        Copy-Item -Path (Join-Path $tempDir "beszel-agent.exe") -Destination $agentPath -Force
+        Copy-Item -Path (Join-Path $tempDir "agent\beszel-agent.exe") -Destination $agentPath -Force
         Write-Host "beszel-agent installed to $agentPath"
         return $agentPath
     }
@@ -319,8 +334,7 @@ function Install-BeszelAgentFromGitHub {
 
 # Function to download NSSM when neither WinGet nor Scoop is available (requires admin)
 function Install-NSSMFromWeb {
-    $installDir = Join-Path $env:ProgramFiles "nssm"
-    $nssmPath = Join-Path $installDir "nssm.exe"
+    $nssmPath = Join-Path $InstallDir "nssm.exe"
     if (Test-Path $nssmPath) {
         return $nssmPath
     }
@@ -332,9 +346,9 @@ function Install-NSSMFromWeb {
     try {
         $zipPath = Join-Path $tempDir "nssm.zip"
         Invoke-WebRequest -Uri "https://nssm.cc/release/nssm-2.24.zip" -OutFile $zipPath -UseBasicParsing
-        Expand-Archive -Path $zipPath -DestinationPath $tempDir -Force
+        Expand-Zip -Path $zipPath -DestinationPath $tempDir
         $arch = if ([Environment]::Is64BitOperatingSystem) { "win64" } else { "win32" }
-        New-Item -ItemType Directory -Path $installDir -Force | Out-Null
+        New-Item -ItemType Directory -Path $InstallDir -Force | Out-Null
         Copy-Item -Path (Join-Path $tempDir "nssm-2.24\$arch\nssm.exe") -Destination $nssmPath -Force
         return $nssmPath
     }
@@ -646,8 +660,11 @@ try {
         }
         
         # If we still don't have NSSM, try to install it if we have package managers
+        # (the GitHub method downloads NSSM to $InstallDir instead, below)
         if (-not $NSSMPath) {
-            if (Test-CommandExists "winget") {
+            if ($useGitHub) {
+                # no package manager
+            } elseif (Test-CommandExists "winget") {
                 Write-Host "NSSM not found. Attempting to install via WinGet..."
                 try {
                     Install-NSSM -Method "WinGet"
@@ -705,7 +722,9 @@ try {
             "-AgentPath", "`"$AgentPath`"",
             "-InstallMethod", $InstallMethod,
             "-Version", $Version,
-            "-ServiceName", $ServiceName
+            "-ServiceName", $ServiceName,
+            # no trailing backslash, it would escape the closing quote
+            "-InstallDir", "`"$($InstallDir.TrimEnd('\'))`""
         )
         
         # Add NSSMPath if we found it

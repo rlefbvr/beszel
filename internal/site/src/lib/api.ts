@@ -5,6 +5,7 @@ import { toast } from "@/components/ui/use-toast"
 import { dynamicActivate, getLocale } from "@/lib/i18n"
 import type { ChartTimes, UserSettings } from "@/types"
 import {
+	$agentInstallDir,
 	$agentServiceName,
 	$alerts,
 	$allSystemsById,
@@ -101,11 +102,12 @@ export async function updateHubSettings() {
 	try {
 		const settings = await pb
 			.collection("hub_settings")
-			.getOne(hubSettingsId, { fields: "services_interval,agent_service_name" })
+			.getOne(hubSettingsId, { fields: "services_interval,agent_service_name,agent_install_dir" })
 		$servicesInterval.set(settings.services_interval)
 		if (settings.agent_service_name) {
 			$agentServiceName.set(settings.agent_service_name)
 		}
+		$agentInstallDir.set(settings.agent_install_dir ?? "")
 	} catch (e) {
 		console.error("get hub settings", e)
 	}
@@ -121,6 +123,12 @@ export async function saveServicesInterval(minutes: number) {
 export async function saveAgentServiceName(name: string) {
 	const settings = await pb.collection("hub_settings").update(hubSettingsId, { agent_service_name: name })
 	$agentServiceName.set(settings.agent_service_name)
+}
+
+/** Save the folder the Windows install command installs the agent to (admins only) */
+export async function saveAgentInstallDir(dir: string) {
+	const settings = await pb.collection("hub_settings").update(hubSettingsId, { agent_install_dir: dir })
+	$agentInstallDir.set(settings.agent_install_dir ?? "")
 }
 
 /** Fetch or create user settings in database */

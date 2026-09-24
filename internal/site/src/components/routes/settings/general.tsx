@@ -10,17 +10,20 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Separator } from "@/components/ui/separator"
 import Slider from "@/components/ui/slider"
 import { toast } from "@/components/ui/use-toast"
-import { isAdmin, queueUserSettings, saveAgentServiceName, saveServicesInterval } from "@/lib/api"
+import { isAdmin, queueUserSettings, saveAgentInstallDir, saveAgentServiceName, saveServicesInterval } from "@/lib/api"
 import { HourFormat, Unit } from "@/lib/enums"
 import { dynamicActivate } from "@/lib/i18n"
 import languages from "@/lib/languages"
-import { $agentServiceName, $servicesInterval, $userSettings, defaultLayoutWidth } from "@/lib/stores"
+import { $agentInstallDir, $agentServiceName, $servicesInterval, $userSettings, defaultLayoutWidth } from "@/lib/stores"
 import { chartTimeData, currentHour12, secondsToString } from "@/lib/utils"
 import type { UserSettings } from "@/types"
 import { saveSettings } from "./layout"
 
 /** Allowed agent service names: safe in file names and shell commands */
 const serviceNamePattern = /^[A-Za-z0-9][A-Za-z0-9_.@-]{0,63}$/
+
+/** Allowed Windows install folders: absolute paths safe in a PowerShell argument */
+const installDirPattern = /^([A-Za-z]:\\[A-Za-z0-9 _.()\\-]*)?$/
 
 /** Service collection intervals offered in settings, in minutes */
 const servicesIntervals = [1, 2, 5, 10, 15, 30, 60]
@@ -35,6 +38,9 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 	const agentServiceName = useStore($agentServiceName)
 	const [newAgentServiceName, setNewAgentServiceName] = useState<string>()
 	const serviceNameInvalid = newAgentServiceName !== undefined && !serviceNamePattern.test(newAgentServiceName)
+	const agentInstallDir = useStore($agentInstallDir)
+	const [newAgentInstallDir, setNewAgentInstallDir] = useState<string>()
+	const installDirInvalid = newAgentInstallDir !== undefined && !installDirPattern.test(newAgentInstallDir)
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
@@ -48,6 +54,9 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 		}
 		if (newAgentServiceName && !serviceNameInvalid && newAgentServiceName !== agentServiceName) {
 			hubChanges.push(saveAgentServiceName(newAgentServiceName))
+		}
+		if (newAgentInstallDir !== undefined && !installDirInvalid && newAgentInstallDir !== agentInstallDir) {
+			hubChanges.push(saveAgentInstallDir(newAgentInstallDir))
 		}
 		if (hubChanges.length) {
 			try {
@@ -399,6 +408,27 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 							{!isAdmin() && (
 								<p className="text-xs text-muted-foreground">
 									<Trans>Only administrators can change this setting.</Trans>
+								</p>
+							)}
+						</div>
+						<div className="grid gap-2 sm:col-span-2">
+							<Label className="block" htmlFor="agentInstallDir">
+								<Trans>Windows install folder</Trans>
+							</Label>
+							<Input
+								id="agentInstallDir"
+								key={agentInstallDir}
+								defaultValue={agentInstallDir}
+								placeholder="C:\Program Files\beszel-agent"
+								onChange={(e) => setNewAgentInstallDir(e.target.value.trim())}
+								disabled={!isAdmin()}
+								aria-invalid={installDirInvalid}
+								maxLength={200}
+								spellCheck={false}
+							/>
+							{installDirInvalid && (
+								<p className="text-xs text-destructive">
+									<Trans>Use an absolute path such as C:\MONITORING, without special characters.</Trans>
 								</p>
 							)}
 						</div>
