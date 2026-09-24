@@ -345,11 +345,12 @@ function Install-NSSMFromWeb {
     New-Item -ItemType Directory -Path $tempDir | Out-Null
     try {
         $zipPath = Join-Path $tempDir "nssm.zip"
-        Invoke-WebRequest -Uri "https://nssm.cc/release/nssm-2.24.zip" -OutFile $zipPath -UseBasicParsing
+        # same build as the WinGet package: 2.24 lacks the "+VAR=value" syntax used below
+        Invoke-WebRequest -Uri "https://nssm.cc/ci/nssm-2.24-101-g897c7ad.zip" -OutFile $zipPath -UseBasicParsing
         Expand-Zip -Path $zipPath -DestinationPath $tempDir
         $arch = if ([Environment]::Is64BitOperatingSystem) { "win64" } else { "win32" }
         New-Item -ItemType Directory -Path $InstallDir -Force | Out-Null
-        Copy-Item -Path (Join-Path $tempDir "nssm-2.24\$arch\nssm.exe") -Destination $nssmPath -Force
+        Copy-Item -Path (Join-Path $tempDir "nssm-2.24-101-g897c7ad\$arch\nssm.exe") -Destination $nssmPath -Force
         return $nssmPath
     }
     finally {
