@@ -16,6 +16,11 @@ func DeleteOldAlertsHistory(app core.App, countToKeep, countBeforeDeletion int) 
 	return deleteOldAlertsHistory(app, countToKeep, countBeforeDeletion)
 }
 
+// DeleteAlertsHistoryByRetention exposes deleteAlertsHistoryByRetention for testing
+func DeleteAlertsHistoryByRetention(app core.App) error {
+	return deleteAlertsHistoryByRetention(app)
+}
+
 // TwoDecimals exposes twoDecimals for testing
 func TwoDecimals(value float64) float64 {
 	return twoDecimals(value)

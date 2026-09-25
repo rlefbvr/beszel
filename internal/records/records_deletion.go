@@ -8,6 +8,7 @@ import (
 	"github.com/henrygd/beszel/internal/hub/hubsettings"
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase/core"
+	"github.com/pocketbase/pocketbase/tools/types"
 )
 
 // Delete old records
@@ -26,7 +27,7 @@ func (rm *RecordManager) DeleteOldRecords() {
 		if err != nil {
 			slog.Error("Error deleting old systemd service records", "err", err)
 		}
-		err = deleteOldAlertsHistory(txApp, 200, 250)
+		err = deleteAlertsHistoryByRetention(txApp)
 		if err != nil {
 			slog.Error("Error deleting old alerts history", "err", err)
 		}
@@ -36,6 +37,26 @@ func (rm *RecordManager) DeleteOldRecords() {
 		}
 		return nil
 	})
+}
+
+// deleteAlertsHistoryByRetention applies the retention of the alert history
+// chosen in the hub settings: an age in days, or a number of alerts per user.
+func deleteAlertsHistoryByRetention(app core.App) error {
+	count, days := hubsettings.AlertsRetention(app)
+	if days > 0 {
+		return deleteAlertsHistoryOlderThan(app, time.Duration(days)*24*time.Hour)
+	}
+	// delete in batches: only once the history exceeds the count by a margin
+	return deleteOldAlertsHistory(app, count, count+max(count/4, 50))
+}
+
+// deleteAlertsHistoryOlderThan deletes the resolved alerts created before the
+// retention period; active alerts are kept until they are resolved.
+func deleteAlertsHistoryOlderThan(app core.App, retention time.Duration) error {
+	before := time.Now().UTC().Add(-retention).Format(types.DefaultDateLayout)
+	_, err := app.DB().NewQuery("DELETE FROM alerts_history WHERE created < {:before} AND resolved IS NOT NULL AND resolved != ''").
+		Bind(dbx.Params{"before": before}).Execute()
+	return err
 }
 
 // Delete old alerts history records

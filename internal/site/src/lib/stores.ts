@@ -15,6 +15,9 @@ export const $agentServiceName = atom("beszel-agent")
 /** Folder the Windows install command installs the agent to ("" for the script default) */
 export const $agentInstallDir = atom("")
 
+/** Retention of the alert history: alerts kept per user, or days when days > 0 */
+export const $alertsRetention = atom({ count: 200, days: 0 })
+
 /** Store if user is authenticated */
 export const $authenticated = atom(pb.authStore.isValid)
 

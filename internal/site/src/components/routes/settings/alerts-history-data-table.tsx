@@ -1,5 +1,6 @@
 import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
+import { useStore } from "@nanostores/react"
 import {
 	type ColumnFiltersState,
 	flexRender,
@@ -17,6 +18,8 @@ import {
 	ChevronsLeftIcon,
 	ChevronsRightIcon,
 	DownloadIcon,
+	LoaderCircleIcon,
+	PenSquareIcon,
 	Trash2Icon,
 } from "lucide-react"
 import { memo, useEffect, useState } from "react"
@@ -37,6 +40,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
 	cellWidthStyle,
 	ColumnResizer,
@@ -47,23 +51,120 @@ import {
 } from "@/components/table-layout"
 import { useToast } from "@/components/ui/use-toast"
 import { alertInfo, stateAlertHistoryInfo } from "@/lib/alerts"
-import { pb } from "@/lib/api"
+import { isAdmin, pb, saveAlertsRetention } from "@/lib/api"
+import { $alertsRetention } from "@/lib/stores"
 import { cn, formatDuration, formatShortDate, useBrowserStorage } from "@/lib/utils"
 import type { AlertsHistoryRecord } from "@/types"
 import { alertsHistoryColumns } from "../../alerts-history-columns"
 
 const SectionIntro = memo(() => {
+	const { count, days } = useStore($alertsRetention)
 	return (
 		<div>
 			<h3 className="text-xl font-medium mb-2">
 				<Trans>Alert History</Trans>
 			</h3>
 			<p className="text-sm text-muted-foreground leading-relaxed">
-				<Trans>View your 200 most recent alerts.</Trans>
+				{days ? (
+					<Trans>View your alerts of the last {days} days.</Trans>
+				) : (
+					<Trans>View your {count} most recent alerts.</Trans>
+				)}
 			</p>
+			{isAdmin() && <AlertsRetentionSetting />}
 		</div>
 	)
 })
+
+/**
+ * Retention of the alert history for all users: a number of alerts per user,
+ * or a number of days. Shown as text, edited after clicking Edit.
+ */
+function AlertsRetentionSetting() {
+	const retention = useStore($alertsRetention)
+	const { toast } = useToast()
+	const [editing, setEditing] = useState(false)
+	const [unit, setUnit] = useState<"count" | "days">("count")
+	const [value, setValue] = useState("")
+	const [saving, setSaving] = useState(false)
+	const { count, days } = retention
+
+	const startEditing = () => {
+		setUnit(days ? "days" : "count")
+		setValue(String(days || count))
+		setEditing(true)
+	}
+
+	const number = Number(value)
+	const valid = Number.isInteger(number) && (unit === "days" ? number >= 1 && number <= 3650 : number >= 10 && number <= 100000)
+
+	const save = async (e: React.FormEvent) => {
+		e.preventDefault()
+		setSaving(true)
+		try {
+			await (unit === "days" ? saveAlertsRetention(count, number) : saveAlertsRetention(number, 0))
+			toast({ title: t`Settings saved` })
+			setEditing(false)
+		} catch (err) {
+			toast({ variant: "destructive", title: t`Failed to save settings`, description: (err as Error).message })
+		} finally {
+			setSaving(false)
+		}
+	}
+
+	if (!editing) {
+		return (
+			<div className="flex flex-wrap items-center gap-3 mt-3 text-sm">
+				<span>
+					{days ? (
+						<Trans>Retention: the alerts of the last {days} days</Trans>
+					) : (
+						<Trans>Retention: the last {count} alerts of each user</Trans>
+					)}
+				</span>
+				<Button variant="outline" size="sm" className="h-8 gap-2" onClick={startEditing}>
+					<PenSquareIcon className="size-4" />
+					<Trans>Edit</Trans>
+				</Button>
+			</div>
+		)
+	}
+
+	return (
+		<form onSubmit={save} className="flex flex-wrap items-center gap-2 mt-3 text-sm">
+			<Label htmlFor="alerts-retention">
+				<Trans>Keep</Trans>
+			</Label>
+			<Input
+				id="alerts-retention"
+				type="number"
+				min={unit === "days" ? 1 : 10}
+				max={unit === "days" ? 3650 : 100000}
+				value={value}
+				onChange={(e) => setValue(e.target.value)}
+				className="h-9 w-28 tabular-nums"
+				autoFocus
+			/>
+			<Tabs value={unit} onValueChange={(v) => setUnit(v as "count" | "days")}>
+				<TabsList className="h-9" aria-label={t`Retention unit`}>
+					<TabsTrigger value="count">
+						<Trans>alerts per user</Trans>
+					</TabsTrigger>
+					<TabsTrigger value="days">
+						<Trans>days of alerts</Trans>
+					</TabsTrigger>
+				</TabsList>
+			</Tabs>
+			<Button type="submit" size="sm" className="h-9 gap-2" disabled={!valid || saving}>
+				{saving && <LoaderCircleIcon className="size-4 animate-spin" />}
+				<Trans>Save</Trans>
+			</Button>
+			<Button type="button" variant="ghost" size="sm" className="h-9" onClick={() => setEditing(false)}>
+				<Trans>Cancel</Trans>
+			</Button>
+		</form>
+	)
+}
 
 export default function AlertsHistoryDataTable() {
 	const [data, setData] = useState<AlertsHistoryRecord[]>([])
@@ -87,13 +188,14 @@ export default function AlertsHistoryDataTable() {
 			expand: "system",
 			fields: "id,name,monitor_name,value,state,created,resolved,expand.system.name",
 		}
-		// Initial load
+		// Initial load: the whole history kept by the retention setting
 		pb.collection<AlertsHistoryRecord>("alerts_history")
-			.getList(0, 200, {
+			.getFullList({
 				...pbOptions,
 				sort: "-created",
+				batch: 500,
 			})
-			.then(({ items }) => setData(items))
+			.then((items) => setData(items))
 
 		// Subscribe to changes
 		;(async () => {

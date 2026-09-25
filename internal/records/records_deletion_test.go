@@ -478,3 +478,64 @@ func TestDeleteOldSystemdServiceRecordsLongInterval(t *testing.T) {
 	require.Len(t, remaining, 1)
 	assert.Equal(t, "kept.service", remaining[0].GetString("name"))
 }
+
+// TestDeleteAlertsHistoryByRetention tests the retention chosen in the hub settings
+func TestDeleteAlertsHistoryByRetention(t *testing.T) {
+	hub, err := tests.NewTestHub(t.TempDir())
+	require.NoError(t, err)
+	defer hub.Cleanup()
+
+	user, err := tests.CreateUser(hub, "user@example.com", "testtesttest")
+	require.NoError(t, err)
+	system, err := tests.CreateRecord(hub, "systems", map[string]any{
+		"name": "test-system", "host": "localhost", "port": "45876", "status": "up", "users": []string{user.Id},
+	})
+	require.NoError(t, err)
+
+	now := time.Now().UTC()
+	createAlert := func(age time.Duration, resolved bool) {
+		data := map[string]any{"user": user.Id, "name": "CPU", "value": 1, "system": system.Id}
+		if resolved {
+			data["resolved"] = now.Add(-age).Add(time.Minute)
+		}
+		record, err := tests.CreateRecord(hub, "alerts_history", data)
+		require.NoError(t, err)
+		// created is autodate field, so we need to set it manually
+		record.SetRaw("created", now.Add(-age).Format(types.DefaultDateLayout))
+		require.NoError(t, hub.SaveNoValidate(record))
+	}
+	count := func() int64 {
+		n, err := hub.CountRecords("alerts_history", dbx.NewExp("user = {:user}", dbx.Params{"user": user.Id}))
+		require.NoError(t, err)
+		return n
+	}
+	setRetention := func(alerts, days int) {
+		settings, err := hub.FindRecordById(hubsettings.CollectionName, hubsettings.RecordID)
+		require.NoError(t, err)
+		settings.Set("alerts_retention_count", alerts)
+		settings.Set("alerts_retention_days", days)
+		require.NoError(t, hub.Save(settings))
+	}
+
+	// by age: resolved alerts older than the retention are deleted, active ones are kept
+	createAlert(2*time.Hour, true)
+	createAlert(10*24*time.Hour, true)
+	createAlert(40*24*time.Hour, true)
+	createAlert(40*24*time.Hour, false)
+	setRetention(200, 30)
+	require.NoError(t, records.DeleteAlertsHistoryByRetention(hub))
+	assert.EqualValues(t, 3, count(), "the resolved alert older than 30 days is deleted")
+
+	// by count: the default 200 keeps everything here
+	setRetention(200, 0)
+	require.NoError(t, records.DeleteAlertsHistoryByRetention(hub))
+	assert.EqualValues(t, 3, count())
+
+	// by count: trimmed to the count once it is exceeded by the margin (50 minimum)
+	for i := range 60 {
+		createAlert(time.Duration(i)*time.Minute, true)
+	}
+	setRetention(10, 0)
+	require.NoError(t, records.DeleteAlertsHistoryByRetention(hub))
+	assert.EqualValues(t, 10, count())
+}

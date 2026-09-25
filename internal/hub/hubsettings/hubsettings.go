@@ -14,6 +14,9 @@ const (
 	RecordID = "hubsettings0000"
 	// DefaultServicesInterval is used when the settings record is unavailable.
 	DefaultServicesInterval = 10 * time.Minute
+	// DefaultAlertsRetentionCount is the number of alerts kept per user when
+	// the settings record is unavailable.
+	DefaultAlertsRetentionCount = 200
 )
 
 // servicesIntervalMinutes caches the interval; 0 means not loaded yet.
@@ -46,4 +49,18 @@ func BindEvents(app core.App) {
 		cacheRecord(e.Record)
 		return e.Next()
 	})
+}
+
+// AlertsRetention returns how long the alert history is kept: a number of
+// alerts per user, or a number of days when days > 0 (then count is ignored).
+func AlertsRetention(app core.App) (count, days int) {
+	record, err := app.FindRecordById(CollectionName, RecordID)
+	if err != nil {
+		return DefaultAlertsRetentionCount, 0
+	}
+	count = record.GetInt("alerts_retention_count")
+	if count < 1 {
+		count = DefaultAlertsRetentionCount
+	}
+	return count, max(record.GetInt("alerts_retention_days"), 0)
 }

@@ -8,6 +8,7 @@ import {
 	$agentInstallDir,
 	$agentServiceName,
 	$alerts,
+	$alertsRetention,
 	$allSystemsById,
 	$allSystemsByName,
 	$servicesInterval,
@@ -102,12 +103,15 @@ export async function updateHubSettings() {
 	try {
 		const settings = await pb
 			.collection("hub_settings")
-			.getOne(hubSettingsId, { fields: "services_interval,agent_service_name,agent_install_dir" })
+			.getOne(hubSettingsId, {
+				fields: "services_interval,agent_service_name,agent_install_dir,alerts_retention_count,alerts_retention_days",
+			})
 		$servicesInterval.set(settings.services_interval)
 		if (settings.agent_service_name) {
 			$agentServiceName.set(settings.agent_service_name)
 		}
 		$agentInstallDir.set(settings.agent_install_dir ?? "")
+		$alertsRetention.set({ count: settings.alerts_retention_count || 200, days: settings.alerts_retention_days ?? 0 })
 	} catch (e) {
 		console.error("get hub settings", e)
 	}
@@ -129,6 +133,14 @@ export async function saveAgentServiceName(name: string) {
 export async function saveAgentInstallDir(dir: string) {
 	const settings = await pb.collection("hub_settings").update(hubSettingsId, { agent_install_dir: dir })
 	$agentInstallDir.set(settings.agent_install_dir ?? "")
+}
+
+/** Save the retention of the alert history: days > 0 keeps the alerts of those days, else count alerts per user (admins only) */
+export async function saveAlertsRetention(count: number, days: number) {
+	const settings = await pb
+		.collection("hub_settings")
+		.update(hubSettingsId, { alerts_retention_count: count, alerts_retention_days: days })
+	$alertsRetention.set({ count: settings.alerts_retention_count, days: settings.alerts_retention_days })
 }
 
 /** Fetch or create user settings in database */
