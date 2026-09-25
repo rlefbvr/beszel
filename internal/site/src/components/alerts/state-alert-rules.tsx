@@ -16,17 +16,17 @@ import { cn } from "@/lib/utils"
 import type { StateAlertRecord, SystemRecord } from "@/types"
 
 type Kind = StateAlertRecord["kind"]
-type RuleDraft = Pick<StateAlertRecord, "kind" | "targets" | "condition" | "states" | "sub_states" | "cycles">
+export type RuleDraft = Pick<StateAlertRecord, "kind" | "targets" | "condition" | "states" | "sub_states" | "cycles">
 
 const collection = "state_alerts"
 
 /** Selectable states per rule kind; values match the hub's lowercase keys */
-const stateOptions: Record<Kind, { states: readonly string[]; subStates: readonly string[] }> = {
+export const stateOptions: Record<Kind, { states: readonly string[]; subStates: readonly string[] }> = {
 	service: { states: ServiceStatusLabels, subStates: ServiceSubStateLabels },
 	container: { states: ["Running", "Paused", "Restarting", "Stopped"], subStates: ContainerHealthLabels },
 }
 
-const newDraft = (kind: Kind = "service"): RuleDraft => ({
+export const newDraft = (kind: Kind = "service"): RuleDraft => ({
 	kind,
 	targets: "",
 	condition: "is_not",
@@ -141,7 +141,7 @@ export function StateAlertRules({ system }: { system: SystemRecord }) {
 	)
 }
 
-function failedToast(e: unknown) {
+export function failedToast(e: unknown) {
 	console.error(e)
 	const message = (e as { response?: { message?: string } })?.response?.message
 	toast({
@@ -353,7 +353,7 @@ function RuleForm({
 	)
 }
 
-function StateChips({
+export function StateChips({
 	label,
 	options,
 	selected,

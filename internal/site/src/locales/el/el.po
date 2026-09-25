@@ -62,6 +62,14 @@ msgstr "{count, plural, one {{countString} ώρα} other {{countString} ώρες
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} λεπτό} other {{countString} λεπτά}}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
+msgstr "{count, plural, one {# φιλτραρισμένο κοντέινερ} other {# φιλτραρισμένα κοντέινερ}}"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# filtered service} other {# filtered services}}"
+msgstr "{count, plural, one {# φιλτραρισμένη υπηρεσία} other {# φιλτραρισμένες υπηρεσίες}}"
+
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# σύστημα} other {# συστήματα}}"
@@ -78,9 +86,17 @@ msgstr "{minutes, plural, one {# λεπτό} other {# λεπτά}}"
 msgid "{name} until {until}"
 msgstr "{name} έως {until}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
+msgstr "{ruleCount, plural, one {Δημιουργήθηκε # κανόνας κατάστασης.} other {Δημιουργήθηκαν # κανόνες κατάστασης.}}"
+
 #: src/components/alerts/alert-button.tsx
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, one {# κανόνας κατάστασης} other {# κανόνες κατάστασης}}"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{systemCount, plural, one {# system} other {# systems}}"
+msgstr "{systemCount, plural, one {# σύστημα} other {# συστήματα}}"
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -242,19 +258,26 @@ msgstr "Η ειδοποίηση στάλθηκε"
 msgid "Alert when services or Docker containers enter or leave a state."
 msgstr "Ειδοποίηση όταν υπηρεσίες ή κοντέινερ Docker εισέρχονται ή εξέρχονται από μια κατάσταση."
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is"
 msgstr "Ειδοποίηση όταν η κατάσταση είναι"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is not"
 msgstr "Ειδοποίηση όταν η κατάσταση δεν είναι"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "Ειδοποιήσεις"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Alerts created"
+msgstr "Οι ειδοποιήσεις δημιουργήθηκαν"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
@@ -316,6 +339,10 @@ msgstr "Ήδη ενημερωμένο."
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "και {more} ακόμη"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Apply alerts to the selection below"
+msgstr "Εφαρμογή ειδοποιήσεων στην παρακάτω επιλογή"
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
@@ -492,7 +519,9 @@ msgid "Can stop"
 msgstr "Δυνατότητα διακοπής"
 
 #: src/components/agent-update-dialog.tsx
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -621,6 +650,7 @@ msgstr "Διάστημα συλλογής"
 msgid "Command line instructions"
 msgstr "Οδηγίες γραμμής εντολών"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Condition"
 msgstr "Συνθήκη"
@@ -646,6 +676,7 @@ msgstr "Διενέξεις"
 msgid "Connection is down"
 msgstr "Η σύνδεση είναι εκτός λειτουργίας"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Consecutive checks"
 msgstr "Διαδοχικοί έλεγχοι"
@@ -654,6 +685,10 @@ msgstr "Διαδοχικοί έλεγχοι"
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Κοντέινερ"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Container alerts"
+msgstr "Ειδοποιήσεις κοντέινερ"
 
 #: src/lib/alerts.ts
 msgid "Container Health"
@@ -779,6 +814,7 @@ msgstr "Ανάλυση χρόνου CPU"
 msgid "CPU Usage"
 msgstr "Χρήση CPU"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Create"
 msgstr "Δημιουργία"
@@ -1259,6 +1295,7 @@ msgstr "Οι ομάδες οργανώνουν τα συστήματα στην 
 msgid "Health"
 msgstr "Υγεία"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Health (optional)"
 msgstr "Υγεία (προαιρετικά)"
@@ -1375,6 +1412,10 @@ msgstr "Διάστημα (δευτερόλεπτα)"
 #: src/components/login/auth-form.tsx
 msgid "Invalid email address."
 msgstr "Μη έγκυρη διεύθυνση email."
+
+#: src/components/important-targets.tsx
+msgid "Its state alerts stop. The following rules change:"
+msgstr "Οι ειδοποιήσεις κατάστασής του σταματούν. Αλλάζουν οι εξής κανόνες:"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Its systems are kept and moved to no group."
@@ -2060,6 +2101,23 @@ msgstr "Ανανέωση"
 msgid "Relationships"
 msgstr "Σχέσεις"
 
+#: src/components/important-targets.tsx
+msgid "Remove"
+msgstr "Αφαίρεση"
+
+#: src/components/important-targets.tsx
+msgid "Remove {name} from important?"
+msgstr "Αφαίρεση του {name} από τα σημαντικά;"
+
+#: src/components/important-targets.tsx
+#: src/components/important-targets.tsx
+msgid "Remove from important"
+msgstr "Αφαίρεση από τα σημαντικά"
+
+#: src/components/important-targets.tsx
+msgid "Removed from the rule, which keeps: {targets}"
+msgstr "Αφαιρέθηκε από τον κανόνα, που διατηρεί: {targets}"
+
 #: src/components/login/login.tsx
 msgid "Request a one-time password"
 msgstr "Αίτημα κωδικού μίας χρήσης"
@@ -2120,6 +2178,14 @@ msgstr "Ανανέωση token"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "Γραμμές ανά σελίδα"
+
+#: src/components/important-targets.tsx
+msgid "Rule deleted, its pattern also covers other items: {targets}"
+msgstr "Ο κανόνας διαγράφεται, το μοτίβο του καλύπτει και άλλα στοιχεία: {targets}"
+
+#: src/components/important-targets.tsx
+msgid "Rule deleted: {targets}"
+msgstr "Ο κανόνας διαγράφεται: {targets}"
 
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
@@ -2198,6 +2264,10 @@ msgstr "Δευτερόλεπτα μεταξύ ping (προεπιλογή: 60)"
 msgid "See <0>notification settings</0> to configure how you receive alerts."
 msgstr "Δείτε τις <0>ρυθμίσεις ειδοποιήσεων</0> για να ρυθμίσετε τον τρόπο λήψης ειδοποιήσεων."
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Select"
+msgstr "Επιλογή"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Select {foo}"
 msgstr "Επιλογή {foo}"
@@ -2206,6 +2276,7 @@ msgstr "Επιλογή {foo}"
 msgid "Select a system"
 msgstr "Επιλέξτε ένα σύστημα"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Select all"
@@ -2255,6 +2326,10 @@ msgstr "Σειριακός αριθμός"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Υπηρεσία"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Service alerts"
+msgstr "Ειδοποιήσεις υπηρεσιών"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service Details"
@@ -2375,6 +2450,7 @@ msgstr "Ο κανόνας κατάστασης ικανοποιήθηκε"
 msgid "State rules"
 msgstr "Κανόνες κατάστασης"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "States"
 msgstr "Καταστάσεις"
@@ -2395,6 +2471,7 @@ msgstr "Σταματημένο"
 msgid "Sub State"
 msgstr "Υποκατάσταση"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Sub-states (optional)"
 msgstr "Υποκαταστάσεις (προαιρετικά)"
@@ -2486,6 +2563,10 @@ msgstr "Στόχος"
 msgid "Targets"
 msgstr "Στόχοι"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Targets by system"
+msgstr "Στόχοι ανά σύστημα"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Tasks"
 msgstr "Εργασίες"
@@ -2544,6 +2625,10 @@ msgstr "Η πιο πρόσφατη έκδοση του πράκτορα δεν �
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Η συνολική κατάσταση είναι <0>ok</0> όταν όλα τα συστήματα λειτουργούν, <1>warn</1> όταν ενεργοποιούνται ειδοποιήσεις και <2>error</2> όταν οποιοδήποτε σύστημα είναι εκτός λειτουργίας."
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "The rules are created on each system."
+msgstr "Οι κανόνες δημιουργούνται σε κάθε σύστημα."
 
 #: src/components/routes/system/agent-details.tsx
 msgid "The system is not connected."

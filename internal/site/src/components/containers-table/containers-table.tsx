@@ -2,6 +2,7 @@
 import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
+import { BulkStateAlertsButton, selectionColumn, targetRowId } from "@/components/alerts/bulk-state-alerts"
 import { type ImportantTile, ImportantTargets } from "@/components/important-targets"
 import {
 	type ColumnFiltersState,
@@ -10,6 +11,7 @@ import {
 	getFilteredRowModel,
 	getSortedRowModel,
 	type Row,
+	type RowSelectionState,
 	type SortingState,
 	type Table as TableType,
 	useReactTable,
@@ -19,7 +21,7 @@ import { useVirtualizer, type VirtualItem } from "@tanstack/react-virtual"
 import { memo, type RefObject, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { pb } from "@/lib/api"
+import { isReadOnlyUser, pb } from "@/lib/api"
 import type { ContainerRecord } from "@/types"
 import { containerChartCols } from "@/components/containers-table/containers-table-columns"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -62,7 +64,7 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 		}
 	}, [data])
 
-	const [rowSelection, setRowSelection] = useState({})
+	const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
 	const [globalFilter, setGlobalFilter] = useState("")
 
 	useEffect(() => {
@@ -123,7 +125,11 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 
 	const table = useReactTable({
 		data: data ?? [],
-		columns: containerChartCols.filter((col) => (systemId ? col.id !== "system" : true)),
+		columns: useMemo(() => {
+			const columns = containerChartCols.filter((col) => (systemId ? col.id !== "system" : true))
+			return isReadOnlyUser() ? columns : [selectionColumn<ContainerRecord>(), ...columns]
+		}, [systemId]),
+		getRowId: targetRowId,
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
@@ -163,6 +169,7 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 	})
 
 	const rows = table.getRowModel().rows
+	const selectedItems = table.getFilteredSelectedRowModel().rows.map((row) => row.original)
 	const visibleColumns = table.getVisibleLeafColumns()
 
 	// details sheet state lives here so important tiles can open it too
@@ -177,25 +184,28 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 	const stateAlerts = useStore($stateAlerts)
 	const importantTiles = useMemo((): ImportantTile[] => {
 		const systems = $allSystemsById.get()
-		return importantTargets(stateAlerts, "container", data ?? [], systemId).map(({ item, name, system, triggered }) => ({
-			key: `${system}/${name}`,
-			name,
-			systemName: systemId ? undefined : systems[system]?.name,
-			dotClass: !item
-				? "bg-zinc-400"
-				: item.health === ContainerHealth.Unhealthy
-					? "bg-red-500"
-					: item.health === ContainerHealth.Starting || /paused|restarting/i.test(item.status)
-						? "bg-yellow-500"
-						: "bg-green-500",
-			status: item
-				? [item.status, item.health !== ContainerHealth.None && ContainerHealthLabels[item.health]]
-						.filter(Boolean)
-						.join(" · ")
-				: t`Stopped`,
-			triggered,
-			onClick: item ? () => openSheet(item) : undefined,
-		}))
+		return importantTargets(stateAlerts, "container", data ?? [], systemId).map(
+			({ item, name, system, triggered }) => ({
+				key: `${system}/${name}`,
+				name,
+				systemName: systemId ? undefined : systems[system]?.name,
+				dotClass: !item
+					? "bg-zinc-400"
+					: item.health === ContainerHealth.Unhealthy
+						? "bg-red-500"
+						: item.health === ContainerHealth.Starting || /paused|restarting/i.test(item.status)
+							? "bg-yellow-500"
+							: "bg-green-500",
+				status: item
+					? [item.status, item.health !== ContainerHealth.None && ContainerHealthLabels[item.health]]
+							.filter(Boolean)
+							.join(" · ")
+					: t`Stopped`,
+				triggered,
+				onClick: item ? () => openSheet(item) : undefined,
+				target: { kind: "container", system },
+			})
+		)
 	}, [stateAlerts, data, systemId, openSheet])
 
 	return (
@@ -210,25 +220,28 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 							<Trans>Click on a container to view more information.</Trans>
 						</CardDescription>
 					</div>
-					<div className="relative ms-auto w-full max-w-full md:w-64">
-						<Input
-							placeholder={t`Filter...`}
-							value={globalFilter}
-							onChange={(e) => setGlobalFilter(e.target.value)}
-							className="ps-4 pe-10 w-full"
-						/>
-						{globalFilter && (
-							<Button
-								type="button"
-								variant="ghost"
-								size="icon"
-								aria-label={t`Clear`}
-								className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 text-muted-foreground"
-								onClick={() => setGlobalFilter("")}
-							>
-								<XIcon className="h-4 w-4" />
-							</Button>
-						)}
+					<div className="flex gap-2 ms-auto w-full md:w-auto">
+						<div className="relative w-full max-w-full md:w-64">
+							<Input
+								placeholder={t`Filter...`}
+								value={globalFilter}
+								onChange={(e) => setGlobalFilter(e.target.value)}
+								className="ps-4 pe-10 w-full"
+							/>
+							{globalFilter && (
+								<Button
+									type="button"
+									variant="ghost"
+									size="icon"
+									aria-label={t`Clear`}
+									className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 text-muted-foreground"
+									onClick={() => setGlobalFilter("")}
+								>
+									<XIcon className="h-4 w-4" />
+								</Button>
+							)}
+						</div>
+						<BulkStateAlertsButton kind="container" items={selectedItems} />
 					</div>
 				</div>
 			</CardHeader>
@@ -240,6 +253,7 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 					colLength={visibleColumns.length}
 					data={data}
 					openSheet={openSheet}
+					rowSelection={rowSelection}
 				/>
 			</div>
 			<ContainerSheet sheetOpen={sheetOpen} setSheetOpen={setSheetOpen} activeContainer={activeContainer} />
@@ -259,6 +273,8 @@ const AllContainersTable = memo(function AllContainersTable({
 	colLength: number
 	data: ContainerRecord[] | undefined
 	openSheet: (container: ContainerRecord) => void
+	/** re-renders the rows when the selection changes */
+	rowSelection: RowSelectionState
 }) {
 	// The virtualizer will need a reference to the scrollable container element
 	const scrollRef = useRef<HTMLDivElement>(null)
@@ -291,7 +307,15 @@ const AllContainersTable = memo(function AllContainersTable({
 						{rows.length ? (
 							virtualRows.map((virtualRow) => {
 								const row = rows[virtualRow.index]
-								return <ContainerTableRow key={row.id} row={row} virtualRow={virtualRow} openSheet={openSheet} />
+								return (
+									<ContainerTableRow
+										key={row.id}
+										row={row}
+										virtualRow={virtualRow}
+										openSheet={openSheet}
+										selected={row.getIsSelected()}
+									/>
+								)
 							})
 						) : (
 							<TableRow>
@@ -531,14 +555,16 @@ const ContainerTableRow = memo(function ContainerTableRow({
 	row,
 	virtualRow,
 	openSheet,
+	selected,
 }: {
 	row: Row<ContainerRecord>
 	virtualRow: VirtualItem
 	openSheet: (container: ContainerRecord) => void
+	selected: boolean
 }) {
 	return (
 		<TableRow
-			data-state={row.getIsSelected() && "selected"}
+			data-state={selected && "selected"}
 			className="cursor-pointer transition-opacity"
 			onClick={() => openSheet(row.original)}
 		>

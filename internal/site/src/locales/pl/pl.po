@@ -62,6 +62,14 @@ msgstr "{count, plural, one {godzina} few {{countString} godziny} many {{countSt
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} minuta} few {{countString} minuty} many {{countString} minut} other {{countString} minut}}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
+msgstr "{count, plural, one {# przefiltrowany kontener} few {# przefiltrowane kontenery} many {# przefiltrowanych kontenerów} other {# przefiltrowanego kontenera}}"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# filtered service} other {# filtered services}}"
+msgstr "{count, plural, one {# przefiltrowana usługa} few {# przefiltrowane usługi} many {# przefiltrowanych usług} other {# przefiltrowanej usługi}}"
+
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# system} few {# systemy} many {# systemów} other {# systemu}}"
@@ -78,9 +86,17 @@ msgstr "{minutes, plural, one {# minuta} few {# minuty} many {# minut} other {# 
 msgid "{name} until {until}"
 msgstr "{name} do {until}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
+msgstr "{ruleCount, plural, one {Utworzono # regułę stanu.} few {Utworzono # reguły stanu.} many {Utworzono # reguł stanu.} other {Utworzono # reguły stanu.}}"
+
 #: src/components/alerts/alert-button.tsx
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, one {# reguła stanu} few {# reguły stanu} many {# reguł stanu} other {# reguły stanu}}"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{systemCount, plural, one {# system} other {# systems}}"
+msgstr "{systemCount, plural, one {# system} few {# systemy} many {# systemów} other {# systemu}}"
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -242,19 +258,26 @@ msgstr "Alert wysłany"
 msgid "Alert when services or Docker containers enter or leave a state."
 msgstr "Powiadamiaj, gdy usługi lub kontenery Docker wejdą w dany stan lub z niego wyjdą."
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is"
 msgstr "Powiadamiaj, gdy stan to"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is not"
 msgstr "Powiadamiaj, gdy stan nie jest"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "Alerty"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Alerts created"
+msgstr "Utworzono alerty"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
@@ -316,6 +339,10 @@ msgstr "Już aktualny."
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "i {more} więcej"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Apply alerts to the selection below"
+msgstr "Zastosuj alerty do zaznaczenia poniżej"
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
@@ -492,7 +519,9 @@ msgid "Can stop"
 msgstr "Może zatrzymać"
 
 #: src/components/agent-update-dialog.tsx
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -621,6 +650,7 @@ msgstr "Interwał zbierania"
 msgid "Command line instructions"
 msgstr "Instrukcje wiersza poleceń"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Condition"
 msgstr "Warunek"
@@ -646,6 +676,7 @@ msgstr "Konflikty"
 msgid "Connection is down"
 msgstr "Brak połączenia"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Consecutive checks"
 msgstr "Kolejne sprawdzenia"
@@ -654,6 +685,10 @@ msgstr "Kolejne sprawdzenia"
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Kontener"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Container alerts"
+msgstr "Alerty kontenerów"
 
 #: src/lib/alerts.ts
 msgid "Container Health"
@@ -779,6 +814,7 @@ msgstr "Podział czasu CPU"
 msgid "CPU Usage"
 msgstr "Użycie procesora"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Create"
 msgstr "Utwórz"
@@ -1259,6 +1295,7 @@ msgstr "Grupy porządkują systemy na stronie głównej dla wszystkich użytkown
 msgid "Health"
 msgstr "Kondycja"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Health (optional)"
 msgstr "Kondycja (opcjonalnie)"
@@ -1375,6 +1412,10 @@ msgstr "Interwał (sekundy)"
 #: src/components/login/auth-form.tsx
 msgid "Invalid email address."
 msgstr "Nieprawidłowy adres e-mail."
+
+#: src/components/important-targets.tsx
+msgid "Its state alerts stop. The following rules change:"
+msgstr "Jego alerty stanu zostaną zatrzymane. Zmienią się następujące reguły:"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Its systems are kept and moved to no group."
@@ -2060,6 +2101,23 @@ msgstr "Odśwież"
 msgid "Relationships"
 msgstr "Relacje"
 
+#: src/components/important-targets.tsx
+msgid "Remove"
+msgstr "Usuń"
+
+#: src/components/important-targets.tsx
+msgid "Remove {name} from important?"
+msgstr "Usunąć {name} z ważnych?"
+
+#: src/components/important-targets.tsx
+#: src/components/important-targets.tsx
+msgid "Remove from important"
+msgstr "Usuń z ważnych"
+
+#: src/components/important-targets.tsx
+msgid "Removed from the rule, which keeps: {targets}"
+msgstr "Usunięto z reguły, która zachowuje: {targets}"
+
 #: src/components/login/login.tsx
 msgid "Request a one-time password"
 msgstr "Zażądaj jednorazowego hasła"
@@ -2120,6 +2178,14 @@ msgstr "Zmień token"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "Wiersze na stronę"
+
+#: src/components/important-targets.tsx
+msgid "Rule deleted, its pattern also covers other items: {targets}"
+msgstr "Reguła zostanie usunięta, jej wzorzec obejmuje też inne elementy: {targets}"
+
+#: src/components/important-targets.tsx
+msgid "Rule deleted: {targets}"
+msgstr "Reguła zostanie usunięta: {targets}"
 
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
@@ -2198,6 +2264,10 @@ msgstr "Sekundy między pingami (domyślnie: 60)"
 msgid "See <0>notification settings</0> to configure how you receive alerts."
 msgstr "Zobacz <0>ustawienia powiadomień</0>, aby skonfigurować sposób, w jaki otrzymujesz powiadomienia."
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Select"
+msgstr "Zaznacz"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Select {foo}"
 msgstr "Wybierz {foo}"
@@ -2206,6 +2276,7 @@ msgstr "Wybierz {foo}"
 msgid "Select a system"
 msgstr "Wybierz system"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Select all"
@@ -2255,6 +2326,10 @@ msgstr "Numer seryjny"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Usługa"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Service alerts"
+msgstr "Alerty usług"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service Details"
@@ -2375,6 +2450,7 @@ msgstr "Reguła stanu spełniona"
 msgid "State rules"
 msgstr "Reguły stanu"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "States"
 msgstr "Stany"
@@ -2395,6 +2471,7 @@ msgstr "Zatrzymany"
 msgid "Sub State"
 msgstr "Stan podrzędny"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Sub-states (optional)"
 msgstr "Podstany (opcjonalnie)"
@@ -2486,6 +2563,10 @@ msgstr "Cel"
 msgid "Targets"
 msgstr "Cele"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Targets by system"
+msgstr "Cele według systemu"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Tasks"
 msgstr "Zadania"
@@ -2544,6 +2625,10 @@ msgstr "Najnowsza wersja agenta nie jest jeszcze znana"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Ogólny status to <0>ok</0>, gdy wszystkie systemy działają, <1>ostrzeżenie</1>, gdy wyzwalane są alerty, oraz <2>błąd</2>, gdy którykolwiek z systemów nie działa."
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "The rules are created on each system."
+msgstr "Reguły są tworzone w każdym systemie."
 
 #: src/components/routes/system/agent-details.tsx
 msgid "The system is not connected."

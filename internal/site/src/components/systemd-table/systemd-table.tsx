@@ -9,6 +9,7 @@ import {
 	getFilteredRowModel,
 	getSortedRowModel,
 	type Row,
+	type RowSelectionState,
 	type SortingState,
 	type Table as TableType,
 	useReactTable,
@@ -19,6 +20,7 @@ import { LoaderCircleIcon } from "lucide-react"
 import { listenKeys } from "nanostores"
 import { memo, type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { getStatusColor, systemdTableCols } from "@/components/systemd-table/systemd-table-columns"
+import { BulkStateAlertsButton, selectionColumn, targetRowId } from "@/components/alerts/bulk-state-alerts"
 import { type ImportantTile, ImportantTargets } from "@/components/important-targets"
 import { $router, Link } from "@/components/router"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
@@ -26,7 +28,7 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { pb } from "@/lib/api"
+import { isReadOnlyUser, pb } from "@/lib/api"
 import { Os, ServiceStatus, ServiceStatusLabels, type ServiceSubState, ServiceSubStateLabels } from "@/lib/enums"
 import { $stateAlerts, importantTargets } from "@/lib/state-alerts"
 import { $allSystemsById, $servicesInterval } from "@/lib/stores"
@@ -45,6 +47,7 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 	)
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
+	const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
 	const [globalFilter, setGlobalFilter] = useState("")
 
 	// clear old data when systemId changes
@@ -106,13 +109,18 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 
 	const table = useReactTable({
 		data,
-		columns: useMemo(() => systemdTableCols.filter((col) => (systemId ? col.id !== "system" : true)), [systemId]),
+		columns: useMemo(() => {
+			const columns = systemdTableCols.filter((col) => (systemId ? col.id !== "system" : true))
+			return isReadOnlyUser() ? columns : [selectionColumn<SystemdRecord>(), ...columns]
+		}, [systemId]),
+		getRowId: targetRowId,
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
 		onColumnVisibilityChange: setColumnVisibility,
+		onRowSelectionChange: setRowSelection,
 		defaultColumn: {
 			sortUndefined: "last",
 			size: 100,
@@ -122,6 +130,7 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 			sorting,
 			columnFilters,
 			columnVisibility,
+			rowSelection,
 			globalFilter,
 		},
 		onGlobalFilterChange: setGlobalFilter,
@@ -141,6 +150,7 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 	})
 
 	const rows = table.getRowModel().rows
+	const selectedItems = table.getFilteredSelectedRowModel().rows.map((row) => row.original)
 	const visibleColumns = table.getVisibleLeafColumns()
 
 	const isWindows = useSystemOs(systemId ? $allSystemsById.get()[systemId] : undefined) === Os.Windows
@@ -168,6 +178,7 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 				: t`Not reported`,
 			triggered,
 			onClick: item ? () => openSheet(item) : undefined,
+			target: { kind: "service", system },
 		}))
 	}, [stateAlerts, data, systemId, openSheet])
 
@@ -205,17 +216,26 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 							<Trans>Updated every {intervalLabel}.</Trans>
 						</div>
 					</div>
-					<Input
-						placeholder={t`Filter...`}
-						value={globalFilter}
-						onChange={(e) => setGlobalFilter(e.target.value)}
-						className="ms-auto px-4 w-full max-w-full md:w-64"
-					/>
+					<div className="flex gap-2 ms-auto w-full md:w-auto">
+						<Input
+							placeholder={t`Filter...`}
+							value={globalFilter}
+							onChange={(e) => setGlobalFilter(e.target.value)}
+							className="px-4 w-full max-w-full md:w-64"
+						/>
+						<BulkStateAlertsButton kind="service" items={selectedItems} />
+					</div>
 				</div>
 			</CardHeader>
 			<ImportantTargets title={<Trans>Important services</Trans>} tiles={importantTiles} />
 			<div className="rounded-md">
-				<AllSystemdTable table={table} rows={rows} colLength={visibleColumns.length} openSheet={openSheet} />
+				<AllSystemdTable
+					table={table}
+					rows={rows}
+					colLength={visibleColumns.length}
+					openSheet={openSheet}
+					rowSelection={rowSelection}
+				/>
 			</div>
 			<SystemdSheet sheetOpen={sheetOpen} setSheetOpen={setSheetOpen} activeService={activeService} />
 		</Card>
@@ -232,6 +252,8 @@ const AllSystemdTable = memo(function AllSystemdTable({
 	rows: Row<SystemdRecord>[]
 	colLength: number
 	openSheet: (service: SystemdRecord) => void
+	/** re-renders the rows when the selection changes */
+	rowSelection: RowSelectionState
 }) {
 	// The virtualizer will need a reference to the scrollable container element
 	const scrollRef = useRef<HTMLDivElement>(null)
@@ -264,7 +286,15 @@ const AllSystemdTable = memo(function AllSystemdTable({
 						{rows.length ? (
 							virtualRows.map((virtualRow) => {
 								const row = rows[virtualRow.index]
-								return <SystemdTableRow key={row.id} row={row} virtualRow={virtualRow} openSheet={openSheet} />
+								return (
+									<SystemdTableRow
+										key={row.id}
+										row={row}
+										virtualRow={virtualRow}
+										openSheet={openSheet}
+										selected={row.getIsSelected()}
+									/>
+								)
 							})
 						) : (
 							<TableRow>
@@ -740,14 +770,16 @@ const SystemdTableRow = memo(function SystemdTableRow({
 	row,
 	virtualRow,
 	openSheet,
+	selected,
 }: {
 	row: Row<SystemdRecord>
 	virtualRow: VirtualItem
 	openSheet: (service: SystemdRecord) => void
+	selected: boolean
 }) {
 	return (
 		<TableRow
-			data-state={row.getIsSelected() && "selected"}
+			data-state={selected && "selected"}
 			className="cursor-pointer transition-opacity"
 			onClick={() => openSheet(row.original)}
 		>

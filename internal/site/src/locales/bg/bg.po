@@ -62,6 +62,14 @@ msgstr "{count, plural, one {{countString} час} other {{countString} часа
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} минута} few {{countString} минути} many {{countString} минути} other {{countString} минути}}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
+msgstr "{count, plural, one {# филтриран контейнер} other {# филтрирани контейнера}}"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# filtered service} other {# filtered services}}"
+msgstr "{count, plural, one {# филтрирана услуга} other {# филтрирани услуги}}"
+
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# система} other {# системи}}"
@@ -78,9 +86,17 @@ msgstr "{minutes, plural, one {# минута} other {# минути}}"
 msgid "{name} until {until}"
 msgstr "{name} до {until}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
+msgstr "{ruleCount, plural, one {Създадено е # правило за състояние.} other {Създадени са # правила за състояние.}}"
+
 #: src/components/alerts/alert-button.tsx
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, one {# правило за състояние} other {# правила за състояние}}"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{systemCount, plural, one {# system} other {# systems}}"
+msgstr "{systemCount, plural, one {# система} other {# системи}}"
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -242,19 +258,26 @@ msgstr "Известието е изпратено"
 msgid "Alert when services or Docker containers enter or leave a state."
 msgstr "Известие, когато услуги или Docker контейнери влязат в състояние или излязат от него."
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is"
 msgstr "Известие, когато състоянието е"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is not"
 msgstr "Известие, когато състоянието не е"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "Тревоги"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Alerts created"
+msgstr "Известията са създадени"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
@@ -316,6 +339,10 @@ msgstr "Вече е актуален."
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "и още {more}"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Apply alerts to the selection below"
+msgstr "Прилагане на известия към избраното по-долу"
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
@@ -492,7 +519,9 @@ msgid "Can stop"
 msgstr "Може да се спре"
 
 #: src/components/agent-update-dialog.tsx
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -621,6 +650,7 @@ msgstr "Интервал на събиране"
 msgid "Command line instructions"
 msgstr "Инструкции за командната линия"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Condition"
 msgstr "Условие"
@@ -646,6 +676,7 @@ msgstr "Конфликти"
 msgid "Connection is down"
 msgstr "Връзката е прекъсната"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Consecutive checks"
 msgstr "Последователни проверки"
@@ -654,6 +685,10 @@ msgstr "Последователни проверки"
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Контейнер"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Container alerts"
+msgstr "Известия за контейнери"
 
 #: src/lib/alerts.ts
 msgid "Container Health"
@@ -779,6 +814,7 @@ msgstr "Разбивка на времето на CPU"
 msgid "CPU Usage"
 msgstr "Употреба на процесор"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Create"
 msgstr "Създай"
@@ -1259,6 +1295,7 @@ msgstr "Групите подреждат системите на начална
 msgid "Health"
 msgstr "Здраве"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Health (optional)"
 msgstr "Здраве (по избор)"
@@ -1375,6 +1412,10 @@ msgstr "Интервал (секунди)"
 #: src/components/login/auth-form.tsx
 msgid "Invalid email address."
 msgstr "Невалиден имейл адрес."
+
+#: src/components/important-targets.tsx
+msgid "Its state alerts stop. The following rules change:"
+msgstr "Известията за състоянието му спират. Следните правила се променят:"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Its systems are kept and moved to no group."
@@ -2060,6 +2101,23 @@ msgstr "Опресни"
 msgid "Relationships"
 msgstr "Връзки"
 
+#: src/components/important-targets.tsx
+msgid "Remove"
+msgstr "Премахни"
+
+#: src/components/important-targets.tsx
+msgid "Remove {name} from important?"
+msgstr "Да се премахне ли {name} от важните?"
+
+#: src/components/important-targets.tsx
+#: src/components/important-targets.tsx
+msgid "Remove from important"
+msgstr "Премахни от важните"
+
+#: src/components/important-targets.tsx
+msgid "Removed from the rule, which keeps: {targets}"
+msgstr "Премахнат от правилото, което запазва: {targets}"
+
 #: src/components/login/login.tsx
 msgid "Request a one-time password"
 msgstr "Заявка за еднократна парола"
@@ -2120,6 +2178,14 @@ msgstr "Пресъздаване на идентификатора"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "Редове на страница"
+
+#: src/components/important-targets.tsx
+msgid "Rule deleted, its pattern also covers other items: {targets}"
+msgstr "Правилото се изтрива, моделът му обхваща и други елементи: {targets}"
+
+#: src/components/important-targets.tsx
+msgid "Rule deleted: {targets}"
+msgstr "Правилото се изтрива: {targets}"
 
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
@@ -2198,6 +2264,10 @@ msgstr "Секунди между пинговете (по подразбира�
 msgid "See <0>notification settings</0> to configure how you receive alerts."
 msgstr "Виж <0>настройките за нотификациите</0> за да конфигурираш как получаваш тревоги."
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Select"
+msgstr "Избор"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Select {foo}"
 msgstr "Избери {foo}"
@@ -2206,6 +2276,7 @@ msgstr "Избери {foo}"
 msgid "Select a system"
 msgstr "Избери система"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Select all"
@@ -2255,6 +2326,10 @@ msgstr "Сериен номер"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Услуга"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Service alerts"
+msgstr "Известия за услуги"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service Details"
@@ -2375,6 +2450,7 @@ msgstr "Правилото за състояние е изпълнено"
 msgid "State rules"
 msgstr "Правила за състояние"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "States"
 msgstr "Състояния"
@@ -2395,6 +2471,7 @@ msgstr "Спрян"
 msgid "Sub State"
 msgstr "Подсъстояние"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Sub-states (optional)"
 msgstr "Подсъстояния (по избор)"
@@ -2486,6 +2563,10 @@ msgstr "Цел"
 msgid "Targets"
 msgstr "Цели"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Targets by system"
+msgstr "Цели по система"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Tasks"
 msgstr "Задачи"
@@ -2544,6 +2625,10 @@ msgstr "Последната версия на агента все още не �
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Общият статус е <0>ok</0>, когато всички системи работят, <1>warn</1>, когато са задействани предупреждения, и <2>error</2>, когато някоя система е спряла."
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "The rules are created on each system."
+msgstr "Правилата се създават за всяка система."
 
 #: src/components/routes/system/agent-details.tsx
 msgid "The system is not connected."

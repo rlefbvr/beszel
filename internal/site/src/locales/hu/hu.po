@@ -62,6 +62,14 @@ msgstr "{count, plural, one {{countString} óra} other {{countString} óra}}"
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} perc} few {{countString} perc} many {{countString} perc} other {{countString} perc}}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
+msgstr "{count, plural, one {# szűrt konténer} other {# szűrt konténer}}"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# filtered service} other {# filtered services}}"
+msgstr "{count, plural, one {# szűrt szolgáltatás} other {# szűrt szolgáltatás}}"
+
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# rendszer} other {# rendszer}}"
@@ -78,9 +86,17 @@ msgstr "{minutes, plural, one {# perc} other {# perc}}"
 msgid "{name} until {until}"
 msgstr "{name} eddig: {until}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
+msgstr "{ruleCount, plural, one {# állapotszabály létrehozva.} other {# állapotszabály létrehozva.}}"
+
 #: src/components/alerts/alert-button.tsx
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, one {# állapotszabály} other {# állapotszabály}}"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{systemCount, plural, one {# system} other {# systems}}"
+msgstr "{systemCount, plural, one {# rendszer} other {# rendszer}}"
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -242,19 +258,26 @@ msgstr "Riasztás elküldve"
 msgid "Alert when services or Docker containers enter or leave a state."
 msgstr "Riasztás, amikor szolgáltatások vagy Docker-konténerek egy állapotba kerülnek vagy kilépnek belőle."
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is"
 msgstr "Riasztás, ha az állapot"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is not"
 msgstr "Riasztás, ha az állapot nem"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "Riasztások"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Alerts created"
+msgstr "Riasztások létrehozva"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
@@ -316,6 +339,10 @@ msgstr "Már naprakész."
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "és még {more}"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Apply alerts to the selection below"
+msgstr "Riasztások alkalmazása az alábbi kijelölésre"
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
@@ -492,7 +519,9 @@ msgid "Can stop"
 msgstr "Leállítható"
 
 #: src/components/agent-update-dialog.tsx
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -621,6 +650,7 @@ msgstr "Gyűjtési időköz"
 msgid "Command line instructions"
 msgstr "Parancssori utasítások"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Condition"
 msgstr "Feltétel"
@@ -646,6 +676,7 @@ msgstr "Konfliktusok"
 msgid "Connection is down"
 msgstr "Kapcsolat megszakadt"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Consecutive checks"
 msgstr "Egymást követő ellenőrzések"
@@ -654,6 +685,10 @@ msgstr "Egymást követő ellenőrzések"
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Konténer"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Container alerts"
+msgstr "Konténerriasztások"
 
 #: src/lib/alerts.ts
 msgid "Container Health"
@@ -779,6 +814,7 @@ msgstr "CPU idő felbontása"
 msgid "CPU Usage"
 msgstr "CPU használat"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Create"
 msgstr "Létrehozás"
@@ -1259,6 +1295,7 @@ msgstr "A csoportok minden felhasználó számára rendezik a rendszereket a kez
 msgid "Health"
 msgstr "Egészség"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Health (optional)"
 msgstr "Egészség (nem kötelező)"
@@ -1375,6 +1412,10 @@ msgstr "Intervallum (másodperc)"
 #: src/components/login/auth-form.tsx
 msgid "Invalid email address."
 msgstr "Érvénytelen e-mail cím."
+
+#: src/components/important-targets.tsx
+msgid "Its state alerts stop. The following rules change:"
+msgstr "Az állapotriasztásai megszűnnek. A következő szabályok változnak:"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Its systems are kept and moved to no group."
@@ -2060,6 +2101,23 @@ msgstr "Frissítés"
 msgid "Relationships"
 msgstr "Kapcsolatok"
 
+#: src/components/important-targets.tsx
+msgid "Remove"
+msgstr "Eltávolítás"
+
+#: src/components/important-targets.tsx
+msgid "Remove {name} from important?"
+msgstr "Eltávolítja a(z) {name} elemet a fontosak közül?"
+
+#: src/components/important-targets.tsx
+#: src/components/important-targets.tsx
+msgid "Remove from important"
+msgstr "Eltávolítás a fontosak közül"
+
+#: src/components/important-targets.tsx
+msgid "Removed from the rule, which keeps: {targets}"
+msgstr "Eltávolítva a szabályból, amely megtartja: {targets}"
+
 #: src/components/login/login.tsx
 msgid "Request a one-time password"
 msgstr "Egyszeri jelszó kérése"
@@ -2120,6 +2178,14 @@ msgstr "Tokenváltás"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "Sorok száma oldalanként"
+
+#: src/components/important-targets.tsx
+msgid "Rule deleted, its pattern also covers other items: {targets}"
+msgstr "A szabály törlődik, a mintája más elemeket is lefed: {targets}"
+
+#: src/components/important-targets.tsx
+msgid "Rule deleted: {targets}"
+msgstr "A szabály törlődik: {targets}"
 
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
@@ -2198,6 +2264,10 @@ msgstr "Pingek közötti másodpercek (alapértelmezett: 60)"
 msgid "See <0>notification settings</0> to configure how you receive alerts."
 msgstr "Lásd <0>az értesítési beállításokat</0>, hogy konfigurálja, hogyan kap értesítéseket."
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Select"
+msgstr "Kijelölés"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Select {foo}"
 msgstr "{foo} kiválasztása"
@@ -2206,6 +2276,7 @@ msgstr "{foo} kiválasztása"
 msgid "Select a system"
 msgstr "Válasszon rendszert"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Select all"
@@ -2255,6 +2326,10 @@ msgstr "Sorozatszám"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Szolgáltatás"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Service alerts"
+msgstr "Szolgáltatásriasztások"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service Details"
@@ -2375,6 +2450,7 @@ msgstr "Állapotszabály teljesült"
 msgid "State rules"
 msgstr "Állapotszabályok"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "States"
 msgstr "Állapotok"
@@ -2395,6 +2471,7 @@ msgstr "Leállítva"
 msgid "Sub State"
 msgstr "Részállapot"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Sub-states (optional)"
 msgstr "Alállapotok (nem kötelező)"
@@ -2486,6 +2563,10 @@ msgstr "Cél"
 msgid "Targets"
 msgstr "Célok"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Targets by system"
+msgstr "Célok rendszerenként"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Tasks"
 msgstr "Feladatok"
@@ -2544,6 +2625,10 @@ msgstr "Az ügynök legújabb verziója még nem ismert"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Az összesített állapot <0>ok</0>, ha minden rendszer fut, <1>warn</1>, ha riasztások léptek fel, és <2>error</2>, ha bármelyik rendszer leállt."
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "The rules are created on each system."
+msgstr "A szabályok minden rendszeren létrejönnek."
 
 #: src/components/routes/system/agent-details.tsx
 msgid "The system is not connected."

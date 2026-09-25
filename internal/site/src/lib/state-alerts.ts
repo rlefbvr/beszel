@@ -159,3 +159,65 @@ export function importantTargets<T extends { name: string; system: string }>(
 	}
 	return [...byKey.values()].sort((a, b) => Number(b.triggered) - Number(a.triggered) || a.name.localeCompare(b.name))
 }
+
+/** Maximum length of the targets of a rule (hub field limit) */
+export const maxTargetsLength = 500
+
+/** Targets split into comma separated lists fitting in rules */
+export function chunkTargets(names: string[], maxLength = maxTargetsLength): string[] {
+	const chunks: string[] = []
+	let current = ""
+	for (const name of names) {
+		const next = current ? `${current}, ${name}` : name
+		if (next.length > maxLength && current) {
+			chunks.push(current)
+			current = name
+		} else {
+			current = next
+		}
+	}
+	if (current) {
+		chunks.push(current)
+	}
+	return chunks
+}
+
+/** Changes needed to stop targeting a service or container */
+export interface TargetRemoval {
+	/** rules keeping other targets once the literal patterns of the name are removed */
+	updates: { rule: StateAlertRecord; targets: string }[]
+	/** rules left without targets */
+	deletes: StateAlertRecord[]
+	/** rules matching the name through a wildcard, deleted as a whole */
+	wildcards: StateAlertRecord[]
+}
+
+/** How to remove a service or container from the state rules of a system */
+export function planTargetRemoval(
+	rules: Record<string, StateAlertRecord>,
+	kind: StateAlertRecord["kind"],
+	system: string,
+	name: string
+): TargetRemoval {
+	const candidates = new Set(nameCandidates(name))
+	const removal: TargetRemoval = { updates: [], deletes: [], wildcards: [] }
+	for (const rule of Object.values(rules)) {
+		if (rule.kind !== kind || rule.system !== system) {
+			continue
+		}
+		const patterns = rule.targets
+			.split(",")
+			.map((p) => p.trim())
+			.filter(Boolean)
+		const kept = patterns.filter((pattern) => !isLiteralPattern(pattern) || !candidates.has(pattern.toLowerCase()))
+		const targets = kept.join(", ")
+		if (!kept.length) {
+			removal.deletes.push(rule)
+		} else if (kept.length < patterns.length && !ruleMatchesName({ ...rule, targets }, name)) {
+			removal.updates.push({ rule, targets })
+		} else if (ruleMatchesName(rule, name)) {
+			removal.wildcards.push(rule)
+		}
+	}
+	return removal
+}

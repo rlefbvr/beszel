@@ -62,6 +62,14 @@ msgstr "{count, plural, one {{countString} sat} other {{countString} sati}}"
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} minuta} few {{countString} minuta} many {{countString} minuta} other {{countString} minute}}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
+msgstr "{count, plural, one {# filtrirani kontejner} few {# filtrirana kontejnera} other {# filtriranih kontejnera}}"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# filtered service} other {# filtered services}}"
+msgstr "{count, plural, one {# filtrirana usluga} few {# filtrirane usluge} other {# filtriranih usluga}}"
+
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# sustav} few {# sustava} other {# sustava}}"
@@ -78,9 +86,17 @@ msgstr "{minutes, plural, one {# minuta} few {# minute} other {# minuta}}"
 msgid "{name} until {until}"
 msgstr "{name} do {until}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
+msgstr "{ruleCount, plural, one {Stvoreno je # pravilo stanja.} few {Stvorena su # pravila stanja.} other {Stvoreno je # pravila stanja.}}"
+
 #: src/components/alerts/alert-button.tsx
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, one {# pravilo stanja} few {# pravila stanja} other {# pravila stanja}}"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{systemCount, plural, one {# system} other {# systems}}"
+msgstr "{systemCount, plural, one {# sustav} few {# sustava} other {# sustava}}"
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -242,19 +258,26 @@ msgstr "Upozorenje poslano"
 msgid "Alert when services or Docker containers enter or leave a state."
 msgstr "Upozori kada usluge ili Docker kontejneri uđu u stanje ili iz njega izađu."
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is"
 msgstr "Upozori kada je stanje"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is not"
 msgstr "Upozori kada stanje nije"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "Upozorenja"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Alerts created"
+msgstr "Upozorenja stvorena"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
@@ -316,6 +339,10 @@ msgstr "Već ažurno."
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "i još {more}"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Apply alerts to the selection below"
+msgstr "Primijeni upozorenja na odabir ispod"
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
@@ -492,7 +519,9 @@ msgid "Can stop"
 msgstr "Može se zaustaviti"
 
 #: src/components/agent-update-dialog.tsx
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -621,6 +650,7 @@ msgstr "Interval prikupljanja"
 msgid "Command line instructions"
 msgstr "Upute za naredbeni redak"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Condition"
 msgstr "Uvjet"
@@ -646,6 +676,7 @@ msgstr "Sukobi"
 msgid "Connection is down"
 msgstr "Veza je pala"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Consecutive checks"
 msgstr "Uzastopne provjere"
@@ -654,6 +685,10 @@ msgstr "Uzastopne provjere"
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Kontejner"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Container alerts"
+msgstr "Upozorenja kontejnera"
 
 #: src/lib/alerts.ts
 msgid "Container Health"
@@ -779,6 +814,7 @@ msgstr "Raspodjela CPU vremena"
 msgid "CPU Usage"
 msgstr "Iskorištenost procesora"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Create"
 msgstr "Stvori"
@@ -1259,6 +1295,7 @@ msgstr "Grupe organiziraju sustave na početnoj stranici za sve korisnike. Brisa
 msgid "Health"
 msgstr "Zdravlje"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Health (optional)"
 msgstr "Zdravlje (neobavezno)"
@@ -1375,6 +1412,10 @@ msgstr "Interval (sekunde)"
 #: src/components/login/auth-form.tsx
 msgid "Invalid email address."
 msgstr "Nevažeća email adresa."
+
+#: src/components/important-targets.tsx
+msgid "Its state alerts stop. The following rules change:"
+msgstr "Njegova upozorenja o stanju prestaju. Mijenjaju se sljedeća pravila:"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Its systems are kept and moved to no group."
@@ -2060,6 +2101,23 @@ msgstr "Osvježi"
 msgid "Relationships"
 msgstr "Odnosi"
 
+#: src/components/important-targets.tsx
+msgid "Remove"
+msgstr "Ukloni"
+
+#: src/components/important-targets.tsx
+msgid "Remove {name} from important?"
+msgstr "Ukloniti {name} iz važnih?"
+
+#: src/components/important-targets.tsx
+#: src/components/important-targets.tsx
+msgid "Remove from important"
+msgstr "Ukloni iz važnih"
+
+#: src/components/important-targets.tsx
+msgid "Removed from the rule, which keeps: {targets}"
+msgstr "Uklonjeno iz pravila, koje zadržava: {targets}"
+
 #: src/components/login/login.tsx
 msgid "Request a one-time password"
 msgstr "Zatraži jednokratnu lozinku"
@@ -2120,6 +2178,14 @@ msgstr "Promijeni token"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "Redovi po stranici"
+
+#: src/components/important-targets.tsx
+msgid "Rule deleted, its pattern also covers other items: {targets}"
+msgstr "Pravilo se briše, njegov uzorak obuhvaća i druge stavke: {targets}"
+
+#: src/components/important-targets.tsx
+msgid "Rule deleted: {targets}"
+msgstr "Pravilo se briše: {targets}"
 
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
@@ -2198,6 +2264,10 @@ msgstr "Sekunde između pingova (zadano: 60)"
 msgid "See <0>notification settings</0> to configure how you receive alerts."
 msgstr "Pogledajte <0>postavke obavijesti</0> kako biste konfigurirali način primanja upozorenja."
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Select"
+msgstr "Odaberi"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Select {foo}"
 msgstr "Odaberi {foo}"
@@ -2206,6 +2276,7 @@ msgstr "Odaberi {foo}"
 msgid "Select a system"
 msgstr "Odaberite sustav"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Select all"
@@ -2255,6 +2326,10 @@ msgstr "Serijski broj"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Usluga"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Service alerts"
+msgstr "Upozorenja usluga"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service Details"
@@ -2375,6 +2450,7 @@ msgstr "Pravilo stanja ispunjeno"
 msgid "State rules"
 msgstr "Pravila stanja"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "States"
 msgstr "Stanja"
@@ -2395,6 +2471,7 @@ msgstr "Zaustavljeno"
 msgid "Sub State"
 msgstr "Podstanje"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Sub-states (optional)"
 msgstr "Podstanja (neobavezno)"
@@ -2486,6 +2563,10 @@ msgstr "Cilj"
 msgid "Targets"
 msgstr "Ciljevi"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Targets by system"
+msgstr "Ciljevi po sustavu"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Tasks"
 msgstr "Zadaci"
@@ -2544,6 +2625,10 @@ msgstr "Najnovija verzija agenta još nije poznata"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Ukupni status je <0>ok</0> kada su svi sustavi u radu, <1>warn</1> kada su aktivirana upozorenja i <2>error</2> kada je bilo koji sustav isključen."
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "The rules are created on each system."
+msgstr "Pravila se stvaraju na svakom sustavu."
 
 #: src/components/routes/system/agent-details.tsx
 msgid "The system is not connected."

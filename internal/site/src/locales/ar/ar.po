@@ -62,6 +62,14 @@ msgstr "{count, plural, one {{countString} ساعة} other {{countString} ساع
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} دقيقة} few {{countString} دقائق} many {{countString} دقيقة} other {{countString} دقيقة}}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
+msgstr "{count, plural, zero {# حاوية مُصفّاة} one {حاوية واحدة مُصفّاة} two {حاويتان مُصفّاتان} few {# حاويات مُصفّاة} many {# حاوية مُصفّاة} other {# حاوية مُصفّاة}}"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# filtered service} other {# filtered services}}"
+msgstr "{count, plural, zero {# خدمة مُصفّاة} one {خدمة واحدة مُصفّاة} two {خدمتان مُصفّاتان} few {# خدمات مُصفّاة} many {# خدمة مُصفّاة} other {# خدمة مُصفّاة}}"
+
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, zero {# أنظمة} one {نظام واحد} two {نظامان} few {# أنظمة} many {# نظامًا} other {# نظام}}"
@@ -78,9 +86,17 @@ msgstr "{minutes, plural, zero {# دقيقة} one {دقيقة واحدة} two {�
 msgid "{name} until {until}"
 msgstr "{name} حتى {until}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
+msgstr "{ruleCount, plural, zero {تم إنشاء # قاعدة حالة.} one {تم إنشاء قاعدة حالة واحدة.} two {تم إنشاء قاعدتي حالة.} few {تم إنشاء # قواعد حالة.} many {تم إنشاء # قاعدة حالة.} other {تم إنشاء # قاعدة حالة.}}"
+
 #: src/components/alerts/alert-button.tsx
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, zero {# قواعد حالة} one {قاعدة حالة واحدة} two {قاعدتا حالة} few {# قواعد حالة} many {# قاعدة حالة} other {# قاعدة حالة}}"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{systemCount, plural, one {# system} other {# systems}}"
+msgstr "{systemCount, plural, zero {# نظام} one {نظام واحد} two {نظامان} few {# أنظمة} many {# نظام} other {# نظام}}"
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -242,19 +258,26 @@ msgstr "تم إرسال التنبيه"
 msgid "Alert when services or Docker containers enter or leave a state."
 msgstr "تنبيه عندما تدخل الخدمات أو حاويات Docker حالة ما أو تخرج منها."
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is"
 msgstr "تنبيه عندما تكون الحالة"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is not"
 msgstr "تنبيه عندما لا تكون الحالة"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "التنبيهات"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Alerts created"
+msgstr "تم إنشاء التنبيهات"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
@@ -316,6 +339,10 @@ msgstr "محدّث بالفعل."
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "و{more} أخرى"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Apply alerts to the selection below"
+msgstr "تطبيق التنبيهات على التحديد أدناه"
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
@@ -492,7 +519,9 @@ msgid "Can stop"
 msgstr "يمكن الإيقاف"
 
 #: src/components/agent-update-dialog.tsx
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -621,6 +650,7 @@ msgstr "فترة الجمع"
 msgid "Command line instructions"
 msgstr "تعليمات سطر الأوامر"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Condition"
 msgstr "الشرط"
@@ -646,6 +676,7 @@ msgstr "التعارضات"
 msgid "Connection is down"
 msgstr "الاتصال مقطوع"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Consecutive checks"
 msgstr "فحوصات متتالية"
@@ -654,6 +685,10 @@ msgstr "فحوصات متتالية"
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "حاوية"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Container alerts"
+msgstr "تنبيهات الحاويات"
 
 #: src/lib/alerts.ts
 msgid "Container Health"
@@ -779,6 +814,7 @@ msgstr "تفصيل وقت المعالج"
 msgid "CPU Usage"
 msgstr "استخدام وحدة المعالجة المركزية"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Create"
 msgstr "إنشاء"
@@ -1259,6 +1295,7 @@ msgstr "تنظم المجموعات الأنظمة في الصفحة الرئي�
 msgid "Health"
 msgstr "الصحة"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Health (optional)"
 msgstr "السلامة (اختياري)"
@@ -1375,6 +1412,10 @@ msgstr "الفاصل الزمني (بالثواني)"
 #: src/components/login/auth-form.tsx
 msgid "Invalid email address."
 msgstr "عنوان البريد الإشباكي غير صالح."
+
+#: src/components/important-targets.tsx
+msgid "Its state alerts stop. The following rules change:"
+msgstr "تتوقف تنبيهات حالته. تتغير القواعد التالية:"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Its systems are kept and moved to no group."
@@ -2060,6 +2101,23 @@ msgstr "تحديث"
 msgid "Relationships"
 msgstr "العلاقات"
 
+#: src/components/important-targets.tsx
+msgid "Remove"
+msgstr "إزالة"
+
+#: src/components/important-targets.tsx
+msgid "Remove {name} from important?"
+msgstr "إزالة {name} من العناصر المهمة؟"
+
+#: src/components/important-targets.tsx
+#: src/components/important-targets.tsx
+msgid "Remove from important"
+msgstr "إزالة من العناصر المهمة"
+
+#: src/components/important-targets.tsx
+msgid "Removed from the rule, which keeps: {targets}"
+msgstr "أُزيل من القاعدة التي تحتفظ بـ: {targets}"
+
 #: src/components/login/login.tsx
 msgid "Request a one-time password"
 msgstr "طلب كلمة مرور لمرة واحدة"
@@ -2120,6 +2178,14 @@ msgstr "تدوير الرمز المميز"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "صفوف لكل صفحة"
+
+#: src/components/important-targets.tsx
+msgid "Rule deleted, its pattern also covers other items: {targets}"
+msgstr "حذف القاعدة، ونمطها يشمل عناصر أخرى أيضاً: {targets}"
+
+#: src/components/important-targets.tsx
+msgid "Rule deleted: {targets}"
+msgstr "حذف القاعدة: {targets}"
 
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
@@ -2198,6 +2264,10 @@ msgstr "ثواني بين ال pings (الافتراضي: 60)"
 msgid "See <0>notification settings</0> to configure how you receive alerts."
 msgstr "راجع <0>إعدادات الإشعارات</0> لتكوين كيفية تلقي التنبيهات."
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Select"
+msgstr "تحديد"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Select {foo}"
 msgstr "تحديد {foo}"
@@ -2206,6 +2276,7 @@ msgstr "تحديد {foo}"
 msgid "Select a system"
 msgstr "تحديد نظام"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Select all"
@@ -2255,6 +2326,10 @@ msgstr "الرقم التسلسلي"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "الخدمة"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Service alerts"
+msgstr "تنبيهات الخدمات"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service Details"
@@ -2375,6 +2450,7 @@ msgstr "تم استيفاء قاعدة الحالة"
 msgid "State rules"
 msgstr "قواعد الحالة"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "States"
 msgstr "الحالات"
@@ -2395,6 +2471,7 @@ msgstr "متوقفة"
 msgid "Sub State"
 msgstr "الحالة الفرعية"
 
+#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Sub-states (optional)"
 msgstr "الحالات الفرعية (اختياري)"
@@ -2486,6 +2563,10 @@ msgstr "الهدف"
 msgid "Targets"
 msgstr "الأهداف"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Targets by system"
+msgstr "الأهداف حسب النظام"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Tasks"
 msgstr "المهام"
@@ -2544,6 +2625,10 @@ msgstr "أحدث إصدار للوكيل غير معروف بعد"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "الحالة العامة هي <0>موافق</0> عندما تكون جميع الأنظمة تعمل، و<1>تحذير</1> عند تشغيل التنبيهات، و<2>خطأ</2> عندما يكون أي نظام معطلاً."
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "The rules are created on each system."
+msgstr "تُنشأ القواعد على كل نظام."
 
 #: src/components/routes/system/agent-details.tsx
 msgid "The system is not connected."
