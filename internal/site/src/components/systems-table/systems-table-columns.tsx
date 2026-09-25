@@ -7,6 +7,7 @@ import type { CellContext, ColumnDef, HeaderContext } from "@tanstack/react-tabl
 import type { ClassValue } from "clsx"
 import {
 	ArrowUpDownIcon,
+	BellRingIcon,
 	ChevronRightSquareIcon,
 	ClockArrowUp,
 	CopyIcon,
@@ -33,11 +34,15 @@ import {
 	decimalString,
 	diskTitle,
 	formatBytes,
+	formatShortDate,
 	formatTemperature,
 	parseSemVer,
 	secondsToUptimeString,
 } from "@/lib/utils"
 import { batteryStateTranslations } from "@/lib/i18n"
+import { alertInfo, stateAlertHistoryInfo } from "@/lib/alerts"
+import { $lastAlerts } from "@/lib/last-alerts"
+import { formatRelativeTime, useNow } from "@/lib/time"
 import type { SystemRecord } from "@/types"
 import { SystemDialog } from "../add-system"
 import AlertButton from "../alerts/alert-button"
@@ -395,6 +400,28 @@ export function SystemsTableColumns(viewMode: "table" | "grid"): ColumnDef<Syste
 			},
 		},
 		{
+			accessorFn: ({ id }) => $lastAlerts.get()[id]?.created,
+			id: "lastAlert",
+			name: () => t`Last alert`,
+			size: 50,
+			Icon: BellRingIcon,
+			header: sortableHeader,
+			cell(info) {
+				const last = useStore($lastAlerts)[info.row.original.id]
+				const now = useNow()
+				if (!last) {
+					return null
+				}
+				const label = (alertInfo[last.name] ?? stateAlertHistoryInfo[last.name])?.name() ?? last.name
+				return (
+					<span className="flex flex-col leading-tight text-nowrap" title={formatShortDate(last.created)}>
+						<span className="text-xs text-muted-foreground">{label}</span>
+						<span className="tabular-nums">{formatRelativeTime(new Date(last.created), now)}</span>
+					</span>
+				)
+			},
+		},
+		{
 			accessorFn: ({ info }) => info.v,
 			id: "agent",
 			name: () => t`Agent`,
@@ -431,7 +458,7 @@ export function SystemsTableColumns(viewMode: "table" | "grid"): ColumnDef<Syste
 							<ChevronRightSquareIcon className={cn("size-3 pointer-events-none", color)} />
 						)}
 						{!system.info.ct && <IndicatorDot system={system} className={cn(color, "bg-current mx-0.5")} />}
-						<span className="truncate max-w-14">{info.getValue() as string}</span>
+						<span className="text-nowrap">{info.getValue() as string}</span>
 					</Link>
 				)
 			},

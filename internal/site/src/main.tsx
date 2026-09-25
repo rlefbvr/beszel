@@ -13,6 +13,7 @@ import { ThemeProvider } from "@/components/theme-provider.tsx"
 import { Toaster } from "@/components/ui/toaster.tsx"
 import { alertManager } from "@/lib/alerts"
 import { refreshLatestAgentVersion } from "@/lib/agent-updates"
+import { refreshLastAlerts, subscribeLastAlerts, unsubscribeLastAlerts } from "@/lib/last-alerts"
 import { refreshQuietHours, subscribeQuietHours, unsubscribeQuietHours } from "@/lib/quiet-hours"
 import { refreshStateAlerts, subscribeStateAlerts, unsubscribeStateAlerts } from "@/lib/state-alerts"
 import { isAdmin, pb, updateHubSettings, updateUserSettings } from "@/lib/api.ts"
@@ -73,11 +74,13 @@ const App = memo(() => {
 		refreshStateAlerts().then(subscribeStateAlerts)
 		refreshQuietHours().then(subscribeQuietHours)
 		refreshLatestAgentVersion()
+		refreshLastAlerts().then(subscribeLastAlerts)
 		return () => {
 			unsubscribeAuth()
 			alertManager.unsubscribe()
 			unsubscribeStateAlerts()
 			unsubscribeQuietHours()
+			unsubscribeLastAlerts()
 			systemsManager.unsubscribe()
 		}
 	}, [])

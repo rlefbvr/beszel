@@ -46,8 +46,8 @@ import {
 	quietHoursReasonLabel,
 	quietHoursReasons,
 	quietHoursState,
-	useNow,
 } from "@/lib/quiet-hours"
+import { useNow } from "@/lib/time"
 import { $allSystemsById, $systems } from "@/lib/stores"
 import { cn, formatShortDate } from "@/lib/utils"
 import type { QuietHoursRecord, SystemRecord } from "@/types"

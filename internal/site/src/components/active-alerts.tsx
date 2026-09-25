@@ -48,10 +48,10 @@ export const ActiveAlerts = () => {
 			return null
 		}
 		return (
-			<Card>
+			<Card className="border-red-500/60 bg-red-500/5 dark:bg-red-500/10">
 				<CardHeader className="pb-4 px-2 sm:px-6 max-sm:pt-5 max-sm:pb-1">
 					<div className="px-2 sm:px-1">
-						<CardTitle>
+						<CardTitle className="text-red-600 dark:text-red-400">
 							<Trans>Active Alerts</Trans>
 						</CardTitle>
 					</div>
@@ -64,7 +64,7 @@ export const ActiveAlerts = () => {
 								return (
 									<Alert
 										key={alert.id}
-										className="hover:-translate-y-px duration-200 bg-transparent border-foreground/10 hover:shadow-md shadow-black/5"
+										className="hover:-translate-y-px duration-200 bg-background border-red-500/30 hover:shadow-md shadow-black/5"
 									>
 										<info.icon className="h-4 w-4" />
 										<AlertTitle>
@@ -103,7 +103,7 @@ export const ActiveAlerts = () => {
 								return (
 									<Alert
 										key={rule.id}
-										className="hover:-translate-y-px duration-200 bg-transparent border-foreground/10 hover:shadow-md shadow-black/5"
+										className="hover:-translate-y-px duration-200 bg-background border-red-500/30 hover:shadow-md shadow-black/5"
 									>
 										<Icon className="h-4 w-4" />
 										<AlertTitle>

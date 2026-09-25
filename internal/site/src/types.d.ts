@@ -434,6 +434,8 @@ export interface UserSettings {
 	hiddenGroups?: string[]
 	/** home page: only systems with alerts ("any", "state" or an alert name) */
 	alertFilter?: string
+	/** home page: widths of the resized table columns, in pixels */
+	colWidths?: Record<string, number>
 }
 
 type ChartDataContainer = {

@@ -109,6 +109,7 @@ export default function SystemsTable() {
 	const [alertFilter, setAlertFilter] = useState(() => $userSettings.get().alertFilter ?? "")
 	const [activeGroupTab, setActiveGroupTab] = useState(() => $userSettings.get().groupTab ?? allGroupsTab)
 	const [groupsDialogOpen, setGroupsDialogOpen] = useState(false)
+	const [colWidths, setColWidths] = useState<Record<string, number>>(() => $userSettings.get().colWidths ?? {})
 	const groupNames = useStore($systemGroups)
 	const alerts = useStore($alerts)
 	const stateAlerts = useStore($stateAlerts)
@@ -116,7 +117,7 @@ export default function SystemsTable() {
 	// Apply settings from server once they load (handles incognito / new devices)
 	const applied = useRef(new Set<string>())
 	useEffect(() => {
-		return subscribeKeys($userSettings, ["cols", "statusFilter", "viewMode", "sortMode", "groupView", "hiddenGroups", "alertFilter", "groupTab"], (vals) => {
+		return subscribeKeys($userSettings, ["cols", "statusFilter", "viewMode", "sortMode", "groupView", "hiddenGroups", "alertFilter", "groupTab", "colWidths"], (vals) => {
 			if (!applied.current.has("cols") && vals.cols !== undefined) {
 				applied.current.add("cols")
 				setColumnVisibility(vals.cols)
@@ -148,6 +149,10 @@ export default function SystemsTable() {
 			if (!applied.current.has("groupTab") && vals.groupTab !== undefined) {
 				applied.current.add("groupTab")
 				setActiveGroupTab(vals.groupTab)
+			}
+			if (!applied.current.has("colWidths") && vals.colWidths !== undefined) {
+				applied.current.add("colWidths")
+				setColWidths(vals.colWidths)
 			}
 		})
 	}, [])
@@ -193,7 +198,7 @@ export default function SystemsTable() {
 
 	// save a view preference of the user
 	const saveViewSetting = useCallback(
-		<K extends "groupView" | "hiddenGroups" | "alertFilter" | "groupTab">(key: K, value: UserSettings[K]) => {
+		<K extends "groupView" | "hiddenGroups" | "alertFilter" | "groupTab" | "colWidths">(key: K, value: UserSettings[K]) => {
 			$userSettings.setKey(key, value)
 			queueUserSettings({ [key]: value })
 		},
@@ -216,6 +221,18 @@ export default function SystemsTable() {
 	const handleGroupTabChange = useCallback((value: string) => {
 		setActiveGroupTab(value)
 		saveViewSetting("groupTab", value)
+	}, [])
+
+	// width of a column while it is resized, saved when the resize ends; undefined resets it
+	const handleColumnResize = useCallback((columnId: string, width: number | undefined, done: boolean) => {
+		setColWidths((current) => {
+			const { [columnId]: _, ...rest } = current
+			const next = width === undefined ? rest : { ...current, [columnId]: width }
+			if (done) {
+				saveViewSetting("colWidths", next)
+			}
+			return next
+		})
 	}, [])
 
 	const handleAlertFilterChange = useCallback((value: string) => {
@@ -594,7 +611,14 @@ export default function SystemsTable() {
 			{viewMode === "table" ? (
 				// table layout
 				<div className="rounded-md">
-					<AllSystemsTable table={table} rows={rows} colLength={visibleColumns.length} grouped={grouped} />
+					<AllSystemsTable
+						table={table}
+						rows={rows}
+						colLength={visibleColumns.length}
+						grouped={grouped}
+						colWidths={colWidths}
+						onColumnResize={handleColumnResize}
+					/>
 				</div>
 			) : grouped && rows.length ? (
 				// grid layout by group
@@ -711,11 +735,15 @@ const AllSystemsTable = memo(
 		rows,
 		colLength,
 		grouped,
+		colWidths,
+		onColumnResize,
 	}: {
 		table: TableType<SystemRecord>
 		rows: Row<SystemRecord>[]
 		colLength: number
 		grouped: boolean
+		colWidths: Record<string, number>
+		onColumnResize: ColumnResizeHandler
 	}) => {
 		// The virtualizer will need a reference to the scrollable container element
 		const scrollRef = useRef<HTMLDivElement>(null)
@@ -755,7 +783,7 @@ const AllSystemsTable = memo(
 				{/* add header height to table size */}
 				<div style={{ height: `${virtualizer.getTotalSize() + 50}px`, paddingTop, paddingBottom }}>
 					<table className="text-sm w-full h-full">
-						<SystemsTableHead table={table} />
+						<SystemsTableHead table={table} colWidths={colWidths} onColumnResize={onColumnResize} />
 						<TableBody onMouseEnter={preloadSystemDetail}>
 							{rows.length ? (
 								virtualRows.map((virtualRow) => {
@@ -781,6 +809,7 @@ const AllSystemsTable = memo(
 											virtualRow={virtualRow}
 											length={rows.length}
 											colLength={colLength}
+											colWidths={colWidths}
 										/>
 									)
 								})
@@ -799,16 +828,35 @@ const AllSystemsTable = memo(
 	}
 )
 
-function SystemsTableHead({ table }: { table: TableType<SystemRecord> }) {
+/** Changes the width of a column: live while dragging, saved when done; undefined resets it */
+type ColumnResizeHandler = (columnId: string, width: number | undefined, done: boolean) => void
+
+function SystemsTableHead({
+	table,
+	colWidths,
+	onColumnResize,
+}: {
+	table: TableType<SystemRecord>
+	colWidths: Record<string, number>
+	onColumnResize: ColumnResizeHandler
+}) {
 	const { t } = useLingui()
 	return (
 		<TableHeader className="sticky top-0 z-50 w-full border-b-2">
 			{table.getHeaderGroups().map((headerGroup) => (
 				<tr key={headerGroup.id}>
 					{headerGroup.headers.map((header) => {
+						const width = colWidths[header.column.id]
 						return (
-							<TableHead className="px-1.5" key={header.id}>
+							<TableHead
+								className="px-1.5 relative"
+								key={header.id}
+								style={width ? { width, minWidth: width, maxWidth: width } : undefined}
+							>
 								{flexRender(header.column.columnDef.header, header.getContext())}
+								{header.column.id !== "actions" && (
+									<ColumnResizer columnId={header.column.id} onColumnResize={onColumnResize} />
+								)}
 							</TableHead>
 						)
 					})}
@@ -818,16 +866,54 @@ function SystemsTableHead({ table }: { table: TableType<SystemRecord> }) {
 	)
 }
 
+/** Drag handle on the edge of a column header; double click restores the automatic width */
+function ColumnResizer({ columnId, onColumnResize }: { columnId: string; onColumnResize: ColumnResizeHandler }) {
+	const { t } = useLingui()
+	const startResize = (e: React.PointerEvent<HTMLDivElement>) => {
+		e.preventDefault()
+		const header = e.currentTarget.parentElement
+		if (!header) {
+			return
+		}
+		const startX = e.clientX
+		const startWidth = header.getBoundingClientRect().width
+		// the handle is on the end side: dragging towards it widens the column
+		const direction = getComputedStyle(header).direction === "rtl" ? -1 : 1
+		const widthAt = (x: number) => Math.max(40, Math.round(startWidth + (x - startX) * direction))
+		const onMove = (event: PointerEvent) => onColumnResize(columnId, widthAt(event.clientX), false)
+		const onUp = (event: PointerEvent) => {
+			window.removeEventListener("pointermove", onMove)
+			window.removeEventListener("pointerup", onUp)
+			onColumnResize(columnId, widthAt(event.clientX), true)
+		}
+		window.addEventListener("pointermove", onMove)
+		window.addEventListener("pointerup", onUp)
+	}
+	return (
+		<div
+			role="separator"
+			aria-orientation="vertical"
+			aria-label={t`Resize column`}
+			title={t`Drag to resize, double click to reset`}
+			className="absolute top-0 end-0 h-full w-1.5 cursor-col-resize select-none touch-none hover:bg-primary/30 active:bg-primary/50"
+			onPointerDown={startResize}
+			onDoubleClick={() => onColumnResize(columnId, undefined, true)}
+		/>
+	)
+}
+
 const SystemTableRow = memo(
 	({
 		row,
 		virtualRow,
 		colLength,
+		colWidths,
 	}: {
 		row: Row<SystemRecord>
 		virtualRow: VirtualItem
 		length: number
 		colLength: number
+		colWidths: Record<string, number>
 	}) => {
 		const system = row.original
 		const { t } = useLingui()
@@ -839,21 +925,25 @@ const SystemTableRow = memo(
 						"opacity-50": system.status === SystemStatus.Paused,
 					})}
 				>
-					{row.getVisibleCells().map((cell) => (
-						<TableCell
-							key={cell.id}
-							style={{
-								width: cell.column.getSize(),
-								height: virtualRow.size,
-							}}
-							className="py-0 ps-4.5"
-						>
-							{flexRender(cell.column.columnDef.cell, cell.getContext())}
-						</TableCell>
-					))}
+					{row.getVisibleCells().map((cell) => {
+						const width = colWidths[cell.column.id]
+						return (
+							<TableCell
+								key={cell.id}
+								style={{
+									width: width ?? cell.column.getSize(),
+									maxWidth: width,
+									height: virtualRow.size,
+								}}
+								className={cn("py-0 ps-4.5", width && "overflow-hidden")}
+							>
+								{flexRender(cell.column.columnDef.cell, cell.getContext())}
+							</TableCell>
+						)
+					})}
 				</TableRow>
 			)
-		}, [system, system.status, colLength, t])
+		}, [system, system.status, colLength, colWidths, t])
 	}
 )
 

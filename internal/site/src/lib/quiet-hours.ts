@@ -1,6 +1,5 @@
 import { t } from "@lingui/core/macro"
-import { useStore } from "@nanostores/react"
-import { atom, map, onMount } from "nanostores"
+import { map } from "nanostores"
 import { pb } from "@/lib/api"
 import type { QuietHoursRecord } from "@/types"
 
@@ -112,17 +111,4 @@ export function isPresetReason(reason?: string): reason is QuietHoursReason {
 /** Label of a stored reason: the translated preset or the custom text */
 export function quietHoursReasonLabel(reason?: string) {
 	return isPresetReason(reason) ? quietHoursReasons[reason]() : (reason ?? "")
-}
-
-/** Current time, shared by all components and updated while used */
-const $now = atom(new Date())
-onMount($now, () => {
-	$now.set(new Date())
-	const id = setInterval(() => $now.set(new Date()), 30_000)
-	return () => clearInterval(id)
-})
-
-/** Current time, updated every 30 seconds to re-evaluate time based states */
-export function useNow() {
-	return useStore($now)
 }
