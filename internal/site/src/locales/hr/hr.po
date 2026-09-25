@@ -117,6 +117,7 @@ msgstr "30 dana"
 msgid "5 min"
 msgstr "5 minuta"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "Račun"
@@ -188,13 +189,32 @@ msgstr "Nakon"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "Nakon postavljanja varijabli okruženja, ponovno pokrenite svoj Beszel hub kako bi promjene stupile na snagu."
 
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Agent"
 msgstr "Agent"
 
+#: src/components/routes/system/agent-button.tsx
+msgid "Agent {version}"
+msgstr "Agent {version}"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent details are not available: the agent may need an update."
+msgstr "Pojedinosti agenta nisu dostupne: agent možda treba ažuriranje."
+
 #: src/components/routes/settings/general.tsx
 msgid "Agent installation"
 msgstr "Instalacija agenta"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent logs"
+msgstr "Zapisnici agenta"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent updated"
+msgstr "Agent ažuriran"
 
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -223,6 +243,10 @@ msgstr "Upozori kada stanje nije"
 msgid "Alerts"
 msgstr "Upozorenja"
 
+#: src/components/agent-update-dialog.tsx
+msgid "All agents are up to date ({latest})"
+msgstr "Svi agenti su ažurni ({latest})"
+
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
@@ -230,6 +254,10 @@ msgstr "Upozorenja"
 #: src/components/routes/containers.tsx
 msgid "All Containers"
 msgstr "Svi spremnici"
+
+#: src/components/agent-update-dialog.tsx
+msgid "All outdated ({outdatedCount})"
+msgstr "Svi zastarjeli ({outdatedCount})"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -261,6 +289,11 @@ msgstr "Svi Sustavi"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "Svi sustavi do {until}"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Already up to date."
+msgstr "Već ažurno."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -440,6 +473,7 @@ msgstr "Može se pokrenuti"
 msgid "Can stop"
 msgstr "Može se zaustaviti"
 
+#: src/components/agent-update-dialog.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -554,6 +588,10 @@ msgstr "Odaberite sustav za prikaz više informacija."
 msgid "Click to copy"
 msgstr "Pritisnite za kopiranje"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Close"
+msgstr "Zatvori"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Interval prikupljanja"
@@ -592,6 +630,7 @@ msgstr "Veza je pala"
 msgid "Consecutive checks"
 msgstr "Uzastopne provjere"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Kontejner"
@@ -778,6 +817,10 @@ msgstr "Ciklusi"
 msgid "Daily"
 msgstr "Dnevno"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Data directory"
+msgstr "Mapa podataka"
+
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
 msgid "Default"
@@ -799,6 +842,10 @@ msgstr "Izbriši"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "Izbriši otisak"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Dependencies"
+msgstr "Ovisnosti"
 
 #: src/lib/quiet-hours.ts
 msgid "Deployment"
@@ -1197,6 +1244,10 @@ msgstr "Hostirane usluge"
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "Koliko često agenti prikupljaju podatke o systemd i Windows uslugama. Kraći intervali ranije otkrivaju promjene stanja, ali zapisuju više podataka. Primjenjuje se na sve sustave."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "How the agent runs on this system."
+msgstr "Kako agent radi na ovom sustavu."
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
 msgstr "HTTP metoda"
@@ -1273,6 +1324,10 @@ msgstr "Nevažeća email adresa."
 msgid "Language"
 msgstr "Jezik"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Last lines logged by the agent of {name} since it started."
+msgstr "Posljednji retci koje je agent sustava {name} zabilježio od pokretanja."
+
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "Izgled"
@@ -1327,6 +1382,10 @@ msgstr "Učitavanje..."
 msgid "Local Disk"
 msgstr "Lokalni disk"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Location"
+msgstr "Lokacija"
+
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 msgid "Log Out"
@@ -1348,6 +1407,7 @@ msgstr "Zapisi prijava"
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Logs"
 msgstr "Zapisi"
 
@@ -1517,6 +1577,10 @@ msgstr "Bez upozorenja"
 msgid "No detail data for this pool."
 msgstr "Nema detaljnih podataka za ovo spremište."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "No logs yet."
+msgstr "Još nema zapisa."
+
 #: src/components/reboots-table.tsx
 msgid "No reboots recorded."
 msgstr "Nema zabilježenih ponovnih pokretanja."
@@ -1539,6 +1603,10 @@ msgstr "Nema rezultata."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "Nema dostupnih S.M.A.R.T. atributa za ovaj uređaj."
+
+#: src/lib/agent-updates.ts
+msgid "No service restarts the agent after an update."
+msgstr "Nijedna usluga ne pokreće agenta ponovno nakon ažuriranja."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1886,6 +1954,8 @@ msgstr "Zabilježeno"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Refresh"
@@ -1951,6 +2021,10 @@ msgstr "Promijeni token"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "Redovi po stranici"
+
+#: src/lib/agent-updates.ts
+msgid "Runs in a container: update its image instead."
+msgstr "Radi u kontejneru: umjesto toga ažurirajte njegovu sliku."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Runtime Metrics"
@@ -2049,6 +2123,14 @@ msgstr "Odaberi redak"
 msgid "Select systems"
 msgstr "Odaberi sustave"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Select the systems to update."
+msgstr "Odaberite sustave za ažuriranje."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Selection"
+msgstr "Odabir"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
 msgstr "Pošaljite jedan heartbeat ping kako biste provjerili radi li vaša krajnja točka."
@@ -2069,6 +2151,7 @@ msgstr "Poslano"
 msgid "Serial Number"
 msgstr "Serijski broj"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Usluga"
@@ -2152,6 +2235,14 @@ msgstr "Vrijeme početka"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Start type"
 msgstr "Vrsta pokretanja"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started"
+msgstr "Pokrenuto"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started manually"
+msgstr "Pokrenuto ručno"
 
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
@@ -2245,6 +2336,10 @@ msgstr "Brzine ventilatora sustava (RPM)"
 msgid "System load averages over time"
 msgstr "Prosječno opterećenje sustava kroz vrijeme"
 
+#: src/lib/agent-updates.ts
+msgid "System not found."
+msgstr "Sustav nije pronađen."
+
 #: src/lib/quiet-hours.ts
 msgid "System updates"
 msgstr "Ažuriranja sustava"
@@ -2262,6 +2357,10 @@ msgstr "Sustavi"
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
 msgstr "Sustavima se može upravljati pomoću <0>config.yml</0> datoteke unutar data mape."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Systems to update ({targetCount})"
+msgstr "Sustavi za ažuriranje ({targetCount})"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
@@ -2320,9 +2419,29 @@ msgstr "Probna obavijest poslana"
 msgid "Testing"
 msgstr "Testiranje"
 
+#: src/lib/agent-updates.ts
+msgid "The agent can't replace its executable. Reinstall it with the current install command."
+msgstr "Agent ne može zamijeniti svoju izvršnu datoteku. Ponovno ga instalirajte trenutačnom naredbom za instalaciju."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The agent restarts and reconnects on its own."
+msgstr "Agent se sam ponovno pokreće i povezuje."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The agents download version {latest} from GitHub, then restart."
+msgstr "Agenti preuzimaju verziju {latest} s GitHuba, a zatim se ponovno pokreću."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The latest agent version is not known yet"
+msgstr "Najnovija verzija agenta još nije poznata"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Ukupni status je <0>ok</0> kada su svi sustavi u radu, <1>warn</1> kada su aktivirana upozorenja i <2>error</2> kada je bilo koji sustav isključen."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The system is not connected."
+msgstr "Sustav nije povezan."
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -2331,6 +2450,10 @@ msgstr "Zatim se prijavite u backend i resetirajte lozinku korisničkog računa 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Ova radnja ne može se poništiti. Svi trenutni zapisi za {name} bit će trajno izbrisani iz baze podataka."
+
+#: src/lib/agent-updates.ts
+msgid "This agent is too old to be managed from the hub: update it once on the system."
+msgstr "Ovaj agent je prestar za upravljanje iz huba: ažurirajte ga jednom na sustavu."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
@@ -2542,9 +2665,32 @@ msgstr "Sustav je podignut"
 msgid "Up ({upSystemsLength})"
 msgstr "Sustav je podignut ({upSystemsLength})"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Up to date"
+msgstr "Ažurno"
+
+#: src/components/agent-update-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Update"
 msgstr "Ažuriraj"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+msgid "Update agents"
+msgstr "Ažuriraj agente"
+
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update available: {latest}"
+msgstr "Dostupno ažuriranje: {latest}"
+
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update failed"
+msgstr "Ažuriranje nije uspjelo"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2557,6 +2703,10 @@ msgstr "Ažurirano"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Updated every {intervalLabel}."
 msgstr "Interval ažuriranja: {intervalLabel}."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Updated, the agent restarts."
+msgstr "Ažurirano, agent se ponovno pokreće."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"
@@ -2609,6 +2759,10 @@ msgstr "Iskorištenost"
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
 msgstr "Vrijednost"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Version"
+msgstr "Verzija"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "View"
@@ -2673,6 +2827,10 @@ msgstr "Zapisnik događaja sustava Windows"
 #: src/components/routes/settings/general.tsx
 msgid "Windows install folder"
 msgstr "Instalacijska mapa u sustavu Windows"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Windows service (NSSM)"
+msgstr "Usluga sustava Windows (NSSM)"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Windows Services"

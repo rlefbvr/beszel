@@ -30,6 +30,12 @@ const (
 	SyncNetworkMonitors
 	// Request the boots of the host found in its logs
 	GetBootEvents
+	// Request how the agent runs (service, dependencies)
+	GetAgentInfo
+	// Request the last lines logged by the agent
+	GetAgentLogs
+	// Ask the agent to update itself to the latest release
+	UpdateAgent
 	// Add new actions here...
 )
 

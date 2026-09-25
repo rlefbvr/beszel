@@ -117,6 +117,7 @@ msgstr "30 ימים"
 msgid "5 min"
 msgstr "5 דק'"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "חשבון"
@@ -188,13 +189,32 @@ msgstr "אחרי"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "לאחר הגדרת משתני הסביבה, יש להפעיל את ה־Beszel hub שלך מחדש כדי שהשינויים ייכנסו לתוקף."
 
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Agent"
 msgstr "סוכן"
 
+#: src/components/routes/system/agent-button.tsx
+msgid "Agent {version}"
+msgstr "סוכן {version}"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent details are not available: the agent may need an update."
+msgstr "פרטי הסוכן אינם זמינים: ייתכן שהסוכן זקוק לעדכון."
+
 #: src/components/routes/settings/general.tsx
 msgid "Agent installation"
 msgstr "התקנת סוכן"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent logs"
+msgstr "יומני הסוכן"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent updated"
+msgstr "הסוכן עודכן"
 
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -223,6 +243,10 @@ msgstr "התראה כאשר המצב אינו"
 msgid "Alerts"
 msgstr "התראות"
 
+#: src/components/agent-update-dialog.tsx
+msgid "All agents are up to date ({latest})"
+msgstr "כל הסוכנים מעודכנים ({latest})"
+
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
@@ -230,6 +254,10 @@ msgstr "התראות"
 #: src/components/routes/containers.tsx
 msgid "All Containers"
 msgstr "כל הקונטיינרים"
+
+#: src/components/agent-update-dialog.tsx
+msgid "All outdated ({outdatedCount})"
+msgstr "כל המיושנים ({outdatedCount})"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -261,6 +289,11 @@ msgstr "כל המערכות"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "כל המערכות עד {until}"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Already up to date."
+msgstr "כבר מעודכן."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -440,6 +473,7 @@ msgstr "יכול להתחיל"
 msgid "Can stop"
 msgstr "יכול לעצור"
 
+#: src/components/agent-update-dialog.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -554,6 +588,10 @@ msgstr "לחץ על מערכת כדי לצפות במידע נוסף."
 msgid "Click to copy"
 msgstr "לחץ כדי להעתיק"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Close"
+msgstr "סגור"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "מרווח איסוף"
@@ -592,6 +630,7 @@ msgstr "החיבור נפל"
 msgid "Consecutive checks"
 msgstr "בדיקות רצופות"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "קונטיינר"
@@ -778,6 +817,10 @@ msgstr "מחזורים"
 msgid "Daily"
 msgstr "יומי"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Data directory"
+msgstr "תיקיית נתונים"
+
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
 msgid "Default"
@@ -799,6 +842,10 @@ msgstr "מחק"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "מחק טביעת אצבע"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Dependencies"
+msgstr "תלויות"
 
 #: src/lib/quiet-hours.ts
 msgid "Deployment"
@@ -1197,6 +1244,10 @@ msgstr "שירותים מתארחים"
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "באיזו תדירות הסוכנים אוספים נתונים על שירותי systemd ו-Windows. מרווחים קצרים יותר מזהים שינויי מצב מוקדם יותר אך כותבים יותר נתונים. חל על כל המערכות."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "How the agent runs on this system."
+msgstr "כיצד הסוכן פועל במערכת זו."
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
 msgstr "שיטת HTTP"
@@ -1273,6 +1324,10 @@ msgstr "כתובת אימייל לא תקינה."
 msgid "Language"
 msgstr "שפה"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Last lines logged by the agent of {name} since it started."
+msgstr "השורות האחרונות שנרשמו על ידי הסוכן של {name} מאז שהופעל."
+
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "פריסה"
@@ -1327,6 +1382,10 @@ msgstr "טוען..."
 msgid "Local Disk"
 msgstr "דיסק מקומי"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Location"
+msgstr "מיקום"
+
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 msgid "Log Out"
@@ -1348,6 +1407,7 @@ msgstr "רשומות כניסה"
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Logs"
 msgstr "יומנים"
 
@@ -1517,6 +1577,10 @@ msgstr "אין התראה"
 msgid "No detail data for this pool."
 msgstr "אין נתונים מפורטים עבור מאגר זה."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "No logs yet."
+msgstr "אין עדיין יומנים."
+
 #: src/components/reboots-table.tsx
 msgid "No reboots recorded."
 msgstr "לא נרשמו הפעלות מחדש."
@@ -1539,6 +1603,10 @@ msgstr "אין תוצאות."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "אין מאפייני S.M.A.R.T. זמינים עבור התקן זה."
+
+#: src/lib/agent-updates.ts
+msgid "No service restarts the agent after an update."
+msgstr "אף שירות לא מפעיל מחדש את הסוכן לאחר עדכון."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1886,6 +1954,8 @@ msgstr "נרשם"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Refresh"
@@ -1951,6 +2021,10 @@ msgstr "סובב token"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "שורות לעמוד"
+
+#: src/lib/agent-updates.ts
+msgid "Runs in a container: update its image instead."
+msgstr "פועל בתוך מכולה: עדכן את האימג׳ שלה במקום."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Runtime Metrics"
@@ -2049,6 +2123,14 @@ msgstr "בחר שורה"
 msgid "Select systems"
 msgstr "בחר מערכות"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Select the systems to update."
+msgstr "בחר את המערכות לעדכון."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Selection"
+msgstr "בחירה"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
 msgstr "שלח פינג פעימת לב בודד כדי לוודא שנקודת הקצה שלך עובדת."
@@ -2069,6 +2151,7 @@ msgstr "נשלח"
 msgid "Serial Number"
 msgstr "מספר סידורי"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "שירות"
@@ -2152,6 +2235,14 @@ msgstr "זמן התחלה"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Start type"
 msgstr "סוג הפעלה"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started"
+msgstr "הופעל"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started manually"
+msgstr "הופעל ידנית"
 
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
@@ -2245,6 +2336,10 @@ msgstr "מהירויות מאווררי המערכת (RPM)"
 msgid "System load averages over time"
 msgstr "ממוצעי עומס מערכת לאורך זמן"
 
+#: src/lib/agent-updates.ts
+msgid "System not found."
+msgstr "המערכת לא נמצאה."
+
 #: src/lib/quiet-hours.ts
 msgid "System updates"
 msgstr "עדכוני מערכת"
@@ -2262,6 +2357,10 @@ msgstr "מערכות"
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
 msgstr "מערכות יכולות להיות מנוהלות בקובץ <0>config.yml</0> בתוך ספריית הנתונים שלך."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Systems to update ({targetCount})"
+msgstr "מערכות לעדכון ({targetCount})"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
@@ -2320,9 +2419,29 @@ msgstr "התראת בדיקה נשלחה"
 msgid "Testing"
 msgstr "בדיקות"
 
+#: src/lib/agent-updates.ts
+msgid "The agent can't replace its executable. Reinstall it with the current install command."
+msgstr "הסוכן אינו יכול להחליף את קובץ ההפעלה שלו. התקן אותו מחדש באמצעות פקודת ההתקנה הנוכחית."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The agent restarts and reconnects on its own."
+msgstr "הסוכן מופעל מחדש ומתחבר שוב בעצמו."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The agents download version {latest} from GitHub, then restart."
+msgstr "הסוכנים מורידים את גרסה {latest} מ-GitHub ואז מופעלים מחדש."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The latest agent version is not known yet"
+msgstr "הגרסה האחרונה של הסוכן עדיין אינה ידועה"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "הסטטוס הכללי הוא <0>ok</0> כשכל המערכות פועלות, <1>warn</1> כשמופעלות התראות, ו-<2>error</2> כשמערכת כלשהי מושבתת."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The system is not connected."
+msgstr "המערכת אינה מחוברת."
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -2331,6 +2450,10 @@ msgstr "לאחר מכן התחבר ל-backend ואפס את סיסמת חשבו�
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "פעולה זו לא ניתנת לביטול. פעולה זו תמחק לצמיתות את כל הרשומות הנוכחיות עבור {name} ממסד הנתונים."
+
+#: src/lib/agent-updates.ts
+msgid "This agent is too old to be managed from the hub: update it once on the system."
+msgstr "הסוכן הזה ישן מדי לניהול מהרכזת: עדכנו אותו פעם אחת במערכת עצמה."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
@@ -2542,9 +2665,32 @@ msgstr "למעלה"
 msgid "Up ({upSystemsLength})"
 msgstr "למעלה ({upSystemsLength})"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Up to date"
+msgstr "מעודכן"
+
+#: src/components/agent-update-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Update"
 msgstr "עדכן"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+msgid "Update agents"
+msgstr "עדכון סוכנים"
+
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update available: {latest}"
+msgstr "עדכון זמין: {latest}"
+
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update failed"
+msgstr "העדכון נכשל"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2557,6 +2703,10 @@ msgstr "עודכן"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Updated every {intervalLabel}."
 msgstr "מרווח עדכון: {intervalLabel}."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Updated, the agent restarts."
+msgstr "עודכן, הסוכן מופעל מחדש."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"
@@ -2609,6 +2759,10 @@ msgstr "ניצולת"
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
 msgstr "ערך"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Version"
+msgstr "גרסה"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "View"
@@ -2673,6 +2827,10 @@ msgstr "יומן האירועים של Windows"
 #: src/components/routes/settings/general.tsx
 msgid "Windows install folder"
 msgstr "תיקיית התקנה ב-Windows"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Windows service (NSSM)"
+msgstr "שירות Windows (NSSM)"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Windows Services"

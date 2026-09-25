@@ -117,6 +117,7 @@ msgstr "30 nap"
 msgid "5 min"
 msgstr "5 perc"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "Fiók"
@@ -188,13 +189,32 @@ msgstr "Utána"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "A környezeti változók beállítása után indítsa újra a Beszel hubot a módosítások érvénybe léptetéséhez."
 
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Agent"
 msgstr "Ügynök"
 
+#: src/components/routes/system/agent-button.tsx
+msgid "Agent {version}"
+msgstr "Ügynök {version}"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent details are not available: the agent may need an update."
+msgstr "Az ügynök adatai nem érhetők el: lehet, hogy frissíteni kell az ügynököt."
+
 #: src/components/routes/settings/general.tsx
 msgid "Agent installation"
 msgstr "Ügynök telepítése"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent logs"
+msgstr "Ügynöknaplók"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent updated"
+msgstr "Ügynök frissítve"
 
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -223,6 +243,10 @@ msgstr "Riasztás, ha az állapot nem"
 msgid "Alerts"
 msgstr "Riasztások"
 
+#: src/components/agent-update-dialog.tsx
+msgid "All agents are up to date ({latest})"
+msgstr "Minden ügynök naprakész ({latest})"
+
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
@@ -230,6 +254,10 @@ msgstr "Riasztások"
 #: src/components/routes/containers.tsx
 msgid "All Containers"
 msgstr "Minden konténer"
+
+#: src/components/agent-update-dialog.tsx
+msgid "All outdated ({outdatedCount})"
+msgstr "Összes elavult ({outdatedCount})"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -261,6 +289,11 @@ msgstr "Minden rendszer"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "Minden rendszer eddig: {until}"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Already up to date."
+msgstr "Már naprakész."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -440,6 +473,7 @@ msgstr "Indítható"
 msgid "Can stop"
 msgstr "Leállítható"
 
+#: src/components/agent-update-dialog.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -554,6 +588,10 @@ msgstr "További információkért kattints egy rendszerre."
 msgid "Click to copy"
 msgstr "Kattints a másoláshoz"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Close"
+msgstr "Bezárás"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Gyűjtési időköz"
@@ -592,6 +630,7 @@ msgstr "Kapcsolat megszakadt"
 msgid "Consecutive checks"
 msgstr "Egymást követő ellenőrzések"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Konténer"
@@ -778,6 +817,10 @@ msgstr "Ciklusok"
 msgid "Daily"
 msgstr "Napi"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Data directory"
+msgstr "Adatkönyvtár"
+
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
 msgid "Default"
@@ -799,6 +842,10 @@ msgstr "Törlés"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "Ujjlenyomat törlése"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Dependencies"
+msgstr "Függőségek"
 
 #: src/lib/quiet-hours.ts
 msgid "Deployment"
@@ -1197,6 +1244,10 @@ msgstr "Futtatott szolgáltatások"
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "Milyen gyakran gyűjtik az ügynökök a systemd- és Windows-szolgáltatások adatait. A rövidebb időköz hamarabb észleli az állapotváltozásokat, de több adatot ír. Minden rendszerre vonatkozik."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "How the agent runs on this system."
+msgstr "Hogyan fut az ügynök ezen a rendszeren."
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
 msgstr "HTTP metódus"
@@ -1273,6 +1324,10 @@ msgstr "Érvénytelen e-mail cím."
 msgid "Language"
 msgstr "Nyelv"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Last lines logged by the agent of {name} since it started."
+msgstr "A(z) {name} ügynöke által az indulása óta naplózott utolsó sorok."
+
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "Elrendezés"
@@ -1327,6 +1382,10 @@ msgstr "Betöltés..."
 msgid "Local Disk"
 msgstr "Helyi lemez"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Location"
+msgstr "Hely"
+
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 msgid "Log Out"
@@ -1348,6 +1407,7 @@ msgstr "Bejelentkezési naplók"
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Logs"
 msgstr "Naplók"
 
@@ -1517,6 +1577,10 @@ msgstr "Nincs riasztás"
 msgid "No detail data for this pool."
 msgstr "Ehhez a tárkészlethez nem érhetők el részletes adatok."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "No logs yet."
+msgstr "Még nincsenek naplók."
+
 #: src/components/reboots-table.tsx
 msgid "No reboots recorded."
 msgstr "Nincs rögzített újraindítás."
@@ -1539,6 +1603,10 @@ msgstr "Nincs találat."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "Ehhez az eszközhöz nem állnak rendelkezésre S.M.A.R.T. attribútumok."
+
+#: src/lib/agent-updates.ts
+msgid "No service restarts the agent after an update."
+msgstr "Frissítés után egyetlen szolgáltatás sem indítja újra az ügynököt."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1886,6 +1954,8 @@ msgstr "Rögzítve"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Refresh"
@@ -1951,6 +2021,10 @@ msgstr "Tokenváltás"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "Sorok száma oldalanként"
+
+#: src/lib/agent-updates.ts
+msgid "Runs in a container: update its image instead."
+msgstr "Konténerben fut: helyette a lemezképét frissítse."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Runtime Metrics"
@@ -2049,6 +2123,14 @@ msgstr "Sor kijelölése"
 msgid "Select systems"
 msgstr "Rendszerek kijelölése"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Select the systems to update."
+msgstr "Válassza ki a frissítendő rendszereket."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Selection"
+msgstr "Kijelölés"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
 msgstr "Küldjön egyetlen heartbeat pinget a végpont működésének ellenőrzéséhez."
@@ -2069,6 +2151,7 @@ msgstr "Elküldve"
 msgid "Serial Number"
 msgstr "Sorozatszám"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Szolgáltatás"
@@ -2152,6 +2235,14 @@ msgstr "Kezdési idő"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Start type"
 msgstr "Indítás típusa"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started"
+msgstr "Elindítva"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started manually"
+msgstr "Kézzel indítva"
 
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
@@ -2245,6 +2336,10 @@ msgstr "Rendszerventilátorok sebessége (RPM)"
 msgid "System load averages over time"
 msgstr "Rendszer terhelési átlaga"
 
+#: src/lib/agent-updates.ts
+msgid "System not found."
+msgstr "A rendszer nem található."
+
 #: src/lib/quiet-hours.ts
 msgid "System updates"
 msgstr "Rendszerfrissítések"
@@ -2262,6 +2357,10 @@ msgstr "Rendszer"
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
 msgstr "A rendszereket egy <0>config.yml</0> fájlban lehet kezelni az adatkönyvtárban."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Systems to update ({targetCount})"
+msgstr "Frissítendő rendszerek ({targetCount})"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
@@ -2320,9 +2419,29 @@ msgstr "Teszt értesítés elküldve"
 msgid "Testing"
 msgstr "Tesztelés"
 
+#: src/lib/agent-updates.ts
+msgid "The agent can't replace its executable. Reinstall it with the current install command."
+msgstr "Az ügynök nem tudja lecserélni a futtatható fájlját. Telepítse újra a jelenlegi telepítési paranccsal."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The agent restarts and reconnects on its own."
+msgstr "Az ügynök magától újraindul és újracsatlakozik."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The agents download version {latest} from GitHub, then restart."
+msgstr "Az ügynökök letöltik a(z) {latest} verziót a GitHubról, majd újraindulnak."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The latest agent version is not known yet"
+msgstr "Az ügynök legújabb verziója még nem ismert"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Az összesített állapot <0>ok</0>, ha minden rendszer fut, <1>warn</1>, ha riasztások léptek fel, és <2>error</2>, ha bármelyik rendszer leállt."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The system is not connected."
+msgstr "A rendszer nincs csatlakoztatva."
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -2331,6 +2450,10 @@ msgstr "Ezután jelentkezzen be a backendbe, és állítsa vissza a felhasznál�
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Ezt a műveletet nem lehet visszavonni! Véglegesen törli a {name} összes jelenlegi rekordját az adatbázisból!"
+
+#: src/lib/agent-updates.ts
+msgid "This agent is too old to be managed from the hub: update it once on the system."
+msgstr "Ez az ügynök túl régi ahhoz, hogy a hubról kezelhető legyen: frissítse egyszer a rendszeren."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
@@ -2542,9 +2665,32 @@ msgstr "Online"
 msgid "Up ({upSystemsLength})"
 msgstr "Online ({upSystemsLength})"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Up to date"
+msgstr "Naprakész"
+
+#: src/components/agent-update-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Update"
 msgstr "Frissítés"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+msgid "Update agents"
+msgstr "Ügynökök frissítése"
+
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update available: {latest}"
+msgstr "Elérhető frissítés: {latest}"
+
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update failed"
+msgstr "A frissítés sikertelen"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2557,6 +2703,10 @@ msgstr "Frissítve"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Updated every {intervalLabel}."
 msgstr "Frissítési időköz: {intervalLabel}."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Updated, the agent restarts."
+msgstr "Frissítve, az ügynök újraindul."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"
@@ -2609,6 +2759,10 @@ msgstr "Kihasználtság"
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
 msgstr "Érték"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Version"
+msgstr "Verzió"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "View"
@@ -2673,6 +2827,10 @@ msgstr "Windows eseménynapló"
 #: src/components/routes/settings/general.tsx
 msgid "Windows install folder"
 msgstr "Telepítési mappa Windows rendszeren"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Windows service (NSSM)"
+msgstr "Windows-szolgáltatás (NSSM)"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Windows Services"

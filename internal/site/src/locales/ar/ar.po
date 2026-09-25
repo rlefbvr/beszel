@@ -117,6 +117,7 @@ msgstr "30 يومًا"
 msgid "5 min"
 msgstr "5 دقائق"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "الحساب"
@@ -188,13 +189,32 @@ msgstr "بعد"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "بعد تعيين متغيرات البيئة، أعد تشغيل مركز Beszel الخاص بك لتصبح التغييرات سارية المفعول."
 
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Agent"
 msgstr "وكيل"
 
+#: src/components/routes/system/agent-button.tsx
+msgid "Agent {version}"
+msgstr "الوكيل {version}"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent details are not available: the agent may need an update."
+msgstr "تفاصيل الوكيل غير متاحة: قد يحتاج الوكيل إلى تحديث."
+
 #: src/components/routes/settings/general.tsx
 msgid "Agent installation"
 msgstr "تثبيت الوكيل"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent logs"
+msgstr "سجلات الوكيل"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent updated"
+msgstr "تم تحديث الوكيل"
 
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -223,6 +243,10 @@ msgstr "تنبيه عندما لا تكون الحالة"
 msgid "Alerts"
 msgstr "التنبيهات"
 
+#: src/components/agent-update-dialog.tsx
+msgid "All agents are up to date ({latest})"
+msgstr "جميع الوكلاء محدّثون ({latest})"
+
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
@@ -230,6 +254,10 @@ msgstr "التنبيهات"
 #: src/components/routes/containers.tsx
 msgid "All Containers"
 msgstr "جميع الحاويات"
+
+#: src/components/agent-update-dialog.tsx
+msgid "All outdated ({outdatedCount})"
+msgstr "كل القديمة ({outdatedCount})"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -261,6 +289,11 @@ msgstr "جميع الأنظمة"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "كل الأنظمة حتى {until}"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Already up to date."
+msgstr "محدّث بالفعل."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -440,6 +473,7 @@ msgstr "يمكن البدء"
 msgid "Can stop"
 msgstr "يمكن الإيقاف"
 
+#: src/components/agent-update-dialog.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -554,6 +588,10 @@ msgstr "انقر على نظام لعرض مزيد من المعلومات."
 msgid "Click to copy"
 msgstr "انقر للنسخ"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Close"
+msgstr "إغلاق"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "فترة الجمع"
@@ -592,6 +630,7 @@ msgstr "الاتصال مقطوع"
 msgid "Consecutive checks"
 msgstr "فحوصات متتالية"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "حاوية"
@@ -778,6 +817,10 @@ msgstr "الدورات"
 msgid "Daily"
 msgstr "يوميًا"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Data directory"
+msgstr "دليل البيانات"
+
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
 msgid "Default"
@@ -799,6 +842,10 @@ msgstr "حذف"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "حذف البصمة"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Dependencies"
+msgstr "التبعيات"
 
 #: src/lib/quiet-hours.ts
 msgid "Deployment"
@@ -1197,6 +1244,10 @@ msgstr "الخدمات المستضافة"
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "عدد مرات جمع الوكلاء لبيانات خدمات systemd وWindows. الفترات الأقصر تكشف تغييرات الحالة أسرع لكنها تكتب بيانات أكثر. ينطبق على جميع الأنظمة."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "How the agent runs on this system."
+msgstr "كيف يعمل الوكيل على هذا النظام."
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
 msgstr "طريقة HTTP"
@@ -1273,6 +1324,10 @@ msgstr "عنوان البريد الإشباكي غير صالح."
 msgid "Language"
 msgstr "اللغة"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Last lines logged by the agent of {name} since it started."
+msgstr "آخر الأسطر التي سجّلها وكيل {name} منذ بدء تشغيله."
+
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "التخطيط"
@@ -1327,6 +1382,10 @@ msgstr "جاري التحميل..."
 msgid "Local Disk"
 msgstr "قرص محلي"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Location"
+msgstr "الموقع"
+
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 msgid "Log Out"
@@ -1348,6 +1407,7 @@ msgstr "سجلات تسجيل الدخول"
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Logs"
 msgstr "السجلات"
 
@@ -1517,6 +1577,10 @@ msgstr "لا تنبيه"
 msgid "No detail data for this pool."
 msgstr "لا تتوفر بيانات تفصيلية لمجموعة التخزين هذه."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "No logs yet."
+msgstr "لا توجد سجلات بعد."
+
 #: src/components/reboots-table.tsx
 msgid "No reboots recorded."
 msgstr "لا توجد عمليات إعادة تشغيل مسجلة."
@@ -1539,6 +1603,10 @@ msgstr "لا توجد نتائج."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "لا توجد سمات S.M.A.R.T. متاحة لهذا الجهاز."
+
+#: src/lib/agent-updates.ts
+msgid "No service restarts the agent after an update."
+msgstr "لا توجد خدمة تعيد تشغيل الوكيل بعد التحديث."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1886,6 +1954,8 @@ msgstr "سُجّل"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Refresh"
@@ -1951,6 +2021,10 @@ msgstr "تدوير الرمز المميز"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "صفوف لكل صفحة"
+
+#: src/lib/agent-updates.ts
+msgid "Runs in a container: update its image instead."
+msgstr "يعمل داخل حاوية: حدّث صورتها بدلاً من ذلك."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Runtime Metrics"
@@ -2049,6 +2123,14 @@ msgstr "تحديد الصف"
 msgid "Select systems"
 msgstr "تحديد الأنظمة"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Select the systems to update."
+msgstr "اختر الأنظمة المراد تحديثها."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Selection"
+msgstr "التحديد"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
 msgstr "أرسل ping نبضة قلب واحدة للتحقق من أن نقطة النهاية الخاصة بك تعمل."
@@ -2069,6 +2151,7 @@ msgstr "تم الإرسال"
 msgid "Serial Number"
 msgstr "الرقم التسلسلي"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "الخدمة"
@@ -2152,6 +2235,14 @@ msgstr "وقت البدء"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Start type"
 msgstr "نوع بدء التشغيل"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started"
+msgstr "بدأ"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started manually"
+msgstr "بدأ يدوياً"
 
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
@@ -2245,6 +2336,10 @@ msgstr "سرعات مراوح النظام (RPM)"
 msgid "System load averages over time"
 msgstr "متوسط تحميل النظام مع مرور الوقت"
 
+#: src/lib/agent-updates.ts
+msgid "System not found."
+msgstr "النظام غير موجود."
+
 #: src/lib/quiet-hours.ts
 msgid "System updates"
 msgstr "تحديثات النظام"
@@ -2262,6 +2357,10 @@ msgstr "الأنظمة"
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
 msgstr "يمكن إدارة الأنظمة في ملف <0>config.yml</0> داخل دليل البيانات الخاص بك."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Systems to update ({targetCount})"
+msgstr "الأنظمة المراد تحديثها ({targetCount})"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
@@ -2320,9 +2419,29 @@ msgstr "تم إرسال إشعار الاختبار"
 msgid "Testing"
 msgstr "اختبارات"
 
+#: src/lib/agent-updates.ts
+msgid "The agent can't replace its executable. Reinstall it with the current install command."
+msgstr "لا يمكن للوكيل استبدال ملفه التنفيذي. أعد تثبيته باستخدام أمر التثبيت الحالي."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The agent restarts and reconnects on its own."
+msgstr "يعيد الوكيل التشغيل ويتصل من تلقاء نفسه."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The agents download version {latest} from GitHub, then restart."
+msgstr "تنزّل الوكلاء الإصدار {latest} من GitHub ثم تعيد التشغيل."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The latest agent version is not known yet"
+msgstr "أحدث إصدار للوكيل غير معروف بعد"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "الحالة العامة هي <0>موافق</0> عندما تكون جميع الأنظمة تعمل، و<1>تحذير</1> عند تشغيل التنبيهات، و<2>خطأ</2> عندما يكون أي نظام معطلاً."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The system is not connected."
+msgstr "النظام غير متصل."
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -2331,6 +2450,10 @@ msgstr "ثم قم بتسجيل الدخول إلى الواجهة الخلفية
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "لا يمكن التراجع عن هذا الإجراء. سيؤدي ذلك إلى حذف جميع السجلات الحالية لـ {name} من قاعدة البيانات بشكل دائم."
+
+#: src/lib/agent-updates.ts
+msgid "This agent is too old to be managed from the hub: update it once on the system."
+msgstr "هذا الوكيل قديم جدًا لإدارته من المركز: حدّثه مرة واحدة على النظام."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
@@ -2542,9 +2665,32 @@ msgstr "قيد التشغيل"
 msgid "Up ({upSystemsLength})"
 msgstr "قيد التشغيل ({upSystemsLength})"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Up to date"
+msgstr "محدّث"
+
+#: src/components/agent-update-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Update"
 msgstr "تحديث"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+msgid "Update agents"
+msgstr "تحديث الوكلاء"
+
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update available: {latest}"
+msgstr "تحديث متاح: {latest}"
+
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update failed"
+msgstr "فشل التحديث"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2557,6 +2703,10 @@ msgstr "تم التحديث"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Updated every {intervalLabel}."
 msgstr "يتم التحديث كل {intervalLabel}."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Updated, the agent restarts."
+msgstr "تم التحديث، يعيد الوكيل التشغيل."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"
@@ -2609,6 +2759,10 @@ msgstr "الاستخدام"
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
 msgstr "القيمة"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Version"
+msgstr "الإصدار"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "View"
@@ -2673,6 +2827,10 @@ msgstr "سجل أحداث Windows"
 #: src/components/routes/settings/general.tsx
 msgid "Windows install folder"
 msgstr "مجلد التثبيت على Windows"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Windows service (NSSM)"
+msgstr "خدمة Windows (NSSM)"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Windows Services"

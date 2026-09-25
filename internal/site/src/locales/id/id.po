@@ -117,6 +117,7 @@ msgstr "30 hari"
 msgid "5 min"
 msgstr "5 mnt"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "Akun"
@@ -188,13 +189,32 @@ msgstr "Setelah"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "Setelah mengatur variabel lingkungan, restart hub Beszel Anda agar perubahan dapat diterapkan."
 
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Agent"
 msgstr "Agen"
 
+#: src/components/routes/system/agent-button.tsx
+msgid "Agent {version}"
+msgstr "Agen {version}"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent details are not available: the agent may need an update."
+msgstr "Detail agen tidak tersedia: agen mungkin perlu diperbarui."
+
 #: src/components/routes/settings/general.tsx
 msgid "Agent installation"
 msgstr "Instalasi agen"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent logs"
+msgstr "Log agen"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent updated"
+msgstr "Agen diperbarui"
 
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -223,6 +243,10 @@ msgstr "Beri peringatan saat status bukan"
 msgid "Alerts"
 msgstr "Peringatan"
 
+#: src/components/agent-update-dialog.tsx
+msgid "All agents are up to date ({latest})"
+msgstr "Semua agen sudah terbaru ({latest})"
+
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
@@ -230,6 +254,10 @@ msgstr "Peringatan"
 #: src/components/routes/containers.tsx
 msgid "All Containers"
 msgstr "Semua Container"
+
+#: src/components/agent-update-dialog.tsx
+msgid "All outdated ({outdatedCount})"
+msgstr "Semua yang usang ({outdatedCount})"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -261,6 +289,11 @@ msgstr "Semua Sistem"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "Semua sistem hingga {until}"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Already up to date."
+msgstr "Sudah terbaru."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -440,6 +473,7 @@ msgstr "Dapat dimulai"
 msgid "Can stop"
 msgstr "Dapat diberhentikan"
 
+#: src/components/agent-update-dialog.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -554,6 +588,10 @@ msgstr "Klik pada sistem untuk melihat informasi lebih banyak."
 msgid "Click to copy"
 msgstr "Klik untuk menyalin"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Close"
+msgstr "Tutup"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Interval pengumpulan"
@@ -592,6 +630,7 @@ msgstr "Koneksi terputus"
 msgid "Consecutive checks"
 msgstr "Pemeriksaan berturut-turut"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Kontainer"
@@ -778,6 +817,10 @@ msgstr "Siklus"
 msgid "Daily"
 msgstr "Harian"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Data directory"
+msgstr "Direktori data"
+
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
 msgid "Default"
@@ -799,6 +842,10 @@ msgstr "Hapus"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "Hapus fingerprint"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Dependencies"
+msgstr "Dependensi"
 
 #: src/lib/quiet-hours.ts
 msgid "Deployment"
@@ -1197,6 +1244,10 @@ msgstr "Layanan yang di-host"
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "Seberapa sering agen mengumpulkan data layanan systemd dan Windows. Interval yang lebih pendek mendeteksi perubahan status lebih cepat tetapi menulis lebih banyak data. Berlaku untuk semua sistem."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "How the agent runs on this system."
+msgstr "Cara agen berjalan di sistem ini."
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
 msgstr "Metode HTTP"
@@ -1273,6 +1324,10 @@ msgstr "Alamat email tidak valid."
 msgid "Language"
 msgstr "Bahasa"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Last lines logged by the agent of {name} since it started."
+msgstr "Baris terakhir yang dicatat agen {name} sejak dimulai."
+
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "Tampilan"
@@ -1327,6 +1382,10 @@ msgstr "Memuat..."
 msgid "Local Disk"
 msgstr "Disk Lokal"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Location"
+msgstr "Lokasi"
+
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 msgid "Log Out"
@@ -1348,6 +1407,7 @@ msgstr "Catatan login"
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Logs"
 msgstr "Log"
 
@@ -1517,6 +1577,10 @@ msgstr "Tanpa peringatan"
 msgid "No detail data for this pool."
 msgstr "Tidak ada data terperinci yang tersedia untuk pool ini."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "No logs yet."
+msgstr "Belum ada log."
+
 #: src/components/reboots-table.tsx
 msgid "No reboots recorded."
 msgstr "Tidak ada mulai ulang yang tercatat."
@@ -1539,6 +1603,10 @@ msgstr "Tidak ada hasil."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "Tidak ada atribut S.M.A.R.T. yang tersedia untuk perangkat ini."
+
+#: src/lib/agent-updates.ts
+msgid "No service restarts the agent after an update."
+msgstr "Tidak ada layanan yang memulai ulang agen setelah pembaruan."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1886,6 +1954,8 @@ msgstr "Tercatat"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Refresh"
@@ -1951,6 +2021,10 @@ msgstr "Ganti ulang token"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "Baris per halaman"
+
+#: src/lib/agent-updates.ts
+msgid "Runs in a container: update its image instead."
+msgstr "Berjalan dalam kontainer: perbarui image-nya."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Runtime Metrics"
@@ -2049,6 +2123,14 @@ msgstr "Pilih baris"
 msgid "Select systems"
 msgstr "Pilih sistem"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Select the systems to update."
+msgstr "Pilih sistem yang akan diperbarui."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Selection"
+msgstr "Pilihan"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
 msgstr "Kirim satu ping heartbeat untuk memverifikasi titik akhir Anda berfungsi."
@@ -2069,6 +2151,7 @@ msgstr "Dikirim"
 msgid "Serial Number"
 msgstr "Nomor Seri"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Layanan"
@@ -2152,6 +2235,14 @@ msgstr "Waktu Mulai"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Start type"
 msgstr "Jenis startup"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started"
+msgstr "Dimulai"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started manually"
+msgstr "Dimulai secara manual"
 
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
@@ -2245,6 +2336,10 @@ msgstr "Kecepatan kipas sistem (RPM)"
 msgid "System load averages over time"
 msgstr "Rata-rata beban sistem dari waktu ke waktu"
 
+#: src/lib/agent-updates.ts
+msgid "System not found."
+msgstr "Sistem tidak ditemukan."
+
 #: src/lib/quiet-hours.ts
 msgid "System updates"
 msgstr "Pembaruan sistem"
@@ -2262,6 +2357,10 @@ msgstr "Sistem"
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
 msgstr "Sistem dapat dikelola dalam file <0>config.yml</0> di dalam direktori data anda."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Systems to update ({targetCount})"
+msgstr "Sistem yang akan diperbarui ({targetCount})"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
@@ -2320,9 +2419,29 @@ msgstr "Notifikasi tes dikirim"
 msgid "Testing"
 msgstr "Pengujian"
 
+#: src/lib/agent-updates.ts
+msgid "The agent can't replace its executable. Reinstall it with the current install command."
+msgstr "Agen tidak dapat mengganti file eksekusinya. Pasang ulang dengan perintah instalasi saat ini."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The agent restarts and reconnects on its own."
+msgstr "Agen memulai ulang dan terhubung kembali dengan sendirinya."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The agents download version {latest} from GitHub, then restart."
+msgstr "Agen mengunduh versi {latest} dari GitHub, lalu memulai ulang."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The latest agent version is not known yet"
+msgstr "Versi agen terbaru belum diketahui"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Status keseluruhan adalah <0>ok</0> ketika semua sistem aktif, <1>warn</1> ketika peringatan dipicu, dan <2>error</2> ketika ada sistem yang mati."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The system is not connected."
+msgstr "Sistem tidak terhubung."
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -2331,6 +2450,10 @@ msgstr "Kemudian masuk ke backend dan reset kata sandi akun pengguna anda di tab
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Aksi ini tidak dapat di kembalikan. ini akan menghapus permanen semua record {name} dari database"
+
+#: src/lib/agent-updates.ts
+msgid "This agent is too old to be managed from the hub: update it once on the system."
+msgstr "Agen ini terlalu lama untuk dikelola dari hub: perbarui sekali langsung di sistem."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
@@ -2542,9 +2665,32 @@ msgstr "Nyala"
 msgid "Up ({upSystemsLength})"
 msgstr "Nyala selama ({upSystemsLength})"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Up to date"
+msgstr "Terbaru"
+
+#: src/components/agent-update-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Update"
 msgstr "Perbarui"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+msgid "Update agents"
+msgstr "Perbarui agen"
+
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update available: {latest}"
+msgstr "Pembaruan tersedia: {latest}"
+
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update failed"
+msgstr "Pembaruan gagal"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2557,6 +2703,10 @@ msgstr "Diperbarui"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Updated every {intervalLabel}."
 msgstr "Diperbarui setiap {intervalLabel}."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Updated, the agent restarts."
+msgstr "Diperbarui, agen memulai ulang."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"
@@ -2609,6 +2759,10 @@ msgstr "Utilisasi"
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
 msgstr "Nilai"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Version"
+msgstr "Versi"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "View"
@@ -2673,6 +2827,10 @@ msgstr "Log peristiwa Windows"
 #: src/components/routes/settings/general.tsx
 msgid "Windows install folder"
 msgstr "Folder instalasi Windows"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Windows service (NSSM)"
+msgstr "Layanan Windows (NSSM)"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Windows Services"

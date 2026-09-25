@@ -202,6 +202,11 @@ func (h *Hub) registerApiRoutes(se *core.ServeEvent) error {
 	apiAuth.POST("/zfs/refresh", h.refreshZfsData).BindFunc(excludeReadOnlyRole)
 	// get systemd service details
 	apiAuth.GET("/systemd/info", h.getSystemdInfo)
+	// agent details, logs and updates
+	apiAuth.GET("/agent/info", h.getAgentInfo)
+	apiAuth.GET("/agent/logs", h.getAgentLogs)
+	apiAuth.GET("/agent/latest", h.getLatestAgentVersion)
+	apiAuth.POST("/agent/update", h.updateAgents).BindFunc(excludeReadOnlyRole)
 	// /containers routes
 	if enabled, _ := utils.GetEnv("CONTAINER_DETAILS"); enabled != "false" {
 		// get container logs

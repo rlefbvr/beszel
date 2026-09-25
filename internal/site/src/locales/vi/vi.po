@@ -117,6 +117,7 @@ msgstr "30 ngày"
 msgid "5 min"
 msgstr "5 phút"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "Tài khoản"
@@ -188,13 +189,32 @@ msgstr "Sau"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "Sau khi thiết lập các biến môi trường, hãy khởi động lại hub Beszel để các thay đổi có hiệu lực."
 
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Agent"
 msgstr "Tác nhân"
 
+#: src/components/routes/system/agent-button.tsx
+msgid "Agent {version}"
+msgstr "Tác nhân {version}"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent details are not available: the agent may need an update."
+msgstr "Không có thông tin tác nhân: có thể tác nhân cần được cập nhật."
+
 #: src/components/routes/settings/general.tsx
 msgid "Agent installation"
 msgstr "Cài đặt tác nhân"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent logs"
+msgstr "Nhật ký tác nhân"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent updated"
+msgstr "Đã cập nhật tác nhân"
 
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -223,6 +243,10 @@ msgstr "Cảnh báo khi trạng thái không phải là"
 msgid "Alerts"
 msgstr "Cảnh báo"
 
+#: src/components/agent-update-dialog.tsx
+msgid "All agents are up to date ({latest})"
+msgstr "Tất cả tác nhân đều đã cập nhật ({latest})"
+
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
@@ -230,6 +254,10 @@ msgstr "Cảnh báo"
 #: src/components/routes/containers.tsx
 msgid "All Containers"
 msgstr "Tất cả container"
+
+#: src/components/agent-update-dialog.tsx
+msgid "All outdated ({outdatedCount})"
+msgstr "Tất cả bản cũ ({outdatedCount})"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -261,6 +289,11 @@ msgstr "Tất cả Hệ thống"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "Tất cả hệ thống đến {until}"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Already up to date."
+msgstr "Đã là bản mới nhất."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -440,6 +473,7 @@ msgstr "Có thể khởi động"
 msgid "Can stop"
 msgstr "Có thể dừng"
 
+#: src/components/agent-update-dialog.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -554,6 +588,10 @@ msgstr "Nhấp vào hệ thống để xem thêm thông tin."
 msgid "Click to copy"
 msgstr "Nhấp để sao chép"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Close"
+msgstr "Đóng"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Khoảng thời gian thu thập"
@@ -592,6 +630,7 @@ msgstr "Mất kết nối"
 msgid "Consecutive checks"
 msgstr "Số lần kiểm tra liên tiếp"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Container"
@@ -778,6 +817,10 @@ msgstr "Chu kỳ"
 msgid "Daily"
 msgstr "Hàng ngày"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Data directory"
+msgstr "Thư mục dữ liệu"
+
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
 msgid "Default"
@@ -799,6 +842,10 @@ msgstr "Xóa"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "Xóa vân tay"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Dependencies"
+msgstr "Phụ thuộc"
 
 #: src/lib/quiet-hours.ts
 msgid "Deployment"
@@ -1197,6 +1244,10 @@ msgstr "Dịch vụ được lưu trữ"
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "Tần suất các agent thu thập dữ liệu dịch vụ systemd và Windows. Khoảng thời gian ngắn hơn phát hiện thay đổi trạng thái sớm hơn nhưng ghi nhiều dữ liệu hơn. Áp dụng cho tất cả hệ thống."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "How the agent runs on this system."
+msgstr "Cách tác nhân chạy trên hệ thống này."
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
 msgstr "Phương thức HTTP"
@@ -1273,6 +1324,10 @@ msgstr "Địa chỉ email không hợp lệ."
 msgid "Language"
 msgstr "Ngôn ngữ"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Last lines logged by the agent of {name} since it started."
+msgstr "Các dòng cuối cùng tác nhân của {name} ghi lại kể từ khi khởi động."
+
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "Bố cục"
@@ -1327,6 +1382,10 @@ msgstr "Đang tải..."
 msgid "Local Disk"
 msgstr "Đĩa cục bộ"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Location"
+msgstr "Vị trí"
+
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 msgid "Log Out"
@@ -1348,6 +1407,7 @@ msgstr "Nhật ký đăng nhập"
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Logs"
 msgstr "Nhật ký"
 
@@ -1517,6 +1577,10 @@ msgstr "Không có cảnh báo"
 msgid "No detail data for this pool."
 msgstr "Không có dữ liệu chi tiết cho pool này."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "No logs yet."
+msgstr "Chưa có nhật ký."
+
 #: src/components/reboots-table.tsx
 msgid "No reboots recorded."
 msgstr "Chưa ghi nhận lần khởi động lại nào."
@@ -1539,6 +1603,10 @@ msgstr "Không có kết quả."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "Không có thuộc tính S.M.A.R.T. nào khả dụng cho thiết bị này."
+
+#: src/lib/agent-updates.ts
+msgid "No service restarts the agent after an update."
+msgstr "Không có dịch vụ nào khởi động lại tác nhân sau khi cập nhật."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1886,6 +1954,8 @@ msgstr "Đã ghi nhận"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Refresh"
@@ -1951,6 +2021,10 @@ msgstr "Xoay vòng token"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "Số hàng mỗi trang"
+
+#: src/lib/agent-updates.ts
+msgid "Runs in a container: update its image instead."
+msgstr "Chạy trong container: hãy cập nhật image của nó."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Runtime Metrics"
@@ -2049,6 +2123,14 @@ msgstr "Chọn hàng"
 msgid "Select systems"
 msgstr "Chọn hệ thống"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Select the systems to update."
+msgstr "Chọn các hệ thống cần cập nhật."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Selection"
+msgstr "Lựa chọn"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
 msgstr "Gửi một ping heartbeat duy nhất để xác minh điểm cuối của bạn đang hoạt động."
@@ -2069,6 +2151,7 @@ msgstr "Đã gửi"
 msgid "Serial Number"
 msgstr "Số seri"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Dịch vụ"
@@ -2152,6 +2235,14 @@ msgstr "Thời gian bắt đầu"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Start type"
 msgstr "Kiểu khởi động"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started"
+msgstr "Đã khởi động"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started manually"
+msgstr "Khởi động thủ công"
 
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
@@ -2245,6 +2336,10 @@ msgstr "Tốc độ quạt hệ thống (RPM)"
 msgid "System load averages over time"
 msgstr "Tải trung bình của hệ thống theo thời gian"
 
+#: src/lib/agent-updates.ts
+msgid "System not found."
+msgstr "Không tìm thấy hệ thống."
+
 #: src/lib/quiet-hours.ts
 msgid "System updates"
 msgstr "Cập nhật hệ thống"
@@ -2262,6 +2357,10 @@ msgstr "Các hệ thống"
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
 msgstr "Các hệ thống có thể được quản lý trong tệp <0>config.yml</0> bên trong thư mục dữ liệu của bạn."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Systems to update ({targetCount})"
+msgstr "Hệ thống cần cập nhật ({targetCount})"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
@@ -2320,9 +2419,29 @@ msgstr "Thông báo thử nghiệm đã được gửi"
 msgid "Testing"
 msgstr "Kiểm thử"
 
+#: src/lib/agent-updates.ts
+msgid "The agent can't replace its executable. Reinstall it with the current install command."
+msgstr "Tác nhân không thể thay thế tệp thực thi của nó. Hãy cài đặt lại bằng lệnh cài đặt hiện tại."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The agent restarts and reconnects on its own."
+msgstr "Tác nhân sẽ tự khởi động lại và kết nối lại."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The agents download version {latest} from GitHub, then restart."
+msgstr "Các tác nhân tải phiên bản {latest} từ GitHub rồi khởi động lại."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The latest agent version is not known yet"
+msgstr "Chưa xác định được phiên bản tác nhân mới nhất"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Trạng thái tổng thể là <0>ok</0> khi tất cả các hệ thống đều hoạt động, <1>cảnh báo</1> khi các cảnh báo được kích hoạt và <2>lỗi</2> khi có bất kỳ hệ thống nào bị hỏng."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The system is not connected."
+msgstr "Hệ thống chưa được kết nối."
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -2331,6 +2450,10 @@ msgstr "Sau đó đăng nhập vào backend và đặt lại mật khẩu tài k
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Hành động này không thể hoàn tác. Điều này sẽ xóa vĩnh viễn tất cả các bản ghi hiện tại cho {name} khỏi cơ sở dữ liệu."
+
+#: src/lib/agent-updates.ts
+msgid "This agent is too old to be managed from the hub: update it once on the system."
+msgstr "Tác nhân này quá cũ để quản lý từ hub: hãy cập nhật một lần trực tiếp trên hệ thống."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
@@ -2542,9 +2665,32 @@ msgstr "Hoạt động"
 msgid "Up ({upSystemsLength})"
 msgstr "Hoạt động ({upSystemsLength})"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Up to date"
+msgstr "Đã cập nhật"
+
+#: src/components/agent-update-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Update"
 msgstr "Cập nhật"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+msgid "Update agents"
+msgstr "Cập nhật tác nhân"
+
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update available: {latest}"
+msgstr "Có bản cập nhật: {latest}"
+
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update failed"
+msgstr "Cập nhật thất bại"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2557,6 +2703,10 @@ msgstr "Đã cập nhật"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Updated every {intervalLabel}."
 msgstr "Cập nhật mỗi {intervalLabel}."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Updated, the agent restarts."
+msgstr "Đã cập nhật, tác nhân đang khởi động lại."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"
@@ -2609,6 +2759,10 @@ msgstr "Sử dụng"
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
 msgstr "Giá trị"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Version"
+msgstr "Phiên bản"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "View"
@@ -2673,6 +2827,10 @@ msgstr "Nhật ký sự kiện Windows"
 #: src/components/routes/settings/general.tsx
 msgid "Windows install folder"
 msgstr "Thư mục cài đặt trên Windows"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Windows service (NSSM)"
+msgstr "Dịch vụ Windows (NSSM)"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Windows Services"

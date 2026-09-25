@@ -5,7 +5,10 @@
 package agent
 
 import (
+	"io"
+	"log"
 	"log/slog"
+	"os"
 	"strings"
 	"sync"
 	"time"
@@ -55,6 +58,9 @@ type Agent struct {
 // NewAgent creates a new agent with the given data directory for persisting data.
 // If the data directory is not set, it will attempt to find the optimal directory.
 func NewAgent(dataDir ...string) (agent *Agent, err error) {
+	// keep the last log lines for the hub, in the default log format
+	log.SetOutput(io.MultiWriter(os.Stderr, agentLogs))
+
 	agent = &Agent{
 		fsStats: make(map[string]*system.FsStats),
 		cache:   NewSystemDataCache(),

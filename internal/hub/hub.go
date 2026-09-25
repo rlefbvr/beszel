@@ -37,6 +37,8 @@ type Hub struct {
 	pubKey string
 	signer ssh.Signer
 	appURL string
+	// latest release of the agent, for agent updates
+	latestAgent latestAgentRelease
 }
 
 // NewHub creates a new Hub instance with default configuration

@@ -117,6 +117,7 @@ msgstr "30 dní"
 msgid "5 min"
 msgstr "5 min"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "Účet"
@@ -188,13 +189,32 @@ msgstr "Po"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "Po nastavení proměnných prostředí restartujte hub Beszel, aby se změny projevily."
 
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Agent"
 msgstr "Agent"
 
+#: src/components/routes/system/agent-button.tsx
+msgid "Agent {version}"
+msgstr "Agent {version}"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent details are not available: the agent may need an update."
+msgstr "Podrobnosti agenta nejsou k dispozici: agent může potřebovat aktualizaci."
+
 #: src/components/routes/settings/general.tsx
 msgid "Agent installation"
 msgstr "Instalace agenta"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent logs"
+msgstr "Protokoly agenta"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent updated"
+msgstr "Agent aktualizován"
 
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -223,6 +243,10 @@ msgstr "Upozornit, když stav není"
 msgid "Alerts"
 msgstr "Výstrahy"
 
+#: src/components/agent-update-dialog.tsx
+msgid "All agents are up to date ({latest})"
+msgstr "Všichni agenti jsou aktuální ({latest})"
+
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
@@ -230,6 +254,10 @@ msgstr "Výstrahy"
 #: src/components/routes/containers.tsx
 msgid "All Containers"
 msgstr "Všechny kontejnery"
+
+#: src/components/agent-update-dialog.tsx
+msgid "All outdated ({outdatedCount})"
+msgstr "Všichni zastaralí ({outdatedCount})"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -261,6 +289,11 @@ msgstr "Všechny systémy"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "Všechny systémy do {until}"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Already up to date."
+msgstr "Již aktuální."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -440,6 +473,7 @@ msgstr "Může spustit"
 msgid "Can stop"
 msgstr "Může zastavit"
 
+#: src/components/agent-update-dialog.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -554,6 +588,10 @@ msgstr "Klikněte na systém pro zobrazení více informací."
 msgid "Click to copy"
 msgstr "Klikněte pro zkopírování"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Close"
+msgstr "Zavřít"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Interval sběru"
@@ -592,6 +630,7 @@ msgstr "Připojení je nedostupné"
 msgid "Consecutive checks"
 msgstr "Po sobě jdoucí kontroly"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Kontejner"
@@ -778,6 +817,10 @@ msgstr "Cykly"
 msgid "Daily"
 msgstr "Denně"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Data directory"
+msgstr "Datový adresář"
+
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
 msgid "Default"
@@ -799,6 +842,10 @@ msgstr "Odstranit"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "Smazat identifikátor"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Dependencies"
+msgstr "Závislosti"
 
 #: src/lib/quiet-hours.ts
 msgid "Deployment"
@@ -1197,6 +1244,10 @@ msgstr "Hostované služby"
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "Jak často agenti shromažďují data o službách systemd a Windows. Kratší intervaly odhalí změny stavu dříve, ale zapisují více dat. Platí pro všechny systémy."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "How the agent runs on this system."
+msgstr "Jak agent na tomto systému běží."
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
 msgstr "HTTP metoda"
@@ -1273,6 +1324,10 @@ msgstr "Neplatná e-mailová adresa."
 msgid "Language"
 msgstr "Jazyk"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Last lines logged by the agent of {name} since it started."
+msgstr "Poslední řádky zaznamenané agentem {name} od jeho spuštění."
+
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "Rozvržení"
@@ -1327,6 +1382,10 @@ msgstr "Načítání..."
 msgid "Local Disk"
 msgstr "Místní disk"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Location"
+msgstr "Umístění"
+
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 msgid "Log Out"
@@ -1348,6 +1407,7 @@ msgstr "Záznamy přihlášení"
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Logs"
 msgstr "Logy"
 
@@ -1517,6 +1577,10 @@ msgstr "Bez upozornění"
 msgid "No detail data for this pool."
 msgstr "Pro tento fond nejsou k dispozici podrobné údaje."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "No logs yet."
+msgstr "Zatím žádné protokoly."
+
 #: src/components/reboots-table.tsx
 msgid "No reboots recorded."
 msgstr "Nejsou zaznamenány žádné restarty."
@@ -1539,6 +1603,10 @@ msgstr "Žádné výsledky."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "Pro toto zařízení nejsou k dispozici žádné atributy S.M.A.R.T."
+
+#: src/lib/agent-updates.ts
+msgid "No service restarts the agent after an update."
+msgstr "Žádná služba po aktualizaci agenta nerestartuje."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1886,6 +1954,8 @@ msgstr "Zaznamenáno"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Refresh"
@@ -1951,6 +2021,10 @@ msgstr "Změnit token"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "Řádků na stránku"
+
+#: src/lib/agent-updates.ts
+msgid "Runs in a container: update its image instead."
+msgstr "Běží v kontejneru: aktualizujte místo toho jeho obraz."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Runtime Metrics"
@@ -2049,6 +2123,14 @@ msgstr "Vybrat řádek"
 msgid "Select systems"
 msgstr "Vybrat systémy"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Select the systems to update."
+msgstr "Vyberte systémy k aktualizaci."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Selection"
+msgstr "Výběr"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
 msgstr "Odešlete jeden heartbeat ping pro ověření funkčnosti vašeho koncového bodu."
@@ -2069,6 +2151,7 @@ msgstr "Odeslat"
 msgid "Serial Number"
 msgstr "Sériové číslo"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Služba"
@@ -2152,6 +2235,14 @@ msgstr "Čas začátku"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Start type"
 msgstr "Typ spouštění"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started"
+msgstr "Spuštěno"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started manually"
+msgstr "Spuštěno ručně"
 
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
@@ -2245,6 +2336,10 @@ msgstr "Rychlosti ventilátorů systému (RPM)"
 msgid "System load averages over time"
 msgstr "Průměry zatížení systému v průběhu času"
 
+#: src/lib/agent-updates.ts
+msgid "System not found."
+msgstr "Systém nebyl nalezen."
+
 #: src/lib/quiet-hours.ts
 msgid "System updates"
 msgstr "Aktualizace systému"
@@ -2262,6 +2357,10 @@ msgstr "Systémy"
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
 msgstr "Systémy lze spravovat v souboru <0>config.yml</0> uvnitř datového adresáře."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Systems to update ({targetCount})"
+msgstr "Systémy k aktualizaci ({targetCount})"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
@@ -2320,9 +2419,29 @@ msgstr "Testovací oznámení odesláno"
 msgid "Testing"
 msgstr "Testování"
 
+#: src/lib/agent-updates.ts
+msgid "The agent can't replace its executable. Reinstall it with the current install command."
+msgstr "Agent nemůže nahradit svůj spustitelný soubor. Znovu jej nainstalujte aktuálním instalačním příkazem."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The agent restarts and reconnects on its own."
+msgstr "Agent se sám restartuje a znovu připojí."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The agents download version {latest} from GitHub, then restart."
+msgstr "Agenti stáhnou verzi {latest} z GitHubu a restartují se."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The latest agent version is not known yet"
+msgstr "Nejnovější verze agenta zatím není známa"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Celkový stav je <0>ok</0>, když jsou všechny systémy v provozu, <1>warn</1>, když jsou spuštěny výstrahy, a <2>error</2>, když je některý systém mimo provoz."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The system is not connected."
+msgstr "Systém není připojen."
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -2331,6 +2450,10 @@ msgstr "Poté se přihlaste do backendu a obnovte heslo k uživatelskému účtu
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Tuto akci nelze vzít zpět. Tím se z databáze trvale odstraní všechny aktuální záznamy pro {name}."
+
+#: src/lib/agent-updates.ts
+msgid "This agent is too old to be managed from the hub: update it once on the system."
+msgstr "Tento agent je příliš starý na správu z hubu: jednou jej aktualizujte přímo v systému."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
@@ -2542,9 +2665,32 @@ msgstr "Funkční"
 msgid "Up ({upSystemsLength})"
 msgstr "Funkční ({upSystemsLength})"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Up to date"
+msgstr "Aktuální"
+
+#: src/components/agent-update-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Update"
 msgstr "Aktualizovat"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+msgid "Update agents"
+msgstr "Aktualizovat agenty"
+
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update available: {latest}"
+msgstr "Dostupná aktualizace: {latest}"
+
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update failed"
+msgstr "Aktualizace selhala"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2557,6 +2703,10 @@ msgstr "Aktualizováno"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Updated every {intervalLabel}."
 msgstr "Interval aktualizace: {intervalLabel}."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Updated, the agent restarts."
+msgstr "Aktualizováno, agent se restartuje."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"
@@ -2609,6 +2759,10 @@ msgstr "Využití"
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
 msgstr "Hodnota"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Version"
+msgstr "Verze"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "View"
@@ -2673,6 +2827,10 @@ msgstr "Protokol událostí Windows"
 #: src/components/routes/settings/general.tsx
 msgid "Windows install folder"
 msgstr "Instalační složka ve Windows"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Windows service (NSSM)"
+msgstr "Služba Windows (NSSM)"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Windows Services"

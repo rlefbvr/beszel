@@ -117,6 +117,7 @@ msgstr "۳۰ روز"
 msgid "5 min"
 msgstr "۵ دقیقه"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "حساب"
@@ -188,13 +189,32 @@ msgstr "بعد از"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "پس از تنظیم متغیرهای محیطی، هاب Beszel خود را مجدداً راه اندازی کنید تا تغییرات اعمال شوند."
 
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Agent"
 msgstr "عامل"
 
+#: src/components/routes/system/agent-button.tsx
+msgid "Agent {version}"
+msgstr "عامل {version}"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent details are not available: the agent may need an update."
+msgstr "جزئیات عامل در دسترس نیست: ممکن است عامل به به‌روزرسانی نیاز داشته باشد."
+
 #: src/components/routes/settings/general.tsx
 msgid "Agent installation"
 msgstr "نصب عامل"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent logs"
+msgstr "گزارش‌های عامل"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent updated"
+msgstr "عامل به‌روزرسانی شد"
 
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -223,6 +243,10 @@ msgstr "هشدار هنگامی که وضعیت برابر نیست با"
 msgid "Alerts"
 msgstr "هشدارها"
 
+#: src/components/agent-update-dialog.tsx
+msgid "All agents are up to date ({latest})"
+msgstr "همه عامل‌ها به‌روز هستند ({latest})"
+
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
@@ -230,6 +254,10 @@ msgstr "هشدارها"
 #: src/components/routes/containers.tsx
 msgid "All Containers"
 msgstr "همه کانتینرها"
+
+#: src/components/agent-update-dialog.tsx
+msgid "All outdated ({outdatedCount})"
+msgstr "همه قدیمی‌ها ({outdatedCount})"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -261,6 +289,11 @@ msgstr "همه سیستم‌ها"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "همه سیستم‌ها تا {until}"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Already up to date."
+msgstr "از قبل به‌روز است."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -440,6 +473,7 @@ msgstr "می‌تواند شروع شود"
 msgid "Can stop"
 msgstr "می‌تواند متوقف شود"
 
+#: src/components/agent-update-dialog.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -554,6 +588,10 @@ msgstr "برای مشاهده اطلاعات بیشتر روی یک سیستم �
 msgid "Click to copy"
 msgstr "برای کپی کردن کلیک کنید"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Close"
+msgstr "بستن"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "فاصله جمع‌آوری"
@@ -592,6 +630,7 @@ msgstr "اتصال قطع است"
 msgid "Consecutive checks"
 msgstr "بررسی‌های متوالی"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "کانتینر"
@@ -778,6 +817,10 @@ msgstr "چرخه‌ها"
 msgid "Daily"
 msgstr "روزانه"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Data directory"
+msgstr "پوشه داده"
+
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
 msgid "Default"
@@ -799,6 +842,10 @@ msgstr "حذف"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "حذف اثر انگشت"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Dependencies"
+msgstr "وابستگی‌ها"
 
 #: src/lib/quiet-hours.ts
 msgid "Deployment"
@@ -1197,6 +1244,10 @@ msgstr "سرویس‌های میزبانی‌شده"
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "هر چند وقت یک‌بار عامل‌ها داده‌های سرویس‌های systemd و Windows را جمع‌آوری می‌کنند. فاصله‌های کوتاه‌تر تغییرات وضعیت را زودتر تشخیص می‌دهند اما داده بیشتری ذخیره می‌کنند. برای همه سیستم‌ها اعمال می‌شود."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "How the agent runs on this system."
+msgstr "نحوه اجرای عامل روی این سیستم."
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
 msgstr "متد HTTP"
@@ -1273,6 +1324,10 @@ msgstr "آدرس ایمیل نامعتبر است."
 msgid "Language"
 msgstr "زبان"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Last lines logged by the agent of {name} since it started."
+msgstr "آخرین خطوط ثبت‌شده توسط عامل {name} از زمان شروع."
+
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "طرح‌بندی"
@@ -1327,6 +1382,10 @@ msgstr "در حال بارگذاری..."
 msgid "Local Disk"
 msgstr "دیسک محلی"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Location"
+msgstr "مکان"
+
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 msgid "Log Out"
@@ -1348,6 +1407,7 @@ msgstr "سوابق ورود"
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Logs"
 msgstr "لاگ‌ها"
 
@@ -1517,6 +1577,10 @@ msgstr "بدون هشدار"
 msgid "No detail data for this pool."
 msgstr "دادهٔ جزئی برای این استخر موجود نیست."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "No logs yet."
+msgstr "هنوز گزارشی وجود ندارد."
+
 #: src/components/reboots-table.tsx
 msgid "No reboots recorded."
 msgstr "هیچ راه‌اندازی مجددی ثبت نشده است."
@@ -1539,6 +1603,10 @@ msgstr "نتیجه‌ای یافت نشد."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "هیچ ویژگی S.M.A.R.T برای این دستگاه موجود نیست."
+
+#: src/lib/agent-updates.ts
+msgid "No service restarts the agent after an update."
+msgstr "هیچ سرویسی پس از به‌روزرسانی عامل را دوباره راه‌اندازی نمی‌کند."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1886,6 +1954,8 @@ msgstr "ثبت‌شده"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Refresh"
@@ -1951,6 +2021,10 @@ msgstr "چرخش توکن"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "ردیف در هر صفحه"
+
+#: src/lib/agent-updates.ts
+msgid "Runs in a container: update its image instead."
+msgstr "در یک کانتینر اجرا می‌شود: به‌جای آن تصویر آن را به‌روزرسانی کنید."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Runtime Metrics"
@@ -2049,6 +2123,14 @@ msgstr "انتخاب ردیف"
 msgid "Select systems"
 msgstr "انتخاب سیستم‌ها"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Select the systems to update."
+msgstr "سیستم‌هایی را که باید به‌روزرسانی شوند انتخاب کنید."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Selection"
+msgstr "انتخاب"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
 msgstr "یک پینگ ضربان قلب تکی ارسال کنید تا از کارکرد نقطه پایانی خود اطمینان حاصل کنید."
@@ -2069,6 +2151,7 @@ msgstr "ارسال شد"
 msgid "Serial Number"
 msgstr "شماره سریال"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "سرویس"
@@ -2152,6 +2235,14 @@ msgstr "زمان شروع"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Start type"
 msgstr "نوع راه‌اندازی"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started"
+msgstr "شروع"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started manually"
+msgstr "دستی شروع شده"
 
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
@@ -2245,6 +2336,10 @@ msgstr "سرعت فن‌های سیستم (RPM)"
 msgid "System load averages over time"
 msgstr "میانگین بار سیستم در طول زمان"
 
+#: src/lib/agent-updates.ts
+msgid "System not found."
+msgstr "سیستم یافت نشد."
+
 #: src/lib/quiet-hours.ts
 msgid "System updates"
 msgstr "به‌روزرسانی‌های سیستم"
@@ -2262,6 +2357,10 @@ msgstr "سیستم‌ها"
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
 msgstr "سیستم‌ها ممکن است در یک فایل <0>config.yml</0> درون دایرکتوری داده شما مدیریت شوند."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Systems to update ({targetCount})"
+msgstr "سیستم‌های نیازمند به‌روزرسانی ({targetCount})"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
@@ -2320,9 +2419,29 @@ msgstr "اعلان آزمایشی ارسال شد"
 msgid "Testing"
 msgstr "آزمایش"
 
+#: src/lib/agent-updates.ts
+msgid "The agent can't replace its executable. Reinstall it with the current install command."
+msgstr "عامل نمی‌تواند فایل اجرایی خود را جایگزین کند. آن را با دستور نصب فعلی دوباره نصب کنید."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The agent restarts and reconnects on its own."
+msgstr "عامل خودش دوباره راه‌اندازی و وصل می‌شود."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The agents download version {latest} from GitHub, then restart."
+msgstr "عامل‌ها نسخه {latest} را از GitHub دانلود کرده و دوباره راه‌اندازی می‌شوند."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The latest agent version is not known yet"
+msgstr "آخرین نسخه عامل هنوز مشخص نیست"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "وضعیت کلی زمانی <0>ok</0> است که همه سیستم‌ها بالا باشند، <1>warn</1> زمانی که هشدارها فعال شوند، و <2>error</2> زمانی که هر سیستمی پایین باشد."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The system is not connected."
+msgstr "سیستم متصل نیست."
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -2331,6 +2450,10 @@ msgstr "سپس وارد بخش پشتیبان شوید و رمز عبور حسا
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "این عمل قابل برگشت نیست. این کار تمام رکوردهای فعلی {name} را برای همیشه از پایگاه داده حذف خواهد کرد."
+
+#: src/lib/agent-updates.ts
+msgid "This agent is too old to be managed from the hub: update it once on the system."
+msgstr "این عامل برای مدیریت از هاب خیلی قدیمی است: یک بار آن را روی سیستم به‌روزرسانی کنید."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
@@ -2542,9 +2665,32 @@ msgstr "فعال"
 msgid "Up ({upSystemsLength})"
 msgstr "فعال ({upSystemsLength})"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Up to date"
+msgstr "به‌روز"
+
+#: src/components/agent-update-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Update"
 msgstr "به‌روزرسانی"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+msgid "Update agents"
+msgstr "به‌روزرسانی عامل‌ها"
+
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update available: {latest}"
+msgstr "به‌روزرسانی موجود: {latest}"
+
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update failed"
+msgstr "به‌روزرسانی ناموفق بود"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2557,6 +2703,10 @@ msgstr "به‌روزرسانی شد"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Updated every {intervalLabel}."
 msgstr "فاصله به‌روزرسانی: {intervalLabel}."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Updated, the agent restarts."
+msgstr "به‌روزرسانی شد، عامل دوباره راه‌اندازی می‌شود."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"
@@ -2609,6 +2759,10 @@ msgstr "بهره‌وری"
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
 msgstr "مقدار"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Version"
+msgstr "نسخه"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "View"
@@ -2673,6 +2827,10 @@ msgstr "گزارش رویدادهای Windows"
 #: src/components/routes/settings/general.tsx
 msgid "Windows install folder"
 msgstr "پوشه نصب در Windows"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Windows service (NSSM)"
+msgstr "سرویس Windows (NSSM)"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Windows Services"

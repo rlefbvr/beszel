@@ -117,6 +117,7 @@ msgstr "30 ημέρες"
 msgid "5 min"
 msgstr "5 λ"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "Λογαριασμός"
@@ -188,13 +189,32 @@ msgstr "Μετά"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "Αφού ορίσετε τις μεταβλητές περιβάλλοντος, επανεκκινήστε τον κόμβο Beszel για να εφαρμοστούν οι αλλαγές."
 
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Agent"
 msgstr "Πράκτορας"
 
+#: src/components/routes/system/agent-button.tsx
+msgid "Agent {version}"
+msgstr "Πράκτορας {version}"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent details are not available: the agent may need an update."
+msgstr "Οι λεπτομέρειες του πράκτορα δεν είναι διαθέσιμες: ίσως χρειάζεται ενημέρωση."
+
 #: src/components/routes/settings/general.tsx
 msgid "Agent installation"
 msgstr "Εγκατάσταση πράκτορα"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent logs"
+msgstr "Αρχεία καταγραφής πράκτορα"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent updated"
+msgstr "Ο πράκτορας ενημερώθηκε"
 
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -223,6 +243,10 @@ msgstr "Ειδοποίηση όταν η κατάσταση δεν είναι"
 msgid "Alerts"
 msgstr "Ειδοποιήσεις"
 
+#: src/components/agent-update-dialog.tsx
+msgid "All agents are up to date ({latest})"
+msgstr "Όλοι οι πράκτορες είναι ενημερωμένοι ({latest})"
+
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
@@ -230,6 +254,10 @@ msgstr "Ειδοποιήσεις"
 #: src/components/routes/containers.tsx
 msgid "All Containers"
 msgstr "Όλα τα κοντέινερ"
+
+#: src/components/agent-update-dialog.tsx
+msgid "All outdated ({outdatedCount})"
+msgstr "Όλοι οι παρωχημένοι ({outdatedCount})"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -261,6 +289,11 @@ msgstr "Όλα τα συστήματα"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "Όλα τα συστήματα έως {until}"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Already up to date."
+msgstr "Ήδη ενημερωμένο."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -440,6 +473,7 @@ msgstr "Δυνατότητα εκκίνησης"
 msgid "Can stop"
 msgstr "Δυνατότητα διακοπής"
 
+#: src/components/agent-update-dialog.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -554,6 +588,10 @@ msgstr "Κάντε κλικ σε ένα σύστημα για να δείτε π
 msgid "Click to copy"
 msgstr "Κάντε κλικ για αντιγραφή"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Close"
+msgstr "Κλείσιμο"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Διάστημα συλλογής"
@@ -592,6 +630,7 @@ msgstr "Η σύνδεση είναι εκτός λειτουργίας"
 msgid "Consecutive checks"
 msgstr "Διαδοχικοί έλεγχοι"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Κοντέινερ"
@@ -778,6 +817,10 @@ msgstr "Κύκλοι"
 msgid "Daily"
 msgstr "Καθημερινά"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Data directory"
+msgstr "Κατάλογος δεδομένων"
+
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
 msgid "Default"
@@ -799,6 +842,10 @@ msgstr "Διαγραφή"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "Διαγραφή αποτυπώματος"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Dependencies"
+msgstr "Εξαρτήσεις"
 
 #: src/lib/quiet-hours.ts
 msgid "Deployment"
@@ -1197,6 +1244,10 @@ msgstr "Φιλοξενούμενες υπηρεσίες"
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "Πόσο συχνά οι πράκτορες συλλέγουν δεδομένα υπηρεσιών systemd και Windows. Τα μικρότερα διαστήματα εντοπίζουν νωρίτερα τις αλλαγές κατάστασης αλλά γράφουν περισσότερα δεδομένα. Ισχύει για όλα τα συστήματα."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "How the agent runs on this system."
+msgstr "Πώς εκτελείται ο πράκτορας σε αυτό το σύστημα."
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
 msgstr "Μέθοδος HTTP"
@@ -1273,6 +1324,10 @@ msgstr "Μη έγκυρη διεύθυνση email."
 msgid "Language"
 msgstr "Γλώσσα"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Last lines logged by the agent of {name} since it started."
+msgstr "Τελευταίες γραμμές που κατέγραψε ο πράκτορας του {name} από την εκκίνησή του."
+
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "Διάταξη"
@@ -1327,6 +1382,10 @@ msgstr "Φόρτωση..."
 msgid "Local Disk"
 msgstr "Τοπικός δίσκος"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Location"
+msgstr "Τοποθεσία"
+
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 msgid "Log Out"
@@ -1348,6 +1407,7 @@ msgstr "Αρχεία συνδέσεων"
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Logs"
 msgstr "Αρχεία καταγραφής"
 
@@ -1517,6 +1577,10 @@ msgstr "Χωρίς ειδοποίηση"
 msgid "No detail data for this pool."
 msgstr "Δεν υπάρχουν λεπτομερή δεδομένα για αυτό το pool."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "No logs yet."
+msgstr "Δεν υπάρχουν ακόμη αρχεία καταγραφής."
+
 #: src/components/reboots-table.tsx
 msgid "No reboots recorded."
 msgstr "Δεν έχουν καταγραφεί επανεκκινήσεις."
@@ -1539,6 +1603,10 @@ msgstr "Κανένα αποτέλεσμα."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "Δεν υπάρχουν διαθέσιμα χαρακτηριστικά S.M.A.R.T. για αυτήν τη συσκευή."
+
+#: src/lib/agent-updates.ts
+msgid "No service restarts the agent after an update."
+msgstr "Καμία υπηρεσία δεν επανεκκινεί τον πράκτορα μετά από ενημέρωση."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1886,6 +1954,8 @@ msgstr "Καταγράφηκε"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Refresh"
@@ -1951,6 +2021,10 @@ msgstr "Ανανέωση token"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "Γραμμές ανά σελίδα"
+
+#: src/lib/agent-updates.ts
+msgid "Runs in a container: update its image instead."
+msgstr "Εκτελείται σε κοντέινερ: ενημερώστε την εικόνα του."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Runtime Metrics"
@@ -2049,6 +2123,14 @@ msgstr "Επιλογή γραμμής"
 msgid "Select systems"
 msgstr "Επιλογή συστημάτων"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Select the systems to update."
+msgstr "Επιλέξτε τα συστήματα για ενημέρωση."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Selection"
+msgstr "Επιλογή"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
 msgstr "Στείλτε ένα μεμονωμένο heartbeat για να επαληθεύσετε ότι το τελικό σημείο λειτουργεί."
@@ -2069,6 +2151,7 @@ msgstr "Απεστάλησαν"
 msgid "Serial Number"
 msgstr "Σειριακός αριθμός"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Υπηρεσία"
@@ -2152,6 +2235,14 @@ msgstr "Ώρα έναρξης"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Start type"
 msgstr "Τύπος εκκίνησης"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started"
+msgstr "Εκκίνηση"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started manually"
+msgstr "Εκκίνηση χειροκίνητα"
 
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
@@ -2245,6 +2336,10 @@ msgstr "Ταχύτητες ανεμιστήρων συστήματος (RPM)"
 msgid "System load averages over time"
 msgstr "Μέσοι όροι φορτίου συστήματος με την πάροδο του χρόνου"
 
+#: src/lib/agent-updates.ts
+msgid "System not found."
+msgstr "Το σύστημα δεν βρέθηκε."
+
 #: src/lib/quiet-hours.ts
 msgid "System updates"
 msgstr "Ενημερώσεις συστήματος"
@@ -2262,6 +2357,10 @@ msgstr "Συστήματα"
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
 msgstr "Η διαχείριση των συστημάτων μπορεί να γίνεται σε ένα αρχείο <0>config.yml</0> μέσα στον κατάλογο δεδομένων σας."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Systems to update ({targetCount})"
+msgstr "Συστήματα για ενημέρωση ({targetCount})"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
@@ -2320,9 +2419,29 @@ msgstr "Η δοκιμαστική ειδοποίηση στάλθηκε"
 msgid "Testing"
 msgstr "Δοκιμές"
 
+#: src/lib/agent-updates.ts
+msgid "The agent can't replace its executable. Reinstall it with the current install command."
+msgstr "Ο πράκτορας δεν μπορεί να αντικαταστήσει το εκτελέσιμό του. Επανεγκαταστήστε τον με την τρέχουσα εντολή εγκατάστασης."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The agent restarts and reconnects on its own."
+msgstr "Ο πράκτορας επανεκκινείται και επανασυνδέεται μόνος του."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The agents download version {latest} from GitHub, then restart."
+msgstr "Οι πράκτορες κατεβάζουν την έκδοση {latest} από το GitHub και επανεκκινούνται."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The latest agent version is not known yet"
+msgstr "Η πιο πρόσφατη έκδοση του πράκτορα δεν είναι ακόμη γνωστή"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Η συνολική κατάσταση είναι <0>ok</0> όταν όλα τα συστήματα λειτουργούν, <1>warn</1> όταν ενεργοποιούνται ειδοποιήσεις και <2>error</2> όταν οποιοδήποτε σύστημα είναι εκτός λειτουργίας."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The system is not connected."
+msgstr "Το σύστημα δεν είναι συνδεδεμένο."
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -2331,6 +2450,10 @@ msgstr "Στη συνέχεια, συνδεθείτε στο backend και επ
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Θα διαγράψει οριστικά όλες τις τρέχουσες εγγραφές για το {name} από τη βάση δεδομένων."
+
+#: src/lib/agent-updates.ts
+msgid "This agent is too old to be managed from the hub: update it once on the system."
+msgstr "Αυτός ο πράκτορας είναι πολύ παλιός για διαχείριση από τον κόμβο: ενημερώστε τον μία φορά στο σύστημα."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
@@ -2542,9 +2665,32 @@ msgstr "Σε λειτουργία"
 msgid "Up ({upSystemsLength})"
 msgstr "Σε λειτουργία ({upSystemsLength})"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Up to date"
+msgstr "Ενημερωμένο"
+
+#: src/components/agent-update-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Update"
 msgstr "Ενημέρωση"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+msgid "Update agents"
+msgstr "Ενημέρωση πρακτόρων"
+
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update available: {latest}"
+msgstr "Διαθέσιμη ενημέρωση: {latest}"
+
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update failed"
+msgstr "Η ενημέρωση απέτυχε"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2557,6 +2703,10 @@ msgstr "Ενημερώθηκε"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Updated every {intervalLabel}."
 msgstr "Διάστημα ενημέρωσης: {intervalLabel}."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Updated, the agent restarts."
+msgstr "Ενημερώθηκε, ο πράκτορας επανεκκινείται."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"
@@ -2609,6 +2759,10 @@ msgstr "Χρήση"
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
 msgstr "Τιμή"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Version"
+msgstr "Έκδοση"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "View"
@@ -2673,6 +2827,10 @@ msgstr "Αρχείο καταγραφής συμβάντων Windows"
 #: src/components/routes/settings/general.tsx
 msgid "Windows install folder"
 msgstr "Φάκελος εγκατάστασης στα Windows"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Windows service (NSSM)"
+msgstr "Υπηρεσία Windows (NSSM)"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Windows Services"

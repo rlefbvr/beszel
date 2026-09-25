@@ -50,6 +50,7 @@ import type { SystemRecord } from "@/types"
 import AlertButton from "../alerts/alert-button"
 import { $router, Link } from "../router"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
+import { AgentUpdateButton } from "../agent-update-dialog"
 import { SystemsTableColumns, ActionsButton, IndicatorDot } from "./systems-table-columns"
 
 type ViewMode = "table" | "grid"
@@ -218,8 +219,8 @@ export default function SystemsTable() {
 						</CardDescription>
 					</div>
 
-					<div className="flex gap-2 ms-auto w-full md:w-80">
-						<div className="relative flex-1">
+					<div className="flex gap-2 ms-auto w-full md:w-auto">
+						<div className="relative flex-1 md:w-56">
 							<Input
 								placeholder={t`Filter...`}
 								onChange={(e) => setFilter(e.target.value)}
@@ -356,6 +357,7 @@ export default function SystemsTable() {
 								</div>
 							</DropdownMenuContent>
 						</DropdownMenu>
+						<AgentUpdateButton />
 					</div>
 				</div>
 			</CardHeader>

@@ -117,6 +117,7 @@ msgstr "30 дней"
 msgid "5 min"
 msgstr "5 мин"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "Учётная запись"
@@ -188,13 +189,32 @@ msgstr "После"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "После установки переменных окружения перезапустите хаб Beszel, чтобы изменения вступили в силу."
 
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Agent"
 msgstr "Агент"
 
+#: src/components/routes/system/agent-button.tsx
+msgid "Agent {version}"
+msgstr "Агент {version}"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent details are not available: the agent may need an update."
+msgstr "Сведения об агенте недоступны: возможно, агент нужно обновить."
+
 #: src/components/routes/settings/general.tsx
 msgid "Agent installation"
 msgstr "Установка агента"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent logs"
+msgstr "Журналы агента"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent updated"
+msgstr "Агент обновлён"
 
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -223,6 +243,10 @@ msgstr "Оповещать, если состояние не"
 msgid "Alerts"
 msgstr "Оповещения"
 
+#: src/components/agent-update-dialog.tsx
+msgid "All agents are up to date ({latest})"
+msgstr "Все агенты обновлены ({latest})"
+
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
@@ -230,6 +254,10 @@ msgstr "Оповещения"
 #: src/components/routes/containers.tsx
 msgid "All Containers"
 msgstr "Все контейнеры"
+
+#: src/components/agent-update-dialog.tsx
+msgid "All outdated ({outdatedCount})"
+msgstr "Все устаревшие ({outdatedCount})"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -261,6 +289,11 @@ msgstr "Все системы"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "Все системы до {until}"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Already up to date."
+msgstr "Уже обновлён."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -440,6 +473,7 @@ msgstr "Может запустить"
 msgid "Can stop"
 msgstr "Может остановить"
 
+#: src/components/agent-update-dialog.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -554,6 +588,10 @@ msgstr "Нажмите на систему для просмотра допол�
 msgid "Click to copy"
 msgstr "Нажмите, чтобы скопировать"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Close"
+msgstr "Закрыть"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Интервал сбора"
@@ -592,6 +630,7 @@ msgstr "Нет соединения"
 msgid "Consecutive checks"
 msgstr "Проверок подряд"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Контейнер"
@@ -778,6 +817,10 @@ msgstr "Циклы"
 msgid "Daily"
 msgstr "Ежедневно"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Data directory"
+msgstr "Каталог данных"
+
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
 msgid "Default"
@@ -799,6 +842,10 @@ msgstr "Удалить"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "Удалить отпечаток"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Dependencies"
+msgstr "Зависимости"
 
 #: src/lib/quiet-hours.ts
 msgid "Deployment"
@@ -1197,6 +1244,10 @@ msgstr "Размещённые службы"
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "Как часто агенты собирают данные о службах systemd и Windows. Более короткие интервалы быстрее обнаруживают изменения состояния, но записывают больше данных. Применяется ко всем системам."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "How the agent runs on this system."
+msgstr "Как агент работает в этой системе."
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
 msgstr "HTTP-метод"
@@ -1273,6 +1324,10 @@ msgstr "Неверный адрес электронной почты."
 msgid "Language"
 msgstr "Язык"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Last lines logged by the agent of {name} since it started."
+msgstr "Последние строки журнала агента {name} с момента запуска."
+
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "Макет"
@@ -1327,6 +1382,10 @@ msgstr "Загрузка..."
 msgid "Local Disk"
 msgstr "Локальный диск"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Location"
+msgstr "Расположение"
+
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 msgid "Log Out"
@@ -1348,6 +1407,7 @@ msgstr "Журнал входов"
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Logs"
 msgstr "Журналы"
 
@@ -1517,6 +1577,10 @@ msgstr "Без оповещения"
 msgid "No detail data for this pool."
 msgstr "Подробные данные для этого пула отсутствуют."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "No logs yet."
+msgstr "Журналов пока нет."
+
 #: src/components/reboots-table.tsx
 msgid "No reboots recorded."
 msgstr "Перезагрузки не зарегистрированы."
@@ -1539,6 +1603,10 @@ msgstr "Нет результатов."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "Для этого устройства нет доступных атрибутов S.M.A.R.T."
+
+#: src/lib/agent-updates.ts
+msgid "No service restarts the agent after an update."
+msgstr "Никакая служба не перезапускает агента после обновления."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1886,6 +1954,8 @@ msgstr "Записано"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Refresh"
@@ -1951,6 +2021,10 @@ msgstr "Сменить токен"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "Строк на странице"
+
+#: src/lib/agent-updates.ts
+msgid "Runs in a container: update its image instead."
+msgstr "Работает в контейнере: обновите его образ."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Runtime Metrics"
@@ -2049,6 +2123,14 @@ msgstr "Выбрать строку"
 msgid "Select systems"
 msgstr "Выбрать системы"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Select the systems to update."
+msgstr "Выберите системы для обновления."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Selection"
+msgstr "Выбор"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
 msgstr "Отправьте одиночный пинг heartbeat, чтобы проверить работоспособность конечной точки."
@@ -2069,6 +2151,7 @@ msgstr "Отправлено"
 msgid "Serial Number"
 msgstr "Серийный номер"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Служба"
@@ -2152,6 +2235,14 @@ msgstr "Время начала"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Start type"
 msgstr "Тип запуска"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started"
+msgstr "Запущен"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started manually"
+msgstr "Запущен вручную"
 
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
@@ -2245,6 +2336,10 @@ msgstr "Скорость вращения системных вентилято�
 msgid "System load averages over time"
 msgstr "Средняя загрузка системы по времени"
 
+#: src/lib/agent-updates.ts
+msgid "System not found."
+msgstr "Система не найдена."
+
 #: src/lib/quiet-hours.ts
 msgid "System updates"
 msgstr "Обновления системы"
@@ -2262,6 +2357,10 @@ msgstr "Системы"
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
 msgstr "Системы могут управляться в файле <0>config.yml</0> внутри вашего каталога данных."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Systems to update ({targetCount})"
+msgstr "Системы для обновления ({targetCount})"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
@@ -2320,9 +2419,29 @@ msgstr "Тестовое уведомление отправлено"
 msgid "Testing"
 msgstr "Тестирование"
 
+#: src/lib/agent-updates.ts
+msgid "The agent can't replace its executable. Reinstall it with the current install command."
+msgstr "Агент не может заменить свой исполняемый файл. Переустановите его текущей командой установки."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The agent restarts and reconnects on its own."
+msgstr "Агент перезапустится и подключится сам."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The agents download version {latest} from GitHub, then restart."
+msgstr "Агенты загружают версию {latest} с GitHub и перезапускаются."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The latest agent version is not known yet"
+msgstr "Последняя версия агента пока неизвестна"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Общий статус: <0>ok</0>, когда все системы работают, <1>предупреждение</1>, когда сработали оповещения, и <2>ошибка</2>, когда какая-либо система отключена."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The system is not connected."
+msgstr "Система не подключена."
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -2331,6 +2450,10 @@ msgstr "Затем войдите в бэкенд и сбросьте парол
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Это действие не может быть отменено. Оно навсегда удалит все текущие записи для {name} из базы данных."
+
+#: src/lib/agent-updates.ts
+msgid "This agent is too old to be managed from the hub: update it once on the system."
+msgstr "Этот агент слишком старый для управления из хаба: обновите его один раз на самой системе."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
@@ -2542,9 +2665,32 @@ msgstr "В сети"
 msgid "Up ({upSystemsLength})"
 msgstr "В сети ({upSystemsLength})"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Up to date"
+msgstr "Актуален"
+
+#: src/components/agent-update-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Update"
 msgstr "Обновить"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+msgid "Update agents"
+msgstr "Обновить агентов"
+
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update available: {latest}"
+msgstr "Доступно обновление: {latest}"
+
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update failed"
+msgstr "Ошибка обновления"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2557,6 +2703,10 @@ msgstr "Обновлено"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Updated every {intervalLabel}."
 msgstr "Интервал обновления: {intervalLabel}."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Updated, the agent restarts."
+msgstr "Обновлено, агент перезапускается."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"
@@ -2609,6 +2759,10 @@ msgstr "Использование"
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
 msgstr "Значение"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Version"
+msgstr "Версия"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "View"
@@ -2673,6 +2827,10 @@ msgstr "Журнал событий Windows"
 #: src/components/routes/settings/general.tsx
 msgid "Windows install folder"
 msgstr "Папка установки в Windows"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Windows service (NSSM)"
+msgstr "Служба Windows (NSSM)"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Windows Services"

@@ -117,6 +117,7 @@ msgstr "30 kun"
 msgid "5 min"
 msgstr "5 daq"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "Hisob"
@@ -188,13 +189,32 @@ msgstr "Keyin"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "Muhit o'zgaruvchilarini sozlagandan so'ng, o'zgarishlar kuchga kirishi uchun Beszel hub'ini qayta ishga tushiring."
 
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Agent"
 msgstr "Agent"
 
+#: src/components/routes/system/agent-button.tsx
+msgid "Agent {version}"
+msgstr "Agent {version}"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent details are not available: the agent may need an update."
+msgstr "Agent tafsilotlari mavjud emas: agentni yangilash kerak bo‘lishi mumkin."
+
 #: src/components/routes/settings/general.tsx
 msgid "Agent installation"
 msgstr "Agentni o‘rnatish"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent logs"
+msgstr "Agent jurnallari"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent updated"
+msgstr "Agent yangilandi"
 
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -223,6 +243,10 @@ msgstr "Holat quyidagicha bo‘lmaganda ogohlantirish"
 msgid "Alerts"
 msgstr "Ogohlantirishlar"
 
+#: src/components/agent-update-dialog.tsx
+msgid "All agents are up to date ({latest})"
+msgstr "Barcha agentlar yangilangan ({latest})"
+
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
@@ -230,6 +254,10 @@ msgstr "Ogohlantirishlar"
 #: src/components/routes/containers.tsx
 msgid "All Containers"
 msgstr "Barcha konteynerlar"
+
+#: src/components/agent-update-dialog.tsx
+msgid "All outdated ({outdatedCount})"
+msgstr "Barcha eskirganlar ({outdatedCount})"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -261,6 +289,11 @@ msgstr "Barcha tizimlar"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "Barcha tizimlar {until} gacha"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Already up to date."
+msgstr "Allaqachon yangilangan."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -440,6 +473,7 @@ msgstr "Ishga tushira oladi"
 msgid "Can stop"
 msgstr "To'xtata oladi"
 
+#: src/components/agent-update-dialog.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -554,6 +588,10 @@ msgstr "Batafsil ma'lumot uchun tizimni bosing."
 msgid "Click to copy"
 msgstr "Nusxalash uchun bosing"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Close"
+msgstr "Yopish"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Yig‘ish oralig‘i"
@@ -592,6 +630,7 @@ msgstr "Ulanish uzildi"
 msgid "Consecutive checks"
 msgstr "Ketma-ket tekshiruvlar"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Konteyner"
@@ -778,6 +817,10 @@ msgstr "Sikllar"
 msgid "Daily"
 msgstr "Kunlik"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Data directory"
+msgstr "Ma’lumotlar jildi"
+
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
 msgid "Default"
@@ -799,6 +842,10 @@ msgstr "O'chirish"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "Barmoq izini o'chirish"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Dependencies"
+msgstr "Bog‘liqliklar"
 
 #: src/lib/quiet-hours.ts
 msgid "Deployment"
@@ -1197,6 +1244,10 @@ msgstr "Joylashtirilgan xizmatlar"
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "Agentlar systemd va Windows xizmatlari ma’lumotlarini qanchalik tez-tez yig‘ishi. Qisqaroq oraliqlar holat o‘zgarishlarini tezroq aniqlaydi, lekin ko‘proq ma’lumot yozadi. Barcha tizimlarga qo‘llaniladi."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "How the agent runs on this system."
+msgstr "Agent ushbu tizimda qanday ishlaydi."
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
 msgstr "HTTP usul"
@@ -1273,6 +1324,10 @@ msgstr "Noto'g'ri elektron pochta manzili."
 msgid "Language"
 msgstr "Til"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Last lines logged by the agent of {name} since it started."
+msgstr "{name} agenti ishga tushganidan beri yozgan so‘nggi qatorlar."
+
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "Tartib"
@@ -1327,6 +1382,10 @@ msgstr "Yuklanmoqda..."
 msgid "Local Disk"
 msgstr "Mahalliy disk"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Location"
+msgstr "Joylashuv"
+
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 msgid "Log Out"
@@ -1348,6 +1407,7 @@ msgstr "Kirish yozuvlari"
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Logs"
 msgstr "Jurnallar"
 
@@ -1517,6 +1577,10 @@ msgstr "Ogohlantirish yo‘q"
 msgid "No detail data for this pool."
 msgstr "Bu pool uchun batafsil ma’lumot mavjud emas."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "No logs yet."
+msgstr "Hozircha jurnallar yo‘q."
+
 #: src/components/reboots-table.tsx
 msgid "No reboots recorded."
 msgstr "Qayd etilgan qayta ishga tushirish yo‘q."
@@ -1539,6 +1603,10 @@ msgstr "Natijalar yo'q."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "Ushbu qurilma uchun S.M.A.R.T. atributlari mavjud emas."
+
+#: src/lib/agent-updates.ts
+msgid "No service restarts the agent after an update."
+msgstr "Yangilanishdan keyin agentni hech bir xizmat qayta ishga tushirmaydi."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1886,6 +1954,8 @@ msgstr "Qayd etilgan"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Refresh"
@@ -1951,6 +2021,10 @@ msgstr "Tokenni yangilash"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "Sahifadagi qatorlar"
+
+#: src/lib/agent-updates.ts
+msgid "Runs in a container: update its image instead."
+msgstr "Konteynerda ishlaydi: o‘rniga uning obrazini yangilang."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Runtime Metrics"
@@ -2049,6 +2123,14 @@ msgstr "Qatorni tanlash"
 msgid "Select systems"
 msgstr "Tizimlarni tanlash"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Select the systems to update."
+msgstr "Yangilanadigan tizimlarni tanlang."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Selection"
+msgstr "Tanlov"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
 msgstr "Endpoint'ingiz ishlayotganligini tekshirish uchun bitta heartbeat ping yuboring."
@@ -2069,6 +2151,7 @@ msgstr "Yuborildi"
 msgid "Serial Number"
 msgstr "Seriya raqami"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Xizmat"
@@ -2152,6 +2235,14 @@ msgstr "Boshlanish vaqti"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Start type"
 msgstr "Ishga tushirish turi"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started"
+msgstr "Ishga tushgan"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started manually"
+msgstr "Qo‘lda ishga tushirilgan"
 
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
@@ -2245,6 +2336,10 @@ msgstr "Tizim ventilyatorlari tezligi (RPM)"
 msgid "System load averages over time"
 msgstr "Tizim yuklanishi o'rtachalari vaqt bo'yicha"
 
+#: src/lib/agent-updates.ts
+msgid "System not found."
+msgstr "Tizim topilmadi."
+
 #: src/lib/quiet-hours.ts
 msgid "System updates"
 msgstr "Tizim yangilanishlari"
@@ -2262,6 +2357,10 @@ msgstr "Tizimlar"
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
 msgstr "Tizimlar ma'lumotlar katalogingiz ichidagi <0>config.yml</0> faylida boshqarilishi mumkin."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Systems to update ({targetCount})"
+msgstr "Yangilanadigan tizimlar ({targetCount})"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
@@ -2320,9 +2419,29 @@ msgstr "Test bildirishnoma yuborildi"
 msgid "Testing"
 msgstr "Sinov"
 
+#: src/lib/agent-updates.ts
+msgid "The agent can't replace its executable. Reinstall it with the current install command."
+msgstr "Agent o‘z bajariladigan faylini almashtira olmaydi. Uni joriy o‘rnatish buyrug‘i bilan qayta o‘rnating."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The agent restarts and reconnects on its own."
+msgstr "Agent o‘zi qayta ishga tushadi va qayta ulanadi."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The agents download version {latest} from GitHub, then restart."
+msgstr "Agentlar GitHub’dan {latest} versiyasini yuklab oladi va qayta ishga tushadi."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The latest agent version is not known yet"
+msgstr "Agentning so‘nggi versiyasi hali noma’lum"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Barcha tizimlar ishlayotganida umumiy holat <0>yaxshi</0>, ogohlantirishlar ishga tushganda <1>ogohlantirish</1> va biron-bir tizim ishlamayotganida <2>xato</2>."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The system is not connected."
+msgstr "Tizim ulanmagan."
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -2331,6 +2450,10 @@ msgstr "Keyin backend'ga kiring va foydalanuvchilar jadvalidagi foydalanuvchi hi
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Bu amalni bekor qilib bo'lmaydi. Bu {name} uchun barcha joriy yozuvlarni ma'lumotlar bazasidan butunlay o'chiradi."
+
+#: src/lib/agent-updates.ts
+msgid "This agent is too old to be managed from the hub: update it once on the system."
+msgstr "Bu agent hub orqali boshqarish uchun juda eski: uni tizimda bir marta yangilang."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
@@ -2542,9 +2665,32 @@ msgstr "Ishlayapti"
 msgid "Up ({upSystemsLength})"
 msgstr "Ishlayapti ({upSystemsLength})"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Up to date"
+msgstr "Yangilangan"
+
+#: src/components/agent-update-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Update"
 msgstr "Yangilash"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+msgid "Update agents"
+msgstr "Agentlarni yangilash"
+
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update available: {latest}"
+msgstr "Yangilanish mavjud: {latest}"
+
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update failed"
+msgstr "Yangilash muvaffaqiyatsiz"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2557,6 +2703,10 @@ msgstr "Yangilandi"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Updated every {intervalLabel}."
 msgstr "Yangilanish oralig‘i: {intervalLabel}."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Updated, the agent restarts."
+msgstr "Yangilandi, agent qayta ishga tushmoqda."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"
@@ -2609,6 +2759,10 @@ msgstr "Yuklanish"
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
 msgstr "Qiymat"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Version"
+msgstr "Versiya"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "View"
@@ -2673,6 +2827,10 @@ msgstr "Windows hodisalar jurnali"
 #: src/components/routes/settings/general.tsx
 msgid "Windows install folder"
 msgstr "Windows o‘rnatish jildi"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Windows service (NSSM)"
+msgstr "Windows xizmati (NSSM)"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Windows Services"

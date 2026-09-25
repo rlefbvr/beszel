@@ -117,6 +117,7 @@ msgstr "30일"
 msgid "5 min"
 msgstr "5분"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "계정"
@@ -188,13 +189,32 @@ msgstr "이후"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "환경 변수를 설정한 후, 변경 사항을 적용하려면 Beszel 허브를 재시작하세요."
 
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Agent"
 msgstr "에이전트"
 
+#: src/components/routes/system/agent-button.tsx
+msgid "Agent {version}"
+msgstr "에이전트 {version}"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent details are not available: the agent may need an update."
+msgstr "에이전트 정보를 사용할 수 없습니다. 에이전트 업데이트가 필요할 수 있습니다."
+
 #: src/components/routes/settings/general.tsx
 msgid "Agent installation"
 msgstr "에이전트 설치"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent logs"
+msgstr "에이전트 로그"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent updated"
+msgstr "에이전트가 업데이트됨"
 
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -223,6 +243,10 @@ msgstr "상태가 다음이 아닐 때 알림"
 msgid "Alerts"
 msgstr "알림"
 
+#: src/components/agent-update-dialog.tsx
+msgid "All agents are up to date ({latest})"
+msgstr "모든 에이전트가 최신입니다 ({latest})"
+
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
@@ -230,6 +254,10 @@ msgstr "알림"
 #: src/components/routes/containers.tsx
 msgid "All Containers"
 msgstr "모든 컨테이너"
+
+#: src/components/agent-update-dialog.tsx
+msgid "All outdated ({outdatedCount})"
+msgstr "업데이트 필요 전체 ({outdatedCount})"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -261,6 +289,11 @@ msgstr "모든 시스템"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "모든 시스템 ({until}까지)"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Already up to date."
+msgstr "이미 최신입니다."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -440,6 +473,7 @@ msgstr "시작 가능"
 msgid "Can stop"
 msgstr "중지 가능"
 
+#: src/components/agent-update-dialog.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -554,6 +588,10 @@ msgstr "더 많은 정보를 보려면 시스템을 클릭하세요."
 msgid "Click to copy"
 msgstr "클릭하여 복사"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Close"
+msgstr "닫기"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "수집 간격"
@@ -592,6 +630,7 @@ msgstr "연결이 끊겼습니다"
 msgid "Consecutive checks"
 msgstr "연속 확인 횟수"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "컨테이너"
@@ -778,6 +817,10 @@ msgstr "사이클"
 msgid "Daily"
 msgstr "매일"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Data directory"
+msgstr "데이터 디렉터리"
+
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
 msgid "Default"
@@ -799,6 +842,10 @@ msgstr "삭제"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "지문 삭제"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Dependencies"
+msgstr "종속성"
 
 #: src/lib/quiet-hours.ts
 msgid "Deployment"
@@ -1197,6 +1244,10 @@ msgstr "호스팅된 서비스"
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "에이전트가 systemd 및 Windows 서비스 데이터를 수집하는 빈도입니다. 간격이 짧을수록 상태 변화를 더 빨리 감지하지만 더 많은 데이터를 기록합니다. 모든 시스템에 적용됩니다."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "How the agent runs on this system."
+msgstr "이 시스템에서 에이전트가 실행되는 방식입니다."
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
 msgstr "HTTP 메서드"
@@ -1273,6 +1324,10 @@ msgstr "잘못된 이메일 주소입니다."
 msgid "Language"
 msgstr "언어"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Last lines logged by the agent of {name} since it started."
+msgstr "{name} 에이전트가 시작된 이후 기록한 마지막 줄입니다."
+
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "레이아웃"
@@ -1327,6 +1382,10 @@ msgstr "로딩 중..."
 msgid "Local Disk"
 msgstr "로컬 디스크"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Location"
+msgstr "위치"
+
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 msgid "Log Out"
@@ -1348,6 +1407,7 @@ msgstr "로그인 기록"
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Logs"
 msgstr "로그"
 
@@ -1517,6 +1577,10 @@ msgstr "알림 없음"
 msgid "No detail data for this pool."
 msgstr "이 풀에 대한 상세 데이터가 없습니다."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "No logs yet."
+msgstr "아직 로그가 없습니다."
+
 #: src/components/reboots-table.tsx
 msgid "No reboots recorded."
 msgstr "기록된 재시작이 없습니다."
@@ -1539,6 +1603,10 @@ msgstr "결과 없음."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "이 장치에 사용할 수 있는 S.M.A.R.T. 속성이 없습니다."
+
+#: src/lib/agent-updates.ts
+msgid "No service restarts the agent after an update."
+msgstr "업데이트 후 에이전트를 다시 시작하는 서비스가 없습니다."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1886,6 +1954,8 @@ msgstr "기록됨"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Refresh"
@@ -1951,6 +2021,10 @@ msgstr "토큰 회전"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "페이지당 행 수"
+
+#: src/lib/agent-updates.ts
+msgid "Runs in a container: update its image instead."
+msgstr "컨테이너에서 실행 중입니다. 대신 이미지를 업데이트하세요."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Runtime Metrics"
@@ -2049,6 +2123,14 @@ msgstr "행 선택"
 msgid "Select systems"
 msgstr "시스템 선택"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Select the systems to update."
+msgstr "업데이트할 시스템을 선택하세요."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Selection"
+msgstr "선택"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
 msgstr "엔드포인트가 작동하는지 확인하기 위해 단일 하트비트 핑을 보냅니다."
@@ -2069,6 +2151,7 @@ msgstr "보냄"
 msgid "Serial Number"
 msgstr "시리얼 번호"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "서비스"
@@ -2152,6 +2235,14 @@ msgstr "시작 시간"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Start type"
 msgstr "시작 유형"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started"
+msgstr "시작됨"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started manually"
+msgstr "수동으로 시작됨"
 
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
@@ -2245,6 +2336,10 @@ msgstr "시스템 팬 속도 (RPM)"
 msgid "System load averages over time"
 msgstr "시간에 따른 시스템 부하 평균"
 
+#: src/lib/agent-updates.ts
+msgid "System not found."
+msgstr "시스템을 찾을 수 없습니다."
+
 #: src/lib/quiet-hours.ts
 msgid "System updates"
 msgstr "시스템 업데이트"
@@ -2262,6 +2357,10 @@ msgstr "시스템"
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
 msgstr "시스템은 데이터 디렉토리 내의 <0>config.yml</0> 파일에서 관리할 수 있습니다."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Systems to update ({targetCount})"
+msgstr "업데이트할 시스템 ({targetCount})"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
@@ -2320,9 +2419,29 @@ msgstr "테스트 알림이 전송되었습니다."
 msgid "Testing"
 msgstr "테스트"
 
+#: src/lib/agent-updates.ts
+msgid "The agent can't replace its executable. Reinstall it with the current install command."
+msgstr "에이전트가 실행 파일을 교체할 수 없습니다. 현재 설치 명령으로 다시 설치하세요."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The agent restarts and reconnects on its own."
+msgstr "에이전트가 자동으로 다시 시작되고 다시 연결됩니다."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The agents download version {latest} from GitHub, then restart."
+msgstr "에이전트가 GitHub에서 버전 {latest}을(를) 다운로드한 후 다시 시작합니다."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The latest agent version is not known yet"
+msgstr "최신 에이전트 버전을 아직 알 수 없습니다"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "모든 시스템이 정상이면 <0>ok</0>, 알림이 트리거되면 <1>경고</1>, 시스템이 다운되면 <2>오류</2> 상태가 됩니다."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The system is not connected."
+msgstr "시스템이 연결되어 있지 않습니다."
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -2331,6 +2450,10 @@ msgstr "그런 다음 백엔드에 로그인하여 사용자 테이블에서 사
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "이 작업은 되돌릴 수 없습니다. 데이터베이스에서 {name}에 대한 모든 현재 기록이 영구적으로 삭제됩니다."
+
+#: src/lib/agent-updates.ts
+msgid "This agent is too old to be managed from the hub: update it once on the system."
+msgstr "이 에이전트는 너무 오래되어 허브에서 관리할 수 없습니다. 시스템에서 한 번 업데이트하세요."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
@@ -2542,9 +2665,32 @@ msgstr "온라인"
 msgid "Up ({upSystemsLength})"
 msgstr "온라인 ({upSystemsLength})"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Up to date"
+msgstr "최신"
+
+#: src/components/agent-update-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Update"
 msgstr "업데이트"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+msgid "Update agents"
+msgstr "에이전트 업데이트"
+
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update available: {latest}"
+msgstr "업데이트 가능: {latest}"
+
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update failed"
+msgstr "업데이트 실패"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2557,6 +2703,10 @@ msgstr "업데이트됨"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Updated every {intervalLabel}."
 msgstr "업데이트 간격: {intervalLabel}."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Updated, the agent restarts."
+msgstr "업데이트됨, 에이전트가 다시 시작됩니다."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"
@@ -2609,6 +2759,10 @@ msgstr "사용률"
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
 msgstr "값"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Version"
+msgstr "버전"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "View"
@@ -2673,6 +2827,10 @@ msgstr "Windows 이벤트 로그"
 #: src/components/routes/settings/general.tsx
 msgid "Windows install folder"
 msgstr "Windows 설치 폴더"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Windows service (NSSM)"
+msgstr "Windows 서비스 (NSSM)"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Windows Services"

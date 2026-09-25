@@ -16,12 +16,17 @@ func autoFilesystemsEnabled() bool {
 		enabled, err := strconv.ParseBool(strings.TrimSpace(value))
 		return err != nil || enabled
 	}
+	return !runningInContainer()
+}
+
+// runningInContainer reports whether the agent runs in a Docker or Podman container.
+func runningInContainer() bool {
 	for _, marker := range []string{"/.dockerenv", "/run/.containerenv"} {
 		if _, err := os.Stat(marker); err == nil {
-			return false
+			return true
 		}
 	}
-	return true
+	return false
 }
 
 // addAutoFilesystems registers the local disks that are not tracked yet.

@@ -1379,6 +1379,8 @@ User=beszel
 Restart=on-failure
 RestartSec=5
 StateDirectory=beszel-agent
+# Allow the agent to update itself when requested from the hub
+ReadWritePaths=$BIN_DIR
 
 # Security/sandboxing settings
 KeyringMode=private

@@ -117,6 +117,7 @@ msgstr "30 gün"
 msgid "5 min"
 msgstr "5 dk"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "Hesap"
@@ -188,13 +189,32 @@ msgstr "Sonra"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "Ortam değişkenlerini ayarladıktan sonra, değişikliklerin etkili olması için Beszel Hub'ınızı yeniden başlatın."
 
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Agent"
 msgstr "Aracı"
 
+#: src/components/routes/system/agent-button.tsx
+msgid "Agent {version}"
+msgstr "Aracı {version}"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent details are not available: the agent may need an update."
+msgstr "Aracı ayrıntıları kullanılamıyor: aracının güncellenmesi gerekebilir."
+
 #: src/components/routes/settings/general.tsx
 msgid "Agent installation"
 msgstr "Aracı kurulumu"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent logs"
+msgstr "Aracı günlükleri"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Agent updated"
+msgstr "Aracı güncellendi"
 
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -223,6 +243,10 @@ msgstr "Durum şu olmadığında uyar"
 msgid "Alerts"
 msgstr "Uyarılar"
 
+#: src/components/agent-update-dialog.tsx
+msgid "All agents are up to date ({latest})"
+msgstr "Tüm aracılar güncel ({latest})"
+
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
@@ -230,6 +254,10 @@ msgstr "Uyarılar"
 #: src/components/routes/containers.tsx
 msgid "All Containers"
 msgstr "Tüm Konteynerler"
+
+#: src/components/agent-update-dialog.tsx
+msgid "All outdated ({outdatedCount})"
+msgstr "Tüm eskiler ({outdatedCount})"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -261,6 +289,11 @@ msgstr "Tüm Sistemler"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "Tüm sistemler {until} saatine kadar"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Already up to date."
+msgstr "Zaten güncel."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -440,6 +473,7 @@ msgstr "Başlatılabilir"
 msgid "Can stop"
 msgstr "Durdurulabilir"
 
+#: src/components/agent-update-dialog.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -554,6 +588,10 @@ msgstr "Daha fazla bilgi görmek için bir sisteme tıklayın."
 msgid "Click to copy"
 msgstr "Kopyalamak için tıklayın"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Close"
+msgstr "Kapat"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Toplama aralığı"
@@ -592,6 +630,7 @@ msgstr "Bağlantı kesildi"
 msgid "Consecutive checks"
 msgstr "Ardışık kontroller"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Konteyner"
@@ -778,6 +817,10 @@ msgstr "Döngüler"
 msgid "Daily"
 msgstr "Günlük"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Data directory"
+msgstr "Veri dizini"
+
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
 msgid "Default"
@@ -799,6 +842,10 @@ msgstr "Sil"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "Parmak izini sil"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Dependencies"
+msgstr "Bağımlılıklar"
 
 #: src/lib/quiet-hours.ts
 msgid "Deployment"
@@ -1197,6 +1244,10 @@ msgstr "Barındırılan hizmetler"
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "Ajanların systemd ve Windows hizmet verilerini ne sıklıkla topladığı. Daha kısa aralıklar durum değişikliklerini daha erken algılar ancak daha fazla veri yazar. Tüm sistemlere uygulanır."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "How the agent runs on this system."
+msgstr "Aracının bu sistemde nasıl çalıştığı."
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "HTTP Method"
 msgstr "HTTP Yöntemi"
@@ -1273,6 +1324,10 @@ msgstr "Geçersiz e-posta adresi."
 msgid "Language"
 msgstr "Dil"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Last lines logged by the agent of {name} since it started."
+msgstr "{name} aracısının başlatıldığından beri kaydettiği son satırlar."
+
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "Düzen"
@@ -1327,6 +1382,10 @@ msgstr "Yükleniyor..."
 msgid "Local Disk"
 msgstr "Yerel Disk"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Location"
+msgstr "Konum"
+
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 msgid "Log Out"
@@ -1348,6 +1407,7 @@ msgstr "Oturum açma kayıtları"
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Logs"
 msgstr "Günlükler"
 
@@ -1517,6 +1577,10 @@ msgstr "Uyarı yok"
 msgid "No detail data for this pool."
 msgstr "Bu pool için ayrıntılı veri mevcut değil."
 
+#: src/components/routes/system/agent-details.tsx
+msgid "No logs yet."
+msgstr "Henüz günlük yok."
+
 #: src/components/reboots-table.tsx
 msgid "No reboots recorded."
 msgstr "Kayıtlı yeniden başlatma yok."
@@ -1539,6 +1603,10 @@ msgstr "Sonuç yok."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "Bu cihaz için kullanılabilir S.M.A.R.T. özelliği yok."
+
+#: src/lib/agent-updates.ts
+msgid "No service restarts the agent after an update."
+msgstr "Hiçbir hizmet güncellemeden sonra aracıyı yeniden başlatmıyor."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1886,6 +1954,8 @@ msgstr "Kaydedildi"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Refresh"
@@ -1951,6 +2021,10 @@ msgstr "Token'ı döndür"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
 msgstr "Sayfa başına satır"
+
+#: src/lib/agent-updates.ts
+msgid "Runs in a container: update its image instead."
+msgstr "Bir kapsayıcıda çalışıyor: bunun yerine görüntüsünü güncelleyin."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Runtime Metrics"
@@ -2049,6 +2123,14 @@ msgstr "Satırı seç"
 msgid "Select systems"
 msgstr "Sistemleri seç"
 
+#: src/components/agent-update-dialog.tsx
+msgid "Select the systems to update."
+msgstr "Güncellenecek sistemleri seçin."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Selection"
+msgstr "Seçim"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
 msgstr "Uç noktanızın çalıştığını doğrulamak için tek bir heartbeat ping'i gönderin."
@@ -2069,6 +2151,7 @@ msgstr "Gönderildi"
 msgid "Serial Number"
 msgstr "Seri Numarası"
 
+#: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Hizmet"
@@ -2152,6 +2235,14 @@ msgstr "Başlangıç Saati"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Start type"
 msgstr "Başlangıç türü"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started"
+msgstr "Başlatıldı"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Started manually"
+msgstr "Elle başlatıldı"
 
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
@@ -2245,6 +2336,10 @@ msgstr "Sistem fan hızları (RPM)"
 msgid "System load averages over time"
 msgstr "Zaman içindeki sistem yükü ortalamaları"
 
+#: src/lib/agent-updates.ts
+msgid "System not found."
+msgstr "Sistem bulunamadı."
+
 #: src/lib/quiet-hours.ts
 msgid "System updates"
 msgstr "Sistem güncellemeleri"
@@ -2262,6 +2357,10 @@ msgstr "Sistemler"
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
 msgstr "Sistemler, veri dizininizdeki bir <0>config.yml</0> dosyasında yönetilebilir."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Systems to update ({targetCount})"
+msgstr "Güncellenecek sistemler ({targetCount})"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
@@ -2320,9 +2419,29 @@ msgstr "Test bildirimi gönderildi"
 msgid "Testing"
 msgstr "Test"
 
+#: src/lib/agent-updates.ts
+msgid "The agent can't replace its executable. Reinstall it with the current install command."
+msgstr "Aracı yürütülebilir dosyasını değiştiremiyor. Geçerli kurulum komutuyla yeniden kurun."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The agent restarts and reconnects on its own."
+msgstr "Aracı kendi kendine yeniden başlar ve yeniden bağlanır."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The agents download version {latest} from GitHub, then restart."
+msgstr "Aracılar GitHub’dan {latest} sürümünü indirir ve ardından yeniden başlar."
+
+#: src/components/agent-update-dialog.tsx
+msgid "The latest agent version is not known yet"
+msgstr "En son aracı sürümü henüz bilinmiyor"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Tüm sistemler çalışırken genel durum <0>ok</0>, uyarılar tetiklendiğinde <1>uyarı</1> ve herhangi bir sistem çöktüğünde <2>hata</2> şeklindedir."
+
+#: src/components/routes/system/agent-details.tsx
+msgid "The system is not connected."
+msgstr "Sistem bağlı değil."
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -2331,6 +2450,10 @@ msgstr "Ardından arka uca giriş yapın ve kullanıcılar tablosunda kullanıc�
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Bu işlem geri alınamaz. Bu, veritabanından {name} için tüm mevcut kayıtları kalıcı olarak silecektir."
+
+#: src/lib/agent-updates.ts
+msgid "This agent is too old to be managed from the hub: update it once on the system."
+msgstr "Bu aracı hub üzerinden yönetilemeyecek kadar eski: sistem üzerinde bir kez güncelleyin."
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
@@ -2542,9 +2665,32 @@ msgstr "Açık"
 msgid "Up ({upSystemsLength})"
 msgstr "Açık ({upSystemsLength})"
 
+#: src/components/routes/system/agent-details.tsx
+msgid "Up to date"
+msgstr "Güncel"
+
+#: src/components/agent-update-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/system/agent-details.tsx
 msgid "Update"
 msgstr "Güncelle"
+
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+#: src/components/agent-update-dialog.tsx
+msgid "Update agents"
+msgstr "Aracıları güncelle"
+
+#: src/components/routes/system/agent-button.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update available: {latest}"
+msgstr "Güncelleme mevcut: {latest}"
+
+#: src/components/routes/system/agent-details.tsx
+#: src/components/routes/system/agent-details.tsx
+msgid "Update failed"
+msgstr "Güncelleme başarısız"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2557,6 +2703,10 @@ msgstr "Güncellendi"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Updated every {intervalLabel}."
 msgstr "Güncelleme aralığı: {intervalLabel}."
+
+#: src/components/agent-update-dialog.tsx
+msgid "Updated, the agent restarts."
+msgstr "Güncellendi, aracı yeniden başlıyor."
 
 #: src/components/routes/system/network-sheet.tsx
 msgid "Upload"
@@ -2609,6 +2759,10 @@ msgstr "Kullanım"
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
 msgstr "Değer"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Version"
+msgstr "Sürüm"
 
 #: src/components/systems-table/systems-table.tsx
 msgid "View"
@@ -2673,6 +2827,10 @@ msgstr "Windows olay günlüğü"
 #: src/components/routes/settings/general.tsx
 msgid "Windows install folder"
 msgstr "Windows kurulum klasörü"
+
+#: src/components/routes/system/agent-details.tsx
+msgid "Windows service (NSSM)"
+msgstr "Windows hizmeti (NSSM)"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Windows Services"
