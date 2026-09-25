@@ -5,7 +5,7 @@ import { timeDay, timeHour, timeMinute } from "d3-time"
 import { useEffect, useState } from "react"
 import { twMerge } from "tailwind-merge"
 import { toast } from "@/components/ui/use-toast"
-import type { ChartTimeData, FingerprintRecord, SemVer, SystemInfo, SystemRecord } from "@/types"
+import type { ChartTimeData, ChartTimes, FingerprintRecord, SemVer, SystemInfo, SystemRecord } from "@/types"
 import { HourFormat, Unit } from "./enums"
 import { $copyContent, $userSettings } from "./stores"
 
@@ -175,7 +175,38 @@ export const chartTimeData: ChartTimeData = {
 		format: (timestamp: string) => formatDay(timestamp),
 		getOffset: (endTime: Date) => timeDay.offset(endTime, -30),
 	},
+	// long periods: daily records, kept while the period is enabled in the hub settings
+	"90d": {
+		type: "1440m",
+		expectedInterval: 60_000 * 1440,
+		label: () => t`90 days`,
+		ticks: 12,
+		format: (timestamp: string) => formatDay(timestamp),
+		getOffset: (endTime: Date) => timeDay.offset(endTime, -90),
+	},
+	"180d": {
+		type: "1440m",
+		expectedInterval: 60_000 * 1440,
+		label: () => t`180 days`,
+		ticks: 12,
+		format: (timestamp: string) => formatDay(timestamp),
+		getOffset: (endTime: Date) => timeDay.offset(endTime, -180),
+	},
+	"1y": {
+		type: "1440m",
+		expectedInterval: 60_000 * 1440,
+		label: () => t`1 year`,
+		ticks: 12,
+		format: (timestamp: string) => formatDay(timestamp),
+		getOffset: (endTime: Date) => timeDay.offset(endTime, -365),
+	},
 }
+
+/** Chart periods offered when the hub settings don't say otherwise */
+export const defaultChartPeriods: ChartTimes[] = ["1m", "1h", "12h", "24h", "1w", "30d"]
+
+/** Chart periods kept with daily records, which extend the data retention */
+export const longChartPeriods: ChartTimes[] = ["90d", "180d", "1y"]
 
 /** Format number to x decimal places, without trailing zeros */
 export function toFixedFloat(num: number, digits: number) {

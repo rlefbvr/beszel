@@ -15,6 +15,9 @@ export const $agentServiceName = atom("beszel-agent")
 /** Folder the Windows install command installs the agent to ("" for the script default) */
 export const $agentInstallDir = atom("")
 
+/** Chart periods offered to the users, chosen in the hub settings */
+export const $chartPeriods = atom<ChartTimes[]>(["1m", "1h", "12h", "24h", "1w", "30d"])
+
 /** Retention of the alert history: alerts kept per user, or days when days > 0 */
 export const $alertsRetention = atom({ count: 200, days: 0 })
 

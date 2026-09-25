@@ -4,20 +4,21 @@ import { DownloadIcon, GlobeIcon, LanguagesIcon, LoaderCircleIcon, SaveIcon, Ser
 import { useState } from "react"
 import { useStore } from "@nanostores/react"
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
 import Slider from "@/components/ui/slider"
 import { toast } from "@/components/ui/use-toast"
-import { isAdmin, queueUserSettings, saveAgentInstallDir, saveAgentServiceName, saveServicesInterval } from "@/lib/api"
+import { isAdmin, queueUserSettings, saveAgentInstallDir, saveAgentServiceName, saveChartPeriods, saveServicesInterval } from "@/lib/api"
 import { HourFormat, Unit } from "@/lib/enums"
 import { dynamicActivate } from "@/lib/i18n"
 import { $instance, saveInstance } from "@/lib/instance"
 import languages from "@/lib/languages"
-import { $agentInstallDir, $agentServiceName, $servicesInterval, $userSettings, defaultLayoutWidth } from "@/lib/stores"
-import { chartTimeData, currentHour12, secondsToString } from "@/lib/utils"
-import type { UserSettings } from "@/types"
+import { $agentInstallDir, $agentServiceName, $chartPeriods, $servicesInterval, $userSettings, defaultLayoutWidth } from "@/lib/stores"
+import { chartTimeData, currentHour12, longChartPeriods, secondsToString } from "@/lib/utils"
+import type { ChartTimes, UserSettings } from "@/types"
 import { basePath } from "@/components/router"
 import { saveSettings } from "./layout"
 
@@ -57,6 +58,8 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 	const [newAgentInstallDir, setNewAgentInstallDir] = useState<string>()
 	const installDirInvalid = newAgentInstallDir !== undefined && !installDirPattern.test(newAgentInstallDir)
 	const instance = useStore($instance)
+	const chartPeriods = useStore($chartPeriods)
+	const [newChartPeriods, setNewChartPeriods] = useState<ChartTimes[]>()
 	const [newInstanceName, setNewInstanceName] = useState<string>()
 	const [newInstanceUrl, setNewInstanceUrl] = useState<string>()
 	const instanceUrlInvalid = !!newInstanceUrl && !instanceUrlPattern.test(newInstanceUrl.trim())
@@ -76,6 +79,9 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 		}
 		if (newAgentInstallDir !== undefined && !installDirInvalid && newAgentInstallDir !== agentInstallDir) {
 			hubChanges.push(saveAgentInstallDir(newAgentInstallDir))
+		}
+		if (newChartPeriods?.length && newChartPeriods.join() !== chartPeriods.join()) {
+			hubChanges.push(saveChartPeriods(newChartPeriods))
 		}
 		const instanceName = newInstanceName ?? instance.name
 		const instanceUrl = newInstanceUrl ?? instance.url
@@ -309,11 +315,13 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 									<SelectValue />
 								</SelectTrigger>
 								<SelectContent>
-									{Object.entries(chartTimeData).map(([value, { label }]) => (
-										<SelectItem key={value} value={value}>
-											{label()}
-										</SelectItem>
-									))}
+									{Object.entries(chartTimeData)
+										.filter(([value]) => chartPeriods.includes(value as ChartTimes))
+										.map(([value, { label }]) => (
+											<SelectItem key={value} value={value}>
+												{label()}
+											</SelectItem>
+										))}
 								</SelectContent>
 							</Select>
 						</div>
@@ -340,6 +348,12 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 						</div>
 					</div>
 				</div>
+				{isAdmin() && (
+					<ChartPeriods
+						value={newChartPeriods ?? chartPeriods}
+						onChange={setNewChartPeriods}
+					/>
+				)}
 				<Separator />
 				<div className="grid gap-2">
 					<div className="mb-2">
@@ -574,5 +588,54 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 				</Button>
 			</form>
 		</div>
+	)
+}
+
+/** Chart periods offered to all users (admins); the long ones keep one record per day */
+function ChartPeriods({ value, onChange }: { value: ChartTimes[]; onChange: (periods: ChartTimes[]) => void }) {
+	const all = Object.keys(chartTimeData) as ChartTimes[]
+	const toggle = (period: ChartTimes, checked: boolean) => {
+		const next = all.filter((p) => (p === period ? checked : value.includes(p)))
+		// at least one period stays offered
+		if (next.length) {
+			onChange(next)
+		}
+	}
+	return (
+		<>
+			<Separator />
+			<div className="grid gap-2">
+				<div className="mb-2">
+					<h3 className="mb-1 text-lg font-medium">
+						<Trans>Chart periods</Trans>
+					</h3>
+					<p className="text-sm text-muted-foreground leading-relaxed">
+						<Trans>
+							Periods offered in the charts of all users. The periods of 90 days or more keep one record per day for
+							that long, which uses more disk space.
+						</Trans>
+					</p>
+				</div>
+				<div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2.5">
+					{all.map((period) => (
+						<div key={period} className="flex items-center gap-2 text-sm">
+							<Checkbox
+								id={`chart-period-${period}`}
+								checked={value.includes(period)}
+								onCheckedChange={(checked) => toggle(period, checked === true)}
+							/>
+							<label htmlFor={`chart-period-${period}`} className="cursor-pointer">
+								{chartTimeData[period].label()}
+								{longChartPeriods.includes(period) && (
+									<span className="ms-1.5 text-xs text-muted-foreground">
+										<Trans>(daily data)</Trans>
+									</span>
+								)}
+							</label>
+						</div>
+					))}
+				</div>
+			</div>
+		</>
 	)
 }

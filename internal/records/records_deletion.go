@@ -94,6 +94,8 @@ func deleteOldSystemStats(app core.App) error {
 		{recordType: "20m", retention: 24 * time.Hour},       // 1 day
 		{recordType: "120m", retention: 7 * 24 * time.Hour},  // 7 days
 		{recordType: "480m", retention: 30 * 24 * time.Hour}, // 30 days
+		// daily records: the longest long chart period, or none (all deleted)
+		{recordType: "1440m", retention: hubsettings.DailyRetention(app)},
 	}
 
 	now := time.Now().UTC()

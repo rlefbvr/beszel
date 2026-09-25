@@ -64,3 +64,24 @@ func AlertsRetention(app core.App) (count, days int) {
 	}
 	return count, max(record.GetInt("alerts_retention_days"), 0)
 }
+
+// longPeriodDays are the chart periods kept with the daily aggregation "1440m".
+var longPeriodDays = map[string]int{"90d": 90, "180d": 180, "1y": 365}
+
+// DailyRetention returns how long the daily records are kept: the longest chart
+// period enabled beyond 30 days, or 0 when none is (no daily records).
+func DailyRetention(app core.App) time.Duration {
+	record, err := app.FindRecordById(CollectionName, RecordID)
+	if err != nil {
+		return 0
+	}
+	var periods []string
+	if err := record.UnmarshalJSONField("chart_periods", &periods); err != nil {
+		return 0
+	}
+	days := 0
+	for _, period := range periods {
+		days = max(days, longPeriodDays[period])
+	}
+	return time.Duration(days) * 24 * time.Hour
+}

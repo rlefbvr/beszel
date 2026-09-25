@@ -9,6 +9,7 @@ import (
 	"github.com/henrygd/beszel/internal/entities/container"
 	"github.com/henrygd/beszel/internal/entities/monitor"
 	"github.com/henrygd/beszel/internal/entities/system"
+	"github.com/henrygd/beszel/internal/hub/hubsettings"
 
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase/core"
@@ -67,6 +68,15 @@ func (rm *RecordManager) CreateLongerRecords() {
 			longerType:         "480m",
 			longerTimeDuration: -480 * time.Minute,
 		},
+	}
+	// daily records, kept only while a long chart period (90 days or more) is enabled
+	if hubsettings.DailyRetention(rm.app) > 0 {
+		longerRecordData = append(longerRecordData, LongerRecordData{
+			shorterType:        "480m",
+			minShorterRecords:  2,
+			longerType:         "1440m",
+			longerTimeDuration: -1440 * time.Minute,
+		})
 	}
 	// wrap the operations in a transaction
 	// Pocketbase cron does not handle errors, log them here.

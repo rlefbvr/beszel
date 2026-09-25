@@ -78,3 +78,22 @@ func TestAgentInstallDir(t *testing.T) {
 		assert.Error(t, hub.Save(settings), dir)
 	}
 }
+
+func TestDailyRetention(t *testing.T) {
+	hub, err := tests.NewTestHub(t.TempDir())
+	require.NoError(t, err)
+	defer hub.Cleanup()
+
+	// the default periods stop at 30 days: no daily records
+	assert.Zero(t, hubsettings.DailyRetention(hub))
+
+	settings, err := hub.FindRecordById(hubsettings.CollectionName, hubsettings.RecordID)
+	require.NoError(t, err)
+	settings.Set("chart_periods", []string{"1h", "90d", "1y", "30d"})
+	require.NoError(t, hub.Save(settings))
+	assert.Equal(t, 365*24*time.Hour, hubsettings.DailyRetention(hub), "the longest long period")
+
+	settings.Set("chart_periods", []string{"1h", "180d"})
+	require.NoError(t, hub.Save(settings))
+	assert.Equal(t, 180*24*time.Hour, hubsettings.DailyRetention(hub))
+}

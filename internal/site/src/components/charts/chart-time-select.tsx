@@ -1,10 +1,10 @@
 import { useStore } from "@nanostores/react"
 import { HistoryIcon } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { $chartTime } from "@/lib/stores"
+import { $chartPeriods, $chartTime } from "@/lib/stores"
 import { chartTimeData, cn, compareSemVer, parseSemVer } from "@/lib/utils"
 import type { ChartTimes, SemVer } from "@/types"
-import { memo } from "react"
+import { memo, useEffect } from "react"
 
 export default memo(function ChartTimeSelect({
 	className,
@@ -18,10 +18,11 @@ export default memo(function ChartTimeSelect({
 	allowRealtime?: boolean
 }) {
 	const chartTime = useStore(chartTimeStore)
+	const periods = useStore($chartPeriods)
 
-	// remove chart times that are not supported by the system agent version
+	// chart times offered by the hub settings and supported by the system agent version
 	const availableChartTimes = Object.entries(chartTimeData).filter(([value, { minVersion }]) => {
-		if (value === "1m" && !allowRealtime) {
+		if ((value === "1m" && !allowRealtime) || !periods.includes(value as ChartTimes)) {
 			return false
 		}
 		if (!minVersion) {
@@ -29,6 +30,15 @@ export default memo(function ChartTimeSelect({
 		}
 		return compareSemVer(agentVersion, parseSemVer(minVersion)) >= 0
 	})
+
+	// a period removed from the settings falls back to the shortest one offered
+	const available = availableChartTimes.some(([value]) => value === chartTime)
+	const fallback = (availableChartTimes.find(([value]) => value !== "1m") ?? availableChartTimes[0])?.[0] as ChartTimes
+	useEffect(() => {
+		if (!available && fallback) {
+			chartTimeStore.set(fallback)
+		}
+	}, [available, fallback, chartTimeStore])
 
 	return (
 		<Select defaultValue="1h" value={chartTime} onValueChange={(value: ChartTimes) => chartTimeStore.set(value)}>

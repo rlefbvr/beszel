@@ -9,6 +9,7 @@ import {
 	$agentServiceName,
 	$alerts,
 	$alertsRetention,
+	$chartPeriods,
 	$allSystemsById,
 	$allSystemsByName,
 	$servicesInterval,
@@ -104,7 +105,8 @@ export async function updateHubSettings() {
 		const settings = await pb
 			.collection("hub_settings")
 			.getOne(hubSettingsId, {
-				fields: "services_interval,agent_service_name,agent_install_dir,alerts_retention_count,alerts_retention_days",
+				fields:
+					"services_interval,agent_service_name,agent_install_dir,alerts_retention_count,alerts_retention_days,chart_periods",
 			})
 		$servicesInterval.set(settings.services_interval)
 		if (settings.agent_service_name) {
@@ -112,6 +114,9 @@ export async function updateHubSettings() {
 		}
 		$agentInstallDir.set(settings.agent_install_dir ?? "")
 		$alertsRetention.set({ count: settings.alerts_retention_count || 200, days: settings.alerts_retention_days ?? 0 })
+		if (Array.isArray(settings.chart_periods) && settings.chart_periods.length) {
+			$chartPeriods.set(settings.chart_periods)
+		}
 	} catch (e) {
 		console.error("get hub settings", e)
 	}
@@ -141,6 +146,12 @@ export async function saveAlertsRetention(count: number, days: number) {
 		.collection("hub_settings")
 		.update(hubSettingsId, { alerts_retention_count: count, alerts_retention_days: days })
 	$alertsRetention.set({ count: settings.alerts_retention_count, days: settings.alerts_retention_days })
+}
+
+/** Save the chart periods offered to the users; long periods keep daily records (admins only) */
+export async function saveChartPeriods(periods: ChartTimes[]) {
+	const settings = await pb.collection("hub_settings").update(hubSettingsId, { chart_periods: periods })
+	$chartPeriods.set(settings.chart_periods)
 }
 
 /** Fetch or create user settings in database */
