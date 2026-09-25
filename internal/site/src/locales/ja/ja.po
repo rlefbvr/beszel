@@ -61,6 +61,10 @@ msgstr "{count, plural, one {{countString} 分} few {{countString} 分} many {{c
 msgid "{diskName} I/O"
 msgstr "{diskName} の I/O"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "{name} until {until}"
+msgstr "{name}（{until} まで）"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# スレッド} other {# スレッド}}"
@@ -231,6 +235,14 @@ msgstr "すべてのサービス"
 msgid "All Systems"
 msgstr "すべてのシステム"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "All systems until {until}"
+msgstr "すべてのシステム（{until} まで）"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "and {more} more"
+msgstr "他 {more} 件"
+
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
 msgstr "{name}を削除してもよろしいですか？"
@@ -300,6 +312,10 @@ msgstr "応答時間の平均、最小、最大"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "1時間平均"
+
+#: src/lib/quiet-hours.ts
+msgid "Backup"
+msgstr "バックアップ"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -750,6 +766,14 @@ msgstr "削除"
 msgid "Delete fingerprint"
 msgstr "フィンガープリントを削除"
 
+#: src/lib/quiet-hours.ts
+msgid "Deployment"
+msgstr "デプロイ"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Describe the reason"
+msgstr "理由を入力"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Description"
 msgstr "説明"
@@ -1117,6 +1141,10 @@ msgstr "Homebrew コマンド"
 msgid "Host / IP"
 msgstr "ホスト / IP"
 
+#: src/lib/quiet-hours.ts
+msgid "Host restart"
+msgstr "ホストの再起動"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "ホストされているサービス"
@@ -1328,6 +1356,10 @@ msgstr "メモリ使用率"
 msgid "Memory usage of containers"
 msgstr "コンテナのメモリ使用量"
 
+#: src/lib/quiet-hours.ts
+msgid "Migration"
+msgstr "移行"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Min 1h"
 msgstr "1時間最小"
@@ -1411,6 +1443,10 @@ msgstr "パブリックインターフェースのネットワークトラフィ
 msgid "Network unit"
 msgstr "ネットワーク単位"
 
+#: src/lib/quiet-hours.ts
+msgid "Network work"
+msgstr "ネットワーク作業"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1446,6 +1482,7 @@ msgstr "このデバイスのS.M.A.R.T.属性は利用できません。"
 msgid "No systems found."
 msgstr "システムが見つかりませんでした。"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "なし"
@@ -1513,6 +1550,7 @@ msgstr "メニューを開く"
 msgid "Or continue with"
 msgstr "または、以下の方法でログイン"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "その他"
@@ -1663,6 +1701,10 @@ msgstr "ポート"
 msgid "Power On"
 msgstr "電源オン"
 
+#: src/lib/quiet-hours.ts
+msgid "Power outage"
+msgstr "停電"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Precise utilization at the recorded time"
@@ -1695,9 +1737,24 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "キューの深さ"
 
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Quiet Hours"
 msgstr "サイレント時間"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active"
+msgstr "サイレント時間が有効です"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active: notifications are not sent"
+msgstr "サイレント時間中: 通知は送信されません"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours until {until}"
+msgstr "サイレント時間（{until} まで）"
 
 #: src/components/routes/system/raw-capacity-label.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1724,6 +1781,12 @@ msgstr "読み取り"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Read errors"
 msgstr "読み取りエラー"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Reason"
+msgstr "理由"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -1835,6 +1898,7 @@ msgstr "データベースに保存され、無効にするまで有効期限が
 msgid "Schedule"
 msgstr "スケジュール"
 
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent, such as during maintenance periods."
 msgstr "メンテナンス期間中などの通知が送信されないサイレント時間をスケジュールします。"
@@ -1842,6 +1906,10 @@ msgstr "メンテナンス期間中などの通知が送信されないサイレ
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent."
 msgstr "通知が送信されないサイレント時間をスケジュールします。"
+
+#: src/lib/quiet-hours.ts
+msgid "Scheduled maintenance"
+msgstr "計画メンテナンス"
 
 #: src/components/navbar.tsx
 msgid "Search"
@@ -1949,6 +2017,8 @@ msgstr "ハートビート監視を有効にするには、Beszel ハブで次�
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/system/info-bar.tsx
@@ -2071,6 +2141,10 @@ msgstr "システムファン速度 (RPM)"
 msgid "System load averages over time"
 msgstr "システムの負荷平均の推移"
 
+#: src/lib/quiet-hours.ts
+msgid "System updates"
+msgstr "システム更新"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Systemd Services"
 msgstr "Systemdサービス"
@@ -2138,6 +2212,10 @@ msgstr "テストハートビート"
 msgid "Test notification sent"
 msgstr "テスト通知が送信されました"
 
+#: src/lib/quiet-hours.ts
+msgid "Testing"
+msgstr "テスト"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "全体的なステータスは、すべてのシステムが稼働している場合は <0>ok</0>、アラートがトリガーされた場合は <1>警告</1>、いずれかのシステムがダウンしている場合は <2>エラー</2> になります。"
@@ -2149,6 +2227,10 @@ msgstr "その後、バックエンドにログインして、ユーザーテー
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "この操作は元に戻せません。これにより、データベースから{name}のすべての現在のレコードが永久に削除されます。"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This system until {until}"
+msgstr "このシステム（{until} まで）"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx

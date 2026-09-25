@@ -61,6 +61,10 @@ msgstr "{count, plural, one {{countString} minuta} few {{countString} minuty} ma
 msgid "{diskName} I/O"
 msgstr "I/O {diskName}"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "{name} until {until}"
+msgstr "{name} do {until}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# vlákno} few {# vlákna} many {# vláken} other {# vláken}}"
@@ -231,6 +235,14 @@ msgstr "Všechny služby"
 msgid "All Systems"
 msgstr "Všechny systémy"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "All systems until {until}"
+msgstr "Všechny systémy do {until}"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "and {more} more"
+msgstr "a {more} další"
+
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
 msgstr "Opravdu chcete odstranit {name}?"
@@ -300,6 +312,10 @@ msgstr "Průměrná, minimální a maximální doba odezvy"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "Prům. 1h"
+
+#: src/lib/quiet-hours.ts
+msgid "Backup"
+msgstr "Záloha"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -750,6 +766,14 @@ msgstr "Odstranit"
 msgid "Delete fingerprint"
 msgstr "Smazat identifikátor"
 
+#: src/lib/quiet-hours.ts
+msgid "Deployment"
+msgstr "Nasazení"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Describe the reason"
+msgstr "Popište důvod"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Description"
 msgstr "Popis"
@@ -1117,6 +1141,10 @@ msgstr "Homebrew příkaz"
 msgid "Host / IP"
 msgstr "Hostitel / IP"
 
+#: src/lib/quiet-hours.ts
+msgid "Host restart"
+msgstr "Restart hostitele"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "Hostované služby"
@@ -1328,6 +1356,10 @@ msgstr "Využití paměti"
 msgid "Memory usage of containers"
 msgstr "Využití paměti kontejnery"
 
+#: src/lib/quiet-hours.ts
+msgid "Migration"
+msgstr "Migrace"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Min 1h"
 msgstr "Min. 1h"
@@ -1411,6 +1443,10 @@ msgstr "Síťový provoz veřejných rozhraní"
 msgid "Network unit"
 msgstr "Síťová jednotka"
 
+#: src/lib/quiet-hours.ts
+msgid "Network work"
+msgstr "Práce na síti"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1446,6 +1482,7 @@ msgstr "Pro toto zařízení nejsou k dispozici žádné atributy S.M.A.R.T."
 msgid "No systems found."
 msgstr "Nenalezeny žádné systémy."
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "Žádné"
@@ -1513,6 +1550,7 @@ msgstr "Otevřít menu"
 msgid "Or continue with"
 msgstr "Nebo pokračujte s"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "Jiné"
@@ -1663,6 +1701,10 @@ msgstr "Porty"
 msgid "Power On"
 msgstr "Zapnutí"
 
+#: src/lib/quiet-hours.ts
+msgid "Power outage"
+msgstr "Výpadek proudu"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Precise utilization at the recorded time"
@@ -1695,9 +1737,24 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Hloubka fronty"
 
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Quiet Hours"
 msgstr "Tiché hodiny"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active"
+msgstr "Tiché hodiny jsou aktivní"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active: notifications are not sent"
+msgstr "Tiché hodiny jsou aktivní: oznámení se neodesílají"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours until {until}"
+msgstr "Tiché hodiny do {until}"
 
 #: src/components/routes/system/raw-capacity-label.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1724,6 +1781,12 @@ msgstr "Číst"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Read errors"
 msgstr "Chyby čtení"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Reason"
+msgstr "Důvod"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -1835,6 +1898,7 @@ msgstr "Uložen v databázi a nevyprší, dokud jej nezablokujete."
 msgid "Schedule"
 msgstr "Plán"
 
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent, such as during maintenance periods."
 msgstr "Naplánujte tiché hodiny, kdy se nebudou odesílat oznámení, například během období údržby."
@@ -1842,6 +1906,10 @@ msgstr "Naplánujte tiché hodiny, kdy se nebudou odesílat oznámení, napřík
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent."
 msgstr "Naplánujte tiché hodiny, kdy se nebudou odesílat oznámení."
+
+#: src/lib/quiet-hours.ts
+msgid "Scheduled maintenance"
+msgstr "Plánovaná údržba"
 
 #: src/components/navbar.tsx
 msgid "Search"
@@ -1949,6 +2017,8 @@ msgstr "Pro povolení monitorování heartbeat nastavte na hubu Beszel následuj
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/system/info-bar.tsx
@@ -2071,6 +2141,10 @@ msgstr "Rychlosti ventilátorů systému (RPM)"
 msgid "System load averages over time"
 msgstr "Průměry zatížení systému v průběhu času"
 
+#: src/lib/quiet-hours.ts
+msgid "System updates"
+msgstr "Aktualizace systému"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Systemd Services"
 msgstr "Služby systemd"
@@ -2138,6 +2212,10 @@ msgstr "Testovat heartbeat"
 msgid "Test notification sent"
 msgstr "Testovací oznámení odesláno"
 
+#: src/lib/quiet-hours.ts
+msgid "Testing"
+msgstr "Testování"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Celkový stav je <0>ok</0>, když jsou všechny systémy v provozu, <1>warn</1>, když jsou spuštěny výstrahy, a <2>error</2>, když je některý systém mimo provoz."
@@ -2149,6 +2227,10 @@ msgstr "Poté se přihlaste do backendu a obnovte heslo k uživatelskému účtu
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Tuto akci nelze vzít zpět. Tím se z databáze trvale odstraní všechny aktuální záznamy pro {name}."
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This system until {until}"
+msgstr "Tento systém do {until}"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx

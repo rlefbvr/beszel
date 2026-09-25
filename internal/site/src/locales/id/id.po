@@ -61,6 +61,10 @@ msgstr "{count, plural, one {{countString} menit} few {{countString} menit} many
 msgid "{diskName} I/O"
 msgstr "I/O {diskName}"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "{name} until {until}"
+msgstr "{name} hingga {until}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# thread} other {# thread}}"
@@ -231,6 +235,14 @@ msgstr "Semua layanan"
 msgid "All Systems"
 msgstr "Semua Sistem"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "All systems until {until}"
+msgstr "Semua sistem hingga {until}"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "and {more} more"
+msgstr "dan {more} lainnya"
+
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
 msgstr "Apakah anda yakin ingin menghapus {name}?"
@@ -300,6 +312,10 @@ msgstr "Waktu respons rata-rata, minimum, dan maksimum"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "Rata-rata 1 jam"
+
+#: src/lib/quiet-hours.ts
+msgid "Backup"
+msgstr "Pencadangan"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -750,6 +766,14 @@ msgstr "Hapus"
 msgid "Delete fingerprint"
 msgstr "Hapus fingerprint"
 
+#: src/lib/quiet-hours.ts
+msgid "Deployment"
+msgstr "Penerapan"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Describe the reason"
+msgstr "Jelaskan alasannya"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Description"
 msgstr "Deskripsi"
@@ -1117,6 +1141,10 @@ msgstr "Perintah Homebrew"
 msgid "Host / IP"
 msgstr "Host / IP"
 
+#: src/lib/quiet-hours.ts
+msgid "Host restart"
+msgstr "Mulai ulang host"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "Layanan yang di-host"
@@ -1328,6 +1356,10 @@ msgstr "Penggunaan Memori"
 msgid "Memory usage of containers"
 msgstr "Penggunaan memori container"
 
+#: src/lib/quiet-hours.ts
+msgid "Migration"
+msgstr "Migrasi"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Min 1h"
 msgstr "Min. 1 jam"
@@ -1411,6 +1443,10 @@ msgstr "Trafik jaringan antarmuka publik"
 msgid "Network unit"
 msgstr "Unit jaringan"
 
+#: src/lib/quiet-hours.ts
+msgid "Network work"
+msgstr "Pekerjaan jaringan"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1446,6 +1482,7 @@ msgstr "Tidak ada atribut S.M.A.R.T. yang tersedia untuk perangkat ini."
 msgid "No systems found."
 msgstr "Sistem tidak ditemukan."
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "Tidak ada"
@@ -1513,6 +1550,7 @@ msgstr "Buka menu"
 msgid "Or continue with"
 msgstr "Atau lanjutkan dengan"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "Lainnya"
@@ -1663,6 +1701,10 @@ msgstr "Port"
 msgid "Power On"
 msgstr "Dihidupkan"
 
+#: src/lib/quiet-hours.ts
+msgid "Power outage"
+msgstr "Pemadaman listrik"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Precise utilization at the recorded time"
@@ -1695,9 +1737,24 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Kedalaman Antrian"
 
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Quiet Hours"
 msgstr "Jam Tenang"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active"
+msgstr "Jam tenang aktif"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active: notifications are not sent"
+msgstr "Jam tenang aktif: notifikasi tidak dikirim"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours until {until}"
+msgstr "Jam tenang hingga {until}"
 
 #: src/components/routes/system/raw-capacity-label.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1724,6 +1781,12 @@ msgstr "Baca"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Read errors"
 msgstr "Kesalahan baca"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Reason"
+msgstr "Alasan"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -1835,6 +1898,7 @@ msgstr "Disimpan di database dan tidak kedaluwarsa sampai Anda menonaktifkannya.
 msgid "Schedule"
 msgstr "Jadwal"
 
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent, such as during maintenance periods."
 msgstr "Jadwalkan jam tenang dimana notifikasi tidak akan dikirim, seperti saat periode pemeliharaan."
@@ -1842,6 +1906,10 @@ msgstr "Jadwalkan jam tenang dimana notifikasi tidak akan dikirim, seperti saat 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent."
 msgstr "Jadwalkan jam tenang dimana notifikasi tidak akan dikirim."
+
+#: src/lib/quiet-hours.ts
+msgid "Scheduled maintenance"
+msgstr "Pemeliharaan terjadwal"
 
 #: src/components/navbar.tsx
 msgid "Search"
@@ -1949,6 +2017,8 @@ msgstr "Setel variabel lingkungan berikut di hub Beszel Anda untuk mengaktifkan 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/system/info-bar.tsx
@@ -2071,6 +2141,10 @@ msgstr "Kecepatan kipas sistem (RPM)"
 msgid "System load averages over time"
 msgstr "Rata-rata beban sistem dari waktu ke waktu"
 
+#: src/lib/quiet-hours.ts
+msgid "System updates"
+msgstr "Pembaruan sistem"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Systemd Services"
 msgstr "Layanan Systemd"
@@ -2138,6 +2212,10 @@ msgstr "Tes heartbeat"
 msgid "Test notification sent"
 msgstr "Notifikasi tes dikirim"
 
+#: src/lib/quiet-hours.ts
+msgid "Testing"
+msgstr "Pengujian"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Status keseluruhan adalah <0>ok</0> ketika semua sistem aktif, <1>warn</1> ketika peringatan dipicu, dan <2>error</2> ketika ada sistem yang mati."
@@ -2149,6 +2227,10 @@ msgstr "Kemudian masuk ke backend dan reset kata sandi akun pengguna anda di tab
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Aksi ini tidak dapat di kembalikan. ini akan menghapus permanen semua record {name} dari database"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This system until {until}"
+msgstr "Sistem ini hingga {until}"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx

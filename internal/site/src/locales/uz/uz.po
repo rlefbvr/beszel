@@ -61,6 +61,10 @@ msgstr "{count, plural, other {{countString} daqiqa}}"
 msgid "{diskName} I/O"
 msgstr "{diskName} I/O"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "{name} until {until}"
+msgstr "{name} {until} gacha"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, other {# ip}}"
@@ -231,6 +235,14 @@ msgstr "Barcha xizmatlar"
 msgid "All Systems"
 msgstr "Barcha tizimlar"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "All systems until {until}"
+msgstr "Barcha tizimlar {until} gacha"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "and {more} more"
+msgstr "va yana {more} ta"
+
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
 msgstr "{name} ni o'chirishni xohlaysizmi?"
@@ -300,6 +312,10 @@ msgstr "Ortacha, minimal va maksimal javob vaqti"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "1 soat o‘rtacha"
+
+#: src/lib/quiet-hours.ts
+msgid "Backup"
+msgstr "Zaxira nusxa"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -750,6 +766,14 @@ msgstr "O'chirish"
 msgid "Delete fingerprint"
 msgstr "Barmoq izini o'chirish"
 
+#: src/lib/quiet-hours.ts
+msgid "Deployment"
+msgstr "Joylashtirish"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Describe the reason"
+msgstr "Sababini yozing"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Description"
 msgstr "Tavsif"
@@ -1117,6 +1141,10 @@ msgstr "Homebrew buyrug'i"
 msgid "Host / IP"
 msgstr "Xost / IP"
 
+#: src/lib/quiet-hours.ts
+msgid "Host restart"
+msgstr "Xostni qayta ishga tushirish"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "Joylashtirilgan xizmatlar"
@@ -1328,6 +1356,10 @@ msgstr "Xotira ishlatilishi"
 msgid "Memory usage of containers"
 msgstr "Konteynerlarning xotira ishlatilishi"
 
+#: src/lib/quiet-hours.ts
+msgid "Migration"
+msgstr "Ko‘chirish"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Min 1h"
 msgstr "1 soat minimal"
@@ -1411,6 +1443,10 @@ msgstr "Ommaviy interfeyslarning tarmoq trafigi"
 msgid "Network unit"
 msgstr "Tarmoq birligi"
 
+#: src/lib/quiet-hours.ts
+msgid "Network work"
+msgstr "Tarmoq ishlari"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1446,6 +1482,7 @@ msgstr "Ushbu qurilma uchun S.M.A.R.T. atributlari mavjud emas."
 msgid "No systems found."
 msgstr "Tizimlar topilmadi."
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "Yo‘q"
@@ -1513,6 +1550,7 @@ msgstr "Menyuni ochish"
 msgid "Or continue with"
 msgstr "Yoki bilan davom eting"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "Boshqa"
@@ -1663,6 +1701,10 @@ msgstr "Portlar"
 msgid "Power On"
 msgstr "Yoqish"
 
+#: src/lib/quiet-hours.ts
+msgid "Power outage"
+msgstr "Elektr uzilishi"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Precise utilization at the recorded time"
@@ -1695,9 +1737,24 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Navbat chuqurligi"
 
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Quiet Hours"
 msgstr "Tinch soatlar"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active"
+msgstr "Sokin soatlar faol"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active: notifications are not sent"
+msgstr "Sokin soatlar faol: bildirishnomalar yuborilmaydi"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours until {until}"
+msgstr "Sokin soatlar {until} gacha"
 
 #: src/components/routes/system/raw-capacity-label.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1724,6 +1781,12 @@ msgstr "O'qish"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Read errors"
 msgstr "O‘qish xatolari"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Reason"
+msgstr "Sabab"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -1835,6 +1898,7 @@ msgstr "Ma'lumotlar bazasida saqlanadi va siz o'chirishingizcha muddati tugamayd
 msgid "Schedule"
 msgstr "Jadval"
 
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent, such as during maintenance periods."
 msgstr "Texnik xizmat vaqtida bo'lgani kabi bildirishnomalar yuborilmaydigan tinch soatlarni belgilang."
@@ -1842,6 +1906,10 @@ msgstr "Texnik xizmat vaqtida bo'lgani kabi bildirishnomalar yuborilmaydigan tin
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent."
 msgstr "Bildirishnomalar yuborilmaydigan tinch soatlarni belgilang."
+
+#: src/lib/quiet-hours.ts
+msgid "Scheduled maintenance"
+msgstr "Rejalashtirilgan texnik xizmat"
 
 #: src/components/navbar.tsx
 msgid "Search"
@@ -1949,6 +2017,8 @@ msgstr "Heartbeat monitoringni yoqish uchun Beszel hub'ingizda quyidagi muhit o'
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/system/info-bar.tsx
@@ -2071,6 +2141,10 @@ msgstr "Tizim ventilyatorlari tezligi (RPM)"
 msgid "System load averages over time"
 msgstr "Tizim yuklanishi o'rtachalari vaqt bo'yicha"
 
+#: src/lib/quiet-hours.ts
+msgid "System updates"
+msgstr "Tizim yangilanishlari"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Systemd Services"
 msgstr "Systemd xizmatlari"
@@ -2138,6 +2212,10 @@ msgstr "Test heartbeat"
 msgid "Test notification sent"
 msgstr "Test bildirishnoma yuborildi"
 
+#: src/lib/quiet-hours.ts
+msgid "Testing"
+msgstr "Sinov"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Barcha tizimlar ishlayotganida umumiy holat <0>yaxshi</0>, ogohlantirishlar ishga tushganda <1>ogohlantirish</1> va biron-bir tizim ishlamayotganida <2>xato</2>."
@@ -2149,6 +2227,10 @@ msgstr "Keyin backend'ga kiring va foydalanuvchilar jadvalidagi foydalanuvchi hi
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Bu amalni bekor qilib bo'lmaydi. Bu {name} uchun barcha joriy yozuvlarni ma'lumotlar bazasidan butunlay o'chiradi."
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This system until {until}"
+msgstr "Ushbu tizim {until} gacha"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx

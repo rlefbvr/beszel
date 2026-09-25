@@ -61,6 +61,10 @@ msgstr "{count, plural, one {{countString} хвилина} few {{countString} х
 msgid "{diskName} I/O"
 msgstr "Ввід/вивід {diskName}"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "{name} until {until}"
+msgstr "{name} до {until}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# потік} few {# потоки} many {# потоків} other {# потоків}}"
@@ -231,6 +235,14 @@ msgstr "Усі служби"
 msgid "All Systems"
 msgstr "Всі системи"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "All systems until {until}"
+msgstr "Усі системи до {until}"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "and {more} more"
+msgstr "і ще {more}"
+
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
 msgstr "Ви впевнені, що хочете видалити {name}?"
@@ -300,6 +312,10 @@ msgstr "Середній, мінімальний і максимальний ч�
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "Сер. за 1 год"
+
+#: src/lib/quiet-hours.ts
+msgid "Backup"
+msgstr "Резервне копіювання"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -750,6 +766,14 @@ msgstr "Видалити"
 msgid "Delete fingerprint"
 msgstr "Видалити відбиток"
 
+#: src/lib/quiet-hours.ts
+msgid "Deployment"
+msgstr "Розгортання"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Describe the reason"
+msgstr "Опишіть причину"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Description"
 msgstr "Опис"
@@ -1117,6 +1141,10 @@ msgstr "Команда Homebrew"
 msgid "Host / IP"
 msgstr "Хост / IP"
 
+#: src/lib/quiet-hours.ts
+msgid "Host restart"
+msgstr "Перезавантаження хоста"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "Розміщені служби"
@@ -1328,6 +1356,10 @@ msgstr "Використання пам’яті"
 msgid "Memory usage of containers"
 msgstr "Використання пам’яті контейнерами"
 
+#: src/lib/quiet-hours.ts
+msgid "Migration"
+msgstr "Міграція"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Min 1h"
 msgstr "Мін. за 1 год"
@@ -1411,6 +1443,10 @@ msgstr "Мережевий трафік публічних інтерфейсі�
 msgid "Network unit"
 msgstr "Одиниця виміру мережі"
 
+#: src/lib/quiet-hours.ts
+msgid "Network work"
+msgstr "Роботи в мережі"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1446,6 +1482,7 @@ msgstr "Для цього пристрою немає доступних атр�
 msgid "No systems found."
 msgstr "Систем не знайдено."
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "Немає"
@@ -1513,6 +1550,7 @@ msgstr "Відкрити меню"
 msgid "Or continue with"
 msgstr "Або продовжити з"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "Інше"
@@ -1663,6 +1701,10 @@ msgstr "Порти"
 msgid "Power On"
 msgstr "Увімкнення живлення"
 
+#: src/lib/quiet-hours.ts
+msgid "Power outage"
+msgstr "Відключення електроенергії"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Precise utilization at the recorded time"
@@ -1695,9 +1737,24 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Глибина черги"
 
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Quiet Hours"
 msgstr "Тихі години"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active"
+msgstr "Тихі години активні"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active: notifications are not sent"
+msgstr "Тихі години активні: сповіщення не надсилаються"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours until {until}"
+msgstr "Тихі години до {until}"
 
 #: src/components/routes/system/raw-capacity-label.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1724,6 +1781,12 @@ msgstr "Читання"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Read errors"
 msgstr "Помилки читання"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Reason"
+msgstr "Причина"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -1835,6 +1898,7 @@ msgstr "Збережено в базі даних і залишається чи
 msgid "Schedule"
 msgstr "Розклад"
 
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent, such as during maintenance periods."
 msgstr "Заплануйте години спокою, коли сповіщення не надсилатимуться, наприклад, під час періодів технічного обслуговування."
@@ -1842,6 +1906,10 @@ msgstr "Заплануйте години спокою, коли сповіще�
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent."
 msgstr "Заплануйте години спокою, коли сповіщення не надсилатимуться."
+
+#: src/lib/quiet-hours.ts
+msgid "Scheduled maintenance"
+msgstr "Планове обслуговування"
 
 #: src/components/navbar.tsx
 msgid "Search"
@@ -1949,6 +2017,8 @@ msgstr "Встановіть наступні змінні оточення в �
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/system/info-bar.tsx
@@ -2071,6 +2141,10 @@ msgstr "Швидкість обертання вентиляторів (об/х�
 msgid "System load averages over time"
 msgstr "Середнє навантаження системи з часом"
 
+#: src/lib/quiet-hours.ts
+msgid "System updates"
+msgstr "Оновлення системи"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Systemd Services"
 msgstr "Служби Systemd"
@@ -2138,6 +2212,10 @@ msgstr "Тестовий heartbeat"
 msgid "Test notification sent"
 msgstr "Тестове сповіщення надіслано"
 
+#: src/lib/quiet-hours.ts
+msgid "Testing"
+msgstr "Тестування"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Загальний статус: <0>ok</0>, коли всі системи працюють, <1>попередження</1>, коли спрацювали сповіщення, і <2>помилка</2>, коли будь-яка система відключена."
@@ -2149,6 +2227,10 @@ msgstr "Потім увійдіть у бекенд і скиньте парол
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Цю дію не можна скасувати. Це назавжди видалить всі поточні записи для {name} з бази даних."
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This system until {until}"
+msgstr "Ця система до {until}"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx

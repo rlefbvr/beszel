@@ -61,6 +61,10 @@ msgstr "{count, plural, one {{countString} λεπτό} other {{countString} λε
 msgid "{diskName} I/O"
 msgstr "I/O {diskName}"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "{name} until {until}"
+msgstr "{name} έως {until}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# thread} other {# threads}}"
@@ -231,6 +235,14 @@ msgstr "Όλες οι υπηρεσίες"
 msgid "All Systems"
 msgstr "Όλα τα συστήματα"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "All systems until {until}"
+msgstr "Όλα τα συστήματα έως {until}"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "and {more} more"
+msgstr "και {more} ακόμη"
+
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
 msgstr "Είστε βέβαιοι ότι θέλετε να διαγράψετε το {name};"
@@ -300,6 +312,10 @@ msgstr "Μέσος, ελάχιστος και μέγιστος χρόνος απ
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "Μέσος όρος 1ώρου"
+
+#: src/lib/quiet-hours.ts
+msgid "Backup"
+msgstr "Αντίγραφο ασφαλείας"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -750,6 +766,14 @@ msgstr "Διαγραφή"
 msgid "Delete fingerprint"
 msgstr "Διαγραφή αποτυπώματος"
 
+#: src/lib/quiet-hours.ts
+msgid "Deployment"
+msgstr "Ανάπτυξη"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Describe the reason"
+msgstr "Περιγράψτε τον λόγο"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Description"
 msgstr "Περιγραφή"
@@ -1117,6 +1141,10 @@ msgstr "Εντολή Homebrew"
 msgid "Host / IP"
 msgstr "Κεντρικός υπολογιστής / IP"
 
+#: src/lib/quiet-hours.ts
+msgid "Host restart"
+msgstr "Επανεκκίνηση κεντρικού υπολογιστή"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "Φιλοξενούμενες υπηρεσίες"
@@ -1328,6 +1356,10 @@ msgstr "Χρήση μνήμης"
 msgid "Memory usage of containers"
 msgstr "Χρήση μνήμης των κοντέινερ"
 
+#: src/lib/quiet-hours.ts
+msgid "Migration"
+msgstr "Μετεγκατάσταση"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Min 1h"
 msgstr "Ελάχιστο 1ώρου"
@@ -1411,6 +1443,10 @@ msgstr "Κίνηση δικτύου δημόσιων interfaces"
 msgid "Network unit"
 msgstr "Μονάδα δικτύου"
 
+#: src/lib/quiet-hours.ts
+msgid "Network work"
+msgstr "Εργασίες δικτύου"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1446,6 +1482,7 @@ msgstr "Δεν υπάρχουν διαθέσιμα χαρακτηριστικά 
 msgid "No systems found."
 msgstr "Δεν βρέθηκαν συστήματα."
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "Κανένα"
@@ -1513,6 +1550,7 @@ msgstr "Άνοιγμα μενού"
 msgid "Or continue with"
 msgstr "Ή συνεχίστε με"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "Άλλο"
@@ -1663,6 +1701,10 @@ msgstr "Θύρες"
 msgid "Power On"
 msgstr "Χρόνος λειτουργίας"
 
+#: src/lib/quiet-hours.ts
+msgid "Power outage"
+msgstr "Διακοπή ρεύματος"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Precise utilization at the recorded time"
@@ -1695,9 +1737,24 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Βάθος ουράς"
 
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Quiet Hours"
 msgstr "Ώρες σίγασης"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active"
+msgstr "Οι ώρες ησυχίας είναι ενεργές"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active: notifications are not sent"
+msgstr "Ώρες ησυχίας ενεργές: οι ειδοποιήσεις δεν αποστέλλονται"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours until {until}"
+msgstr "Ώρες ησυχίας έως {until}"
 
 #: src/components/routes/system/raw-capacity-label.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1724,6 +1781,12 @@ msgstr "Ανάγνωση"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Read errors"
 msgstr "Σφάλματα ανάγνωσης"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Reason"
+msgstr "Λόγος"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -1835,6 +1898,7 @@ msgstr "Αποθηκεύεται στη βάση δεδομένων και δε�
 msgid "Schedule"
 msgstr "Πρόγραμμα"
 
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent, such as during maintenance periods."
 msgstr "Προγραμματίστε ώρες σίγασης κατά τις οποίες δεν θα αποστέλλονται ειδοποιήσεις, όπως κατά τη διάρκεια εργασιών συντήρησης."
@@ -1842,6 +1906,10 @@ msgstr "Προγραμματίστε ώρες σίγασης κατά τις ο�
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent."
 msgstr "Προγραμματίστε ώρες σίγασης κατά τις οποίες δεν θα αποστέλλονται ειδοποιήσεις."
+
+#: src/lib/quiet-hours.ts
+msgid "Scheduled maintenance"
+msgstr "Προγραμματισμένη συντήρηση"
 
 #: src/components/navbar.tsx
 msgid "Search"
@@ -1949,6 +2017,8 @@ msgstr "Ορίστε τις ακόλουθες μεταβλητές περιβά
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/system/info-bar.tsx
@@ -2071,6 +2141,10 @@ msgstr "Ταχύτητες ανεμιστήρων συστήματος (RPM)"
 msgid "System load averages over time"
 msgstr "Μέσοι όροι φορτίου συστήματος με την πάροδο του χρόνου"
 
+#: src/lib/quiet-hours.ts
+msgid "System updates"
+msgstr "Ενημερώσεις συστήματος"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Systemd Services"
 msgstr "Υπηρεσίες systemd"
@@ -2138,6 +2212,10 @@ msgstr "Δοκιμή heartbeat"
 msgid "Test notification sent"
 msgstr "Η δοκιμαστική ειδοποίηση στάλθηκε"
 
+#: src/lib/quiet-hours.ts
+msgid "Testing"
+msgstr "Δοκιμές"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Η συνολική κατάσταση είναι <0>ok</0> όταν όλα τα συστήματα λειτουργούν, <1>warn</1> όταν ενεργοποιούνται ειδοποιήσεις και <2>error</2> όταν οποιοδήποτε σύστημα είναι εκτός λειτουργίας."
@@ -2149,6 +2227,10 @@ msgstr "Στη συνέχεια, συνδεθείτε στο backend και επ
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Θα διαγράψει οριστικά όλες τις τρέχουσες εγγραφές για το {name} από τη βάση δεδομένων."
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This system until {until}"
+msgstr "Αυτό το σύστημα έως {until}"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx

@@ -61,6 +61,10 @@ msgstr "{count, plural, one {{countString} دقیقه} few {{countString} دقی
 msgid "{diskName} I/O"
 msgstr "ورودی/خروجی {diskName}"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "{name} until {until}"
+msgstr "{name} تا {until}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# رشته} other {# رشته}}"
@@ -231,6 +235,14 @@ msgstr "همه سرویس‌ها"
 msgid "All Systems"
 msgstr "همه سیستم‌ها"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "All systems until {until}"
+msgstr "همه سیستم‌ها تا {until}"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "and {more} more"
+msgstr "و {more} مورد دیگر"
+
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
 msgstr "آیا مطمئن هستید که می‌خواهید {name} را حذف کنید؟"
@@ -300,6 +312,10 @@ msgstr "میانگین، حداقل و حداکثر زمان پاسخ"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "میانگین ۱ ساعت"
+
+#: src/lib/quiet-hours.ts
+msgid "Backup"
+msgstr "پشتیبان‌گیری"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -750,6 +766,14 @@ msgstr "حذف"
 msgid "Delete fingerprint"
 msgstr "حذف اثر انگشت"
 
+#: src/lib/quiet-hours.ts
+msgid "Deployment"
+msgstr "استقرار"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Describe the reason"
+msgstr "دلیل را شرح دهید"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Description"
 msgstr "توضیحات"
@@ -1117,6 +1141,10 @@ msgstr "دستور Homebrew"
 msgid "Host / IP"
 msgstr "میزبان / IP"
 
+#: src/lib/quiet-hours.ts
+msgid "Host restart"
+msgstr "راه‌اندازی مجدد میزبان"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "سرویس‌های میزبانی‌شده"
@@ -1328,6 +1356,10 @@ msgstr "میزان استفاده از حافظه"
 msgid "Memory usage of containers"
 msgstr "میزان استفاده حافظه کانتینرها"
 
+#: src/lib/quiet-hours.ts
+msgid "Migration"
+msgstr "مهاجرت"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Min 1h"
 msgstr "حداقل ۱ ساعت"
@@ -1411,6 +1443,10 @@ msgstr "ترافیک شبکه رابط‌های عمومی"
 msgid "Network unit"
 msgstr "واحد شبکه"
 
+#: src/lib/quiet-hours.ts
+msgid "Network work"
+msgstr "کار روی شبکه"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1446,6 +1482,7 @@ msgstr "هیچ ویژگی S.M.A.R.T برای این دستگاه موجود نی
 msgid "No systems found."
 msgstr "هیچ سیستمی یافت نشد."
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "هیچ‌کدام"
@@ -1513,6 +1550,7 @@ msgstr "باز کردن منو"
 msgid "Or continue with"
 msgstr "یا ادامه با"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "سایر"
@@ -1663,6 +1701,10 @@ msgstr "پورت‌ها"
 msgid "Power On"
 msgstr "روشن کردن"
 
+#: src/lib/quiet-hours.ts
+msgid "Power outage"
+msgstr "قطع برق"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Precise utilization at the recorded time"
@@ -1695,9 +1737,24 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "عمق صف"
 
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Quiet Hours"
 msgstr "ساعات آرام"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active"
+msgstr "ساعات سکوت فعال است"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active: notifications are not sent"
+msgstr "ساعات سکوت فعال است: اعلان‌ها ارسال نمی‌شوند"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours until {until}"
+msgstr "ساعات سکوت تا {until}"
 
 #: src/components/routes/system/raw-capacity-label.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1724,6 +1781,12 @@ msgstr "خواندن"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Read errors"
 msgstr "خطاهای خواندن"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Reason"
+msgstr "دلیل"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -1835,6 +1898,7 @@ msgstr "در پایگاه داده ذخیره شده و تا زمانی که آ�
 msgid "Schedule"
 msgstr "برنامه‌ریزی"
 
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent, such as during maintenance periods."
 msgstr "برنامه‌ریزی ساعات آرام که در آن اعلان‌ها ارسال نخواهند شد، مانند در طول دوره‌های تعمیر و نگهداری."
@@ -1842,6 +1906,10 @@ msgstr "برنامه‌ریزی ساعات آرام که در آن اعلان‌
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent."
 msgstr "برنامه‌ریزی ساعات آرام که در آن اعلان‌ها ارسال نخواهند شد."
+
+#: src/lib/quiet-hours.ts
+msgid "Scheduled maintenance"
+msgstr "نگهداری برنامه‌ریزی‌شده"
 
 #: src/components/navbar.tsx
 msgid "Search"
@@ -1949,6 +2017,8 @@ msgstr "متغیرهای محیطی زیر را در هاب Beszel خود تنظ
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/system/info-bar.tsx
@@ -2071,6 +2141,10 @@ msgstr "سرعت فن‌های سیستم (RPM)"
 msgid "System load averages over time"
 msgstr "میانگین بار سیستم در طول زمان"
 
+#: src/lib/quiet-hours.ts
+msgid "System updates"
+msgstr "به‌روزرسانی‌های سیستم"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Systemd Services"
 msgstr "خدمات Systemd"
@@ -2138,6 +2212,10 @@ msgstr "تست ضربان قلب"
 msgid "Test notification sent"
 msgstr "اعلان آزمایشی ارسال شد"
 
+#: src/lib/quiet-hours.ts
+msgid "Testing"
+msgstr "آزمایش"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "وضعیت کلی زمانی <0>ok</0> است که همه سیستم‌ها بالا باشند، <1>warn</1> زمانی که هشدارها فعال شوند، و <2>error</2> زمانی که هر سیستمی پایین باشد."
@@ -2149,6 +2227,10 @@ msgstr "سپس وارد بخش پشتیبان شوید و رمز عبور حسا
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "این عمل قابل برگشت نیست. این کار تمام رکوردهای فعلی {name} را برای همیشه از پایگاه داده حذف خواهد کرد."
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This system until {until}"
+msgstr "این سیستم تا {until}"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx

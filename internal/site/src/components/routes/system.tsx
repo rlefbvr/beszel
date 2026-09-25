@@ -4,6 +4,7 @@ import { compareSemVer, parseSemVer, supportsNetworkMonitors } from "@/lib/utils
 import type { GPUData } from "@/types"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import InfoBar from "./system/info-bar"
+import { QuietHoursBanner } from "../quiet-hours-banner"
 import { useSystemData } from "./system/use-system-data"
 import { CpuChart, ContainerCpuChart } from "./system/charts/cpu-charts"
 import { MemoryChart, ContainerMemoryChart, SwapChart } from "./system/charts/memory-charts"
@@ -308,6 +309,8 @@ export default memo(function SystemDetail({ id }: { id: string }) {
 				setDisplayMode={setDisplayMode}
 				details={details}
 			/>
+
+			<QuietHoursBanner systemId={system.id} />
 
 			{displayMode === "tabs" ? tabbedLayout() : defaultLayout()}
 		</div>

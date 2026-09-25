@@ -52,6 +52,7 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 } from "../ui/alert-dialog"
+import { QuietHoursIndicator } from "../quiet-hours-banner"
 import { Button, buttonVariants } from "../ui/button"
 import { Dialog } from "../ui/dialog"
 import {
@@ -162,6 +163,7 @@ export function SystemsTableColumns(viewMode: "table" | "grid"): ColumnDef<Syste
 								</span>
 								<span className="absolute inset-0 truncate">{name}</span>
 							</Link>
+							<QuietHoursIndicator systemId={id} />
 						</span>
 						<Link href={linkUrl} className="inset-0 absolute size-full" aria-label={name}></Link>
 					</>

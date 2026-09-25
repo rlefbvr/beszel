@@ -61,6 +61,10 @@ msgstr "{count, plural, one {{countString} минут} few {{countString} мин
 msgid "{diskName} I/O"
 msgstr "I/O за {diskName}"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "{name} until {until}"
+msgstr "{name} до {until}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# nit} few {# niti} other {# niti}}"
@@ -231,6 +235,14 @@ msgstr "Све услуге"
 msgid "All Systems"
 msgstr "Сви системи"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "All systems until {until}"
+msgstr "Сви системи до {until}"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "and {more} more"
+msgstr "и још {more}"
+
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
 msgstr "Да ли сте сигурни да желите да избришете {name}?"
@@ -300,6 +312,10 @@ msgstr "Prosečno, minimalno i maksimalno vreme odziva"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "Prosek 1 h"
+
+#: src/lib/quiet-hours.ts
+msgid "Backup"
+msgstr "Резервна копија"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -750,6 +766,14 @@ msgstr "Избриши"
 msgid "Delete fingerprint"
 msgstr "Избриши отисак"
 
+#: src/lib/quiet-hours.ts
+msgid "Deployment"
+msgstr "Имплементација"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Describe the reason"
+msgstr "Опишите разлог"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Description"
 msgstr "Опис"
@@ -1117,6 +1141,10 @@ msgstr "Homebrew команда"
 msgid "Host / IP"
 msgstr "Хост / IP"
 
+#: src/lib/quiet-hours.ts
+msgid "Host restart"
+msgstr "Поновно покретање хоста"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "Хостоване услуге"
@@ -1328,6 +1356,10 @@ msgstr "Употреба меморије"
 msgid "Memory usage of containers"
 msgstr "Коришћење меморије контејнера"
 
+#: src/lib/quiet-hours.ts
+msgid "Migration"
+msgstr "Миграција"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Min 1h"
 msgstr "Min. 1 h"
@@ -1411,6 +1443,10 @@ msgstr "Мрежни саобраћај јавних интерфејса"
 msgid "Network unit"
 msgstr "Мрежна јединица"
 
+#: src/lib/quiet-hours.ts
+msgid "Network work"
+msgstr "Радови на мрежи"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1446,6 +1482,7 @@ msgstr "Нема доступних S.M.A.R.T. атрибута за овај у
 msgid "No systems found."
 msgstr "Нису пронађени системи."
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "Нема"
@@ -1513,6 +1550,7 @@ msgstr "Отвори мени"
 msgid "Or continue with"
 msgstr "Или наставите са"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "Остало"
@@ -1663,6 +1701,10 @@ msgstr "Портови"
 msgid "Power On"
 msgstr "Укључи"
 
+#: src/lib/quiet-hours.ts
+msgid "Power outage"
+msgstr "Нестанак струје"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Precise utilization at the recorded time"
@@ -1695,9 +1737,24 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Дубина реда"
 
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Quiet Hours"
 msgstr "Тихи сати"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active"
+msgstr "Тихи сати су активни"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active: notifications are not sent"
+msgstr "Тихи сати су активни: обавештења се не шаљу"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours until {until}"
+msgstr "Тихи сати до {until}"
 
 #: src/components/routes/system/raw-capacity-label.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1724,6 +1781,12 @@ msgstr "Читање"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Read errors"
 msgstr "Грешке при читању"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Reason"
+msgstr "Разлог"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -1835,6 +1898,7 @@ msgstr "Сачувано у бази података и не истиче до�
 msgid "Schedule"
 msgstr "Распоред"
 
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent, such as during maintenance periods."
 msgstr "Закажите тихе сате када се обавештења неће слати, као што су периоди одржавања."
@@ -1842,6 +1906,10 @@ msgstr "Закажите тихе сате када се обавештења н
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent."
 msgstr "Закажите тихе сате када се обавештења неће слати."
+
+#: src/lib/quiet-hours.ts
+msgid "Scheduled maintenance"
+msgstr "Планирано одржавање"
 
 #: src/components/navbar.tsx
 msgid "Search"
@@ -1949,6 +2017,8 @@ msgstr "Podesite sledeće promenljive okruženja na svom Beszel hub-u da biste o
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/system/info-bar.tsx
@@ -2071,6 +2141,10 @@ msgstr "Брзине вентилатора система (RPM)"
 msgid "System load averages over time"
 msgstr "Просечна оптерећења система током времена"
 
+#: src/lib/quiet-hours.ts
+msgid "System updates"
+msgstr "Ажурирања система"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Systemd Services"
 msgstr "Systemd сервиси"
@@ -2138,6 +2212,10 @@ msgstr "Testiraj heartbeat"
 msgid "Test notification sent"
 msgstr "Тест обавештење послато"
 
+#: src/lib/quiet-hours.ts
+msgid "Testing"
+msgstr "Тестирање"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Ukupan status je <0>ok</0> kada su svi sistemi aktivni, <1>upozorenje</1> kada se aktiviraju upozorenja i <2>greška</2> kada je bilo koji sistem isključen."
@@ -2149,6 +2227,10 @@ msgstr "Затим се пријавите на backend и ресетујте л
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Ова акција се не може опозвати. Ово ће трајно избрисати све тренутне записе за {name} из базе података."
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This system until {until}"
+msgstr "Овај систем до {until}"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx

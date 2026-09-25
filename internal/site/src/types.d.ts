@@ -348,6 +348,8 @@ export interface QuietHoursRecord extends RecordModel {
 	type: "one-time" | "daily"
 	start: string
 	end: string
+	/** preset reason key or custom text */
+	reason?: string
 	expand?: {
 		system?: {
 			name: string

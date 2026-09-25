@@ -61,6 +61,10 @@ msgstr "{count, plural, one {{countString} 分钟} few {{countString} 分钟} ma
 msgid "{diskName} I/O"
 msgstr "{diskName} I/O"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "{name} until {until}"
+msgstr "{name}，直到 {until}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# 线程} other {# 线程}}"
@@ -231,6 +235,14 @@ msgstr "所有服务"
 msgid "All Systems"
 msgstr "所有客户端"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "All systems until {until}"
+msgstr "所有系统，直到 {until}"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "and {more} more"
+msgstr "以及另外 {more} 项"
+
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
 msgstr "您确定要删除 {name} 吗？"
@@ -300,6 +312,10 @@ msgstr "平均、最小和最大响应时间"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "1 小时平均"
+
+#: src/lib/quiet-hours.ts
+msgid "Backup"
+msgstr "备份"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -750,6 +766,14 @@ msgstr "删除"
 msgid "Delete fingerprint"
 msgstr "删除指纹"
 
+#: src/lib/quiet-hours.ts
+msgid "Deployment"
+msgstr "部署"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Describe the reason"
+msgstr "描述原因"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Description"
 msgstr "描述"
@@ -1117,6 +1141,10 @@ msgstr "Homebrew 安装命令"
 msgid "Host / IP"
 msgstr "主机/IP"
 
+#: src/lib/quiet-hours.ts
+msgid "Host restart"
+msgstr "主机重启"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "托管的服务"
@@ -1328,6 +1356,10 @@ msgstr "内存使用率"
 msgid "Memory usage of containers"
 msgstr "容器内存使用量"
 
+#: src/lib/quiet-hours.ts
+msgid "Migration"
+msgstr "迁移"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Min 1h"
 msgstr "1 小时最小"
@@ -1411,6 +1443,10 @@ msgstr "公共接口的网络流量"
 msgid "Network unit"
 msgstr "网络单位"
 
+#: src/lib/quiet-hours.ts
+msgid "Network work"
+msgstr "网络作业"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1446,6 +1482,7 @@ msgstr "此设备没有可用的 S.M.A.R.T. 属性。"
 msgid "No systems found."
 msgstr "未找到系统。"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "无"
@@ -1513,6 +1550,7 @@ msgstr "打开菜单"
 msgid "Or continue with"
 msgstr "或使用以下方式登录"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "其他"
@@ -1663,6 +1701,10 @@ msgstr "端口"
 msgid "Power On"
 msgstr "开机时间"
 
+#: src/lib/quiet-hours.ts
+msgid "Power outage"
+msgstr "停电"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Precise utilization at the recorded time"
@@ -1695,9 +1737,24 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "队列深度"
 
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Quiet Hours"
 msgstr "静默时间"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active"
+msgstr "静默时段已启用"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active: notifications are not sent"
+msgstr "静默时段已启用：不发送通知"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours until {until}"
+msgstr "静默时段至 {until}"
 
 #: src/components/routes/system/raw-capacity-label.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1724,6 +1781,12 @@ msgstr "读取"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Read errors"
 msgstr "读取错误"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Reason"
+msgstr "原因"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -1835,6 +1898,7 @@ msgstr "保存在数据库中的数据，在您禁用之前不会过期。"
 msgid "Schedule"
 msgstr "计划"
 
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent, such as during maintenance periods."
 msgstr "安排静默时间，在此期间不会发送通知，例如在维护期间。"
@@ -1842,6 +1906,10 @@ msgstr "安排静默时间，在此期间不会发送通知，例如在维护期
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent."
 msgstr "安排静默时间，在此期间不会发送通知。"
+
+#: src/lib/quiet-hours.ts
+msgid "Scheduled maintenance"
+msgstr "计划维护"
 
 #: src/components/navbar.tsx
 msgid "Search"
@@ -1949,6 +2017,8 @@ msgstr "在您的 Beszel hub 上设置以下环境变量以启用 heartbeat 监�
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/system/info-bar.tsx
@@ -2071,6 +2141,10 @@ msgstr "系统风扇速度（RPM）"
 msgid "System load averages over time"
 msgstr "系统负载平均值随时间变化"
 
+#: src/lib/quiet-hours.ts
+msgid "System updates"
+msgstr "系统更新"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Systemd Services"
 msgstr "Systemd 服务"
@@ -2138,6 +2212,10 @@ msgstr "测试 heartbeat"
 msgid "Test notification sent"
 msgstr "测试通知已发送"
 
+#: src/lib/quiet-hours.ts
+msgid "Testing"
+msgstr "测试"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "当所有系统都正常运行时，整体状态为 <0>ok</0>；当触发警报时为 <1>警告</1>；当任何系统故障时为 <2>错误</2>。"
@@ -2149,6 +2227,10 @@ msgstr "然后登录到后台并在用户表中重置您的用户账户密码。
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "此操作无法撤销。这将永久删除数据库中{name}的所有当前记录。"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This system until {until}"
+msgstr "此系统，直到 {until}"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx

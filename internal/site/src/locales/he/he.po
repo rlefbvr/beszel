@@ -61,6 +61,10 @@ msgstr "{count, plural, one {{countString} דקה} two {{countString} דקות} 
 msgid "{diskName} I/O"
 msgstr "קלט/פלט של {diskName}"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "{name} until {until}"
+msgstr "{name} עד {until}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# תהליכון} other {# תהליכונים}}"
@@ -231,6 +235,14 @@ msgstr "כל השירותים"
 msgid "All Systems"
 msgstr "כל המערכות"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "All systems until {until}"
+msgstr "כל המערכות עד {until}"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "and {more} more"
+msgstr "ועוד {more}"
+
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
 msgstr "האם אתה בטוח שברצונך למחוק את {name}?"
@@ -300,6 +312,10 @@ msgstr "זמן תגובה ממוצע, מינימלי ומקסימלי"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "ממוצע שעה אחת"
+
+#: src/lib/quiet-hours.ts
+msgid "Backup"
+msgstr "גיבוי"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -750,6 +766,14 @@ msgstr "מחק"
 msgid "Delete fingerprint"
 msgstr "מחק טביעת אצבע"
 
+#: src/lib/quiet-hours.ts
+msgid "Deployment"
+msgstr "פריסה"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Describe the reason"
+msgstr "תאר את הסיבה"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Description"
 msgstr "תיאור"
@@ -1117,6 +1141,10 @@ msgstr "פקודת Homebrew"
 msgid "Host / IP"
 msgstr "מארח / IP"
 
+#: src/lib/quiet-hours.ts
+msgid "Host restart"
+msgstr "הפעלה מחדש של המארח"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "שירותים מתארחים"
@@ -1328,6 +1356,10 @@ msgstr "שימוש בזיכרון"
 msgid "Memory usage of containers"
 msgstr "שימוש בזיכרון של קונטיינרים"
 
+#: src/lib/quiet-hours.ts
+msgid "Migration"
+msgstr "הגירה"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Min 1h"
 msgstr "מינימום שעה אחת"
@@ -1411,6 +1443,10 @@ msgstr "תעבורת רשת של ממשקים ציבוריים"
 msgid "Network unit"
 msgstr "יחידת רשת"
 
+#: src/lib/quiet-hours.ts
+msgid "Network work"
+msgstr "עבודות רשת"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1446,6 +1482,7 @@ msgstr "אין מאפייני S.M.A.R.T. זמינים עבור התקן זה."
 msgid "No systems found."
 msgstr "לא נמצאו מערכות."
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "ללא"
@@ -1513,6 +1550,7 @@ msgstr "פתח תפריט"
 msgid "Or continue with"
 msgstr "או המשך עם"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "אחר"
@@ -1663,6 +1701,10 @@ msgstr "פורטים"
 msgid "Power On"
 msgstr "הפעלה"
 
+#: src/lib/quiet-hours.ts
+msgid "Power outage"
+msgstr "הפסקת חשמל"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Precise utilization at the recorded time"
@@ -1695,9 +1737,24 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "עומק תור"
 
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Quiet Hours"
 msgstr "שעות שקט"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active"
+msgstr "שעות שקט פעילות"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active: notifications are not sent"
+msgstr "שעות שקטות פעילות: התראות אינן נשלחות"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours until {until}"
+msgstr "שעות שקטות עד {until}"
 
 #: src/components/routes/system/raw-capacity-label.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1724,6 +1781,12 @@ msgstr "קריאה"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Read errors"
 msgstr "שגיאות קריאה"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Reason"
+msgstr "סיבה"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -1835,6 +1898,7 @@ msgstr "נשמר במסד הנתונים ולא פג תוקף עד שתבטל א
 msgid "Schedule"
 msgstr "לוח זמנים"
 
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent, such as during maintenance periods."
 msgstr "קבע שעות שקט שבהן לא יישלחו התראות, כמו במהלך תקופות תחזוקה."
@@ -1842,6 +1906,10 @@ msgstr "קבע שעות שקט שבהן לא יישלחו התראות, כמו �
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent."
 msgstr "קבע שעות שקט שבהן לא יישלחו התראות."
+
+#: src/lib/quiet-hours.ts
+msgid "Scheduled maintenance"
+msgstr "תחזוקה מתוכננת"
 
 #: src/components/navbar.tsx
 msgid "Search"
@@ -1949,6 +2017,8 @@ msgstr "הגדר את משתני הסביבה הבאים ב-Beszel hub שלך כ
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/system/info-bar.tsx
@@ -2071,6 +2141,10 @@ msgstr "מהירויות מאווררי המערכת (RPM)"
 msgid "System load averages over time"
 msgstr "ממוצעי עומס מערכת לאורך זמן"
 
+#: src/lib/quiet-hours.ts
+msgid "System updates"
+msgstr "עדכוני מערכת"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Systemd Services"
 msgstr "שירותי Systemd"
@@ -2138,6 +2212,10 @@ msgstr "בדיקת דופק"
 msgid "Test notification sent"
 msgstr "התראת בדיקה נשלחה"
 
+#: src/lib/quiet-hours.ts
+msgid "Testing"
+msgstr "בדיקות"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "הסטטוס הכללי הוא <0>ok</0> כשכל המערכות פועלות, <1>warn</1> כשמופעלות התראות, ו-<2>error</2> כשמערכת כלשהי מושבתת."
@@ -2149,6 +2227,10 @@ msgstr "לאחר מכן התחבר ל-backend ואפס את סיסמת חשבו�
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "פעולה זו לא ניתנת לביטול. פעולה זו תמחק לצמיתות את כל הרשומות הנוכחיות עבור {name} ממסד הנתונים."
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This system until {until}"
+msgstr "מערכת זו עד {until}"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx

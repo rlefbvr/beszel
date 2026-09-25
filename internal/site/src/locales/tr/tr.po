@@ -61,6 +61,10 @@ msgstr "{count, plural, one {{countString} dakika} few {{countString} dakika} ma
 msgid "{diskName} I/O"
 msgstr "{diskName} G/Ç"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "{name} until {until}"
+msgstr "{name} {until} saatine kadar"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# iş parçacığı} other {# iş parçacığı}}"
@@ -231,6 +235,14 @@ msgstr "Tüm hizmetler"
 msgid "All Systems"
 msgstr "Tüm Sistemler"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "All systems until {until}"
+msgstr "Tüm sistemler {until} saatine kadar"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "and {more} more"
+msgstr "ve {more} tane daha"
+
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
 msgstr "{name} silmek istediğinizden emin misiniz?"
@@ -300,6 +312,10 @@ msgstr "Ortalama, minimum ve maksimum yanıt süresi"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "1 saat ort."
+
+#: src/lib/quiet-hours.ts
+msgid "Backup"
+msgstr "Yedekleme"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -750,6 +766,14 @@ msgstr "Sil"
 msgid "Delete fingerprint"
 msgstr "Parmak izini sil"
 
+#: src/lib/quiet-hours.ts
+msgid "Deployment"
+msgstr "Dağıtım"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Describe the reason"
+msgstr "Nedeni açıklayın"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Description"
 msgstr "Açıklama"
@@ -1117,6 +1141,10 @@ msgstr "Homebrew komutu"
 msgid "Host / IP"
 msgstr "Ana Bilgisayar / IP"
 
+#: src/lib/quiet-hours.ts
+msgid "Host restart"
+msgstr "Ana makinenin yeniden başlatılması"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "Barındırılan hizmetler"
@@ -1328,6 +1356,10 @@ msgstr "Bellek Kullanımı"
 msgid "Memory usage of containers"
 msgstr "Konteynerlerin bellek kullanımı"
 
+#: src/lib/quiet-hours.ts
+msgid "Migration"
+msgstr "Taşıma"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Min 1h"
 msgstr "Min. 1 saat"
@@ -1411,6 +1443,10 @@ msgstr "Genel arayüzlerin ağ trafiği"
 msgid "Network unit"
 msgstr "Ağ birimi"
 
+#: src/lib/quiet-hours.ts
+msgid "Network work"
+msgstr "Ağ çalışması"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1446,6 +1482,7 @@ msgstr "Bu cihaz için kullanılabilir S.M.A.R.T. özelliği yok."
 msgid "No systems found."
 msgstr "Sistem bulunamadı."
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "Yok"
@@ -1513,6 +1550,7 @@ msgstr "Menüyü aç"
 msgid "Or continue with"
 msgstr "Veya devam et"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "Diğer"
@@ -1663,6 +1701,10 @@ msgstr "Portlar"
 msgid "Power On"
 msgstr "Güç Açık"
 
+#: src/lib/quiet-hours.ts
+msgid "Power outage"
+msgstr "Elektrik kesintisi"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Precise utilization at the recorded time"
@@ -1695,9 +1737,24 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Kuyruk Derinliği"
 
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Quiet Hours"
 msgstr "Sessiz Saatler"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active"
+msgstr "Sessiz saatler etkin"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active: notifications are not sent"
+msgstr "Sessiz saatler etkin: bildirimler gönderilmiyor"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours until {until}"
+msgstr "Sessiz saatler {until} saatine kadar"
 
 #: src/components/routes/system/raw-capacity-label.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1724,6 +1781,12 @@ msgstr "Oku"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Read errors"
 msgstr "Okuma hataları"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Reason"
+msgstr "Neden"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -1835,6 +1898,7 @@ msgstr "Veritabanında kaydedilir ve siz devre dışı bırakana kadar süresi d
 msgid "Schedule"
 msgstr "Zamanla"
 
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent, such as during maintenance periods."
 msgstr "Bildirimlerin gönderilmeyeceği sessiz saatleri zamanlayın, örneğin bakım dönemleri sırasında."
@@ -1842,6 +1906,10 @@ msgstr "Bildirimlerin gönderilmeyeceği sessiz saatleri zamanlayın, örneğin 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent."
 msgstr "Bildirimlerin gönderilmeyeceği sessiz saatleri zamanlayın."
+
+#: src/lib/quiet-hours.ts
+msgid "Scheduled maintenance"
+msgstr "Planlı bakım"
 
 #: src/components/navbar.tsx
 msgid "Search"
@@ -1949,6 +2017,8 @@ msgstr "Heartbeat izlemeyi etkinleştirmek için Beszel hub'ınızda aşağıdak
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/system/info-bar.tsx
@@ -2071,6 +2141,10 @@ msgstr "Sistem fan hızları (RPM)"
 msgid "System load averages over time"
 msgstr "Zaman içindeki sistem yükü ortalamaları"
 
+#: src/lib/quiet-hours.ts
+msgid "System updates"
+msgstr "Sistem güncellemeleri"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Systemd Services"
 msgstr "Systemd Hizmetleri"
@@ -2138,6 +2212,10 @@ msgstr "Heartbeat test et"
 msgid "Test notification sent"
 msgstr "Test bildirimi gönderildi"
 
+#: src/lib/quiet-hours.ts
+msgid "Testing"
+msgstr "Test"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Tüm sistemler çalışırken genel durum <0>ok</0>, uyarılar tetiklendiğinde <1>uyarı</1> ve herhangi bir sistem çöktüğünde <2>hata</2> şeklindedir."
@@ -2149,6 +2227,10 @@ msgstr "Ardından arka uca giriş yapın ve kullanıcılar tablosunda kullanıc�
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Bu işlem geri alınamaz. Bu, veritabanından {name} için tüm mevcut kayıtları kalıcı olarak silecektir."
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This system until {until}"
+msgstr "Bu sistem {until} saatine kadar"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx

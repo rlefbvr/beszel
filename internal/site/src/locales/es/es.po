@@ -61,6 +61,10 @@ msgstr "{count, plural, one {{countString} minuto} other {{countString} minutos}
 msgid "{diskName} I/O"
 msgstr "E/S de {diskName}"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "{name} until {until}"
+msgstr "{name} hasta {until}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# hilo} other {# hilos}}"
@@ -231,6 +235,14 @@ msgstr "Todos los servicios"
 msgid "All Systems"
 msgstr "Todos los sistemas"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "All systems until {until}"
+msgstr "Todos los sistemas hasta {until}"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "and {more} more"
+msgstr "y {more} más"
+
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
 msgstr "¿Estás seguro de que deseas eliminar {name}?"
@@ -300,6 +312,10 @@ msgstr "Tiempo de respuesta medio, mínimo y máximo"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "Prom. 1 h"
+
+#: src/lib/quiet-hours.ts
+msgid "Backup"
+msgstr "Copia de seguridad"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -750,6 +766,14 @@ msgstr "Eliminar"
 msgid "Delete fingerprint"
 msgstr "Eliminar huella digital"
 
+#: src/lib/quiet-hours.ts
+msgid "Deployment"
+msgstr "Despliegue"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Describe the reason"
+msgstr "Describa el motivo"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Description"
 msgstr "Descripción"
@@ -1117,6 +1141,10 @@ msgstr "Comando Homebrew"
 msgid "Host / IP"
 msgstr "Servidor / IP"
 
+#: src/lib/quiet-hours.ts
+msgid "Host restart"
+msgstr "Reinicio del host"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "Servicios alojados"
@@ -1328,6 +1356,10 @@ msgstr "Uso de memoria"
 msgid "Memory usage of containers"
 msgstr "Uso de memoria de los contenedores"
 
+#: src/lib/quiet-hours.ts
+msgid "Migration"
+msgstr "Migración"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Min 1h"
 msgstr "Mín. 1 h"
@@ -1411,6 +1443,10 @@ msgstr "Tráfico de red de interfaces públicas"
 msgid "Network unit"
 msgstr "Unidad de red"
 
+#: src/lib/quiet-hours.ts
+msgid "Network work"
+msgstr "Trabajos de red"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1446,6 +1482,7 @@ msgstr "No hay atributos S.M.A.R.T. disponibles para este dispositivo."
 msgid "No systems found."
 msgstr "No se encontraron sistemas."
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "Ninguno"
@@ -1513,6 +1550,7 @@ msgstr "Abrir menú"
 msgid "Or continue with"
 msgstr "O continuar con"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "Otro"
@@ -1663,6 +1701,10 @@ msgstr "Puertos"
 msgid "Power On"
 msgstr "Encendido"
 
+#: src/lib/quiet-hours.ts
+msgid "Power outage"
+msgstr "Corte de electricidad"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Precise utilization at the recorded time"
@@ -1695,9 +1737,24 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Profundidad de cola"
 
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Quiet Hours"
 msgstr "Horas de silencio"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active"
+msgstr "Horas de silencio activas"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active: notifications are not sent"
+msgstr "Horas de silencio activas: no se envían notificaciones"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours until {until}"
+msgstr "Horas de silencio hasta {until}"
 
 #: src/components/routes/system/raw-capacity-label.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1724,6 +1781,12 @@ msgstr "Lectura"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Read errors"
 msgstr "Errores de lectura"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Reason"
+msgstr "Motivo"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -1835,6 +1898,7 @@ msgstr "Guardado en la base de datos y no expira hasta que lo desactives."
 msgid "Schedule"
 msgstr "Programar"
 
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent, such as during maintenance periods."
 msgstr "Programe horas de silencio donde no se enviarán notificaciones, como durante períodos de mantenimiento."
@@ -1842,6 +1906,10 @@ msgstr "Programe horas de silencio donde no se enviarán notificaciones, como du
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent."
 msgstr "Programe horas de silencio donde no se enviarán notificaciones."
+
+#: src/lib/quiet-hours.ts
+msgid "Scheduled maintenance"
+msgstr "Mantenimiento programado"
 
 #: src/components/navbar.tsx
 msgid "Search"
@@ -1949,6 +2017,8 @@ msgstr "Configure las siguientes variables de entorno en su hub Beszel para habi
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/system/info-bar.tsx
@@ -2071,6 +2141,10 @@ msgstr "Velocidades de los ventiladores del sistema (RPM)"
 msgid "System load averages over time"
 msgstr "Promedios de carga del sistema a lo largo del tiempo"
 
+#: src/lib/quiet-hours.ts
+msgid "System updates"
+msgstr "Actualizaciones del sistema"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Systemd Services"
 msgstr "Servicios de systemd"
@@ -2138,6 +2212,10 @@ msgstr "Probar latido"
 msgid "Test notification sent"
 msgstr "Notificación de prueba enviada"
 
+#: src/lib/quiet-hours.ts
+msgid "Testing"
+msgstr "Pruebas"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "El estado general es <0>ok</0> cuando todos los sistemas están activos, <1>warn</1> cuando se activan alertas y <2>error</2> cuando algún sistema está caído."
@@ -2149,6 +2227,10 @@ msgstr "Luego inicia sesión en el backend y restablece la contraseña de tu cue
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Esta acción no se puede deshacer. Esto eliminará permanentemente todos los registros actuales de {name} de la base de datos."
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This system until {until}"
+msgstr "Este sistema hasta {until}"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx

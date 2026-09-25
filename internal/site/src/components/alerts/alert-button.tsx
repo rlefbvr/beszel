@@ -9,7 +9,8 @@ import { cn } from "@/lib/utils"
 import type { SystemRecord } from "@/types"
 import { AlertDialogContent } from "./alerts-sheet"
 
-export default memo(function AlertsButton({ system }: { system: SystemRecord }) {
+/** Opens the alerts of a system. outline is the bordered style of the system page toolbar. */
+export default memo(function AlertsButton({ system, outline = false }: { system: SystemRecord; outline?: boolean }) {
 	const [opened, setOpened] = useState(false)
 	const alerts = useStore($alerts)
 
@@ -18,9 +19,15 @@ export default memo(function AlertsButton({ system }: { system: SystemRecord }) 
 		() => (
 			<Sheet>
 				<SheetTrigger asChild>
-					<Button variant="ghost" size="icon" aria-label={t`Alerts`} data-nolink onClick={() => setOpened(true)}>
+					<Button
+						variant={outline ? "outline" : "ghost"}
+						size="icon"
+						aria-label={t`Alerts`}
+						data-nolink
+						onClick={() => setOpened(true)}
+					>
 						<BellIcon
-							className={cn("size-[1.2em] pointer-events-none", {
+							className={cn(outline ? "size-4" : "size-[1.2em]", "pointer-events-none", {
 								"fill-primary": hasSystemAlert,
 							})}
 						/>
@@ -31,6 +38,6 @@ export default memo(function AlertsButton({ system }: { system: SystemRecord }) 
 				</SheetContent>
 			</Sheet>
 		),
-		[opened, hasSystemAlert]
+		[opened, hasSystemAlert, outline]
 	)
 })

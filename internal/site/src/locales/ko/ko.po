@@ -61,6 +61,10 @@ msgstr "{count, plural, one {{countString} 분} few {{countString} 분} many {{c
 msgid "{diskName} I/O"
 msgstr "{diskName} I/O"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "{name} until {until}"
+msgstr "{name} ({until}까지)"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# 스레드} other {# 스레드}}"
@@ -231,6 +235,14 @@ msgstr "모든 서비스"
 msgid "All Systems"
 msgstr "모든 시스템"
 
+#: src/components/quiet-hours-banner.tsx
+msgid "All systems until {until}"
+msgstr "모든 시스템 ({until}까지)"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "and {more} more"
+msgstr "외 {more}개"
+
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Are you sure you want to delete {name}?"
 msgstr "{name}을(를) 삭제하시겠습니까?"
@@ -300,6 +312,10 @@ msgstr "평균, 최소 및 최대 응답 시간"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "1시간 평균"
+
+#: src/lib/quiet-hours.ts
+msgid "Backup"
+msgstr "백업"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -750,6 +766,14 @@ msgstr "삭제"
 msgid "Delete fingerprint"
 msgstr "지문 삭제"
 
+#: src/lib/quiet-hours.ts
+msgid "Deployment"
+msgstr "배포"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Describe the reason"
+msgstr "사유를 입력하세요"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Description"
 msgstr "설명"
@@ -1117,6 +1141,10 @@ msgstr "Homebrew 명령어"
 msgid "Host / IP"
 msgstr "호스트 / IP"
 
+#: src/lib/quiet-hours.ts
+msgid "Host restart"
+msgstr "호스트 재시작"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Hosted services"
 msgstr "호스팅된 서비스"
@@ -1328,6 +1356,10 @@ msgstr "메모리 사용량"
 msgid "Memory usage of containers"
 msgstr "컨테이너 메모리 사용량"
 
+#: src/lib/quiet-hours.ts
+msgid "Migration"
+msgstr "마이그레이션"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Min 1h"
 msgstr "1시간 최소"
@@ -1411,6 +1443,10 @@ msgstr "공용 인터페이스의 네트워크 트래픽"
 msgid "Network unit"
 msgstr "네트워크 단위"
 
+#: src/lib/quiet-hours.ts
+msgid "Network work"
+msgstr "네트워크 작업"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1446,6 +1482,7 @@ msgstr "이 장치에 사용할 수 있는 S.M.A.R.T. 속성이 없습니다."
 msgid "No systems found."
 msgstr "시스템을 찾을 수 없습니다."
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "없음"
@@ -1513,6 +1550,7 @@ msgstr "메뉴 열기"
 msgid "Or continue with"
 msgstr "또는 아래 항목으로 진행하기"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "기타"
@@ -1663,6 +1701,10 @@ msgstr "포트"
 msgid "Power On"
 msgstr "전원 켜기"
 
+#: src/lib/quiet-hours.ts
+msgid "Power outage"
+msgstr "정전"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Precise utilization at the recorded time"
@@ -1695,9 +1737,24 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "대기열 깊이"
 
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Quiet Hours"
 msgstr "조용한 시간"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active"
+msgstr "방해 금지 시간 활성화됨"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours active: notifications are not sent"
+msgstr "방해 금지 시간 활성: 알림이 전송되지 않습니다"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "Quiet hours until {until}"
+msgstr "방해 금지 시간 ({until}까지)"
 
 #: src/components/routes/system/raw-capacity-label.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1724,6 +1781,12 @@ msgstr "읽기"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Read errors"
 msgstr "읽기 오류"
+
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Reason"
+msgstr "사유"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -1835,6 +1898,7 @@ msgstr "데이터베이스에 저장되며 비활성화할 때까지 만료되�
 msgid "Schedule"
 msgstr "일정"
 
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent, such as during maintenance periods."
 msgstr "유지보수 기간 등 알림이 전송되지 않을 조용한 시간을 예약하세요."
@@ -1842,6 +1906,10 @@ msgstr "유지보수 기간 등 알림이 전송되지 않을 조용한 시간�
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule quiet hours where notifications will not be sent."
 msgstr "알림이 전송되지 않을 조용한 시간을 예약하세요."
+
+#: src/lib/quiet-hours.ts
+msgid "Scheduled maintenance"
+msgstr "예정된 유지보수"
 
 #: src/components/navbar.tsx
 msgid "Search"
@@ -1949,6 +2017,8 @@ msgstr "하트비트 모니터링을 활성화하려면 Beszel 허브에 다음 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/quiet-hours-banner.tsx
+#: src/components/quiet-hours-banner.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/system/info-bar.tsx
@@ -2071,6 +2141,10 @@ msgstr "시스템 팬 속도 (RPM)"
 msgid "System load averages over time"
 msgstr "시간에 따른 시스템 부하 평균"
 
+#: src/lib/quiet-hours.ts
+msgid "System updates"
+msgstr "시스템 업데이트"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Systemd Services"
 msgstr "Systemd 서비스"
@@ -2138,6 +2212,10 @@ msgstr "테스트 하트비트"
 msgid "Test notification sent"
 msgstr "테스트 알림이 전송되었습니다."
 
+#: src/lib/quiet-hours.ts
+msgid "Testing"
+msgstr "테스트"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "모든 시스템이 정상이면 <0>ok</0>, 알림이 트리거되면 <1>경고</1>, 시스템이 다운되면 <2>오류</2> 상태가 됩니다."
@@ -2149,6 +2227,10 @@ msgstr "그런 다음 백엔드에 로그인하여 사용자 테이블에서 사
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "이 작업은 되돌릴 수 없습니다. 데이터베이스에서 {name}에 대한 모든 현재 기록이 영구적으로 삭제됩니다."
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This system until {until}"
+msgstr "이 시스템 ({until}까지)"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx

@@ -12,6 +12,7 @@ import Settings from "@/components/routes/settings/layout.tsx"
 import { ThemeProvider } from "@/components/theme-provider.tsx"
 import { Toaster } from "@/components/ui/toaster.tsx"
 import { alertManager } from "@/lib/alerts"
+import { refreshQuietHours, subscribeQuietHours, unsubscribeQuietHours } from "@/lib/quiet-hours"
 import { refreshStateAlerts, subscribeStateAlerts, unsubscribeStateAlerts } from "@/lib/state-alerts"
 import { isAdmin, pb, updateHubSettings, updateUserSettings } from "@/lib/api.ts"
 import { dynamicActivate, getLocale } from "@/lib/i18n"
@@ -68,10 +69,12 @@ const App = memo(() => {
 			.then(alertManager.subscribe)
 		// service / container state rules
 		refreshStateAlerts().then(subscribeStateAlerts)
+		refreshQuietHours().then(subscribeQuietHours)
 		return () => {
 			unsubscribeAuth()
 			alertManager.unsubscribe()
 			unsubscribeStateAlerts()
+			unsubscribeQuietHours()
 			systemsManager.unsubscribe()
 		}
 	}, [])

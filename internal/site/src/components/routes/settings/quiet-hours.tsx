@@ -10,8 +10,9 @@ import {
 	CalendarIcon,
 	ActivityIcon,
 	PenSquareIcon,
+	MessageSquareTextIcon,
 } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -38,53 +39,51 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useToast } from "@/components/ui/use-toast"
 import { pb } from "@/lib/api"
-import { $systems } from "@/lib/stores"
-import { formatShortDate } from "@/lib/utils"
+import {
+	$quietHours,
+	isPresetReason,
+	type QuietHoursState,
+	quietHoursReasonLabel,
+	quietHoursReasons,
+	quietHoursState,
+	useNow,
+} from "@/lib/quiet-hours"
+import { $allSystemsById, $systems } from "@/lib/stores"
+import { cn, formatShortDate } from "@/lib/utils"
 import type { QuietHoursRecord, SystemRecord } from "@/types"
 
 const quietHoursTranslation = t`Quiet Hours`
 
-export function QuietHours() {
-	const [data, setData] = useState<QuietHoursRecord[]>([])
+/** Value of the reason select for a custom reason */
+const customReason = "other"
+
+/**
+ * Quiet hours windows with their state. With a systemId, only the windows
+ * that apply to that system (global or its own), and new windows target it.
+ * compact leaves the title and description to the dialog showing the table.
+ */
+export function QuietHours({ systemId, compact = false }: { systemId?: string; compact?: boolean }) {
+	const records = useStore($quietHours)
+	const systemsById = useStore($allSystemsById)
 	const [dialogOpen, setDialogOpen] = useState(false)
 	const [editingRecord, setEditingRecord] = useState<QuietHoursRecord | null>(null)
 	const { toast } = useToast()
 	const systems = useStore($systems)
-	useEffect(() => {
-		let unsubscribe: (() => void) | undefined
-		const pbOptions = {
-			expand: "system",
-			fields: "id,user,system,type,start,end,expand.system.name",
-		}
-		// Initial load
-		pb.collection<QuietHoursRecord>("quiet_hours")
-			.getList(0, 200, {
-				...pbOptions,
-				sort: "system",
-			})
-			.then(({ items }) => setData(items))
+	const now = useNow()
 
-		// Subscribe to changes
-		;(async () => {
-			unsubscribe = await pb.collection("quiet_hours").subscribe(
-				"*",
-				(e) => {
-					if (e.action === "create") {
-						setData((current) => [e.record as QuietHoursRecord, ...current])
-					}
-					if (e.action === "update") {
-						setData((current) => current.map((r) => (r.id === e.record.id ? (e.record as QuietHoursRecord) : r)))
-					}
-					if (e.action === "delete") {
-						setData((current) => current.filter((r) => r.id !== e.record.id))
-					}
-				},
-				pbOptions
-			)
-		})()
-		// Unsubscribe on unmount
-		return () => unsubscribe?.()
-	}, [])
+	// global windows first, then by system name
+	const data = useMemo(
+		() =>
+			Object.values(records)
+				.filter((record) => !systemId || !record.system || record.system === systemId)
+				.sort(
+					(a, b) =>
+						Number(!!a.system) - Number(!!b.system) ||
+						(systemsById[a.system]?.name ?? "").localeCompare(systemsById[b.system]?.name ?? "") ||
+						a.start.localeCompare(b.start)
+				),
+		[records, systemId, systemsById]
+	)
 
 	const handleDelete = async (id: string) => {
 		try {
@@ -121,56 +120,19 @@ export function QuietHours() {
 		return `${start} - ${end}`
 	}
 
-	const getWindowState = (record: QuietHoursRecord): "active" | "past" | "inactive" => {
-		const now = new Date()
-
-		if (record.type === "daily") {
-			// For daily windows, check if current time is within the window
-			const startDate = new Date(record.start)
-			const endDate = new Date(record.end)
-
-			// Get current time in local timezone
-			const currentMinutes = now.getHours() * 60 + now.getMinutes()
-			const startMinutes = startDate.getUTCHours() * 60 + startDate.getUTCMinutes()
-			const endMinutes = endDate.getUTCHours() * 60 + endDate.getUTCMinutes()
-
-			// Convert UTC to local time using the stored date's offset, not the current date's offset
-			// This avoids DST mismatch when records were saved in a different DST period
-			const localStartMinutes = (startMinutes - startDate.getTimezoneOffset() + 1440) % 1440
-			const localEndMinutes = (endMinutes - endDate.getTimezoneOffset() + 1440) % 1440
-
-			// Handle cases where window spans midnight
-			if (localStartMinutes <= localEndMinutes) {
-				return currentMinutes >= localStartMinutes && currentMinutes < localEndMinutes ? "active" : "inactive"
-			} else {
-				return currentMinutes >= localStartMinutes || currentMinutes < localEndMinutes ? "active" : "inactive"
-			}
-		} else {
-			// For one-time windows
-			const startDate = new Date(record.start)
-			const endDate = new Date(record.end)
-
-			if (now >= startDate && now < endDate) {
-				return "active"
-			} else if (now >= endDate) {
-				return "past"
-			} else {
-				return "inactive"
-			}
-		}
-	}
-
 	return (
 		<>
-			<div className="grid grid-cols-1 sm:flex items-center justify-between gap-4 mb-3">
-				<div>
-					<h3 className="mb-1 text-lg font-medium">{quietHoursTranslation}</h3>
-					<p className="text-sm text-muted-foreground leading-relaxed">
-						<Trans>
-							Schedule quiet hours where notifications will not be sent, such as during maintenance periods.
-						</Trans>
-					</p>
-				</div>
+			<div className={cn("grid grid-cols-1 sm:flex items-center justify-between gap-4 mb-3", compact && "sm:justify-end")}>
+				{!compact && (
+					<div>
+						<h3 className="mb-1 font-medium text-lg">{quietHoursTranslation}</h3>
+						<p className="text-sm text-muted-foreground leading-relaxed">
+							<Trans>
+								Schedule quiet hours where notifications will not be sent, such as during maintenance periods.
+							</Trans>
+						</p>
+					</div>
+				)}
 				<Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
 					<DialogTrigger asChild>
 						<Button variant="outline" className="h-10 shrink-0" onClick={() => setEditingRecord(null)}>
@@ -180,7 +142,13 @@ export function QuietHours() {
 							</span>
 						</Button>
 					</DialogTrigger>
-					<QuietHoursDialog editingRecord={editingRecord} systems={systems} onClose={closeDialog} toast={toast} />
+					<QuietHoursDialog
+						editingRecord={editingRecord}
+						systems={systems}
+						defaultSystem={systemId}
+						onClose={closeDialog}
+						toast={toast}
+					/>
 				</Dialog>
 			</div>
 			{data.length > 0 && (
@@ -208,6 +176,12 @@ export function QuietHours() {
 								</TableHead>
 								<TableHead className="px-4">
 									<span className="flex items-center gap-2">
+										<MessageSquareTextIcon className="size-4" />
+										<Trans>Reason</Trans>
+									</span>
+								</TableHead>
+								<TableHead className="px-4">
+									<span className="flex items-center gap-2">
 										<ActivityIcon className="size-4" />
 										<Trans>State</Trans>
 									</span>
@@ -221,23 +195,17 @@ export function QuietHours() {
 							{data.map((record) => (
 								<TableRow key={record.id}>
 									<TableCell className="px-4 py-3">
-										{record.system ? record.expand?.system?.name || record.system : <Trans>All Systems</Trans>}
+										{record.system ? systemsById[record.system]?.name || record.system : <Trans>All Systems</Trans>}
 									</TableCell>
 									<TableCell className="px-4 py-3">
 										{record.type === "daily" ? <Trans>Daily</Trans> : <Trans>One-time</Trans>}
 									</TableCell>
 									<TableCell className="px-4 py-3">{formatDateTime(record)}</TableCell>
+									<TableCell className="px-4 py-3 max-w-60 truncate" title={quietHoursReasonLabel(record.reason)}>
+										{quietHoursReasonLabel(record.reason) || <span className="text-muted-foreground">-</span>}
+									</TableCell>
 									<TableCell className="px-4 py-3">
-										{(() => {
-											const state = getWindowState(record)
-											const stateConfig = {
-												active: { label: <Trans>Active</Trans>, variant: "success" as const },
-												past: { label: <Trans>Past</Trans>, variant: "danger" as const },
-												inactive: { label: <Trans>Inactive</Trans>, variant: "default" as const },
-											}
-											const config = stateConfig[state]
-											return <Badge variant={config.variant}>{config.label}</Badge>
-										})()}
+										<QuietHoursStateBadge state={quietHoursState(record, now)} />
 									</TableCell>
 									<TableCell className="px-4 py-3 text-right">
 										<DropdownMenu>
@@ -272,6 +240,17 @@ export function QuietHours() {
 	)
 }
 
+/** Colored state of a quiet hours window */
+export function QuietHoursStateBadge({ state }: { state: QuietHoursState }) {
+	const stateConfig = {
+		active: { label: <Trans>Active</Trans>, variant: "success" as const },
+		past: { label: <Trans>Past</Trans>, variant: "danger" as const },
+		inactive: { label: <Trans>Inactive</Trans>, variant: "default" as const },
+	}
+	const config = stateConfig[state]
+	return <Badge variant={config.variant}>{config.label}</Badge>
+}
+
 // Helper function to format Date as datetime-local string (YYYY-MM-DDTHH:mm) in local time
 function formatDateTimeLocal(date: Date): string {
 	const year = date.getFullYear()
@@ -285,11 +264,14 @@ function formatDateTimeLocal(date: Date): string {
 function QuietHoursDialog({
 	editingRecord,
 	systems,
+	defaultSystem,
 	onClose,
 	toast,
 }: {
 	editingRecord: QuietHoursRecord | null
 	systems: SystemRecord[]
+	/** system selected for new windows */
+	defaultSystem?: string
 	onClose: () => void
 	toast: ReturnType<typeof useToast>["toast"]
 }) {
@@ -300,6 +282,9 @@ function QuietHoursDialog({
 	const [endDateTime, setEndDateTime] = useState("")
 	const [startTime, setStartTime] = useState("")
 	const [endTime, setEndTime] = useState("")
+	// preset reason key, customReason, or "" for none
+	const [reasonChoice, setReasonChoice] = useState("")
+	const [customReasonText, setCustomReasonText] = useState("")
 
 	useEffect(() => {
 		if (editingRecord) {
@@ -320,6 +305,9 @@ function QuietHoursDialog({
 				setStartDateTime(formatDateTimeLocal(startDate))
 				setEndDateTime(endDate ? formatDateTimeLocal(endDate) : "")
 			}
+			const reason = editingRecord.reason ?? ""
+			setReasonChoice(isPresetReason(reason) ? reason : reason ? customReason : "")
+			setCustomReasonText(isPresetReason(reason) ? "" : reason)
 		} else {
 			// Reset form with default dates: today at 12pm and 1pm
 			const today = new Date()
@@ -328,15 +316,17 @@ function QuietHoursDialog({
 			const onePm = new Date(today)
 			onePm.setHours(13, 0, 0, 0)
 
-			setSelectedSystem("")
-			setIsGlobal(true)
+			setSelectedSystem(defaultSystem ?? "")
+			setIsGlobal(!defaultSystem)
 			setWindowType("one-time")
 			setStartDateTime(formatDateTimeLocal(noon))
 			setEndDateTime(formatDateTimeLocal(onePm))
 			setStartTime("12:00")
 			setEndTime("13:00")
+			setReasonChoice("")
+			setCustomReasonText("")
 		}
-	}, [editingRecord])
+	}, [editingRecord, defaultSystem])
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
@@ -364,10 +354,11 @@ function QuietHoursDialog({
 
 			const data = {
 				user: pb.authStore.record?.id,
-				system: isGlobal ? undefined : selectedSystem,
+				system: isGlobal ? "" : selectedSystem,
 				type: windowType,
 				start: startValue,
 				end: endValue,
+				reason: reasonChoice === customReason ? customReasonText.trim() : reasonChoice,
 			}
 
 			if (editingRecord) {
@@ -522,6 +513,40 @@ function QuietHoursDialog({
 						</div>
 					</div>
 				)}
+
+				<div className="grid gap-2">
+					<Label htmlFor="reason">
+						<Trans>Reason</Trans>
+					</Label>
+					<Select value={reasonChoice || "none"} onValueChange={(value) => setReasonChoice(value === "none" ? "" : value)}>
+						<SelectTrigger id="reason">
+							<SelectValue />
+						</SelectTrigger>
+						<SelectContent>
+							<SelectItem value="none">
+								<Trans>None</Trans>
+							</SelectItem>
+							{Object.entries(quietHoursReasons).map(([key, label]) => (
+								<SelectItem key={key} value={key}>
+									{label()}
+								</SelectItem>
+							))}
+							<SelectItem value={customReason}>
+								<Trans>Other</Trans>
+							</SelectItem>
+						</SelectContent>
+					</Select>
+					{reasonChoice === customReason && (
+						<Input
+							aria-label={t`Reason`}
+							placeholder={t`Describe the reason`}
+							value={customReasonText}
+							onChange={(e) => setCustomReasonText(e.target.value)}
+							maxLength={200}
+							required
+						/>
+					)}
+				</div>
 
 				<DialogFooter>
 					<Button type="button" variant="outline" onClick={onClose}>

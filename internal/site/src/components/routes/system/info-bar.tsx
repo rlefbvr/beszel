@@ -11,6 +11,8 @@ import {
 	Settings2Icon,
 } from "lucide-react"
 import { useMemo } from "react"
+import AlertsButton from "@/components/alerts/alert-button"
+import { QuietHoursButton } from "@/components/quiet-hours-banner"
 import ChartTimeSelect from "@/components/charts/chart-time-select"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -201,6 +203,8 @@ export default function InfoBar({
 					</div>
 				</div>
 				<div className="xl:ms-auto flex items-center gap-2 max-sm:-mb-1">
+					<AlertsButton system={system} outline />
+					<QuietHoursButton systemId={system.id} />
 					<ChartTimeSelect className="w-full xl:w-40" agentVersion={chartData.agentVersion} />
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
