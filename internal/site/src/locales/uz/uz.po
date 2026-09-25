@@ -117,6 +117,10 @@ msgstr "30 kun"
 msgid "5 min"
 msgstr "5 daq"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A system belongs to one group: checking it moves it from its current group."
+msgstr "Tizim bitta guruhga tegishli: belgilash uni joriy guruhidan ko‘chiradi."
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
@@ -240,8 +244,13 @@ msgstr "Holat quyidagicha bo‘lmaganda ogohlantirish"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "Ogohlantirishlar"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "All"
+msgstr "Hammasi"
 
 #: src/components/agent-update-dialog.tsx
 msgid "All agents are up to date ({latest})"
@@ -281,6 +290,7 @@ msgstr "Barcha xizmatlar"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
 #: src/components/systems-select.tsx
+#: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All Systems"
@@ -478,6 +488,7 @@ msgstr "To'xtata oladi"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "Bekor qilish"
@@ -589,6 +600,7 @@ msgid "Click to copy"
 msgstr "Nusxalash uchun bosing"
 
 #: src/components/agent-update-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Close"
 msgstr "Yopish"
 
@@ -835,6 +847,7 @@ msgstr "Standart vaqt oralig'i"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Delete"
 msgstr "O'chirish"
@@ -842,6 +855,14 @@ msgstr "O'chirish"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "Barmoq izini o'chirish"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete group"
+msgstr "Guruhni o‘chirish"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete the group {originalName}?"
+msgstr "{originalName} guruhi o‘chirilsinmi?"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1088,6 +1109,7 @@ msgstr "Monitorlarni o‘chirish amalga oshmadi."
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "Sozlamalarni saqlash muvaffaqiyatsiz tugadi"
 
@@ -1125,6 +1147,7 @@ msgstr "Ventilyatorlar"
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Filter..."
 msgstr "Filtrlash..."
@@ -1197,6 +1220,27 @@ msgstr "GPU yuklanishi"
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "Grid"
+
+#: src/components/add-system.tsx
+#: src/components/routes/system/info-bar.tsx
+msgid "Group"
+msgstr "Guruh"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group deleted"
+msgstr "Guruh o‘chirildi"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group saved"
+msgstr "Guruh saqlandi"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "Groups"
+msgstr "Guruhlar"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
+msgstr "Guruhlar bosh sahifadagi tizimlarni barcha foydalanuvchilar uchun tartiblaydi. Guruhni o‘chirish uning tizimlarini guruhsiz saqlaydi."
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1320,6 +1364,14 @@ msgstr "Oraliq (soniya)"
 msgid "Invalid email address."
 msgstr "Noto'g'ri elektron pochta manzili."
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are kept and moved to no group."
+msgstr "Uning tizimlari saqlanadi va guruhsiz qoladi."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are now without group."
+msgstr "Uning tizimlari endi guruhsiz."
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "Til"
@@ -1432,6 +1484,13 @@ msgstr "Asosiy PID"
 msgid "Manage display and notification preferences."
 msgstr "Ko'rsatish va bildirishnoma parametrlarini boshqaring."
 
+#: src/components/systems-table/groups-dialog.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Manage groups"
+msgstr "Guruhlarni boshqarish"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Manual setup instructions"
@@ -1504,6 +1563,7 @@ msgstr "Ulash nuqtasi"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Name"
 msgstr "Nom"
 
@@ -1563,6 +1623,10 @@ msgstr "Tarmoq birligi"
 msgid "Network work"
 msgstr "Tarmoq ishlari"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "New group"
+msgstr "Yangi guruh"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1576,6 +1640,12 @@ msgstr "Ogohlantirish yo‘q"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "Bu pool uchun batafsil ma’lumot mavjud emas."
+
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "No group"
+msgstr "Guruhsiz"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1614,6 +1684,7 @@ msgstr "Yangilanishdan keyin agentni hech bir xizmat qayta ishga tushirmaydi."
 msgid "No systems found."
 msgstr "Tizimlar topilmadi."
 
+#: src/components/add-system.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -1856,6 +1927,10 @@ msgstr "Afzal til"
 msgid "Process started"
 msgstr "Jarayon boshlandi"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Production, Customers, Lab…"
+msgstr "Ishlab chiqarish, Mijozlar, Laboratoriya…"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Protocol"
@@ -2039,6 +2114,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. o'z-o'zini test"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "Saqlash"
 
@@ -2204,6 +2280,10 @@ msgstr "Sozlamalar"
 msgid "Settings saved"
 msgstr "Sozlamalar saqlandi"
 
+#: src/components/systems-table/systems-table.tsx
+msgid "Show by group"
+msgstr "Guruh bo‘yicha ko‘rsatish"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Shutdown"
@@ -2267,6 +2347,7 @@ msgid "State rule matched"
 msgstr "Holat qoidasi bajarildi"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "State rules"
 msgstr "Holat qoidalari"
 
@@ -2351,6 +2432,7 @@ msgstr "Systemd xizmatlari"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "Tizimlar"
 
@@ -2839,6 +2921,10 @@ msgstr "Windows xizmatlari"
 #: src/components/important-targets.tsx
 msgid "With a state alert rule"
 msgstr "Holat ogohlantirish qoidasi bilan"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "With alerts"
+msgstr "Ogohlantirishli"
 
 #. Disk write
 #. Disk write

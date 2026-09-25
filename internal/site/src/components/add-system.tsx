@@ -19,6 +19,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { isReadOnlyUser, pb } from "@/lib/api"
 import { SystemStatus } from "@/lib/enums"
 import { $publicKey } from "@/lib/stores"
+import { $systemGroups } from "@/lib/system-groups"
 import { cn, generateToken, tokenMap, useBrowserStorage } from "@/lib/utils"
 import type { SystemRecord } from "@/types"
 import {
@@ -66,6 +67,7 @@ let nextSystemToken: string | null = null
  */
 export const SystemDialog = ({ setOpen, system }: { setOpen: (open: boolean) => void; system?: SystemRecord }) => {
 	const publicKey = useStore($publicKey)
+	const groups = useStore($systemGroups)
 	const port = useRef<HTMLInputElement>(null)
 	const [hostValue, setHostValue] = useState(system?.host ?? "")
 	const isUnixSocket = hostValue.startsWith("/")
@@ -193,6 +195,22 @@ export const SystemDialog = ({ setOpen, system }: { setOpen: (open: boolean) => 
 								setHostValue(e.target.value)
 							}}
 						/>
+						<Label htmlFor="group" className="xs:text-end">
+							<Trans>Group</Trans>
+						</Label>
+						<Input
+							id="group"
+							name="group"
+							defaultValue={system?.group}
+							list="system-groups"
+							maxLength={60}
+							placeholder={t`None`}
+						/>
+						<datalist id="system-groups">
+							{groups.map((group) => (
+								<option key={group} value={group} />
+							))}
+						</datalist>
 						<Label htmlFor="port" className={cn("xs:text-end", isUnixSocket && "hidden")}>
 							<Trans>Port</Trans>
 						</Label>

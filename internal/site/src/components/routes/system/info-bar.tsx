@@ -5,6 +5,7 @@ import {
 	ChevronRightSquareIcon,
 	ClockArrowUp,
 	CpuIcon,
+	FolderIcon,
 	GlobeIcon,
 	MemoryStickIcon,
 	MonitorIcon,
@@ -94,6 +95,7 @@ export default function InfoBar({
 
 		const info = [
 			{ value: getHostDisplayValue(system), Icon: GlobeIcon },
+			{ value: system.group?.trim(), Icon: FolderIcon, label: t`Group`, hide: !system.group?.trim() },
 			{
 				value: hostname,
 				Icon: MonitorIcon,

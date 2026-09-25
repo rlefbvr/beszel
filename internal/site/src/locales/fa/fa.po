@@ -117,6 +117,10 @@ msgstr "۳۰ روز"
 msgid "5 min"
 msgstr "۵ دقیقه"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A system belongs to one group: checking it moves it from its current group."
+msgstr "هر سیستم به یک گروه تعلق دارد: انتخاب آن، سیستم را از گروه فعلی‌اش جابه‌جا می‌کند."
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
@@ -240,8 +244,13 @@ msgstr "هشدار هنگامی که وضعیت برابر نیست با"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "هشدارها"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "All"
+msgstr "همه"
 
 #: src/components/agent-update-dialog.tsx
 msgid "All agents are up to date ({latest})"
@@ -281,6 +290,7 @@ msgstr "همه سرویس‌ها"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
 #: src/components/systems-select.tsx
+#: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All Systems"
@@ -478,6 +488,7 @@ msgstr "می‌تواند متوقف شود"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "لغو"
@@ -589,6 +600,7 @@ msgid "Click to copy"
 msgstr "برای کپی کردن کلیک کنید"
 
 #: src/components/agent-update-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Close"
 msgstr "بستن"
 
@@ -835,6 +847,7 @@ msgstr "بازه زمانی پیش‌فرض"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Delete"
 msgstr "حذف"
@@ -842,6 +855,14 @@ msgstr "حذف"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "حذف اثر انگشت"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete group"
+msgstr "حذف گروه"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete the group {originalName}?"
+msgstr "گروه {originalName} حذف شود؟"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1088,6 +1109,7 @@ msgstr "حذف مانیتورها ناموفق بود."
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "ذخیره تنظیمات ناموفق بود"
 
@@ -1125,6 +1147,7 @@ msgstr "فن‌ها"
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Filter..."
 msgstr "فیلتر..."
@@ -1197,6 +1220,27 @@ msgstr "میزان استفاده از GPU"
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "جدول"
+
+#: src/components/add-system.tsx
+#: src/components/routes/system/info-bar.tsx
+msgid "Group"
+msgstr "گروه"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group deleted"
+msgstr "گروه حذف شد"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group saved"
+msgstr "گروه ذخیره شد"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "Groups"
+msgstr "گروه‌ها"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
+msgstr "گروه‌ها سیستم‌ها را در صفحه اصلی برای همه کاربران سازمان‌دهی می‌کنند. حذف گروه، سیستم‌های آن را بدون گروه نگه می‌دارد."
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1320,6 +1364,14 @@ msgstr "بازه (ثانیه)"
 msgid "Invalid email address."
 msgstr "آدرس ایمیل نامعتبر است."
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are kept and moved to no group."
+msgstr "سیستم‌های آن حفظ شده و بدون گروه می‌شوند."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are now without group."
+msgstr "سیستم‌های آن اکنون بدون گروه هستند."
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "زبان"
@@ -1432,6 +1484,13 @@ msgstr "PID اصلی"
 msgid "Manage display and notification preferences."
 msgstr "مدیریت تنظیمات نمایش و اعلان‌ها."
 
+#: src/components/systems-table/groups-dialog.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Manage groups"
+msgstr "مدیریت گروه‌ها"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Manual setup instructions"
@@ -1504,6 +1563,7 @@ msgstr "نقطه اتصال"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Name"
 msgstr "نام"
 
@@ -1563,6 +1623,10 @@ msgstr "واحد شبکه"
 msgid "Network work"
 msgstr "کار روی شبکه"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "New group"
+msgstr "گروه جدید"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1576,6 +1640,12 @@ msgstr "بدون هشدار"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "دادهٔ جزئی برای این استخر موجود نیست."
+
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "No group"
+msgstr "بدون گروه"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1614,6 +1684,7 @@ msgstr "هیچ سرویسی پس از به‌روزرسانی عامل را دو
 msgid "No systems found."
 msgstr "هیچ سیستمی یافت نشد."
 
+#: src/components/add-system.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -1856,6 +1927,10 @@ msgstr "زبان ترجیحی"
 msgid "Process started"
 msgstr "فرآیند شروع شد"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Production, Customers, Lab…"
+msgstr "تولید، مشتریان، آزمایشگاه…"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Protocol"
@@ -2039,6 +2114,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "تست خود S.M.A.R.T"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "ذخیره"
 
@@ -2204,6 +2280,10 @@ msgstr "تنظیمات"
 msgid "Settings saved"
 msgstr "تنظیمات ذخیره شد"
 
+#: src/components/systems-table/systems-table.tsx
+msgid "Show by group"
+msgstr "نمایش بر اساس گروه"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Shutdown"
@@ -2267,6 +2347,7 @@ msgid "State rule matched"
 msgstr "قانون وضعیت برقرار شد"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "State rules"
 msgstr "قوانین وضعیت"
 
@@ -2351,6 +2432,7 @@ msgstr "خدمات Systemd"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "سیستم‌ها"
 
@@ -2839,6 +2921,10 @@ msgstr "سرویس‌های Windows"
 #: src/components/important-targets.tsx
 msgid "With a state alert rule"
 msgstr "دارای قانون هشدار وضعیت"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "With alerts"
+msgstr "دارای هشدار"
 
 #. Disk write
 #. Disk write

@@ -117,6 +117,10 @@ msgstr "30일"
 msgid "5 min"
 msgstr "5분"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A system belongs to one group: checking it moves it from its current group."
+msgstr "시스템은 하나의 그룹에 속합니다. 선택하면 현재 그룹에서 이동합니다."
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
@@ -240,8 +244,13 @@ msgstr "상태가 다음이 아닐 때 알림"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "알림"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "All"
+msgstr "전체"
 
 #: src/components/agent-update-dialog.tsx
 msgid "All agents are up to date ({latest})"
@@ -281,6 +290,7 @@ msgstr "모든 서비스"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
 #: src/components/systems-select.tsx
+#: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All Systems"
@@ -478,6 +488,7 @@ msgstr "중지 가능"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "취소"
@@ -589,6 +600,7 @@ msgid "Click to copy"
 msgstr "클릭하여 복사"
 
 #: src/components/agent-update-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Close"
 msgstr "닫기"
 
@@ -835,6 +847,7 @@ msgstr "기본 기간"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Delete"
 msgstr "삭제"
@@ -842,6 +855,14 @@ msgstr "삭제"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "지문 삭제"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete group"
+msgstr "그룹 삭제"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete the group {originalName}?"
+msgstr "{originalName} 그룹을 삭제할까요?"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1088,6 +1109,7 @@ msgstr "모니터를 삭제하지 못했습니다."
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "설정 저장 실패"
 
@@ -1125,6 +1147,7 @@ msgstr "팬"
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Filter..."
 msgstr "필터..."
@@ -1197,6 +1220,27 @@ msgstr "GPU 사용량"
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "그리드"
+
+#: src/components/add-system.tsx
+#: src/components/routes/system/info-bar.tsx
+msgid "Group"
+msgstr "그룹"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group deleted"
+msgstr "그룹이 삭제됨"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group saved"
+msgstr "그룹이 저장됨"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "Groups"
+msgstr "그룹"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
+msgstr "그룹은 모든 사용자의 홈 페이지에서 시스템을 정리합니다. 그룹을 삭제해도 시스템은 그룹 없이 유지됩니다."
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1320,6 +1364,14 @@ msgstr "간격(초)"
 msgid "Invalid email address."
 msgstr "잘못된 이메일 주소입니다."
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are kept and moved to no group."
+msgstr "시스템은 유지되며 그룹 없음으로 이동합니다."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are now without group."
+msgstr "이제 시스템에 그룹이 없습니다."
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "언어"
@@ -1432,6 +1484,13 @@ msgstr "주 PID"
 msgid "Manage display and notification preferences."
 msgstr "디스플레이 및 알림 설정"
 
+#: src/components/systems-table/groups-dialog.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Manage groups"
+msgstr "그룹 관리"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Manual setup instructions"
@@ -1504,6 +1563,7 @@ msgstr "마운트 지점"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Name"
 msgstr "이름"
 
@@ -1563,6 +1623,10 @@ msgstr "네트워크 단위"
 msgid "Network work"
 msgstr "네트워크 작업"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "New group"
+msgstr "새 그룹"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1576,6 +1640,12 @@ msgstr "알림 없음"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "이 풀에 대한 상세 데이터가 없습니다."
+
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "No group"
+msgstr "그룹 없음"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1614,6 +1684,7 @@ msgstr "업데이트 후 에이전트를 다시 시작하는 서비스가 없습
 msgid "No systems found."
 msgstr "시스템을 찾을 수 없습니다."
 
+#: src/components/add-system.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -1856,6 +1927,10 @@ msgstr "선호 언어"
 msgid "Process started"
 msgstr "프로세스 시작됨"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Production, Customers, Lab…"
+msgstr "운영, 고객, 실험실…"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Protocol"
@@ -2039,6 +2114,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. 자체 테스트"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "저장"
 
@@ -2204,6 +2280,10 @@ msgstr "설정"
 msgid "Settings saved"
 msgstr "설정이 저장되었습니다."
 
+#: src/components/systems-table/systems-table.tsx
+msgid "Show by group"
+msgstr "그룹별 표시"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Shutdown"
@@ -2267,6 +2347,7 @@ msgid "State rule matched"
 msgstr "상태 규칙 충족"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "State rules"
 msgstr "상태 규칙"
 
@@ -2351,6 +2432,7 @@ msgstr "Systemd 서비스"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "시스템"
 
@@ -2839,6 +2921,10 @@ msgstr "Windows 서비스"
 #: src/components/important-targets.tsx
 msgid "With a state alert rule"
 msgstr "상태 알림 규칙 있음"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "With alerts"
+msgstr "알림 있음"
 
 #. Disk write
 #. Disk write

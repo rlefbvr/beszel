@@ -117,6 +117,10 @@ msgstr "30 nap"
 msgid "5 min"
 msgstr "5 perc"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A system belongs to one group: checking it moves it from its current group."
+msgstr "Egy rendszer egy csoporthoz tartozik: bejelölése áthelyezi a jelenlegi csoportjából."
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
@@ -240,8 +244,13 @@ msgstr "Riasztás, ha az állapot nem"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "Riasztások"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "All"
+msgstr "Összes"
 
 #: src/components/agent-update-dialog.tsx
 msgid "All agents are up to date ({latest})"
@@ -281,6 +290,7 @@ msgstr "Összes szolgáltatás"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
 #: src/components/systems-select.tsx
+#: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All Systems"
@@ -478,6 +488,7 @@ msgstr "Leállítható"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "Mégsem"
@@ -589,6 +600,7 @@ msgid "Click to copy"
 msgstr "Kattints a másoláshoz"
 
 #: src/components/agent-update-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Close"
 msgstr "Bezárás"
 
@@ -835,6 +847,7 @@ msgstr "Alapértelmezett időszak"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Delete"
 msgstr "Törlés"
@@ -842,6 +855,14 @@ msgstr "Törlés"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "Ujjlenyomat törlése"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete group"
+msgstr "Csoport törlése"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete the group {originalName}?"
+msgstr "Törli a(z) {originalName} csoportot?"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1088,6 +1109,7 @@ msgstr "A monitorok törlése sikertelen."
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "Nem sikerült menteni a beállításokat"
 
@@ -1125,6 +1147,7 @@ msgstr "Ventilátorok"
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Filter..."
 msgstr "Szűrő..."
@@ -1197,6 +1220,27 @@ msgstr "GPU használat"
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "Rács"
+
+#: src/components/add-system.tsx
+#: src/components/routes/system/info-bar.tsx
+msgid "Group"
+msgstr "Csoport"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group deleted"
+msgstr "Csoport törölve"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group saved"
+msgstr "Csoport mentve"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "Groups"
+msgstr "Csoportok"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
+msgstr "A csoportok minden felhasználó számára rendezik a rendszereket a kezdőlapon. Csoport törlésekor a rendszerei csoport nélkül megmaradnak."
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1320,6 +1364,14 @@ msgstr "Intervallum (másodperc)"
 msgid "Invalid email address."
 msgstr "Érvénytelen e-mail cím."
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are kept and moved to no group."
+msgstr "A rendszerei megmaradnak, csoport nélkül."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are now without group."
+msgstr "A rendszerei most csoport nélküliek."
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "Nyelv"
@@ -1432,6 +1484,13 @@ msgstr "Fő PID"
 msgid "Manage display and notification preferences."
 msgstr "A megjelenítési és értesítési beállítások kezelése."
 
+#: src/components/systems-table/groups-dialog.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Manage groups"
+msgstr "Csoportok kezelése"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Manual setup instructions"
@@ -1504,6 +1563,7 @@ msgstr "Csatolási pont"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Name"
 msgstr "Név"
 
@@ -1563,6 +1623,10 @@ msgstr "Sávszélesség mértékegysége"
 msgid "Network work"
 msgstr "Hálózati munkák"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "New group"
+msgstr "Új csoport"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1576,6 +1640,12 @@ msgstr "Nincs riasztás"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "Ehhez a tárkészlethez nem érhetők el részletes adatok."
+
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "No group"
+msgstr "Csoport nélkül"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1614,6 +1684,7 @@ msgstr "Frissítés után egyetlen szolgáltatás sem indítja újra az ügynök
 msgid "No systems found."
 msgstr "Nem található rendszer."
 
+#: src/components/add-system.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -1856,6 +1927,10 @@ msgstr "Preferált nyelv"
 msgid "Process started"
 msgstr "Folyamat elindítva"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Production, Customers, Lab…"
+msgstr "Éles, Ügyfelek, Labor…"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Protocol"
@@ -2039,6 +2114,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. Önteszt"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "Mentés"
 
@@ -2204,6 +2280,10 @@ msgstr "Beállítások"
 msgid "Settings saved"
 msgstr "Beállítások elmentve"
 
+#: src/components/systems-table/systems-table.tsx
+msgid "Show by group"
+msgstr "Megjelenítés csoportonként"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Shutdown"
@@ -2267,6 +2347,7 @@ msgid "State rule matched"
 msgstr "Állapotszabály teljesült"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "State rules"
 msgstr "Állapotszabályok"
 
@@ -2351,6 +2432,7 @@ msgstr "Systemd szolgáltatások"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "Rendszer"
 
@@ -2839,6 +2921,10 @@ msgstr "Windows-szolgáltatások"
 #: src/components/important-targets.tsx
 msgid "With a state alert rule"
 msgstr "Állapotriasztási szabállyal"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "With alerts"
+msgstr "Riasztásokkal"
 
 #. Disk write
 #. Disk write

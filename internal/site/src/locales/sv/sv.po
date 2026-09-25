@@ -117,6 +117,10 @@ msgstr "30 dagar"
 msgid "5 min"
 msgstr "5 min"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A system belongs to one group: checking it moves it from its current group."
+msgstr "Ett system tillhör en grupp: att markera det flyttar det från dess nuvarande grupp."
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
@@ -240,8 +244,13 @@ msgstr "Avisera när tillståndet inte är"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "Larm"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "All"
+msgstr "Alla"
 
 #: src/components/agent-update-dialog.tsx
 msgid "All agents are up to date ({latest})"
@@ -281,6 +290,7 @@ msgstr "Alla tjänster"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
 #: src/components/systems-select.tsx
+#: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All Systems"
@@ -478,6 +488,7 @@ msgstr "Kan stoppa"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "Avbryt"
@@ -589,6 +600,7 @@ msgid "Click to copy"
 msgstr "Klicka för att kopiera"
 
 #: src/components/agent-update-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Close"
 msgstr "Stäng"
 
@@ -835,6 +847,7 @@ msgstr "Standardtidsperiod"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Delete"
 msgstr "Ta bort"
@@ -842,6 +855,14 @@ msgstr "Ta bort"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "Ta bort fingeravtryck"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete group"
+msgstr "Ta bort grupp"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete the group {originalName}?"
+msgstr "Ta bort gruppen {originalName}?"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1088,6 +1109,7 @@ msgstr "Det gick inte att ta bort monitorer."
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "Kunde inte spara inställningar"
 
@@ -1125,6 +1147,7 @@ msgstr "Fläktar"
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Filter..."
 msgstr "Filtrera..."
@@ -1197,6 +1220,27 @@ msgstr "GPU-användning"
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "Rutnät"
+
+#: src/components/add-system.tsx
+#: src/components/routes/system/info-bar.tsx
+msgid "Group"
+msgstr "Grupp"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group deleted"
+msgstr "Grupp borttagen"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group saved"
+msgstr "Grupp sparad"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "Groups"
+msgstr "Grupper"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
+msgstr "Grupper ordnar systemen på startsidan för alla användare. Att ta bort en grupp behåller dess system, utan grupp."
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1320,6 +1364,14 @@ msgstr "Intervall (sekunder)"
 msgid "Invalid email address."
 msgstr "Ogiltig e-postadress."
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are kept and moved to no group."
+msgstr "Dess system behålls och flyttas till ingen grupp."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are now without group."
+msgstr "Dess system är nu utan grupp."
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "Språk"
@@ -1432,6 +1484,13 @@ msgstr "Huvud-PID"
 msgid "Manage display and notification preferences."
 msgstr "Hantera visnings- och aviseringsinställningar."
 
+#: src/components/systems-table/groups-dialog.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Manage groups"
+msgstr "Hantera grupper"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Manual setup instructions"
@@ -1504,6 +1563,7 @@ msgstr "Monteringspunkt"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Name"
 msgstr "Namn"
 
@@ -1563,6 +1623,10 @@ msgstr "Nätverksenhet"
 msgid "Network work"
 msgstr "Nätverksarbete"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "New group"
+msgstr "Ny grupp"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1576,6 +1640,12 @@ msgstr "Inget larm"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "Det finns inga detaljerade data för denna pool."
+
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "No group"
+msgstr "Ingen grupp"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1614,6 +1684,7 @@ msgstr "Ingen tjänst startar om agenten efter en uppdatering."
 msgid "No systems found."
 msgstr "Inga system hittades."
 
+#: src/components/add-system.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -1856,6 +1927,10 @@ msgstr "Föredraget språk"
 msgid "Process started"
 msgstr "Process startad"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Production, Customers, Lab…"
+msgstr "Produktion, Kunder, Labb…"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Protocol"
@@ -2039,6 +2114,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. själftest"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "Spara"
 
@@ -2204,6 +2280,10 @@ msgstr "Inställningar"
 msgid "Settings saved"
 msgstr "Inställningar sparade"
 
+#: src/components/systems-table/systems-table.tsx
+msgid "Show by group"
+msgstr "Visa per grupp"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Shutdown"
@@ -2267,6 +2347,7 @@ msgid "State rule matched"
 msgstr "Tillståndsregel uppfylld"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "State rules"
 msgstr "Tillståndsregler"
 
@@ -2351,6 +2432,7 @@ msgstr "Systemd-tjänster"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "System"
 
@@ -2839,6 +2921,10 @@ msgstr "Windows-tjänster"
 #: src/components/important-targets.tsx
 msgid "With a state alert rule"
 msgstr "Med en tillståndsregel"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "With alerts"
+msgstr "Med larm"
 
 #. Disk write
 #. Disk write

@@ -117,6 +117,10 @@ msgstr "30 дана"
 msgid "5 min"
 msgstr "5 мин"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A system belongs to one group: checking it moves it from its current group."
+msgstr "Систем припада једној групи: означавањем се премешта из тренутне групе."
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
@@ -240,8 +244,13 @@ msgstr "Упозори када стање није"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "Упозорења"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "All"
+msgstr "Све"
 
 #: src/components/agent-update-dialog.tsx
 msgid "All agents are up to date ({latest})"
@@ -281,6 +290,7 @@ msgstr "Све услуге"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
 #: src/components/systems-select.tsx
+#: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All Systems"
@@ -478,6 +488,7 @@ msgstr "Може се зауставити"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "Откажи"
@@ -589,6 +600,7 @@ msgid "Click to copy"
 msgstr "Кликните да копирате"
 
 #: src/components/agent-update-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Close"
 msgstr "Затвори"
 
@@ -835,6 +847,7 @@ msgstr "Подразумевани временски период"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Delete"
 msgstr "Избриши"
@@ -842,6 +855,14 @@ msgstr "Избриши"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "Избриши отисак"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete group"
+msgstr "Обриши групу"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete the group {originalName}?"
+msgstr "Обрисати групу {originalName}?"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1088,6 +1109,7 @@ msgstr "Brisanje monitora nije uspelo."
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "Неуспело чување подешавања"
 
@@ -1125,6 +1147,7 @@ msgstr "Вентилатори"
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Filter..."
 msgstr "Филтрирај..."
@@ -1197,6 +1220,27 @@ msgstr "GPU употреба"
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "Мрежа"
+
+#: src/components/add-system.tsx
+#: src/components/routes/system/info-bar.tsx
+msgid "Group"
+msgstr "Група"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group deleted"
+msgstr "Група обрисана"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group saved"
+msgstr "Група сачувана"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "Groups"
+msgstr "Групе"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
+msgstr "Групе организују системе на почетној страници за све кориснике. Брисањем групе њени системи остају, без групе."
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1320,6 +1364,14 @@ msgstr "Interval (sekunde)"
 msgid "Invalid email address."
 msgstr "Неважећа имејл адреса."
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are kept and moved to no group."
+msgstr "Њени системи се задржавају и премештају без групе."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are now without group."
+msgstr "Њени системи су сада без групе."
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "Језик"
@@ -1432,6 +1484,13 @@ msgstr "Главни PID"
 msgid "Manage display and notification preferences."
 msgstr "Управљајте преференцама приказа и обавештења."
 
+#: src/components/systems-table/groups-dialog.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Manage groups"
+msgstr "Управљање групама"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Manual setup instructions"
@@ -1504,6 +1563,7 @@ msgstr "Тачка монтирања"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Name"
 msgstr "Име"
 
@@ -1563,6 +1623,10 @@ msgstr "Мрежна јединица"
 msgid "Network work"
 msgstr "Радови на мрежи"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "New group"
+msgstr "Нова група"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1576,6 +1640,12 @@ msgstr "Без упозорења"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "Нема детаљних података за овај pool."
+
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "No group"
+msgstr "Без групе"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1614,6 +1684,7 @@ msgstr "Ниједна услуга не покреће агента понов�
 msgid "No systems found."
 msgstr "Нису пронађени системи."
 
+#: src/components/add-system.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -1856,6 +1927,10 @@ msgstr "Жељени језик"
 msgid "Process started"
 msgstr "Процес покренут"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Production, Customers, Lab…"
+msgstr "Продукција, Клијенти, Лабораторија…"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Protocol"
@@ -2039,6 +2114,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. самопровера"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "Сачувај"
 
@@ -2204,6 +2280,10 @@ msgstr "Подешавања"
 msgid "Settings saved"
 msgstr "Подешавања сачувана"
 
+#: src/components/systems-table/systems-table.tsx
+msgid "Show by group"
+msgstr "Прикажи по групама"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Shutdown"
@@ -2267,6 +2347,7 @@ msgid "State rule matched"
 msgstr "Правило стања испуњено"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "State rules"
 msgstr "Правила стања"
 
@@ -2351,6 +2432,7 @@ msgstr "Systemd сервиси"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "Системи"
 
@@ -2839,6 +2921,10 @@ msgstr "Windows сервиси"
 #: src/components/important-targets.tsx
 msgid "With a state alert rule"
 msgstr "Са правилом упозорења о стању"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "With alerts"
+msgstr "Са упозорењима"
 
 #. Disk write
 #. Disk write

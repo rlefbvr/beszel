@@ -117,6 +117,10 @@ msgstr "30日間"
 msgid "5 min"
 msgstr "5分"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A system belongs to one group: checking it moves it from its current group."
+msgstr "システムは 1 つのグループに属します。チェックすると現在のグループから移動します。"
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
@@ -240,8 +244,13 @@ msgstr "状態が次でない場合に通知"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "アラート"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "All"
+msgstr "すべて"
 
 #: src/components/agent-update-dialog.tsx
 msgid "All agents are up to date ({latest})"
@@ -281,6 +290,7 @@ msgstr "すべてのサービス"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
 #: src/components/systems-select.tsx
+#: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All Systems"
@@ -478,6 +488,7 @@ msgstr "停止可能"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "キャンセル"
@@ -589,6 +600,7 @@ msgid "Click to copy"
 msgstr "クリックしてコピー"
 
 #: src/components/agent-update-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Close"
 msgstr "閉じる"
 
@@ -835,6 +847,7 @@ msgstr "デフォルトの期間"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Delete"
 msgstr "削除"
@@ -842,6 +855,14 @@ msgstr "削除"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "フィンガープリントを削除"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete group"
+msgstr "グループを削除"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete the group {originalName}?"
+msgstr "グループ {originalName} を削除しますか？"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1088,6 +1109,7 @@ msgstr "モニターの削除に失敗しました。"
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "設定の保存に失敗しました"
 
@@ -1125,6 +1147,7 @@ msgstr "ファン"
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Filter..."
 msgstr "フィルター..."
@@ -1197,6 +1220,27 @@ msgstr "GPU使用率"
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "グリッド"
+
+#: src/components/add-system.tsx
+#: src/components/routes/system/info-bar.tsx
+msgid "Group"
+msgstr "グループ"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group deleted"
+msgstr "グループを削除しました"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group saved"
+msgstr "グループを保存しました"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "Groups"
+msgstr "グループ"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
+msgstr "グループはすべてのユーザーのホームページでシステムを整理します。グループを削除しても、そのシステムはグループなしで残ります。"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1320,6 +1364,14 @@ msgstr "間隔（秒）"
 msgid "Invalid email address."
 msgstr "無効なメールアドレスです。"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are kept and moved to no group."
+msgstr "そのシステムは保持され、グループなしになります。"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are now without group."
+msgstr "そのシステムはグループなしになりました。"
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "言語"
@@ -1432,6 +1484,13 @@ msgstr "メインPID"
 msgid "Manage display and notification preferences."
 msgstr "表示と通知の設定を管理します。"
 
+#: src/components/systems-table/groups-dialog.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Manage groups"
+msgstr "グループを管理"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Manual setup instructions"
@@ -1504,6 +1563,7 @@ msgstr "マウントポイント"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Name"
 msgstr "名前"
 
@@ -1563,6 +1623,10 @@ msgstr "ネットワーク単位"
 msgid "Network work"
 msgstr "ネットワーク作業"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "New group"
+msgstr "新しいグループ"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1576,6 +1640,12 @@ msgstr "アラートなし"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "このプールの詳細データはありません。"
+
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "No group"
+msgstr "グループなし"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1614,6 +1684,7 @@ msgstr "更新後にエージェントを再起動するサービスがありま
 msgid "No systems found."
 msgstr "システムが見つかりませんでした。"
 
+#: src/components/add-system.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -1856,6 +1927,10 @@ msgstr "優先言語"
 msgid "Process started"
 msgstr "プロセス開始"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Production, Customers, Lab…"
+msgstr "本番、顧客、ラボ…"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Protocol"
@@ -2039,6 +2114,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T.セルフテスト"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "保存"
 
@@ -2204,6 +2280,10 @@ msgstr "設定"
 msgid "Settings saved"
 msgstr "設定が保存されました"
 
+#: src/components/systems-table/systems-table.tsx
+msgid "Show by group"
+msgstr "グループ別に表示"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Shutdown"
@@ -2267,6 +2347,7 @@ msgid "State rule matched"
 msgstr "状態ルールに一致"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "State rules"
 msgstr "状態ルール"
 
@@ -2351,6 +2432,7 @@ msgstr "Systemdサービス"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "システム"
 
@@ -2839,6 +2921,10 @@ msgstr "Windowsサービス"
 #: src/components/important-targets.tsx
 msgid "With a state alert rule"
 msgstr "状態アラートルールあり"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "With alerts"
+msgstr "アラートあり"
 
 #. Disk write
 #. Disk write

@@ -117,6 +117,10 @@ msgstr "30 天"
 msgid "5 min"
 msgstr "5 分钟"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A system belongs to one group: checking it moves it from its current group."
+msgstr "每个系统只属于一个分组：勾选后会从当前分组移出。"
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
@@ -240,8 +244,13 @@ msgstr "当状态不为以下时发出警报"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "警报"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "All"
+msgstr "全部"
 
 #: src/components/agent-update-dialog.tsx
 msgid "All agents are up to date ({latest})"
@@ -281,6 +290,7 @@ msgstr "所有服务"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
 #: src/components/systems-select.tsx
+#: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All Systems"
@@ -478,6 +488,7 @@ msgstr "可停止"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "取消"
@@ -589,6 +600,7 @@ msgid "Click to copy"
 msgstr "点击复制"
 
 #: src/components/agent-update-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Close"
 msgstr "关闭"
 
@@ -835,6 +847,7 @@ msgstr "默认时间段"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Delete"
 msgstr "删除"
@@ -842,6 +855,14 @@ msgstr "删除"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "删除指纹"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete group"
+msgstr "删除分组"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete the group {originalName}?"
+msgstr "要删除分组 {originalName} 吗？"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1088,6 +1109,7 @@ msgstr "删除监控失败。"
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "保存设置失败"
 
@@ -1125,6 +1147,7 @@ msgstr "风扇"
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Filter..."
 msgstr "过滤..."
@@ -1197,6 +1220,27 @@ msgstr "GPU 使用率"
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "网格"
+
+#: src/components/add-system.tsx
+#: src/components/routes/system/info-bar.tsx
+msgid "Group"
+msgstr "分组"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group deleted"
+msgstr "分组已删除"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group saved"
+msgstr "分组已保存"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "Groups"
+msgstr "分组"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
+msgstr "分组为所有用户整理首页上的系统。删除分组会保留其系统，变为无分组。"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1320,6 +1364,14 @@ msgstr "间隔 (秒)"
 msgid "Invalid email address."
 msgstr "无效的电子邮件地址。"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are kept and moved to no group."
+msgstr "其系统会保留并移至无分组。"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are now without group."
+msgstr "其系统现在没有分组。"
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "语言"
@@ -1432,6 +1484,13 @@ msgstr "主进程 ID"
 msgid "Manage display and notification preferences."
 msgstr "管理显示和通知偏好。"
 
+#: src/components/systems-table/groups-dialog.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Manage groups"
+msgstr "管理分组"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Manual setup instructions"
@@ -1504,6 +1563,7 @@ msgstr "挂载点"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Name"
 msgstr "名称"
 
@@ -1563,6 +1623,10 @@ msgstr "网络单位"
 msgid "Network work"
 msgstr "网络作业"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "New group"
+msgstr "新建分组"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1576,6 +1640,12 @@ msgstr "无警报"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "此存储池没有可用的详细数据。"
+
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "No group"
+msgstr "无分组"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1614,6 +1684,7 @@ msgstr "没有服务会在更新后重启代理。"
 msgid "No systems found."
 msgstr "未找到系统。"
 
+#: src/components/add-system.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -1856,6 +1927,10 @@ msgstr "首选语言"
 msgid "Process started"
 msgstr "进程启动"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Production, Customers, Lab…"
+msgstr "生产、客户、实验室…"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Protocol"
@@ -2039,6 +2114,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. 自检"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "保存"
 
@@ -2204,6 +2280,10 @@ msgstr "设置"
 msgid "Settings saved"
 msgstr "设置已保存"
 
+#: src/components/systems-table/systems-table.tsx
+msgid "Show by group"
+msgstr "按分组显示"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Shutdown"
@@ -2267,6 +2347,7 @@ msgid "State rule matched"
 msgstr "状态规则已匹配"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "State rules"
 msgstr "状态规则"
 
@@ -2351,6 +2432,7 @@ msgstr "Systemd 服务"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "系统"
 
@@ -2839,6 +2921,10 @@ msgstr "Windows 服务"
 #: src/components/important-targets.tsx
 msgid "With a state alert rule"
 msgstr "设有状态警报规则"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "With alerts"
+msgstr "有警报"
 
 #. Disk write
 #. Disk write

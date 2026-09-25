@@ -20,8 +20,13 @@ import {
 	ArrowDownIcon,
 	ArrowUpDownIcon,
 	ArrowUpIcon,
+	BellIcon,
 	EyeIcon,
 	FilterIcon,
+	FolderCogIcon,
+	FolderIcon,
+	FolderOpenIcon,
+	LayersIcon,
 	LayoutGridIcon,
 	LayoutListIcon,
 	Settings2Icon,
@@ -29,6 +34,7 @@ import {
 } from "lucide-react"
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
+import { Dialog } from "@/components/ui/dialog"
 import {
 	DropdownMenu,
 	DropdownMenuCheckboxItem,
@@ -42,15 +48,32 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { SystemStatus } from "@/lib/enums"
-import { queueUserSettings } from "@/lib/api"
-import { $downSystems, $pausedSystems, $systems, $upSystems, $userSettings } from "@/lib/stores"
+import { isReadOnlyUser, queueUserSettings } from "@/lib/api"
+import { alertInfo } from "@/lib/alerts"
+import { $stateAlerts } from "@/lib/state-alerts"
+import { $alerts, $downSystems, $pausedSystems, $systems, $upSystems, $userSettings } from "@/lib/stores"
+import {
+	$systemGroups,
+	alertFilterAny,
+	alertFilterState,
+	allGroupsTab,
+	groupSystems,
+	groupTab,
+	inGroupTab,
+	matchesAlertFilter,
+	systemGroup,
+	ungroupedKey,
+	ungroupedTab,
+} from "@/lib/system-groups"
 import { cn, runOnce } from "@/lib/utils"
-import type { SystemRecord } from "@/types"
+import type { SystemRecord, UserSettings } from "@/types"
 import AlertButton from "../alerts/alert-button"
 import { $router, Link } from "../router"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
 import { AgentUpdateButton } from "../agent-update-dialog"
+import { ManageGroupsDialog } from "./groups-dialog"
 import { SystemsTableColumns, ActionsButton, IndicatorDot } from "./systems-table-columns"
 
 type ViewMode = "table" | "grid"
@@ -80,11 +103,20 @@ export default function SystemsTable() {
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
 		() => $userSettings.get().cols ?? JSON.parse(localStorage.getItem("besz-cols") || "{}")
 	)
+	// groups and alerts shown, chosen in the view options
+	const [groupView, setGroupView] = useState(() => $userSettings.get().groupView ?? false)
+	const [hiddenGroups, setHiddenGroups] = useState<string[]>(() => $userSettings.get().hiddenGroups ?? [])
+	const [alertFilter, setAlertFilter] = useState(() => $userSettings.get().alertFilter ?? "")
+	const [activeGroupTab, setActiveGroupTab] = useState(() => $userSettings.get().groupTab ?? allGroupsTab)
+	const [groupsDialogOpen, setGroupsDialogOpen] = useState(false)
+	const groupNames = useStore($systemGroups)
+	const alerts = useStore($alerts)
+	const stateAlerts = useStore($stateAlerts)
 
 	// Apply settings from server once they load (handles incognito / new devices)
 	const applied = useRef(new Set<string>())
 	useEffect(() => {
-		return subscribeKeys($userSettings, ["cols", "statusFilter", "viewMode", "sortMode"], (vals) => {
+		return subscribeKeys($userSettings, ["cols", "statusFilter", "viewMode", "sortMode", "groupView", "hiddenGroups", "alertFilter", "groupTab"], (vals) => {
 			if (!applied.current.has("cols") && vals.cols !== undefined) {
 				applied.current.add("cols")
 				setColumnVisibility(vals.cols)
@@ -100,6 +132,22 @@ export default function SystemsTable() {
 			if (!applied.current.has("sortMode") && vals.sortMode !== undefined) {
 				applied.current.add("sortMode")
 				setSorting(vals.sortMode)
+			}
+			if (!applied.current.has("groupView") && vals.groupView !== undefined) {
+				applied.current.add("groupView")
+				setGroupView(vals.groupView)
+			}
+			if (!applied.current.has("hiddenGroups") && vals.hiddenGroups !== undefined) {
+				applied.current.add("hiddenGroups")
+				setHiddenGroups(vals.hiddenGroups)
+			}
+			if (!applied.current.has("alertFilter") && vals.alertFilter !== undefined) {
+				applied.current.add("alertFilter")
+				setAlertFilter(vals.alertFilter)
+			}
+			if (!applied.current.has("groupTab") && vals.groupTab !== undefined) {
+				applied.current.add("groupTab")
+				setActiveGroupTab(vals.groupTab)
 			}
 		})
 	}, [])
@@ -143,10 +191,55 @@ export default function SystemsTable() {
 		})
 	}, [])
 
+	// save a view preference of the user
+	const saveViewSetting = useCallback(
+		<K extends "groupView" | "hiddenGroups" | "alertFilter" | "groupTab">(key: K, value: UserSettings[K]) => {
+			$userSettings.setKey(key, value)
+			queueUserSettings({ [key]: value })
+		},
+		[]
+	)
+
+	const handleGroupViewChange = useCallback((value: boolean) => {
+		setGroupView(value)
+		saveViewSetting("groupView", value)
+	}, [])
+
+	const handleGroupVisibilityChange = useCallback((group: string, visible: boolean) => {
+		setHiddenGroups((current) => {
+			const next = visible ? current.filter((g) => g !== group) : [...current, group]
+			saveViewSetting("hiddenGroups", next)
+			return next
+		})
+	}, [])
+
+	const handleGroupTabChange = useCallback((value: string) => {
+		setActiveGroupTab(value)
+		saveViewSetting("groupTab", value)
+	}, [])
+
+	const handleAlertFilterChange = useCallback((value: string) => {
+		const next = value === "all" ? "" : value
+		setAlertFilter(next)
+		saveViewSetting("alertFilter", next)
+	}, [])
+
+	// alert names configured on the systems, in the order of the alert settings
+	const alertNames = useMemo(() => {
+		const names = new Set<string>()
+		for (const systemAlerts of Object.values(alerts)) {
+			for (const name of systemAlerts.keys()) {
+				names.add(name)
+			}
+		}
+		return Object.keys(alertInfo).filter((name) => names.has(name))
+	}, [alerts])
+	const hasStateRules = Object.keys(stateAlerts).length > 0
+
 	const locale = i18n.locale
 
 	// Filter data based on status filter
-	const filteredData = useMemo(() => {
+	const statusData = useMemo(() => {
 		if (statusFilter === "all") {
 			return data
 		}
@@ -158,6 +251,41 @@ export default function SystemsTable() {
 		}
 		return Object.values(pausedSystems) ?? []
 	}, [data, statusFilter])
+
+	// then on the alerts chosen in the view options
+	const alertData = useMemo(
+		() => (alertFilter ? statusData.filter((system) => matchesAlertFilter(system, alertFilter)) : statusData),
+		[statusData, alertFilter, alerts, stateAlerts]
+	)
+
+	// systems of each group tab
+	const groupCounts = useMemo(() => {
+		const counts: Record<string, number> = { [allGroupsTab]: alertData.length }
+		for (const system of alertData) {
+			const tab = groupTab(systemGroup(system))
+			counts[tab] = (counts[tab] ?? 0) + 1
+		}
+		return counts
+	}, [alertData])
+	const hasUngrouped = data.some((system) => !systemGroup(system))
+	// back to all systems when the group of the tab no longer exists
+	const groupTabShown =
+		groupNames.some((group) => groupTab(group) === activeGroupTab) || (activeGroupTab === ungroupedTab && hasUngrouped)
+			? activeGroupTab
+			: allGroupsTab
+
+	// then on the group tab, or on the groups chosen in the view options for all systems
+	const filteredData = useMemo(() => {
+		if (groupTabShown !== allGroupsTab) {
+			return alertData.filter((system) => inGroupTab(system, groupTabShown))
+		}
+		if (!hiddenGroups.length) {
+			return alertData
+		}
+		const hidden = new Set(hiddenGroups)
+		return alertData.filter((system) => !hidden.has(systemGroup(system)))
+	}, [alertData, hiddenGroups, groupTabShown])
+	const grouped = groupView && groupTabShown === allGroupsTab
 
 	const [viewMode, setViewMode] = useState<ViewMode>(
 		() =>
@@ -248,7 +376,7 @@ export default function SystemsTable() {
 								</Button>
 							</DropdownMenuTrigger>
 							<DropdownMenuContent align="end" className="h-72 md:h-auto min-w-48 md:min-w-auto overflow-y-auto">
-								<div className="grid grid-cols-1 md:grid-cols-4 divide-y md:divide-s md:divide-y-0">
+								<div className="grid grid-cols-1 md:grid-cols-5 divide-y md:divide-s md:divide-y-0">
 									<div className="border-r">
 										<DropdownMenuLabel className="pt-2 px-3.5 flex items-center gap-2">
 											<LayoutGridIcon className="size-4" />
@@ -290,6 +418,68 @@ export default function SystemsTable() {
 											<DropdownMenuRadioItem value="paused" onSelect={(e) => e.preventDefault()}>
 												<Trans>Paused ({pausedSystemsLength})</Trans>
 											</DropdownMenuRadioItem>
+										</DropdownMenuRadioGroup>
+									</div>
+
+									<div className="border-r">
+										<DropdownMenuLabel className="pt-2 px-3.5 flex items-center gap-2">
+											<FolderIcon className="size-4" />
+											<Trans>Groups</Trans>
+										</DropdownMenuLabel>
+										<DropdownMenuSeparator />
+										<div className="px-1.5 pb-1">
+											<DropdownMenuCheckboxItem
+												onSelect={(e) => e.preventDefault()}
+												checked={groupView}
+												onCheckedChange={(value) => handleGroupViewChange(!!value)}
+											>
+												<Trans>Show by group</Trans>
+											</DropdownMenuCheckboxItem>
+											{!isReadOnlyUser() && (
+												<DropdownMenuItem className="gap-2" onSelect={() => setGroupsDialogOpen(true)}>
+													<FolderCogIcon className="size-4" />
+													<Trans>Manage groups</Trans>
+												</DropdownMenuItem>
+											)}
+											{groupNames.length > 0 && <DropdownMenuSeparator />}
+											{groupNames.length > 0 &&
+												[...groupNames, ungroupedKey].map((group) => (
+													<DropdownMenuCheckboxItem
+														key={group || "-"}
+														onSelect={(e) => e.preventDefault()}
+														checked={!hiddenGroups.includes(group)}
+														onCheckedChange={(value) => handleGroupVisibilityChange(group, !!value)}
+													>
+														{group || <Trans>No group</Trans>}
+													</DropdownMenuCheckboxItem>
+												))}
+										</div>
+										<DropdownMenuLabel className="pt-2 px-3.5 flex items-center gap-2">
+											<BellIcon className="size-4" />
+											<Trans>Alerts</Trans>
+										</DropdownMenuLabel>
+										<DropdownMenuSeparator />
+										<DropdownMenuRadioGroup
+											className="px-1 pb-1"
+											value={alertFilter || "all"}
+											onValueChange={handleAlertFilterChange}
+										>
+											<DropdownMenuRadioItem value="all" onSelect={(e) => e.preventDefault()}>
+												<Trans>All Systems</Trans>
+											</DropdownMenuRadioItem>
+											<DropdownMenuRadioItem value={alertFilterAny} onSelect={(e) => e.preventDefault()}>
+												<Trans>With alerts</Trans>
+											</DropdownMenuRadioItem>
+											{alertNames.map((name) => (
+												<DropdownMenuRadioItem key={name} value={name} onSelect={(e) => e.preventDefault()}>
+													{alertInfo[name].name()}
+												</DropdownMenuRadioItem>
+											))}
+											{hasStateRules && (
+												<DropdownMenuRadioItem value={alertFilterState} onSelect={(e) => e.preventDefault()}>
+													<Trans>State rules</Trans>
+												</DropdownMenuRadioItem>
+											)}
 										</DropdownMenuRadioGroup>
 									</div>
 
@@ -372,15 +562,53 @@ export default function SystemsTable() {
 		downSystemsLength,
 		pausedSystemsLength,
 		filter,
+		groupView,
+		hiddenGroups,
+		groupNames,
+		alertFilter,
+		alertNames,
+		hasStateRules,
 	])
 
 	return (
 		<Card className="w-full px-3 py-5 sm:py-6 sm:px-6">
 			{CardHead}
+			{groupNames.length > 0 && (
+				<GroupTabs
+					value={groupTabShown}
+					onChange={handleGroupTabChange}
+					groups={groupNames}
+					counts={groupCounts}
+					showUngrouped={hasUngrouped}
+					onManage={() => setGroupsDialogOpen(true)}
+				/>
+			)}
+			<Dialog open={groupsDialogOpen} onOpenChange={setGroupsDialogOpen}>
+				{groupsDialogOpen && (
+					<ManageGroupsDialog
+						initialGroup={groupNames.find((group) => groupTab(group) === groupTabShown)}
+						onDone={() => setGroupsDialogOpen(false)}
+					/>
+				)}
+			</Dialog>
 			{viewMode === "table" ? (
 				// table layout
 				<div className="rounded-md">
-					<AllSystemsTable table={table} rows={rows} colLength={visibleColumns.length} />
+					<AllSystemsTable table={table} rows={rows} colLength={visibleColumns.length} grouped={grouped} />
+				</div>
+			) : grouped && rows.length ? (
+				// grid layout by group
+				<div className="grid gap-6">
+					{groupSystems(rows, (row) => row.original).map(([group, groupRows]) => (
+						<section key={group || "-"} className="grid gap-3">
+							<GroupHeading name={group} count={groupRows.length} />
+							<div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+								{groupRows.map((row) => (
+									<SystemCard key={row.original.id} row={row} table={table} colLength={visibleColumns.length} />
+								))}
+							</div>
+						</section>
+					))}
 				</div>
 			) : (
 				// grid layout
@@ -400,13 +628,112 @@ export default function SystemsTable() {
 	)
 }
 
+/** Tabs showing all systems or the systems of a group, with the number of systems of each */
+function GroupTabs({
+	value,
+	onChange,
+	groups,
+	counts,
+	showUngrouped,
+	onManage,
+}: {
+	value: string
+	onChange: (value: string) => void
+	groups: string[]
+	counts: Record<string, number>
+	showUngrouped: boolean
+	onManage: () => void
+}) {
+	const { t } = useLingui()
+	const count = (tab: string) => (
+		<span className="ms-1 rounded-full bg-muted-foreground/15 px-1.5 text-xs tabular-nums">{counts[tab] ?? 0}</span>
+	)
+	return (
+		<div className="flex items-center gap-2 mb-3 sm:mb-4">
+			<Tabs value={value} onValueChange={onChange} className="min-w-0">
+				<TabsList className="h-10 p-1 max-w-full overflow-x-auto justify-start">
+					<TabsTrigger value={allGroupsTab} className="gap-1.5">
+						<LayersIcon className="size-3.5" />
+						<Trans>All</Trans>
+						{count(allGroupsTab)}
+					</TabsTrigger>
+					{groups.map((group) => (
+						<TabsTrigger key={group} value={groupTab(group)} className="gap-1.5">
+							<FolderIcon className="size-3.5" />
+							{group}
+							{count(groupTab(group))}
+						</TabsTrigger>
+					))}
+					{showUngrouped && (
+						<TabsTrigger value={ungroupedTab} className="gap-1.5">
+							<FolderOpenIcon className="size-3.5" />
+							<Trans>No group</Trans>
+							{count(ungroupedTab)}
+						</TabsTrigger>
+					)}
+				</TabsList>
+			</Tabs>
+			{!isReadOnlyUser() && (
+				<Button
+					variant="ghost"
+					size="icon"
+					className="shrink-0"
+					aria-label={t`Manage groups`}
+					title={t`Manage groups`}
+					onClick={onManage}
+				>
+					<FolderCogIcon className="size-4" />
+				</Button>
+			)}
+		</div>
+	)
+}
+
+/** Heading of a group of systems */
+function GroupHeading({ name, count }: { name: string; count: number }) {
+	return (
+		<div className="flex items-center gap-2 text-sm font-medium">
+			<FolderIcon className="size-4 text-muted-foreground" />
+			{name || <Trans>No group</Trans>}
+			<span className="text-muted-foreground tabular-nums">({count})</span>
+		</div>
+	)
+}
+
+/** Row of the systems table: a system, or the heading of a group */
+type TableItem = Row<SystemRecord> | { group: string; count: number }
+
+const isGroupItem = (item: TableItem): item is { group: string; count: number } => !("original" in item)
+
 const AllSystemsTable = memo(
-	({ table, rows, colLength }: { table: TableType<SystemRecord>; rows: Row<SystemRecord>[]; colLength: number }) => {
+	({
+		table,
+		rows,
+		colLength,
+		grouped,
+	}: {
+		table: TableType<SystemRecord>
+		rows: Row<SystemRecord>[]
+		colLength: number
+		grouped: boolean
+	}) => {
 		// The virtualizer will need a reference to the scrollable container element
 		const scrollRef = useRef<HTMLDivElement>(null)
 
+		// systems, preceded by the heading of their group when shown by group
+		const items = useMemo<TableItem[]>(
+			() =>
+				grouped
+					? groupSystems(rows, (row) => row.original).flatMap(([group, groupRows]) => [
+							{ group, count: groupRows.length },
+							...groupRows,
+						])
+					: rows,
+			[rows, grouped]
+		)
+
 		const virtualizer = useVirtualizer<HTMLDivElement, HTMLTableRowElement>({
-			count: rows.length,
+			count: items.length,
 			estimateSize: () => (rows.length > 10 ? 56 : 60),
 			getScrollElement: () => scrollRef.current,
 			overscan: 5,
@@ -432,7 +759,21 @@ const AllSystemsTable = memo(
 						<TableBody onMouseEnter={preloadSystemDetail}>
 							{rows.length ? (
 								virtualRows.map((virtualRow) => {
-									const row = rows[virtualRow.index] as Row<SystemRecord>
+									const item = items[virtualRow.index]
+									if (isGroupItem(item)) {
+										return (
+											<TableRow key={`group-${item.group}`} className="hover:bg-transparent">
+												<TableCell
+													colSpan={colLength}
+													className="py-0 ps-4 bg-muted/40"
+													style={{ height: virtualRow.size }}
+												>
+													<GroupHeading name={item.group} count={item.count} />
+												</TableCell>
+											</TableRow>
+										)
+									}
+									const row = item
 									return (
 										<SystemTableRow
 											key={row.id}

@@ -117,6 +117,10 @@ msgstr "30 ימים"
 msgid "5 min"
 msgstr "5 דק'"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A system belongs to one group: checking it moves it from its current group."
+msgstr "מערכת שייכת לקבוצה אחת: סימונה מעביר אותה מהקבוצה הנוכחית שלה."
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
@@ -240,8 +244,13 @@ msgstr "התראה כאשר המצב אינו"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "התראות"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "All"
+msgstr "הכול"
 
 #: src/components/agent-update-dialog.tsx
 msgid "All agents are up to date ({latest})"
@@ -281,6 +290,7 @@ msgstr "כל השירותים"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
 #: src/components/systems-select.tsx
+#: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All Systems"
@@ -478,6 +488,7 @@ msgstr "יכול לעצור"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "ביטול"
@@ -589,6 +600,7 @@ msgid "Click to copy"
 msgstr "לחץ כדי להעתיק"
 
 #: src/components/agent-update-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Close"
 msgstr "סגור"
 
@@ -835,6 +847,7 @@ msgstr "תקופת זמן ברירת מחדל"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Delete"
 msgstr "מחק"
@@ -842,6 +855,14 @@ msgstr "מחק"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "מחק טביעת אצבע"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete group"
+msgstr "מחיקת קבוצה"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete the group {originalName}?"
+msgstr "למחוק את הקבוצה {originalName}?"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1088,6 +1109,7 @@ msgstr "מחיקת המנטרים נכשלה."
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "שמירת הגדרות נכשלה"
 
@@ -1125,6 +1147,7 @@ msgstr "מאווררים"
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Filter..."
 msgstr "סנן..."
@@ -1197,6 +1220,27 @@ msgstr "שימוש GPU"
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "רשת"
+
+#: src/components/add-system.tsx
+#: src/components/routes/system/info-bar.tsx
+msgid "Group"
+msgstr "קבוצה"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group deleted"
+msgstr "הקבוצה נמחקה"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group saved"
+msgstr "הקבוצה נשמרה"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "Groups"
+msgstr "קבוצות"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
+msgstr "קבוצות מארגנות את המערכות בדף הבית עבור כל המשתמשים. מחיקת קבוצה שומרת את המערכות שלה, ללא קבוצה."
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1320,6 +1364,14 @@ msgstr "מרווח (שניות)"
 msgid "Invalid email address."
 msgstr "כתובת אימייל לא תקינה."
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are kept and moved to no group."
+msgstr "המערכות שלה נשמרות ומועברות ללא קבוצה."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are now without group."
+msgstr "המערכות שלה כעת ללא קבוצה."
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "שפה"
@@ -1432,6 +1484,13 @@ msgstr "PID ראשי"
 msgid "Manage display and notification preferences."
 msgstr "נהל העדפות תצוגה והתראות."
 
+#: src/components/systems-table/groups-dialog.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Manage groups"
+msgstr "ניהול קבוצות"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Manual setup instructions"
@@ -1504,6 +1563,7 @@ msgstr "נקודת עגינה"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Name"
 msgstr "שם"
 
@@ -1563,6 +1623,10 @@ msgstr "יחידת רשת"
 msgid "Network work"
 msgstr "עבודות רשת"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "New group"
+msgstr "קבוצה חדשה"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1576,6 +1640,12 @@ msgstr "אין התראה"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "אין נתונים מפורטים עבור מאגר זה."
+
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "No group"
+msgstr "ללא קבוצה"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1614,6 +1684,7 @@ msgstr "אף שירות לא מפעיל מחדש את הסוכן לאחר עדכ
 msgid "No systems found."
 msgstr "לא נמצאו מערכות."
 
+#: src/components/add-system.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -1856,6 +1927,10 @@ msgstr "שפה מועדפת"
 msgid "Process started"
 msgstr "תהליך התחיל"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Production, Customers, Lab…"
+msgstr "ייצור, לקוחות, מעבדה…"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Protocol"
@@ -2039,6 +2114,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "בדיקה עצמית S.M.A.R.T."
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "שמירה"
 
@@ -2204,6 +2280,10 @@ msgstr "הגדרות"
 msgid "Settings saved"
 msgstr "הגדרות נשמרו"
 
+#: src/components/systems-table/systems-table.tsx
+msgid "Show by group"
+msgstr "הצג לפי קבוצה"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Shutdown"
@@ -2267,6 +2347,7 @@ msgid "State rule matched"
 msgstr "כלל מצב התקיים"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "State rules"
 msgstr "כללי מצב"
 
@@ -2351,6 +2432,7 @@ msgstr "שירותי Systemd"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "מערכות"
 
@@ -2839,6 +2921,10 @@ msgstr "שירותי Windows"
 #: src/components/important-targets.tsx
 msgid "With a state alert rule"
 msgstr "עם כלל התראת מצב"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "With alerts"
+msgstr "עם התראות"
 
 #. Disk write
 #. Disk write

@@ -31,6 +31,8 @@ export interface SystemRecord extends RecordModel {
 	info: SystemInfo
 	v: string
 	updated: string
+	/** group shown on the home page, shared by all users */
+	group?: string
 }
 
 export interface SystemInfo {
@@ -424,6 +426,14 @@ export interface UserSettings {
 	sortMode?: Array<{ id: string; desc: boolean }>
 	grid?: boolean
 	displayMode?: "default" | "tabs"
+	/** home page: show systems by group */
+	groupView?: boolean
+	/** home page: group tab shown ("all", "none" or "group:<name>") */
+	groupTab?: string
+	/** home page: groups not shown ("" for systems without group) */
+	hiddenGroups?: string[]
+	/** home page: only systems with alerts ("any", "state" or an alert name) */
+	alertFilter?: string
 }
 
 type ChartDataContainer = {

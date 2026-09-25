@@ -117,6 +117,10 @@ msgstr "30 ngày"
 msgid "5 min"
 msgstr "5 phút"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A system belongs to one group: checking it moves it from its current group."
+msgstr "Mỗi hệ thống thuộc một nhóm: chọn nó sẽ chuyển nó khỏi nhóm hiện tại."
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
@@ -240,8 +244,13 @@ msgstr "Cảnh báo khi trạng thái không phải là"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "Cảnh báo"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "All"
+msgstr "Tất cả"
 
 #: src/components/agent-update-dialog.tsx
 msgid "All agents are up to date ({latest})"
@@ -281,6 +290,7 @@ msgstr "Tất cả dịch vụ"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
 #: src/components/systems-select.tsx
+#: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All Systems"
@@ -478,6 +488,7 @@ msgstr "Có thể dừng"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "Hủy bỏ"
@@ -589,6 +600,7 @@ msgid "Click to copy"
 msgstr "Nhấp để sao chép"
 
 #: src/components/agent-update-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Close"
 msgstr "Đóng"
 
@@ -835,6 +847,7 @@ msgstr "Thời gian mặc định"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Delete"
 msgstr "Xóa"
@@ -842,6 +855,14 @@ msgstr "Xóa"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "Xóa vân tay"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete group"
+msgstr "Xóa nhóm"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete the group {originalName}?"
+msgstr "Xóa nhóm {originalName}?"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1088,6 +1109,7 @@ msgstr "Không thể xóa các trình giám sát."
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "Lưu cài đặt thất bại"
 
@@ -1125,6 +1147,7 @@ msgstr "Quạt"
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Filter..."
 msgstr "Lọc..."
@@ -1197,6 +1220,27 @@ msgstr "Sử dụng GPU"
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "Lưới"
+
+#: src/components/add-system.tsx
+#: src/components/routes/system/info-bar.tsx
+msgid "Group"
+msgstr "Nhóm"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group deleted"
+msgstr "Đã xóa nhóm"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group saved"
+msgstr "Đã lưu nhóm"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "Groups"
+msgstr "Nhóm"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
+msgstr "Nhóm sắp xếp các hệ thống trên trang chủ cho mọi người dùng. Xóa nhóm vẫn giữ các hệ thống của nhóm, không thuộc nhóm nào."
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1320,6 +1364,14 @@ msgstr "Khoảng thời gian (giây)"
 msgid "Invalid email address."
 msgstr "Địa chỉ email không hợp lệ."
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are kept and moved to no group."
+msgstr "Các hệ thống của nhóm được giữ lại và chuyển sang không nhóm."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are now without group."
+msgstr "Các hệ thống của nhóm giờ không thuộc nhóm nào."
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "Ngôn ngữ"
@@ -1432,6 +1484,13 @@ msgstr "PID chính"
 msgid "Manage display and notification preferences."
 msgstr "Quản lý tùy chọn hiển thị và thông báo."
 
+#: src/components/systems-table/groups-dialog.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Manage groups"
+msgstr "Quản lý nhóm"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Manual setup instructions"
@@ -1504,6 +1563,7 @@ msgstr "Điểm gắn kết"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Name"
 msgstr "Tên"
 
@@ -1563,6 +1623,10 @@ msgstr "Đơn vị mạng"
 msgid "Network work"
 msgstr "Bảo trì mạng"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "New group"
+msgstr "Nhóm mới"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1576,6 +1640,12 @@ msgstr "Không có cảnh báo"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "Không có dữ liệu chi tiết cho pool này."
+
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "No group"
+msgstr "Không có nhóm"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1614,6 +1684,7 @@ msgstr "Không có dịch vụ nào khởi động lại tác nhân sau khi cậ
 msgid "No systems found."
 msgstr "Không tìm thấy hệ thống."
 
+#: src/components/add-system.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -1856,6 +1927,10 @@ msgstr "Ngôn ngữ Ưa thích"
 msgid "Process started"
 msgstr "Tiến trình đã khởi động"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Production, Customers, Lab…"
+msgstr "Sản xuất, Khách hàng, Phòng lab…"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Protocol"
@@ -2039,6 +2114,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "Tự kiểm tra S.M.A.R.T."
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "Lưu"
 
@@ -2204,6 +2280,10 @@ msgstr "Cài đặt"
 msgid "Settings saved"
 msgstr "Cài đặt đã được lưu"
 
+#: src/components/systems-table/systems-table.tsx
+msgid "Show by group"
+msgstr "Hiển thị theo nhóm"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Shutdown"
@@ -2267,6 +2347,7 @@ msgid "State rule matched"
 msgstr "Quy tắc trạng thái đã khớp"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "State rules"
 msgstr "Quy tắc trạng thái"
 
@@ -2351,6 +2432,7 @@ msgstr "Dịch vụ Systemd"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "Các hệ thống"
 
@@ -2839,6 +2921,10 @@ msgstr "Dịch vụ Windows"
 #: src/components/important-targets.tsx
 msgid "With a state alert rule"
 msgstr "Có quy tắc cảnh báo trạng thái"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "With alerts"
+msgstr "Có cảnh báo"
 
 #. Disk write
 #. Disk write

@@ -112,6 +112,10 @@ msgstr "30 days"
 msgid "5 min"
 msgstr "5 min"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A system belongs to one group: checking it moves it from its current group."
+msgstr "A system belongs to one group: checking it moves it from its current group."
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
@@ -235,8 +239,13 @@ msgstr "Alert when state is not"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "Alerts"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "All"
+msgstr "All"
 
 #: src/components/agent-update-dialog.tsx
 msgid "All agents are up to date ({latest})"
@@ -276,6 +285,7 @@ msgstr "All Services"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
 #: src/components/systems-select.tsx
+#: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All Systems"
@@ -473,6 +483,7 @@ msgstr "Can stop"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "Cancel"
@@ -584,6 +595,7 @@ msgid "Click to copy"
 msgstr "Click to copy"
 
 #: src/components/agent-update-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Close"
 msgstr "Close"
 
@@ -830,6 +842,7 @@ msgstr "Default time period"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Delete"
 msgstr "Delete"
@@ -837,6 +850,14 @@ msgstr "Delete"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
 msgstr "Delete fingerprint"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete group"
+msgstr "Delete group"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Delete the group {originalName}?"
+msgstr "Delete the group {originalName}?"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1083,6 +1104,7 @@ msgstr "Failed to delete monitors."
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "Failed to save settings"
 
@@ -1120,6 +1142,7 @@ msgstr "Fans"
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Filter..."
 msgstr "Filter..."
@@ -1192,6 +1215,27 @@ msgstr "GPU Usage"
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "Grid"
+
+#: src/components/add-system.tsx
+#: src/components/routes/system/info-bar.tsx
+msgid "Group"
+msgstr "Group"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group deleted"
+msgstr "Group deleted"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Group saved"
+msgstr "Group saved"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "Groups"
+msgstr "Groups"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
+msgstr "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1315,6 +1359,14 @@ msgstr "Interval (seconds)"
 msgid "Invalid email address."
 msgstr "Invalid email address."
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are kept and moved to no group."
+msgstr "Its systems are kept and moved to no group."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its systems are now without group."
+msgstr "Its systems are now without group."
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "Language"
@@ -1427,6 +1479,13 @@ msgstr "Main PID"
 msgid "Manage display and notification preferences."
 msgstr "Manage display and notification preferences."
 
+#: src/components/systems-table/groups-dialog.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Manage groups"
+msgstr "Manage groups"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Manual setup instructions"
@@ -1499,6 +1558,7 @@ msgstr "Mountpoint"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Name"
 msgstr "Name"
 
@@ -1558,6 +1618,10 @@ msgstr "Network unit"
 msgid "Network work"
 msgstr "Network work"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "New group"
+msgstr "New group"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1571,6 +1635,12 @@ msgstr "No alert"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "No detail data for this pool."
+
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "No group"
+msgstr "No group"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1609,6 +1679,7 @@ msgstr "No service restarts the agent after an update."
 msgid "No systems found."
 msgstr "No systems found."
 
+#: src/components/add-system.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -1851,6 +1922,10 @@ msgstr "Preferred Language"
 msgid "Process started"
 msgstr "Process started"
 
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Production, Customers, Lab…"
+msgstr "Production, Customers, Lab…"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Protocol"
@@ -2034,6 +2109,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. Self-Test"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "Save"
 
@@ -2199,6 +2275,10 @@ msgstr "Settings"
 msgid "Settings saved"
 msgstr "Settings saved"
 
+#: src/components/systems-table/systems-table.tsx
+msgid "Show by group"
+msgstr "Show by group"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Shutdown"
@@ -2262,6 +2342,7 @@ msgid "State rule matched"
 msgstr "State rule matched"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/systems-table/systems-table.tsx
 msgid "State rules"
 msgstr "State rules"
 
@@ -2346,6 +2427,7 @@ msgstr "Systemd Services"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "Systems"
 
@@ -2834,6 +2916,10 @@ msgstr "Windows Services"
 #: src/components/important-targets.tsx
 msgid "With a state alert rule"
 msgstr "With a state alert rule"
+
+#: src/components/systems-table/systems-table.tsx
+msgid "With alerts"
+msgstr "With alerts"
 
 #. Disk write
 #. Disk write
