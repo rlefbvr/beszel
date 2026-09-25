@@ -15,6 +15,7 @@ import { $router } from "@/components/router.tsx"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card.tsx"
 import { toast } from "@/components/ui/use-toast.ts"
 import { saveUserSettings } from "@/lib/api"
+import { usePageTitle } from "@/lib/instance"
 import { $userSettings } from "@/lib/stores.ts"
 import type { UserSettings } from "@/types"
 import { Separator } from "../../ui/separator"
@@ -96,10 +97,9 @@ export default function SettingsLayout() {
 	]
 
 	const page = useStore($router)
+	usePageTitle(t`Settings`)
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: no dependencies
 	useEffect(() => {
-		document.title = `${t`Settings`} / Beszel`
 		// @ts-expect-error redirect to account page if no page is specified
 		if (!page?.params?.name) {
 			redirectPage($router, "settings", { name: "general" })

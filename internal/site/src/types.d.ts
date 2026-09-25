@@ -436,6 +436,10 @@ export interface UserSettings {
 	alertFilter?: string
 	/** home page: widths of the resized table columns, in pixels */
 	colWidths?: Record<string, number>
+	/** browser tab titles end with Beszel, the instance name or the instance host */
+	tabTitle?: "beszel" | "name" | "url"
+	/** label next to the logo: none, the instance name or the instance host */
+	headerLabel?: "none" | "name" | "url"
 	/** other tables: widths of the resized columns and hidden columns, by table */
 	tables?: Record<string, TableLayout>
 }
@@ -714,6 +718,9 @@ export interface BeszelInfo {
 	key: string // public key
 	v: string // version
 	cu: boolean // check updates
+	name: string // instance name
+	url: string // instance URL, base of the links in notifications
+	urlEnv?: boolean // the URL is set by the APP_URL environment variable
 }
 
 export interface UpdateInfo {

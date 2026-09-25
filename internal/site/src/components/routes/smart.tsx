@@ -1,12 +1,10 @@
-import { useEffect } from "react"
 import SmartTable from "@/components/routes/system/smart-table"
 import { ActiveAlerts } from "@/components/active-alerts"
 import { FooterRepoLink } from "@/components/footer-repo-link"
+import { usePageTitle } from "@/lib/instance"
 
 export default function Smart() {
-	useEffect(() => {
-		document.title = `S.M.A.R.T. / Beszel`
-	}, [])
+	usePageTitle("S.M.A.R.T.")
 
 	return (
 		<>

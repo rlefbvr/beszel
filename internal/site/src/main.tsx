@@ -28,6 +28,7 @@ import {
 	defaultLayoutWidth,
 } from "@/lib/stores.ts"
 import * as systemsManager from "@/lib/systemsManager.ts"
+import { $instance } from "@/lib/instance"
 import type { BeszelInfo, UpdateInfo } from "./types"
 
 const LoginPage = lazy(() => import("@/components/login/login.tsx"))
@@ -51,6 +52,7 @@ const App = memo(() => {
 		// get general info for authenticated users, such as public key and version
 		pb.send<BeszelInfo>("/api/beszel/info", {}).then((data) => {
 			$publicKey.set(data.key)
+			$instance.set({ name: data.name || "Beszel", url: data.url ?? "", urlFromEnv: !!data.urlEnv })
 			// check for updates if enabled
 			if (data.cu && isAdmin()) {
 				pb.send<UpdateInfo>("/api/beszel/update", {}).then($newVersion.set)

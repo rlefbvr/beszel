@@ -6,6 +6,7 @@ import (
 	"log/slog"
 	"net"
 	"net/http"
+	"net/url"
 	"net/netip"
 	"regexp"
 	"strings"
@@ -176,6 +177,8 @@ func (h *Hub) registerApiRoutes(se *core.ServeEvent) error {
 	})
 	// get public key and version
 	apiAuth.GET("/info", h.getInfo)
+	// name and URL of this instance
+	apiAuth.POST("/instance", h.saveInstance).BindFunc(requireAdminRole)
 	apiAuth.GET("/getkey", h.getInfo) // deprecated - keep for compatibility w/ integrations
 	// check for updates
 	if optIn, _ := utils.GetEnv("CHECK_UPDATES"); optIn == "true" {
@@ -223,15 +226,57 @@ func (h *Hub) getInfo(e *core.RequestEvent) error {
 		Key         string `json:"key"`
 		Version     string `json:"v"`
 		CheckUpdate bool   `json:"cu"`
+		// instance name and URL, used in notifications and shown in the UI
+		Name       string `json:"name"`
+		URL        string `json:"url"`
+		URLFromEnv bool   `json:"urlEnv,omitempty"`
 	}
 	info := infoResponse{
-		Key:     h.pubKey,
-		Version: beszel.ForkVersion,
+		Key:        h.pubKey,
+		Version:    beszel.ForkVersion,
+		Name:       e.App.Settings().Meta.AppName,
+		URL:        e.App.Settings().Meta.AppURL,
+		URLFromEnv: h.appURL != "",
 	}
 	if optIn, _ := utils.GetEnv("CHECK_UPDATES"); optIn == "true" {
 		info.CheckUpdate = true
 	}
 	return e.JSON(http.StatusOK, info)
+}
+
+// saveInstance sets the name and URL of this instance (admins only). The URL is
+// the base of the links in notifications; it can't be changed when set by APP_URL.
+func (h *Hub) saveInstance(e *core.RequestEvent) error {
+	var body struct {
+		Name string `json:"name"`
+		URL  string `json:"url"`
+	}
+	if err := e.BindBody(&body); err != nil {
+		return e.BadRequestError("Invalid body", err)
+	}
+	name := strings.TrimSpace(body.Name)
+	if name == "" {
+		name = "Beszel"
+	}
+	if len(name) > 100 {
+		return e.BadRequestError("The name is too long", nil)
+	}
+	settings := e.App.Settings()
+	if h.appURL == "" {
+		instanceURL := strings.TrimSuffix(strings.TrimSpace(body.URL), "/")
+		if instanceURL != "" {
+			parsed, err := url.Parse(instanceURL)
+			if err != nil || (parsed.Scheme != "http" && parsed.Scheme != "https") || parsed.Host == "" {
+				return e.BadRequestError("Invalid URL", err)
+			}
+		}
+		settings.Meta.AppURL = instanceURL
+	}
+	settings.Meta.AppName = name
+	if err := e.App.Save(settings); err != nil {
+		return e.InternalServerError("", err)
+	}
+	return e.JSON(http.StatusOK, map[string]string{"name": settings.Meta.AppName, "url": settings.Meta.AppURL})
 }
 
 // getUpdate checks for the latest release on GitHub and returns update info if a newer version is available

@@ -1,16 +1,15 @@
 import { useLingui } from "@lingui/react/macro"
-import { memo, Suspense, useEffect, useMemo } from "react"
+import { memo, Suspense, useMemo } from "react"
 import SystemsTable from "@/components/systems-table/systems-table"
 import { ActiveAlerts } from "@/components/active-alerts"
 import { FooterRepoLink } from "@/components/footer-repo-link"
 import { QuietHoursBanner } from "@/components/quiet-hours-banner"
+import { usePageTitle } from "@/lib/instance"
 
 export default memo(() => {
 	const { t } = useLingui()
 
-	useEffect(() => {
-		document.title = `${t`All Systems`} / Beszel`
-	}, [t])
+	usePageTitle(t`All Systems`)
 
 	return useMemo(
 		() => (

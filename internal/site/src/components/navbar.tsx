@@ -1,5 +1,6 @@
 import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
+import { useStore } from "@nanostores/react"
 import { getPagePath } from "@nanostores/router"
 import {
 	ContainerIcon,
@@ -36,6 +37,7 @@ import { isAdmin, isReadOnlyUser, logOut, pb } from "@/lib/api"
 import { cn, runOnce } from "@/lib/utils"
 import { AddSystemDialog } from "./add-system"
 import { Logo } from "./logo"
+import { $headerLabel } from "@/lib/instance"
 import { ModeToggle } from "./mode-toggle"
 import { $router, basePath, Link, navigate, prependBasePath } from "./router"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
@@ -51,6 +53,7 @@ export default function Navbar() {
 	const AdminLinks = AdminDropdownGroup()
 
 	const systemTranslation = t`System`
+	const headerLabel = useStore($headerLabel)
 
 	return (
 		<div className="flex items-center h-14 md:h-16 bg-card px-4 pe-3 sm:px-6 border border-border/60 bt-0 rounded-md my-4">
@@ -67,6 +70,11 @@ export default function Navbar() {
 			>
 				<Logo className="h-[1.2rem] md:h-5 fill-foreground" />
 			</Link>
+			{headerLabel && (
+				<span className="hidden sm:block me-4 -ms-1 max-w-56 truncate text-sm font-medium text-muted-foreground" title={headerLabel}>
+					{headerLabel}
+				</span>
+			)}
 			<Button
 				variant="outline"
 				className="hidden md:block text-sm text-muted-foreground px-4"

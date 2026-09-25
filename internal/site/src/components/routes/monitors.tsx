@@ -1,5 +1,5 @@
 import { useLingui } from "@lingui/react/macro"
-import { memo, useEffect } from "react"
+import { memo } from "react"
 import NetworkMonitorsTableNew from "@/components/network-monitors-table/network-monitors-table"
 import { ActiveAlerts } from "@/components/active-alerts"
 import { FooterRepoLink } from "@/components/footer-repo-link"
@@ -7,6 +7,7 @@ import { useNetworkMonitors } from "@/lib/use-network-monitors"
 import { $allSystemsById } from "@/lib/stores"
 import { supportsNetworkMonitors } from "@/lib/utils"
 import { useStore } from "@nanostores/react"
+import { usePageTitle } from "@/lib/instance"
 
 export default memo(() => {
 	const { t } = useLingui()
@@ -17,9 +18,7 @@ export default memo(() => {
 		return !system || supportsNetworkMonitors(system)
 	})
 
-	useEffect(() => {
-		document.title = `${t`Network Monitors`} / Beszel`
-	}, [t])
+	usePageTitle(t`Network Monitors`)
 
 	return (
 		<>

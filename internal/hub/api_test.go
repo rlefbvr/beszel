@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"sort"
+	"strings"
 	"testing"
 	"time"
 
@@ -123,7 +124,6 @@ func TestApiRoutesAuthentication(t *testing.T) {
 	}
 
 	scenarios := []beszelTests.ApiScenario{
-		// Auth Protected Routes - Should require authentication
 		{
 			Name:            "GET /config-yaml - no auth should fail",
 			Method:          http.MethodGet,
@@ -184,6 +184,43 @@ func TestApiRoutesAuthentication(t *testing.T) {
 			ExpectedContent: []string{`"enabled":false`},
 			TestAppFactory:  testAppFactory,
 		},
+		{
+			Name:   "POST /instance - with user auth should fail",
+			Method: http.MethodPost,
+			URL:    "/api/beszel/instance",
+			Headers: map[string]string{
+				"Authorization": userToken,
+			},
+			Body:            strings.NewReader(`{"name":"Monitoring","url":"https://monitoring.example.com"}`),
+			ExpectedStatus:  403,
+			ExpectedContent: []string{"The authorized record is not allowed to perform this action."},
+			TestAppFactory:  testAppFactory,
+		},
+		{
+			Name:   "POST /instance - with admin auth should reject an invalid URL",
+			Method: http.MethodPost,
+			URL:    "/api/beszel/instance",
+			Headers: map[string]string{
+				"Authorization": adminUserToken,
+			},
+			Body:            strings.NewReader(`{"name":"Monitoring","url":"monitoring.example.com"}`),
+			ExpectedStatus:  400,
+			ExpectedContent: []string{"Invalid URL"},
+			TestAppFactory:  testAppFactory,
+		},
+		{
+			Name:   "POST /instance - with admin auth should save the name and URL",
+			Method: http.MethodPost,
+			URL:    "/api/beszel/instance",
+			Headers: map[string]string{
+				"Authorization": adminUserToken,
+			},
+			Body:            strings.NewReader(`{"name":" Monitoring ","url":"https://monitoring.example.com/"}`),
+			ExpectedStatus:  200,
+			ExpectedContent: []string{`"name":"Monitoring"`, `"url":"https://monitoring.example.com"`},
+			TestAppFactory:  testAppFactory,
+		},
+		// Auth Protected Routes - Should require authentication
 		{
 			Name:   "POST /test-heartbeat - with user auth should fail",
 			Method: http.MethodPost,

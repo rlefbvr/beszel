@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useContainerChartConfigs } from "@/components/charts/hooks"
 import { pb, queueUserSettings } from "@/lib/api"
 import { SystemStatus } from "@/lib/enums"
+import { usePageTitle } from "@/lib/instance"
 import {
 	$allSystemsById,
 	$allSystemsByName,
@@ -80,6 +81,7 @@ export function useSystemData(id: string) {
 		setMountedTabs((prev) => (prev.has(tab) ? prev : new Set([...prev, tab])))
 	}
 	const [system, setSystem] = useState({} as SystemRecord)
+	usePageTitle(system.name ?? "")
 	const [systemStats, setSystemStats] = useState([] as SystemStatsRecord[])
 	const [containerData, setContainerData] = useState([] as ChartData["containerData"])
 	const persistChartTime = useRef(false)
@@ -111,7 +113,6 @@ export function useSystemData(id: string) {
 			const sys = newSystems[id]
 			if (sys) {
 				setSystem(sys)
-				document.title = `${sys?.name} / Beszel`
 			}
 		})
 	}, [id, systems.length])

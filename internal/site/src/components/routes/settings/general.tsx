@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/correctness/useUniqueElementIds: component is only rendered once */
 import { Trans, useLingui } from "@lingui/react/macro"
-import { DownloadIcon, LanguagesIcon, LoaderCircleIcon, SaveIcon, ServerCogIcon } from "lucide-react"
+import { DownloadIcon, GlobeIcon, LanguagesIcon, LoaderCircleIcon, SaveIcon, ServerCogIcon, WandSparklesIcon } from "lucide-react"
 import { useState } from "react"
 import { useStore } from "@nanostores/react"
 import { Button } from "@/components/ui/button"
@@ -13,10 +13,12 @@ import { toast } from "@/components/ui/use-toast"
 import { isAdmin, queueUserSettings, saveAgentInstallDir, saveAgentServiceName, saveServicesInterval } from "@/lib/api"
 import { HourFormat, Unit } from "@/lib/enums"
 import { dynamicActivate } from "@/lib/i18n"
+import { $instance, saveInstance } from "@/lib/instance"
 import languages from "@/lib/languages"
 import { $agentInstallDir, $agentServiceName, $servicesInterval, $userSettings, defaultLayoutWidth } from "@/lib/stores"
 import { chartTimeData, currentHour12, secondsToString } from "@/lib/utils"
 import type { UserSettings } from "@/types"
+import { basePath } from "@/components/router"
 import { saveSettings } from "./layout"
 
 /** Allowed agent service names: safe in file names and shell commands */
@@ -24,6 +26,19 @@ const serviceNamePattern = /^[A-Za-z0-9][A-Za-z0-9_.@-]{0,63}$/
 
 /** Allowed Windows install folders: absolute paths safe in a PowerShell argument */
 const installDirPattern = /^([A-Za-z]:\\[A-Za-z0-9 _.()\\-]*)?$/
+
+/** Instance URLs: absolute http(s) URLs */
+const instanceUrlPattern = /^https?:\/\/[^\s/]+(\/\S*)?$/
+
+/** Name and URL of the instance guessed from the address of the page: "monitoring" in monitoring.example.com */
+function guessInstance() {
+	const { hostname, origin } = window.location
+	const label = /^[\d.]+$|^\[|^localhost$/.test(hostname) ? hostname : hostname.split(".")[0]
+	return {
+		name: label.charAt(0).toUpperCase() + label.slice(1),
+		url: `${origin}${basePath}`.replace(/\/+$/, ""),
+	}
+}
 
 /** Service collection intervals offered in settings, in minutes */
 const servicesIntervals = [1, 2, 5, 10, 15, 30, 60]
@@ -41,6 +56,10 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 	const agentInstallDir = useStore($agentInstallDir)
 	const [newAgentInstallDir, setNewAgentInstallDir] = useState<string>()
 	const installDirInvalid = newAgentInstallDir !== undefined && !installDirPattern.test(newAgentInstallDir)
+	const instance = useStore($instance)
+	const [newInstanceName, setNewInstanceName] = useState<string>()
+	const [newInstanceUrl, setNewInstanceUrl] = useState<string>()
+	const instanceUrlInvalid = !!newInstanceUrl && !instanceUrlPattern.test(newInstanceUrl.trim())
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
@@ -57,6 +76,11 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 		}
 		if (newAgentInstallDir !== undefined && !installDirInvalid && newAgentInstallDir !== agentInstallDir) {
 			hubChanges.push(saveAgentInstallDir(newAgentInstallDir))
+		}
+		const instanceName = newInstanceName ?? instance.name
+		const instanceUrl = newInstanceUrl ?? instance.url
+		if (!instanceUrlInvalid && (instanceName !== instance.name || instanceUrl !== instance.url)) {
+			hubChanges.push(saveInstance(instanceName, instanceUrl))
 		}
 		if (hubChanges.length) {
 			try {
@@ -85,6 +109,115 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 			</div>
 			<Separator className="my-4" />
 			<form onSubmit={handleSubmit} className="space-y-5">
+				<div className="grid gap-2">
+					<div className="mb-2">
+						<h3 className="mb-1 text-lg font-medium flex items-center gap-2">
+							<GlobeIcon className="h-4 w-4" />
+							<Trans>Instance</Trans>
+						</h3>
+						<p className="text-sm text-muted-foreground leading-relaxed">
+							<Trans>Name and default URL of this hub, used in notification links and shown in the interface.</Trans>
+						</p>
+					</div>
+					<div className="grid sm:grid-cols-[1fr_1.5fr_auto] gap-4 items-end">
+						<div className="grid gap-2">
+							<Label htmlFor="instanceName">
+								<Trans>Instance name</Trans>
+							</Label>
+							<Input
+								id="instanceName"
+								value={newInstanceName ?? instance.name}
+								onChange={(e) => setNewInstanceName(e.target.value)}
+								maxLength={100}
+								disabled={!isAdmin()}
+							/>
+						</div>
+						<div className="grid gap-2">
+							<Label htmlFor="instanceUrl">
+								<Trans>Default URL</Trans>
+							</Label>
+							<Input
+								id="instanceUrl"
+								type="url"
+								placeholder="https://monitoring.example.com"
+								value={newInstanceUrl ?? instance.url}
+								onChange={(e) => setNewInstanceUrl(e.target.value)}
+								disabled={!isAdmin() || instance.urlFromEnv}
+								aria-invalid={instanceUrlInvalid}
+							/>
+						</div>
+						{isAdmin() && (
+							<Button
+								type="button"
+								variant="outline"
+								className="gap-2"
+								onClick={() => {
+									const guess = guessInstance()
+									setNewInstanceName(guess.name)
+									if (!instance.urlFromEnv) {
+										setNewInstanceUrl(guess.url)
+									}
+								}}
+							>
+								<WandSparklesIcon className="size-4" />
+								<Trans>Detect</Trans>
+							</Button>
+						)}
+					</div>
+					{instance.urlFromEnv && (
+						<p className="text-xs text-muted-foreground">
+							<Trans>The URL is set by the APP_URL environment variable of the hub.</Trans>
+						</p>
+					)}
+					{instanceUrlInvalid && (
+						<p className="text-xs text-destructive">
+							<Trans>Use an absolute URL starting with http:// or https://.</Trans>
+						</p>
+					)}
+					<div className="grid sm:grid-cols-2 gap-4 mt-2">
+						<div className="grid gap-2">
+							<Label className="block" htmlFor="tabTitle">
+								<Trans>Browser tab title</Trans>
+							</Label>
+							<Select name="tabTitle" key={userSettings.tabTitle} defaultValue={userSettings.tabTitle ?? "beszel"}>
+								<SelectTrigger id="tabTitle">
+									<SelectValue />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectItem value="beszel">Beszel</SelectItem>
+									<SelectItem value="name">
+										<Trans>Instance name</Trans>
+									</SelectItem>
+									<SelectItem value="url">
+										<Trans>Default URL</Trans>
+									</SelectItem>
+								</SelectContent>
+							</Select>
+						</div>
+						<div className="grid gap-2">
+							<Label className="block" htmlFor="headerLabel">
+								<Trans>Next to the logo</Trans>
+							</Label>
+							<Select name="headerLabel" key={userSettings.headerLabel} defaultValue={userSettings.headerLabel ?? "none"}>
+								<SelectTrigger id="headerLabel">
+									<SelectValue />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectItem value="none">
+										<Trans>Nothing</Trans>
+									</SelectItem>
+									<SelectItem value="name">
+										<Trans>Instance name</Trans>
+									</SelectItem>
+									<SelectItem value="url">
+										<Trans>Default URL</Trans>
+									</SelectItem>
+								</SelectContent>
+							</Select>
+						</div>
+					</div>
+				</div>
+				<Separator />
 				<div className="grid gap-2">
 					<div className="mb-2">
 						<h3 className="mb-1 text-lg font-medium flex items-center gap-2">
