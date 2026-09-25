@@ -424,3 +424,41 @@ func TestAlertSilencedNoWindows(t *testing.T) {
 	silenced := am.IsNotificationSilenced(user.Id, system.Id)
 	assert.False(t, silenced, "Alert should not be silenced when no windows exist")
 }
+
+func TestAlertSilencedSensor(t *testing.T) {
+	hub, user := beszelTests.GetHubWithUser(t)
+	defer hub.Cleanup()
+
+	systems, err := beszelTests.CreateSystems(hub, 1, user.Id, "up")
+	assert.NoError(t, err)
+	sensor1, err := beszelTests.CreateRecord(hub, "sensors", map[string]any{"name": "Router", "host": "192.0.2.1"})
+	assert.NoError(t, err)
+	sensor2, err := beszelTests.CreateRecord(hub, "sensors", map[string]any{"name": "NAS", "host": "192.0.2.2"})
+	assert.NoError(t, err)
+
+	am := alerts.NewAlertManager(hub)
+	defer am.Stop()
+
+	now := time.Now().UTC()
+	_, err = beszelTests.CreateRecord(hub, "quiet_hours", map[string]any{
+		"user":   user.Id,
+		"sensor": sensor1.Id,
+		"type":   "one-time",
+		"start":  now.Add(-time.Hour),
+		"end":    now.Add(time.Hour),
+	})
+	assert.NoError(t, err)
+
+	assert.True(t, am.IsSensorNotificationSilenced(user.Id, sensor1.Id), "the window of the sensor silences it")
+	assert.False(t, am.IsSensorNotificationSilenced(user.Id, sensor2.Id), "not the other sensors")
+	assert.False(t, am.IsNotificationSilenced(user.Id, systems[0].Id), "a sensor window is not global")
+
+	_, err = beszelTests.CreateRecord(hub, "quiet_hours", map[string]any{
+		"user":  user.Id,
+		"type":  "one-time",
+		"start": now.Add(-time.Hour),
+		"end":   now.Add(time.Hour),
+	})
+	assert.NoError(t, err)
+	assert.True(t, am.IsSensorNotificationSilenced(user.Id, sensor2.Id), "global windows silence the sensors too")
+}

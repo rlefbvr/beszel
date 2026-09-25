@@ -47,6 +47,8 @@ type AlertMessageData struct {
 	UserID     string
 	SystemID   string
 	SystemName string
+	// SensorID is the network sensor of the alert, for its quiet hours.
+	SensorID string
 	Title      Msg
 	Message    Msg
 	// Target is what the alert is about (a service, container, disk...),

@@ -235,7 +235,8 @@ func (rm *RecordManager) CreateLongerRecords() {
 			}
 		}
 
-		return nil
+		// sensor_stats is aggregated per check of the sensors checked by the hub
+		return createLongerSensorRecords(txApp, now, longerRecordData)
 	})
 	if err != nil {
 		rm.app.Logger().Error("failed to create longer records", "err", err)
@@ -244,7 +245,7 @@ func (rm *RecordManager) CreateLongerRecords() {
 
 func getCreatedTimeField(collectionName string, period time.Time) any {
 	// network_monitor_stats stores created as unix timestamp in ms, not as a date string
-	if collectionName == "network_monitor_stats" {
+	if collectionName == "network_monitor_stats" || collectionName == "sensor_stats" {
 		return period.UnixMilli()
 	}
 	return period.Format(types.DefaultDateLayout)

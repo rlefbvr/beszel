@@ -145,25 +145,31 @@ func (am *AlertManager) IsNotificationSilenced(userID, systemID string) bool {
 	return am.isSilencedAt(userID, systemID, time.Now().UTC())
 }
 
+// IsSensorNotificationSilenced checks if quiet hours silence the notifications of a network sensor
+func (am *AlertManager) IsSensorNotificationSilenced(userID, sensorID string) bool {
+	return am.isSilencedFor(userID, "", sensorID, time.Now().UTC())
+}
+
 // isSilencedAt checks if quiet hours silence notifications at a given time
 func (am *AlertManager) isSilencedAt(userID, systemID string, now time.Time) bool {
-	// Query for quiet hours windows that match this user and system
-	// Include both global windows (system is null/empty) and system-specific windows
-	var filter string
-	var params dbx.Params
+	return am.isSilencedFor(userID, systemID, "", now)
+}
 
-	if systemID == "" {
-		// If no systemID provided, only check global windows
-		filter = "user={:user} AND system=''"
-		params = dbx.Params{"user": userID}
-	} else {
-		// Check both global and system-specific windows
-		filter = "user={:user} AND (system='' OR system={:system})"
-		params = dbx.Params{
-			"user":   userID,
-			"system": systemID,
-		}
+// isSilencedFor checks if quiet hours silence the notifications of a system or
+// of a network sensor at a given time: global windows (neither system nor
+// sensor), and the windows of the system or of the sensor.
+func (am *AlertManager) isSilencedFor(userID, systemID, sensorID string, now time.Time) bool {
+	filter := "user={:user} AND ((system='' AND COALESCE(sensor, '')='')"
+	params := dbx.Params{"user": userID}
+	if systemID != "" {
+		filter += " OR system={:system}"
+		params["system"] = systemID
 	}
+	if sensorID != "" {
+		filter += " OR sensor={:sensor}"
+		params["sensor"] = sensorID
+	}
+	filter += ")"
 
 	quietHourWindows, err := am.hub.FindAllRecords("quiet_hours", dbx.NewExp(filter, params))
 	if err != nil || len(quietHourWindows) == 0 {
@@ -215,7 +221,7 @@ func (am *AlertManager) isSilencedAt(userID, systemID string, now time.Time) boo
 // SendAlert sends an alert to the user
 func (am *AlertManager) SendAlert(data AlertMessageData) error {
 	// Check if alert is silenced
-	if am.IsNotificationSilenced(data.UserID, data.SystemID) {
+	if am.isSilencedFor(data.UserID, data.SystemID, data.SensorID, time.Now().UTC()) {
 		am.hub.Logger().Info("Notification silenced", "user", data.UserID, "system", data.SystemID, "title", data.Title)
 		return nil
 	}

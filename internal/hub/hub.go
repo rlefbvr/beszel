@@ -15,6 +15,7 @@ import (
 	"github.com/henrygd/beszel/internal/hub/config"
 	"github.com/henrygd/beszel/internal/hub/heartbeat"
 	"github.com/henrygd/beszel/internal/hub/hubsettings"
+	"github.com/henrygd/beszel/internal/hub/sensors"
 	"github.com/henrygd/beszel/internal/hub/systems"
 	"github.com/henrygd/beszel/internal/hub/utils"
 	"github.com/henrygd/beszel/internal/records"
@@ -39,6 +40,8 @@ type Hub struct {
 	appURL string
 	// latest release of the agent, for agent updates
 	latestAgent latestAgentRelease
+	// network sensors checked by the hub
+	sensors *sensors.Manager
 }
 
 // NewHub creates a new Hub instance with default configuration
@@ -104,6 +107,15 @@ func (h *Hub) StartHub() error {
 		if h.hb != nil {
 			go h.hb.Start(h.hbStop)
 		}
+		// start the probes of the network sensors
+		h.sensors = sensors.NewManager(h, h.AlertManager)
+		if err := h.sensors.Start(); err != nil {
+			return err
+		}
+		e.App.OnTerminate().BindFunc(func(te *core.TerminateEvent) error {
+			h.sensors.Stop()
+			return te.Next()
+		})
 		return e.Next()
 	})
 

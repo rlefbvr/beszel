@@ -31,6 +31,10 @@ func (rm *RecordManager) DeleteOldRecords() {
 		if err != nil {
 			slog.Error("Error deleting old alerts history", "err", err)
 		}
+		err = deleteOldSensorIncidents(txApp)
+		if err != nil {
+			slog.Error("Error deleting old sensor incidents", "err", err)
+		}
 		err = deleteOldQuietHours(txApp)
 		if err != nil {
 			slog.Error("Error deleting old quiet hours", "err", err)
@@ -81,7 +85,7 @@ func deleteOldAlertsHistory(app core.App, countToKeep, countBeforeDeletion int) 
 // Deletes system_stats records older than what is displayed in the UI
 func deleteOldSystemStats(app core.App) error {
 	// Collections to process
-	collections := [3]string{"system_stats", "container_stats", "network_monitor_stats"}
+	collections := [4]string{"system_stats", "container_stats", "network_monitor_stats", "sensor_stats"}
 
 	// Record types and their retention periods
 	type RecordDeletionData struct {
