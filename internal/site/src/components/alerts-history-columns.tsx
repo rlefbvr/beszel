@@ -10,6 +10,7 @@ import type { AlertsHistoryRecord } from "@/types"
 export const alertsHistoryColumns: ColumnDef<AlertsHistoryRecord>[] = [
 	{
 		accessorKey: "system",
+		meta: { name: () => t`System` },
 		enableSorting: true,
 		header: ({ column }) => (
 			<Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
@@ -27,6 +28,7 @@ export const alertsHistoryColumns: ColumnDef<AlertsHistoryRecord>[] = [
 	{
 		// accessorKey: "name",
 		id: "name",
+		meta: { name: () => t`Name` },
 		accessorFn: (record) => {
 			const name = record.name
 			const info = alertInfo[name] ?? stateAlertHistoryInfo[name]
@@ -53,6 +55,7 @@ export const alertsHistoryColumns: ColumnDef<AlertsHistoryRecord>[] = [
 	},
 	{
 		accessorKey: "value",
+		meta: { name: () => t`Value` },
 		enableSorting: false,
 		header: () => (
 			<Button variant="ghost">
@@ -80,6 +83,7 @@ export const alertsHistoryColumns: ColumnDef<AlertsHistoryRecord>[] = [
 	},
 	{
 		accessorKey: "state",
+		meta: { name: () => t({ message: "State", comment: "Context: alert state (active or resolved)" }) },
 		enableSorting: true,
 		sortingFn: (rowA, rowB) => (rowA.original.resolved ? 1 : 0) - (rowB.original.resolved ? 1 : 0),
 		header: ({ column }) => (
@@ -106,6 +110,7 @@ export const alertsHistoryColumns: ColumnDef<AlertsHistoryRecord>[] = [
 	},
 	{
 		accessorKey: "created",
+		meta: { name: () => t({ message: "Created", comment: "Context: date created" }) },
 		accessorFn: (record) => formatShortDate(record.created),
 		enableSorting: true,
 		invertSorting: true,
@@ -122,6 +127,7 @@ export const alertsHistoryColumns: ColumnDef<AlertsHistoryRecord>[] = [
 	},
 	{
 		accessorKey: "resolved",
+		meta: { name: () => t`Resolved` },
 		enableSorting: true,
 		invertSorting: true,
 		header: ({ column }) => (
@@ -143,6 +149,7 @@ export const alertsHistoryColumns: ColumnDef<AlertsHistoryRecord>[] = [
 	},
 	{
 		accessorKey: "duration",
+		meta: { name: () => t`Duration` },
 		invertSorting: true,
 		enableSorting: true,
 		sortingFn: (rowA, rowB) => {

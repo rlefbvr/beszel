@@ -35,6 +35,7 @@ function getSubStateColor(subState: ServiceSubState) {
 export const systemdTableCols: ColumnDef<SystemdRecord>[] = [
 	{
 		id: "name",
+		meta: { name: () => t`Name` },
 		sortingFn: (a, b) => a.original.name.localeCompare(b.original.name),
 		accessorFn: (record) => record.name,
 		header: ({ column }) => <HeaderButton column={column} name={t`Name`} Icon={TerminalSquareIcon} />,
@@ -45,6 +46,7 @@ export const systemdTableCols: ColumnDef<SystemdRecord>[] = [
 	{
 		// only shown on the page listing the services of all systems
 		id: "system",
+		meta: { name: () => t`System` },
 		accessorFn: (record) => record.system,
 		sortingFn: (a, b) => {
 			const allSystems = $allSystemsById.get()
@@ -57,6 +59,7 @@ export const systemdTableCols: ColumnDef<SystemdRecord>[] = [
 	},
 	{
 		id: "state",
+		meta: { name: () => t`State` },
 		accessorFn: (record) => record.state,
 		header: ({ column }) => <HeaderButton column={column} name={t`State`} Icon={ActivityIcon} />,
 		cell: ({ getValue }) => {
@@ -72,6 +75,7 @@ export const systemdTableCols: ColumnDef<SystemdRecord>[] = [
 	},
 	{
 		id: "sub",
+		meta: { name: () => t`Sub State` },
 		accessorFn: (record) => record.sub,
 		header: ({ column }) => <HeaderButton column={column} name={t`Sub State`} Icon={ActivityIcon} />,
 		cell: ({ getValue }) => {
@@ -87,6 +91,7 @@ export const systemdTableCols: ColumnDef<SystemdRecord>[] = [
 	},
 	{
 		id: "cpu",
+		meta: { name: () => t`CPU` },
 		accessorFn: (record) => {
 			if (record.sub !== ServiceSubState.Running) {
 				return -1
@@ -105,6 +110,7 @@ export const systemdTableCols: ColumnDef<SystemdRecord>[] = [
 	},
 	{
 		id: "cpuPeak",
+		meta: { name: () => t`CPU Peak` },
 		accessorFn: (record) => {
 			if (record.sub !== ServiceSubState.Running) {
 				return -1
@@ -123,6 +129,7 @@ export const systemdTableCols: ColumnDef<SystemdRecord>[] = [
 	},
 	{
 		id: "memory",
+		meta: { name: () => t`Memory` },
 		accessorFn: (record) => record.memory,
 		invertSorting: true,
 		header: ({ column }) => <HeaderButton column={column} name={t`Memory`} Icon={MemoryStickIcon} />,
@@ -139,6 +146,7 @@ export const systemdTableCols: ColumnDef<SystemdRecord>[] = [
 	},
 	{
 		id: "memPeak",
+		meta: { name: () => t`Memory Peak` },
 		accessorFn: (record) => record.memPeak,
 		invertSorting: true,
 		header: ({ column }) => <HeaderButton column={column} name={t`Memory Peak`} Icon={MemoryStickIcon} />,
@@ -155,6 +163,7 @@ export const systemdTableCols: ColumnDef<SystemdRecord>[] = [
 	},
 	{
 		id: "updated",
+		meta: { name: () => t`Updated` },
 		invertSorting: true,
 		accessorFn: (record) => record.updated,
 		header: ({ column }) => <HeaderButton column={column} name={t`Updated`} Icon={ClockIcon} />,

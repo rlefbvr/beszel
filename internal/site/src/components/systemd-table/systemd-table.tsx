@@ -13,7 +13,6 @@ import {
 	type SortingState,
 	type Table as TableType,
 	useReactTable,
-	type VisibilityState,
 } from "@tanstack/react-table"
 import { useVirtualizer, type VirtualItem } from "@tanstack/react-virtual"
 import { LoaderCircleIcon } from "lucide-react"
@@ -23,6 +22,15 @@ import { getStatusColor, systemdTableCols } from "@/components/systemd-table/sys
 import { BulkStateAlertsButton, selectionColumn, targetRowId } from "@/components/alerts/bulk-state-alerts"
 import { type ImportantTile, ImportantTargets } from "@/components/important-targets"
 import { $router, Link } from "@/components/router"
+import {
+	cellWidthStyle,
+	type ColumnResizeHandler,
+	ColumnResizer,
+	ColumnsViewMenu,
+	headerWidthStyle,
+	resizedAttr,
+	useTableLayout,
+} from "@/components/table-layout"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -46,7 +54,9 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 		sessionStorage
 	)
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
-	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
+	const { widths, onColumnResize, columnVisibility, onColumnVisibilityChange } = useTableLayout(
+		systemId ? "system-services" : "services"
+	)
 	const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
 	const [globalFilter, setGlobalFilter] = useState("")
 
@@ -119,7 +129,7 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 		getFilteredRowModel: getFilteredRowModel(),
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
-		onColumnVisibilityChange: setColumnVisibility,
+		onColumnVisibilityChange,
 		onRowSelectionChange: setRowSelection,
 		defaultColumn: {
 			sortUndefined: "last",
@@ -223,6 +233,7 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 							onChange={(e) => setGlobalFilter(e.target.value)}
 							className="px-4 w-full max-w-full md:w-64"
 						/>
+						<ColumnsViewMenu table={table} />
 						<BulkStateAlertsButton kind="service" items={selectedItems} />
 					</div>
 				</div>
@@ -235,6 +246,8 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 					colLength={visibleColumns.length}
 					openSheet={openSheet}
 					rowSelection={rowSelection}
+					widths={widths}
+					onColumnResize={onColumnResize}
 				/>
 			</div>
 			<SystemdSheet sheetOpen={sheetOpen} setSheetOpen={setSheetOpen} activeService={activeService} />
@@ -247,6 +260,8 @@ const AllSystemdTable = memo(function AllSystemdTable({
 	rows,
 	colLength,
 	openSheet,
+	widths,
+	onColumnResize,
 }: {
 	table: TableType<SystemdRecord>
 	rows: Row<SystemdRecord>[]
@@ -254,6 +269,8 @@ const AllSystemdTable = memo(function AllSystemdTable({
 	openSheet: (service: SystemdRecord) => void
 	/** re-renders the rows when the selection changes */
 	rowSelection: RowSelectionState
+	widths: Record<string, number>
+	onColumnResize: ColumnResizeHandler
 }) {
 	// The virtualizer will need a reference to the scrollable container element
 	const scrollRef = useRef<HTMLDivElement>(null)
@@ -281,7 +298,7 @@ const AllSystemdTable = memo(function AllSystemdTable({
 			{/* add header height to table size */}
 			<div style={{ height: `${virtualizer.getTotalSize() + 48}px`, paddingTop, paddingBottom }}>
 				<table className="text-sm w-full h-full text-nowrap">
-					<SystemdTableHead table={table} />
+					<SystemdTableHead table={table} widths={widths} onColumnResize={onColumnResize} />
 					<TableBody>
 						{rows.length ? (
 							virtualRows.map((virtualRow) => {
@@ -293,6 +310,7 @@ const AllSystemdTable = memo(function AllSystemdTable({
 										virtualRow={virtualRow}
 										openSheet={openSheet}
 										selected={row.getIsSelected()}
+										widths={widths}
 									/>
 								)
 							})
@@ -748,15 +766,26 @@ function SystemdSheet({
 	)
 }
 
-function SystemdTableHead({ table }: { table: TableType<SystemdRecord> }) {
+function SystemdTableHead({
+	table,
+	widths,
+	onColumnResize,
+}: {
+	table: TableType<SystemdRecord>
+	widths: Record<string, number>
+	onColumnResize: ColumnResizeHandler
+}) {
 	return (
 		<TableHeader className="sticky top-0 z-50 w-full border-b-2">
 			{table.getHeaderGroups().map((headerGroup) => (
 				<tr key={headerGroup.id}>
 					{headerGroup.headers.map((header) => {
 						return (
-							<TableHead className="px-2" key={header.id}>
+							<TableHead className="px-2 relative" key={header.id} style={headerWidthStyle(widths[header.column.id])}>
 								{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+								{header.column.id !== "select" && (
+									<ColumnResizer columnId={header.column.id} onColumnResize={onColumnResize} />
+								)}
 							</TableHead>
 						)
 					})}
@@ -771,11 +800,13 @@ const SystemdTableRow = memo(function SystemdTableRow({
 	virtualRow,
 	openSheet,
 	selected,
+	widths,
 }: {
 	row: Row<SystemdRecord>
 	virtualRow: VirtualItem
 	openSheet: (service: SystemdRecord) => void
 	selected: boolean
+	widths: Record<string, number>
 }) {
 	return (
 		<TableRow
@@ -785,10 +816,12 @@ const SystemdTableRow = memo(function SystemdTableRow({
 		>
 			{row.getVisibleCells().map((cell) => (
 				<TableCell
+					{...resizedAttr(widths[cell.column.id], cell.column.columnDef.meta?.grow)}
 					key={cell.id}
 					className="py-0"
 					style={{
 						height: virtualRow.size,
+						...cellWidthStyle(widths[cell.column.id], cell.column.columnDef.meta?.grow),
 					}}
 				>
 					{flexRender(cell.column.columnDef.cell, cell.getContext())}

@@ -436,6 +436,14 @@ export interface UserSettings {
 	alertFilter?: string
 	/** home page: widths of the resized table columns, in pixels */
 	colWidths?: Record<string, number>
+	/** other tables: widths of the resized columns and hidden columns, by table */
+	tables?: Record<string, TableLayout>
+}
+
+/** Widths of the resized columns (pixels) and ids of the hidden columns of a table */
+interface TableLayout {
+	widths?: Record<string, number>
+	hidden?: string[]
 }
 
 type ChartDataContainer = {

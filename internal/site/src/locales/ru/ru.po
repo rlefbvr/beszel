@@ -411,6 +411,7 @@ msgid "Average, minimum, and maximum response time"
 msgstr "Среднее, минимальное и максимальное время отклика"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "Сред. за 1 ч"
 
@@ -535,6 +536,8 @@ msgid "Capabilities"
 msgstr "Возможности"
 
 #: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Capacity"
 msgstr "Емкость"
@@ -615,10 +618,6 @@ msgstr "Очистить всё"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Clear matches"
 msgstr "Очистить совпадения"
-
-#: src/components/containers-table/containers-table.tsx
-msgid "Click on a container to view more information."
-msgstr "Нажмите на контейнер для просмотра дополнительной информации."
 
 #: src/components/routes/system/smart-table.tsx
 msgid "Click on a device to view more information."
@@ -778,6 +777,8 @@ msgid "Core"
 msgstr "Ядро"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "CPU"
@@ -791,6 +792,7 @@ msgstr "Ядра CPU"
 msgid "CPU I/O Wait"
 msgstr "Ожидание ввода-вывода CPU (IOWait)"
 
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "CPU Peak"
 msgstr "Пик CPU"
@@ -824,6 +826,8 @@ msgid "Create account"
 msgstr "Создать аккаунт"
 
 #. Context: date created
+#. Context: date created
+#: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 msgid "Created"
 msgstr "Создано"
@@ -864,6 +868,8 @@ msgid "Current state"
 msgstr "Текущее состояние"
 
 #. Power Cycles
+#. Power Cycles
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 msgid "Cycles"
 msgstr "Циклы"
@@ -989,19 +995,25 @@ msgstr "Не в сети"
 msgid "Down ({downSystemsLength})"
 msgstr "Не в сети ({downSystemsLength})"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Down: {downCount}"
+msgstr "Остановлены: {downCount}"
+
 #: src/components/routes/system/network-sheet.tsx
 msgid "Download"
 msgstr "Загрузка"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 msgid "Downtime"
 msgstr "Время простоя"
 
-#: src/components/systems-table/systems-table.tsx
+#: src/components/table-layout.tsx
 msgid "Drag to resize, double click to reset"
 msgstr "Перетащите для изменения размера, двойной щелчок — сброс"
 
+#: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 msgid "Duration"
 msgstr "Длительность"
@@ -1218,6 +1230,7 @@ msgstr "Забыли пароль?"
 
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 msgctxt "Free space"
 msgid "Free"
 msgstr "Свободно"
@@ -1291,6 +1304,8 @@ msgid "Groups organize the systems on the home page for all users. Deleting a gr
 msgstr "Группы упорядочивают системы на главной странице для всех пользователей. При удалении группы её системы остаются без группы."
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Health"
 msgstr "Здоровье"
@@ -1374,6 +1389,7 @@ msgid "If you've lost the password to your admin account, you may reset it using
 msgstr "Если вы потеряли пароль от учетной записи администратора, вы можете сбросить его, используя следующую команду."
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
 msgctxt "Docker image"
 msgid "Image"
 msgstr "Образ"
@@ -1400,6 +1416,7 @@ msgstr "Неактивно"
 msgid "Initiated by"
 msgstr "Инициатор"
 
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Interval"
@@ -1530,6 +1547,7 @@ msgid "Loss"
 msgstr "Потери"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Loss 1h"
 msgstr "Потери 1 h"
 
@@ -1559,11 +1577,14 @@ msgid "Max 1 min"
 msgstr "Макс 1 мин"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Max 1h"
 msgstr "Макс. за 1 ч"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -1574,6 +1595,7 @@ msgstr "Память"
 msgid "Memory limit"
 msgstr "Лимит памяти"
 
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Memory Peak"
@@ -1593,10 +1615,13 @@ msgid "Migration"
 msgstr "Миграция"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Min 1h"
 msgstr "Мин. за 1 ч"
 
 #. Device model
+#. Device model
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 msgid "Model"
 msgstr "Модель"
@@ -1632,6 +1657,7 @@ msgstr "Имя службы, создаваемой при установке а
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
 msgstr "Имена через запятую. Используйте * как подстановочный знак. Цель, о которой больше не сообщается, считается остановленной."
 
+#: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Net"
@@ -1755,6 +1781,7 @@ msgstr "Нет"
 msgid "Not reported"
 msgstr "Нет данных"
 
+#: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Notification"
@@ -1962,11 +1989,14 @@ msgid "Port"
 msgstr "Порт"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
 msgctxt "Container ports"
 msgid "Ports"
 msgstr "Порты"
 
 #. Power On Time
+#. Power On Time
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 msgid "Power On"
 msgstr "Включение питания"
@@ -1993,6 +2023,7 @@ msgid "Production, Customers, Lab…"
 msgstr "Продакшн, Клиенты, Лаборатория…"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Protocol"
 msgstr "Протокол"
@@ -2060,6 +2091,7 @@ msgstr "Чтение"
 msgid "Read errors"
 msgstr "Ошибки чтения"
 
+#: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2138,16 +2170,18 @@ msgstr "Требует"
 msgid "Reset Password"
 msgstr "Сбросить пароль"
 
-#: src/components/systems-table/systems-table.tsx
+#: src/components/table-layout.tsx
 msgid "Resize column"
 msgstr "Изменить ширину столбца"
 
+#: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Resolved"
 msgstr "Завершено"
 
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
 msgid "Response"
@@ -2385,6 +2419,7 @@ msgstr "Показывать по группам"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 msgid "Shutdown"
 msgstr "Выключение"
 
@@ -2400,6 +2435,7 @@ msgstr "Настройки SMTP"
 msgid "Sort By"
 msgstr "Сортировать по"
 
+#: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Source"
@@ -2424,9 +2460,12 @@ msgid "Started manually"
 msgstr "Запущен вручную"
 
 #. Context: alert state (active or resolved)
+#. Context: alert state (active or resolved)
+#: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "State"
@@ -2456,6 +2495,8 @@ msgid "States"
 msgstr "Состояния"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -2467,6 +2508,7 @@ msgstr "Статус"
 msgid "Stopped"
 msgstr "Остановлен"
 
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "Sub State"
 msgstr "Подсостояние"
@@ -2491,10 +2533,14 @@ msgstr "Переключить тему"
 
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts-history-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2503,6 +2549,8 @@ msgstr "Переключить тему"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -2572,6 +2620,7 @@ msgid "Tasks"
 msgstr "Задачи"
 
 #. Temperature label in systems table
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Temp"
@@ -2719,6 +2768,10 @@ msgstr "Общее время, потраченное на чтение/запи
 msgid "Total: {0}"
 msgstr "Всего: {0}"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Total: {totalCount}"
+msgstr "Всего: {totalCount}"
+
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
 msgstr "Сработало"
@@ -2802,9 +2855,12 @@ msgstr "Срабатывает, когда нагрузка на любой из
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Type"
 msgstr "Тип"
@@ -2860,6 +2916,10 @@ msgstr "В сети ({upSystemsLength})"
 msgid "Up to date"
 msgstr "Актуален"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Up: {upCount}"
+msgstr "Работают: {upCount}"
+
 #: src/components/agent-update-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -2884,9 +2944,14 @@ msgid "Update failed"
 msgstr "Ошибка обновления"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "Updated"
 msgstr "Обновлено"
@@ -2934,6 +2999,7 @@ msgstr "Используйте только буквы, цифры и _ . @ -."
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 msgid "Used"
 msgstr "Использовано"
 
@@ -2948,6 +3014,7 @@ msgid "Utilization"
 msgstr "Использование"
 
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts-history-columns.tsx
 msgid "Value"
 msgstr "Значение"
 
@@ -2956,6 +3023,7 @@ msgid "Version"
 msgstr "Версия"
 
 #: src/components/systems-table/systems-table.tsx
+#: src/components/table-layout.tsx
 msgid "View"
 msgstr "Вид"
 
@@ -2970,6 +3038,7 @@ msgid "View your 200 most recent alerts."
 msgstr "Просмотреть 200 последних оповещений."
 
 #: src/components/systems-table/systems-table.tsx
+#: src/components/table-layout.tsx
 msgid "Visible Fields"
 msgstr "Видимые столбцы"
 

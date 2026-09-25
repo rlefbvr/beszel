@@ -25,6 +25,14 @@ import {
 import { type ReactNode, useCallback, useEffect, useMemo, useState } from "react"
 import { $router, Link } from "@/components/router"
 import { SystemsSelect } from "@/components/systems-select"
+import {
+	cellWidthStyle,
+	ColumnResizer,
+	ColumnsViewMenu,
+	headerWidthStyle,
+	resizedAttr,
+	useTableLayout,
+} from "@/components/table-layout"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle } from "@/components/ui/card"
@@ -67,11 +75,13 @@ function rebootColumns(userId: string): ColumnDef<SystemRebootRecord>[] {
 		{
 			// only shown on the page listing the reboots of all systems
 			id: "system",
+			meta: { name: () => t`System` },
 			header: ({ column }) => <HeaderButton column={column} name={t`System`} Icon={ServerIcon} />,
 			cell: ({ row }) => <SystemName id={row.original.system} />,
 		},
 		{
 			id: "shutdown",
+			meta: { name: () => t`Shutdown` },
 			enableSorting: true,
 			header: ({ column }) => <HeaderButton column={column} name={t`Shutdown`} Icon={PowerOffIcon} />,
 			cell: ({ row }) =>
@@ -79,35 +89,41 @@ function rebootColumns(userId: string): ColumnDef<SystemRebootRecord>[] {
 		},
 		{
 			id: "boot",
+			meta: { name: () => t`Boot` },
 			enableSorting: true,
 			header: ({ column }) => <HeaderButton column={column} name={t`Boot`} Icon={PowerIcon} />,
 			cell: ({ row }) => formatShortDate(row.original.boot),
 		},
 		{
 			id: "downtime",
+			meta: { name: () => t`Downtime` },
 			header: ({ column }) => <HeaderButton column={column} name={t`Downtime`} Icon={HourglassIcon} />,
 			cell: ({ row }) =>
 				formatDuration(row.original.shutdown, row.original.boot) || <span className="text-muted-foreground">-</span>,
 		},
 		{
 			id: "type",
+			meta: { name: () => t`Type` },
 			enableSorting: true,
 			header: ({ column }) => <HeaderButton column={column} name={t`Type`} Icon={ActivityIcon} />,
 			cell: ({ row }) => <RebootType record={row.original} />,
 		},
 		{
 			id: "reason",
+			meta: { name: () => t`Reason`, grow: true },
 			enableSorting: true,
 			header: ({ column }) => <HeaderButton column={column} name={t`Reason`} Icon={MessageSquareTextIcon} />,
 			cell: ({ row }) => <RebootReason record={row.original} />,
 		},
 		{
 			id: "notification",
+			meta: { name: () => t`Notification` },
 			header: ({ column }) => <HeaderButton column={column} name={t`Notification`} Icon={BellIcon} />,
 			cell: ({ row }) => <OutageAlertBadge alert={row.original.alerts?.[userId]} />,
 		},
 		{
 			id: "source",
+			meta: { name: () => t`Source` },
 			enableSorting: true,
 			header: ({ column }) => <HeaderButton column={column} name={t`Source`} Icon={DatabaseIcon} />,
 			cell: ({ row }) => <span className="text-muted-foreground">{sourceLabels[row.original.source]?.()}</span>,
@@ -131,6 +147,9 @@ export default function RebootsTable({ systemId }: { systemId?: string }) {
 	const [loading, setLoading] = useState(true)
 	const [activeRecord, setActiveRecord] = useState<SystemRebootRecord | null>(null)
 	const [sheetOpen, setSheetOpen] = useState(false)
+	const { widths, onColumnResize, columnVisibility, onColumnVisibilityChange } = useTableLayout(
+		systemId ? "system-reboots" : "reboots"
+	)
 
 	const systems = systemId ? [systemId] : systemsFilter
 	const systemsKey = systems.join(",")
@@ -227,7 +246,8 @@ export default function RebootsTable({ systemId }: { systemId?: string }) {
 		manualSorting: true,
 		enableSortingRemoval: false,
 		onSortingChange: setSorting,
-		state: { sorting },
+		onColumnVisibilityChange,
+		state: { sorting, columnVisibility },
 		defaultColumn: {
 			enableSorting: false,
 		},
@@ -283,6 +303,7 @@ export default function RebootsTable({ systemId }: { systemId?: string }) {
 							/>
 						</div>
 						{!systemId && <SystemsSelect value={systemsFilter} onChange={setSystemsFilter} className="min-w-52 max-w-80" />}
+						<ColumnsViewMenu table={table} />
 						{hasFilters && (
 							<Button
 								variant="ghost"
@@ -305,8 +326,13 @@ export default function RebootsTable({ systemId }: { systemId?: string }) {
 						{table.getHeaderGroups().map((headerGroup) => (
 							<tr key={headerGroup.id}>
 								{headerGroup.headers.map((header) => (
-									<TableHead className="px-2" key={header.id}>
+									<TableHead
+										className="px-2 relative"
+										key={header.id}
+										style={headerWidthStyle(widths[header.column.id])}
+									>
 										{flexRender(header.column.columnDef.header, header.getContext())}
+										<ColumnResizer columnId={header.column.id} onColumnResize={onColumnResize} />
 									</TableHead>
 								))}
 							</tr>
@@ -317,7 +343,12 @@ export default function RebootsTable({ systemId }: { systemId?: string }) {
 							table.getRowModel().rows.map((row) => (
 								<TableRow key={row.id} className="cursor-pointer" onClick={() => openSheet(row.original)}>
 									{row.getVisibleCells().map((cell) => (
-										<TableCell key={cell.id} className="py-3 ps-4.5 tabular-nums">
+										<TableCell
+											{...resizedAttr(widths[cell.column.id], cell.column.columnDef.meta?.grow)}
+											key={cell.id}
+											className="py-3 ps-4.5 tabular-nums"
+											style={cellWidthStyle(widths[cell.column.id], cell.column.columnDef.meta?.grow)}
+										>
 											{flexRender(cell.column.columnDef.cell, cell.getContext())}
 										</TableCell>
 									))}
@@ -325,7 +356,7 @@ export default function RebootsTable({ systemId }: { systemId?: string }) {
 							))
 						) : (
 							<TableRow>
-								<TableCell colSpan={columns.length} className="h-37 text-center pointer-events-none">
+								<TableCell colSpan={table.getVisibleLeafColumns().length} className="h-37 text-center pointer-events-none">
 									{loading ? (
 										<LoaderCircleIcon className="size-4 animate-spin mx-auto text-muted-foreground" />
 									) : (
@@ -460,7 +491,7 @@ function RebootSheet({
 function RebootReason({ record }: { record: SystemRebootRecord }) {
 	const title = [record.reason, record.user].filter(Boolean).join(" · ")
 	return (
-		<span className="block max-w-80 truncate" title={title || undefined}>
+		<span className="block truncate" title={title || undefined}>
 			{record.reason || <span className="text-muted-foreground">{t`(Unknown)`}</span>}
 			{record.user && <span className="text-muted-foreground"> · {record.user}</span>}
 		</span>

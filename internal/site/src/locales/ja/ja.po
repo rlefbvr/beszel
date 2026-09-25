@@ -411,6 +411,7 @@ msgid "Average, minimum, and maximum response time"
 msgstr "応答時間の平均、最小、最大"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "1時間平均"
 
@@ -535,6 +536,8 @@ msgid "Capabilities"
 msgstr "機能"
 
 #: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Capacity"
 msgstr "容量"
@@ -615,10 +618,6 @@ msgstr "すべてクリア"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Clear matches"
 msgstr "一致をクリア"
-
-#: src/components/containers-table/containers-table.tsx
-msgid "Click on a container to view more information."
-msgstr "詳細情報を表示するにはコンテナをクリックしてください。"
 
 #: src/components/routes/system/smart-table.tsx
 msgid "Click on a device to view more information."
@@ -778,6 +777,8 @@ msgid "Core"
 msgstr "コア"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "CPU"
@@ -791,6 +792,7 @@ msgstr "CPU コア"
 msgid "CPU I/O Wait"
 msgstr "CPU I/O 待機時間 (IOWait)"
 
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "CPU Peak"
 msgstr "CPUピーク"
@@ -824,6 +826,8 @@ msgid "Create account"
 msgstr "アカウントを作成"
 
 #. Context: date created
+#. Context: date created
+#: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 msgid "Created"
 msgstr "作成日"
@@ -864,6 +868,8 @@ msgid "Current state"
 msgstr "現在の状態"
 
 #. Power Cycles
+#. Power Cycles
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 msgid "Cycles"
 msgstr "サイクル"
@@ -989,19 +995,25 @@ msgstr "停止"
 msgid "Down ({downSystemsLength})"
 msgstr "停止 ({downSystemsLength})"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Down: {downCount}"
+msgstr "停止: {downCount}"
+
 #: src/components/routes/system/network-sheet.tsx
 msgid "Download"
 msgstr "ダウンロード"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 msgid "Downtime"
 msgstr "停止時間"
 
-#: src/components/systems-table/systems-table.tsx
+#: src/components/table-layout.tsx
 msgid "Drag to resize, double click to reset"
 msgstr "ドラッグでサイズ変更、ダブルクリックでリセット"
 
+#: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 msgid "Duration"
 msgstr "期間"
@@ -1218,6 +1230,7 @@ msgstr "パスワードをお忘れですか？"
 
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 msgctxt "Free space"
 msgid "Free"
 msgstr "空き"
@@ -1291,6 +1304,8 @@ msgid "Groups organize the systems on the home page for all users. Deleting a gr
 msgstr "グループはすべてのユーザーのホームページでシステムを整理します。グループを削除しても、そのシステムはグループなしで残ります。"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Health"
 msgstr "ヘルス"
@@ -1374,6 +1389,7 @@ msgid "If you've lost the password to your admin account, you may reset it using
 msgstr "管理者アカウントのパスワードを忘れた場合は、次のコマンドを使用してリセットできます。"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
 msgctxt "Docker image"
 msgid "Image"
 msgstr "イメージ"
@@ -1400,6 +1416,7 @@ msgstr "非アクティブ"
 msgid "Initiated by"
 msgstr "実行者"
 
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Interval"
@@ -1530,6 +1547,7 @@ msgid "Loss"
 msgstr "パケットロス"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Loss 1h"
 msgstr "1時間のパケットロス"
 
@@ -1559,11 +1577,14 @@ msgid "Max 1 min"
 msgstr "最大1分"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Max 1h"
 msgstr "1時間最大"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -1574,6 +1595,7 @@ msgstr "メモリ"
 msgid "Memory limit"
 msgstr "メモリ制限"
 
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Memory Peak"
@@ -1593,10 +1615,13 @@ msgid "Migration"
 msgstr "移行"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Min 1h"
 msgstr "1時間最小"
 
 #. Device model
+#. Device model
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 msgid "Model"
 msgstr "モデル"
@@ -1632,6 +1657,7 @@ msgstr "Linux または Windows のコマンドでエージェントをインス
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
 msgstr "名前はカンマで区切ります。* をワイルドカードとして使用できます。報告されなくなった対象は停止中とみなされます。"
 
+#: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Net"
@@ -1755,6 +1781,7 @@ msgstr "なし"
 msgid "Not reported"
 msgstr "未報告"
 
+#: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Notification"
@@ -1962,11 +1989,14 @@ msgid "Port"
 msgstr "ポート"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
 msgctxt "Container ports"
 msgid "Ports"
 msgstr "ポート"
 
 #. Power On Time
+#. Power On Time
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 msgid "Power On"
 msgstr "電源オン"
@@ -1993,6 +2023,7 @@ msgid "Production, Customers, Lab…"
 msgstr "本番、顧客、ラボ…"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Protocol"
 msgstr "プロトコル"
@@ -2060,6 +2091,7 @@ msgstr "読み取り"
 msgid "Read errors"
 msgstr "読み取りエラー"
 
+#: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2138,16 +2170,18 @@ msgstr "必要とする"
 msgid "Reset Password"
 msgstr "パスワードをリセット"
 
-#: src/components/systems-table/systems-table.tsx
+#: src/components/table-layout.tsx
 msgid "Resize column"
 msgstr "列幅を変更"
 
+#: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Resolved"
 msgstr "解決済み"
 
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
 msgid "Response"
@@ -2385,6 +2419,7 @@ msgstr "グループ別に表示"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 msgid "Shutdown"
 msgstr "シャットダウン"
 
@@ -2400,6 +2435,7 @@ msgstr "SMTP設定"
 msgid "Sort By"
 msgstr "並び替え基準"
 
+#: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Source"
@@ -2424,9 +2460,12 @@ msgid "Started manually"
 msgstr "手動で起動"
 
 #. Context: alert state (active or resolved)
+#. Context: alert state (active or resolved)
+#: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "State"
@@ -2456,6 +2495,8 @@ msgid "States"
 msgstr "状態"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -2467,6 +2508,7 @@ msgstr "ステータス"
 msgid "Stopped"
 msgstr "停止"
 
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "Sub State"
 msgstr "サブ状態"
@@ -2491,10 +2533,14 @@ msgstr "テーマを切り替え"
 
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts-history-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2503,6 +2549,8 @@ msgstr "テーマを切り替え"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -2572,6 +2620,7 @@ msgid "Tasks"
 msgstr "タスク"
 
 #. Temperature label in systems table
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Temp"
@@ -2719,6 +2768,10 @@ msgstr "読み取り/書き込みに費やした合計時間 (100% を超える�
 msgid "Total: {0}"
 msgstr "合計: {0}"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Total: {totalCount}"
+msgstr "合計: {totalCount}"
+
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
 msgstr "トリガー済み"
@@ -2802,9 +2855,12 @@ msgstr "ディスクの使用量がしきい値を超えたときにトリガー
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Type"
 msgstr "タイプ"
@@ -2860,6 +2916,10 @@ msgstr "正常 ({upSystemsLength})"
 msgid "Up to date"
 msgstr "最新"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Up: {upCount}"
+msgstr "稼働中: {upCount}"
+
 #: src/components/agent-update-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -2884,9 +2944,14 @@ msgid "Update failed"
 msgstr "更新に失敗しました"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "Updated"
 msgstr "更新済み"
@@ -2934,6 +2999,7 @@ msgstr "英字、数字、_ . @ - のみ使用できます。"
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 msgid "Used"
 msgstr "使用中"
 
@@ -2948,6 +3014,7 @@ msgid "Utilization"
 msgstr "利用率"
 
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts-history-columns.tsx
 msgid "Value"
 msgstr "値"
 
@@ -2956,6 +3023,7 @@ msgid "Version"
 msgstr "バージョン"
 
 #: src/components/systems-table/systems-table.tsx
+#: src/components/table-layout.tsx
 msgid "View"
 msgstr "表示"
 
@@ -2970,6 +3038,7 @@ msgid "View your 200 most recent alerts."
 msgstr "直近200件のアラートを表示します。"
 
 #: src/components/systems-table/systems-table.tsx
+#: src/components/table-layout.tsx
 msgid "Visible Fields"
 msgstr "表示列"
 

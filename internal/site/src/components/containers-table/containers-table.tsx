@@ -5,6 +5,15 @@ import { useStore } from "@nanostores/react"
 import { BulkStateAlertsButton, selectionColumn, targetRowId } from "@/components/alerts/bulk-state-alerts"
 import { type ImportantTile, ImportantTargets } from "@/components/important-targets"
 import {
+	cellWidthStyle,
+	type ColumnResizeHandler,
+	ColumnResizer,
+	ColumnsViewMenu,
+	headerWidthStyle,
+	resizedAttr,
+	useTableLayout,
+} from "@/components/table-layout"
+import {
 	type ColumnFiltersState,
 	flexRender,
 	getCoreRowModel,
@@ -15,7 +24,6 @@ import {
 	type SortingState,
 	type Table as TableType,
 	useReactTable,
-	type VisibilityState,
 } from "@tanstack/react-table"
 import { useVirtualizer, type VirtualItem } from "@tanstack/react-virtual"
 import { memo, type RefObject, useCallback, useEffect, useMemo, useRef, useState } from "react"
@@ -24,7 +32,7 @@ import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/compon
 import { isReadOnlyUser, pb } from "@/lib/api"
 import type { ContainerRecord } from "@/types"
 import { containerChartCols } from "@/components/containers-table/containers-table-columns"
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { ContainerHealth, ContainerHealthLabels } from "@/lib/enums"
 import { cn, getHostDisplayValue, useBrowserStorage } from "@/lib/utils"
 import { Sheet, SheetTitle, SheetHeader, SheetContent, SheetDescription } from "../ui/sheet"
@@ -40,6 +48,9 @@ import { getPagePath } from "@nanostores/router"
 
 const syntaxTheme = "github-dark-dimmed"
 
+/** Whether a Docker status describes a running container ("Up 2 hours", not paused) */
+const isContainerUp = (status: string) => /^up\b/i.test(status) && !/paused/i.test(status)
+
 export default function ContainersTable({ systemId }: { systemId?: string }) {
 	const loadTime = Date.now()
 	const [data, setData] = useState<ContainerRecord[] | undefined>(undefined)
@@ -49,20 +60,15 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 		sessionStorage
 	)
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
-	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
-
-	// Hide ports column if no ports are present
-	useEffect(() => {
-		if (data) {
-			const hasPorts = data.some((container) => container.ports)
-			setColumnVisibility((prev) => {
-				if (prev.ports === hasPorts) {
-					return prev
-				}
-				return { ...prev, ports: hasPorts }
-			})
-		}
-	}, [data])
+	const { widths, onColumnResize, columnVisibility, onColumnVisibilityChange } = useTableLayout(
+		systemId ? "system-containers" : "containers"
+	)
+	// the ports column is hidden while no container publishes ports
+	const hasPorts = !!data?.some((container) => container.ports)
+	const visibility = useMemo(
+		() => (hasPorts ? columnVisibility : { ...columnVisibility, ports: false }),
+		[columnVisibility, hasPorts]
+	)
 
 	const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
 	const [globalFilter, setGlobalFilter] = useState("")
@@ -135,7 +141,7 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 		getFilteredRowModel: getFilteredRowModel(),
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
-		onColumnVisibilityChange: setColumnVisibility,
+		onColumnVisibilityChange,
 		onRowSelectionChange: setRowSelection,
 		defaultColumn: {
 			sortUndefined: "last",
@@ -145,7 +151,7 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 		state: {
 			sorting,
 			columnFilters,
-			columnVisibility,
+			columnVisibility: visibility,
 			rowSelection,
 			globalFilter,
 		},
@@ -208,6 +214,11 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 		)
 	}, [stateAlerts, data, systemId, openSheet])
 
+	// running containers, and the others with the important ones no longer reported (stopped)
+	const totalCount = data?.length ?? 0
+	const upCount = data?.filter((container) => isContainerUp(container.status)).length ?? 0
+	const downCount = totalCount - upCount + importantTiles.filter((tile) => !tile.onClick).length
+
 	return (
 		<Card className="@container w-full px-3 py-5 sm:py-6 sm:px-6">
 			<CardHeader className="p-0 mb-3 sm:mb-4">
@@ -216,9 +227,13 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 						<CardTitle className="mb-2">
 							<Trans>All Containers</Trans>
 						</CardTitle>
-						<CardDescription className="flex">
-							<Trans>Click on a container to view more information.</Trans>
-						</CardDescription>
+						<div className="text-sm text-muted-foreground flex items-center flex-wrap">
+							<Trans>Total: {totalCount}</Trans>
+							<Separator orientation="vertical" className="h-4 mx-2 bg-primary/40" />
+							<Trans>Up: {upCount}</Trans>
+							<Separator orientation="vertical" className="h-4 mx-2 bg-primary/40" />
+							<Trans>Down: {downCount}</Trans>
+						</div>
 					</div>
 					<div className="flex gap-2 ms-auto w-full md:w-auto">
 						<div className="relative w-full max-w-full md:w-64">
@@ -241,6 +256,7 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 								</Button>
 							)}
 						</div>
+						<ColumnsViewMenu table={table} />
 						<BulkStateAlertsButton kind="container" items={selectedItems} />
 					</div>
 				</div>
@@ -254,6 +270,8 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 					data={data}
 					openSheet={openSheet}
 					rowSelection={rowSelection}
+					widths={widths}
+					onColumnResize={onColumnResize}
 				/>
 			</div>
 			<ContainerSheet sheetOpen={sheetOpen} setSheetOpen={setSheetOpen} activeContainer={activeContainer} />
@@ -267,6 +285,8 @@ const AllContainersTable = memo(function AllContainersTable({
 	colLength,
 	data,
 	openSheet,
+	widths,
+	onColumnResize,
 }: {
 	table: TableType<ContainerRecord>
 	rows: Row<ContainerRecord>[]
@@ -275,6 +295,8 @@ const AllContainersTable = memo(function AllContainersTable({
 	openSheet: (container: ContainerRecord) => void
 	/** re-renders the rows when the selection changes */
 	rowSelection: RowSelectionState
+	widths: Record<string, number>
+	onColumnResize: ColumnResizeHandler
 }) {
 	// The virtualizer will need a reference to the scrollable container element
 	const scrollRef = useRef<HTMLDivElement>(null)
@@ -302,7 +324,7 @@ const AllContainersTable = memo(function AllContainersTable({
 			{/* add header height to table size */}
 			<div style={{ height: `${virtualizer.getTotalSize() + 48}px`, paddingTop, paddingBottom }}>
 				<table className="text-sm w-full h-full text-nowrap">
-					<ContainersTableHead table={table} />
+					<ContainersTableHead table={table} widths={widths} onColumnResize={onColumnResize} />
 					<TableBody>
 						{rows.length ? (
 							virtualRows.map((virtualRow) => {
@@ -314,6 +336,7 @@ const AllContainersTable = memo(function AllContainersTable({
 										virtualRow={virtualRow}
 										openSheet={openSheet}
 										selected={row.getIsSelected()}
+										widths={widths}
 									/>
 								)
 							})
@@ -533,15 +556,30 @@ function ContainerSheet({
 	)
 }
 
-function ContainersTableHead({ table }: { table: TableType<ContainerRecord> }) {
+function ContainersTableHead({
+	table,
+	widths,
+	onColumnResize,
+}: {
+	table: TableType<ContainerRecord>
+	widths: Record<string, number>
+	onColumnResize: ColumnResizeHandler
+}) {
 	return (
 		<TableHeader className="sticky top-0 z-50 w-full border-b-2">
 			{table.getHeaderGroups().map((headerGroup) => (
 				<tr key={headerGroup.id}>
 					{headerGroup.headers.map((header) => {
 						return (
-							<TableHead className="px-2" key={header.id} style={{ width: header.getSize() }}>
+							<TableHead
+								className="px-2 relative"
+								key={header.id}
+								style={headerWidthStyle(widths[header.column.id]) ?? { width: header.getSize() }}
+							>
 								{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+								{header.column.id !== "select" && (
+									<ColumnResizer columnId={header.column.id} onColumnResize={onColumnResize} />
+								)}
 							</TableHead>
 						)
 					})}
@@ -556,11 +594,13 @@ const ContainerTableRow = memo(function ContainerTableRow({
 	virtualRow,
 	openSheet,
 	selected,
+	widths,
 }: {
 	row: Row<ContainerRecord>
 	virtualRow: VirtualItem
 	openSheet: (container: ContainerRecord) => void
 	selected: boolean
+	widths: Record<string, number>
 }) {
 	return (
 		<TableRow
@@ -570,11 +610,13 @@ const ContainerTableRow = memo(function ContainerTableRow({
 		>
 			{row.getVisibleCells().map((cell) => (
 				<TableCell
+					{...resizedAttr(widths[cell.column.id], cell.column.columnDef.meta?.grow)}
 					key={cell.id}
 					className="py-0 ps-4.5"
 					style={{
 						height: virtualRow.size,
 						width: cell.column.getSize(),
+						...cellWidthStyle(widths[cell.column.id], cell.column.columnDef.meta?.grow),
 					}}
 				>
 					{flexRender(cell.column.columnDef.cell, cell.getContext())}

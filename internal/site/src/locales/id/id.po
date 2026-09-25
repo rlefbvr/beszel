@@ -411,6 +411,7 @@ msgid "Average, minimum, and maximum response time"
 msgstr "Waktu respons rata-rata, minimum, dan maksimum"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "Rata-rata 1 jam"
 
@@ -535,6 +536,8 @@ msgid "Capabilities"
 msgstr "Kapabilitas"
 
 #: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Capacity"
 msgstr "Kapasitas"
@@ -615,10 +618,6 @@ msgstr "Hapus semua"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Clear matches"
 msgstr "Hapus kecocokan"
-
-#: src/components/containers-table/containers-table.tsx
-msgid "Click on a container to view more information."
-msgstr "Klik pada kontainer untuk melihat informasi lebih banyak."
 
 #: src/components/routes/system/smart-table.tsx
 msgid "Click on a device to view more information."
@@ -778,6 +777,8 @@ msgid "Core"
 msgstr "Inti"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "CPU"
@@ -791,6 +792,7 @@ msgstr "Inti CPU"
 msgid "CPU I/O Wait"
 msgstr "Waktu tunggu I/O CPU (IOWait)"
 
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "CPU Peak"
 msgstr "Puncak CPU"
@@ -824,6 +826,8 @@ msgid "Create account"
 msgstr "Buat akun"
 
 #. Context: date created
+#. Context: date created
+#: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 msgid "Created"
 msgstr "Dibuat"
@@ -864,6 +868,8 @@ msgid "Current state"
 msgstr "Status saat ini"
 
 #. Power Cycles
+#. Power Cycles
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 msgid "Cycles"
 msgstr "Siklus"
@@ -989,19 +995,25 @@ msgstr "Mati"
 msgid "Down ({downSystemsLength})"
 msgstr "Mati ({downSystemsLength})"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Down: {downCount}"
+msgstr "Berhenti: {downCount}"
+
 #: src/components/routes/system/network-sheet.tsx
 msgid "Download"
 msgstr "Unduh"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 msgid "Downtime"
 msgstr "Waktu henti"
 
-#: src/components/systems-table/systems-table.tsx
+#: src/components/table-layout.tsx
 msgid "Drag to resize, double click to reset"
 msgstr "Seret untuk mengubah ukuran, klik dua kali untuk mengatur ulang"
 
+#: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 msgid "Duration"
 msgstr "Durasi"
@@ -1218,6 +1230,7 @@ msgstr "Lupa kata sandi?"
 
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 msgctxt "Free space"
 msgid "Free"
 msgstr "Kosong"
@@ -1291,6 +1304,8 @@ msgid "Groups organize the systems on the home page for all users. Deleting a gr
 msgstr "Grup mengatur sistem di beranda untuk semua pengguna. Menghapus grup tetap mempertahankan sistemnya, tanpa grup."
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Health"
 msgstr "Kesehatan"
@@ -1374,6 +1389,7 @@ msgid "If you've lost the password to your admin account, you may reset it using
 msgstr "Jika anda kehilangan kata sandi untuk akun admin anda, anda dapat meresetnya menggunakan perintah berikut."
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
 msgctxt "Docker image"
 msgid "Image"
 msgstr "Gambar"
@@ -1400,6 +1416,7 @@ msgstr "Tidak aktif"
 msgid "Initiated by"
 msgstr "Dimulai oleh"
 
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Interval"
@@ -1530,6 +1547,7 @@ msgid "Loss"
 msgstr "Kehilangan paket"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Loss 1h"
 msgstr "Kehilangan paket 1 jam"
 
@@ -1559,11 +1577,14 @@ msgid "Max 1 min"
 msgstr "Maks 1 mnt"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Max 1h"
 msgstr "Maks. 1 jam"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -1574,6 +1595,7 @@ msgstr "Memori"
 msgid "Memory limit"
 msgstr "Batas memori"
 
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Memory Peak"
@@ -1593,10 +1615,13 @@ msgid "Migration"
 msgstr "Migrasi"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Min 1h"
 msgstr "Min. 1 jam"
 
 #. Device model
+#. Device model
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 msgid "Model"
 msgstr "Model"
@@ -1632,6 +1657,7 @@ msgstr "Nama layanan yang dibuat saat memasang agen dengan perintah Linux atau W
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
 msgstr "Nama dipisahkan dengan koma. Gunakan * sebagai wildcard. Target yang tidak lagi dilaporkan dianggap berhenti."
 
+#: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Net"
@@ -1755,6 +1781,7 @@ msgstr "Tidak ada"
 msgid "Not reported"
 msgstr "Tidak dilaporkan"
 
+#: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Notification"
@@ -1962,11 +1989,14 @@ msgid "Port"
 msgstr "Port"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
 msgctxt "Container ports"
 msgid "Ports"
 msgstr "Port"
 
 #. Power On Time
+#. Power On Time
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 msgid "Power On"
 msgstr "Dihidupkan"
@@ -1993,6 +2023,7 @@ msgid "Production, Customers, Lab…"
 msgstr "Produksi, Pelanggan, Lab…"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Protocol"
 msgstr "Protokol"
@@ -2060,6 +2091,7 @@ msgstr "Baca"
 msgid "Read errors"
 msgstr "Kesalahan baca"
 
+#: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2138,16 +2170,18 @@ msgstr "Memerlukan"
 msgid "Reset Password"
 msgstr "Reset Kata Sandi"
 
-#: src/components/systems-table/systems-table.tsx
+#: src/components/table-layout.tsx
 msgid "Resize column"
 msgstr "Ubah ukuran kolom"
 
+#: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Resolved"
 msgstr "Diselesaikan"
 
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
 msgid "Response"
@@ -2385,6 +2419,7 @@ msgstr "Tampilkan per grup"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 msgid "Shutdown"
 msgstr "Pematian"
 
@@ -2400,6 +2435,7 @@ msgstr "Pengaturan SMTP"
 msgid "Sort By"
 msgstr "Urutkan Berdasarkan"
 
+#: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Source"
@@ -2424,9 +2460,12 @@ msgid "Started manually"
 msgstr "Dimulai secara manual"
 
 #. Context: alert state (active or resolved)
+#. Context: alert state (active or resolved)
+#: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "State"
@@ -2456,6 +2495,8 @@ msgid "States"
 msgstr "Status"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -2467,6 +2508,7 @@ msgstr "Status"
 msgid "Stopped"
 msgstr "Berhenti"
 
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "Sub State"
 msgstr "Sub Status"
@@ -2491,10 +2533,14 @@ msgstr "Ganti tema"
 
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts-history-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2503,6 +2549,8 @@ msgstr "Ganti tema"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -2572,6 +2620,7 @@ msgid "Tasks"
 msgstr "Tugas"
 
 #. Temperature label in systems table
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Temp"
@@ -2719,6 +2768,10 @@ msgstr "Total waktu yang dihabiskan untuk baca/tulis (dapat melebihi 100%)"
 msgid "Total: {0}"
 msgstr "Total: {0}"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Total: {totalCount}"
+msgstr "Total: {totalCount}"
+
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
 msgstr "Terpicu"
@@ -2802,9 +2855,12 @@ msgstr "Dipicu ketika penggunaan disk apa pun melebihi ambang batas"
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Type"
 msgstr "Tipe"
@@ -2860,6 +2916,10 @@ msgstr "Nyala selama ({upSystemsLength})"
 msgid "Up to date"
 msgstr "Terbaru"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Up: {upCount}"
+msgstr "Berjalan: {upCount}"
+
 #: src/components/agent-update-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -2884,9 +2944,14 @@ msgid "Update failed"
 msgstr "Pembaruan gagal"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "Updated"
 msgstr "Diperbarui"
@@ -2934,6 +2999,7 @@ msgstr "Gunakan hanya huruf, angka, dan _ . @ -."
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 msgid "Used"
 msgstr "Digunakan"
 
@@ -2948,6 +3014,7 @@ msgid "Utilization"
 msgstr "Utilisasi"
 
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts-history-columns.tsx
 msgid "Value"
 msgstr "Nilai"
 
@@ -2956,6 +3023,7 @@ msgid "Version"
 msgstr "Versi"
 
 #: src/components/systems-table/systems-table.tsx
+#: src/components/table-layout.tsx
 msgid "View"
 msgstr "Lihat"
 
@@ -2970,6 +3038,7 @@ msgid "View your 200 most recent alerts."
 msgstr "Lihat 200 peringatan terbaru anda."
 
 #: src/components/systems-table/systems-table.tsx
+#: src/components/table-layout.tsx
 msgid "Visible Fields"
 msgstr "Metrik yang Terlihat"
 

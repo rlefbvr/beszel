@@ -4,6 +4,14 @@ import { Button } from "@/components/ui/button"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
+import {
+	cellWidthStyle,
+	ColumnResizer,
+	ColumnsViewMenu,
+	headerWidthStyle,
+	resizedAttr,
+	useTableLayout,
+} from "@/components/table-layout"
 import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
@@ -92,12 +100,14 @@ function poolType(pool: ZfsPoolRecord): string {
 const columns: ColumnDef<ZfsPoolRecord>[] = [
 	{
 		id: "name",
+		meta: { name: () => "Pool" },
 		accessorFn: (pool) => pool.display_name || pool.name,
 		header: ({ column }) => <HeaderButton column={column} name={`Pool`} Icon={DatabaseIcon} />,
 		cell: ({ getValue }) => <span className="font-medium ms-1.5">{getValue() as string}</span>,
 	},
 	{
 		id: "type",
+		meta: { name: () => t`Type` },
 		accessorFn: poolType,
 		header: ({ column }) => <HeaderButton column={column} name={t`Type`} Icon={FolderTreeIcon} />,
 		cell: ({ getValue }) => {
@@ -111,6 +121,7 @@ const columns: ColumnDef<ZfsPoolRecord>[] = [
 	},
 	{
 		accessorKey: "health",
+		meta: { name: () => t`Health` },
 		sortingFn: (a, b) => a.original.health.localeCompare(b.original.health),
 		header: ({ column }) => <HeaderButton column={column} name={t`Health`} Icon={ActivityIcon} />,
 		cell: ({ getValue }) => {
@@ -120,6 +131,7 @@ const columns: ColumnDef<ZfsPoolRecord>[] = [
 	},
 	{
 		id: "size",
+		meta: { name: () => t`Capacity` },
 		accessorFn: (record) => record.size,
 		invertSorting: true,
 		header: ({ column }) => <HeaderButton column={column} name={t`Capacity`} Icon={BinaryIcon} />,
@@ -127,6 +139,7 @@ const columns: ColumnDef<ZfsPoolRecord>[] = [
 	},
 	{
 		id: "used",
+		meta: { name: () => t`Used` },
 		accessorFn: (record) => record.alloc,
 		invertSorting: true,
 		header: ({ column }) => <HeaderButton column={column} name={t`Used`} Icon={HardDriveDownloadIcon} />,
@@ -134,6 +147,7 @@ const columns: ColumnDef<ZfsPoolRecord>[] = [
 	},
 	{
 		id: "free",
+		meta: { name: () => t({ message: `Free`, context: "Free space" }) },
 		accessorFn: (record) => record.free,
 		invertSorting: true,
 		header: ({ column }) => <HeaderButton column={column} name={t({ message: `Free`, context: "Free space" })} Icon={HardDriveUploadIcon} />,
@@ -141,6 +155,7 @@ const columns: ColumnDef<ZfsPoolRecord>[] = [
 	},
 	{
 		id: "scrub",
+		meta: { name: () => "Scrub" },
 		accessorFn: (record) => record.scrub?.state ?? "",
 		header: ({ column }) => <HeaderButton column={column} name={`Scrub`} Icon={RotateCwIcon} />,
 		cell: ({ row }) => {
@@ -156,6 +171,7 @@ const columns: ColumnDef<ZfsPoolRecord>[] = [
 	},
 	{
 		id: "updated",
+		meta: { name: () => t`Updated` },
 		invertSorting: true,
 		accessorFn: (record) => record.details_updated || record.updated,
 		header: ({ column }) => <HeaderButton column={column} name={t`Updated`} Icon={ClockIcon} />,
@@ -581,14 +597,19 @@ export default function ZfsTable({ systemId }: { systemId?: string }) {
 		return isReadOnlyUser() ? columns : [...columns, actionColumn]
 	}, [actionColumn])
 
+	const { widths, onColumnResize, columnVisibility, onColumnVisibilityChange } = useTableLayout(
+		systemId ? "system-pools" : "pools"
+	)
+
 	const table = useReactTable({
 		data: zfsPools || ([] as ZfsPoolRecord[]),
 		columns: tableColumns,
+		onColumnVisibilityChange,
 		initialState: { sorting: [{ id: "name", desc: false }] },
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
-		state: { globalFilter },
+		state: { globalFilter, columnVisibility },
 		onGlobalFilterChange: setGlobalFilter,
 		globalFilterFn: (row, _columnId, filterValue) => {
 			const pool = row.original
@@ -622,25 +643,28 @@ export default function ZfsTable({ systemId }: { systemId?: string }) {
 								<Trans>Click on a pool to view vdev and dataset details.</Trans>
 							</CardDescription>
 						</div>
-						<div className="relative ms-auto w-full max-w-full md:w-64">
-							<Input
-								placeholder={t`Filter...`}
-								value={globalFilter}
-								onChange={(event) => setGlobalFilter(event.target.value)}
-								className="px-4 w-full max-w-full md:w-64"
-							/>
-							{globalFilter && (
-								<Button
-									type="button"
-									variant="ghost"
-									size="icon"
-									aria-label={t`Clear`}
-									className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 text-muted-foreground"
-									onClick={() => setGlobalFilter("")}
-								>
-									<XIcon className="h-4 w-4" />
-								</Button>
-							)}
+						<div className="flex gap-2 ms-auto w-full md:w-auto">
+							<div className="relative w-full max-w-full md:w-64">
+								<Input
+									placeholder={t`Filter...`}
+									value={globalFilter}
+									onChange={(event) => setGlobalFilter(event.target.value)}
+									className="px-4 w-full max-w-full md:w-64"
+								/>
+								{globalFilter && (
+									<Button
+										type="button"
+										variant="ghost"
+										size="icon"
+										aria-label={t`Clear`}
+										className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 text-muted-foreground"
+										onClick={() => setGlobalFilter("")}
+									>
+										<XIcon className="h-4 w-4" />
+									</Button>
+								)}
+							</div>
+							<ColumnsViewMenu table={table} />
 						</div>
 					</div>
 				</CardHeader>
@@ -650,8 +674,15 @@ export default function ZfsTable({ systemId }: { systemId?: string }) {
 							{table.getHeaderGroups().map((headerGroup) => (
 								<TableRow key={headerGroup.id}>
 									{headerGroup.headers.map((header) => (
-										<TableHead key={header.id} className="px-2">
+										<TableHead
+											key={header.id}
+											className="px-2 relative"
+											style={headerWidthStyle(widths[header.column.id])}
+										>
 											{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+											{header.column.id !== "actions" && (
+												<ColumnResizer columnId={header.column.id} onColumnResize={onColumnResize} />
+											)}
 										</TableHead>
 									))}
 								</TableRow>
@@ -666,7 +697,13 @@ export default function ZfsTable({ systemId }: { systemId?: string }) {
 									onClick={() => openSheet(row.original)}
 								>
 									{row.getVisibleCells().map((cell) => (
-										<TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+										<TableCell
+											key={cell.id}
+											style={cellWidthStyle(widths[cell.column.id], cell.column.columnDef.meta?.grow)}
+											{...resizedAttr(widths[cell.column.id], cell.column.columnDef.meta?.grow)}
+										>
+											{flexRender(cell.column.columnDef.cell, cell.getContext())}
+										</TableCell>
 									))}
 								</TableRow>
 							))}

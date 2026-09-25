@@ -189,3 +189,13 @@
 .recharts-yAxis {
 	@apply tabular-nums;
 }
+
+/* resized table columns: the content takes the width of the column, truncated only when it doesn't fit */
+td[data-resized] [class*="max-w-"],
+td[data-resized] .truncate {
+	max-width: 100%;
+}
+td[data-resized] .truncate:not(.absolute),
+td[data-resized] > [class*="w-"] {
+	width: auto;
+}

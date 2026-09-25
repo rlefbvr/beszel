@@ -411,6 +411,7 @@ msgid "Average, minimum, and maximum response time"
 msgstr "Genomsnittlig, lägsta och högsta svarstid"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "Gen. 1 tim"
 
@@ -535,6 +536,8 @@ msgid "Capabilities"
 msgstr "Förmågor"
 
 #: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Capacity"
 msgstr "Kapacitet"
@@ -615,10 +618,6 @@ msgstr "Rensa alla"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Clear matches"
 msgstr "Rensa matchningar"
-
-#: src/components/containers-table/containers-table.tsx
-msgid "Click on a container to view more information."
-msgstr "Klicka på en behållare för att visa mer information."
 
 #: src/components/routes/system/smart-table.tsx
 msgid "Click on a device to view more information."
@@ -778,6 +777,8 @@ msgid "Core"
 msgstr "Kärna"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "CPU"
@@ -791,6 +792,7 @@ msgstr "CPU-kärnor"
 msgid "CPU I/O Wait"
 msgstr "CPU I/O-väntetid (IOWait)"
 
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "CPU Peak"
 msgstr "CPU-topp"
@@ -824,6 +826,8 @@ msgid "Create account"
 msgstr "Skapa konto"
 
 #. Context: date created
+#. Context: date created
+#: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 msgid "Created"
 msgstr "Skapad"
@@ -864,6 +868,8 @@ msgid "Current state"
 msgstr "Aktuellt tillstånd"
 
 #. Power Cycles
+#. Power Cycles
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 msgid "Cycles"
 msgstr "Cykler"
@@ -989,19 +995,25 @@ msgstr "Nere"
 msgid "Down ({downSystemsLength})"
 msgstr "Nere ({downSystemsLength})"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Down: {downCount}"
+msgstr "Stoppade: {downCount}"
+
 #: src/components/routes/system/network-sheet.tsx
 msgid "Download"
 msgstr "Ladda ner"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 msgid "Downtime"
 msgstr "Stilleståndstid"
 
-#: src/components/systems-table/systems-table.tsx
+#: src/components/table-layout.tsx
 msgid "Drag to resize, double click to reset"
 msgstr "Dra för att ändra storlek, dubbelklicka för att återställa"
 
+#: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 msgid "Duration"
 msgstr "Varaktighet"
@@ -1218,6 +1230,7 @@ msgstr "Glömt lösenordet?"
 
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 msgctxt "Free space"
 msgid "Free"
 msgstr "Ledigt"
@@ -1291,6 +1304,8 @@ msgid "Groups organize the systems on the home page for all users. Deleting a gr
 msgstr "Grupper ordnar systemen på startsidan för alla användare. Att ta bort en grupp behåller dess system, utan grupp."
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Health"
 msgstr "Hälsa"
@@ -1374,6 +1389,7 @@ msgid "If you've lost the password to your admin account, you may reset it using
 msgstr "Om du har glömt lösenordet till ditt administratörskonto kan du återställa det med följande kommando."
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
 msgctxt "Docker image"
 msgid "Image"
 msgstr "Avbild"
@@ -1400,6 +1416,7 @@ msgstr "Inaktiv"
 msgid "Initiated by"
 msgstr "Initierad av"
 
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Interval"
@@ -1530,6 +1547,7 @@ msgid "Loss"
 msgstr "Förlust"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Loss 1h"
 msgstr "Förlust 1 h"
 
@@ -1559,11 +1577,14 @@ msgid "Max 1 min"
 msgstr "Max 1 min"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Max 1h"
 msgstr "Max. 1 tim"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -1574,6 +1595,7 @@ msgstr "Minne"
 msgid "Memory limit"
 msgstr "Minnesgräns"
 
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Memory Peak"
@@ -1593,10 +1615,13 @@ msgid "Migration"
 msgstr "Migrering"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Min 1h"
 msgstr "Min. 1 tim"
 
 #. Device model
+#. Device model
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 msgid "Model"
 msgstr "Modell"
@@ -1632,6 +1657,7 @@ msgstr "Namnet på tjänsten som skapas när en agent installeras med Linux- ell
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
 msgstr "Namn separerade med kommatecken. Använd * som jokertecken. Ett mål som inte längre rapporteras räknas som stoppat."
 
+#: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Net"
@@ -1755,6 +1781,7 @@ msgstr "Ingen"
 msgid "Not reported"
 msgstr "Inte rapporterad"
 
+#: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Notification"
@@ -1962,11 +1989,14 @@ msgid "Port"
 msgstr "Port"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
 msgctxt "Container ports"
 msgid "Ports"
 msgstr "Portar"
 
 #. Power On Time
+#. Power On Time
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 msgid "Power On"
 msgstr "Påslagen"
@@ -1993,6 +2023,7 @@ msgid "Production, Customers, Lab…"
 msgstr "Produktion, Kunder, Labb…"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Protocol"
 msgstr "Protokoll"
@@ -2060,6 +2091,7 @@ msgstr "Läs"
 msgid "Read errors"
 msgstr "Läsfel"
 
+#: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2138,16 +2170,18 @@ msgstr "Kräver"
 msgid "Reset Password"
 msgstr "Återställ lösenord"
 
-#: src/components/systems-table/systems-table.tsx
+#: src/components/table-layout.tsx
 msgid "Resize column"
 msgstr "Ändra kolumnbredd"
 
+#: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Resolved"
 msgstr "Löst"
 
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
 msgid "Response"
@@ -2385,6 +2419,7 @@ msgstr "Visa per grupp"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 msgid "Shutdown"
 msgstr "Avstängning"
 
@@ -2400,6 +2435,7 @@ msgstr "SMTP-inställningar"
 msgid "Sort By"
 msgstr "Sortera efter"
 
+#: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 msgid "Source"
@@ -2424,9 +2460,12 @@ msgid "Started manually"
 msgstr "Startad manuellt"
 
 #. Context: alert state (active or resolved)
+#. Context: alert state (active or resolved)
+#: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "State"
@@ -2456,6 +2495,8 @@ msgid "States"
 msgstr "Tillstånd"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -2467,6 +2508,7 @@ msgstr "Status"
 msgid "Stopped"
 msgstr "Stoppad"
 
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "Sub State"
 msgstr "Deltillstånd"
@@ -2491,10 +2533,14 @@ msgstr "Byt tema"
 
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts-history-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2503,6 +2549,8 @@ msgstr "Byt tema"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -2572,6 +2620,7 @@ msgid "Tasks"
 msgstr "Uppgifter"
 
 #. Temperature label in systems table
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Temp"
@@ -2719,6 +2768,10 @@ msgstr "Total tid för läsning/skrivning (kan överstiga 100 %)"
 msgid "Total: {0}"
 msgstr "Totalt: {0}"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Total: {totalCount}"
+msgstr "Totalt: {totalCount}"
+
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
 msgstr "Utlöst"
@@ -2802,9 +2855,12 @@ msgstr "Utlöses när användningen av någon disk överskrider ett tröskelvär
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Type"
 msgstr "Typ"
@@ -2860,6 +2916,10 @@ msgstr "Upp ({upSystemsLength})"
 msgid "Up to date"
 msgstr "Uppdaterad"
 
+#: src/components/containers-table/containers-table.tsx
+msgid "Up: {upCount}"
+msgstr "Körs: {upCount}"
+
 #: src/components/agent-update-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -2884,9 +2944,14 @@ msgid "Update failed"
 msgstr "Uppdateringen misslyckades"
 
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/containers-table/containers-table-columns.tsx
+#: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
+#: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 msgid "Updated"
 msgstr "Uppdaterad"
@@ -2934,6 +2999,7 @@ msgstr "Använd endast bokstäver, siffror och _ . @ -."
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/routes/system/storage-pools-table.tsx
 msgid "Used"
 msgstr "Använt"
 
@@ -2948,6 +3014,7 @@ msgid "Utilization"
 msgstr "Användning"
 
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts-history-columns.tsx
 msgid "Value"
 msgstr "Värde"
 
@@ -2956,6 +3023,7 @@ msgid "Version"
 msgstr "Version"
 
 #: src/components/systems-table/systems-table.tsx
+#: src/components/table-layout.tsx
 msgid "View"
 msgstr "Visa"
 
@@ -2970,6 +3038,7 @@ msgid "View your 200 most recent alerts."
 msgstr "Visa dina 200 senaste larm."
 
 #: src/components/systems-table/systems-table.tsx
+#: src/components/table-layout.tsx
 msgid "Visible Fields"
 msgstr "Synliga fält"
 

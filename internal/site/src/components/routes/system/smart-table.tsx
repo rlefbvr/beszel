@@ -34,6 +34,15 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/ca
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { Input } from "@/components/ui/input"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import {
+	cellWidthStyle,
+	type ColumnResizeHandler,
+	ColumnResizer,
+	ColumnsViewMenu,
+	headerWidthStyle,
+	resizedAttr,
+	useTableLayout,
+} from "@/components/table-layout"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { isReadOnlyUser, pb } from "@/lib/api"
@@ -122,6 +131,7 @@ export const createColumns = (
 ): ColumnDef<SmartDeviceRecord>[] => [
 	{
 		id: "system",
+		meta: { name: () => t`System` },
 		accessorFn: (record) => record.system,
 		sortingFn: (a, b) => {
 			const allSystems = $allSystemsById.get()
@@ -144,6 +154,7 @@ export const createColumns = (
 	},
 	{
 		accessorKey: "name",
+		meta: { name: () => t`Device` },
 		sortingFn: (a, b) => a.original.name.localeCompare(b.original.name),
 		header: ({ column }) => <HeaderButton column={column} name={t`Device`} Icon={HardDrive} />,
 		cell: ({ getValue }) => (
@@ -157,6 +168,7 @@ export const createColumns = (
 	},
 	{
 		accessorKey: "model",
+		meta: { name: () => t({ message: "Model", comment: "Device model" }), grow: true },
 		sortingFn: (a, b) => a.original.model.localeCompare(b.original.model),
 		header: ({ column }) => (
 			<HeaderButton column={column} name={t({ message: "Model", comment: "Device model" })} Icon={Box} />
@@ -172,12 +184,14 @@ export const createColumns = (
 	},
 	{
 		accessorKey: "capacity",
+		meta: { name: () => t`Capacity` },
 		invertSorting: true,
 		header: ({ column }) => <HeaderButton column={column} name={t`Capacity`} Icon={BinaryIcon} />,
 		cell: ({ getValue }) => <span className="ms-1">{formatCapacity(getValue() as number)}</span>,
 	},
 	{
 		accessorKey: "state",
+		meta: { name: () => t`Status` },
 		header: ({ column }) => <HeaderButton column={column} name={t`Status`} Icon={Activity} />,
 		cell: ({ getValue }) => {
 			const status = getValue() as string
@@ -190,6 +204,7 @@ export const createColumns = (
 	},
 	{
 		accessorKey: "type",
+		meta: { name: () => t`Type` },
 		sortingFn: (a, b) => a.original.type.localeCompare(b.original.type),
 		header: ({ column }) => <HeaderButton column={column} name={t`Type`} Icon={ArrowLeftRightIcon} />,
 		cell: ({ getValue }) => (
@@ -200,6 +215,7 @@ export const createColumns = (
 	},
 	{
 		accessorKey: "hours",
+		meta: { name: () => t({ message: "Power On", comment: "Power On Time" }) },
 		invertSorting: true,
 		header: ({ column }) => (
 			<HeaderButton column={column} name={t({ message: "Power On", comment: "Power On Time" })} Icon={Clock} />
@@ -220,6 +236,7 @@ export const createColumns = (
 	},
 	{
 		accessorKey: "cycles",
+		meta: { name: () => t({ message: "Cycles", comment: "Power Cycles" }) },
 		invertSorting: true,
 		header: ({ column }) => (
 			<HeaderButton column={column} name={t({ message: "Cycles", comment: "Power Cycles" })} Icon={RotateCwIcon} />
@@ -234,6 +251,7 @@ export const createColumns = (
 	},
 	{
 		accessorKey: "temp",
+		meta: { name: () => t`Temp` },
 		invertSorting: true,
 		header: ({ column }) => <HeaderButton column={column} name={t`Temp`} Icon={ThermometerIcon} />,
 		cell: ({ getValue }) => {
@@ -259,6 +277,7 @@ export const createColumns = (
 	// },
 	{
 		id: "updated",
+		meta: { name: () => t`Updated` },
 		invertSorting: true,
 		accessorFn: (record) => record.updated,
 		header: ({ column }) => <HeaderButton column={column} name={t`Updated`} Icon={Clock} />,
@@ -301,6 +320,9 @@ export default function DisksTable({ systemId }: { systemId?: string }) {
 	const [sorting, setSorting] = useState<SortingState>([{ id: systemId ? "name" : "system", desc: false }])
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 	const [rowSelection, setRowSelection] = useState({})
+	const { widths, onColumnResize, columnVisibility, onColumnVisibilityChange } = useTableLayout(
+		systemId ? "system-smart" : "smart"
+	)
 	const [smartDevices, setSmartDevices] = useState<SmartDeviceRecord[] | undefined>(undefined)
 	const [activeDiskId, setActiveDiskId] = useState<string | null>(null)
 	const [sheetOpen, setSheetOpen] = useState(false)
@@ -521,9 +543,11 @@ export default function DisksTable({ systemId }: { systemId?: string }) {
 		getSortedRowModel: getSortedRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
 		onRowSelectionChange: setRowSelection,
+		onColumnVisibilityChange,
 		state: {
 			sorting,
 			columnFilters,
+			columnVisibility,
 			rowSelection,
 			globalFilter,
 		},
@@ -560,34 +584,39 @@ export default function DisksTable({ systemId }: { systemId?: string }) {
 								<Trans>Click on a device to view more information.</Trans>
 							</CardDescription>
 						</div>
-						<div className="relative ms-auto w-full max-w-full md:w-64">
-							<Input
-								placeholder={t`Filter...`}
-								value={globalFilter}
-								onChange={(event) => setGlobalFilter(event.target.value)}
-								className="px-4 w-full max-w-full md:w-64"
-							/>
-							{globalFilter && (
-								<Button
-									type="button"
-									variant="ghost"
-									size="icon"
-									aria-label={t`Clear`}
-									className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 text-muted-foreground"
-									onClick={() => setGlobalFilter("")}
-								>
-									<XIcon className="h-4 w-4" />
-								</Button>
-							)}
+						<div className="flex gap-2 ms-auto w-full md:w-auto">
+							<div className="relative w-full max-w-full md:w-64">
+								<Input
+									placeholder={t`Filter...`}
+									value={globalFilter}
+									onChange={(event) => setGlobalFilter(event.target.value)}
+									className="px-4 w-full max-w-full md:w-64"
+								/>
+								{globalFilter && (
+									<Button
+										type="button"
+										variant="ghost"
+										size="icon"
+										aria-label={t`Clear`}
+										className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 text-muted-foreground"
+										onClick={() => setGlobalFilter("")}
+									>
+										<XIcon className="h-4 w-4" />
+									</Button>
+								)}
+							</div>
+							<ColumnsViewMenu table={table} />
 						</div>
 					</div>
 				</CardHeader>
 				<SmartDevicesTable
 					table={table}
 					rows={rows}
-					colLength={tableColumns.length}
+					colLength={table.getVisibleLeafColumns().length}
 					data={smartDevices}
 					openSheet={openSheet}
+					widths={widths}
+					onColumnResize={onColumnResize}
 				/>
 			</Card>
 			<DiskSheet diskId={activeDiskId} open={sheetOpen} onOpenChange={setSheetOpen} />
@@ -601,12 +630,16 @@ const SmartDevicesTable = memo(function SmartDevicesTable({
 	colLength,
 	data,
 	openSheet,
+	widths,
+	onColumnResize,
 }: {
 	table: TableType<SmartDeviceRecord>
 	rows: Row<SmartDeviceRecord>[]
 	colLength: number
 	data: SmartDeviceRecord[] | undefined
 	openSheet: (disk: SmartDeviceRecord) => void
+	widths: Record<string, number>
+	onColumnResize: ColumnResizeHandler
 }) {
 	const scrollRef = useRef<HTMLDivElement>(null)
 
@@ -631,12 +664,20 @@ const SmartDevicesTable = memo(function SmartDevicesTable({
 		>
 			<div style={{ height: `${virtualizer.getTotalSize() + 48}px`, paddingTop, paddingBottom }}>
 				<table className="w-full text-sm text-nowrap">
-					<SmartTableHead table={table} />
+					<SmartTableHead table={table} widths={widths} onColumnResize={onColumnResize} />
 					<TableBody>
 						{rows.length ? (
 							virtualRows.map((virtualRow) => {
 								const row = rows[virtualRow.index]
-								return <SmartDeviceTableRow key={row.id} row={row} virtualRow={virtualRow} openSheet={openSheet} />
+								return (
+									<SmartDeviceTableRow
+										key={row.id}
+										row={row}
+										virtualRow={virtualRow}
+										openSheet={openSheet}
+										widths={widths}
+									/>
+								)
 							})
 						) : (
 							<TableCell colSpan={colLength} className="h-37 text-center pointer-events-none">
@@ -654,14 +695,25 @@ const SmartDevicesTable = memo(function SmartDevicesTable({
 	)
 })
 
-function SmartTableHead({ table }: { table: TableType<SmartDeviceRecord> }) {
+function SmartTableHead({
+	table,
+	widths,
+	onColumnResize,
+}: {
+	table: TableType<SmartDeviceRecord>
+	widths: Record<string, number>
+	onColumnResize: ColumnResizeHandler
+}) {
 	return (
 		<TableHeader className="sticky top-0 z-50 w-full border-b-2">
 			{table.getHeaderGroups().map((headerGroup) => (
 				<TableRow key={headerGroup.id}>
 					{headerGroup.headers.map((header) => (
-						<TableHead key={header.id} className="px-2">
+						<TableHead key={header.id} className="px-2 relative" style={headerWidthStyle(widths[header.column.id])}>
 							{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+							{header.column.id !== "actions" && (
+								<ColumnResizer columnId={header.column.id} onColumnResize={onColumnResize} />
+							)}
 						</TableHead>
 					))}
 				</TableRow>
@@ -674,10 +726,12 @@ const SmartDeviceTableRow = memo(function SmartDeviceTableRow({
 	row,
 	virtualRow,
 	openSheet,
+	widths,
 }: {
 	row: Row<SmartDeviceRecord>
 	virtualRow: VirtualItem
 	openSheet: (disk: SmartDeviceRecord) => void
+	widths: Record<string, number>
 }) {
 	return (
 		<TableRow
@@ -687,10 +741,12 @@ const SmartDeviceTableRow = memo(function SmartDeviceTableRow({
 		>
 			{row.getVisibleCells().map((cell) => (
 				<TableCell
+					{...resizedAttr(widths[cell.column.id], cell.column.columnDef.meta?.grow)}
 					key={cell.id}
 					className="md:ps-5 py-0"
 					style={{
 						height: virtualRow.size,
+						...cellWidthStyle(widths[cell.column.id], cell.column.columnDef.meta?.grow),
 					}}
 				>
 					{flexRender(cell.column.columnDef.cell, cell.getContext())}

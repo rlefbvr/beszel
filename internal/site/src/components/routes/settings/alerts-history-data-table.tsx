@@ -10,7 +10,6 @@ import {
 	type PaginationState,
 	type SortingState,
 	useReactTable,
-	type VisibilityState,
 } from "@tanstack/react-table"
 import {
 	ChevronLeftIcon,
@@ -38,6 +37,14 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import {
+	cellWidthStyle,
+	ColumnResizer,
+	ColumnsViewMenu,
+	headerWidthStyle,
+	resizedAttr,
+	useTableLayout,
+} from "@/components/table-layout"
 import { useToast } from "@/components/ui/use-toast"
 import { alertInfo, stateAlertHistoryInfo } from "@/lib/alerts"
 import { pb } from "@/lib/api"
@@ -62,7 +69,7 @@ export default function AlertsHistoryDataTable() {
 	const [data, setData] = useState<AlertsHistoryRecord[]>([])
 	const [sorting, setSorting] = useState<SortingState>([])
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
-	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
+	const { widths, onColumnResize, columnVisibility, onColumnVisibilityChange } = useTableLayout("alerts-history")
 	const [rowSelection, setRowSelection] = useState({})
 	const [globalFilter, setGlobalFilter] = useState("")
 	const { toast } = useToast()
@@ -141,7 +148,7 @@ export default function AlertsHistoryDataTable() {
 		getFilteredRowModel: getFilteredRowModel(),
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
-		onColumnVisibilityChange: setColumnVisibility,
+		onColumnVisibilityChange,
 		onRowSelectionChange: setRowSelection,
 		onPaginationChange: setPagination,
 		state: {
@@ -276,6 +283,7 @@ export default function AlertsHistoryDataTable() {
 						onChange={(e) => setGlobalFilter(e.target.value)}
 						className="px-4 w-full max-w-full @3xl:w-64"
 					/>
+					<ColumnsViewMenu table={table} />
 				</div>
 			</div>
 			<div className="rounded-md border overflow-x-auto whitespace-nowrap">
@@ -284,8 +292,15 @@ export default function AlertsHistoryDataTable() {
 						{table.getHeaderGroups().map((headerGroup) => (
 							<tr key={headerGroup.id} className="border-border/50">
 								{headerGroup.headers.map((header) => (
-									<TableHead className="px-2" key={header.id}>
+									<TableHead
+										className="px-2 relative"
+										key={header.id}
+										style={headerWidthStyle(widths[header.column.id])}
+									>
 										{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+										{header.column.id !== "select" && (
+											<ColumnResizer columnId={header.column.id} onColumnResize={onColumnResize} />
+										)}
 									</TableHead>
 								))}
 							</tr>
@@ -296,7 +311,12 @@ export default function AlertsHistoryDataTable() {
 							table.getRowModel().rows.map((row) => (
 								<TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
 									{row.getVisibleCells().map((cell) => (
-										<TableCell key={cell.id} className="py-3">
+										<TableCell
+											key={cell.id}
+											className="py-3"
+											style={cellWidthStyle(widths[cell.column.id], cell.column.columnDef.meta?.grow)}
+											{...resizedAttr(widths[cell.column.id], cell.column.columnDef.meta?.grow)}
+										>
 											{flexRender(cell.column.columnDef.cell, cell.getContext())}
 										</TableCell>
 									))}

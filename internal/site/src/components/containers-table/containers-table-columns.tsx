@@ -45,6 +45,7 @@ function getStatusValue(status: string): number {
 export const containerChartCols: ColumnDef<ContainerRecord>[] = [
 	{
 		id: "name",
+		meta: { name: () => t`Name` },
 		sortingFn: (a, b) => a.original.name.localeCompare(b.original.name),
 		accessorFn: (record) => record.name,
 		header: ({ column }) => <HeaderButton column={column} name={t`Name`} Icon={ContainerIcon} />,
@@ -54,6 +55,7 @@ export const containerChartCols: ColumnDef<ContainerRecord>[] = [
 	},
 	{
 		id: "system",
+		meta: { name: () => t`System` },
 		accessorFn: (record) => record.system,
 		sortingFn: (a, b) => {
 			const allSystems = $allSystemsById.get()
@@ -90,6 +92,7 @@ export const containerChartCols: ColumnDef<ContainerRecord>[] = [
 	// },
 	{
 		id: "cpu",
+		meta: { name: () => t`CPU` },
 		accessorFn: (record) => record.cpu,
 		invertSorting: true,
 		header: ({ column }) => <HeaderButton column={column} name={t`CPU`} Icon={CpuIcon} />,
@@ -100,6 +103,7 @@ export const containerChartCols: ColumnDef<ContainerRecord>[] = [
 	},
 	{
 		id: "memory",
+		meta: { name: () => t`Memory` },
 		accessorFn: (record) => record.memory,
 		invertSorting: true,
 		header: ({ column }) => <HeaderButton column={column} name={t`Memory`} Icon={MemoryStickIcon} />,
@@ -113,6 +117,7 @@ export const containerChartCols: ColumnDef<ContainerRecord>[] = [
 	},
 	{
 		id: "net",
+		meta: { name: () => t`Net` },
 		accessorFn: (record) => record.net,
 		invertSorting: true,
 		header: ({ column }) => <HeaderButton column={column} name={t`Net`} Icon={EthernetIcon} />,
@@ -127,6 +132,7 @@ export const containerChartCols: ColumnDef<ContainerRecord>[] = [
 	},
 	{
 		id: "health",
+		meta: { name: () => t`Health` },
 		invertSorting: true,
 		accessorFn: (record) => record.health,
 		header: ({ column }) => <HeaderButton column={column} name={t`Health`} Icon={ShieldCheckIcon} />,
@@ -151,6 +157,7 @@ export const containerChartCols: ColumnDef<ContainerRecord>[] = [
 	},
 	{
 		id: "ports",
+		meta: { name: () => t({ message: "Ports", context: "Container ports" }) },
 		accessorFn: (record) => record.ports || undefined,
 		header: ({ column }) => (
 			<HeaderButton
@@ -180,6 +187,7 @@ export const containerChartCols: ColumnDef<ContainerRecord>[] = [
 	},
 	{
 		id: "image",
+		meta: { name: () => t({ message: "Image", context: "Docker image" }), grow: true },
 		sortingFn: (a, b) => a.original.image.localeCompare(b.original.image),
 		accessorFn: (record) => record.image,
 		header: ({ column }) => (
@@ -210,6 +218,7 @@ export const containerChartCols: ColumnDef<ContainerRecord>[] = [
 	},
 	{
 		id: "status",
+		meta: { name: () => t`Status` },
 		accessorFn: (record) => record.status,
 		invertSorting: true,
 		sortingFn: (a, b) => getStatusValue(a.original.status) - getStatusValue(b.original.status),
@@ -220,6 +229,7 @@ export const containerChartCols: ColumnDef<ContainerRecord>[] = [
 	},
 	{
 		id: "updated",
+		meta: { name: () => t`Updated` },
 		invertSorting: true,
 		accessorFn: (record) => record.updated,
 		header: ({ column }) => <HeaderButton column={column} name={t`Updated`} Icon={ClockIcon} />,

@@ -12,7 +12,6 @@ import {
 	type SortingState,
 	type Table as TableType,
 	useReactTable,
-	type VisibilityState,
 } from "@tanstack/react-table"
 import { useVirtualizer, type VirtualItem } from "@tanstack/react-virtual"
 import {
@@ -31,6 +30,15 @@ import { getMonitorColumns } from "@/components/network-monitors-table/network-m
 import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import {
+	cellWidthStyle,
+	type ColumnResizeHandler,
+	ColumnResizer,
+	ColumnsViewMenu,
+	headerWidthStyle,
+	resizedAttr,
+	useTableLayout,
+} from "@/components/table-layout"
 import { useToast } from "@/components/ui/use-toast"
 import { isReadOnlyUser } from "@/lib/api"
 import { pb } from "@/lib/api"
@@ -72,7 +80,9 @@ export default function NetworkMonitorsTableNew({
 		sessionStorage
 	)
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
-	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
+	const { widths, onColumnResize, columnVisibility, onColumnVisibilityChange } = useTableLayout(
+		systemId ? "system-monitors" : "monitors"
+	)
 	const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
 	const [globalFilter, setGlobalFilter] = useState("")
 	const [deleteOpen, setDeleteOpen] = useState(false)
@@ -210,7 +220,7 @@ export default function NetworkMonitorsTableNew({
 		getFilteredRowModel: getFilteredRowModel(),
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
-		onColumnVisibilityChange: setColumnVisibility,
+		onColumnVisibilityChange,
 		onRowSelectionChange: setRowSelection,
 		defaultColumn: {
 			sortUndefined: "last",
@@ -273,6 +283,7 @@ export default function NetworkMonitorsTableNew({
 								)}
 							</div>
 						)}
+						{monitors.length > 0 && <ColumnsViewMenu table={table} />}
 						{canManageMonitors ? <AddMonitorDialog systemId={systemId} monitors={monitors} /> : null}
 						{canManageMonitors ? (
 							<EditMonitorDialog
@@ -327,6 +338,8 @@ export default function NetworkMonitorsTableNew({
 					colLength={visibleColumns.length}
 					rowSelection={rowSelection}
 					isLoading={isLoading}
+					widths={widths}
+					onColumnResize={onColumnResize}
 				/>
 			</div>
 		</Card>
@@ -339,12 +352,16 @@ const NetworkMonitorsTable = memo(function NetworkMonitorTable({
 	colLength,
 	rowSelection,
 	isLoading,
+	widths,
+	onColumnResize,
 }: {
 	table: TableType<NetworkMonitorRecord>
 	rows: Row<NetworkMonitorRecord>[]
 	colLength: number
 	rowSelection: RowSelectionState
 	isLoading: boolean
+	widths: Record<string, number>
+	onColumnResize: ColumnResizeHandler
 }) {
 	const scrollRef = useRef<HTMLDivElement>(null)
 	const [sheetOpen, setSheetOpen] = useState(false)
@@ -378,7 +395,7 @@ const NetworkMonitorsTable = memo(function NetworkMonitorTable({
 		>
 			<div style={{ height: `${virtualizer.getTotalSize() + 48}px`, paddingTop, paddingBottom }}>
 				<table className="text-sm w-full h-full text-nowrap">
-					<NetworkMonitorTableHead table={table} />
+					<NetworkMonitorTableHead table={table} widths={widths} onColumnResize={onColumnResize} />
 					<TableBody>
 						{rows.length ? (
 							virtualRows.map((virtualRow) => {
@@ -391,6 +408,7 @@ const NetworkMonitorsTable = memo(function NetworkMonitorTable({
 										isSelected={row.getIsSelected()}
 										rowSelection={rowSelection}
 										openSheet={openSheet}
+										widths={widths}
 									/>
 								)
 							})
@@ -419,15 +437,26 @@ const NetworkMonitorsTable = memo(function NetworkMonitorTable({
 	)
 })
 
-function NetworkMonitorTableHead({ table }: { table: TableType<NetworkMonitorRecord> }) {
+function NetworkMonitorTableHead({
+	table,
+	widths,
+	onColumnResize,
+}: {
+	table: TableType<NetworkMonitorRecord>
+	widths: Record<string, number>
+	onColumnResize: ColumnResizeHandler
+}) {
 	return (
 		<TableHeader className="sticky top-0 z-50 w-full border-b-2">
 			{table.getHeaderGroups().map((headerGroup) => (
 				<tr key={headerGroup.id}>
 					{headerGroup.headers.map((header) => {
 						return (
-							<TableHead className="px-2" key={header.id}>
+							<TableHead className="px-2 relative" key={header.id} style={headerWidthStyle(widths[header.column.id])}>
 								{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+								{header.column.id !== "select" && header.column.id !== "actions" && (
+									<ColumnResizer columnId={header.column.id} onColumnResize={onColumnResize} />
+								)}
 							</TableHead>
 						)
 					})}
@@ -443,6 +472,7 @@ const NetworkMonitorTableRow = memo(function NetworkMonitorTableRow({
 	isSelected,
 	rowSelection: _rowSelection,
 	openSheet,
+	widths,
 }: {
 	row: Row<NetworkMonitorRecord>
 	virtualRow: VirtualItem
@@ -450,6 +480,7 @@ const NetworkMonitorTableRow = memo(function NetworkMonitorTableRow({
 	// Menus depend on the entire selection, including changes to other rows.
 	rowSelection: RowSelectionState
 	openSheet: (monitor: NetworkMonitorRecord) => void
+	widths: Record<string, number>
 }) {
 	const system = useStore($allSystemsById)[row.original.system]
 	return (
@@ -462,11 +493,13 @@ const NetworkMonitorTableRow = memo(function NetworkMonitorTableRow({
 		>
 			{row.getVisibleCells().map((cell) => (
 				<TableCell
+					{...resizedAttr(widths[cell.column.id], cell.column.columnDef.meta?.grow)}
 					key={cell.id}
 					className="py-0"
 					style={{
 						width: `${cell.column.getSize()}px`,
 						height: virtualRow.size,
+						...cellWidthStyle(widths[cell.column.id], cell.column.columnDef.meta?.grow),
 					}}
 				>
 					{flexRender(cell.column.columnDef.cell, cell.getContext())}

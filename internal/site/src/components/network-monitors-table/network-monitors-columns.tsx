@@ -98,6 +98,7 @@ export function getMonitorColumns(
 		},
 		{
 			id: "system",
+			meta: { name: () => t`System` },
 			accessorFn: (record) => record.system,
 			sortingFn: (a, b) => {
 				const allSystems = $allSystemsById.get()
@@ -134,6 +135,7 @@ export function getMonitorColumns(
 		},
 		{
 			id: "target",
+			meta: { name: () => t`Target`, grow: true },
 			sortingFn: (a, b) => a.original.target.localeCompare(b.original.target),
 			accessorFn: (record) => getMonitorTarget(record),
 			header: ({ column }) => <HeaderButton column={column} name={t`Target`} Icon={GlobeIcon} />,
@@ -164,6 +166,7 @@ export function getMonitorColumns(
 		},
 		{
 			id: "protocol",
+			meta: { name: () => t`Protocol` },
 			accessorFn: (record) => record.protocol,
 			header: ({ column }) => <HeaderButton column={column} name={t`Protocol`} Icon={ArrowLeftRightIcon} />,
 			cell: ({ getValue }) => {
@@ -173,6 +176,7 @@ export function getMonitorColumns(
 		},
 		{
 			id: "interval",
+			meta: { name: () => t`Interval` },
 			accessorFn: (record) => record.interval,
 			invertSorting: true,
 			header: ({ column }) => <HeaderButton column={column} name={t`Interval`} Icon={RefreshCwIcon} />,
@@ -180,6 +184,7 @@ export function getMonitorColumns(
 		},
 		{
 			id: "res",
+			meta: { name: () => t`Response` },
 			accessorFn: (record) => record.res,
 			invertSorting: true,
 			header: ({ column }) => <HeaderButton column={column} name={t`Response`} Icon={TimerIcon} />,
@@ -187,6 +192,7 @@ export function getMonitorColumns(
 		},
 		{
 			id: "res1h",
+			meta: { name: () => t`Avg 1h` },
 			accessorFn: (record) => record.resAvg1h,
 			invertSorting: true,
 			header: ({ column }) => <HeaderButton column={column} name={t`Avg 1h`} Icon={TimerIcon} />,
@@ -194,6 +200,7 @@ export function getMonitorColumns(
 		},
 		{
 			id: "max1h",
+			meta: { name: () => t`Max 1h` },
 			accessorFn: (record) => record.resMax1h,
 			invertSorting: true,
 			header: ({ column }) => <HeaderButton column={column} name={t`Max 1h`} Icon={TimerIcon} />,
@@ -201,6 +208,7 @@ export function getMonitorColumns(
 		},
 		{
 			id: "min1h",
+			meta: { name: () => t`Min 1h` },
 			accessorFn: (record) => record.resMin1h,
 			invertSorting: true,
 			header: ({ column }) => <HeaderButton column={column} name={t`Min 1h`} Icon={TimerIcon} />,
@@ -208,6 +216,7 @@ export function getMonitorColumns(
 		},
 		{
 			id: "loss",
+			meta: { name: () => t`Loss 1h` },
 			accessorFn: (record) => record.loss1h,
 			invertSorting: true,
 			header: ({ column }) => <HeaderButton column={column} name={t`Loss 1h`} Icon={WifiOffIcon} />,
@@ -236,6 +245,7 @@ export function getMonitorColumns(
 		},
 		{
 			id: "updated",
+			meta: { name: () => t`Updated` },
 			invertSorting: true,
 			accessorFn: (record) => record.updated,
 			header: ({ column }) => <HeaderButton column={column} name={t`Updated`} Icon={ClockIcon} />,

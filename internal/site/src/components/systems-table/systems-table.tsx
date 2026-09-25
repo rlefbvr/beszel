@@ -73,6 +73,7 @@ import AlertButton from "../alerts/alert-button"
 import { $router, Link } from "../router"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
 import { AgentUpdateButton } from "../agent-update-dialog"
+import { type ColumnResizeHandler, ColumnResizer, resizedAttr } from "../table-layout"
 import { ManageGroupsDialog } from "./groups-dialog"
 import { SystemsTableColumns, ActionsButton, IndicatorDot } from "./systems-table-columns"
 
@@ -828,9 +829,6 @@ const AllSystemsTable = memo(
 	}
 )
 
-/** Changes the width of a column: live while dragging, saved when done; undefined resets it */
-type ColumnResizeHandler = (columnId: string, width: number | undefined, done: boolean) => void
-
 function SystemsTableHead({
 	table,
 	colWidths,
@@ -863,42 +861,6 @@ function SystemsTableHead({
 				</tr>
 			))}
 		</TableHeader>
-	)
-}
-
-/** Drag handle on the edge of a column header; double click restores the automatic width */
-function ColumnResizer({ columnId, onColumnResize }: { columnId: string; onColumnResize: ColumnResizeHandler }) {
-	const { t } = useLingui()
-	const startResize = (e: React.PointerEvent<HTMLDivElement>) => {
-		e.preventDefault()
-		const header = e.currentTarget.parentElement
-		if (!header) {
-			return
-		}
-		const startX = e.clientX
-		const startWidth = header.getBoundingClientRect().width
-		// the handle is on the end side: dragging towards it widens the column
-		const direction = getComputedStyle(header).direction === "rtl" ? -1 : 1
-		const widthAt = (x: number) => Math.max(40, Math.round(startWidth + (x - startX) * direction))
-		const onMove = (event: PointerEvent) => onColumnResize(columnId, widthAt(event.clientX), false)
-		const onUp = (event: PointerEvent) => {
-			window.removeEventListener("pointermove", onMove)
-			window.removeEventListener("pointerup", onUp)
-			onColumnResize(columnId, widthAt(event.clientX), true)
-		}
-		window.addEventListener("pointermove", onMove)
-		window.addEventListener("pointerup", onUp)
-	}
-	return (
-		<div
-			role="separator"
-			aria-orientation="vertical"
-			aria-label={t`Resize column`}
-			title={t`Drag to resize, double click to reset`}
-			className="absolute top-0 end-0 h-full w-1.5 cursor-col-resize select-none touch-none hover:bg-primary/30 active:bg-primary/50"
-			onPointerDown={startResize}
-			onDoubleClick={() => onColumnResize(columnId, undefined, true)}
-		/>
 	)
 }
 
@@ -936,6 +898,7 @@ const SystemTableRow = memo(
 									height: virtualRow.size,
 								}}
 								className={cn("py-0 ps-4.5", width && "overflow-hidden")}
+								{...resizedAttr(width)}
 							>
 								{flexRender(cell.column.columnDef.cell, cell.getContext())}
 							</TableCell>
