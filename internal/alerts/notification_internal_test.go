@@ -96,6 +96,9 @@ func TestNotificationRendering(t *testing.T) {
 	assert.Equal(t, "[Alert] Service api on web <1>: inactive (dead)", en.Subject)
 	assert.Equal(t, "Service api on web <1>: inactive (dead) 🔴", en.WebhookTitle, "webhooks keep the emoji and no prefix")
 	assert.Equal(t, "Service api on web <1> is inactive (dead). Rule: state is not active.\n\napi logs:\n```\nERROR <boom>\n```", en.plainText())
+	assert.Equal(t, "Service **api** on **web <1>** is inactive (dead). Rule: state is not active.\n\napi logs:\n```\nERROR <boom>\n```", en.webhookText("teams"), "names are bold for markdown services")
+	assert.Equal(t, "Service *api* on *web <1>* is inactive (dead). Rule: state is not active.\n\napi logs:\n```\nERROR <boom>\n```", en.webhookText("slack"))
+	assert.Equal(t, en.plainText(), en.webhookText("ntfy"), "other services get plain text")
 
 	html, err := en.html()
 	require.NoError(t, err)
@@ -139,6 +142,12 @@ func TestNotificationRendering(t *testing.T) {
 	assert.Equal(t, "[Résolu] t", resolved.render(NewTranslator("fr"), "", "").Subject)
 	info := AlertMessageData{Title: RawMsg("t"), Message: RawMsg("m")}
 	assert.Equal(t, "t", info.render(NewTranslator("en"), "", "").Subject)
+}
+
+func TestWebhookScheme(t *testing.T) {
+	assert.Equal(t, "teams", webhookScheme("teams://example.com/webhook?title=x"))
+	assert.Equal(t, "discord", webhookScheme("Discord://token@id"))
+	assert.Equal(t, "", webhookScheme("not a url"))
 }
 
 func TestAppHost(t *testing.T) {

@@ -92,6 +92,10 @@ type renderedNotification struct {
 	SettingsLink  string
 	SettingsLabel string
 	MsoHead       template.HTML
+
+	// message and translator render webhook bodies with markup per service
+	message    Msg
+	translator Translator
 }
 
 type renderedDetail struct {
@@ -104,7 +108,7 @@ var rtlLangs = map[string]bool{"ar": true, "fa": true, "he": true}
 // Arguments highlighted in the HTML message: names in bold and technical
 // values (states, health) as code, which also keeps translations neutral.
 var (
-	highlightNames  = map[string]bool{"target": true, "container": true, "containers": true, "device": true, "pool": true, "services": true, "items": true, "sensor": true, "disk": true}
+	highlightNames  = map[string]bool{"system": true, "target": true, "container": true, "containers": true, "device": true, "pool": true, "services": true, "items": true, "sensor": true, "disk": true}
 	highlightValues = map[string]bool{"state": true, "states": true, "health": true, "previous": true}
 )
 
@@ -179,6 +183,8 @@ func (data AlertMessageData) render(t Translator, appURL, settingsLink string) r
 		SettingsLink:  settingsLink,
 		SettingsLabel: t.T(M("email.settings", nil)),
 		MsoHead:       msoHead,
+		message:       data.Message,
+		translator:    t,
 	}
 	if rtlLangs[r.Lang] {
 		r.Dir, r.Start, r.End = "rtl", "right", "left"
@@ -214,11 +220,42 @@ func appHost(appURL string) string {
 	return strings.TrimSuffix(u.Host+u.Path, "/")
 }
 
-// plainText is the message body for webhooks and the text part of emails,
-// with details as fenced blocks.
+// webhookBold is the bold markup of the webhook services that render markdown.
+// Other services receive plain text, which would otherwise show the markers.
+var webhookBold = map[string]string{
+	"discord":    "**",
+	"mattermost": "**",
+	"rocketchat": "**",
+	"teams":      "**",
+	"zulip":      "**",
+	"googlechat": "*",
+	"slack":      "*",
+}
+
+// plainText is the text part of emails and the body of webhooks without markup.
 func (r renderedNotification) plainText() string {
+	return r.withDetails(r.Message)
+}
+
+// webhookText is the webhook body for a service scheme, with names in bold
+// when the service renders markdown.
+func (r renderedNotification) webhookText(scheme string) string {
+	bold, ok := webhookBold[scheme]
+	if !ok {
+		return r.plainText()
+	}
+	return r.withDetails(r.translator.Markup(r.message, func(name, value string) string {
+		if highlightNames[name] && value != "" {
+			return bold + value + bold
+		}
+		return value
+	}))
+}
+
+// withDetails appends the details to a message as fenced blocks.
+func (r renderedNotification) withDetails(message string) string {
 	var body strings.Builder
-	body.WriteString(r.Message)
+	body.WriteString(message)
 	for _, detail := range r.Details {
 		body.WriteString("\n\n")
 		body.WriteString(detail.Label)

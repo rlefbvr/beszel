@@ -168,37 +168,53 @@ var placeholderRe = regexp.MustCompile(`\{(\w+)\}`)
 // HTML renders a message as escaped HTML. wrap may decorate an argument by
 // name (for example to highlight a service name); it receives escaped HTML.
 func (t Translator) HTML(m Msg, wrap func(name string, value template.HTML) template.HTML) template.HTML {
+	return template.HTML(t.render(m, template.HTMLEscapeString, func(name, value string) string {
+		if wrap == nil {
+			return value
+		}
+		return string(wrap(name, template.HTML(value)))
+	}))
+}
+
+// Markup renders a message as text where wrap may decorate an argument by
+// name, for example in markdown bold.
+func (t Translator) Markup(m Msg, wrap func(name, value string) string) string {
+	if wrap == nil {
+		return t.T(m)
+	}
+	return t.render(m, func(s string) string { return s }, wrap)
+}
+
+// render fills a message, escaping its text and passing each argument through wrap.
+func (t Translator) render(m Msg, escape func(string) string, wrap func(name, value string) string) string {
 	if m.Raw != "" || m.Key == "" {
-		return template.HTML(template.HTMLEscapeString(m.Raw))
+		return escape(m.Raw)
 	}
 	text, ok := t.text(m)
 	if !ok {
-		return template.HTML(template.HTMLEscapeString(m.Key))
+		return escape(m.Key)
 	}
 	var b strings.Builder
 	last := 0
 	for _, loc := range placeholderRe.FindAllStringSubmatchIndex(text, -1) {
-		b.WriteString(template.HTMLEscapeString(text[last:loc[0]]))
+		b.WriteString(escape(text[last:loc[0]]))
 		name := text[loc[2]:loc[3]]
 		value, ok := m.Args[name]
 		if !ok {
-			b.WriteString(template.HTMLEscapeString(text[loc[0]:loc[1]]))
+			b.WriteString(escape(text[loc[0]:loc[1]]))
 		} else {
-			var rendered template.HTML
+			var rendered string
 			if nested, isMsg := value.(Msg); isMsg {
-				rendered = t.HTML(nested, wrap)
+				rendered = t.render(nested, escape, wrap)
 			} else {
-				rendered = template.HTML(template.HTMLEscapeString(t.format(value)))
+				rendered = escape(t.format(value))
 			}
-			if wrap != nil {
-				rendered = wrap(name, rendered)
-			}
-			b.WriteString(string(rendered))
+			b.WriteString(wrap(name, rendered))
 		}
 		last = loc[1]
 	}
-	b.WriteString(template.HTMLEscapeString(text[last:]))
-	return template.HTML(b.String())
+	b.WriteString(escape(text[last:]))
+	return b.String()
 }
 
 func (t Translator) pluralForm(forms map[string]string, count any) string {

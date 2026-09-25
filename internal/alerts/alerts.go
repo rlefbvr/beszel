@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/mail"
 	"net/url"
+	"strings"
 	"sync"
 	"time"
 
@@ -250,7 +251,7 @@ func (am *AlertManager) SendAlert(data AlertMessageData) error {
 	}
 	rendered := data.render(NewTranslator(userAlertSettings.Lang), appURL, settingsLink)
 	for _, webhook := range userAlertSettings.Webhooks {
-		if err := am.sendShoutrrrAlert(webhook, rendered.WebhookTitle, rendered.plainText(), rendered.Link, rendered.LinkText, send); err != nil {
+		if err := am.sendShoutrrrAlert(webhook, rendered.WebhookTitle, rendered.webhookText(webhookScheme(webhook)), rendered.Link, rendered.LinkText, send); err != nil {
 			am.hub.Logger().Error("Failed to send shoutrrr alert", "err", err)
 		}
 	}
@@ -288,6 +289,14 @@ func (am *AlertManager) SendAlert(data AlertMessageData) error {
 // SendShoutrrrAlert sends an alert via a Shoutrrr URL
 func (am *AlertManager) SendShoutrrrAlert(notificationUrl, title, message, link, linkText string) error {
 	return am.sendShoutrrrAlert(notificationUrl, title, message, link, linkText, shoutrrr.Send)
+}
+
+// webhookScheme returns the service scheme of a notification URL, such as "teams".
+func webhookScheme(notificationUrl string) string {
+	if scheme, _, found := strings.Cut(notificationUrl, "://"); found {
+		return strings.ToLower(scheme)
+	}
+	return ""
 }
 
 func (am *AlertManager) sendShoutrrrAlert(notificationUrl, title, message, link, linkText string, send func(string, string) error) error {
