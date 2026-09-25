@@ -16,12 +16,13 @@ import { GpuPowerChart, GpuCharts } from "./system/charts/gpu-charts"
 import {
 	LazyContainersTable,
 	LazyNetworkMonitorsTable,
+	LazyRebootsTable,
 	LazySmartTable,
 	LazySystemdTable,
 	LazyZfsTable,
 } from "./system/lazy-tables"
 import { LoadAverageChart } from "./system/charts/load-average-chart"
-import { ContainerIcon, CpuIcon, HardDriveIcon, NetworkIcon, TerminalSquareIcon } from "lucide-react"
+import { ContainerIcon, CpuIcon, HardDriveIcon, NetworkIcon, RefreshCcwDotIcon, TerminalSquareIcon } from "lucide-react"
 import { GpuIcon } from "../ui/icons"
 import SystemdTable from "../systemd-table/systemd-table"
 import ContainersTable from "../containers-table/containers-table"
@@ -79,6 +80,7 @@ export default memo(function SystemDetail({ id }: { id: string }) {
 	if (hasGpu) tabs.push("gpu")
 	if (hasContainers) tabs.push("containers")
 	if (hasSystemd) tabs.push("services")
+	tabs.push("reboots")
 	tabsRef.current = tabs
 
 	// shared chart props
@@ -163,6 +165,8 @@ export default memo(function SystemDetail({ id }: { id: string }) {
 				{hasSystemd && <LazySystemdTable systemId={system.id} />}
 
 				{hasNetworkMonitors && <LazyNetworkMonitorsTable systemId={system.id} />}
+
+				<LazyRebootsTable systemId={system.id} />
 			</>
 		)
 	}
@@ -201,6 +205,10 @@ export default memo(function SystemDetail({ id }: { id: string }) {
 							<Trans>Services</Trans>
 						</TabsTrigger>
 					)}
+					<TabsTrigger value="reboots" className="w-full flex items-center gap-2">
+						<RefreshCcwDotIcon className="size-3.5" />
+						<Trans>Reboots</Trans>
+					</TabsTrigger>
 				</TabsList>
 
 				<TabsContent value="core" forceMount className={activeTab === "core" ? "contents" : "hidden"}>
@@ -293,6 +301,10 @@ export default memo(function SystemDetail({ id }: { id: string }) {
 						{mountedTabs.has("services") && <SystemdTable systemId={system.id} />}
 					</TabsContent>
 				)}
+
+				<TabsContent value="reboots" forceMount className={activeTab === "reboots" ? "contents" : "hidden"}>
+					{mountedTabs.has("reboots") && <LazyRebootsTable systemId={system.id} />}
+				</TabsContent>
 			</Tabs>
 		)
 	}

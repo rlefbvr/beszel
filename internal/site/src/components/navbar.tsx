@@ -10,6 +10,7 @@ import {
 	MenuIcon,
 	NetworkIcon,
 	PlusIcon,
+	RefreshCcwDotIcon,
 	SearchIcon,
 	ServerCogIcon,
 	ServerIcon,
@@ -113,6 +114,13 @@ export default function Navbar() {
 								<ServerCogIcon className="h-4 w-4 me-2.5" strokeWidth={1.5} />
 								<Trans>All Services</Trans>
 							</DropdownMenuItem>
+							<DropdownMenuItem
+								onClick={() => navigate(getPagePath($router, "reboots"))}
+								className="flex items-center"
+							>
+								<RefreshCcwDotIcon className="h-4 w-4 me-2.5" strokeWidth={1.5} />
+								<Trans>All Reboots</Trans>
+							</DropdownMenuItem>
 							<DropdownMenuItem onClick={() => navigate(getPagePath($router, "smart"))} className="flex items-center">
 								<HardDriveIcon className="h-4 w-4 me-2.5" strokeWidth={1.5} />
 								<span>S.M.A.R.T.</span>
@@ -195,6 +203,20 @@ export default function Navbar() {
 					</TooltipTrigger>
 					<TooltipContent>
 						<Trans>All Services</Trans>
+					</TooltipContent>
+				</Tooltip>
+				<Tooltip>
+					<TooltipTrigger asChild>
+						<Link
+							href={getPagePath($router, "reboots")}
+							className={cn("hidden md:grid", buttonVariants({ variant: "ghost", size: "icon" }))}
+							aria-label="Reboots"
+						>
+							<RefreshCcwDotIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
+						</Link>
+					</TooltipTrigger>
+					<TooltipContent>
+						<Trans>All Reboots</Trans>
 					</TooltipContent>
 				</Tooltip>
 				<Tooltip>

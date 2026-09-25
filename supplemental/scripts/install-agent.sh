@@ -919,6 +919,11 @@ else
     echo "Adding beszel to disk group"
     usermod -aG disk beszel
   fi
+  # Add the user to the systemd-journal group to read the boot history if group systemd-journal exists
+  if getent group systemd-journal >/dev/null 2>&1; then
+    echo "Adding beszel to systemd-journal group"
+    usermod -aG systemd-journal beszel
+  fi
 fi
 
 INSTALL_STEP="creating installation directories"

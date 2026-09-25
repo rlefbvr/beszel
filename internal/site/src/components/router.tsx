@@ -4,6 +4,7 @@ const routes = {
 	home: "/",
 	containers: "/containers",
 	services: "/services",
+	reboots: "/reboots",
 	smart: "/smart",
 	monitors: "/monitors",
 	system: `/system/:id`,

@@ -5,6 +5,7 @@ package systems
 import (
 	"context"
 	"fmt"
+	"time"
 
 	entities "github.com/henrygd/beszel/internal/entities/system"
 	"github.com/henrygd/beszel/internal/entities/systemd"
@@ -138,4 +139,12 @@ func (s *System) CreateRecords(data *entities.CombinedData) (*core.Record, error
 
 func CreateSystemdStatsRecords(app core.App, data []*systemd.Service, systemId string) error {
 	return createSystemdStatsRecords(app, data, systemId)
+}
+
+func (s *System) TrackBoot(uptime uint64, now time.Time) {
+	s.trackBoot(uptime, now)
+}
+
+func (s *System) SaveBootEvent(event entities.BootEvent, source string, detectedAt time.Time) {
+	s.saveBootEvent(event, source, detectedAt)
 }

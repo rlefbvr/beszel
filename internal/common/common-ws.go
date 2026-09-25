@@ -1,6 +1,8 @@
 package common
 
 import (
+	"time"
+
 	"github.com/fxamacker/cbor/v2"
 	"github.com/henrygd/beszel/internal/entities/smart"
 	"github.com/henrygd/beszel/internal/entities/system"
@@ -26,6 +28,8 @@ const (
 	GetZfsData
 	// Sync network monitor configuration to agent
 	SyncNetworkMonitors
+	// Request the boots of the host found in its logs
+	GetBootEvents
 	// Add new actions here...
 )
 
@@ -68,6 +72,11 @@ type DataRequestOptions struct {
 	IncludeDetails bool   `cbor:"1,keyasint"`
 	// ServicesInterval is the service collection interval in seconds (0 keeps the agent's current interval)
 	ServicesInterval uint16 `cbor:"2,keyasint,omitempty"`
+}
+
+// BootEventsRequest asks for the boots after Since (all when zero).
+type BootEventsRequest struct {
+	Since time.Time `cbor:"0,keyasint,omitzero"`
 }
 
 type ZfsDataRequest struct {

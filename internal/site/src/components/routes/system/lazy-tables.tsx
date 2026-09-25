@@ -62,3 +62,14 @@ function SystemNetworkMonitorsTable({ systemId }: { systemId: string }) {
 	const { monitors, isLoading } = useNetworkMonitors({ systemId })
 	return <NetworkMonitorsTable systemId={systemId} monitors={monitors} isLoading={isLoading} />
 }
+
+const RebootsTable = lazy(() => import("../../reboots-table"))
+
+export function LazyRebootsTable({ systemId }: { systemId: string }) {
+	const { isIntersecting, ref } = useIntersectionObserver({ rootMargin: "90px" })
+	return (
+		<div ref={ref} className={cn(isIntersecting && "contents")}>
+			{isIntersecting && <RebootsTable systemId={systemId} />}
+		</div>
+	)
+}

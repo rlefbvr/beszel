@@ -121,6 +121,15 @@ func TestCollectionRulesDefault(t *testing.T) {
 	assert.Nil(t, systemDetailsCollection.UpdateRule)
 	assert.Nil(t, systemDetailsCollection.DeleteRule)
 
+	// system_reboots collection
+	systemRebootsCollection, err := hub.FindCollectionByNameOrId("system_reboots")
+	require.NoError(t, err, "Failed to find system_reboots collection")
+	assert.Equal(t, isUserInSystemUsers, *systemRebootsCollection.ListRule)
+	assert.Equal(t, isUserInSystemUsers, *systemRebootsCollection.ViewRule)
+	assert.Nil(t, systemRebootsCollection.CreateRule)
+	assert.Nil(t, systemRebootsCollection.UpdateRule)
+	assert.Nil(t, systemRebootsCollection.DeleteRule)
+
 	// system_stats collection
 	systemStatsCollection, err := hub.FindCollectionByNameOrId("system_stats")
 	require.NoError(t, err, "Failed to find system_stats collection")
@@ -248,6 +257,15 @@ func TestCollectionRulesShareAllSystems(t *testing.T) {
 	assert.Nil(t, systemDetailsCollection.CreateRule)
 	assert.Nil(t, systemDetailsCollection.UpdateRule)
 	assert.Nil(t, systemDetailsCollection.DeleteRule)
+
+	// system_reboots collection
+	systemRebootsCollection, err := hub.FindCollectionByNameOrId("system_reboots")
+	require.NoError(t, err, "Failed to find system_reboots collection")
+	assert.Equal(t, isUser, *systemRebootsCollection.ListRule)
+	assert.Equal(t, isUser, *systemRebootsCollection.ViewRule)
+	assert.Nil(t, systemRebootsCollection.CreateRule)
+	assert.Nil(t, systemRebootsCollection.UpdateRule)
+	assert.Nil(t, systemRebootsCollection.DeleteRule)
 
 	// system_stats collection
 	systemStatsCollection, err := hub.FindCollectionByNameOrId("system_stats")

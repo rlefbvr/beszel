@@ -18,6 +18,11 @@ msgstr ""
 "X-Crowdin-File: /main/internal/site/src/locales/en/en.po\n"
 "X-Crowdin-File-ID: 32\n"
 
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
+msgid "(Unknown)"
+msgstr "(Ukendt)"
+
 #. placeholder {0}: newVersion.v
 #: src/components/footer-repo-link.tsx
 msgctxt "New version available"
@@ -56,6 +61,10 @@ msgstr "{count, plural, one {{countString} time} other {{countString} timer}}"
 #: src/lib/utils.ts
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} minut} other {{countString} minutter}}"
+
+#: src/components/systems-select.tsx
+msgid "{count, plural, one {# system} other {# systems}}"
+msgstr "{count, plural, one {# system} other {# systemer}}"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "{diskName} I/O"
@@ -193,6 +202,10 @@ msgstr "Agentinstallation"
 msgid "Alert History"
 msgstr "Advarselshistorik"
 
+#: src/components/reboots-table.tsx
+msgid "Alert sent"
+msgstr "Alarm sendt"
+
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when services or Docker containers enter or leave a state."
 msgstr "Advar, når tjenester eller Docker-containere går ind i eller ud af en tilstand."
@@ -221,6 +234,14 @@ msgstr "Alle containere"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/reboots-table.tsx
+#: src/components/routes/reboots.tsx
+msgid "All Reboots"
+msgstr "Alle genstarter"
+
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
 #: src/components/routes/services.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "All Services"
@@ -230,6 +251,8 @@ msgstr "Alle tjenester"
 #: src/components/command-palette.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-select.tsx
+#: src/components/systems-select.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All Systems"
@@ -374,6 +397,11 @@ msgstr "Binær"
 msgid "Bits (Kbps, Mbps, Gbps)"
 msgstr "Bits (Kbps, Mbps, Gbps)"
 
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
+msgid "Boot"
+msgstr "Opstart"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Boot state"
 msgstr "Opstartstilstand"
@@ -483,8 +511,14 @@ msgstr "Tjek din notifikationstjeneste"
 msgid "Checksum errors"
 msgstr "Kontrolsumfejl"
 
+#: src/components/reboots-table.tsx
+msgctxt "Clean shutdown"
+msgid "Clean"
+msgstr "Normal"
+
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -847,6 +881,11 @@ msgstr "Nede ({downSystemsLength})"
 msgid "Download"
 msgstr "Hent ned"
 
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
+msgid "Downtime"
+msgstr "Nedetid"
+
 #: src/components/alerts-history-columns.tsx
 msgid "Duration"
 msgstr "Varighed"
@@ -1071,6 +1110,10 @@ msgctxt "Button to copy install command"
 msgid "FreeBSD command"
 msgstr "FreeBSD kommando"
 
+#: src/components/reboots-table.tsx
+msgid "From"
+msgstr "Fra"
+
 #. Context: Battery state
 #: src/components/routes/system/info-bar.tsx
 #: src/lib/i18n.ts
@@ -1137,6 +1180,7 @@ msgstr "Homebrew-kommando"
 
 #: src/components/add-system.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Host / IP"
 msgstr "Vært / IP"
@@ -1208,6 +1252,10 @@ msgstr "Vigtige tjenester"
 msgid "Inactive"
 msgstr "Inaktiv"
 
+#: src/components/reboots-table.tsx
+msgid "Initiated by"
+msgstr "Startet af"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Interval"
@@ -1263,6 +1311,10 @@ msgstr "Belastning Gennemsnitlig 5m"
 msgid "Load Avg"
 msgstr "Belastning gns."
 
+#: src/components/reboots-table.tsx
+msgid "Load more"
+msgstr "Indlæs flere"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Load state"
 msgstr "Indlæsningstilstand"
@@ -1288,6 +1340,10 @@ msgstr "Log ind"
 #: src/components/login/forgot-pass-form.tsx
 msgid "Login attempt failed"
 msgstr "Loginforsøg mislykkedes"
+
+#: src/components/reboots-table.tsx
+msgid "Login records"
+msgstr "Loginregistreringer"
 
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -1453,9 +1509,17 @@ msgstr "Netværksarbejde"
 msgid "No"
 msgstr "Nej"
 
+#: src/components/reboots-table.tsx
+msgid "No alert"
+msgstr "Ingen alarm"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "Ingen detaljerede data for denne pool."
+
+#: src/components/reboots-table.tsx
+msgid "No reboots recorded."
+msgstr "Ingen genstarter registreret."
 
 #: src/components/command-palette.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1490,6 +1554,11 @@ msgstr "Ingen"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
 msgstr "Ikke rapporteret"
+
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
+msgid "Notification"
+msgstr "Notifikation"
 
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/layout.tsx
@@ -1563,6 +1632,7 @@ msgstr "Overskriv eksisterende alarmer"
 msgid "Packet loss (%)"
 msgstr "Pakketab (%)"
 
+#: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -1737,6 +1807,10 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Kødybde"
 
+#: src/components/reboots-table.tsx
+msgid "Quiet hours"
+msgstr "Stille timer"
+
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -1782,15 +1856,33 @@ msgstr "Læs"
 msgid "Read errors"
 msgstr "Læsefejl"
 
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Reason"
 msgstr "Årsag"
 
+#: src/components/reboots-table.tsx
+msgid "Reboot details"
+msgstr "Genstartsdetaljer"
+
+#: src/components/reboots-table.tsx
+msgid "Reboot history"
+msgstr "Genstartshistorik"
+
+#: src/components/routes/system.tsx
+msgid "Reboots"
+msgstr "Genstarter"
+
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
 msgstr "Modtaget"
+
+#: src/components/reboots-table.tsx
+msgid "Recorded"
+msgstr "Registreret"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -2029,6 +2121,11 @@ msgstr "Indstillinger"
 msgid "Settings saved"
 msgstr "Indstillinger gemt"
 
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
+msgid "Shutdown"
+msgstr "Nedlukning"
+
 #: src/components/login/auth-form.tsx
 msgid "Sign in"
 msgstr "Log ind"
@@ -2040,6 +2137,11 @@ msgstr "SMTP-indstillinger"
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
 msgstr "Sorter efter"
+
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
+msgid "Source"
+msgstr "Kilde"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2120,6 +2222,8 @@ msgstr "Skift tema"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2249,6 +2353,10 @@ msgstr "Gennemløb af lagerpool {displayName}"
 msgid "Time format"
 msgstr "Tidsformat"
 
+#: src/components/reboots-table.tsx
+msgid "To"
+msgstr "Til"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "To email(s)"
 msgstr "Til email(s)"
@@ -2291,6 +2399,8 @@ msgid "Total time spent on read/write (can exceed 100%)"
 msgstr "Samlet tid brugt på læsning/skrivning (kan overstige 100 %)"
 
 #. placeholder {0}: data.length
+#. placeholder {0}: totals.all
+#: src/components/reboots-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Total: {0}"
 msgstr "I alt: {0}"
@@ -2376,12 +2486,22 @@ msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "Udløser når brugen af en disk overstiger en tærskel"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Type"
 msgstr "Type"
+
+#: src/components/reboots-table.tsx
+msgid "Unexpected"
+msgstr "Uventet"
+
+#: src/components/reboots-table.tsx
+msgid "Unexpected: {unexpectedCount}"
+msgstr "Uventede: {unexpectedCount}"
 
 #: src/lib/alerts.ts
 msgid "Unhealthy"
@@ -2442,6 +2562,7 @@ msgstr "Opdateringsinterval: {intervalLabel}."
 msgid "Upload"
 msgstr "Overfør"
 
+#: src/components/reboots-table.tsx
 #: src/components/routes/system/info-bar.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Uptime"
@@ -2544,6 +2665,10 @@ msgstr "Når du bruger POST, inkluderer hvert heartbeat en JSON-payload med resu
 msgctxt "Button to copy install command"
 msgid "Windows command"
 msgstr "Windows-kommando"
+
+#: src/components/reboots-table.tsx
+msgid "Windows event log"
+msgstr "Windows-hændelseslog"
 
 #: src/components/routes/settings/general.tsx
 msgid "Windows install folder"

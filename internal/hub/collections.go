@@ -118,7 +118,7 @@ func setCollectionAuthSettings(app core.App) error {
 		return err
 	}
 
-	if err := applyCollectionRules(app, []string{"system_details"}, collectionRules{
+	if err := applyCollectionRules(app, []string{"system_details", "system_reboots"}, collectionRules{
 		list: &systemScopedReadRule,
 		view: &systemScopedReadRule,
 	}); err != nil {

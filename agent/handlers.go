@@ -54,6 +54,7 @@ func NewHandlerRegistry() *HandlerRegistry {
 	registry.Register(common.GetSystemdInfo, &GetSystemdInfoHandler{})
 	registry.Register(common.SyncNetworkMonitors, &SyncNetworkMonitorsHandler{})
 	registry.Register(common.GetZfsData, &GetZfsDataHandler{})
+	registry.Register(common.GetBootEvents, &GetBootEventsHandler{})
 
 	return registry
 }

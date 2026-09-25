@@ -64,6 +64,10 @@ type System struct {
 	recordsMu sync.Mutex
 	// Protected by recordsMu; realtime reads don't consume probes.
 	lastSavedMonitorProbe map[string]int64
+	// Boots of the system, to record its reboots.
+	boots bootTracker
+	// True if the agent answers the requests added by this fork.
+	forkRequests atomic.Bool
 }
 
 func (sm *SystemManager) NewSystem(systemId string) *System {
@@ -158,6 +162,10 @@ func (sys *System) update() error {
 
 	// create system records
 	_, err = sys.createRecords(data)
+	if err == nil {
+		sys.forkRequests.Store(supportsForkRequests(data.Info.AgentVersion))
+		sys.trackBoot(data.Info.Uptime, time.Now())
+	}
 
 	// if details were included and fetched successfully, mark details as fetched and update smart interval if set by agent
 	if err == nil && data.Details != nil {

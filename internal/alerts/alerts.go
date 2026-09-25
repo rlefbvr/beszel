@@ -142,6 +142,11 @@ func (am *AlertManager) bindEvents() {
 
 // IsNotificationSilenced checks if a notification should be silenced based on configured quiet hours
 func (am *AlertManager) IsNotificationSilenced(userID, systemID string) bool {
+	return am.isSilencedAt(userID, systemID, time.Now().UTC())
+}
+
+// isSilencedAt checks if quiet hours silence notifications at a given time
+func (am *AlertManager) isSilencedAt(userID, systemID string, now time.Time) bool {
 	// Query for quiet hours windows that match this user and system
 	// Include both global windows (system is null/empty) and system-specific windows
 	var filter string
@@ -165,7 +170,7 @@ func (am *AlertManager) IsNotificationSilenced(userID, systemID string) bool {
 		return false
 	}
 
-	now := time.Now().UTC()
+	now = now.UTC()
 
 	for _, window := range quietHourWindows {
 		windowType := window.GetString("type")

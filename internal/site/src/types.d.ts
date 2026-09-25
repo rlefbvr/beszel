@@ -341,6 +341,26 @@ export interface AlertsHistoryRecord extends RecordModel {
 	resolved?: string | null
 }
 
+/** Notification outcome of an outage for a user */
+export type OutageAlert = "sent" | "quiet"
+
+export interface SystemRebootRecord extends RecordModel {
+	id: string
+	system: string
+	/** boot time */
+	boot: string
+	/** end of the previous run, empty when unknown */
+	shutdown: string
+	/** the previous run ended without a clean shutdown */
+	unexpected: boolean
+	/** shutdown reason and requester, when the OS records them */
+	reason: string
+	user: string
+	source: "uptime" | "eventlog" | "journal" | "wtmp"
+	/** notification outcome by user id */
+	alerts: Record<string, OutageAlert> | null
+}
+
 export interface QuietHoursRecord extends RecordModel {
 	id: string
 	user: string

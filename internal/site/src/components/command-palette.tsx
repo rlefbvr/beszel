@@ -12,6 +12,7 @@ import {
 	LogsIcon,
 	MailIcon,
 	NetworkIcon,
+	RefreshCcwDotIcon,
 	Server,
 	ServerCogIcon,
 	ServerIcon,
@@ -122,6 +123,21 @@ export default memo(function CommandPalette({ open, setOpen }: { open: boolean; 
 							<ServerCogIcon className="me-2 size-4" />
 							<span>
 								<Trans>All Services</Trans>
+							</span>
+							<CommandShortcut>
+								<Trans>Page</Trans>
+							</CommandShortcut>
+						</CommandItem>
+						<CommandItem
+							keywords={["boot", "restart", "shutdown"]}
+							onSelect={() => {
+								navigate(getPagePath($router, "reboots"))
+								setOpen(false)
+							}}
+						>
+							<RefreshCcwDotIcon className="me-2 size-4" />
+							<span>
+								<Trans>All Reboots</Trans>
 							</span>
 							<CommandShortcut>
 								<Trans>Page</Trans>

@@ -18,6 +18,11 @@ msgstr ""
 "X-Crowdin-File: /main/internal/site/src/locales/en/en.po\n"
 "X-Crowdin-File-ID: 32\n"
 
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
+msgid "(Unknown)"
+msgstr "(Nepoznato)"
+
 #. placeholder {0}: newVersion.v
 #: src/components/footer-repo-link.tsx
 msgctxt "New version available"
@@ -56,6 +61,10 @@ msgstr "{count, plural, one {{countString} sat} other {{countString} sati}}"
 #: src/lib/utils.ts
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} minuta} few {{countString} minuta} many {{countString} minuta} other {{countString} minute}}"
+
+#: src/components/systems-select.tsx
+msgid "{count, plural, one {# system} other {# systems}}"
+msgstr "{count, plural, one {# sustav} few {# sustava} other {# sustava}}"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "{diskName} I/O"
@@ -193,6 +202,10 @@ msgstr "Instalacija agenta"
 msgid "Alert History"
 msgstr "Povijest Upozorenja"
 
+#: src/components/reboots-table.tsx
+msgid "Alert sent"
+msgstr "Upozorenje poslano"
+
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when services or Docker containers enter or leave a state."
 msgstr "Upozori kada usluge ili Docker kontejneri uđu u stanje ili iz njega izađu."
@@ -221,6 +234,14 @@ msgstr "Svi spremnici"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/reboots-table.tsx
+#: src/components/routes/reboots.tsx
+msgid "All Reboots"
+msgstr "Sva ponovna pokretanja"
+
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
 #: src/components/routes/services.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "All Services"
@@ -230,6 +251,8 @@ msgstr "Sve usluge"
 #: src/components/command-palette.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/systems-select.tsx
+#: src/components/systems-select.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All Systems"
@@ -374,6 +397,11 @@ msgstr "Binarni"
 msgid "Bits (Kbps, Mbps, Gbps)"
 msgstr "Bitovi (Kbps, Mbps, Gbps)"
 
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
+msgid "Boot"
+msgstr "Pokretanje"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Boot state"
 msgstr "Stanje pokretanja"
@@ -483,8 +511,14 @@ msgstr "Provjerite svoju obavještajnu uslugu"
 msgid "Checksum errors"
 msgstr "Pogreške kontrolnog zbroja"
 
+#: src/components/reboots-table.tsx
+msgctxt "Clean shutdown"
+msgid "Clean"
+msgstr "Uredno"
+
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -847,6 +881,11 @@ msgstr "Sustav je pao ({downSystemsLength})"
 msgid "Download"
 msgstr "Preuzmi"
 
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
+msgid "Downtime"
+msgstr "Vrijeme zastoja"
+
 #: src/components/alerts-history-columns.tsx
 msgid "Duration"
 msgstr "Trajanje"
@@ -1071,6 +1110,10 @@ msgctxt "Button to copy install command"
 msgid "FreeBSD command"
 msgstr "FreeBSD naredba"
 
+#: src/components/reboots-table.tsx
+msgid "From"
+msgstr "Od"
+
 #. Context: Battery state
 #: src/components/routes/system/info-bar.tsx
 #: src/lib/i18n.ts
@@ -1137,6 +1180,7 @@ msgstr "Homebrew naredba"
 
 #: src/components/add-system.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Host / IP"
 msgstr "Host / IP"
@@ -1208,6 +1252,10 @@ msgstr "Važne usluge"
 msgid "Inactive"
 msgstr "Neaktivno"
 
+#: src/components/reboots-table.tsx
+msgid "Initiated by"
+msgstr "Pokrenuo"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Interval"
@@ -1263,6 +1311,10 @@ msgstr "Prosječno Opterećenje 5m"
 msgid "Load Avg"
 msgstr "Prosječno Opterećenje"
 
+#: src/components/reboots-table.tsx
+msgid "Load more"
+msgstr "Učitaj više"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Load state"
 msgstr "Stanje učitavanja"
@@ -1288,6 +1340,10 @@ msgstr "Prijava"
 #: src/components/login/forgot-pass-form.tsx
 msgid "Login attempt failed"
 msgstr "Neuspješno pokušaj prijave"
+
+#: src/components/reboots-table.tsx
+msgid "Login records"
+msgstr "Zapisi prijava"
 
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -1453,9 +1509,17 @@ msgstr "Radovi na mreži"
 msgid "No"
 msgstr "Ne"
 
+#: src/components/reboots-table.tsx
+msgid "No alert"
+msgstr "Bez upozorenja"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "Nema detaljnih podataka za ovo spremište."
+
+#: src/components/reboots-table.tsx
+msgid "No reboots recorded."
+msgstr "Nema zabilježenih ponovnih pokretanja."
 
 #: src/components/command-palette.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1490,6 +1554,11 @@ msgstr "Nema"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
 msgstr "Nije prijavljeno"
+
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
+msgid "Notification"
+msgstr "Obavijest"
 
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/layout.tsx
@@ -1563,6 +1632,7 @@ msgstr "Prebriši postojeća upozorenja"
 msgid "Packet loss (%)"
 msgstr "Gubitak paketa (%)"
 
+#: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -1737,6 +1807,10 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Dubina reda"
 
+#: src/components/reboots-table.tsx
+msgid "Quiet hours"
+msgstr "Tihi sati"
+
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -1782,15 +1856,33 @@ msgstr "Pročitaj"
 msgid "Read errors"
 msgstr "Pogreške čitanja"
 
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Reason"
 msgstr "Razlog"
 
+#: src/components/reboots-table.tsx
+msgid "Reboot details"
+msgstr "Pojedinosti ponovnog pokretanja"
+
+#: src/components/reboots-table.tsx
+msgid "Reboot history"
+msgstr "Povijest ponovnih pokretanja"
+
+#: src/components/routes/system.tsx
+msgid "Reboots"
+msgstr "Ponovna pokretanja"
+
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
 msgstr "Primljeno"
+
+#: src/components/reboots-table.tsx
+msgid "Recorded"
+msgstr "Zabilježeno"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -2029,6 +2121,11 @@ msgstr "Postavke"
 msgid "Settings saved"
 msgstr "Postavke spremljene"
 
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
+msgid "Shutdown"
+msgstr "Isključivanje"
+
 #: src/components/login/auth-form.tsx
 msgid "Sign in"
 msgstr "Prijava"
@@ -2040,6 +2137,11 @@ msgstr "SMTP postavke"
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
 msgstr "Sortiraj po"
+
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
+msgid "Source"
+msgstr "Izvor"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2120,6 +2222,8 @@ msgstr "Promijeni temu"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2249,6 +2353,10 @@ msgstr "Protok spremišta {displayName}"
 msgid "Time format"
 msgstr "Format vremena"
 
+#: src/components/reboots-table.tsx
+msgid "To"
+msgstr "Do"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "To email(s)"
 msgstr "Primaoci emaila"
@@ -2291,6 +2399,8 @@ msgid "Total time spent on read/write (can exceed 100%)"
 msgstr "Ukupno vrijeme utrošeno na čitanje/pisanje (može prelaziti 100 %)"
 
 #. placeholder {0}: data.length
+#. placeholder {0}: totals.all
+#: src/components/reboots-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Total: {0}"
 msgstr "Ukupno: {0}"
@@ -2376,12 +2486,22 @@ msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "Pokreće se kada iskorištenost bilo kojeg diska premaši prag"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/reboots-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Type"
 msgstr "Vrsta"
+
+#: src/components/reboots-table.tsx
+msgid "Unexpected"
+msgstr "Neočekivano"
+
+#: src/components/reboots-table.tsx
+msgid "Unexpected: {unexpectedCount}"
+msgstr "Neočekivana: {unexpectedCount}"
 
 #: src/lib/alerts.ts
 msgid "Unhealthy"
@@ -2442,6 +2562,7 @@ msgstr "Interval ažuriranja: {intervalLabel}."
 msgid "Upload"
 msgstr "Otpremi"
 
+#: src/components/reboots-table.tsx
 #: src/components/routes/system/info-bar.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Uptime"
@@ -2544,6 +2665,10 @@ msgstr "Kada koristite POST, svaki heartbeat uključuje JSON payload sa sažetko
 msgctxt "Button to copy install command"
 msgid "Windows command"
 msgstr "Windows naredba"
+
+#: src/components/reboots-table.tsx
+msgid "Windows event log"
+msgstr "Zapisnik događaja sustava Windows"
 
 #: src/components/routes/settings/general.tsx
 msgid "Windows install folder"

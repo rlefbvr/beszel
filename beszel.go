@@ -10,7 +10,7 @@ const (
 	Version = "0.20.0"
 	// ForkRevision numbers the releases of this fork based on the same Version.
 	// Increment it for each release and reset it to 1 when Version changes.
-	ForkRevision = "2"
+	ForkRevision = "3"
 	// ForkVersion identifies the releases of this fork (tag v<ForkVersion>) and is
 	// the version compared for updates and shown to users.
 	ForkVersion = Version + "-fork." + ForkRevision
@@ -32,3 +32,7 @@ var MinVersionZfsData = semver.MustParse("0.18.9")
 
 // MinVersionNetworkMonitors is the minimum agent version that supports network monitor sync.
 var MinVersionNetworkMonitors = semver.MustParse("0.20.0")
+
+// MinVersionForkRequests is the minimum fork agent version that answers the
+// requests added by this fork.
+var MinVersionForkRequests = semver.MustParse("0.20.0-fork.3")

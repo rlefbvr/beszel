@@ -70,6 +70,7 @@ type hubLike interface {
 	HandleContainerAlerts(systemRecord *core.Record, data *system.CombinedData, fetchLogs func(containerID string) (string, error)) error
 	CancelPendingStatusAlerts(systemID string)
 	CancelPendingContainerAlerts(systemID string)
+	OutageNotifications(systemRecord *core.Record, shutdown, until time.Time) map[string]string
 }
 
 // NewSystemManager creates a new SystemManager instance with the provided hub.
