@@ -7,6 +7,8 @@ import {
 	type ColumnDef,
 	flexRender,
 	getCoreRowModel,
+	getSortedRowModel,
+	type RowSelectionState,
 	type SortingState,
 	useReactTable,
 } from "@tanstack/react-table"
@@ -21,8 +23,10 @@ import {
 	PowerIcon,
 	PowerOffIcon,
 	ServerIcon,
+	Trash2Icon,
 } from "lucide-react"
 import { type ReactNode, useCallback, useEffect, useMemo, useState } from "react"
+import { selectionColumn } from "@/components/alerts/bulk-state-alerts"
 import { $router, Link } from "@/components/router"
 import { SystemsSelect } from "@/components/systems-select"
 import {
@@ -33,20 +37,30 @@ import {
 	resizedAttr,
 	useTableLayout,
 } from "@/components/table-layout"
+import {
+	AlertDialog,
+	AlertDialogAction,
+	AlertDialogCancel,
+	AlertDialogContent,
+	AlertDialogDescription,
+	AlertDialogFooter,
+	AlertDialogHeader,
+	AlertDialogTitle,
+} from "@/components/ui/alert-dialog"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { pb } from "@/lib/api"
+import { isReadOnlyUser, pb } from "@/lib/api"
+import { toast } from "@/components/ui/use-toast"
 import { $allSystemsById } from "@/lib/stores"
-import { cn, debounce, formatDuration, formatShortDate, getHostDisplayValue } from "@/lib/utils"
+import { formatDateTime } from "@/lib/time"
+import { cn, debounce, formatDuration, getHostDisplayValue } from "@/lib/utils"
 import type { SystemRebootRecord } from "@/types"
-
-const pageSize = 50
 
 const sourceLabels: Record<SystemRebootRecord["source"], () => string> = {
 	uptime: () => t`Uptime`,
@@ -61,14 +75,14 @@ function localDay(value: string, addDays = 0) {
 	return new Date(year, month - 1, day + addDays)
 }
 
-/** Record fields the hub sorts the sortable columns on */
-const sortFields: Record<string, string> = {
-	shutdown: "shutdown",
-	boot: "boot",
-	type: "unexpected",
-	reason: "reason",
-	source: "source",
-}
+/** Time of a date field in milliseconds, 0 when empty */
+const timeOf = (value: string) => (value ? new Date(value).getTime() : 0)
+
+/** Order of the reboot types: unknown (uptime only), clean, unexpected */
+const typeRank = (record: SystemRebootRecord) => (record.unexpected ? 2 : record.source === "uptime" ? 0 : 1)
+
+/** Order of the notification outcomes: none, quiet hours, sent */
+const alertRank = { quiet: 1, sent: 2 } as Record<string, number>
 
 function rebootColumns(userId: string): ColumnDef<SystemRebootRecord>[] {
 	return [
@@ -76,27 +90,30 @@ function rebootColumns(userId: string): ColumnDef<SystemRebootRecord>[] {
 			// only shown on the page listing the reboots of all systems
 			id: "system",
 			meta: { name: () => t`System` },
+			accessorFn: (record) => $allSystemsById.get()[record.system]?.name ?? record.system,
+			sortingFn: "alphanumeric",
 			header: ({ column }) => <HeaderButton column={column} name={t`System`} Icon={ServerIcon} />,
 			cell: ({ row }) => <SystemName id={row.original.system} />,
 		},
 		{
 			id: "shutdown",
 			meta: { name: () => t`Shutdown` },
-			enableSorting: true,
+			accessorFn: (record) => timeOf(record.shutdown),
 			header: ({ column }) => <HeaderButton column={column} name={t`Shutdown`} Icon={PowerOffIcon} />,
 			cell: ({ row }) =>
-				row.original.shutdown ? formatShortDate(row.original.shutdown) : <span className="text-muted-foreground">-</span>,
+				row.original.shutdown ? formatDateTime(row.original.shutdown) : <span className="text-muted-foreground">-</span>,
 		},
 		{
 			id: "boot",
 			meta: { name: () => t`Boot` },
-			enableSorting: true,
+			accessorFn: (record) => timeOf(record.boot),
 			header: ({ column }) => <HeaderButton column={column} name={t`Boot`} Icon={PowerIcon} />,
-			cell: ({ row }) => formatShortDate(row.original.boot),
+			cell: ({ row }) => formatDateTime(row.original.boot),
 		},
 		{
 			id: "downtime",
 			meta: { name: () => t`Downtime` },
+			accessorFn: (record) => (record.shutdown ? timeOf(record.boot) - timeOf(record.shutdown) : -1),
 			header: ({ column }) => <HeaderButton column={column} name={t`Downtime`} Icon={HourglassIcon} />,
 			cell: ({ row }) =>
 				formatDuration(row.original.shutdown, row.original.boot) || <span className="text-muted-foreground">-</span>,
@@ -104,27 +121,30 @@ function rebootColumns(userId: string): ColumnDef<SystemRebootRecord>[] {
 		{
 			id: "type",
 			meta: { name: () => t`Type` },
-			enableSorting: true,
+			accessorFn: typeRank,
 			header: ({ column }) => <HeaderButton column={column} name={t`Type`} Icon={ActivityIcon} />,
 			cell: ({ row }) => <RebootType record={row.original} />,
 		},
 		{
 			id: "reason",
 			meta: { name: () => t`Reason`, grow: true },
-			enableSorting: true,
+			accessorFn: (record) => [record.reason, record.user].filter(Boolean).join(" "),
+			sortingFn: "alphanumeric",
 			header: ({ column }) => <HeaderButton column={column} name={t`Reason`} Icon={MessageSquareTextIcon} />,
 			cell: ({ row }) => <RebootReason record={row.original} />,
 		},
 		{
 			id: "notification",
 			meta: { name: () => t`Notification` },
+			accessorFn: (record) => alertRank[record.alerts?.[userId] ?? ""] ?? 0,
 			header: ({ column }) => <HeaderButton column={column} name={t`Notification`} Icon={BellIcon} />,
 			cell: ({ row }) => <OutageAlertBadge alert={row.original.alerts?.[userId]} />,
 		},
 		{
 			id: "source",
 			meta: { name: () => t`Source` },
-			enableSorting: true,
+			accessorFn: (record) => sourceLabels[record.source]?.() ?? record.source,
+			sortingFn: "alphanumeric",
 			header: ({ column }) => <HeaderButton column={column} name={t`Source`} Icon={DatabaseIcon} />,
 			cell: ({ row }) => <span className="text-muted-foreground">{sourceLabels[row.original.source]?.()}</span>,
 		},
@@ -141,10 +161,10 @@ export default function RebootsTable({ systemId }: { systemId?: string }) {
 	const [systemsFilter, setSystemsFilter] = useState<string[]>([])
 	const [sorting, setSorting] = useState<SortingState>([{ id: "boot", desc: true }])
 	const [records, setRecords] = useState<SystemRebootRecord[]>([])
-	const [totals, setTotals] = useState({ all: 0, unexpected: 0 })
-	const [page, setPage] = useState(1)
-	const [hasMore, setHasMore] = useState(false)
 	const [loading, setLoading] = useState(true)
+	const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
+	const [confirmDelete, setConfirmDelete] = useState(false)
+	const [deleting, setDeleting] = useState(false)
 	const [activeRecord, setActiveRecord] = useState<SystemRebootRecord | null>(null)
 	const [sheetOpen, setSheetOpen] = useState(false)
 	const { widths, onColumnResize, columnVisibility, onColumnVisibilityChange } = useTableLayout(
@@ -175,52 +195,35 @@ export default function RebootsTable({ systemId }: { systemId?: string }) {
 		return { conditions, params }
 	}, [systemsKey, from, to])
 
-	const sort = sorting
-		.filter((s) => sortFields[s.id])
-		.map((s) => `${s.desc ? "-" : ""}${sortFields[s.id]}`)
-		.concat("-boot")
-		.join(",")
-
-	const load = useCallback(
-		async (pageNumber: number) => {
-			const { conditions, params } = filter
-			const collection = pb.collection<SystemRebootRecord>("system_reboots")
-			const where = (extra?: string) => {
-				const all = extra ? [...conditions, extra] : conditions
-				return all.length ? pb.filter(all.join(" && "), params) : undefined
-			}
-			setLoading(true)
-			try {
-				const [result, unexpected] = await Promise.all([
-					// requestKey null: both requests run together, and in each table of the page
-					collection.getList(pageNumber, pageSize, { filter: where(), sort, requestKey: null }),
-					pageNumber === 1
-						? collection.getList(1, 1, { filter: where("unexpected = true"), fields: "id", requestKey: null })
-						: null,
-				])
-				setRecords((current) => (pageNumber === 1 ? result.items : [...current, ...result.items]))
-				setHasMore(result.page < result.totalPages)
-				setPage(pageNumber)
-				if (unexpected) {
-					setTotals({ all: result.totalItems, unexpected: unexpected.totalItems })
-				}
-			} catch (e) {
-				console.error("get reboots", e)
-			} finally {
-				setLoading(false)
-			}
-		},
-		[filter, sort]
-	)
+	// all the reboots of the filters: they are sorted and selected in the page
+	const load = useCallback(async () => {
+		const { conditions, params } = filter
+		setLoading(true)
+		try {
+			const items = await pb.collection<SystemRebootRecord>("system_reboots").getFullList({
+				filter: conditions.length ? pb.filter(conditions.join(" && "), params) : undefined,
+				sort: "-boot",
+				batch: 500,
+				// several tables can load at once (system page)
+				requestKey: null,
+			})
+			setRecords(items)
+			setRowSelection({})
+		} catch (e) {
+			console.error("get reboots", e)
+		} finally {
+			setLoading(false)
+		}
+	}, [filter])
 
 	useEffect(() => {
-		load(1)
+		load()
 	}, [load])
 
 	// show new reboots as they are recorded, once a burst of changes (history read from the logs) ends
 	useEffect(() => {
 		let unsubscribe: (() => void) | undefined
-		const reload = debounce(() => load(1), 500)
+		const reload = debounce(() => load(), 500)
 		pb.collection<SystemRebootRecord>("system_reboots")
 			.subscribe("*", ({ record }) => {
 				if (!systems.length || systems.includes(record.system)) {
@@ -234,24 +237,46 @@ export default function RebootsTable({ systemId }: { systemId?: string }) {
 	}, [systemsKey, load])
 
 	const userId = pb.authStore.record?.id ?? ""
-	const columns = useMemo(
-		() => rebootColumns(userId).filter((column) => !systemId || column.id !== "system"),
-		[userId, systemId]
-	)
+	const canDelete = !isReadOnlyUser()
+	const columns = useMemo(() => {
+		const columns = rebootColumns(userId).filter((column) => !systemId || column.id !== "system")
+		return canDelete ? [selectionColumn<SystemRebootRecord>(), ...columns] : columns
+	}, [userId, systemId, canDelete])
 
 	const table = useReactTable({
 		data: records,
 		columns,
+		getRowId: (record) => record.id,
 		getCoreRowModel: getCoreRowModel(),
-		manualSorting: true,
+		getSortedRowModel: getSortedRowModel(),
 		enableSortingRemoval: false,
 		onSortingChange: setSorting,
 		onColumnVisibilityChange,
-		state: { sorting, columnVisibility },
-		defaultColumn: {
-			enableSorting: false,
-		},
+		onRowSelectionChange: setRowSelection,
+		state: { sorting, columnVisibility, rowSelection },
 	})
+	const selectedIds = Object.keys(rowSelection).filter((id) => rowSelection[id])
+
+	// deletes the selected reboots, in batches of the hub limit
+	const deleteSelected = async () => {
+		setDeleting(true)
+		try {
+			for (let i = 0; i < selectedIds.length; i += 50) {
+				const batch = pb.createBatch()
+				for (const id of selectedIds.slice(i, i + 50)) {
+					batch.collection("system_reboots").delete(id)
+				}
+				await batch.send()
+			}
+			setRowSelection({})
+			load()
+		} catch (e) {
+			toast({ variant: "destructive", title: t`Error`, description: (e as Error).message })
+		} finally {
+			setDeleting(false)
+			setConfirmDelete(false)
+		}
+	}
 
 	const openSheet = (record: SystemRebootRecord) => {
 		setActiveRecord(record)
@@ -259,7 +284,9 @@ export default function RebootsTable({ systemId }: { systemId?: string }) {
 	}
 
 	const hasFilters = from || to || systemsFilter.length > 0
-	const unexpectedCount = totals.unexpected
+	const totalCount = records.length
+	const unexpectedCount = records.filter((record) => record.unexpected).length
+	const selectedCount = selectedIds.length
 
 	return (
 		<Card className="@container w-full px-3 py-5 sm:py-6 sm:px-6">
@@ -270,7 +297,7 @@ export default function RebootsTable({ systemId }: { systemId?: string }) {
 							{systemId ? <Trans>Reboot history</Trans> : <Trans>All Reboots</Trans>}
 						</CardTitle>
 						<div className="text-sm text-muted-foreground flex items-center flex-wrap">
-							<Trans>Total: {totals.all}</Trans>
+							<Trans>Total: {totalCount}</Trans>
 							<Separator orientation="vertical" className="h-4 mx-2 bg-primary/40" />
 							<Trans>Unexpected: {unexpectedCount}</Trans>
 						</div>
@@ -304,6 +331,12 @@ export default function RebootsTable({ systemId }: { systemId?: string }) {
 						</div>
 						{!systemId && <SystemsSelect value={systemsFilter} onChange={setSystemsFilter} className="min-w-52 max-w-80" />}
 						<ColumnsViewMenu table={table} />
+						{selectedCount > 0 && (
+							<Button variant="destructive" className="gap-2" onClick={() => setConfirmDelete(true)}>
+								<Trash2Icon className="size-4" />
+								<Trans>Delete ({selectedCount})</Trans>
+							</Button>
+						)}
 						{hasFilters && (
 							<Button
 								variant="ghost"
@@ -332,7 +365,9 @@ export default function RebootsTable({ systemId }: { systemId?: string }) {
 										style={headerWidthStyle(widths[header.column.id])}
 									>
 										{flexRender(header.column.columnDef.header, header.getContext())}
-										<ColumnResizer columnId={header.column.id} onColumnResize={onColumnResize} />
+										{header.column.id !== "select" && (
+											<ColumnResizer columnId={header.column.id} onColumnResize={onColumnResize} />
+										)}
 									</TableHead>
 								))}
 							</tr>
@@ -341,7 +376,12 @@ export default function RebootsTable({ systemId }: { systemId?: string }) {
 					<TableBody>
 						{records.length ? (
 							table.getRowModel().rows.map((row) => (
-								<TableRow key={row.id} className="cursor-pointer" onClick={() => openSheet(row.original)}>
+								<TableRow
+									key={row.id}
+									data-state={row.getIsSelected() && "selected"}
+									className="cursor-pointer"
+									onClick={() => openSheet(row.original)}
+								>
 									{row.getVisibleCells().map((cell) => (
 										<TableCell
 											{...resizedAttr(widths[cell.column.id], cell.column.columnDef.meta?.grow)}
@@ -369,14 +409,33 @@ export default function RebootsTable({ systemId }: { systemId?: string }) {
 				</table>
 			</div>
 
-			{hasMore && (
-				<div className="flex justify-center mt-4">
-					<Button variant="outline" onClick={() => load(page + 1)} disabled={loading}>
-						{loading && <LoaderCircleIcon className="size-4 animate-spin" />}
-						<Trans>Load more</Trans>
-					</Button>
-				</div>
-			)}
+			<AlertDialog open={confirmDelete} onOpenChange={setConfirmDelete}>
+				<AlertDialogContent>
+					<AlertDialogHeader>
+						<AlertDialogTitle>
+							<Trans>Delete the selected reboots?</Trans>
+						</AlertDialogTitle>
+						<AlertDialogDescription>
+							<Trans>This will permanently delete all selected records from the database.</Trans>
+						</AlertDialogDescription>
+					</AlertDialogHeader>
+					<AlertDialogFooter>
+						<AlertDialogCancel>
+							<Trans>Cancel</Trans>
+						</AlertDialogCancel>
+						<AlertDialogAction
+							className={cn(buttonVariants({ variant: "destructive" }))}
+							disabled={deleting}
+							onClick={(e) => {
+								e.preventDefault()
+								deleteSelected()
+							}}
+						>
+							<Trans>Delete</Trans>
+						</AlertDialogAction>
+					</AlertDialogFooter>
+				</AlertDialogContent>
+			</AlertDialog>
 
 			<RebootSheet record={activeRecord} open={sheetOpen} setOpen={setSheetOpen} userId={userId} />
 		</Card>
@@ -470,15 +529,15 @@ function RebootSheet({
 								)
 							)}
 							{renderRow(t`Host / IP`, system && getHostDisplayValue(system))}
-							{renderRow(t`Shutdown`, record.shutdown && formatShortDate(record.shutdown))}
-							{renderRow(t`Boot`, formatShortDate(record.boot))}
+							{renderRow(t`Shutdown`, record.shutdown && formatDateTime(record.shutdown))}
+							{renderRow(t`Boot`, formatDateTime(record.boot))}
 							{renderRow(t`Downtime`, formatDuration(record.shutdown, record.boot))}
 							{renderRow(t`Type`, <RebootType record={record} />)}
 							{renderRow(t`Reason`, record.reason || <span className="text-muted-foreground">{t`(Unknown)`}</span>)}
 							{renderRow(t`Initiated by`, record.user)}
 							{renderRow(t`Notification`, <OutageAlertBadge alert={record.alerts?.[userId]} />)}
 							{renderRow(t`Source`, sourceLabels[record.source]?.())}
-							{renderRow(t`Recorded`, record.created && formatShortDate(record.created))}
+							{renderRow(t`Recorded`, record.created && formatDateTime(record.created))}
 						</tbody>
 					</table>
 				</div>

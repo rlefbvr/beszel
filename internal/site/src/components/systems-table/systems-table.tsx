@@ -48,7 +48,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { SystemStatus } from "@/lib/enums"
 import { isReadOnlyUser, queueUserSettings } from "@/lib/api"
 import { alertInfo } from "@/lib/alerts"
@@ -64,7 +63,6 @@ import {
 	inGroupTab,
 	matchesAlertFilter,
 	systemGroup,
-	ungroupedKey,
 	ungroupedTab,
 } from "@/lib/system-groups"
 import { cn, runOnce } from "@/lib/utils"
@@ -74,6 +72,7 @@ import { $router, Link } from "../router"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
 import { AgentUpdateButton } from "../agent-update-dialog"
 import { type ColumnResizeHandler, ColumnResizer, resizedAttr } from "../table-layout"
+import { type OverflowTab, OverflowTabs } from "../overflow-tabs"
 import { ManageGroupsDialog } from "./groups-dialog"
 import { SystemsTableColumns, ActionsButton, IndicatorDot } from "./systems-table-columns"
 
@@ -106,7 +105,6 @@ export default function SystemsTable() {
 	)
 	// groups and alerts shown, chosen in the view options
 	const [groupView, setGroupView] = useState(() => $userSettings.get().groupView ?? false)
-	const [hiddenGroups, setHiddenGroups] = useState<string[]>(() => $userSettings.get().hiddenGroups ?? [])
 	const [alertFilter, setAlertFilter] = useState(() => $userSettings.get().alertFilter ?? "")
 	const [activeGroupTab, setActiveGroupTab] = useState(() => $userSettings.get().groupTab ?? allGroupsTab)
 	const [groupsDialogOpen, setGroupsDialogOpen] = useState(false)
@@ -118,7 +116,7 @@ export default function SystemsTable() {
 	// Apply settings from server once they load (handles incognito / new devices)
 	const applied = useRef(new Set<string>())
 	useEffect(() => {
-		return subscribeKeys($userSettings, ["cols", "statusFilter", "viewMode", "sortMode", "groupView", "hiddenGroups", "alertFilter", "groupTab", "colWidths"], (vals) => {
+		return subscribeKeys($userSettings, ["cols", "statusFilter", "viewMode", "sortMode", "groupView", "alertFilter", "groupTab", "colWidths"], (vals) => {
 			if (!applied.current.has("cols") && vals.cols !== undefined) {
 				applied.current.add("cols")
 				setColumnVisibility(vals.cols)
@@ -138,10 +136,6 @@ export default function SystemsTable() {
 			if (!applied.current.has("groupView") && vals.groupView !== undefined) {
 				applied.current.add("groupView")
 				setGroupView(vals.groupView)
-			}
-			if (!applied.current.has("hiddenGroups") && vals.hiddenGroups !== undefined) {
-				applied.current.add("hiddenGroups")
-				setHiddenGroups(vals.hiddenGroups)
 			}
 			if (!applied.current.has("alertFilter") && vals.alertFilter !== undefined) {
 				applied.current.add("alertFilter")
@@ -199,7 +193,7 @@ export default function SystemsTable() {
 
 	// save a view preference of the user
 	const saveViewSetting = useCallback(
-		<K extends "groupView" | "hiddenGroups" | "alertFilter" | "groupTab" | "colWidths">(key: K, value: UserSettings[K]) => {
+		<K extends "groupView" | "alertFilter" | "groupTab" | "colWidths">(key: K, value: UserSettings[K]) => {
 			$userSettings.setKey(key, value)
 			queueUserSettings({ [key]: value })
 		},
@@ -209,14 +203,6 @@ export default function SystemsTable() {
 	const handleGroupViewChange = useCallback((value: boolean) => {
 		setGroupView(value)
 		saveViewSetting("groupView", value)
-	}, [])
-
-	const handleGroupVisibilityChange = useCallback((group: string, visible: boolean) => {
-		setHiddenGroups((current) => {
-			const next = visible ? current.filter((g) => g !== group) : [...current, group]
-			saveViewSetting("hiddenGroups", next)
-			return next
-		})
 	}, [])
 
 	const handleGroupTabChange = useCallback((value: string) => {
@@ -292,17 +278,12 @@ export default function SystemsTable() {
 			? activeGroupTab
 			: allGroupsTab
 
-	// then on the group tab, or on the groups chosen in the view options for all systems
-	const filteredData = useMemo(() => {
-		if (groupTabShown !== allGroupsTab) {
-			return alertData.filter((system) => inGroupTab(system, groupTabShown))
-		}
-		if (!hiddenGroups.length) {
-			return alertData
-		}
-		const hidden = new Set(hiddenGroups)
-		return alertData.filter((system) => !hidden.has(systemGroup(system)))
-	}, [alertData, hiddenGroups, groupTabShown])
+	// then on the group tab
+	const filteredData = useMemo(
+		() =>
+			groupTabShown === allGroupsTab ? alertData : alertData.filter((system) => inGroupTab(system, groupTabShown)),
+		[alertData, groupTabShown]
+	)
 	const grouped = groupView && groupTabShown === allGroupsTab
 
 	const [viewMode, setViewMode] = useState<ViewMode>(
@@ -459,18 +440,6 @@ export default function SystemsTable() {
 													<Trans>Manage groups</Trans>
 												</DropdownMenuItem>
 											)}
-											{groupNames.length > 0 && <DropdownMenuSeparator />}
-											{groupNames.length > 0 &&
-												[...groupNames, ungroupedKey].map((group) => (
-													<DropdownMenuCheckboxItem
-														key={group || "-"}
-														onSelect={(e) => e.preventDefault()}
-														checked={!hiddenGroups.includes(group)}
-														onCheckedChange={(value) => handleGroupVisibilityChange(group, !!value)}
-													>
-														{group || <Trans>No group</Trans>}
-													</DropdownMenuCheckboxItem>
-												))}
 										</div>
 										<DropdownMenuLabel className="pt-2 px-3.5 flex items-center gap-2">
 											<BellIcon className="size-4" />
@@ -581,7 +550,6 @@ export default function SystemsTable() {
 		pausedSystemsLength,
 		filter,
 		groupView,
-		hiddenGroups,
 		groupNames,
 		alertFilter,
 		alertNames,
@@ -670,34 +638,50 @@ function GroupTabs({
 	onManage: () => void
 }) {
 	const { t } = useLingui()
-	const count = (tab: string) => (
-		<span className="ms-1 rounded-full bg-muted-foreground/15 px-1.5 text-xs tabular-nums">{counts[tab] ?? 0}</span>
-	)
-	return (
-		<div className="flex items-center gap-2 mb-3 sm:mb-4">
-			<Tabs value={value} onValueChange={onChange} className="min-w-0">
-				<TabsList className="h-10 p-1 max-w-full overflow-x-auto justify-start">
-					<TabsTrigger value={allGroupsTab} className="gap-1.5">
+	const tabs = useMemo(() => {
+		const count = (tab: string) => (
+			<span className="ms-1 rounded-full bg-muted-foreground/15 px-1.5 text-xs tabular-nums">{counts[tab] ?? 0}</span>
+		)
+		const tabs: OverflowTab[] = [
+			{
+				value: allGroupsTab,
+				label: (
+					<>
 						<LayersIcon className="size-3.5" />
 						<Trans>All</Trans>
 						{count(allGroupsTab)}
-					</TabsTrigger>
-					{groups.map((group) => (
-						<TabsTrigger key={group} value={groupTab(group)} className="gap-1.5">
-							<FolderIcon className="size-3.5" />
-							{group}
-							{count(groupTab(group))}
-						</TabsTrigger>
-					))}
-					{showUngrouped && (
-						<TabsTrigger value={ungroupedTab} className="gap-1.5">
-							<FolderOpenIcon className="size-3.5" />
-							<Trans>No group</Trans>
-							{count(ungroupedTab)}
-						</TabsTrigger>
-					)}
-				</TabsList>
-			</Tabs>
+					</>
+				),
+			},
+			...groups.map((group) => ({
+				value: groupTab(group),
+				title: group,
+				label: (
+					<>
+						<FolderIcon className="size-3.5 shrink-0" />
+						<span className="max-w-48 truncate">{group}</span>
+						{count(groupTab(group))}
+					</>
+				),
+			})),
+		]
+		if (showUngrouped) {
+			tabs.push({
+				value: ungroupedTab,
+				label: (
+					<>
+						<FolderOpenIcon className="size-3.5" />
+						<Trans>No group</Trans>
+						{count(ungroupedTab)}
+					</>
+				),
+			})
+		}
+		return tabs
+	}, [groups, counts, showUngrouped])
+	return (
+		<div className="flex items-center gap-2 mb-3 sm:mb-4">
+			<OverflowTabs tabs={tabs} value={value} onChange={onChange} className="min-w-0 flex-1" />
 			{!isReadOnlyUser() && (
 				<Button
 					variant="ghost"

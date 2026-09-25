@@ -35,3 +35,15 @@ export function formatRelativeTime(date: Date, now = new Date()) {
 	}
 	return format.format(0, "minute")
 }
+
+const pad = (n: number) => String(n).padStart(2, "0")
+
+/** Local date and time as dd/MM/yyyy HH:mm:ss, the same in every language */
+export function formatDateTime(value: string | number | Date) {
+	const date = value instanceof Date ? value : new Date(value)
+	if (Number.isNaN(date.getTime())) {
+		return ""
+	}
+	const day = `${pad(date.getDate())}/${pad(date.getMonth() + 1)}/${date.getFullYear()}`
+	return `${day} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
+}

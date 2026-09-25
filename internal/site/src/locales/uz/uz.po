@@ -533,6 +533,7 @@ msgstr "To'xtata oladi"
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -914,6 +915,7 @@ msgstr "Standart URL"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -921,6 +923,14 @@ msgstr "Standart URL"
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Delete"
 msgstr "O'chirish"
+
+#: src/components/reboots-table.tsx
+msgid "Delete ({selectedCount})"
+msgstr ""
+
+#: src/components/reboots-table.tsx
+#~ msgid "Delete {selectedCount} reboots?"
+#~ msgstr ""
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
@@ -933,6 +943,10 @@ msgstr "Guruhni o‘chirish"
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Delete the group {originalName}?"
 msgstr "{originalName} guruhi o‘chirilsinmi?"
+
+#: src/components/reboots-table.tsx
+msgid "Delete the selected reboots?"
+msgstr ""
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1106,6 +1120,7 @@ msgstr "Vaqtinchalik"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/config-yaml.tsx
 #: src/components/routes/settings/heartbeat.tsx
@@ -1534,8 +1549,8 @@ msgid "Load Avg"
 msgstr "O'rt. yuklanish"
 
 #: src/components/reboots-table.tsx
-msgid "Load more"
-msgstr "Ko‘proq yuklash"
+#~ msgid "Load more"
+#~ msgstr "Ko‘proq yuklash"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Load state"
@@ -1677,6 +1692,10 @@ msgstr "Monitor"
 msgid "Monitors created"
 msgstr "Monitorlar yaratildi"
 
+#: src/components/overflow-tabs.tsx
+msgid "More"
+msgstr "Ko‘proq"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Mountpoint"
 msgstr "Ulash nuqtasi"
@@ -1780,7 +1799,6 @@ msgstr "Ogohlantirishlar sozlanmagan"
 msgid "No detail data for this pool."
 msgstr "Bu pool uchun batafsil ma’lumot mavjud emas."
 
-#: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "No group"
@@ -2775,6 +2793,7 @@ msgid "This system until {until}"
 msgstr "Ushbu tizim {until} gacha"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "This will permanently delete all selected records from the database."
 msgstr "Bu barcha tanlangan yozuvlarni ma'lumotlar bazasidan butunlay o'chiradi."
@@ -2837,13 +2856,12 @@ msgid "Total time spent on read/write (can exceed 100%)"
 msgstr "O'qish/yozishga sarflangan jami vaqt (100% dan oshishi mumkin)"
 
 #. placeholder {0}: data.length
-#. placeholder {0}: totals.all
-#: src/components/reboots-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Total: {0}"
 msgstr "Jami: {0}"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/reboots-table.tsx
 msgid "Total: {totalCount}"
 msgstr "Jami: {totalCount}"
 

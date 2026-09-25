@@ -118,9 +118,18 @@ func setCollectionAuthSettings(app core.App) error {
 		return err
 	}
 
-	if err := applyCollectionRules(app, []string{"system_details", "system_reboots"}, collectionRules{
+	if err := applyCollectionRules(app, []string{"system_details"}, collectionRules{
 		list: &systemScopedReadRule,
 		view: &systemScopedReadRule,
+	}); err != nil {
+		return err
+	}
+
+	// reboots can be deleted from the reboot history by the users who can edit the system
+	if err := applyCollectionRules(app, []string{"system_reboots"}, collectionRules{
+		list:   &systemScopedReadRule,
+		view:   &systemScopedReadRule,
+		delete: &systemScopedWriteRule,
 	}); err != nil {
 		return err
 	}

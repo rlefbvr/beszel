@@ -430,8 +430,6 @@ export interface UserSettings {
 	groupView?: boolean
 	/** home page: group tab shown ("all", "none" or "group:<name>") */
 	groupTab?: string
-	/** home page: groups not shown ("" for systems without group) */
-	hiddenGroups?: string[]
 	/** home page: only systems with alerts ("any", "state" or an alert name) */
 	alertFilter?: string
 	/** home page: widths of the resized table columns, in pixels */

@@ -533,6 +533,7 @@ msgstr "Có thể dừng"
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -914,6 +915,7 @@ msgstr "URL mặc định"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -921,6 +923,14 @@ msgstr "URL mặc định"
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Delete"
 msgstr "Xóa"
+
+#: src/components/reboots-table.tsx
+msgid "Delete ({selectedCount})"
+msgstr ""
+
+#: src/components/reboots-table.tsx
+#~ msgid "Delete {selectedCount} reboots?"
+#~ msgstr ""
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
@@ -933,6 +943,10 @@ msgstr "Xóa nhóm"
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Delete the group {originalName}?"
 msgstr "Xóa nhóm {originalName}?"
+
+#: src/components/reboots-table.tsx
+msgid "Delete the selected reboots?"
+msgstr ""
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1106,6 +1120,7 @@ msgstr "Tạm thời"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/config-yaml.tsx
 #: src/components/routes/settings/heartbeat.tsx
@@ -1534,8 +1549,8 @@ msgid "Load Avg"
 msgstr "Tải TB"
 
 #: src/components/reboots-table.tsx
-msgid "Load more"
-msgstr "Tải thêm"
+#~ msgid "Load more"
+#~ msgstr "Tải thêm"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Load state"
@@ -1677,6 +1692,10 @@ msgstr "Trình giám sát"
 msgid "Monitors created"
 msgstr "Đã tạo trình giám sát"
 
+#: src/components/overflow-tabs.tsx
+msgid "More"
+msgstr "Thêm"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Mountpoint"
 msgstr "Điểm gắn kết"
@@ -1780,7 +1799,6 @@ msgstr "Chưa cấu hình cảnh báo"
 msgid "No detail data for this pool."
 msgstr "Không có dữ liệu chi tiết cho pool này."
 
-#: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "No group"
@@ -2775,6 +2793,7 @@ msgid "This system until {until}"
 msgstr "Hệ thống này đến {until}"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "This will permanently delete all selected records from the database."
 msgstr "Thao tác này sẽ xóa vĩnh viễn tất cả các bản ghi đã chọn khỏi cơ sở dữ liệu."
@@ -2837,13 +2856,12 @@ msgid "Total time spent on read/write (can exceed 100%)"
 msgstr "Tổng thời gian đọc/ghi (có thể vượt quá 100%)"
 
 #. placeholder {0}: data.length
-#. placeholder {0}: totals.all
-#: src/components/reboots-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Total: {0}"
 msgstr "Tổng: {0}"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/reboots-table.tsx
 msgid "Total: {totalCount}"
 msgstr "Tổng: {totalCount}"
 

@@ -533,6 +533,7 @@ msgstr "يمكن الإيقاف"
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -914,6 +915,7 @@ msgstr "العنوان الافتراضي"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -921,6 +923,14 @@ msgstr "العنوان الافتراضي"
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Delete"
 msgstr "حذف"
+
+#: src/components/reboots-table.tsx
+msgid "Delete ({selectedCount})"
+msgstr "حذف ({selectedCount})"
+
+#: src/components/reboots-table.tsx
+#~ msgid "Delete {selectedCount} reboots?"
+#~ msgstr ""
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
@@ -933,6 +943,10 @@ msgstr "حذف المجموعة"
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Delete the group {originalName}?"
 msgstr "حذف المجموعة {originalName}؟"
+
+#: src/components/reboots-table.tsx
+msgid "Delete the selected reboots?"
+msgstr "حذف عمليات إعادة التشغيل المحددة؟"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1106,6 +1120,7 @@ msgstr "مؤقت"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/config-yaml.tsx
 #: src/components/routes/settings/heartbeat.tsx
@@ -1534,8 +1549,8 @@ msgid "Load Avg"
 msgstr "متوسط التحميل"
 
 #: src/components/reboots-table.tsx
-msgid "Load more"
-msgstr "تحميل المزيد"
+#~ msgid "Load more"
+#~ msgstr "تحميل المزيد"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Load state"
@@ -1677,6 +1692,10 @@ msgstr "مراقب"
 msgid "Monitors created"
 msgstr "تم إنشاء أجهزة المراقبة"
 
+#: src/components/overflow-tabs.tsx
+msgid "More"
+msgstr "المزيد"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Mountpoint"
 msgstr "نقطة الربط"
@@ -1780,7 +1799,6 @@ msgstr "لا توجد تنبيهات مكوّنة"
 msgid "No detail data for this pool."
 msgstr "لا تتوفر بيانات تفصيلية لمجموعة التخزين هذه."
 
-#: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "No group"
@@ -2775,6 +2793,7 @@ msgid "This system until {until}"
 msgstr "هذا النظام حتى {until}"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "This will permanently delete all selected records from the database."
 msgstr "سيؤدي هذا إلى حذف جميع السجلات المحددة من قاعدة البيانات بشكل دائم."
@@ -2837,13 +2856,12 @@ msgid "Total time spent on read/write (can exceed 100%)"
 msgstr "إجمالي الوقت المستغرق في القراءة/الكتابة (يمكن أن يتجاوز 100٪)"
 
 #. placeholder {0}: data.length
-#. placeholder {0}: totals.all
-#: src/components/reboots-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Total: {0}"
 msgstr "الإجمالي: {0}"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/reboots-table.tsx
 msgid "Total: {totalCount}"
 msgstr "الإجمالي: {totalCount}"
 

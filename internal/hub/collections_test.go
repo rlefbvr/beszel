@@ -128,7 +128,7 @@ func TestCollectionRulesDefault(t *testing.T) {
 	assert.Equal(t, isUserInSystemUsers, *systemRebootsCollection.ViewRule)
 	assert.Nil(t, systemRebootsCollection.CreateRule)
 	assert.Nil(t, systemRebootsCollection.UpdateRule)
-	assert.Nil(t, systemRebootsCollection.DeleteRule)
+	assert.Equal(t, isUserInSystemUsersNotReadonly, *systemRebootsCollection.DeleteRule)
 
 	// system_stats collection
 	systemStatsCollection, err := hub.FindCollectionByNameOrId("system_stats")
@@ -265,7 +265,7 @@ func TestCollectionRulesShareAllSystems(t *testing.T) {
 	assert.Equal(t, isUser, *systemRebootsCollection.ViewRule)
 	assert.Nil(t, systemRebootsCollection.CreateRule)
 	assert.Nil(t, systemRebootsCollection.UpdateRule)
-	assert.Nil(t, systemRebootsCollection.DeleteRule)
+	assert.Equal(t, isUserNotReadonly, *systemRebootsCollection.DeleteRule)
 
 	// system_stats collection
 	systemStatsCollection, err := hub.FindCollectionByNameOrId("system_stats")

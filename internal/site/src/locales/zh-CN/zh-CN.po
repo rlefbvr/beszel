@@ -533,6 +533,7 @@ msgstr "可停止"
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -914,6 +915,7 @@ msgstr "默认网址"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -921,6 +923,14 @@ msgstr "默认网址"
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Delete"
 msgstr "删除"
+
+#: src/components/reboots-table.tsx
+msgid "Delete ({selectedCount})"
+msgstr ""
+
+#: src/components/reboots-table.tsx
+#~ msgid "Delete {selectedCount} reboots?"
+#~ msgstr ""
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
@@ -933,6 +943,10 @@ msgstr "删除分组"
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Delete the group {originalName}?"
 msgstr "要删除分组 {originalName} 吗？"
+
+#: src/components/reboots-table.tsx
+msgid "Delete the selected reboots?"
+msgstr ""
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1106,6 +1120,7 @@ msgstr "暂时"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/config-yaml.tsx
 #: src/components/routes/settings/heartbeat.tsx
@@ -1534,8 +1549,8 @@ msgid "Load Avg"
 msgstr "负载"
 
 #: src/components/reboots-table.tsx
-msgid "Load more"
-msgstr "加载更多"
+#~ msgid "Load more"
+#~ msgstr "加载更多"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Load state"
@@ -1677,6 +1692,10 @@ msgstr "监控"
 msgid "Monitors created"
 msgstr "已创建监控"
 
+#: src/components/overflow-tabs.tsx
+msgid "More"
+msgstr "更多"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Mountpoint"
 msgstr "挂载点"
@@ -1780,7 +1799,6 @@ msgstr "未配置警报"
 msgid "No detail data for this pool."
 msgstr "此存储池没有可用的详细数据。"
 
-#: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "No group"
@@ -2775,6 +2793,7 @@ msgid "This system until {until}"
 msgstr "此系统，直到 {until}"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "This will permanently delete all selected records from the database."
 msgstr "这将永久删除数据库中所有选定的记录。"
@@ -2837,13 +2856,12 @@ msgid "Total time spent on read/write (can exceed 100%)"
 msgstr "读写操作总耗时（可超过 100%）"
 
 #. placeholder {0}: data.length
-#. placeholder {0}: totals.all
-#: src/components/reboots-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Total: {0}"
 msgstr "总计: {0}"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/reboots-table.tsx
 msgid "Total: {totalCount}"
 msgstr "总计: {totalCount}"
 

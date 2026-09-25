@@ -203,7 +203,7 @@ export const SystemDialog = ({ setOpen, system }: { setOpen: (open: boolean) => 
 							name="group"
 							defaultValue={system?.group}
 							list="system-groups"
-							maxLength={60}
+							maxLength={40}
 							placeholder={t`None`}
 						/>
 						<datalist id="system-groups">

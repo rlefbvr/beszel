@@ -134,7 +134,7 @@ export function ManageGroupsDialog({ initialGroup, onDone }: { initialGroup?: st
 				</DialogDescription>
 			</DialogHeader>
 
-			<div className="grid sm:grid-cols-[13rem_1fr] gap-4 min-w-0">
+			<div className="grid sm:grid-cols-[16rem_minmax(0,1fr)] gap-4 min-w-0">
 				<nav className="grid content-start gap-1">
 					{groups.map((group) => (
 						<button
@@ -147,7 +147,9 @@ export function ManageGroupsDialog({ initialGroup, onDone }: { initialGroup?: st
 							)}
 						>
 							<FolderIcon className="size-4 shrink-0 opacity-70" />
-							<span className="truncate">{group}</span>
+							<span className="min-w-0 break-words line-clamp-2" title={group}>
+								{group}
+							</span>
 							<span className="ms-auto text-muted-foreground tabular-nums">{counts[group] ?? 0}</span>
 						</button>
 					))}
@@ -170,7 +172,7 @@ export function ManageGroupsDialog({ initialGroup, onDone }: { initialGroup?: st
 						<Input
 							id="group-name"
 							value={draft.name}
-							maxLength={60}
+							maxLength={40}
 							placeholder={t`Production, Customers, Lab…`}
 							onChange={(e) => setDraft((current) => ({ ...current, name: e.target.value }))}
 						/>
@@ -202,7 +204,9 @@ export function ManageGroupsDialog({ initialGroup, onDone }: { initialGroup?: st
 											{system.name}
 										</label>
 										{current && current !== draft.original && (
-											<span className="text-xs text-muted-foreground truncate max-w-40">{current}</span>
+											<span className="text-xs text-muted-foreground truncate max-w-40" title={current}>
+												{current}
+											</span>
 										)}
 									</div>
 								)

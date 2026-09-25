@@ -528,6 +528,7 @@ msgstr "Can stop"
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -909,6 +910,7 @@ msgstr "Default URL"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -916,6 +918,14 @@ msgstr "Default URL"
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Delete"
 msgstr "Delete"
+
+#: src/components/reboots-table.tsx
+msgid "Delete ({selectedCount})"
+msgstr "Delete ({selectedCount})"
+
+#: src/components/reboots-table.tsx
+#~ msgid "Delete {selectedCount} reboots?"
+#~ msgstr "Delete {selectedCount} reboots?"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Delete fingerprint"
@@ -928,6 +938,10 @@ msgstr "Delete group"
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Delete the group {originalName}?"
 msgstr "Delete the group {originalName}?"
+
+#: src/components/reboots-table.tsx
+msgid "Delete the selected reboots?"
+msgstr "Delete the selected reboots?"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1101,6 +1115,7 @@ msgstr "Ephemeral"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/config-yaml.tsx
 #: src/components/routes/settings/heartbeat.tsx
@@ -1529,8 +1544,8 @@ msgid "Load Avg"
 msgstr "Load Avg"
 
 #: src/components/reboots-table.tsx
-msgid "Load more"
-msgstr "Load more"
+#~ msgid "Load more"
+#~ msgstr "Load more"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Load state"
@@ -1672,6 +1687,10 @@ msgstr "Monitor"
 msgid "Monitors created"
 msgstr "Monitors created"
 
+#: src/components/overflow-tabs.tsx
+msgid "More"
+msgstr "More"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Mountpoint"
 msgstr "Mountpoint"
@@ -1775,7 +1794,6 @@ msgstr "No alerts configured"
 msgid "No detail data for this pool."
 msgstr "No detail data for this pool."
 
-#: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "No group"
@@ -2770,6 +2788,7 @@ msgid "This system until {until}"
 msgstr "This system until {until}"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/reboots-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "This will permanently delete all selected records from the database."
 msgstr "This will permanently delete all selected records from the database."
@@ -2832,13 +2851,12 @@ msgid "Total time spent on read/write (can exceed 100%)"
 msgstr "Total time spent on read/write (can exceed 100%)"
 
 #. placeholder {0}: data.length
-#. placeholder {0}: totals.all
-#: src/components/reboots-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Total: {0}"
 msgstr "Total: {0}"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/reboots-table.tsx
 msgid "Total: {totalCount}"
 msgstr "Total: {totalCount}"
 
