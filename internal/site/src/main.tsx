@@ -8,6 +8,7 @@ import { lazy, memo, Suspense, useEffect } from "react"
 import ReactDOM from "react-dom/client"
 import Navbar from "@/components/navbar.tsx"
 import { ActiveAlerts } from "@/components/active-alerts"
+import { TitleTooltips } from "@/components/title-tooltips"
 import { $router } from "@/components/router.tsx"
 import Settings from "@/components/routes/settings/layout.tsx"
 import { ThemeProvider } from "@/components/theme-provider.tsx"
@@ -154,6 +155,7 @@ const Layout = () => {
 							<ActiveAlerts />
 						</div>
 						<App />
+						<TitleTooltips />
 						{copyContent && (
 							<Suspense>
 								<CopyToClipboardDialog content={copyContent} />
