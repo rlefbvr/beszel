@@ -232,6 +232,7 @@ func (h *Hub) enableTOTP(e *core.RequestEvent) error {
 	if err := e.App.Save(record); err != nil {
 		return e.InternalServerError("", err)
 	}
+	h.logSecurityEvent(e, record, "mfa_enabled", map[string]any{"method": mfaTOTP})
 	return e.JSON(http.StatusOK, map[string]any{"recoveryCodes": codes})
 }
 
@@ -251,6 +252,7 @@ func (h *Hub) enableEmailMFA(e *core.RequestEvent) error {
 	if err := e.App.Save(record); err != nil {
 		return e.InternalServerError("", err)
 	}
+	h.logSecurityEvent(e, record, "mfa_enabled", map[string]any{"method": mfaEmail})
 	return e.JSON(http.StatusOK, map[string]string{"status": "ok"})
 }
 
@@ -308,6 +310,7 @@ func (h *Hub) disableMFA(e *core.RequestEvent) error {
 	if !checkMFAProof(record, body.Password, body.Code) {
 		return e.BadRequestError("Invalid password or code.", nil)
 	}
+	method := record.GetString("mfa")
 	record.Set("mfa", "")
 	record.Set("totp_secret", "")
 	record.Set("totp_pending", "")
@@ -315,6 +318,7 @@ func (h *Hub) disableMFA(e *core.RequestEvent) error {
 	if err := e.App.Save(record); err != nil {
 		return e.InternalServerError("", err)
 	}
+	h.logSecurityEvent(e, record, "mfa_disabled", map[string]any{"method": method})
 	return e.JSON(http.StatusOK, map[string]string{"status": "ok"})
 }
 
@@ -388,7 +392,9 @@ func (h *Hub) authWithTOTP(e *core.RequestEvent) error {
 	case ok:
 		record.Set("totp_last", step)
 	case useRecoveryCode(record, body.Code):
+		h.logSecurityEvent(e, record, "mfa_recovery_used", nil)
 	default:
+		h.logAuthFailure(e, record.Email(), mfaTOTP)
 		if totpAttempts.fail(body.MfaID) >= totpMaxAttempts {
 			totpAttempts.clear(body.MfaID)
 			_ = e.App.Delete(mfa)

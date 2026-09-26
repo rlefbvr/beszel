@@ -126,6 +126,8 @@ func (h *Hub) StartHub() error {
 	h.App.OnRecordCreate("user_settings").BindFunc(h.um.InitializeUserSettings)
 	// email codes only as the second factor chosen by the user
 	h.guardOTP()
+	// logins and sensitive changes in the audit log
+	h.bindAudit()
 
 	bindNetworkMonitorsEvents(h)
 	hubsettings.BindEvents(h.App)
@@ -165,6 +167,7 @@ func (h *Hub) registerCronJobs(_ *core.ServeEvent) error {
 	h.Cron().MustAdd("create longer records", "*/10 * * * *", h.rm.CreateLongerRecords)
 	// the days left of the certificates go down between their readings
 	h.Cron().MustAdd("certificate alerts", "17 * * * *", h.HandleAllCertificateAlerts)
+	h.Cron().MustAdd("delete old audit logs", "23 * * * *", func() { deleteOldAuditLogs(h) })
 	return nil
 }
 

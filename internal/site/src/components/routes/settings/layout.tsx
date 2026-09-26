@@ -10,6 +10,7 @@ import {
 	FingerprintIcon,
 	HeartPulseIcon,
 	PaletteIcon,
+	ScrollTextIcon,
 	ShieldCheckIcon,
 	SettingsIcon,
 } from "lucide-react"
@@ -28,6 +29,7 @@ const generalSettingsImport = () => import("./general.tsx")
 const appearanceSettingsImport = () => import("./appearance.tsx")
 const securitySettingsImport = () => import("./security.tsx")
 const ldapSettingsImport = () => import("./ldap.tsx")
+const auditLogSettingsImport = () => import("./audit-log.tsx")
 const notificationsSettingsImport = () => import("./notifications.tsx")
 const configYamlSettingsImport = () => import("./config-yaml.tsx")
 const fingerprintsSettingsImport = () => import("./tokens-fingerprints.tsx")
@@ -38,6 +40,7 @@ const GeneralSettings = lazy(generalSettingsImport)
 const AppearanceSettings = lazy(appearanceSettingsImport)
 const SecuritySettings = lazy(securitySettingsImport)
 const LdapSettings = lazy(ldapSettingsImport)
+const AuditLogSettings = lazy(auditLogSettingsImport)
 const NotificationsSettings = lazy(notificationsSettingsImport)
 const ConfigYamlSettings = lazy(configYamlSettingsImport)
 const FingerprintsSettings = lazy(fingerprintsSettingsImport)
@@ -109,6 +112,13 @@ export default function SettingsLayout() {
 			preload: heartbeatSettingsImport,
 		},
 		{
+			title: t`Activity log`,
+			href: getPagePath($router, "settings", { name: "audit" }),
+			icon: ScrollTextIcon,
+			admin: true,
+			preload: auditLogSettingsImport,
+		},
+		{
 			title: t`Directory (LDAP)`,
 			href: getPagePath($router, "settings", { name: "ldap" }),
 			icon: Building2Icon,
@@ -172,6 +182,8 @@ function SettingsContent({ name }: { name: string }) {
 			return <SecuritySettings />
 		case "ldap":
 			return <LdapSettings />
+		case "audit":
+			return <AuditLogSettings />
 		case "notifications":
 			return <NotificationsSettings userSettings={userSettings} />
 		case "config":

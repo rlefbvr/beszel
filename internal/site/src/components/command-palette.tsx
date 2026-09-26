@@ -22,6 +22,9 @@ import {
 	PaletteIcon,
 	ShieldCheckIcon,
 	Building2Icon,
+	ScrollTextIcon,
+	HeartPulseIcon,
+	FileSlidersIcon,
 } from "lucide-react"
 import { memo, type ReactNode, useEffect, useMemo, useState } from "react"
 import {
@@ -274,6 +277,51 @@ export default memo(function CommandPalette({ open, setOpen }: { open: boolean; 
 								<Building2Icon className="me-2 size-4" />
 								<span>
 									<Trans>Directory (LDAP)</Trans>
+								</span>
+								{SettingsShortcut}
+							</CommandItem>
+						)}
+						{isAdmin() && (
+							<CommandItem
+								keywords={["audit", "logins"]}
+								onSelect={() => {
+									navigate(getPagePath($router, "settings", { name: "audit" }))
+									setOpen(false)
+								}}
+							>
+								<ScrollTextIcon className="me-2 size-4" />
+								<span>
+									<Trans>Activity log</Trans>
+								</span>
+								{SettingsShortcut}
+							</CommandItem>
+						)}
+						{isAdmin() && (
+							<CommandItem
+								keywords={["ping", "uptime"]}
+								onSelect={() => {
+									navigate(getPagePath($router, "settings", { name: "heartbeat" }))
+									setOpen(false)
+								}}
+							>
+								<HeartPulseIcon className="me-2 size-4" />
+								<span>
+									<Trans>Heartbeat</Trans>
+								</span>
+								{SettingsShortcut}
+							</CommandItem>
+						)}
+						{isAdmin() && (
+							<CommandItem
+								keywords={["yaml"]}
+								onSelect={() => {
+									navigate(getPagePath($router, "settings", { name: "config" }))
+									setOpen(false)
+								}}
+							>
+								<FileSlidersIcon className="me-2 size-4" />
+								<span>
+									<Trans>YAML Config</Trans>
 								</span>
 								{SettingsShortcut}
 							</CommandItem>

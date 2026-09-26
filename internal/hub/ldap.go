@@ -236,6 +236,7 @@ func (h *Hub) authWithLDAP(e *core.RequestEvent) error {
 	user, err := config.authenticate(body.Username, body.Password)
 	if err != nil {
 		ldapLoginFailures.add(ip, now)
+		h.logAuthFailure(e, body.Username, "ldap")
 		if !errors.Is(err, errLDAPDenied) {
 			e.App.Logger().Warn("Directory login failed", "username", body.Username, "err", err)
 		}
@@ -254,6 +255,7 @@ func (h *Hub) authWithLDAP(e *core.RequestEvent) error {
 		}
 	case !config.CreateUsers:
 		ldapLoginFailures.add(ip, now)
+		h.logAuthFailure(e, body.Username, "ldap")
 		return e.BadRequestError("Failed to authenticate.", nil)
 	default:
 		collection, err := e.App.FindCollectionByNameOrId("users")
@@ -340,6 +342,8 @@ func (h *Hub) saveLDAPConfig(e *core.RequestEvent) error {
 	if err := e.App.Save(record); err != nil {
 		return e.InternalServerError("", err)
 	}
+	writeAudit(e, auditEntry{user: e.Auth, action: "update", targetType: "ldap_config", targetName: config.URL,
+		details: map[string]any{"enabled": config.Enabled}})
 	return h.getLDAPConfig(e)
 }
 

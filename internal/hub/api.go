@@ -301,6 +301,8 @@ func (h *Hub) saveInstance(e *core.RequestEvent) error {
 	if err := e.App.Save(settings); err != nil {
 		return e.InternalServerError("", err)
 	}
+	writeAudit(e, auditEntry{user: e.Auth, action: "update", targetType: "instance", targetName: name,
+		details: map[string]any{"url": settings.Meta.AppURL}})
 	return e.JSON(http.StatusOK, map[string]string{"name": settings.Meta.AppName, "url": settings.Meta.AppURL})
 }
 

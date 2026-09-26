@@ -135,5 +135,11 @@ func (h *Hub) updateAgents(e *core.RequestEvent) error {
 		})
 	}
 	wg.Wait()
+	for systemID, result := range results {
+		if result.Error != "not found" {
+			writeAudit(e, auditEntry{user: e.Auth, action: "agent_update", targetType: "systems", targetID: systemID,
+				details: map[string]any{"updated": result.Updated, "error": result.Error}})
+		}
+	}
 	return e.JSON(http.StatusOK, results)
 }

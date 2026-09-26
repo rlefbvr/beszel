@@ -65,6 +65,15 @@ func AlertsRetention(app core.App) (count, days int) {
 	return count, max(record.GetInt("alerts_retention_days"), 0)
 }
 
+// AuditRetentionDays returns how many days the audit log is kept (0 when unset).
+func AuditRetentionDays(app core.App) int {
+	record, err := app.FindRecordById(CollectionName, RecordID)
+	if err != nil {
+		return 0
+	}
+	return record.GetInt("audit_retention_days")
+}
+
 // longPeriodDays are the chart periods kept with the daily aggregation "1440m".
 var longPeriodDays = map[string]int{"90d": 90, "180d": 180, "1y": 365}
 
