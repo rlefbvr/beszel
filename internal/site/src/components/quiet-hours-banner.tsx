@@ -172,7 +172,7 @@ export function QuietHoursButton({ systemId, sensorId }: { systemId?: string; se
 				<TooltipContent>{active ? <Trans>Quiet hours active</Trans> : <Trans>Quiet Hours</Trans>}</TooltipContent>
 			</Tooltip>
 			{open && (
-				<DialogContent className="max-w-4xl w-[calc(100vw-2rem)] max-h-[calc(100dvh-2rem)] overflow-y-auto">
+				<DialogContent className="max-w-6xl w-[calc(100vw-2rem)] max-h-[calc(100dvh-2rem)] overflow-y-auto">
 					<DialogHeader>
 						<DialogTitle>
 							<Trans>Quiet Hours</Trans>

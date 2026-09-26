@@ -203,6 +203,10 @@ msgstr "{systemCount, plural, one {# system} other {# system}}"
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# tråd} other {# trådar}}"
 
+#: src/lib/quiet-hours.ts
+msgid "{weekList} {dayList} of the month"
+msgstr "{weekList} {dayList} i månaden"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 hour"
@@ -239,15 +243,31 @@ msgstr "15 min"
 msgid "180 days"
 msgstr "180 dagar"
 
+#: src/lib/quiet-hours.ts
+msgid "1st"
+msgstr "1:a"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "24 hours"
 msgstr "24 timmar"
 
+#: src/lib/quiet-hours.ts
+msgid "2nd"
+msgstr "2:a"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "30 days"
 msgstr "30 dagar"
+
+#: src/lib/quiet-hours.ts
+msgid "3rd"
+msgstr "3:e"
+
+#: src/lib/quiet-hours.ts
+msgid "4th"
+msgstr "4:e"
 
 #. Load average
 #: src/components/routes/system/charts/load-average-chart.tsx
@@ -267,6 +287,10 @@ msgstr "90 dagar"
 #: src/lib/alerts.ts
 msgid "A check of the sensor does not respond."
 msgstr "En kontroll av sensorn svarar inte."
+
+#: src/components/quiet-hours-days.tsx
+msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
+msgstr "En dag som saknas i en månad, som den 31:a, hoppas över: välj sista dagen för slutet av varje månad."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
@@ -1099,9 +1123,19 @@ msgstr "Kontrollsummefel"
 msgid "Choose a known port"
 msgstr "Välj en känd port"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Choose at least one day."
+msgstr "Välj minst en dag."
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Choose at least one port."
 msgstr "Välj minst en port."
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Choose at least one week of the month."
+msgstr "Välj minst en vecka i månaden."
 
 #: src/components/reboots-table.tsx
 msgctxt "Clean shutdown"
@@ -1468,7 +1502,7 @@ msgstr "Cykler"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
-#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
 msgid "Daily"
 msgstr "Dagligen"
 
@@ -1488,6 +1522,10 @@ msgstr "Datum"
 msgid "Dates…"
 msgstr "Datum…"
 
+#: src/lib/quiet-hours.ts
+msgid "Day {dayList} of the month"
+msgstr "Dag {dayList} i månaden"
+
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "days"
@@ -1496,6 +1534,16 @@ msgstr "dagar"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "days of alerts"
 msgstr "dagars aviseringar"
+
+#: src/components/quiet-hours-days.tsx
+#: src/components/quiet-hours-days.tsx
+msgid "Days of the month"
+msgstr "Dagar i månaden"
+
+#: src/components/quiet-hours-days.tsx
+#: src/components/quiet-hours-days.tsx
+msgid "Days of the week"
+msgstr "Veckodagar"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
@@ -1880,6 +1928,10 @@ msgstr "Flyktig"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "Fel"
+
+#: src/lib/quiet-hours.ts
+msgid "Every day"
+msgstr "Varje dag"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2509,6 +2561,10 @@ msgstr "Etikett"
 msgid "Language"
 msgstr "Språk"
 
+#: src/lib/quiet-hours.ts
+msgid "last"
+msgstr "sista"
+
 #: src/components/routes/sensor.tsx
 msgid "Last 30 minutes"
 msgstr "Senaste 30 minuterna"
@@ -2523,6 +2579,14 @@ msgstr "Senaste larm"
 #: src/components/sensors/sensors-board.tsx
 msgid "Last check"
 msgstr "Senaste kontroll"
+
+#: src/lib/quiet-hours.ts
+msgid "last day"
+msgstr "sista dagen"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Last day"
+msgstr "Sista dagen"
 
 #: src/components/routes/sensor.tsx
 msgid "Last hour"
@@ -2818,6 +2882,12 @@ msgstr "Monitor"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitors created"
 msgstr "Monitorer skapade"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
+msgid "Monthly"
+msgstr "Månadsvis"
 
 #: src/components/overflow-tabs.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -3158,7 +3228,7 @@ msgstr "En eller flera tjänster är i ett misslyckat tillstånd"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
-#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
 msgid "One-time"
 msgstr "Engångs"
 
@@ -5221,6 +5291,27 @@ msgstr "Varningströsklar"
 #: src/components/routes/settings/notifications.tsx
 msgid "Webhook / Push notifications"
 msgstr "Webhook / Push-aviseringar"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weekdays"
+msgstr "Vardagar"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weekend"
+msgstr "Helg"
+
+#: src/lib/quiet-hours.ts
+msgid "Weekly"
+msgstr "Veckovis"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Weekly, on some days"
+msgstr "Veckovis, vissa dagar"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weeks of the month"
+msgstr "Veckor i månaden"
 
 #: src/components/discard-guard.tsx
 msgid "What you typed will be lost."

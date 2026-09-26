@@ -375,9 +375,19 @@ export interface QuietHoursRecord extends RecordModel {
 	system: string
 	/** network sensor of the window, empty for the others */
 	sensor?: string
-	type: "one-time" | "daily"
+	type: "one-time" | "daily" | "weekly" | "monthly"
 	start: string
 	end: string
+	/**
+	 * days of the recurring windows: weekdays from Monday (1) to Sunday (7) for
+	 * the weekly windows and the monthly windows with weeks; days of the month
+	 * (32: the last one) for the other monthly windows
+	 */
+	days?: number[] | null
+	/** weeks of the month of a monthly window on weekdays: 1 to 4, 5 for the last one */
+	weeks?: number[] | null
+	/** timezone of the user who set the window up, placing its days and hours */
+	timezone?: string
 	/** preset reason key or custom text */
 	reason?: string
 	/** alert types silenced by the window (CPU, Status…); with rules empty too, all the alerts */

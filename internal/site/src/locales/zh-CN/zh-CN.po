@@ -203,6 +203,10 @@ msgstr "{systemCount, plural, other {# 个系统}}"
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# 线程} other {# 线程}}"
 
+#: src/lib/quiet-hours.ts
+msgid "{weekList} {dayList} of the month"
+msgstr "每月{weekList}{dayList}"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 hour"
@@ -239,15 +243,31 @@ msgstr "15 分钟"
 msgid "180 days"
 msgstr "180 天"
 
+#: src/lib/quiet-hours.ts
+msgid "1st"
+msgstr "第一个"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "24 hours"
 msgstr "24 小时"
 
+#: src/lib/quiet-hours.ts
+msgid "2nd"
+msgstr "第二个"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "30 days"
 msgstr "30 天"
+
+#: src/lib/quiet-hours.ts
+msgid "3rd"
+msgstr "第三个"
+
+#: src/lib/quiet-hours.ts
+msgid "4th"
+msgstr "第四个"
 
 #. Load average
 #: src/components/routes/system/charts/load-average-chart.tsx
@@ -267,6 +287,10 @@ msgstr "90 天"
 #: src/lib/alerts.ts
 msgid "A check of the sensor does not respond."
 msgstr "传感器的某项检查没有响应。"
+
+#: src/components/quiet-hours-days.tsx
+msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
+msgstr "月份中不存在的日期（例如 31 日）会跳过：月底请选择“最后一天”。"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
@@ -1099,9 +1123,19 @@ msgstr "校验和错误"
 msgid "Choose a known port"
 msgstr "选择常用端口"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Choose at least one day."
+msgstr "请至少选择一天。"
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Choose at least one port."
 msgstr "请至少选择一个端口。"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Choose at least one week of the month."
+msgstr "请至少选择月份中的一周。"
 
 #: src/components/reboots-table.tsx
 msgctxt "Clean shutdown"
@@ -1468,7 +1502,7 @@ msgstr "循环次数"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
-#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
 msgid "Daily"
 msgstr "每日"
 
@@ -1488,6 +1522,10 @@ msgstr "日期"
 msgid "Dates…"
 msgstr "日期…"
 
+#: src/lib/quiet-hours.ts
+msgid "Day {dayList} of the month"
+msgstr "每月 {dayList} 日"
+
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "days"
@@ -1496,6 +1534,16 @@ msgstr "天"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "days of alerts"
 msgstr "天的警报"
+
+#: src/components/quiet-hours-days.tsx
+#: src/components/quiet-hours-days.tsx
+msgid "Days of the month"
+msgstr "月份中的日期"
+
+#: src/components/quiet-hours-days.tsx
+#: src/components/quiet-hours-days.tsx
+msgid "Days of the week"
+msgstr "星期"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
@@ -1880,6 +1928,10 @@ msgstr "暂时"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "错误"
+
+#: src/lib/quiet-hours.ts
+msgid "Every day"
+msgstr "每天"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2509,6 +2561,10 @@ msgstr "标签"
 msgid "Language"
 msgstr "语言"
 
+#: src/lib/quiet-hours.ts
+msgid "last"
+msgstr "最后一个"
+
 #: src/components/routes/sensor.tsx
 msgid "Last 30 minutes"
 msgstr "最近 30 分钟"
@@ -2523,6 +2579,14 @@ msgstr "最近的警报"
 #: src/components/sensors/sensors-board.tsx
 msgid "Last check"
 msgstr "最后检查"
+
+#: src/lib/quiet-hours.ts
+msgid "last day"
+msgstr "最后一天"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Last day"
+msgstr "最后一天"
 
 #: src/components/routes/sensor.tsx
 msgid "Last hour"
@@ -2818,6 +2882,12 @@ msgstr "监控"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitors created"
 msgstr "已创建监控"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
+msgid "Monthly"
+msgstr "每月"
 
 #: src/components/overflow-tabs.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -3158,7 +3228,7 @@ msgstr "一个或多个服务处于失败状态"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
-#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
 msgid "One-time"
 msgstr "一次性"
 
@@ -5221,6 +5291,27 @@ msgstr "警告阈值"
 #: src/components/routes/settings/notifications.tsx
 msgid "Webhook / Push notifications"
 msgstr "Webhook / 推送通知"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weekdays"
+msgstr "工作日"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weekend"
+msgstr "周末"
+
+#: src/lib/quiet-hours.ts
+msgid "Weekly"
+msgstr "每周"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Weekly, on some days"
+msgstr "每周（指定日）"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weeks of the month"
+msgstr "月份中的周"
 
 #: src/components/discard-guard.tsx
 msgid "What you typed will be lost."

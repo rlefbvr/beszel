@@ -203,6 +203,10 @@ msgstr "{systemCount, plural, other {# システム}}"
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# スレッド} other {# スレッド}}"
 
+#: src/lib/quiet-hours.ts
+msgid "{weekList} {dayList} of the month"
+msgstr "毎月 {weekList} {dayList}"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 hour"
@@ -239,15 +243,31 @@ msgstr "15分"
 msgid "180 days"
 msgstr "180日"
 
+#: src/lib/quiet-hours.ts
+msgid "1st"
+msgstr "第1"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "24 hours"
 msgstr "24時間"
 
+#: src/lib/quiet-hours.ts
+msgid "2nd"
+msgstr "第2"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "30 days"
 msgstr "30日間"
+
+#: src/lib/quiet-hours.ts
+msgid "3rd"
+msgstr "第3"
+
+#: src/lib/quiet-hours.ts
+msgid "4th"
+msgstr "第4"
 
 #. Load average
 #: src/components/routes/system/charts/load-average-chart.tsx
@@ -267,6 +287,10 @@ msgstr "90日"
 #: src/lib/alerts.ts
 msgid "A check of the sensor does not respond."
 msgstr "センサーのチェックが応答しません。"
+
+#: src/components/quiet-hours-days.tsx
+msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
+msgstr "31日のように月に存在しない日はスキップされます。月末には「最終日」を選んでください。"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
@@ -1099,9 +1123,19 @@ msgstr "チェックサムエラー"
 msgid "Choose a known port"
 msgstr "既知のポートを選択"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Choose at least one day."
+msgstr "1 日以上選択してください。"
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Choose at least one port."
 msgstr "ポートを 1 つ以上選択してください。"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Choose at least one week of the month."
+msgstr "月の週を 1 つ以上選択してください。"
 
 #: src/components/reboots-table.tsx
 msgctxt "Clean shutdown"
@@ -1468,7 +1502,7 @@ msgstr "サイクル"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
-#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
 msgid "Daily"
 msgstr "毎日"
 
@@ -1488,6 +1522,10 @@ msgstr "日時"
 msgid "Dates…"
 msgstr "日付…"
 
+#: src/lib/quiet-hours.ts
+msgid "Day {dayList} of the month"
+msgstr "毎月 {dayList} 日"
+
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "days"
@@ -1496,6 +1534,16 @@ msgstr "日"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "days of alerts"
 msgstr "日分のアラート"
+
+#: src/components/quiet-hours-days.tsx
+#: src/components/quiet-hours-days.tsx
+msgid "Days of the month"
+msgstr "月の日付"
+
+#: src/components/quiet-hours-days.tsx
+#: src/components/quiet-hours-days.tsx
+msgid "Days of the week"
+msgstr "曜日"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
@@ -1880,6 +1928,10 @@ msgstr "一時的"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "エラー"
+
+#: src/lib/quiet-hours.ts
+msgid "Every day"
+msgstr "毎日"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2509,6 +2561,10 @@ msgstr "ラベル"
 msgid "Language"
 msgstr "言語"
 
+#: src/lib/quiet-hours.ts
+msgid "last"
+msgstr "最終"
+
 #: src/components/routes/sensor.tsx
 msgid "Last 30 minutes"
 msgstr "直近 30 分"
@@ -2523,6 +2579,14 @@ msgstr "最新のアラート"
 #: src/components/sensors/sensors-board.tsx
 msgid "Last check"
 msgstr "最終チェック"
+
+#: src/lib/quiet-hours.ts
+msgid "last day"
+msgstr "最終日"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Last day"
+msgstr "最終日"
 
 #: src/components/routes/sensor.tsx
 msgid "Last hour"
@@ -2818,6 +2882,12 @@ msgstr "モニター"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitors created"
 msgstr "モニターを作成しました"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
+msgid "Monthly"
+msgstr "毎月"
 
 #: src/components/overflow-tabs.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -3158,7 +3228,7 @@ msgstr "いずれかのサービスが失敗状態です"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
-#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
 msgid "One-time"
 msgstr "1回限り"
 
@@ -5221,6 +5291,27 @@ msgstr "警告のしきい値"
 #: src/components/routes/settings/notifications.tsx
 msgid "Webhook / Push notifications"
 msgstr "Webhook / プッシュ通知"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weekdays"
+msgstr "平日"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weekend"
+msgstr "週末"
+
+#: src/lib/quiet-hours.ts
+msgid "Weekly"
+msgstr "毎週"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Weekly, on some days"
+msgstr "毎週（指定した曜日）"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weeks of the month"
+msgstr "月の週"
 
 #: src/components/discard-guard.tsx
 msgid "What you typed will be lost."

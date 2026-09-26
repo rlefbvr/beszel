@@ -14,6 +14,7 @@ import {
 	GlobeIcon,
 	BellOffIcon,
 	ChevronDownIcon,
+	RepeatIcon,
 } from "lucide-react"
 import { useEffect, useMemo, useState } from "react"
 
@@ -55,7 +56,9 @@ import {
 	quietHoursScoped,
 	quietHoursSensorKinds,
 	quietHoursReasons,
+	quietHoursScheduleText,
 	quietHoursState,
+	quietHoursTypeLabel,
 } from "@/lib/quiet-hours"
 import { $sensors } from "@/lib/sensors"
 import { $stateAlerts, refreshStateAlerts, stateRuleAlertKind } from "@/lib/state-alerts"
@@ -64,6 +67,7 @@ import { $allSystemsById, $systems } from "@/lib/stores"
 import { cn, formatShortDate } from "@/lib/utils"
 import type { QuietHoursRecord, StateAlertRecord, SystemRecord } from "@/types"
 import { GuardedDialog } from "@/components/discard-guard"
+import { MonthlyDays, WeekdayChips } from "@/components/quiet-hours-days"
 
 const quietHoursTranslation = t`Quiet Hours`
 
@@ -150,18 +154,8 @@ export function QuietHours({
 	const scopeLabel = (record: QuietHoursRecord) =>
 		quietHoursScoped(record) ? quietHoursScopeText(record, stateAlerts) : t`All alerts`
 
-	const formatDateTime = (record: QuietHoursRecord) => {
-		if (record.type === "daily") {
-			// For daily windows, show only time
-			const startTime = new Date(record.start).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
-			const endTime = new Date(record.end).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
-			return `${startTime} - ${endTime}`
-		}
-		// For one-time windows, show full date and time
-		const start = formatShortDate(record.start)
-		const end = formatShortDate(record.end)
-		return `${start} - ${end}`
-	}
+	/** When a window runs: its dates, or its days and hours for the recurring ones */
+	const formatDateTime = (record: QuietHoursRecord) => quietHoursScheduleText(record, formatShortDate)
 
 	return (
 		<>
@@ -262,9 +256,16 @@ export function QuietHours({
 										)}
 									</TableCell>
 									<TableCell className="px-4 py-3">
-										{record.type === "daily" ? <Trans>Daily</Trans> : <Trans>One-time</Trans>}
+										<span className="inline-flex items-center gap-1.5">
+											{record.type === "one-time" ? (
+												<CalendarIcon className="size-3.5 text-muted-foreground" />
+											) : (
+												<RepeatIcon className="size-3.5 text-muted-foreground" />
+											)}
+											{quietHoursTypeLabel(record.type)}
+										</span>
 									</TableCell>
-									<TableCell className="px-4 py-3">{formatDateTime(record)}</TableCell>
+									<TableCell className="px-4 py-3 whitespace-normal min-w-48 max-w-80">{formatDateTime(record)}</TableCell>
 									<TableCell className="px-4 py-3 max-w-60 truncate" title={scopeLabel(record)}>
 										{scopeLabel(record)}
 									</TableCell>
@@ -358,7 +359,11 @@ function QuietHoursDialog({
 	)
 	const [selectedSystem, setSelectedSystem] = useState(editingRecord?.system || "")
 	const [selectedSensor, setSelectedSensor] = useState(editingRecord?.sensor || defaultSensor || "")
-	const [windowType, setWindowType] = useState<"one-time" | "daily">(editingRecord?.type || "one-time")
+	const [windowType, setWindowType] = useState<QuietHoursRecord["type"]>(editingRecord?.type || "one-time")
+	// days of the weekly and monthly windows, and weeks of the monthly windows on weekdays
+	const [days, setDays] = useState<number[]>(editingRecord?.days ?? [])
+	const [weeks, setWeeks] = useState<number[]>(editingRecord?.weeks ?? [])
+	const [monthlyByWeekday, setMonthlyByWeekday] = useState(!!editingRecord?.weeks?.length)
 	const [startDateTime, setStartDateTime] = useState("")
 	const [endDateTime, setEndDateTime] = useState("")
 	const [startTime, setStartTime] = useState("")
@@ -376,7 +381,10 @@ function QuietHoursDialog({
 			setSelectedSensor(editingRecord.sensor || "")
 			setTarget(initialTarget(editingRecord.system, editingRecord.sensor))
 			setWindowType(editingRecord.type)
-			if (editingRecord.type === "daily") {
+			setDays(editingRecord.days ?? [])
+			setWeeks(editingRecord.weeks ?? [])
+			setMonthlyByWeekday(!!editingRecord.weeks?.length)
+			if (editingRecord.type !== "one-time") {
 				// Extract time from datetime
 				const start = new Date(editingRecord.start)
 				const end = editingRecord.end ? new Date(editingRecord.end) : null
@@ -407,6 +415,9 @@ function QuietHoursDialog({
 			setSelectedSensor(defaultSensor ?? "")
 			setTarget(initialTarget(defaultSystem, defaultSensor))
 			setWindowType("one-time")
+			setDays([])
+			setWeeks([])
+			setMonthlyByWeekday(false)
 			setStartDateTime(formatDateTimeLocal(noon))
 			setEndDateTime(formatDateTimeLocal(onePm))
 			setStartTime("12:00")
@@ -420,13 +431,21 @@ function QuietHoursDialog({
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
+		if ((windowType === "weekly" || windowType === "monthly") && !days.length) {
+			toast({ variant: "destructive", title: t`Choose at least one day.` })
+			return
+		}
+		if (windowType === "monthly" && monthlyByWeekday && !weeks.length) {
+			toast({ variant: "destructive", title: t`Choose at least one week of the month.` })
+			return
+		}
 
 		try {
 			let startValue: string
 			let endValue: string | undefined
 
-			if (windowType === "daily") {
-				// For daily windows, convert local time to UTC
+			if (windowType !== "one-time") {
+				// For recurring windows, convert local time to UTC
 				// Use today's date so the current DST offset is applied (not a fixed historical date)
 				const today = new Date().toISOString().split("T")[0]
 				const startDate = new Date(`${today}T${startTime}:00`)
@@ -449,6 +468,10 @@ function QuietHoursDialog({
 				type: windowType,
 				start: startValue,
 				end: endValue,
+				// the days and hours are the ones of the user's timezone
+				timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+				days: windowType === "weekly" || windowType === "monthly" ? [...days].sort((a, b) => a - b) : [],
+				weeks: windowType === "monthly" && monthlyByWeekday ? [...weeks].sort((a, b) => a - b) : [],
 				reason: reasonChoice === customReason ? customReasonText.trim() : reasonChoice,
 				alerts: kinds.filter((kind) =>
 					(target === "sensor" ? quietHoursSensorKinds : quietHoursAlertKinds).includes(kind as never)
@@ -473,7 +496,7 @@ function QuietHoursDialog({
 	}
 
 	return (
-		<DialogContent className="w-fit max-w-[calc(100vw-2rem)] sm:min-w-[32rem]">
+		<DialogContent className="w-[calc(100vw-2rem)] max-w-4xl max-h-[calc(100dvh-2rem)] overflow-y-auto">
 			<DialogHeader>
 				<DialogTitle>
 					{editingRecord ? (
@@ -486,211 +509,248 @@ function QuietHoursDialog({
 					<Trans>Schedule quiet hours where notifications will not be sent.</Trans>
 				</DialogDescription>
 			</DialogHeader>
-			<form onSubmit={handleSubmit} className="space-y-4">
-				<Tabs value={target} onValueChange={(value) => setTarget(value as typeof target)}>
-					<TabsList className="grid w-full grid-cols-3">
-						<TabsTrigger value="global" className="gap-1.5">
-							<GlobeIcon className="size-3.5" />
-							<Trans>Global</Trans>
-						</TabsTrigger>
-						<TabsTrigger value="system" className="gap-1.5">
-							<ServerIcon className="size-3.5" />
-							<Trans>System</Trans>
-						</TabsTrigger>
-						<TabsTrigger value="sensor" className="gap-1.5">
-							<NetworkIcon className="size-3.5" />
-							<Trans>Sensor</Trans>
-						</TabsTrigger>
-					</TabsList>
+			<form onSubmit={handleSubmit} className="grid gap-4">
+				<div className="grid gap-4 md:grid-cols-2 md:gap-6 items-start">
+					{/* what the window silences, and why */}
+					<div className="grid gap-4 content-start">
+						<Tabs value={target} onValueChange={(value) => setTarget(value as typeof target)}>
+							<TabsList className="grid w-full grid-cols-3">
+								<TabsTrigger value="global" className="gap-1.5">
+									<GlobeIcon className="size-3.5" />
+									<Trans>Global</Trans>
+								</TabsTrigger>
+								<TabsTrigger value="system" className="gap-1.5">
+									<ServerIcon className="size-3.5" />
+									<Trans>System</Trans>
+								</TabsTrigger>
+								<TabsTrigger value="sensor" className="gap-1.5">
+									<NetworkIcon className="size-3.5" />
+									<Trans>Sensor</Trans>
+								</TabsTrigger>
+							</TabsList>
 
-					<TabsContent value="sensor" className="mt-4">
-						<div className="grid gap-2">
-							<Label htmlFor="sensor">
-								<Trans>Sensor</Trans>
-							</Label>
-							<Select value={selectedSensor} onValueChange={setSelectedSensor}>
-								<SelectTrigger id="sensor">
-									<SelectValue placeholder={t`Select ${{ foo: t`Sensor`.toLocaleLowerCase() }}`} />
-								</SelectTrigger>
-								<SelectContent>
-									{sensorList.map((sensor) => (
-										<SelectItem key={sensor.id} value={sensor.id}>
-											{clamp(sensor.name)}
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-							{/* Hidden input for native form validation */}
-							<input
-								className="sr-only"
-								type="text"
-								tabIndex={-1}
-								autoComplete="off"
-								value={selectedSensor}
-								onChange={() => {}}
-								required={target === "sensor"}
-							/>
-						</div>
-					</TabsContent>
-					<TabsContent value="system" className="mt-4 space-y-4">
-						<div className="grid gap-2">
-							<Label htmlFor="system">
-								<Trans>System</Trans>
-							</Label>
-							<Select value={selectedSystem} onValueChange={setSelectedSystem}>
-								<SelectTrigger id="system">
-									<SelectValue placeholder={t`Select ${{ foo: t`System`.toLocaleLowerCase() }}`} />
-								</SelectTrigger>
-								<SelectContent>
-									{systems.map((system) => (
-										<SelectItem key={system.id} value={system.id}>
-											{clamp(system.name)}
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-							{/* Hidden input for native form validation */}
-							<input
-								className="sr-only"
-								type="text"
-								tabIndex={-1}
-								autoComplete="off"
-								value={selectedSystem}
-								onChange={() => {}}
-								required={target === "system"}
-							/>
-						</div>
-					</TabsContent>
-				</Tabs>
+							<TabsContent value="sensor" className="mt-4">
+								<div className="grid gap-2">
+									<Label htmlFor="sensor">
+										<Trans>Sensor</Trans>
+									</Label>
+									<Select value={selectedSensor} onValueChange={setSelectedSensor}>
+										<SelectTrigger id="sensor">
+											<SelectValue placeholder={t`Select ${{ foo: t`Sensor`.toLocaleLowerCase() }}`} />
+										</SelectTrigger>
+										<SelectContent>
+											{sensorList.map((sensor) => (
+												<SelectItem key={sensor.id} value={sensor.id}>
+													{clamp(sensor.name)}
+												</SelectItem>
+											))}
+										</SelectContent>
+									</Select>
+									{/* Hidden input for native form validation */}
+									<input
+										className="sr-only"
+										type="text"
+										tabIndex={-1}
+										autoComplete="off"
+										value={selectedSensor}
+										onChange={() => {}}
+										required={target === "sensor"}
+									/>
+								</div>
+							</TabsContent>
+							<TabsContent value="system" className="mt-4 space-y-4">
+								<div className="grid gap-2">
+									<Label htmlFor="system">
+										<Trans>System</Trans>
+									</Label>
+									<Select value={selectedSystem} onValueChange={setSelectedSystem}>
+										<SelectTrigger id="system">
+											<SelectValue placeholder={t`Select ${{ foo: t`System`.toLocaleLowerCase() }}`} />
+										</SelectTrigger>
+										<SelectContent>
+											{systems.map((system) => (
+												<SelectItem key={system.id} value={system.id}>
+													{clamp(system.name)}
+												</SelectItem>
+											))}
+										</SelectContent>
+									</Select>
+									{/* Hidden input for native form validation */}
+									<input
+										className="sr-only"
+										type="text"
+										tabIndex={-1}
+										autoComplete="off"
+										value={selectedSystem}
+										onChange={() => {}}
+										required={target === "system"}
+									/>
+								</div>
+							</TabsContent>
+						</Tabs>
 
-				<QuietHoursScopePicker
-					kindList={target === "sensor" ? quietHoursSensorKinds : quietHoursAlertKinds}
-					kinds={kinds}
-					rules={rules}
-					systemRules={
-						target === "system"
-							? Object.values(stateAlerts).filter((rule) => rule.system === selectedSystem)
-							: []
-					}
-					onChange={(nextKinds, nextRules) => {
-						setKinds(nextKinds)
-						setRules(nextRules)
-					}}
-				/>
-
-				<div className="grid gap-2">
-					<Label htmlFor="type">
-						<Trans>Type</Trans>
-					</Label>
-					<Select value={windowType} onValueChange={(value: "one-time" | "daily") => setWindowType(value)}>
-						<SelectTrigger id="type">
-							<SelectValue />
-						</SelectTrigger>
-						<SelectContent>
-							<SelectItem value="one-time">
-								<Trans>One-time</Trans>
-							</SelectItem>
-							<SelectItem value="daily">
-								<Trans>Daily</Trans>
-							</SelectItem>
-						</SelectContent>
-					</Select>
-				</div>
-
-				{windowType === "one-time" ? (
-					<>
-						<div className="grid gap-2">
-							<Label htmlFor="start-datetime">
-								<Trans>Start Time</Trans>
-							</Label>
-							<Input
-								id="start-datetime"
-								type="datetime-local"
-								value={startDateTime}
-								onChange={(e) => setStartDateTime(e.target.value)}
-								min={formatDateTimeLocal(new Date(new Date().setHours(0, 0, 0, 0)))}
-								required
-								className="tabular-nums tracking-tighter"
-							/>
-						</div>
-						<div className="grid gap-2">
-							<Label htmlFor="end-datetime">
-								<Trans>End Time</Trans>
-							</Label>
-							<Input
-								id="end-datetime"
-								type="datetime-local"
-								value={endDateTime}
-								onChange={(e) => setEndDateTime(e.target.value)}
-								min={startDateTime || formatDateTimeLocal(new Date())}
-								required
-								className="tabular-nums tracking-tighter"
-							/>
-						</div>
-					</>
-				) : (
-					<div className="grid gap-2 grid-cols-2">
-						<div>
-							<Label htmlFor="start-time">
-								<Trans>Start Time</Trans>
-							</Label>
-							<Input
-								className="tabular-nums tracking-tighter"
-								id="start-time"
-								type="time"
-								value={startTime}
-								onChange={(e) => setStartTime(e.target.value)}
-								required
-							/>
-						</div>
-						<div>
-							<Label htmlFor="end-time">
-								<Trans>End Time</Trans>
-							</Label>
-							<Input
-								className="tabular-nums tracking-tighter"
-								id="end-time"
-								type="time"
-								value={endTime}
-								onChange={(e) => setEndTime(e.target.value)}
-								required
-							/>
-						</div>
-					</div>
-				)}
-
-				<div className="grid gap-2">
-					<Label htmlFor="reason">
-						<Trans>Reason</Trans>
-					</Label>
-					<Select value={reasonChoice || "none"} onValueChange={(value) => setReasonChoice(value === "none" ? "" : value)}>
-						<SelectTrigger id="reason">
-							<SelectValue />
-						</SelectTrigger>
-						<SelectContent>
-							<SelectItem value="none">
-								<Trans>None</Trans>
-							</SelectItem>
-							{Object.entries(quietHoursReasons).map(([key, label]) => (
-								<SelectItem key={key} value={key}>
-									{label()}
-								</SelectItem>
-							))}
-							<SelectItem value={customReason}>
-								<Trans>Other</Trans>
-							</SelectItem>
-						</SelectContent>
-					</Select>
-					{reasonChoice === customReason && (
-						<Input
-							aria-label={t`Reason`}
-							placeholder={t`Describe the reason`}
-							value={customReasonText}
-							onChange={(e) => setCustomReasonText(e.target.value)}
-							maxLength={200}
-							required
+						<QuietHoursScopePicker
+							kindList={target === "sensor" ? quietHoursSensorKinds : quietHoursAlertKinds}
+							kinds={kinds}
+							rules={rules}
+							systemRules={
+								target === "system"
+									? Object.values(stateAlerts).filter((rule) => rule.system === selectedSystem)
+									: []
+							}
+							onChange={(nextKinds, nextRules) => {
+								setKinds(nextKinds)
+								setRules(nextRules)
+							}}
 						/>
-					)}
+
+						<div className="grid gap-2">
+							<Label htmlFor="reason">
+								<Trans>Reason</Trans>
+							</Label>
+							<Select value={reasonChoice || "none"} onValueChange={(value) => setReasonChoice(value === "none" ? "" : value)}>
+								<SelectTrigger id="reason">
+									<SelectValue />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectItem value="none">
+										<Trans>None</Trans>
+									</SelectItem>
+									{Object.entries(quietHoursReasons).map(([key, label]) => (
+										<SelectItem key={key} value={key}>
+											{label()}
+										</SelectItem>
+									))}
+									<SelectItem value={customReason}>
+										<Trans>Other</Trans>
+									</SelectItem>
+								</SelectContent>
+							</Select>
+							{reasonChoice === customReason && (
+								<Input
+									aria-label={t`Reason`}
+									placeholder={t`Describe the reason`}
+									value={customReasonText}
+									onChange={(e) => setCustomReasonText(e.target.value)}
+									maxLength={200}
+									required
+								/>
+							)}
+						</div>
+
+					</div>
+					{/* when it runs */}
+					<div className="grid gap-4 content-start md:border-s md:ps-6">
+						<div className="grid gap-2">
+							<Label htmlFor="type">
+								<Trans>Type</Trans>
+							</Label>
+							<Select
+								value={windowType}
+								onValueChange={(value: QuietHoursRecord["type"]) => {
+									setWindowType(value)
+									// the days of the week and of the month don't mean the same
+									setDays([])
+									setWeeks([])
+								}}
+							>
+								<SelectTrigger id="type">
+									<SelectValue />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectItem value="one-time">
+										<Trans>One-time</Trans>
+									</SelectItem>
+									<SelectItem value="daily">
+										<Trans>Daily</Trans>
+									</SelectItem>
+									<SelectItem value="weekly">
+										<Trans>Weekly, on some days</Trans>
+									</SelectItem>
+									<SelectItem value="monthly">
+										<Trans>Monthly</Trans>
+									</SelectItem>
+								</SelectContent>
+							</Select>
+						</div>
+
+						{windowType === "weekly" && <WeekdayChips selected={days} onChange={setDays} />}
+						{windowType === "monthly" && (
+							<MonthlyDays
+								byWeekday={monthlyByWeekday}
+								days={days}
+								weeks={weeks}
+								onChange={(byWeekday, nextDays, nextWeeks) => {
+									setMonthlyByWeekday(byWeekday)
+									setDays(nextDays)
+									setWeeks(nextWeeks)
+								}}
+							/>
+						)}
+
+						{windowType === "one-time" ? (
+							<>
+								<div className="grid gap-2">
+									<Label htmlFor="start-datetime">
+										<Trans>Start Time</Trans>
+									</Label>
+									<Input
+										id="start-datetime"
+										type="datetime-local"
+										value={startDateTime}
+										onChange={(e) => setStartDateTime(e.target.value)}
+										min={formatDateTimeLocal(new Date(new Date().setHours(0, 0, 0, 0)))}
+										required
+										className="tabular-nums tracking-tighter"
+									/>
+								</div>
+								<div className="grid gap-2">
+									<Label htmlFor="end-datetime">
+										<Trans>End Time</Trans>
+									</Label>
+									<Input
+										id="end-datetime"
+										type="datetime-local"
+										value={endDateTime}
+										onChange={(e) => setEndDateTime(e.target.value)}
+										min={startDateTime || formatDateTimeLocal(new Date())}
+										required
+										className="tabular-nums tracking-tighter"
+									/>
+								</div>
+							</>
+						) : (
+							<div className="grid gap-2 grid-cols-2">
+								<div>
+									<Label htmlFor="start-time">
+										<Trans>Start Time</Trans>
+									</Label>
+									<Input
+										className="tabular-nums tracking-tighter"
+										id="start-time"
+										type="time"
+										value={startTime}
+										onChange={(e) => setStartTime(e.target.value)}
+										required
+									/>
+								</div>
+								<div>
+									<Label htmlFor="end-time">
+										<Trans>End Time</Trans>
+									</Label>
+									<Input
+										className="tabular-nums tracking-tighter"
+										id="end-time"
+										type="time"
+										value={endTime}
+										onChange={(e) => setEndTime(e.target.value)}
+										required
+									/>
+								</div>
+							</div>
+						)}
+
+					</div>
 				</div>
 
 				<DialogFooter>

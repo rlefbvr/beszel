@@ -203,6 +203,10 @@ msgstr "{systemCount, plural, other {# hệ thống}}"
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# luồng} other {# luồng}}"
 
+#: src/lib/quiet-hours.ts
+msgid "{weekList} {dayList} of the month"
+msgstr "{dayList} {weekList} của tháng"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 hour"
@@ -239,15 +243,31 @@ msgstr "15 phút"
 msgid "180 days"
 msgstr "180 ngày"
 
+#: src/lib/quiet-hours.ts
+msgid "1st"
+msgstr "thứ nhất"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "24 hours"
 msgstr "24 giờ"
 
+#: src/lib/quiet-hours.ts
+msgid "2nd"
+msgstr "thứ hai"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "30 days"
 msgstr "30 ngày"
+
+#: src/lib/quiet-hours.ts
+msgid "3rd"
+msgstr "thứ ba"
+
+#: src/lib/quiet-hours.ts
+msgid "4th"
+msgstr "thứ tư"
 
 #. Load average
 #: src/components/routes/system/charts/load-average-chart.tsx
@@ -267,6 +287,10 @@ msgstr "90 ngày"
 #: src/lib/alerts.ts
 msgid "A check of the sensor does not respond."
 msgstr "Một kiểm tra của cảm biến không phản hồi."
+
+#: src/components/quiet-hours-days.tsx
+msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
+msgstr "Ngày không có trong tháng, như ngày 31, sẽ bị bỏ qua: chọn ngày cuối cho cuối mỗi tháng."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
@@ -1099,9 +1123,19 @@ msgstr "Lỗi checksum"
 msgid "Choose a known port"
 msgstr "Chọn một cổng phổ biến"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Choose at least one day."
+msgstr "Chọn ít nhất một ngày."
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Choose at least one port."
 msgstr "Chọn ít nhất một cổng."
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Choose at least one week of the month."
+msgstr "Chọn ít nhất một tuần trong tháng."
 
 #: src/components/reboots-table.tsx
 msgctxt "Clean shutdown"
@@ -1468,7 +1502,7 @@ msgstr "Chu kỳ"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
-#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
 msgid "Daily"
 msgstr "Hàng ngày"
 
@@ -1488,6 +1522,10 @@ msgstr "Ngày"
 msgid "Dates…"
 msgstr "Ngày…"
 
+#: src/lib/quiet-hours.ts
+msgid "Day {dayList} of the month"
+msgstr "Ngày {dayList} của tháng"
+
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "days"
@@ -1496,6 +1534,16 @@ msgstr "ngày"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "days of alerts"
 msgstr "ngày cảnh báo"
+
+#: src/components/quiet-hours-days.tsx
+#: src/components/quiet-hours-days.tsx
+msgid "Days of the month"
+msgstr "Ngày trong tháng"
+
+#: src/components/quiet-hours-days.tsx
+#: src/components/quiet-hours-days.tsx
+msgid "Days of the week"
+msgstr "Các ngày trong tuần"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
@@ -1880,6 +1928,10 @@ msgstr "Tạm thời"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "Lỗi"
+
+#: src/lib/quiet-hours.ts
+msgid "Every day"
+msgstr "Mỗi ngày"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2509,6 +2561,10 @@ msgstr "Nhãn"
 msgid "Language"
 msgstr "Ngôn ngữ"
 
+#: src/lib/quiet-hours.ts
+msgid "last"
+msgstr "cuối"
+
 #: src/components/routes/sensor.tsx
 msgid "Last 30 minutes"
 msgstr "30 phút qua"
@@ -2523,6 +2579,14 @@ msgstr "Cảnh báo gần nhất"
 #: src/components/sensors/sensors-board.tsx
 msgid "Last check"
 msgstr "Lần kiểm tra cuối"
+
+#: src/lib/quiet-hours.ts
+msgid "last day"
+msgstr "ngày cuối"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Last day"
+msgstr "Ngày cuối"
 
 #: src/components/routes/sensor.tsx
 msgid "Last hour"
@@ -2818,6 +2882,12 @@ msgstr "Trình giám sát"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitors created"
 msgstr "Đã tạo trình giám sát"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
+msgid "Monthly"
+msgstr "Hằng tháng"
 
 #: src/components/overflow-tabs.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -3158,7 +3228,7 @@ msgstr "Một hoặc nhiều dịch vụ đang ở trạng thái thất bại"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
-#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
 msgid "One-time"
 msgstr "Một lần"
 
@@ -5221,6 +5291,27 @@ msgstr "Ngưỡng cảnh báo"
 #: src/components/routes/settings/notifications.tsx
 msgid "Webhook / Push notifications"
 msgstr "Thông báo Webhook / Push"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weekdays"
+msgstr "Ngày thường"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weekend"
+msgstr "Cuối tuần"
+
+#: src/lib/quiet-hours.ts
+msgid "Weekly"
+msgstr "Hằng tuần"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Weekly, on some days"
+msgstr "Hằng tuần, vào một số ngày"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weeks of the month"
+msgstr "Các tuần trong tháng"
 
 #: src/components/discard-guard.tsx
 msgid "What you typed will be lost."

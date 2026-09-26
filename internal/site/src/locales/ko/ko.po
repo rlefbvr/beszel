@@ -203,6 +203,10 @@ msgstr "{systemCount, plural, other {시스템 #개}}"
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# 스레드} other {# 스레드}}"
 
+#: src/lib/quiet-hours.ts
+msgid "{weekList} {dayList} of the month"
+msgstr "매월 {weekList} {dayList}"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 hour"
@@ -239,15 +243,31 @@ msgstr "15분"
 msgid "180 days"
 msgstr "180일"
 
+#: src/lib/quiet-hours.ts
+msgid "1st"
+msgstr "첫째"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "24 hours"
 msgstr "24시간"
 
+#: src/lib/quiet-hours.ts
+msgid "2nd"
+msgstr "둘째"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "30 days"
 msgstr "30일"
+
+#: src/lib/quiet-hours.ts
+msgid "3rd"
+msgstr "셋째"
+
+#: src/lib/quiet-hours.ts
+msgid "4th"
+msgstr "넷째"
 
 #. Load average
 #: src/components/routes/system/charts/load-average-chart.tsx
@@ -267,6 +287,10 @@ msgstr "90일"
 #: src/lib/alerts.ts
 msgid "A check of the sensor does not respond."
 msgstr "센서의 검사가 응답하지 않습니다."
+
+#: src/components/quiet-hours-days.tsx
+msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
+msgstr "31일처럼 달에 없는 날은 건너뜁니다. 매월 말일은 마지막 날을 선택하세요."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
@@ -1099,9 +1123,19 @@ msgstr "체크섬 오류"
 msgid "Choose a known port"
 msgstr "알려진 포트 선택"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Choose at least one day."
+msgstr "하루 이상 선택하세요."
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Choose at least one port."
 msgstr "포트를 하나 이상 선택하세요."
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Choose at least one week of the month."
+msgstr "월의 주를 하나 이상 선택하세요."
 
 #: src/components/reboots-table.tsx
 msgctxt "Clean shutdown"
@@ -1468,7 +1502,7 @@ msgstr "사이클"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
-#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
 msgid "Daily"
 msgstr "매일"
 
@@ -1488,6 +1522,10 @@ msgstr "날짜"
 msgid "Dates…"
 msgstr "날짜…"
 
+#: src/lib/quiet-hours.ts
+msgid "Day {dayList} of the month"
+msgstr "매월 {dayList}일"
+
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "days"
@@ -1496,6 +1534,16 @@ msgstr "일"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "days of alerts"
 msgstr "일간의 알림"
+
+#: src/components/quiet-hours-days.tsx
+#: src/components/quiet-hours-days.tsx
+msgid "Days of the month"
+msgstr "월의 날짜"
+
+#: src/components/quiet-hours-days.tsx
+#: src/components/quiet-hours-days.tsx
+msgid "Days of the week"
+msgstr "요일"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
@@ -1880,6 +1928,10 @@ msgstr "일시적"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "오류"
+
+#: src/lib/quiet-hours.ts
+msgid "Every day"
+msgstr "매일"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2509,6 +2561,10 @@ msgstr "레이블"
 msgid "Language"
 msgstr "언어"
 
+#: src/lib/quiet-hours.ts
+msgid "last"
+msgstr "마지막"
+
 #: src/components/routes/sensor.tsx
 msgid "Last 30 minutes"
 msgstr "최근 30분"
@@ -2523,6 +2579,14 @@ msgstr "마지막 알림"
 #: src/components/sensors/sensors-board.tsx
 msgid "Last check"
 msgstr "마지막 검사"
+
+#: src/lib/quiet-hours.ts
+msgid "last day"
+msgstr "마지막 날"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Last day"
+msgstr "마지막 날"
 
 #: src/components/routes/sensor.tsx
 msgid "Last hour"
@@ -2818,6 +2882,12 @@ msgstr "모니터"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitors created"
 msgstr "모니터가 생성되었습니다"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
+msgid "Monthly"
+msgstr "매월"
 
 #: src/components/overflow-tabs.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -3158,7 +3228,7 @@ msgstr "하나 이상의 서비스가 실패 상태입니다"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
-#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
 msgid "One-time"
 msgstr "일회성"
 
@@ -5221,6 +5291,27 @@ msgstr "경고 임계값"
 #: src/components/routes/settings/notifications.tsx
 msgid "Webhook / Push notifications"
 msgstr "Webhook / 푸시 알림"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weekdays"
+msgstr "평일"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weekend"
+msgstr "주말"
+
+#: src/lib/quiet-hours.ts
+msgid "Weekly"
+msgstr "매주"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Weekly, on some days"
+msgstr "매주(특정 요일)"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weeks of the month"
+msgstr "월의 주"
 
 #: src/components/discard-guard.tsx
 msgid "What you typed will be lost."

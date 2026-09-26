@@ -1,9 +1,10 @@
+import { i18n } from "@lingui/core"
 import { t } from "@lingui/core/macro"
 import { map } from "nanostores"
 import { alertInfo, stateAlertHistoryInfo } from "@/lib/alerts"
 import { pb } from "@/lib/api"
-import type { QuietHoursRecord, StateAlertRecord } from "@/types"
 import { stateRuleAlertKind } from "@/lib/state-alerts"
+import type { QuietHoursRecord, StateAlertRecord } from "@/types"
 
 const collection = "quiet_hours"
 
@@ -49,15 +50,53 @@ function localMinutes(date: Date) {
 	return (date.getUTCHours() * 60 + date.getUTCMinutes() - date.getTimezoneOffset() + 1440) % 1440
 }
 
+/** Day of the last day of the month in the days of a monthly window */
+export const lastDayOfMonth = 32
+/** Week of the last week of the month in the weeks of a monthly window */
+export const lastWeekOfMonth = 5
+
+/** Weekday from Monday (1) to Sunday (7) */
+function isoWeekday(date: Date) {
+	return date.getDay() || 7
+}
+
+/** Whether a recurring window runs on a day, like the hub */
+function dayMatches(record: QuietHoursRecord, day: Date) {
+	const days = record.days ?? []
+	const weeks = record.weeks ?? []
+	switch (record.type) {
+		case "weekly":
+			return days.includes(isoWeekday(day))
+		case "monthly": {
+			const date = day.getDate()
+			const daysInMonth = new Date(day.getFullYear(), day.getMonth() + 1, 0).getDate()
+			if (!weeks.length) {
+				return days.includes(date) || (days.includes(lastDayOfMonth) && date === daysInMonth)
+			}
+			if (!days.includes(isoWeekday(day))) {
+				return false
+			}
+			const week = Math.floor((date - 1) / 7) + 1
+			return weeks.includes(week) || (weeks.includes(lastWeekOfMonth) && date + 7 > daysInMonth)
+		}
+	}
+	return true
+}
+
 /** Whether a window is active now, in the past (one-time windows) or inactive */
 export function quietHoursState(record: QuietHoursRecord, now = new Date()): QuietHoursState {
-	if (record.type === "daily") {
+	if (record.type !== "one-time") {
 		const current = now.getHours() * 60 + now.getMinutes()
 		const start = localMinutes(new Date(record.start))
 		const end = localMinutes(new Date(record.end))
-		// windows may span midnight
-		const active = start <= end ? current >= start && current < end : current >= start || current < end
-		return active ? "active" : "inactive"
+		// windows may span midnight: the occurrence then started the day before
+		let day: Date | undefined
+		if (start < end) {
+			day = current >= start && current < end ? now : undefined
+		} else if (start > end) {
+			day = current >= start ? now : current < end ? new Date(now.getTime() - 86400_000) : undefined
+		}
+		return day && dayMatches(record, day) ? "active" : "inactive"
 	}
 	const start = new Date(record.start)
 	const end = new Date(record.end)
@@ -69,7 +108,7 @@ export function quietHoursState(record: QuietHoursRecord, now = new Date()): Qui
 
 /** End of the current occurrence of an active window */
 export function quietHoursEnd(record: QuietHoursRecord, now = new Date()): Date {
-	if (record.type !== "daily") {
+	if (record.type === "one-time") {
 		return new Date(record.end)
 	}
 	const end = new Date(now)
@@ -79,6 +118,76 @@ export function quietHoursEnd(record: QuietHoursRecord, now = new Date()): Date 
 		end.setDate(end.getDate() + 1)
 	}
 	return end
+}
+
+/** Short name of a weekday, from Monday (1) to Sunday (7) */
+export function weekdayName(day: number, width: "narrow" | "short" | "long" = "short") {
+	// 1 January 2024 is a Monday
+	return new Intl.DateTimeFormat(i18n.locale, { weekday: width }).format(new Date(2024, 0, day))
+}
+
+/** Names of the weeks of a monthly window: 1st to 4th, and the last one */
+export function weekOfMonthName(week: number) {
+	switch (week) {
+		case 1:
+			return t`1st`
+		case 2:
+			return t`2nd`
+		case 3:
+			return t`3rd`
+		case 4:
+			return t`4th`
+	}
+	return t`last`
+}
+
+/** Hours of a recurring window in local time, such as "22:00 – 06:00" */
+function windowHours(record: QuietHoursRecord) {
+	const format = (value: string) => new Date(value).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+	return `${format(record.start)} – ${format(record.end)}`
+}
+
+/**
+ * When a window runs, such as "Mon, Wed · 22:00 – 06:00", "Day 1, last day of
+ * the month · 08:00 – 10:00" or "2nd, last Tue of the month · …"
+ */
+export function quietHoursScheduleText(record: QuietHoursRecord, formatDate: (value: string) => string) {
+	const hours = windowHours(record)
+	const days = [...(record.days ?? [])].sort((a, b) => a - b)
+	const weeks = [...(record.weeks ?? [])].sort((a, b) => a - b)
+	switch (record.type) {
+		case "one-time":
+			return `${formatDate(record.start)} – ${formatDate(record.end)}`
+		case "daily":
+			return `${t`Every day`} · ${hours}`
+		case "weekly": {
+			const list = days.map((day) => weekdayName(day)).join(", ")
+			return `${list} · ${hours}`
+		}
+		case "monthly": {
+			if (weeks.length) {
+				const weekList = weeks.map(weekOfMonthName).join(", ")
+				const dayList = days.map((day) => weekdayName(day)).join(", ")
+				return `${t`${weekList} ${dayList} of the month`} · ${hours}`
+			}
+			const dayList = days.map((day) => (day === lastDayOfMonth ? t`last day` : String(day))).join(", ")
+			return `${t`Day ${dayList} of the month`} · ${hours}`
+		}
+	}
+	return hours
+}
+
+/** Name of the type of a window */
+export function quietHoursTypeLabel(type: QuietHoursRecord["type"]) {
+	switch (type) {
+		case "daily":
+			return t`Daily`
+		case "weekly":
+			return t`Weekly`
+		case "monthly":
+			return t`Monthly`
+	}
+	return t`One-time`
 }
 
 /** A system or a network sensor, whose quiet hours are the global windows and its own */

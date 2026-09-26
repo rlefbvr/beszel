@@ -3,6 +3,7 @@ import { Plural, Trans } from "@lingui/react/macro"
 import { CalendarIcon, LoaderCircleIcon } from "lucide-react"
 import { useState } from "react"
 import { GuardedDialog } from "@/components/discard-guard"
+import { MonthlyDays, WeekdayChips } from "@/components/quiet-hours-days"
 import { Button } from "@/components/ui/button"
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
@@ -12,7 +13,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { toast } from "@/components/ui/use-toast"
 import { isReadOnlyUser, pb } from "@/lib/api"
 import { quietHoursReasons } from "@/lib/quiet-hours"
-import type { StateAlertRecord } from "@/types"
+import type { QuietHoursRecord, StateAlertRecord } from "@/types"
 
 type Kind = StateAlertRecord["kind"]
 
@@ -66,7 +67,10 @@ function BulkQuietHoursDialog({
 }) {
 	const now = new Date()
 	const inAnHour = new Date(now.getTime() + 3600_000)
-	const [type, setType] = useState<"one-time" | "daily">("one-time")
+	const [type, setType] = useState<QuietHoursRecord["type"]>("one-time")
+	const [days, setDays] = useState<number[]>([])
+	const [weeks, setWeeks] = useState<number[]>([])
+	const [monthlyByWeekday, setMonthlyByWeekday] = useState(false)
 	const [start, setStart] = useState(localInput(now))
 	const [end, setEnd] = useState(localInput(inAnHour))
 	const [startTime, setStartTime] = useState("22:00")
@@ -78,11 +82,19 @@ function BulkQuietHoursDialog({
 
 	async function save(e: React.FormEvent) {
 		e.preventDefault()
+		if ((type === "weekly" || type === "monthly") && !days.length) {
+			toast({ variant: "destructive", title: t`Choose at least one day.` })
+			return
+		}
+		if (type === "monthly" && monthlyByWeekday && !weeks.length) {
+			toast({ variant: "destructive", title: t`Choose at least one week of the month.` })
+			return
+		}
 		setSaving(true)
 		try {
 			let startValue: string
 			let endValue: string
-			if (type === "daily") {
+			if (type !== "one-time") {
 				// today's date so the current offset from UTC applies
 				const today = new Date().toISOString().split("T")[0]
 				startValue = new Date(`${today}T${startTime}:00`).toISOString()
@@ -102,6 +114,9 @@ function BulkQuietHoursDialog({
 					type,
 					start: startValue,
 					end: endValue,
+					timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+					days: type === "weekly" || type === "monthly" ? [...days].sort((a, b) => a - b) : [],
+					weeks: type === "monthly" && monthlyByWeekday ? [...weeks].sort((a, b) => a - b) : [],
 					reason: reasonChoice === customReason ? customText.trim() : reasonChoice,
 					targets: names.map((name) => ({ kind, name })),
 				})
@@ -128,6 +143,12 @@ function BulkQuietHoursDialog({
 							one="The state alerts of the selected service are not sent during this window."
 							other="The state alerts of the # selected services are not sent during this window."
 						/>
+					) : kind === "process" ? (
+						<Plural
+							value={count}
+							one="The alerts of the selected process are not sent during this window."
+							other="The alerts of the # selected processes are not sent during this window."
+						/>
 					) : (
 						<Plural
 							value={count}
@@ -142,13 +163,14 @@ function BulkQuietHoursDialog({
 					<Label htmlFor="bulk-quiet-type">
 						<Trans>Type</Trans>
 					</Label>
-					<Select value={type} onValueChange={(value) => setType(value as typeof type)}>
-					) : kind === "process" ? (
-						<Plural
-							value={count}
-							one="The alerts of the selected process are not sent during this window."
-							other="The alerts of the # selected processes are not sent during this window."
-						/>
+					<Select
+						value={type}
+						onValueChange={(value) => {
+							setType(value as typeof type)
+							setDays([])
+							setWeeks([])
+						}}
+					>
 						<SelectTrigger id="bulk-quiet-type">
 							<SelectValue />
 						</SelectTrigger>
@@ -159,15 +181,34 @@ function BulkQuietHoursDialog({
 							<SelectItem value="daily">
 								<Trans>Daily</Trans>
 							</SelectItem>
+							<SelectItem value="weekly">
+								<Trans>Weekly, on some days</Trans>
+							</SelectItem>
+							<SelectItem value="monthly">
+								<Trans>Monthly</Trans>
+							</SelectItem>
 						</SelectContent>
 					</Select>
 				</div>
+				{type === "weekly" && <WeekdayChips selected={days} onChange={setDays} />}
+				{type === "monthly" && (
+					<MonthlyDays
+						byWeekday={monthlyByWeekday}
+						days={days}
+						weeks={weeks}
+						onChange={(byWeekday, nextDays, nextWeeks) => {
+							setMonthlyByWeekday(byWeekday)
+							setDays(nextDays)
+							setWeeks(nextWeeks)
+						}}
+					/>
+				)}
 				<div className="grid grid-cols-2 gap-2">
 					<div className="grid gap-2">
 						<Label htmlFor="bulk-quiet-start">
 							<Trans>Start Time</Trans>
 						</Label>
-						{type === "daily" ? (
+						{type !== "one-time" ? (
 							<Input
 								id="bulk-quiet-start"
 								type="time"
@@ -190,7 +231,7 @@ function BulkQuietHoursDialog({
 						<Label htmlFor="bulk-quiet-end">
 							<Trans>End Time</Trans>
 						</Label>
-						{type === "daily" ? (
+						{type !== "one-time" ? (
 							<Input
 								id="bulk-quiet-end"
 								type="time"

@@ -203,6 +203,10 @@ msgstr "{systemCount, plural, one {# систем} few {# система} other 
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# nit} few {# niti} other {# niti}}"
 
+#: src/lib/quiet-hours.ts
+msgid "{weekList} {dayList} of the month"
+msgstr "{weekList} {dayList} у месецу"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 hour"
@@ -239,15 +243,31 @@ msgstr "15 мин"
 msgid "180 days"
 msgstr "180 дана"
 
+#: src/lib/quiet-hours.ts
+msgid "1st"
+msgstr "1."
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "24 hours"
 msgstr "24 сата"
 
+#: src/lib/quiet-hours.ts
+msgid "2nd"
+msgstr "2."
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "30 days"
 msgstr "30 дана"
+
+#: src/lib/quiet-hours.ts
+msgid "3rd"
+msgstr "3."
+
+#: src/lib/quiet-hours.ts
+msgid "4th"
+msgstr "4."
 
 #. Load average
 #: src/components/routes/system/charts/load-average-chart.tsx
@@ -267,6 +287,10 @@ msgstr "90 дана"
 #: src/lib/alerts.ts
 msgid "A check of the sensor does not respond."
 msgstr "Провера сензора не одговара."
+
+#: src/components/quiet-hours-days.tsx
+msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
+msgstr "Дан који недостаје у месецу, као 31., прескаче се: за крај сваког месеца изаберите последњи дан."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
@@ -1099,9 +1123,19 @@ msgstr "Грешке контролне суме"
 msgid "Choose a known port"
 msgstr "Изаберите познати порт"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Choose at least one day."
+msgstr "Изаберите бар један дан."
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Choose at least one port."
 msgstr "Изаберите бар један порт."
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Choose at least one week of the month."
+msgstr "Изаберите бар једну недељу у месецу."
 
 #: src/components/reboots-table.tsx
 msgctxt "Clean shutdown"
@@ -1468,7 +1502,7 @@ msgstr "Циклуси"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
-#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
 msgid "Daily"
 msgstr "Дневно"
 
@@ -1488,6 +1522,10 @@ msgstr "Датум"
 msgid "Dates…"
 msgstr "Датуми…"
 
+#: src/lib/quiet-hours.ts
+msgid "Day {dayList} of the month"
+msgstr "{dayList}. дан у месецу"
+
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "days"
@@ -1496,6 +1534,16 @@ msgstr "дана"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "days of alerts"
 msgstr "дана упозорења"
+
+#: src/components/quiet-hours-days.tsx
+#: src/components/quiet-hours-days.tsx
+msgid "Days of the month"
+msgstr "Дани у месецу"
+
+#: src/components/quiet-hours-days.tsx
+#: src/components/quiet-hours-days.tsx
+msgid "Days of the week"
+msgstr "Дани у недељи"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
@@ -1880,6 +1928,10 @@ msgstr "Ефемеран"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "Грешка"
+
+#: src/lib/quiet-hours.ts
+msgid "Every day"
+msgstr "Сваки дан"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2509,6 +2561,10 @@ msgstr "Ознака"
 msgid "Language"
 msgstr "Језик"
 
+#: src/lib/quiet-hours.ts
+msgid "last"
+msgstr "последњи"
+
 #: src/components/routes/sensor.tsx
 msgid "Last 30 minutes"
 msgstr "Последњих 30 минута"
@@ -2523,6 +2579,14 @@ msgstr "Последње упозорење"
 #: src/components/sensors/sensors-board.tsx
 msgid "Last check"
 msgstr "Последња провера"
+
+#: src/lib/quiet-hours.ts
+msgid "last day"
+msgstr "последњи дан"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Last day"
+msgstr "Последњи дан"
 
 #: src/components/routes/sensor.tsx
 msgid "Last hour"
@@ -2818,6 +2882,12 @@ msgstr "Monitor"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitors created"
 msgstr "Monitori su kreirani"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
+msgid "Monthly"
+msgstr "Месечно"
 
 #: src/components/overflow-tabs.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -3158,7 +3228,7 @@ msgstr "Једна или више услуга је у стању грешке"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
-#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
 msgid "One-time"
 msgstr "Једнократно"
 
@@ -5221,6 +5291,27 @@ msgstr "Прагове упозорења"
 #: src/components/routes/settings/notifications.tsx
 msgid "Webhook / Push notifications"
 msgstr "Webhook / Push обавештења"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weekdays"
+msgstr "Радни дани"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weekend"
+msgstr "Викенд"
+
+#: src/lib/quiet-hours.ts
+msgid "Weekly"
+msgstr "Недељно"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Weekly, on some days"
+msgstr "Недељно, одређеним данима"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weeks of the month"
+msgstr "Недеље у месецу"
 
 #: src/components/discard-guard.tsx
 msgid "What you typed will be lost."

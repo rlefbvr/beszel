@@ -203,6 +203,10 @@ msgstr "{systemCount, plural, one {# σύστημα} other {# συστήματα
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# thread} other {# threads}}"
 
+#: src/lib/quiet-hours.ts
+msgid "{weekList} {dayList} of the month"
+msgstr "{weekList} {dayList} του μήνα"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 hour"
@@ -239,15 +243,31 @@ msgstr "15 λ"
 msgid "180 days"
 msgstr "180 ημέρες"
 
+#: src/lib/quiet-hours.ts
+msgid "1st"
+msgstr "1ος"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "24 hours"
 msgstr "24 ώρες"
 
+#: src/lib/quiet-hours.ts
+msgid "2nd"
+msgstr "2ος"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "30 days"
 msgstr "30 ημέρες"
+
+#: src/lib/quiet-hours.ts
+msgid "3rd"
+msgstr "3ος"
+
+#: src/lib/quiet-hours.ts
+msgid "4th"
+msgstr "4ος"
 
 #. Load average
 #: src/components/routes/system/charts/load-average-chart.tsx
@@ -267,6 +287,10 @@ msgstr "90 ημέρες"
 #: src/lib/alerts.ts
 msgid "A check of the sensor does not respond."
 msgstr "Ένας έλεγχος του αισθητήρα δεν αποκρίνεται."
+
+#: src/components/quiet-hours-days.tsx
+msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
+msgstr "Μια ημέρα που λείπει από έναν μήνα, όπως η 31η, παραλείπεται: επιλέξτε την τελευταία ημέρα για το τέλος κάθε μήνα."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
@@ -1099,9 +1123,19 @@ msgstr "Σφάλματα αθροίσματος ελέγχου"
 msgid "Choose a known port"
 msgstr "Επιλέξτε γνωστή θύρα"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Choose at least one day."
+msgstr "Επιλέξτε τουλάχιστον μία ημέρα."
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Choose at least one port."
 msgstr "Επιλέξτε τουλάχιστον μία θύρα."
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Choose at least one week of the month."
+msgstr "Επιλέξτε τουλάχιστον μία εβδομάδα του μήνα."
 
 #: src/components/reboots-table.tsx
 msgctxt "Clean shutdown"
@@ -1468,7 +1502,7 @@ msgstr "Κύκλοι"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
-#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
 msgid "Daily"
 msgstr "Καθημερινά"
 
@@ -1488,6 +1522,10 @@ msgstr "Ημερομηνία"
 msgid "Dates…"
 msgstr "Ημερομηνίες…"
 
+#: src/lib/quiet-hours.ts
+msgid "Day {dayList} of the month"
+msgstr "Ημέρα {dayList} του μήνα"
+
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "days"
@@ -1496,6 +1534,16 @@ msgstr "ημέρες"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "days of alerts"
 msgstr "ημέρες ειδοποιήσεων"
+
+#: src/components/quiet-hours-days.tsx
+#: src/components/quiet-hours-days.tsx
+msgid "Days of the month"
+msgstr "Ημέρες του μήνα"
+
+#: src/components/quiet-hours-days.tsx
+#: src/components/quiet-hours-days.tsx
+msgid "Days of the week"
+msgstr "Ημέρες της εβδομάδας"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
@@ -1880,6 +1928,10 @@ msgstr "Προσωρινό"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "Σφάλμα"
+
+#: src/lib/quiet-hours.ts
+msgid "Every day"
+msgstr "Κάθε μέρα"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2509,6 +2561,10 @@ msgstr "Ετικέτα"
 msgid "Language"
 msgstr "Γλώσσα"
 
+#: src/lib/quiet-hours.ts
+msgid "last"
+msgstr "τελευταίος"
+
 #: src/components/routes/sensor.tsx
 msgid "Last 30 minutes"
 msgstr "Τελευταία 30 λεπτά"
@@ -2523,6 +2579,14 @@ msgstr "Τελευταία ειδοποίηση"
 #: src/components/sensors/sensors-board.tsx
 msgid "Last check"
 msgstr "Τελευταίος έλεγχος"
+
+#: src/lib/quiet-hours.ts
+msgid "last day"
+msgstr "τελευταία ημέρα"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Last day"
+msgstr "Τελευταία ημέρα"
 
 #: src/components/routes/sensor.tsx
 msgid "Last hour"
@@ -2818,6 +2882,12 @@ msgstr "Monitor"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitors created"
 msgstr "Τα monitors δημιουργήθηκαν"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
+msgid "Monthly"
+msgstr "Μηνιαία"
 
 #: src/components/overflow-tabs.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -3158,7 +3228,7 @@ msgstr "Μία ή περισσότερες υπηρεσίες βρίσκοντα
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
-#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
 msgid "One-time"
 msgstr "Μία φορά"
 
@@ -5221,6 +5291,27 @@ msgstr "Όρια προειδοποίησης"
 #: src/components/routes/settings/notifications.tsx
 msgid "Webhook / Push notifications"
 msgstr "Webhook / Ειδοποιήσεις Push"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weekdays"
+msgstr "Καθημερινές"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weekend"
+msgstr "Σαββατοκύριακο"
+
+#: src/lib/quiet-hours.ts
+msgid "Weekly"
+msgstr "Εβδομαδιαία"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Weekly, on some days"
+msgstr "Εβδομαδιαία, σε ορισμένες ημέρες"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weeks of the month"
+msgstr "Εβδομάδες του μήνα"
 
 #: src/components/discard-guard.tsx
 msgid "What you typed will be lost."

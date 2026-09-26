@@ -203,6 +203,10 @@ msgstr "{systemCount, plural, one {# System} other {# Systeme}}"
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# Thread} other {# Threads}}"
 
+#: src/lib/quiet-hours.ts
+msgid "{weekList} {dayList} of the month"
+msgstr "{weekList} {dayList} im Monat"
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 hour"
@@ -239,15 +243,31 @@ msgstr "15 Min"
 msgid "180 days"
 msgstr "180 Tage"
 
+#: src/lib/quiet-hours.ts
+msgid "1st"
+msgstr "1."
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "24 hours"
 msgstr "24 Stunden"
 
+#: src/lib/quiet-hours.ts
+msgid "2nd"
+msgstr "2."
+
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "30 days"
 msgstr "30 Tage"
+
+#: src/lib/quiet-hours.ts
+msgid "3rd"
+msgstr "3."
+
+#: src/lib/quiet-hours.ts
+msgid "4th"
+msgstr "4."
 
 #. Load average
 #: src/components/routes/system/charts/load-average-chart.tsx
@@ -267,6 +287,10 @@ msgstr "90 Tage"
 #: src/lib/alerts.ts
 msgid "A check of the sensor does not respond."
 msgstr "Eine Prüfung des Sensors antwortet nicht."
+
+#: src/components/quiet-hours-days.tsx
+msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
+msgstr "Ein Tag, den es in einem Monat nicht gibt, etwa der 31., wird übersprungen: Wählen Sie den letzten Tag für das Monatsende."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
@@ -1099,9 +1123,19 @@ msgstr "Prüfsummenfehler"
 msgid "Choose a known port"
 msgstr "Bekannten Port wählen"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Choose at least one day."
+msgstr "Wählen Sie mindestens einen Tag."
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Choose at least one port."
 msgstr "Wählen Sie mindestens einen Port."
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Choose at least one week of the month."
+msgstr "Wählen Sie mindestens eine Woche des Monats."
 
 #: src/components/reboots-table.tsx
 msgctxt "Clean shutdown"
@@ -1468,7 +1502,7 @@ msgstr "Zyklen"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
-#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
 msgid "Daily"
 msgstr "Täglich"
 
@@ -1488,6 +1522,10 @@ msgstr "Datum"
 msgid "Dates…"
 msgstr "Daten…"
 
+#: src/lib/quiet-hours.ts
+msgid "Day {dayList} of the month"
+msgstr "Tag {dayList} des Monats"
+
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "days"
@@ -1496,6 +1534,16 @@ msgstr "Tage"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "days of alerts"
 msgstr "Tage Benachrichtigungen"
+
+#: src/components/quiet-hours-days.tsx
+#: src/components/quiet-hours-days.tsx
+msgid "Days of the month"
+msgstr "Tage des Monats"
+
+#: src/components/quiet-hours-days.tsx
+#: src/components/quiet-hours-days.tsx
+msgid "Days of the week"
+msgstr "Wochentage"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Default system layout option"
@@ -1880,6 +1928,10 @@ msgstr "Flüchtig"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "Fehler"
+
+#: src/lib/quiet-hours.ts
+msgid "Every day"
+msgstr "Jeden Tag"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2509,6 +2561,10 @@ msgstr "Bezeichnung"
 msgid "Language"
 msgstr "Sprache"
 
+#: src/lib/quiet-hours.ts
+msgid "last"
+msgstr "letzter"
+
 #: src/components/routes/sensor.tsx
 msgid "Last 30 minutes"
 msgstr "Letzte 30 Minuten"
@@ -2523,6 +2579,14 @@ msgstr "Letzter Alarm"
 #: src/components/sensors/sensors-board.tsx
 msgid "Last check"
 msgstr "Letzte Prüfung"
+
+#: src/lib/quiet-hours.ts
+msgid "last day"
+msgstr "letzter Tag"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Last day"
+msgstr "Letzter Tag"
 
 #: src/components/routes/sensor.tsx
 msgid "Last hour"
@@ -2818,6 +2882,12 @@ msgstr ""
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitors created"
 msgstr "Monitore erstellt"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
+msgid "Monthly"
+msgstr "Monatlich"
 
 #: src/components/overflow-tabs.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -3158,7 +3228,7 @@ msgstr "Ein oder mehrere Dienste befinden sich im Fehlerzustand"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
-#: src/components/routes/settings/quiet-hours.tsx
+#: src/lib/quiet-hours.ts
 msgid "One-time"
 msgstr "Einmalig"
 
@@ -5221,6 +5291,27 @@ msgstr "Warnschwellen"
 #: src/components/routes/settings/notifications.tsx
 msgid "Webhook / Push notifications"
 msgstr "Webhook / Push-Benachrichtigungen"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weekdays"
+msgstr "Werktage"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weekend"
+msgstr "Wochenende"
+
+#: src/lib/quiet-hours.ts
+msgid "Weekly"
+msgstr "Wöchentlich"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Weekly, on some days"
+msgstr "Wöchentlich, an bestimmten Tagen"
+
+#: src/components/quiet-hours-days.tsx
+msgid "Weeks of the month"
+msgstr "Wochen des Monats"
 
 #: src/components/discard-guard.tsx
 msgid "What you typed will be lost."

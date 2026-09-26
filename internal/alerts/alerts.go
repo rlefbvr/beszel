@@ -237,39 +237,8 @@ func (am *AlertManager) isSilencedFor(userID, systemID, sensorID, kind, ruleID, 
 		if !quietWindowApplies(window, kind, ruleID, targetName) {
 			continue
 		}
-		windowType := window.GetString("type")
-		start := window.GetDateTime("start").Time()
-		end := window.GetDateTime("end").Time()
-
-		if windowType == "daily" {
-			// For daily recurring windows, extract just the time portion and compare
-			// The start/end are stored as full datetime but we only care about HH:MM
-			startHour, startMin, _ := start.Clock()
-			endHour, endMin, _ := end.Clock()
-			nowHour, nowMin, _ := now.Clock()
-
-			// Convert to minutes since midnight for easier comparison
-			startMinutes := startHour*60 + startMin
-			endMinutes := endHour*60 + endMin
-			nowMinutes := nowHour*60 + nowMin
-
-			// Handle case where window crosses midnight
-			if endMinutes < startMinutes {
-				// Window crosses midnight (e.g., 23:00 - 01:00)
-				if nowMinutes >= startMinutes || nowMinutes < endMinutes {
-					return true
-				}
-			} else {
-				// Normal case (e.g., 09:00 - 17:00)
-				if nowMinutes >= startMinutes && nowMinutes < endMinutes {
-					return true
-				}
-			}
-		} else {
-			// One-time window: check if current time is within the date range
-			if (now.After(start) || now.Equal(start)) && now.Before(end) {
-				return true
-			}
+		if quietWindowActive(window, now) {
+			return true
 		}
 	}
 
