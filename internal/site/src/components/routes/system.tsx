@@ -17,16 +17,26 @@ import { GpuPowerChart, GpuCharts } from "./system/charts/gpu-charts"
 import {
 	LazyContainersTable,
 	LazyNetworkMonitorsTable,
+	LazyProcessesTable,
 	LazyRebootsTable,
 	LazySmartTable,
 	LazySystemdTable,
 	LazyZfsTable,
 } from "./system/lazy-tables"
 import { LoadAverageChart } from "./system/charts/load-average-chart"
-import { ContainerIcon, CpuIcon, HardDriveIcon, NetworkIcon, RefreshCcwDotIcon, TerminalSquareIcon } from "lucide-react"
+import {
+	ContainerIcon,
+	CpuIcon,
+	HardDriveIcon,
+	ListTreeIcon,
+	NetworkIcon,
+	RefreshCcwDotIcon,
+	TerminalSquareIcon,
+} from "lucide-react"
 import { GpuIcon } from "../ui/icons"
 import SystemdTable from "../systemd-table/systemd-table"
 import ContainersTable from "../containers-table/containers-table"
+import ProcessesTable from "../processes-table/processes-table"
 
 const SEMVER_0_14_0 = parseSemVer("0.14.0")
 const SEMVER_0_15_0 = parseSemVer("0.15.0")
@@ -80,6 +90,7 @@ export default memo(function SystemDetail({ id }: { id: string }) {
 	const tabs = ["core", "network", "disk"]
 	if (hasGpu) tabs.push("gpu")
 	if (hasContainers) tabs.push("containers")
+	tabs.push("processes")
 	if (hasSystemd) tabs.push("services")
 	tabs.push("reboots")
 	tabsRef.current = tabs
@@ -163,6 +174,8 @@ export default memo(function SystemDetail({ id }: { id: string }) {
 
 				{hasContainersTable && <LazyContainersTable systemId={system.id} />}
 
+				<LazyProcessesTable systemId={system.id} />
+
 				{hasSystemd && <LazySystemdTable systemId={system.id} />}
 
 				{hasNetworkMonitors && <LazyNetworkMonitorsTable systemId={system.id} />}
@@ -200,6 +213,10 @@ export default memo(function SystemDetail({ id }: { id: string }) {
 							<Trans>Containers</Trans>
 						</TabsTrigger>
 					)}
+					<TabsTrigger value="processes" className="w-full flex items-center gap-2">
+						<ListTreeIcon className="size-3.5" />
+						<Trans>Processes</Trans>
+					</TabsTrigger>
 					{hasSystemd && (
 						<TabsTrigger value="services" className="w-full flex items-center gap-2">
 							<TerminalSquareIcon className="size-3.5" />
@@ -296,6 +313,10 @@ export default memo(function SystemDetail({ id }: { id: string }) {
 						)}
 					</TabsContent>
 				)}
+
+				<TabsContent value="processes" forceMount className={activeTab === "processes" ? "contents" : "hidden"}>
+					{mountedTabs.has("processes") && activeTab === "processes" && <ProcessesTable systemId={system.id} />}
+				</TabsContent>
 
 				{hasSystemd && (
 					<TabsContent value="services" forceMount className={activeTab === "services" ? "contents" : "hidden"}>

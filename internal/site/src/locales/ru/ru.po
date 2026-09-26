@@ -102,6 +102,10 @@ msgstr "{count, plural, one {Оповещения о состоянии выбр
 msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
 msgstr "{count, plural, one {Оповещения о состоянии выбранной службы не отправляются в этот период.} other {Оповещения о состоянии выбранных служб (#) не отправляются в этот период.}}"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "{count} processes · CPU {cpuText} · Memory {memText}"
+msgstr "{count} процессов · ЦП {cpuText} · Память {memText}"
+
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "Новых датчиков: {created}, проверок добавлено к существующим: {added}."
@@ -119,6 +123,14 @@ msgstr "{days, plural, one {Истекает через # день} few {Ист�
 msgid "{diskName} I/O"
 msgstr "Ввод-вывод {diskName}"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "{failed} system(s) did not answer."
+msgstr "{failed} систем(ы) не ответили."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
+msgstr "{matchCount} процесс(ов) в {systemCount} систем(ах) для «{searched}»"
+
 #: src/components/alerts/alert-button.tsx
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, one {# минута} few {# минуты} many {# минут} other {# минуты}}"
@@ -130,6 +142,10 @@ msgstr "{name} истекает менее чем через {days} дн."
 #: src/components/quiet-hours-banner.tsx
 msgid "{name} until {until}"
 msgstr "{name} до {until}"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{outdated} system(s) need an agent update (0.20.0-fork.5 or newer)."
+msgstr "Нужно обновить агент на {outdated} сист. (0.20.0-fork.5 или новее)."
 
 #: src/components/certificates/certificates-table.tsx
 msgid "{outdated} system(s) need an agent update to read their certificates."
@@ -523,6 +539,15 @@ msgstr "Все контейнеры"
 #: src/components/agent-update-dialog.tsx
 msgid "All outdated ({outdatedCount})"
 msgstr "Все устаревшие ({outdatedCount})"
+
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+#: src/components/routes/processes.tsx
+#: src/lib/header-icons.ts
+#: src/lib/home-page.ts
+msgid "All processes"
+msgstr "Все процессы"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -1012,6 +1037,8 @@ msgstr "Штатное"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -1079,6 +1106,11 @@ msgstr "Цвет"
 msgid "Columns"
 msgstr "Столбцы"
 
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
+msgid "Command"
+msgstr "Команда"
+
 #: src/components/login/forgot-pass-form.tsx
 #: src/components/login/forgot-pass-form.tsx
 msgid "Command line instructions"
@@ -1121,6 +1153,10 @@ msgstr "Конфликты"
 #: src/components/active-alerts.tsx
 msgid "Connection is down"
 msgstr "Нет соединения"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Connections"
+msgstr "Соединения"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
@@ -1233,6 +1269,11 @@ msgstr "Ядро"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -1264,12 +1305,17 @@ msgstr "Время CPU"
 msgid "CPU Time Breakdown"
 msgstr "Распределение времени CPU"
 
+#: src/components/processes-table/processes-charts.tsx
 #: src/components/routes/system/charts/cpu-charts.tsx
 #: src/components/routes/system/charts/cpu-charts.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 #: src/lib/alerts.ts
 msgid "CPU Usage"
 msgstr "Использование CPU"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "CPU: {cpuText}"
+msgstr "ЦП: {cpuText}"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Create"
@@ -1502,10 +1548,21 @@ msgstr "Отменить"
 msgid "Discharging"
 msgstr "Разряжается"
 
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Disk"
 msgstr "Диск"
+
+#: src/components/processes-table/processes-charts.tsx
+msgid "Disk I/O"
+msgstr "Дисковый ввод-вывод"
+
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
+msgid "Disk read"
+msgstr "Чтение с диска"
 
 #: src/components/routes/settings/general.tsx
 msgid "Disk unit"
@@ -1519,6 +1576,11 @@ msgstr "Использование диска"
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Disk usage of {extraFsName}"
 msgstr "Использование диска {extraFsName}"
+
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
+msgid "Disk write"
+msgstr "Запись на диск"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Layout display options"
@@ -1908,6 +1970,7 @@ msgstr "Файл"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/chart-card.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -2504,6 +2567,10 @@ msgstr "Журналы"
 msgid "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
 msgstr "Ищете, где создать оповещения? Нажмите на значки колокольчика <0/> в таблице систем."
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Looks for a process on all the systems that are up, by name, command, user or PID."
+msgstr "Ищет процесс на всех работающих системах по имени, команде, пользователю или PID."
+
 #. Packet loss
 #: src/components/routes/sensor.tsx
 msgid "loss"
@@ -2558,6 +2625,11 @@ msgstr "Макс. за 1 ч"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/info-bar.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2576,6 +2648,7 @@ msgstr "Лимит памяти"
 msgid "Memory Peak"
 msgstr "Пик памяти"
 
+#: src/components/processes-table/processes-charts.tsx
 #: src/components/routes/system/charts/memory-charts.tsx
 #: src/lib/alerts.ts
 msgid "Memory Usage"
@@ -2636,6 +2709,9 @@ msgstr "Точка монтирования"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -2673,6 +2749,11 @@ msgstr "Сеть"
 #: src/components/routes/system.tsx
 msgid "Network"
 msgstr "Сеть"
+
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-table.tsx
+msgid "Network connections"
+msgstr "Сетевые соединения"
 
 #: src/components/routes/settings/audit-log.tsx
 msgid "Network monitor"
@@ -2743,6 +2824,10 @@ msgstr "Следующая страница"
 msgid "Next to the logo"
 msgstr "Рядом с логотипом"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "nginx, sqlservr, java…"
+msgstr "nginx, sqlservr, java…"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2801,6 +2886,10 @@ msgstr "За этот период прерываний нет."
 msgid "No logs yet."
 msgstr "Журналов пока нет."
 
+#: src/components/processes-table/processes-table.tsx
+msgid "No processes found."
+msgstr "Процессы не найдены."
+
 #: src/components/reboots-table.tsx
 msgid "No reboots recorded."
 msgstr "Перезагрузки не зарегистрированы."
@@ -2833,6 +2922,10 @@ msgstr "Датчиков пока нет: добавьте хосты и пор�
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
 msgstr "Никакая служба не перезапускает агента после обновления."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "No systems are up."
+msgstr "Нет работающих систем."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -3021,6 +3114,7 @@ msgstr "Качество пакетов"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
+#: src/components/command-palette.tsx
 msgid "Page"
 msgstr "Страница"
 
@@ -3037,6 +3131,10 @@ msgstr "Страница, открываемая при запуске и по �
 #: src/components/command-palette.tsx
 msgid "Pages / Settings"
 msgstr "Страницы / Настройки"
+
+#: src/components/processes-table/process-dialog.tsx
+msgid "Parent process"
+msgstr "Родительский процесс"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
@@ -3085,6 +3183,11 @@ msgstr "Путь к файлу сертификата на хосте (PEM ил�
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Pause"
 msgstr "Пауза"
+
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
+msgid "Pause the refresh"
+msgstr "Приостановить обновление"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -3229,6 +3332,15 @@ msgstr "Предыдущая страница"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Process started"
 msgstr "Процесс запущен"
+
+#: src/components/processes-table/processes-table.tsx
+#: src/components/routes/system.tsx
+msgid "Processes"
+msgstr "Процессы"
+
+#: src/components/processes-table/processes-charts.tsx
+msgid "Processes that use the most resources since this page was opened. Click an area to see the process."
+msgstr "Процессы, потребляющие больше всего ресурсов с момента открытия страницы. Нажмите на область, чтобы открыть процесс."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Production, Customers, Lab…"
@@ -3396,6 +3508,8 @@ msgstr "Осталось резервных кодов: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -3403,6 +3517,11 @@ msgstr "Осталось резервных кодов: {recoveryLeft}"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Refresh"
 msgstr "Обновить"
+
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
+msgid "Refresh automatically"
+msgstr "Обновлять автоматически"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Relationships"
@@ -3642,9 +3761,14 @@ msgid "Scheduled maintenance"
 msgstr "Плановое обслуживание"
 
 #: src/components/navbar.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/lib/header-icons.ts
 msgid "Search"
 msgstr "Поиск"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Search a process"
+msgstr "Поиск процесса"
 
 #: src/components/routes/settings/audit-log.tsx
 msgid "Search an email, an address, a name…"
@@ -3963,6 +4087,9 @@ msgstr "Время начала"
 msgid "Start type"
 msgstr "Тип запуска"
 
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Started"
 msgstr "Запущен"
@@ -4014,6 +4141,9 @@ msgstr "Состояния"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -4077,6 +4207,8 @@ msgstr "Переключить тему"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4222,6 +4354,10 @@ msgstr "Агенту не удалось прочитать этот серти�
 msgid "The agent of this system must be updated (0.20.0-fork.5 or newer) to read it."
 msgstr "Чтобы прочитать его, нужно обновить агент этой системы (0.20.0-fork.5 или новее)."
 
+#: src/components/processes-table/processes-table.tsx
+msgid "The agent of this system needs an update (0.20.0-fork.5 or newer)."
+msgstr "Агент этой системы нужно обновить (0.20.0-fork.5 или новее)."
+
 #: src/components/routes/system/agent-details.tsx
 msgid "The agent restarts and reconnects on its own."
 msgstr "Агент перезапустится и подключится сам."
@@ -4237,6 +4373,10 @@ msgstr "Среднее время отклика за 10 минут превыш
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The certificate of an HTTPS check expires within {value} days."
 msgstr "Сертификат проверки HTTPS истекает в течение {value} дн."
+
+#: src/components/processes-table/processes-charts.tsx
+msgid "The charts fill in while this page is open, with a reading every 15 seconds."
+msgstr "Графики заполняются, пока страница открыта, с замером каждые 15 секунд."
 
 #: src/components/sensors/sensor-dialog.tsx
 msgid "The checks of the same host are grouped in one sensor."
@@ -4265,6 +4405,14 @@ msgstr "Качество пакетов за 10 минут плохое."
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The packet quality over 10 minutes is degraded or bad."
 msgstr "Качество пакетов за 10 минут ухудшенное или плохое."
+
+#: src/components/processes-table/processes-table.tsx
+msgid "The processes could not be read."
+msgstr "Не удалось прочитать процессы."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "The processes that use the most CPU and memory on each system that is up, at the time of the reading."
+msgstr "Процессы, больше всего использующие ЦП и память на каждой работающей системе, на момент замера."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "The rules are created on each system."
@@ -4328,6 +4476,12 @@ msgstr "Эта система до {until}"
 msgid "This will permanently delete all selected records from the database."
 msgstr "Это навсегда удалит все выбранные записи из базы данных."
 
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
+msgid "Threads"
+msgstr "Потоки"
+
 #: src/components/sensors/sensor-alerts.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Threshold"
@@ -4383,6 +4537,14 @@ msgstr "Токены позволяют агентам подключаться 
 msgid "Tokens and fingerprints are used to authenticate WebSocket connections to the hub."
 msgstr "Токены и отпечатки используются для аутентификации соединений WebSocket с хабом."
 
+#: src/components/processes-table/processes-charts.tsx
+msgid "Top {count}"
+msgstr "Топ {count}"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Top consumers"
+msgstr "Главные потребители"
+
 #: src/components/ui/chart.tsx
 #: src/components/ui/chart.tsx
 msgid "Total"
@@ -4413,6 +4575,7 @@ msgid "Total: {0}"
 msgstr "Всего: {0}"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Total: {totalCount}"
@@ -4706,6 +4869,10 @@ msgstr "Использовано"
 msgid "Used by"
 msgstr "Используется"
 
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/ldap.tsx
@@ -4767,6 +4934,10 @@ msgstr "Действителен до"
 msgid "Value"
 msgstr "Значение"
 
+#: src/components/processes-table/process-dialog.tsx
+msgid "Values of the last reading by the agent."
+msgstr "Значения последнего считывания агентом."
+
 #: src/components/routes/system/agent-details.tsx
 msgid "Version"
 msgstr "Версия"
@@ -4802,6 +4973,10 @@ msgstr "Видимые столбцы"
 #: src/components/routes/system/chart-card.tsx
 msgid "Waiting for enough records to display"
 msgstr "Ожидание достаточного количества записей для отображения"
+
+#: src/components/processes-table/processes-charts.tsx
+msgid "Waiting for the next reading…"
+msgstr "Ожидание следующего замера…"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Wants"

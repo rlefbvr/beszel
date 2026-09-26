@@ -102,6 +102,10 @@ msgstr "{count, plural, one {Peringatan status kontainer yang dipilih tidak diki
 msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
 msgstr "{count, plural, one {Peringatan status layanan yang dipilih tidak dikirim selama periode ini.} other {Peringatan status layanan yang dipilih (#) tidak dikirim selama periode ini.}}"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "{count} processes · CPU {cpuText} · Memory {memText}"
+msgstr "{count} proses · CPU {cpuText} · Memori {memText}"
+
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} sensor baru, {added} pemeriksaan ditambahkan ke sensor yang ada."
@@ -119,6 +123,14 @@ msgstr "{days, plural, other {Kedaluwarsa dalam # hari}}"
 msgid "{diskName} I/O"
 msgstr "I/O {diskName}"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "{failed} system(s) did not answer."
+msgstr "{failed} sistem tidak menjawab."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
+msgstr "{matchCount} proses di {systemCount} sistem untuk “{searched}”"
+
 #: src/components/alerts/alert-button.tsx
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, other {# menit}}"
@@ -130,6 +142,10 @@ msgstr "{name} kedaluwarsa dalam kurang dari {days} hari"
 #: src/components/quiet-hours-banner.tsx
 msgid "{name} until {until}"
 msgstr "{name} hingga {until}"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{outdated} system(s) need an agent update (0.20.0-fork.5 or newer)."
+msgstr "{outdated} sistem perlu pembaruan agen (0.20.0-fork.5 atau lebih baru)."
 
 #: src/components/certificates/certificates-table.tsx
 msgid "{outdated} system(s) need an agent update to read their certificates."
@@ -523,6 +539,15 @@ msgstr "Semua Container"
 #: src/components/agent-update-dialog.tsx
 msgid "All outdated ({outdatedCount})"
 msgstr "Semua yang usang ({outdatedCount})"
+
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+#: src/components/routes/processes.tsx
+#: src/lib/header-icons.ts
+#: src/lib/home-page.ts
+msgid "All processes"
+msgstr "Semua proses"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -1012,6 +1037,8 @@ msgstr "Normal"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -1079,6 +1106,11 @@ msgstr "Warna"
 msgid "Columns"
 msgstr "Kolom"
 
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
+msgid "Command"
+msgstr "Perintah"
+
 #: src/components/login/forgot-pass-form.tsx
 #: src/components/login/forgot-pass-form.tsx
 msgid "Command line instructions"
@@ -1121,6 +1153,10 @@ msgstr "Konflik"
 #: src/components/active-alerts.tsx
 msgid "Connection is down"
 msgstr "Koneksi terputus"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Connections"
+msgstr "Koneksi"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
@@ -1233,6 +1269,11 @@ msgstr "Inti"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -1264,12 +1305,17 @@ msgstr "Waktu CPU"
 msgid "CPU Time Breakdown"
 msgstr "Rincian Waktu CPU"
 
+#: src/components/processes-table/processes-charts.tsx
 #: src/components/routes/system/charts/cpu-charts.tsx
 #: src/components/routes/system/charts/cpu-charts.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 #: src/lib/alerts.ts
 msgid "CPU Usage"
 msgstr "Penggunaan CPU"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "CPU: {cpuText}"
+msgstr "CPU: {cpuText}"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Create"
@@ -1502,10 +1548,21 @@ msgstr "Buang"
 msgid "Discharging"
 msgstr "Sedang tidak di charge"
 
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Disk"
 msgstr "Disk"
+
+#: src/components/processes-table/processes-charts.tsx
+msgid "Disk I/O"
+msgstr "I/O disk"
+
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
+msgid "Disk read"
+msgstr "Baca disk"
 
 #: src/components/routes/settings/general.tsx
 msgid "Disk unit"
@@ -1519,6 +1576,11 @@ msgstr "Penggunaan Disk"
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Disk usage of {extraFsName}"
 msgstr "Penggunaan disk dari {extraFsName}"
+
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
+msgid "Disk write"
+msgstr "Tulis disk"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Layout display options"
@@ -1908,6 +1970,7 @@ msgstr "Berkas"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/chart-card.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -2504,6 +2567,10 @@ msgstr "Log"
 msgid "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
 msgstr "Mencari tempat untuk membuat peringatan? Klik ikon lonceng <0/> di tabel sistem."
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Looks for a process on all the systems that are up, by name, command, user or PID."
+msgstr "Mencari proses di semua sistem yang aktif, berdasarkan nama, perintah, pengguna, atau PID."
+
 #. Packet loss
 #: src/components/routes/sensor.tsx
 msgid "loss"
@@ -2558,6 +2625,11 @@ msgstr "Maks. 1 jam"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/info-bar.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2576,6 +2648,7 @@ msgstr "Batas memori"
 msgid "Memory Peak"
 msgstr "Puncak Memori"
 
+#: src/components/processes-table/processes-charts.tsx
 #: src/components/routes/system/charts/memory-charts.tsx
 #: src/lib/alerts.ts
 msgid "Memory Usage"
@@ -2636,6 +2709,9 @@ msgstr "Titik kait"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -2673,6 +2749,11 @@ msgstr "Jaringan"
 #: src/components/routes/system.tsx
 msgid "Network"
 msgstr "Jaringan"
+
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-table.tsx
+msgid "Network connections"
+msgstr "Koneksi jaringan"
 
 #: src/components/routes/settings/audit-log.tsx
 msgid "Network monitor"
@@ -2743,6 +2824,10 @@ msgstr "Halaman berikutnya"
 msgid "Next to the logo"
 msgstr "Di samping logo"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "nginx, sqlservr, java…"
+msgstr "nginx, sqlservr, java…"
+
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2801,6 +2886,10 @@ msgstr "Tidak ada gangguan dalam periode ini."
 msgid "No logs yet."
 msgstr "Belum ada log."
 
+#: src/components/processes-table/processes-table.tsx
+msgid "No processes found."
+msgstr "Tidak ada proses."
+
 #: src/components/reboots-table.tsx
 msgid "No reboots recorded."
 msgstr "Tidak ada mulai ulang yang tercatat."
@@ -2833,6 +2922,10 @@ msgstr "Belum ada sensor: tambahkan host dan port yang harus diperiksa Beszel."
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
 msgstr "Tidak ada layanan yang memulai ulang agen setelah pembaruan."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "No systems are up."
+msgstr "Tidak ada sistem yang aktif."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -3021,6 +3114,7 @@ msgstr "Kualitas paket"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
+#: src/components/command-palette.tsx
 msgid "Page"
 msgstr "Halaman"
 
@@ -3037,6 +3131,10 @@ msgstr "Halaman yang dibuka saat mulai dan melalui logo."
 #: src/components/command-palette.tsx
 msgid "Pages / Settings"
 msgstr "Halaman / Pengaturan"
+
+#: src/components/processes-table/process-dialog.tsx
+msgid "Parent process"
+msgstr "Proses induk"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
@@ -3085,6 +3183,11 @@ msgstr "Jalur berkas sertifikat di host (PEM atau DER), dibaca oleh agennya bers
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Pause"
 msgstr "Jeda"
+
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
+msgid "Pause the refresh"
+msgstr "Jeda penyegaran"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -3229,6 +3332,15 @@ msgstr "Halaman sebelumnya"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Process started"
 msgstr "Proses dimulai"
+
+#: src/components/processes-table/processes-table.tsx
+#: src/components/routes/system.tsx
+msgid "Processes"
+msgstr "Proses"
+
+#: src/components/processes-table/processes-charts.tsx
+msgid "Processes that use the most resources since this page was opened. Click an area to see the process."
+msgstr "Proses yang paling banyak memakai sumber daya sejak halaman ini dibuka. Klik area untuk melihat prosesnya."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Production, Customers, Lab…"
@@ -3396,6 +3508,8 @@ msgstr "Kode pemulihan tersisa: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -3403,6 +3517,11 @@ msgstr "Kode pemulihan tersisa: {recoveryLeft}"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Refresh"
 msgstr "Muat ulang"
+
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
+msgid "Refresh automatically"
+msgstr "Segarkan otomatis"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Relationships"
@@ -3642,9 +3761,14 @@ msgid "Scheduled maintenance"
 msgstr "Pemeliharaan terjadwal"
 
 #: src/components/navbar.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/lib/header-icons.ts
 msgid "Search"
 msgstr "Cari"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Search a process"
+msgstr "Cari proses"
 
 #: src/components/routes/settings/audit-log.tsx
 msgid "Search an email, an address, a name…"
@@ -3963,6 +4087,9 @@ msgstr "Waktu Mulai"
 msgid "Start type"
 msgstr "Jenis startup"
 
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Started"
 msgstr "Dimulai"
@@ -4014,6 +4141,9 @@ msgstr "Status"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -4077,6 +4207,8 @@ msgstr "Ganti tema"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4222,6 +4354,10 @@ msgstr "Agen tidak dapat membaca sertifikat ini: {error}"
 msgid "The agent of this system must be updated (0.20.0-fork.5 or newer) to read it."
 msgstr "Agen sistem ini harus diperbarui (0.20.0-fork.5 atau lebih baru) untuk membacanya."
 
+#: src/components/processes-table/processes-table.tsx
+msgid "The agent of this system needs an update (0.20.0-fork.5 or newer)."
+msgstr "Agen sistem ini perlu diperbarui (0.20.0-fork.5 atau lebih baru)."
+
 #: src/components/routes/system/agent-details.tsx
 msgid "The agent restarts and reconnects on its own."
 msgstr "Agen memulai ulang dan terhubung kembali dengan sendirinya."
@@ -4237,6 +4373,10 @@ msgstr "Waktu respons rata-rata selama 10 menit melebihi {value} ms."
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The certificate of an HTTPS check expires within {value} days."
 msgstr "Sertifikat pemeriksaan HTTPS kedaluwarsa dalam {value} hari."
+
+#: src/components/processes-table/processes-charts.tsx
+msgid "The charts fill in while this page is open, with a reading every 15 seconds."
+msgstr "Grafik terisi selama halaman ini terbuka, dengan satu pembacaan setiap 15 detik."
 
 #: src/components/sensors/sensor-dialog.tsx
 msgid "The checks of the same host are grouped in one sensor."
@@ -4265,6 +4405,14 @@ msgstr "Kualitas paket selama 10 menit buruk."
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The packet quality over 10 minutes is degraded or bad."
 msgstr "Kualitas paket selama 10 menit menurun atau buruk."
+
+#: src/components/processes-table/processes-table.tsx
+msgid "The processes could not be read."
+msgstr "Proses tidak dapat dibaca."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "The processes that use the most CPU and memory on each system that is up, at the time of the reading."
+msgstr "Proses yang paling banyak memakai CPU dan memori di setiap sistem aktif, pada saat pembacaan."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "The rules are created on each system."
@@ -4328,6 +4476,12 @@ msgstr "Sistem ini hingga {until}"
 msgid "This will permanently delete all selected records from the database."
 msgstr "Ini akan menghapus secara permanen semua record yang dipilih dari database."
 
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
+msgid "Threads"
+msgstr "Thread"
+
 #: src/components/sensors/sensor-alerts.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Threshold"
@@ -4383,6 +4537,14 @@ msgstr "Token memungkinkan agen untuk terhubung dan mendaftar. Fingerprint adala
 msgid "Tokens and fingerprints are used to authenticate WebSocket connections to the hub."
 msgstr "Token dan Fingerprint digunakan untuk mengautentikasi koneksi WebSocket ke hub."
 
+#: src/components/processes-table/processes-charts.tsx
+msgid "Top {count}"
+msgstr "Top {count}"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Top consumers"
+msgstr "Konsumen teratas"
+
 #: src/components/ui/chart.tsx
 #: src/components/ui/chart.tsx
 msgid "Total"
@@ -4413,6 +4575,7 @@ msgid "Total: {0}"
 msgstr "Total: {0}"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Total: {totalCount}"
@@ -4706,6 +4869,10 @@ msgstr "Digunakan"
 msgid "Used by"
 msgstr "Digunakan oleh"
 
+#: src/components/processes-table/process-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/ldap.tsx
@@ -4767,6 +4934,10 @@ msgstr "Berlaku hingga"
 msgid "Value"
 msgstr "Nilai"
 
+#: src/components/processes-table/process-dialog.tsx
+msgid "Values of the last reading by the agent."
+msgstr "Nilai dari pembacaan terakhir agen."
+
 #: src/components/routes/system/agent-details.tsx
 msgid "Version"
 msgstr "Versi"
@@ -4802,6 +4973,10 @@ msgstr "Metrik yang Terlihat"
 #: src/components/routes/system/chart-card.tsx
 msgid "Waiting for enough records to display"
 msgstr "Menunggu cukup record untuk ditampilkan"
+
+#: src/components/processes-table/processes-charts.tsx
+msgid "Waiting for the next reading…"
+msgstr "Menunggu pembacaan berikutnya…"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Wants"

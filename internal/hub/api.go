@@ -12,12 +12,14 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 	"uuid"
 
 	"github.com/blang/semver"
 	"github.com/henrygd/beszel"
 	"github.com/henrygd/beszel/internal/alerts"
+	entitySystem "github.com/henrygd/beszel/internal/entities/system"
 	"github.com/henrygd/beszel/internal/ghupdate"
 	"github.com/henrygd/beszel/internal/hub/config"
 	"github.com/henrygd/beszel/internal/hub/sensors"
@@ -224,6 +226,9 @@ func (h *Hub) registerApiRoutes(se *core.ServeEvent) error {
 	apiAuth.POST("/zfs/refresh", h.refreshZfsData).BindFunc(excludeReadOnlyRole)
 	// read the certificates of a host now
 	apiAuth.POST("/certificates/refresh", h.refreshCertificates)
+	// processes of a host, read from its agent
+	apiAuth.GET("/processes", h.getProcesses)
+	apiAuth.GET("/processes/overview", h.getProcessesOverview)
 	// get systemd service details
 	apiAuth.GET("/systemd/info", h.getSystemdInfo)
 	// agent details, logs and updates
@@ -540,6 +545,72 @@ func (h *Hub) refreshSmartData(e *core.RequestEvent) error {
 	}
 
 	return e.JSON(http.StatusOK, map[string]string{"status": "ok"})
+}
+
+// getProcesses handles GET /api/beszel/processes?system=: the processes of a
+// host, with their use of the resources, read from its agent.
+func (h *Hub) getProcesses(e *core.RequestEvent) error {
+	systemID := e.Request.URL.Query().Get("system")
+	system, err := h.sm.GetSystem(systemID)
+	if err != nil || !system.HasUser(e.App, e.Auth) {
+		return e.NotFoundError("", nil)
+	}
+	response, err := system.FetchProcesses(e.Request.Context())
+	switch {
+	case errors.Is(err, systems.ErrAgentOutdated):
+		return e.BadRequestError("outdated", nil)
+	case err != nil:
+		return e.BadRequestError(err.Error(), nil)
+	}
+	if response.Processes == nil {
+		response.Processes = []entitySystem.Process{}
+	}
+	return e.JSON(http.StatusOK, response)
+}
+
+// getProcessesOverview handles GET /api/beszel/processes/overview?systems=&top=&q=:
+// the top consumers of each host, or the processes matching a search, read
+// from several agents at a time so that the page gets one small answer.
+func (h *Hub) getProcessesOverview(e *core.RequestEvent) error {
+	query := e.Request.URL.Query()
+	top, _ := strconv.Atoi(query.Get("top"))
+	top = min(max(top, 0), 20)
+	search := strings.TrimSpace(query.Get("q"))
+	ids := strings.Split(query.Get("systems"), ",")
+	if len(ids) > 1000 {
+		return e.BadRequestError("Too many systems", nil)
+	}
+	var (
+		mu      sync.Mutex
+		wg      sync.WaitGroup
+		limit   = make(chan struct{}, 8)
+		results = make([]systems.ProcessesOverview, 0, len(ids))
+	)
+	for _, id := range ids {
+		sys, err := h.sm.GetSystem(id)
+		if err != nil || !sys.HasUser(e.App, e.Auth) {
+			continue
+		}
+		wg.Go(func() {
+			limit <- struct{}{}
+			defer func() { <-limit }()
+			overview := systems.ProcessesOverview{System: id}
+			response, err := sys.FetchProcesses(e.Request.Context())
+			switch {
+			case errors.Is(err, systems.ErrAgentOutdated):
+				overview.Error = "outdated"
+			case err != nil:
+				overview.Error = err.Error()
+			default:
+				overview = systems.SummarizeProcesses(id, response.Processes, top, search)
+			}
+			mu.Lock()
+			results = append(results, overview)
+			mu.Unlock()
+		})
+	}
+	wg.Wait()
+	return e.JSON(http.StatusOK, map[string]any{"systems": results})
 }
 
 // refreshCertificates handles POST /api/beszel/certificates/refresh requests:

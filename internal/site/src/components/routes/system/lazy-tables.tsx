@@ -37,6 +37,16 @@ export function LazyZfsTable({ systemId }: { systemId: string }) {
 }
 
 const SystemdTable = lazy(() => import("../../systemd-table/systemd-table"))
+const ProcessesTable = lazy(() => import("../../processes-table/processes-table"))
+
+export function LazyProcessesTable({ systemId }: { systemId: string }) {
+	const { isIntersecting, ref } = useIntersectionObserver()
+	return (
+		<div ref={ref} className={cn(isIntersecting && "contents")}>
+			{isIntersecting && <ProcessesTable systemId={systemId} />}
+		</div>
+	)
+}
 
 export function LazySystemdTable({ systemId }: { systemId: string }) {
 	const { isIntersecting, ref } = useIntersectionObserver()

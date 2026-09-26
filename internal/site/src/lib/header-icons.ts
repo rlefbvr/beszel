@@ -6,6 +6,7 @@ export const headerIcons = {
 	search: () => t`Search`,
 	sensors: () => t`Network sensors`,
 	systems: () => t`All Systems`,
+	processes: () => t`All processes`,
 	containers: () => t`All Containers`,
 	services: () => t`All Services`,
 	reboots: () => t`All Reboots`,

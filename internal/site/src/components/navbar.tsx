@@ -8,6 +8,7 @@ import {
 	DatabaseBackupIcon,
 	FileBadgeIcon,
 	HardDriveIcon,
+	ListTreeIcon,
 	LogOutIcon,
 	LogsIcon,
 	MenuIcon,
@@ -139,6 +140,13 @@ export default function Navbar() {
 								<Trans>All Systems</Trans>
 							</DropdownMenuItem>
 							<DropdownMenuItem
+								onClick={() => navigate(getPagePath($router, "processes"))}
+								className="flex items-center"
+							>
+								<ListTreeIcon className="h-4 w-4 me-2.5" strokeWidth={1.5} />
+								<Trans>All processes</Trans>
+							</DropdownMenuItem>
+							<DropdownMenuItem
 								onClick={() => navigate(getPagePath($router, "containers"))}
 								className="flex items-center"
 							>
@@ -245,6 +253,23 @@ export default function Navbar() {
 						</TooltipTrigger>
 						<TooltipContent>
 							<Trans>All Systems</Trans>
+						</TooltipContent>
+					</Tooltip>
+				)}
+				{show("processes") && (
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<Link
+								href={getPagePath($router, "processes")}
+								className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
+								aria-label="Processes"
+								onMouseEnter={() => import("@/components/routes/processes")}
+							>
+								<ListTreeIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
+							</Link>
+						</TooltipTrigger>
+						<TooltipContent>
+							<Trans>All processes</Trans>
 						</TooltipContent>
 					</Tooltip>
 				)}

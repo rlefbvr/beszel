@@ -7,6 +7,7 @@ import { $userSettings } from "@/lib/stores"
 export const homePages = {
 	home: () => t`All Systems`,
 	monitors: () => t`Network Monitors`,
+	processes: () => t`All processes`,
 	containers: () => t`All Containers`,
 	services: () => t`All Services`,
 	reboots: () => t`All Reboots`,

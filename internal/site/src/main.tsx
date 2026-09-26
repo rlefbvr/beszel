@@ -38,6 +38,7 @@ const Home = lazy(() => import("@/components/routes/home.tsx"))
 const Containers = lazy(() => import("@/components/routes/containers.tsx"))
 const Services = lazy(() => import("@/components/routes/services.tsx"))
 const Reboots = lazy(() => import("@/components/routes/reboots.tsx"))
+const Processes = lazy(() => import("@/components/routes/processes.tsx"))
 const Certificates = lazy(() => import("@/components/routes/certificates.tsx"))
 const Smart = lazy(() => import("@/components/routes/smart.tsx"))
 const Monitors = lazy(() => import("@/components/routes/monitors.tsx"))
@@ -106,6 +107,8 @@ const App = memo(() => {
 		return <SystemDetail id={page.params.id} />
 	} else if (page.route === "sensor") {
 		return <SensorPage id={page.params.id} />
+	} else if (page.route === "processes") {
+		return <Processes />
 	} else if (page.route === "containers") {
 		return <Containers />
 	} else if (page.route === "services") {

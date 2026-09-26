@@ -38,6 +38,8 @@ const (
 	UpdateAgent
 	// Request the server certificates of the host
 	GetCertificates
+	// Request the processes of the host
+	GetProcesses
 	// Add new actions here...
 )
 
