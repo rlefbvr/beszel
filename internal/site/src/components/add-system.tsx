@@ -7,7 +7,6 @@ import { memo, useEffect, useRef, useState } from "react"
 import { ResolveIpButton } from "@/components/resolve-ip-button"
 import { Button } from "@/components/ui/button"
 import {
-	Dialog,
 	DialogContent,
 	DialogDescription,
 	DialogFooter,
@@ -35,6 +34,7 @@ import { $router, basePath, Link, navigate } from "./router"
 import { DropdownMenu, DropdownMenuTrigger } from "./ui/dropdown-menu"
 import { AppleIcon, DockerIcon, FreeBsdIcon, TuxIcon, WindowsIcon } from "./ui/icons"
 import { InputCopy } from "./ui/input-copy"
+import { GuardedDialog } from "@/components/discard-guard"
 
 // To avoid a refactor of the dialog, we will just keep this function as a "skeleton" for the actual dialog
 export function AddSystemDialog({ open, setOpen }: { open: boolean; setOpen: (open: boolean) => void }) {
@@ -48,9 +48,9 @@ export function AddSystemDialog({ open, setOpen }: { open: boolean; setOpen: (op
 	}
 
 	return (
-		<Dialog open={open} onOpenChange={setOpen}>
+		<GuardedDialog open={open} onOpenChange={setOpen}>
 			{opened.current && <SystemDialog setOpen={setOpen} />}
-		</Dialog>
+		</GuardedDialog>
 	)
 }
 

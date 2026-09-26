@@ -69,7 +69,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
-import { Sheet } from "@/components/ui/sheet"
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { isReadOnlyUser, queueUserSettings } from "@/lib/api"
 
@@ -86,6 +85,7 @@ import { $allSystemsById, $userSettings } from "@/lib/stores"
 import { formatRelativeTime, useNow } from "@/lib/time"
 import { cn, decimalString } from "@/lib/utils"
 import type { SensorCheckRecord, SensorRecord, UserSettings } from "@/types"
+import { GuardedDialog } from "@/components/discard-guard"
 
 const allTab = "all"
 const ungroupedTab = "none"
@@ -417,7 +417,7 @@ export default function SensorsBoard() {
 				</div>
 			)}
 
-			<Dialog open={addOpen} onOpenChange={setAddOpen}>
+			<GuardedDialog open={addOpen} onOpenChange={setAddOpen}>
 				{addOpen && (
 					<SensorDialog
 						onDone={() => setAddOpen(false)}
@@ -427,10 +427,10 @@ export default function SensorsBoard() {
 						}}
 					/>
 				)}
-			</Dialog>
-			<Sheet open={bulkOpen} onOpenChange={setBulkOpen}>
+			</GuardedDialog>
+			<GuardedDialog sheet open={bulkOpen} onOpenChange={setBulkOpen}>
 				{bulkOpen && <SensorBulkAdd onDone={() => setBulkOpen(false)} />}
-			</Sheet>
+			</GuardedDialog>
 			<Dialog open={groupsOpen} onOpenChange={setGroupsOpen}>
 				{groupsOpen && (
 					<ManageSensorGroupsDialog

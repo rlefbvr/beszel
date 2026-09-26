@@ -17,7 +17,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle } from "@/components/ui/sheet"
+import { SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -30,6 +30,7 @@ import { $systems } from "@/lib/stores"
 import { cn, supportsNetworkMonitors } from "@/lib/utils"
 import type { NetworkMonitorRecord } from "@/types"
 import * as v from "valibot"
+import { GuardedDialog } from "@/components/discard-guard"
 
 type MonitorProtocol = "icmp" | "tcp" | "http" | "dns"
 
@@ -491,16 +492,16 @@ export function AddMonitorDialog({ systemId, monitors }: { systemId?: string; mo
 					</DropdownMenuContent>
 				</DropdownMenu>
 			</div>
-			<Dialog
+			<GuardedDialog
 				open={open}
 				onOpenChange={(nextOpen) => {
 					setOpen(nextOpen)
 				}}
 			>
 				<MonitorDialogContent open={open} setOpen={setOpen} systemId={systemId} onOpenBulkAdd={openBulkAdd} />
-			</Dialog>
+			</GuardedDialog>
 
-			<Sheet
+			<GuardedDialog sheet
 				open={bulkOpen}
 				onOpenChange={(nextOpen) => {
 					setBulkOpen(nextOpen)
@@ -560,7 +561,7 @@ export function AddMonitorDialog({ systemId, monitors }: { systemId?: string; mo
 						</SheetFooter>
 					</form>
 				</SheetContent>
-			</Sheet>
+			</GuardedDialog>
 		</>
 	)
 }

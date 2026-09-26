@@ -74,6 +74,7 @@ import { $allSystemsById, $userSettings } from "@/lib/stores"
 import { formatDateTime, useNow } from "@/lib/time"
 import { cn, copyToClipboard } from "@/lib/utils"
 import type { CertificateAlertRecord, CertificateRecord, UserSettings } from "@/types"
+import { GuardedDialog } from "@/components/discard-guard"
 
 /** Days before expiry when a certificate shows as expiring */
 const expiringDays = 30
@@ -518,9 +519,9 @@ export default function CertificatesTable() {
 			<Dialog open={!!alerting} onOpenChange={(open) => !open && setAlerting(null)}>
 				{alerting && <CertificateAlertDialog cert={alerting} onClose={() => setAlerting(null)} />}
 			</Dialog>
-			<Dialog open={addOpen} onOpenChange={setAddOpen}>
+			<GuardedDialog open={addOpen} onOpenChange={setAddOpen}>
 				{addOpen && <AddCertificateDialog onClose={() => setAddOpen(false)} />}
-			</Dialog>
+			</GuardedDialog>
 			<Dialog open={recapOpen} onOpenChange={setRecapOpen}>
 				{recapOpen && <RecapDialog certs={important} />}
 			</Dialog>

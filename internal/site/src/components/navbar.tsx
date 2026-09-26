@@ -38,8 +38,6 @@ import {
 import { isAdmin, isReadOnlyUser, logOut, pb } from "@/lib/api"
 import { cn, runOnce } from "@/lib/utils"
 import { AddSystemDialog } from "./add-system"
-import { Dialog } from "./ui/dialog"
-import { Sheet } from "./ui/sheet"
 import { Logo } from "./logo"
 import type { HeaderIcon } from "@/lib/header-icons"
 import { homePagePath } from "@/lib/home-page"
@@ -48,6 +46,7 @@ import { $userSettings } from "@/lib/stores"
 import { ModeToggle } from "./mode-toggle"
 import { $router, Link, navigate, prependBasePath } from "./router"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
+import { GuardedDialog } from "@/components/discard-guard"
 
 const CommandPalette = lazy(() => import("./command-palette"))
 const SensorDialog = lazy(() => import("./sensors/sensor-dialog").then((module) => ({ default: module.SensorDialog })))
@@ -387,7 +386,7 @@ export default function Navbar() {
 						</DropdownMenuContent>
 					</DropdownMenu>
 				)}
-				<Dialog open={addSensorOpen} onOpenChange={setAddSensorOpen}>
+				<GuardedDialog open={addSensorOpen} onOpenChange={setAddSensorOpen}>
 					{addSensorOpen && (
 						<Suspense>
 							<SensorDialog
@@ -399,14 +398,14 @@ export default function Navbar() {
 							/>
 						</Suspense>
 					)}
-				</Dialog>
-				<Sheet open={bulkSensorsOpen} onOpenChange={setBulkSensorsOpen}>
+				</GuardedDialog>
+				<GuardedDialog sheet open={bulkSensorsOpen} onOpenChange={setBulkSensorsOpen}>
 					{bulkSensorsOpen && (
 						<Suspense>
 							<SensorBulkAdd onDone={() => setBulkSensorsOpen(false)} />
 						</Suspense>
 					)}
-				</Sheet>
+				</GuardedDialog>
 			</div>
 		</div>
 	)

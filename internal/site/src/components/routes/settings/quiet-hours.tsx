@@ -20,7 +20,6 @@ import { useEffect, useMemo, useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
-	Dialog,
 	DialogContent,
 	DialogDescription,
 	DialogFooter,
@@ -63,6 +62,7 @@ import { useNow } from "@/lib/time"
 import { $allSystemsById, $systems } from "@/lib/stores"
 import { cn, formatShortDate } from "@/lib/utils"
 import type { QuietHoursRecord, StateAlertRecord, SystemRecord } from "@/types"
+import { GuardedDialog } from "@/components/discard-guard"
 
 const quietHoursTranslation = t`Quiet Hours`
 
@@ -180,7 +180,7 @@ export function QuietHours({
 						</p>
 					</div>
 				)}
-				<Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+				<GuardedDialog open={dialogOpen} onOpenChange={setDialogOpen}>
 					<DialogTrigger asChild>
 						<Button variant="outline" className="h-10 shrink-0" onClick={() => setEditingRecord(null)}>
 							<CalendarIcon className="size-4" />
@@ -197,7 +197,7 @@ export function QuietHours({
 						onClose={closeDialog}
 						toast={toast}
 					/>
-				</Dialog>
+				</GuardedDialog>
 			</div>
 			{data.length > 0 && (
 				<div className="rounded-md border overflow-x-auto whitespace-nowrap">
