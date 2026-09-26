@@ -197,6 +197,15 @@ func (h *Hub) registerApiRoutes(se *core.ServeEvent) error {
 	apiAuth.GET("/config-yaml", config.GetYamlConfig).BindFunc(requireAdminRole)
 	// handle agent websocket connection
 	apiNoAuth.GET("/agent-connect", h.handleAgentConnect)
+	// second factor of the users: status, enrollment, login with an authenticator app
+	apiAuth.GET("/mfa", h.getMFA)
+	apiAuth.POST("/mfa/totp/setup", h.setupTOTP)
+	apiAuth.POST("/mfa/totp/enable", h.enableTOTP)
+	apiAuth.POST("/mfa/email/enable", h.enableEmailMFA)
+	apiAuth.POST("/mfa/recovery", h.renewRecoveryCodes)
+	apiAuth.POST("/mfa/disable", h.disableMFA)
+	apiNoAuth.GET("/mfa/method", h.getMFAMethod)
+	apiNoAuth.POST("/auth-with-totp", h.authWithTOTP)
 	// get or create universal tokens
 	apiAuth.GET("/universal-token", h.getUniversalToken).BindFunc(excludeReadOnlyRole)
 	// update / delete user alerts

@@ -361,6 +361,10 @@ msgstr "Sau"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "Sau khi thiết lập các biến môi trường, hãy khởi động lại hub Beszel để các thay đổi có hiệu lực."
 
+#: src/components/routes/settings/security.tsx
+msgid "After your password, a code is sent to your email address at each login. It replaces the authenticator app if you used one."
+msgstr "Sau mật khẩu, mỗi lần đăng nhập một mã sẽ được gửi đến email của bạn. Mã này thay cho ứng dụng xác thực nếu bạn từng dùng."
+
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -553,6 +557,10 @@ msgstr "Đồng thời xóa cảm biến liên kết {sensorName}"
 msgid "Alternative names"
 msgstr "Tên thay thế"
 
+#: src/components/routes/settings/security.tsx
+msgid "An email code is required from every user on this hub (MFA_OTP)."
+msgstr "Hub này yêu cầu mã qua email với mọi người dùng (MFA_OTP)."
+
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "và {more} mục khác"
@@ -575,6 +583,11 @@ msgstr "Bạn có chắc chắn muốn xóa {name} không?"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "Bạn có chắc không?"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Authenticator app"
+msgstr "Ứng dụng xác thực"
 
 #: src/components/resolve-ip-button.tsx
 msgid "Auto-discover the IP"
@@ -999,6 +1012,11 @@ msgstr "Đóng"
 msgid "Code"
 msgstr "Mã"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Code sent by email"
+msgstr "Mã gửi qua email"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Khoảng thời gian thu thập"
@@ -1031,10 +1049,22 @@ msgstr "Cấu hình cách bạn nhận thông báo cảnh báo."
 msgid "Configure response monitoring from this agent."
 msgstr "Định cấu hình giám sát thời gian phản hồi từ tác nhân này."
 
+#: src/components/routes/settings/security.tsx
+msgid "Confirm"
+msgstr "Xác nhận"
+
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
 msgid "Confirm password"
 msgstr "Xác nhận mật khẩu"
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password or a code of your authenticator app."
+msgstr "Xác nhận bằng mật khẩu hoặc mã từ ứng dụng xác thực."
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password."
+msgstr "Xác nhận bằng mật khẩu."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Conflicts"
@@ -1085,6 +1115,7 @@ msgstr "Đã sao chép vào clipboard"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Copy"
 msgstr "Sao chép"
 
@@ -1377,6 +1408,15 @@ msgstr "Thiết bị"
 msgid "Devices"
 msgstr "Thiết bị"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Disable"
+msgstr "Tắt"
+
+#: src/components/routes/settings/security.tsx
+msgid "Disable two-factor authentication"
+msgstr "Tắt xác thực hai yếu tố"
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Discharging"
@@ -1421,6 +1461,11 @@ msgstr "Mạng I/O Docker"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Documentation"
 msgstr "Tài liệu"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Done"
+msgstr "Xong"
 
 #. Context: System is down
 #. Context: System is down
@@ -1494,10 +1539,18 @@ msgstr "Email"
 msgid "Email notifications"
 msgstr "Thông báo email"
 
+#: src/components/routes/settings/security.tsx
+msgid "Email sending is not configured on the hub."
+msgstr "Hub chưa cấu hình gửi email."
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "Hết pin"
+
+#: src/components/routes/settings/security.tsx
+msgid "Enable"
+msgstr "Bật"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1524,6 +1577,14 @@ msgstr "Nhập địa chỉ email để đặt lại mật khẩu"
 #: src/components/routes/settings/notifications.tsx
 msgid "Enter email address..."
 msgstr "Nhập địa chỉ email..."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter one of the recovery codes saved when setting up the app."
+msgstr "Nhập một trong các mã khôi phục đã lưu khi thiết lập ứng dụng."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter the code of your authenticator app."
+msgstr "Nhập mã từ ứng dụng xác thực."
 
 #: src/components/login/otp-forms.tsx
 msgid "Enter your one-time password."
@@ -1553,6 +1614,7 @@ msgstr "Tạm thời"
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2509,6 +2571,11 @@ msgstr "Bảo trì mạng"
 msgid "New group"
 msgstr "Nhóm mới"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "New recovery codes"
+msgstr "Mã khôi phục mới"
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "Cạnh logo"
@@ -2611,6 +2678,10 @@ msgstr "Không tìm thấy hệ thống."
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "Không có"
+
+#: src/components/routes/settings/security.tsx
+msgid "Not enabled"
+msgstr "Chưa bật"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
@@ -2719,9 +2790,17 @@ msgstr "Tùy chọn"
 msgid "Or change {directive} in the following file, then reload {service}:"
 msgstr "Hoặc sửa {directive} trong tệp sau, rồi tải lại {service}:"
 
+#: src/components/routes/settings/security.tsx
+msgid "Or code of the app"
+msgstr "Hoặc mã của ứng dụng"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Hoặc tiếp tục với"
+
+#: src/components/routes/settings/security.tsx
+msgid "Or enter this key in the app:"
+msgstr "Hoặc nhập khóa này vào ứng dụng:"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2791,6 +2870,7 @@ msgstr "Trang / Cài đặt"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "Mật khẩu"
 
@@ -2968,6 +3048,10 @@ msgstr "Tiến trình đã khởi động"
 msgid "Production, Customers, Lab…"
 msgstr "Sản xuất, Khách hàng, Phòng lab…"
 
+#: src/components/routes/settings/security.tsx
+msgid "Protect your account with a second factor asked after the password."
+msgstr "Bảo vệ tài khoản bằng yếu tố thứ hai được hỏi sau mật khẩu."
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -3095,6 +3179,14 @@ msgstr "Đã mở gần đây"
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Đã ghi nhận"
+
+#: src/components/login/otp-forms.tsx
+msgid "Recovery code"
+msgstr "Mã khôi phục"
+
+#: src/components/routes/settings/security.tsx
+msgid "Recovery codes left: {recoveryLeft}"
+msgstr "Mã khôi phục còn lại: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -3307,9 +3399,17 @@ msgstr "Lưu địa chỉ bằng cách sử dụng phím enter hoặc dấu ph�
 msgid "Save Settings"
 msgstr "Lưu Cài đặt"
 
+#: src/components/routes/settings/security.tsx
+msgid "Save these recovery codes: each one can replace a code of the app once, if you lose your phone. They are not shown again."
+msgstr "Hãy lưu các mã khôi phục này: mỗi mã thay thế mã của ứng dụng một lần nếu bạn mất điện thoại. Chúng sẽ không hiển thị lại."
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "Được lưu trong cơ sở dữ liệu và không hết hạn cho đến khi bạn tắt nó."
+
+#: src/components/routes/settings/security.tsx
+msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
+msgstr "Quét mã QR bằng ứng dụng như Microsoft Authenticator hoặc Google Authenticator, rồi nhập mã hiển thị."
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule"
@@ -3353,6 +3453,12 @@ msgstr "Tìm kiếm hệ thống"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Seconds between pings (default: 60)"
 msgstr "Số giây giữa các lần ping (mặc định: 60)"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Security"
+msgstr "Bảo mật"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "See <0>notification settings</0> to configure how you receive alerts."
@@ -3554,6 +3660,7 @@ msgid "Shutdown"
 msgstr "Tắt máy"
 
 #: src/components/login/auth-form.tsx
+#: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "Đăng nhập"
 
@@ -3853,6 +3960,10 @@ msgstr "Chứng chỉ của một kiểm tra HTTPS hết hạn trong vòng {valu
 msgid "The checks of the same host are grouped in one sensor."
 msgstr "Các kiểm tra của cùng một máy chủ được gộp vào một cảm biến."
 
+#: src/components/routes/settings/security.tsx
+msgid "The code by email needs the mail settings of the hub."
+msgstr "Mã qua email cần cài đặt thư của hub."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "Chưa xác định được phiên bản tác nhân mới nhất"
@@ -4105,6 +4216,10 @@ msgstr "Kích hoạt khi trạng thái chuyển đổi giữa lên và xuống"
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "Kích hoạt khi sử dụng bất kỳ đĩa nào vượt quá ngưỡng"
 
+#: src/components/routes/settings/security.tsx
+msgid "Two-factor authentication"
+msgstr "Xác thực hai yếu tố"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4264,6 +4379,14 @@ msgstr "Sử dụng"
 msgid "Usage of storage pool {displayName}"
 msgstr "Mức sử dụng của pool lưu trữ {displayName}"
 
+#: src/components/routes/settings/security.tsx
+msgid "Use a code by email"
+msgstr "Dùng mã qua email"
+
+#: src/components/login/otp-forms.tsx
+msgid "Use a recovery code"
+msgstr "Dùng mã khôi phục"
+
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute path such as C:\\MONITORING, without special characters."
 msgstr "Dùng đường dẫn tuyệt đối như C:\\MONITORING, không có ký tự đặc biệt."
@@ -4271,6 +4394,10 @@ msgstr "Dùng đường dẫn tuyệt đối như C:\\MONITORING, không có ký
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute URL starting with http:// or https://."
 msgstr "Dùng URL tuyệt đối bắt đầu bằng http:// hoặc https://."
+
+#: src/components/routes/settings/security.tsx
+msgid "Use an authenticator app"
+msgstr "Dùng ứng dụng xác thực"
 
 #: src/components/routes/settings/general.tsx
 msgid "Use letters, digits and _ . @ - only."

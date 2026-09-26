@@ -361,6 +361,10 @@ msgstr "Sonra"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "Ortam değişkenlerini ayarladıktan sonra, değişikliklerin etkili olması için Beszel Hub'ınızı yeniden başlatın."
 
+#: src/components/routes/settings/security.tsx
+msgid "After your password, a code is sent to your email address at each login. It replaces the authenticator app if you used one."
+msgstr "Paroladan sonra her girişte e-posta adresinize bir kod gönderilir. Kullandıysanız kimlik doğrulama uygulamasının yerini alır."
+
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -553,6 +557,10 @@ msgstr "İlişkili sensörü ({sensorName}) de sil"
 msgid "Alternative names"
 msgstr "Alternatif adlar"
 
+#: src/components/routes/settings/security.tsx
+msgid "An email code is required from every user on this hub (MFA_OTP)."
+msgstr "Bu hub’da her kullanıcıdan e-posta kodu istenir (MFA_OTP)."
+
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "ve {more} tane daha"
@@ -575,6 +583,11 @@ msgstr "{name} silmek istediğinizden emin misiniz?"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "Emin misiniz?"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Authenticator app"
+msgstr "Kimlik doğrulama uygulaması"
 
 #: src/components/resolve-ip-button.tsx
 msgid "Auto-discover the IP"
@@ -999,6 +1012,11 @@ msgstr "Kapat"
 msgid "Code"
 msgstr "Kod"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Code sent by email"
+msgstr "E-postayla gönderilen kod"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Toplama aralığı"
@@ -1031,10 +1049,22 @@ msgstr "Uyarı bildirimlerini nasıl alacağınızı yapılandırın."
 msgid "Configure response monitoring from this agent."
 msgstr "Bu aracının yanıt izleme ayarlarını yapılandırın."
 
+#: src/components/routes/settings/security.tsx
+msgid "Confirm"
+msgstr "Onayla"
+
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
 msgid "Confirm password"
 msgstr "Şifreyi onayla"
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password or a code of your authenticator app."
+msgstr "Parolanız veya kimlik doğrulama uygulamanızdaki bir kodla onaylayın."
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password."
+msgstr "Parolanızla onaylayın."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Conflicts"
@@ -1085,6 +1115,7 @@ msgstr "Panoya kopyalandı"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Copy"
 msgstr "Kopyala"
 
@@ -1377,6 +1408,15 @@ msgstr "Cihaz"
 msgid "Devices"
 msgstr "Cihazlar"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Disable"
+msgstr "Devre dışı bırak"
+
+#: src/components/routes/settings/security.tsx
+msgid "Disable two-factor authentication"
+msgstr "İki faktörlü kimlik doğrulamayı devre dışı bırak"
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Discharging"
@@ -1421,6 +1461,11 @@ msgstr "Docker Ağ G/Ç"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Documentation"
 msgstr "Dokümantasyon"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Done"
+msgstr "Tamam"
 
 #. Context: System is down
 #. Context: System is down
@@ -1494,10 +1539,18 @@ msgstr "E-posta"
 msgid "Email notifications"
 msgstr "E-posta bildirimleri"
 
+#: src/components/routes/settings/security.tsx
+msgid "Email sending is not configured on the hub."
+msgstr "Hub’da e-posta gönderimi yapılandırılmamış."
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "Boş"
+
+#: src/components/routes/settings/security.tsx
+msgid "Enable"
+msgstr "Etkinleştir"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1524,6 +1577,14 @@ msgstr "Şifreyi sıfırlamak için e-posta adresini girin"
 #: src/components/routes/settings/notifications.tsx
 msgid "Enter email address..."
 msgstr "E-posta adresini girin..."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter one of the recovery codes saved when setting up the app."
+msgstr "Uygulamayı kurarken kaydettiğiniz kurtarma kodlarından birini girin."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter the code of your authenticator app."
+msgstr "Kimlik doğrulama uygulamanızın kodunu girin."
 
 #: src/components/login/otp-forms.tsx
 msgid "Enter your one-time password."
@@ -1553,6 +1614,7 @@ msgstr "Geçici"
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2509,6 +2571,11 @@ msgstr "Ağ çalışması"
 msgid "New group"
 msgstr "Yeni grup"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "New recovery codes"
+msgstr "Yeni kurtarma kodları"
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "Logonun yanında"
@@ -2611,6 +2678,10 @@ msgstr "Sistem bulunamadı."
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "Yok"
+
+#: src/components/routes/settings/security.tsx
+msgid "Not enabled"
+msgstr "Etkin değil"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
@@ -2719,9 +2790,17 @@ msgstr "Seçenekler"
 msgid "Or change {directive} in the following file, then reload {service}:"
 msgstr "Veya aşağıdaki dosyada {directive} değerini değiştirin, ardından {service} yeniden yükleyin:"
 
+#: src/components/routes/settings/security.tsx
+msgid "Or code of the app"
+msgstr "Veya uygulama kodu"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Veya devam et"
+
+#: src/components/routes/settings/security.tsx
+msgid "Or enter this key in the app:"
+msgstr "Veya bu anahtarı uygulamaya girin:"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2791,6 +2870,7 @@ msgstr "Sayfalar / Ayarlar"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "Şifre"
 
@@ -2968,6 +3048,10 @@ msgstr "Süreç başlatıldı"
 msgid "Production, Customers, Lab…"
 msgstr "Üretim, Müşteriler, Laboratuvar…"
 
+#: src/components/routes/settings/security.tsx
+msgid "Protect your account with a second factor asked after the password."
+msgstr "Hesabınızı paroladan sonra istenen ikinci bir faktörle koruyun."
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -3095,6 +3179,14 @@ msgstr "Son açılanlar"
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Kaydedildi"
+
+#: src/components/login/otp-forms.tsx
+msgid "Recovery code"
+msgstr "Kurtarma kodu"
+
+#: src/components/routes/settings/security.tsx
+msgid "Recovery codes left: {recoveryLeft}"
+msgstr "Kalan kurtarma kodları: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -3307,9 +3399,17 @@ msgstr "Adresleri enter tuşu veya virgül ile kaydedin. E-posta bildirimlerini 
 msgid "Save Settings"
 msgstr "Ayarları Kaydet"
 
+#: src/components/routes/settings/security.tsx
+msgid "Save these recovery codes: each one can replace a code of the app once, if you lose your phone. They are not shown again."
+msgstr "Bu kurtarma kodlarını kaydedin: telefonunuzu kaybederseniz her biri uygulama kodunun yerine bir kez kullanılabilir. Tekrar gösterilmezler."
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "Veritabanında kaydedilir ve siz devre dışı bırakana kadar süresi dolmaz."
+
+#: src/components/routes/settings/security.tsx
+msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
+msgstr "QR kodunu Microsoft Authenticator veya Google Authenticator gibi bir uygulamayla tarayın, ardından gösterilen kodu girin."
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule"
@@ -3353,6 +3453,12 @@ msgstr "Sistemlerde ara"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Seconds between pings (default: 60)"
 msgstr "Pingler arasındaki saniye (varsayılan: 60)"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Security"
+msgstr "Güvenlik"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "See <0>notification settings</0> to configure how you receive alerts."
@@ -3554,6 +3660,7 @@ msgid "Shutdown"
 msgstr "Kapanış"
 
 #: src/components/login/auth-form.tsx
+#: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "Giriş yap"
 
@@ -3853,6 +3960,10 @@ msgstr "Bir HTTPS denetiminin sertifikası {value} gün içinde sona eriyor."
 msgid "The checks of the same host are grouped in one sensor."
 msgstr "Aynı ana bilgisayarın denetimleri tek bir sensörde toplanır."
 
+#: src/components/routes/settings/security.tsx
+msgid "The code by email needs the mail settings of the hub."
+msgstr "E-postayla kod için hub’ın posta ayarları gerekir."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "En son aracı sürümü henüz bilinmiyor"
@@ -4105,6 +4216,10 @@ msgstr "Durum yukarı ve aşağı arasında değiştiğinde tetiklenir"
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "Herhangi bir diskin kullanımı bir eşiği aştığında tetiklenir"
 
+#: src/components/routes/settings/security.tsx
+msgid "Two-factor authentication"
+msgstr "İki faktörlü kimlik doğrulama"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4264,6 +4379,14 @@ msgstr "Kullanım"
 msgid "Usage of storage pool {displayName}"
 msgstr "Depolama pool'u {displayName} kullanımı"
 
+#: src/components/routes/settings/security.tsx
+msgid "Use a code by email"
+msgstr "E-postayla kod kullan"
+
+#: src/components/login/otp-forms.tsx
+msgid "Use a recovery code"
+msgstr "Kurtarma kodu kullan"
+
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute path such as C:\\MONITORING, without special characters."
 msgstr "C:\\MONITORING gibi mutlak bir yol kullanın, özel karakter olmadan."
@@ -4271,6 +4394,10 @@ msgstr "C:\\MONITORING gibi mutlak bir yol kullanın, özel karakter olmadan."
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute URL starting with http:// or https://."
 msgstr "http:// veya https:// ile başlayan mutlak bir URL kullanın."
+
+#: src/components/routes/settings/security.tsx
+msgid "Use an authenticator app"
+msgstr "Kimlik doğrulama uygulaması kullan"
 
 #: src/components/routes/settings/general.tsx
 msgid "Use letters, digits and _ . @ - only."

@@ -124,6 +124,8 @@ func (h *Hub) StartHub() error {
 	h.App.OnRecordAuthWithOAuth2Request("users").BindFunc(h.um.InitializeOAuthUserRole)
 	h.App.OnRecordCreate("users").BindFunc(h.um.InitializeUserRole)
 	h.App.OnRecordCreate("user_settings").BindFunc(h.um.InitializeUserSettings)
+	// email codes only as the second factor chosen by the user
+	h.guardOTP()
 
 	bindNetworkMonitorsEvents(h)
 	hubsettings.BindEvents(h.App)

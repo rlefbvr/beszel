@@ -361,6 +361,10 @@ msgstr "После"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "После установки переменных окружения перезапустите хаб Beszel, чтобы изменения вступили в силу."
 
+#: src/components/routes/settings/security.tsx
+msgid "After your password, a code is sent to your email address at each login. It replaces the authenticator app if you used one."
+msgstr "После пароля при каждом входе на ваш адрес электронной почты отправляется код. Он заменяет приложение-аутентификатор, если вы его использовали."
+
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -553,6 +557,10 @@ msgstr "Удалить также связанный датчик {sensorName}"
 msgid "Alternative names"
 msgstr "Альтернативные имена"
 
+#: src/components/routes/settings/security.tsx
+msgid "An email code is required from every user on this hub (MFA_OTP)."
+msgstr "На этом хабе код по электронной почте требуется от всех пользователей (MFA_OTP)."
+
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "и ещё {more}"
@@ -575,6 +583,11 @@ msgstr "Вы уверены, что хотите удалить {name}?"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "Вы уверены?"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Authenticator app"
+msgstr "Приложение-аутентификатор"
 
 #: src/components/resolve-ip-button.tsx
 msgid "Auto-discover the IP"
@@ -999,6 +1012,11 @@ msgstr "Закрыть"
 msgid "Code"
 msgstr "Код"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Code sent by email"
+msgstr "Код по электронной почте"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Интервал сбора"
@@ -1031,10 +1049,22 @@ msgstr "Настройте способ получения уведомлени�
 msgid "Configure response monitoring from this agent."
 msgstr "Настройте мониторинг времени отклика с этого агента."
 
+#: src/components/routes/settings/security.tsx
+msgid "Confirm"
+msgstr "Подтвердить"
+
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
 msgid "Confirm password"
 msgstr "Подтвердите пароль"
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password or a code of your authenticator app."
+msgstr "Подтвердите паролем или кодом из приложения-аутентификатора."
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password."
+msgstr "Подтвердите паролем."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Conflicts"
@@ -1085,6 +1115,7 @@ msgstr "Скопировано в буфер обмена"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Copy"
 msgstr "Копировать"
 
@@ -1377,6 +1408,15 @@ msgstr "Устройство"
 msgid "Devices"
 msgstr "Устройства"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Disable"
+msgstr "Отключить"
+
+#: src/components/routes/settings/security.tsx
+msgid "Disable two-factor authentication"
+msgstr "Отключить двухфакторную аутентификацию"
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Discharging"
@@ -1421,6 +1461,11 @@ msgstr "Сетевой ввод/вывод Docker"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Documentation"
 msgstr "Документация"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Done"
+msgstr "Готово"
 
 #. Context: System is down
 #. Context: System is down
@@ -1494,10 +1539,18 @@ msgstr "Электронная почта"
 msgid "Email notifications"
 msgstr "Уведомления по электронной почте"
 
+#: src/components/routes/settings/security.tsx
+msgid "Email sending is not configured on the hub."
+msgstr "Отправка электронной почты не настроена на хабе."
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "Пустая"
+
+#: src/components/routes/settings/security.tsx
+msgid "Enable"
+msgstr "Включить"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1524,6 +1577,14 @@ msgstr "Введите адрес электронной почты для сб�
 #: src/components/routes/settings/notifications.tsx
 msgid "Enter email address..."
 msgstr "Введите адрес электронной почты..."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter one of the recovery codes saved when setting up the app."
+msgstr "Введите один из резервных кодов, сохранённых при настройке приложения."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter the code of your authenticator app."
+msgstr "Введите код из приложения-аутентификатора."
 
 #: src/components/login/otp-forms.tsx
 msgid "Enter your one-time password."
@@ -1553,6 +1614,7 @@ msgstr "Эфемерный"
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2509,6 +2571,11 @@ msgstr "Работы в сети"
 msgid "New group"
 msgstr "Новая группа"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "New recovery codes"
+msgstr "Новые резервные коды"
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "Рядом с логотипом"
@@ -2611,6 +2678,10 @@ msgstr "Системы не найдены."
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "Нет"
+
+#: src/components/routes/settings/security.tsx
+msgid "Not enabled"
+msgstr "Не включена"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
@@ -2719,9 +2790,17 @@ msgstr "Параметры"
 msgid "Or change {directive} in the following file, then reload {service}:"
 msgstr "Или измените {directive} в следующем файле, затем перезагрузите {service}:"
 
+#: src/components/routes/settings/security.tsx
+msgid "Or code of the app"
+msgstr "Или код из приложения"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Или продолжить с"
+
+#: src/components/routes/settings/security.tsx
+msgid "Or enter this key in the app:"
+msgstr "Или введите этот ключ в приложении:"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2791,6 +2870,7 @@ msgstr "Страницы / Настройки"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "Пароль"
 
@@ -2968,6 +3048,10 @@ msgstr "Процесс запущен"
 msgid "Production, Customers, Lab…"
 msgstr "Продакшн, Клиенты, Лаборатория…"
 
+#: src/components/routes/settings/security.tsx
+msgid "Protect your account with a second factor asked after the password."
+msgstr "Защитите учётную запись вторым фактором, запрашиваемым после пароля."
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -3095,6 +3179,14 @@ msgstr "Недавно открытые"
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Записано"
+
+#: src/components/login/otp-forms.tsx
+msgid "Recovery code"
+msgstr "Резервный код"
+
+#: src/components/routes/settings/security.tsx
+msgid "Recovery codes left: {recoveryLeft}"
+msgstr "Осталось резервных кодов: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -3307,9 +3399,17 @@ msgstr "Сохраните адрес, используя клавишу вво�
 msgid "Save Settings"
 msgstr "Сохранить настройки"
 
+#: src/components/routes/settings/security.tsx
+msgid "Save these recovery codes: each one can replace a code of the app once, if you lose your phone. They are not shown again."
+msgstr "Сохраните эти резервные коды: каждый один раз заменяет код приложения, если вы потеряете телефон. Они больше не будут показаны."
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "Сохранено в базе данных и не истекает, пока вы его не отключите."
+
+#: src/components/routes/settings/security.tsx
+msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
+msgstr "Отсканируйте QR-код приложением, например Microsoft Authenticator или Google Authenticator, затем введите показанный код."
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule"
@@ -3353,6 +3453,12 @@ msgstr "Поиск систем"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Seconds between pings (default: 60)"
 msgstr "Секунды между пингами (по умолчанию: 60)"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Security"
+msgstr "Безопасность"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "See <0>notification settings</0> to configure how you receive alerts."
@@ -3554,6 +3660,7 @@ msgid "Shutdown"
 msgstr "Выключение"
 
 #: src/components/login/auth-form.tsx
+#: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "Войти"
 
@@ -3853,6 +3960,10 @@ msgstr "Сертификат проверки HTTPS истекает в тече
 msgid "The checks of the same host are grouped in one sensor."
 msgstr "Проверки одного хоста объединяются в один датчик."
 
+#: src/components/routes/settings/security.tsx
+msgid "The code by email needs the mail settings of the hub."
+msgstr "Для кода по электронной почте нужны почтовые настройки хаба."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "Последняя версия агента пока неизвестна"
@@ -4105,6 +4216,10 @@ msgstr "Срабатывает, когда статус переключаетс
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "Срабатывает, когда нагрузка на любой из дисков превышает порог"
 
+#: src/components/routes/settings/security.tsx
+msgid "Two-factor authentication"
+msgstr "Двухфакторная аутентификация"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4264,6 +4379,14 @@ msgstr "Использование"
 msgid "Usage of storage pool {displayName}"
 msgstr "Использование пула хранения {displayName}"
 
+#: src/components/routes/settings/security.tsx
+msgid "Use a code by email"
+msgstr "Использовать код по электронной почте"
+
+#: src/components/login/otp-forms.tsx
+msgid "Use a recovery code"
+msgstr "Использовать резервный код"
+
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute path such as C:\\MONITORING, without special characters."
 msgstr "Используйте абсолютный путь, например C:\\MONITORING, без специальных символов."
@@ -4271,6 +4394,10 @@ msgstr "Используйте абсолютный путь, например C
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute URL starting with http:// or https://."
 msgstr "Используйте абсолютный URL, начинающийся с http:// или https://."
+
+#: src/components/routes/settings/security.tsx
+msgid "Use an authenticator app"
+msgstr "Использовать приложение-аутентификатор"
 
 #: src/components/routes/settings/general.tsx
 msgid "Use letters, digits and _ . @ - only."

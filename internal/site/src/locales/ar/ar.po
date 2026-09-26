@@ -361,6 +361,10 @@ msgstr "بعد"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "بعد تعيين متغيرات البيئة، أعد تشغيل مركز Beszel الخاص بك لتصبح التغييرات سارية المفعول."
 
+#: src/components/routes/settings/security.tsx
+msgid "After your password, a code is sent to your email address at each login. It replaces the authenticator app if you used one."
+msgstr "بعد كلمة المرور، يُرسل رمز إلى بريدك الإلكتروني عند كل تسجيل دخول. ويحل محل تطبيق المصادقة إن كنت تستخدمه."
+
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -553,6 +557,10 @@ msgstr "حذف المستشعر المرتبط {sensorName} أيضًا"
 msgid "Alternative names"
 msgstr "الأسماء البديلة"
 
+#: src/components/routes/settings/security.tsx
+msgid "An email code is required from every user on this hub (MFA_OTP)."
+msgstr "يُطلب رمز بالبريد الإلكتروني من كل مستخدم على هذا الخادم (MFA_OTP)."
+
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "و{more} أخرى"
@@ -575,6 +583,11 @@ msgstr "هل أنت متأكد أنك تريد حذف {name}؟"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "هل أنت متأكد؟"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Authenticator app"
+msgstr "تطبيق المصادقة"
 
 #: src/components/resolve-ip-button.tsx
 msgid "Auto-discover the IP"
@@ -999,6 +1012,11 @@ msgstr "إغلاق"
 msgid "Code"
 msgstr "الرمز"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Code sent by email"
+msgstr "رمز مرسل بالبريد الإلكتروني"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "فترة الجمع"
@@ -1031,10 +1049,22 @@ msgstr "هيئ التنبيهات الواردة"
 msgid "Configure response monitoring from this agent."
 msgstr "تكوين مراقبة الاستجابة من هذا الوكيل."
 
+#: src/components/routes/settings/security.tsx
+msgid "Confirm"
+msgstr "تأكيد"
+
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
 msgid "Confirm password"
 msgstr "تأكيد كلمة المرور"
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password or a code of your authenticator app."
+msgstr "أكّد بكلمة المرور أو برمز من تطبيق المصادقة."
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password."
+msgstr "أكّد بكلمة المرور."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Conflicts"
@@ -1085,6 +1115,7 @@ msgstr "تم النسخ إلى الحافظة"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Copy"
 msgstr "نسخ"
 
@@ -1377,6 +1408,15 @@ msgstr "الجهاز"
 msgid "Devices"
 msgstr "الأجهزة"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Disable"
+msgstr "تعطيل"
+
+#: src/components/routes/settings/security.tsx
+msgid "Disable two-factor authentication"
+msgstr "تعطيل المصادقة الثنائية"
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Discharging"
@@ -1421,6 +1461,11 @@ msgstr "إدخال/إخراج الشبكة للدوكر"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Documentation"
 msgstr "التوثيق"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Done"
+msgstr "تم"
 
 #. Context: System is down
 #. Context: System is down
@@ -1494,10 +1539,18 @@ msgstr "البريد الإشباكي"
 msgid "Email notifications"
 msgstr "إشعارات البريد الإشباكي"
 
+#: src/components/routes/settings/security.tsx
+msgid "Email sending is not configured on the hub."
+msgstr "لم يُهيَّأ إرسال البريد الإلكتروني على الخادم."
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "فارغة"
+
+#: src/components/routes/settings/security.tsx
+msgid "Enable"
+msgstr "تفعيل"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1524,6 +1577,14 @@ msgstr "أدخل عنوان البريد الإشباكي لإعادة تعيي�
 #: src/components/routes/settings/notifications.tsx
 msgid "Enter email address..."
 msgstr "أدخل عنوان البريد الإشباكي..."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter one of the recovery codes saved when setting up the app."
+msgstr "أدخل أحد رموز الاسترداد المحفوظة عند إعداد التطبيق."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter the code of your authenticator app."
+msgstr "أدخل رمز تطبيق المصادقة."
 
 #: src/components/login/otp-forms.tsx
 msgid "Enter your one-time password."
@@ -1553,6 +1614,7 @@ msgstr "مؤقت"
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2509,6 +2571,11 @@ msgstr "أعمال على الشبكة"
 msgid "New group"
 msgstr "مجموعة جديدة"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "New recovery codes"
+msgstr "رموز استرداد جديدة"
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "بجانب الشعار"
@@ -2611,6 +2678,10 @@ msgstr "لم يتم العثور على أنظمة."
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "لا شيء"
+
+#: src/components/routes/settings/security.tsx
+msgid "Not enabled"
+msgstr "غير مفعّل"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
@@ -2719,9 +2790,17 @@ msgstr "الخيارات"
 msgid "Or change {directive} in the following file, then reload {service}:"
 msgstr "أو غيّر {directive} في الملف التالي، ثم أعد تحميل {service}:"
 
+#: src/components/routes/settings/security.tsx
+msgid "Or code of the app"
+msgstr "أو رمز التطبيق"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "أو المتابعة باستخدام"
+
+#: src/components/routes/settings/security.tsx
+msgid "Or enter this key in the app:"
+msgstr "أو أدخل هذا المفتاح في التطبيق:"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2791,6 +2870,7 @@ msgstr "الصفحات / الإعدادات"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "كلمة المرور"
 
@@ -2968,6 +3048,10 @@ msgstr "تم بدء العملية"
 msgid "Production, Customers, Lab…"
 msgstr "الإنتاج، العملاء، المختبر…"
 
+#: src/components/routes/settings/security.tsx
+msgid "Protect your account with a second factor asked after the password."
+msgstr "احمِ حسابك بعامل ثانٍ يُطلب بعد كلمة المرور."
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -3095,6 +3179,14 @@ msgstr "المفتوحة مؤخرًا"
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "سُجّل"
+
+#: src/components/login/otp-forms.tsx
+msgid "Recovery code"
+msgstr "رمز الاسترداد"
+
+#: src/components/routes/settings/security.tsx
+msgid "Recovery codes left: {recoveryLeft}"
+msgstr "رموز الاسترداد المتبقية: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -3307,9 +3399,17 @@ msgstr "احفظ العنوان باستخدام مفتاح الإدخال أو 
 msgid "Save Settings"
 msgstr "حفظ الإعدادات"
 
+#: src/components/routes/settings/security.tsx
+msgid "Save these recovery codes: each one can replace a code of the app once, if you lose your phone. They are not shown again."
+msgstr "احفظ رموز الاسترداد هذه: يمكن لكل منها أن يحل محل رمز التطبيق مرة واحدة إذا فقدت هاتفك. لن تُعرض مجددًا."
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "محفوظ في قاعدة البيانات ولا ينتهي حتى تقوم بتعطيله."
+
+#: src/components/routes/settings/security.tsx
+msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
+msgstr "امسح رمز QR بتطبيق مثل Microsoft Authenticator أو Google Authenticator، ثم أدخل الرمز الذي يعرضه."
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule"
@@ -3353,6 +3453,12 @@ msgstr "البحث عن الأنظمة"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Seconds between pings (default: 60)"
 msgstr "ثواني بين ال pings (الافتراضي: 60)"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Security"
+msgstr "الأمان"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "See <0>notification settings</0> to configure how you receive alerts."
@@ -3554,6 +3660,7 @@ msgid "Shutdown"
 msgstr "الإيقاف"
 
 #: src/components/login/auth-form.tsx
+#: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "تسجيل الدخول"
 
@@ -3853,6 +3960,10 @@ msgstr "تنتهي صلاحية شهادة أحد فحوصات HTTPS خلال {v
 msgid "The checks of the same host are grouped in one sensor."
 msgstr "تُجمع فحوصات المضيف نفسه في مستشعر واحد."
 
+#: src/components/routes/settings/security.tsx
+msgid "The code by email needs the mail settings of the hub."
+msgstr "يحتاج الرمز عبر البريد إلى إعدادات البريد للخادم."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "أحدث إصدار للوكيل غير معروف بعد"
@@ -4105,6 +4216,10 @@ msgstr "يتم التفعيل عندما يتغير الحالة بين التش
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "يتم التفعيل عندما يتجاوز استخدام أي قرص عتبة معينة"
 
+#: src/components/routes/settings/security.tsx
+msgid "Two-factor authentication"
+msgstr "المصادقة الثنائية"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4264,6 +4379,14 @@ msgstr "الاستخدام"
 msgid "Usage of storage pool {displayName}"
 msgstr "استخدام مجموعة التخزين {displayName}"
 
+#: src/components/routes/settings/security.tsx
+msgid "Use a code by email"
+msgstr "استخدام رمز عبر البريد الإلكتروني"
+
+#: src/components/login/otp-forms.tsx
+msgid "Use a recovery code"
+msgstr "استخدام رمز استرداد"
+
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute path such as C:\\MONITORING, without special characters."
 msgstr "استخدم مسارًا مطلقًا مثل C:\\MONITORING، دون أحرف خاصة."
@@ -4271,6 +4394,10 @@ msgstr "استخدم مسارًا مطلقًا مثل C:\\MONITORING، دون أ
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute URL starting with http:// or https://."
 msgstr "استخدم عنوانًا كاملًا يبدأ بـ http:// أو https://."
+
+#: src/components/routes/settings/security.tsx
+msgid "Use an authenticator app"
+msgstr "استخدام تطبيق مصادقة"
 
 #: src/components/routes/settings/general.tsx
 msgid "Use letters, digits and _ . @ - only."

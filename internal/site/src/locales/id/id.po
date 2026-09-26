@@ -361,6 +361,10 @@ msgstr "Setelah"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "Setelah mengatur variabel lingkungan, restart hub Beszel Anda agar perubahan dapat diterapkan."
 
+#: src/components/routes/settings/security.tsx
+msgid "After your password, a code is sent to your email address at each login. It replaces the authenticator app if you used one."
+msgstr "Setelah kata sandi, kode dikirim ke alamat email Anda di setiap login. Kode ini menggantikan aplikasi autentikator jika Anda menggunakannya."
+
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -553,6 +557,10 @@ msgstr "Hapus juga sensor terkait {sensorName}"
 msgid "Alternative names"
 msgstr "Nama alternatif"
 
+#: src/components/routes/settings/security.tsx
+msgid "An email code is required from every user on this hub (MFA_OTP)."
+msgstr "Kode email diwajibkan bagi setiap pengguna di hub ini (MFA_OTP)."
+
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "dan {more} lainnya"
@@ -575,6 +583,11 @@ msgstr "Apakah anda yakin ingin menghapus {name}?"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "Apakah anda yakin?"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Authenticator app"
+msgstr "Aplikasi autentikator"
 
 #: src/components/resolve-ip-button.tsx
 msgid "Auto-discover the IP"
@@ -999,6 +1012,11 @@ msgstr "Tutup"
 msgid "Code"
 msgstr "Kode"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Code sent by email"
+msgstr "Kode dikirim melalui email"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Interval pengumpulan"
@@ -1031,10 +1049,22 @@ msgstr "Konfigurasi bagaimana anda menerima notifikasi peringatan."
 msgid "Configure response monitoring from this agent."
 msgstr "Konfigurasikan pemantauan respons dari agen ini."
 
+#: src/components/routes/settings/security.tsx
+msgid "Confirm"
+msgstr "Konfirmasi"
+
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
 msgid "Confirm password"
 msgstr "Konfirmasi kata sandi"
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password or a code of your authenticator app."
+msgstr "Konfirmasi dengan kata sandi atau kode dari aplikasi autentikator Anda."
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password."
+msgstr "Konfirmasi dengan kata sandi Anda."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Conflicts"
@@ -1085,6 +1115,7 @@ msgstr "Disalin ke clipboard"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Copy"
 msgstr "Salin"
 
@@ -1377,6 +1408,15 @@ msgstr "Perangkat"
 msgid "Devices"
 msgstr "Perangkat"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Disable"
+msgstr "Nonaktifkan"
+
+#: src/components/routes/settings/security.tsx
+msgid "Disable two-factor authentication"
+msgstr "Nonaktifkan autentikasi dua faktor"
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Discharging"
@@ -1421,6 +1461,11 @@ msgstr "I/O Jaringan Docker"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Documentation"
 msgstr "Dokumentasi"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Done"
+msgstr "Selesai"
 
 #. Context: System is down
 #. Context: System is down
@@ -1494,10 +1539,18 @@ msgstr "Email"
 msgid "Email notifications"
 msgstr "Notifikasi email"
 
+#: src/components/routes/settings/security.tsx
+msgid "Email sending is not configured on the hub."
+msgstr "Pengiriman email belum dikonfigurasi di hub."
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "Kosong"
+
+#: src/components/routes/settings/security.tsx
+msgid "Enable"
+msgstr "Aktifkan"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1524,6 +1577,14 @@ msgstr "Masukkan alamat email untuk mereset kata sandi"
 #: src/components/routes/settings/notifications.tsx
 msgid "Enter email address..."
 msgstr "Masukkan alamat email..."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter one of the recovery codes saved when setting up the app."
+msgstr "Masukkan salah satu kode pemulihan yang disimpan saat menyiapkan aplikasi."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter the code of your authenticator app."
+msgstr "Masukkan kode dari aplikasi autentikator Anda."
 
 #: src/components/login/otp-forms.tsx
 msgid "Enter your one-time password."
@@ -1553,6 +1614,7 @@ msgstr "Sementara"
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2509,6 +2571,11 @@ msgstr "Pekerjaan jaringan"
 msgid "New group"
 msgstr "Grup baru"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "New recovery codes"
+msgstr "Kode pemulihan baru"
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "Di samping logo"
@@ -2611,6 +2678,10 @@ msgstr "Sistem tidak ditemukan."
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "Tidak ada"
+
+#: src/components/routes/settings/security.tsx
+msgid "Not enabled"
+msgstr "Tidak diaktifkan"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
@@ -2719,9 +2790,17 @@ msgstr "Opsi"
 msgid "Or change {directive} in the following file, then reload {service}:"
 msgstr "Atau ubah {directive} di berkas berikut, lalu muat ulang {service}:"
 
+#: src/components/routes/settings/security.tsx
+msgid "Or code of the app"
+msgstr "Atau kode aplikasi"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Atau lanjutkan dengan"
+
+#: src/components/routes/settings/security.tsx
+msgid "Or enter this key in the app:"
+msgstr "Atau masukkan kunci ini di aplikasi:"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2791,6 +2870,7 @@ msgstr "Halaman / Pengaturan"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "Kata sandi"
 
@@ -2968,6 +3048,10 @@ msgstr "Proses dimulai"
 msgid "Production, Customers, Lab…"
 msgstr "Produksi, Pelanggan, Lab…"
 
+#: src/components/routes/settings/security.tsx
+msgid "Protect your account with a second factor asked after the password."
+msgstr "Lindungi akun Anda dengan faktor kedua yang diminta setelah kata sandi."
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -3095,6 +3179,14 @@ msgstr "Baru dibuka"
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Tercatat"
+
+#: src/components/login/otp-forms.tsx
+msgid "Recovery code"
+msgstr "Kode pemulihan"
+
+#: src/components/routes/settings/security.tsx
+msgid "Recovery codes left: {recoveryLeft}"
+msgstr "Kode pemulihan tersisa: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -3307,9 +3399,17 @@ msgstr "Simpan alamat menggunakan tombol enter atau koma. Biarkan kosong untuk m
 msgid "Save Settings"
 msgstr "Simpan Pengaturan"
 
+#: src/components/routes/settings/security.tsx
+msgid "Save these recovery codes: each one can replace a code of the app once, if you lose your phone. They are not shown again."
+msgstr "Simpan kode pemulihan ini: masing-masing dapat menggantikan kode aplikasi sekali jika ponsel hilang. Kode tidak akan ditampilkan lagi."
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "Disimpan di database dan tidak kedaluwarsa sampai Anda menonaktifkannya."
+
+#: src/components/routes/settings/security.tsx
+msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
+msgstr "Pindai kode QR dengan aplikasi seperti Microsoft Authenticator atau Google Authenticator, lalu masukkan kode yang ditampilkan."
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule"
@@ -3353,6 +3453,12 @@ msgstr "Cari sistem"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Seconds between pings (default: 60)"
 msgstr "Detik di antara ping (default: 60)"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Security"
+msgstr "Keamanan"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "See <0>notification settings</0> to configure how you receive alerts."
@@ -3554,6 +3660,7 @@ msgid "Shutdown"
 msgstr "Pematian"
 
 #: src/components/login/auth-form.tsx
+#: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "Masuk"
 
@@ -3853,6 +3960,10 @@ msgstr "Sertifikat pemeriksaan HTTPS kedaluwarsa dalam {value} hari."
 msgid "The checks of the same host are grouped in one sensor."
 msgstr "Pemeriksaan untuk host yang sama dikelompokkan dalam satu sensor."
 
+#: src/components/routes/settings/security.tsx
+msgid "The code by email needs the mail settings of the hub."
+msgstr "Kode melalui email memerlukan pengaturan email hub."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "Versi agen terbaru belum diketahui"
@@ -4105,6 +4216,10 @@ msgstr "Dipicu ketika status beralih antara up dan down"
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "Dipicu ketika penggunaan disk apa pun melebihi ambang batas"
 
+#: src/components/routes/settings/security.tsx
+msgid "Two-factor authentication"
+msgstr "Autentikasi dua faktor"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4264,6 +4379,14 @@ msgstr "Penggunaan"
 msgid "Usage of storage pool {displayName}"
 msgstr "Penggunaan pool penyimpanan {displayName}"
 
+#: src/components/routes/settings/security.tsx
+msgid "Use a code by email"
+msgstr "Gunakan kode melalui email"
+
+#: src/components/login/otp-forms.tsx
+msgid "Use a recovery code"
+msgstr "Gunakan kode pemulihan"
+
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute path such as C:\\MONITORING, without special characters."
 msgstr "Gunakan jalur absolut seperti C:\\MONITORING, tanpa karakter khusus."
@@ -4271,6 +4394,10 @@ msgstr "Gunakan jalur absolut seperti C:\\MONITORING, tanpa karakter khusus."
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute URL starting with http:// or https://."
 msgstr "Gunakan URL absolut yang diawali http:// atau https://."
+
+#: src/components/routes/settings/security.tsx
+msgid "Use an authenticator app"
+msgstr "Gunakan aplikasi autentikator"
 
 #: src/components/routes/settings/general.tsx
 msgid "Use letters, digits and _ . @ - only."

@@ -9,6 +9,7 @@ import {
 	FingerprintIcon,
 	HeartPulseIcon,
 	PaletteIcon,
+	ShieldCheckIcon,
 	SettingsIcon,
 } from "lucide-react"
 import { lazy, useEffect } from "react"
@@ -24,6 +25,7 @@ import { SidebarNav } from "./sidebar-nav.tsx"
 
 const generalSettingsImport = () => import("./general.tsx")
 const appearanceSettingsImport = () => import("./appearance.tsx")
+const securitySettingsImport = () => import("./security.tsx")
 const notificationsSettingsImport = () => import("./notifications.tsx")
 const configYamlSettingsImport = () => import("./config-yaml.tsx")
 const fingerprintsSettingsImport = () => import("./tokens-fingerprints.tsx")
@@ -32,6 +34,7 @@ const heartbeatSettingsImport = () => import("./heartbeat.tsx")
 
 const GeneralSettings = lazy(generalSettingsImport)
 const AppearanceSettings = lazy(appearanceSettingsImport)
+const SecuritySettings = lazy(securitySettingsImport)
 const NotificationsSettings = lazy(notificationsSettingsImport)
 const ConfigYamlSettings = lazy(configYamlSettingsImport)
 const FingerprintsSettings = lazy(fingerprintsSettingsImport)
@@ -69,6 +72,12 @@ export default function SettingsLayout() {
 			href: getPagePath($router, "settings", { name: "appearance" }),
 			icon: PaletteIcon,
 			preload: appearanceSettingsImport,
+		},
+		{
+			title: t`Security`,
+			href: getPagePath($router, "settings", { name: "security" }),
+			icon: ShieldCheckIcon,
+			preload: securitySettingsImport,
 		},
 		{
 			title: t`Notifications`,
@@ -149,6 +158,8 @@ function SettingsContent({ name }: { name: string }) {
 			return <GeneralSettings userSettings={userSettings} />
 		case "appearance":
 			return <AppearanceSettings userSettings={userSettings} />
+		case "security":
+			return <SecuritySettings />
 		case "notifications":
 			return <NotificationsSettings userSettings={userSettings} />
 		case "config":

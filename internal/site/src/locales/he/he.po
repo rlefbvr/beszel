@@ -361,6 +361,10 @@ msgstr "אחרי"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "לאחר הגדרת משתני הסביבה, יש להפעיל את ה־Beszel hub שלך מחדש כדי שהשינויים ייכנסו לתוקף."
 
+#: src/components/routes/settings/security.tsx
+msgid "After your password, a code is sent to your email address at each login. It replaces the authenticator app if you used one."
+msgstr "אחרי הסיסמה, בכל התחברות נשלח קוד לכתובת הדוא״ל שלכם. הוא מחליף את אפליקציית האימות אם השתמשתם בה."
+
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -553,6 +557,10 @@ msgstr "למחוק גם את החיישן המשויך {sensorName}"
 msgid "Alternative names"
 msgstr "שמות חלופיים"
 
+#: src/components/routes/settings/security.tsx
+msgid "An email code is required from every user on this hub (MFA_OTP)."
+msgstr "בשרת זה נדרש קוד בדוא״ל מכל משתמש (MFA_OTP)."
+
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "ועוד {more}"
@@ -575,6 +583,11 @@ msgstr "האם אתה בטוח שברצונך למחוק את {name}?"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "האם אתה בטוח?"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Authenticator app"
+msgstr "אפליקציית אימות"
 
 #: src/components/resolve-ip-button.tsx
 msgid "Auto-discover the IP"
@@ -999,6 +1012,11 @@ msgstr "סגור"
 msgid "Code"
 msgstr "קוד"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Code sent by email"
+msgstr "קוד שנשלח בדוא״ל"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "מרווח איסוף"
@@ -1031,10 +1049,22 @@ msgstr "הגדר כיצד לקבל התראות."
 msgid "Configure response monitoring from this agent."
 msgstr "הגדר ניטור תגובות מסוכן זה."
 
+#: src/components/routes/settings/security.tsx
+msgid "Confirm"
+msgstr "אישור"
+
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
 msgid "Confirm password"
 msgstr "אשר סיסמה"
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password or a code of your authenticator app."
+msgstr "אשרו באמצעות הסיסמה או קוד מאפליקציית האימות."
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password."
+msgstr "אשרו באמצעות הסיסמה."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Conflicts"
@@ -1085,6 +1115,7 @@ msgstr "הועתק ללוח"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Copy"
 msgstr "העתקה"
 
@@ -1377,6 +1408,15 @@ msgstr "התקן"
 msgid "Devices"
 msgstr "התקנים"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Disable"
+msgstr "השבתה"
+
+#: src/components/routes/settings/security.tsx
+msgid "Disable two-factor authentication"
+msgstr "השבתת אימות דו-שלבי"
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Discharging"
@@ -1421,6 +1461,11 @@ msgstr "I/O של רשת Docker"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Documentation"
 msgstr "תיעוד"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Done"
+msgstr "סיום"
 
 #. Context: System is down
 #. Context: System is down
@@ -1494,10 +1539,18 @@ msgstr "אימייל"
 msgid "Email notifications"
 msgstr "התראות אימייל"
 
+#: src/components/routes/settings/security.tsx
+msgid "Email sending is not configured on the hub."
+msgstr "שליחת דוא״ל אינה מוגדרת בשרת."
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "ריק"
+
+#: src/components/routes/settings/security.tsx
+msgid "Enable"
+msgstr "הפעלה"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1524,6 +1577,14 @@ msgstr "הכנס כתובת אימייל לאיפוס סיסמה"
 #: src/components/routes/settings/notifications.tsx
 msgid "Enter email address..."
 msgstr "הכנס כתובת אימייל..."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter one of the recovery codes saved when setting up the app."
+msgstr "הזינו אחד מקודי השחזור ששמרתם בעת הגדרת האפליקציה."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter the code of your authenticator app."
+msgstr "הזינו את הקוד מאפליקציית האימות."
 
 #: src/components/login/otp-forms.tsx
 msgid "Enter your one-time password."
@@ -1553,6 +1614,7 @@ msgstr "זמני"
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2509,6 +2571,11 @@ msgstr "עבודות רשת"
 msgid "New group"
 msgstr "קבוצה חדשה"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "New recovery codes"
+msgstr "קודי שחזור חדשים"
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "ליד הלוגו"
@@ -2611,6 +2678,10 @@ msgstr "לא נמצאו מערכות."
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "ללא"
+
+#: src/components/routes/settings/security.tsx
+msgid "Not enabled"
+msgstr "לא מופעל"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
@@ -2719,9 +2790,17 @@ msgstr "אפשרויות"
 msgid "Or change {directive} in the following file, then reload {service}:"
 msgstr "או שנו את {directive} בקובץ הבא, ולאחר מכן טענו מחדש את {service}:"
 
+#: src/components/routes/settings/security.tsx
+msgid "Or code of the app"
+msgstr "או קוד מהאפליקציה"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "או המשך עם"
+
+#: src/components/routes/settings/security.tsx
+msgid "Or enter this key in the app:"
+msgstr "או הזינו את המפתח הזה באפליקציה:"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2791,6 +2870,7 @@ msgstr "עמודים / הגדרות"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "סיסמה"
 
@@ -2968,6 +3048,10 @@ msgstr "תהליך התחיל"
 msgid "Production, Customers, Lab…"
 msgstr "ייצור, לקוחות, מעבדה…"
 
+#: src/components/routes/settings/security.tsx
+msgid "Protect your account with a second factor asked after the password."
+msgstr "הגנו על החשבון שלכם בגורם שני שנדרש אחרי הסיסמה."
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -3095,6 +3179,14 @@ msgstr "נפתחו לאחרונה"
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "נרשם"
+
+#: src/components/login/otp-forms.tsx
+msgid "Recovery code"
+msgstr "קוד שחזור"
+
+#: src/components/routes/settings/security.tsx
+msgid "Recovery codes left: {recoveryLeft}"
+msgstr "קודי שחזור שנותרו: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -3307,9 +3399,17 @@ msgstr "שמור כתובת באמצעות מקש enter או פסיק. השאר 
 msgid "Save Settings"
 msgstr "שמור הגדרות"
 
+#: src/components/routes/settings/security.tsx
+msgid "Save these recovery codes: each one can replace a code of the app once, if you lose your phone. They are not shown again."
+msgstr "שמרו את קודי השחזור: כל אחד מחליף פעם אחת קוד של האפליקציה אם הטלפון אובד. הם לא יוצגו שוב."
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "נשמר במסד הנתונים ולא פג תוקף עד שתבטל אותו."
+
+#: src/components/routes/settings/security.tsx
+msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
+msgstr "סרקו את קוד ה-QR באפליקציה כמו Microsoft Authenticator או Google Authenticator, והזינו את הקוד שהיא מציגה."
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule"
@@ -3353,6 +3453,12 @@ msgstr "חיפוש מערכות"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Seconds between pings (default: 60)"
 msgstr "שניות בין פינגים (ברירת מחדל: 60)"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Security"
+msgstr "אבטחה"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "See <0>notification settings</0> to configure how you receive alerts."
@@ -3554,6 +3660,7 @@ msgid "Shutdown"
 msgstr "כיבוי"
 
 #: src/components/login/auth-form.tsx
+#: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "התחבר"
 
@@ -3853,6 +3960,10 @@ msgstr "האישור של בדיקת HTTPS יפוג בתוך {value} ימים."
 msgid "The checks of the same host are grouped in one sensor."
 msgstr "הבדיקות של אותו מארח מקובצות בחיישן אחד."
 
+#: src/components/routes/settings/security.tsx
+msgid "The code by email needs the mail settings of the hub."
+msgstr "קוד בדוא״ל דורש את הגדרות הדואר של השרת."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "הגרסה האחרונה של הסוכן עדיין אינה ידועה"
@@ -4105,6 +4216,10 @@ msgstr "מופעל כאשר הסטטוס מתחלף בין למעלה ולמטה
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "מופעל כאשר שימוש בכל דיסק עולה על סף"
 
+#: src/components/routes/settings/security.tsx
+msgid "Two-factor authentication"
+msgstr "אימות דו-שלבי"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4264,6 +4379,14 @@ msgstr "שימוש"
 msgid "Usage of storage pool {displayName}"
 msgstr "שימוש במאגר האחסון {displayName}"
 
+#: src/components/routes/settings/security.tsx
+msgid "Use a code by email"
+msgstr "שימוש בקוד בדוא״ל"
+
+#: src/components/login/otp-forms.tsx
+msgid "Use a recovery code"
+msgstr "שימוש בקוד שחזור"
+
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute path such as C:\\MONITORING, without special characters."
 msgstr "השתמש בנתיב מוחלט כמו C:\\MONITORING, ללא תווים מיוחדים."
@@ -4271,6 +4394,10 @@ msgstr "השתמש בנתיב מוחלט כמו C:\\MONITORING, ללא תווי�
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute URL starting with http:// or https://."
 msgstr "השתמשו בכתובת מלאה שמתחילה ב-http:// או https://."
+
+#: src/components/routes/settings/security.tsx
+msgid "Use an authenticator app"
+msgstr "שימוש באפליקציית אימות"
 
 #: src/components/routes/settings/general.tsx
 msgid "Use letters, digits and _ . @ - only."

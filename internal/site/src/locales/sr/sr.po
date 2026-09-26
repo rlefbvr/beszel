@@ -361,6 +361,10 @@ msgstr "После"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "Nakon podešavanja promenljivih okruženja, ponovo pokrenite Beszel hub da bi promene stupile na snagu."
 
+#: src/components/routes/settings/security.tsx
+msgid "After your password, a code is sent to your email address at each login. It replaces the authenticator app if you used one."
+msgstr "После лозинке, при свакој пријави шаље се код на вашу адресу е-поште. Замењује апликацију за аутентификацију ако сте је користили."
+
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -553,6 +557,10 @@ msgstr "Обриши и повезани сензор {sensorName}"
 msgid "Alternative names"
 msgstr "Алтернативни називи"
 
+#: src/components/routes/settings/security.tsx
+msgid "An email code is required from every user on this hub (MFA_OTP)."
+msgstr "На овом хабу сваки корисник мора да унесе код из е-поште (MFA_OTP)."
+
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "и још {more}"
@@ -575,6 +583,11 @@ msgstr "Да ли сте сигурни да желите да избришет�
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "Да ли сте сигурни?"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Authenticator app"
+msgstr "Апликација за аутентификацију"
 
 #: src/components/resolve-ip-button.tsx
 msgid "Auto-discover the IP"
@@ -999,6 +1012,11 @@ msgstr "Затвори"
 msgid "Code"
 msgstr "Код"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Code sent by email"
+msgstr "Код послат е-поштом"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Интервал прикупљања"
@@ -1031,10 +1049,22 @@ msgstr "Конфигуришите како primate обавештења о уп
 msgid "Configure response monitoring from this agent."
 msgstr "Podesite praćenje vremena odziva sa ovog agenta."
 
+#: src/components/routes/settings/security.tsx
+msgid "Confirm"
+msgstr "Потврди"
+
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
 msgid "Confirm password"
 msgstr "Потврдите лозинку"
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password or a code of your authenticator app."
+msgstr "Потврдите лозинком или кодом из апликације за аутентификацију."
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password."
+msgstr "Потврдите лозинком."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Conflicts"
@@ -1085,6 +1115,7 @@ msgstr "Копирано у међуспремник"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Copy"
 msgstr "Копирај"
 
@@ -1377,6 +1408,15 @@ msgstr "Уређај"
 msgid "Devices"
 msgstr "Уређаји"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Disable"
+msgstr "Искључи"
+
+#: src/components/routes/settings/security.tsx
+msgid "Disable two-factor authentication"
+msgstr "Искључи двофакторску аутентификацију"
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Discharging"
@@ -1421,6 +1461,11 @@ msgstr "Docker мрежни I/O"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Documentation"
 msgstr "Документација"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Done"
+msgstr "Готово"
 
 #. Context: System is down
 #. Context: System is down
@@ -1494,10 +1539,18 @@ msgstr "Е-пошта"
 msgid "Email notifications"
 msgstr "Обавештењe е-поштом"
 
+#: src/components/routes/settings/security.tsx
+msgid "Email sending is not configured on the hub."
+msgstr "Слање е-поште није подешено на хабу."
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "Празнo"
+
+#: src/components/routes/settings/security.tsx
+msgid "Enable"
+msgstr "Укључи"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1524,6 +1577,14 @@ msgstr "Унесите адресу е-поште за ресетовање ло
 #: src/components/routes/settings/notifications.tsx
 msgid "Enter email address..."
 msgstr "Унесите адресу е-поште..."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter one of the recovery codes saved when setting up the app."
+msgstr "Унесите један од кодова за опоравак сачуваних при подешавању апликације."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter the code of your authenticator app."
+msgstr "Унесите код из апликације за аутентификацију."
 
 #: src/components/login/otp-forms.tsx
 msgid "Enter your one-time password."
@@ -1553,6 +1614,7 @@ msgstr "Ефемеран"
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2509,6 +2571,11 @@ msgstr "Радови на мрежи"
 msgid "New group"
 msgstr "Нова група"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "New recovery codes"
+msgstr "Нови кодови за опоравак"
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "Поред логотипа"
@@ -2611,6 +2678,10 @@ msgstr "Нису пронађени системи."
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "Нема"
+
+#: src/components/routes/settings/security.tsx
+msgid "Not enabled"
+msgstr "Није укључено"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
@@ -2719,9 +2790,17 @@ msgstr "Опције"
 msgid "Or change {directive} in the following file, then reload {service}:"
 msgstr "Или промените {directive} у следећој датотеци, затим поново учитајте {service}:"
 
+#: src/components/routes/settings/security.tsx
+msgid "Or code of the app"
+msgstr "Или код апликације"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Или наставите са"
+
+#: src/components/routes/settings/security.tsx
+msgid "Or enter this key in the app:"
+msgstr "Или унесите овај кључ у апликацију:"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2791,6 +2870,7 @@ msgstr "Странице / Подешавања"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "Лозинка"
 
@@ -2968,6 +3048,10 @@ msgstr "Процес покренут"
 msgid "Production, Customers, Lab…"
 msgstr "Продукција, Клијенти, Лабораторија…"
 
+#: src/components/routes/settings/security.tsx
+msgid "Protect your account with a second factor asked after the password."
+msgstr "Заштитите налог другим фактором који се тражи после лозинке."
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -3095,6 +3179,14 @@ msgstr "Недавно отворено"
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Забележено"
+
+#: src/components/login/otp-forms.tsx
+msgid "Recovery code"
+msgstr "Код за опоравак"
+
+#: src/components/routes/settings/security.tsx
+msgid "Recovery codes left: {recoveryLeft}"
+msgstr "Преостали кодови за опоравак: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -3307,9 +3399,17 @@ msgstr "Сачувајте адресу користећи enter тастер и
 msgid "Save Settings"
 msgstr "Сачувај подешавања"
 
+#: src/components/routes/settings/security.tsx
+msgid "Save these recovery codes: each one can replace a code of the app once, if you lose your phone. They are not shown again."
+msgstr "Сачувајте ове кодове за опоравак: сваки једном замењује код апликације ако изгубите телефон. Неће бити поново приказани."
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "Сачувано у бази података и не истиче док га не онемогућите."
+
+#: src/components/routes/settings/security.tsx
+msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
+msgstr "Скенирајте QR код апликацијом као што је Microsoft Authenticator или Google Authenticator, затим унесите приказани код."
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule"
@@ -3353,6 +3453,12 @@ msgstr "Pretraži sisteme"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Seconds between pings (default: 60)"
 msgstr "Sekunde između pingova (podrazumevano: 60)"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Security"
+msgstr "Безбедност"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "See <0>notification settings</0> to configure how you receive alerts."
@@ -3554,6 +3660,7 @@ msgid "Shutdown"
 msgstr "Искључивање"
 
 #: src/components/login/auth-form.tsx
+#: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "Пријави се"
 
@@ -3853,6 +3960,10 @@ msgstr "Сертификат HTTPS провере истиче за мање о�
 msgid "The checks of the same host are grouped in one sensor."
 msgstr "Провере истог хоста груписане су у један сензор."
 
+#: src/components/routes/settings/security.tsx
+msgid "The code by email needs the mail settings of the hub."
+msgstr "Код е-поштом захтева подешавања поште хаба."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "Најновија верзија агента још није позната"
@@ -4105,6 +4216,10 @@ msgstr "Окида се када статус прелази између укљ
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "Окида се када употреба било ког диска премаши праг"
 
+#: src/components/routes/settings/security.tsx
+msgid "Two-factor authentication"
+msgstr "Двофакторска аутентификација"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4264,6 +4379,14 @@ msgstr "Употреба"
 msgid "Usage of storage pool {displayName}"
 msgstr "Искоришћеност pool-а за складиштење {displayName}"
 
+#: src/components/routes/settings/security.tsx
+msgid "Use a code by email"
+msgstr "Користи код е-поштом"
+
+#: src/components/login/otp-forms.tsx
+msgid "Use a recovery code"
+msgstr "Користи код за опоравак"
+
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute path such as C:\\MONITORING, without special characters."
 msgstr "Користите апсолутну путању као што је C:\\MONITORING, без посебних знакова."
@@ -4271,6 +4394,10 @@ msgstr "Користите апсолутну путању као што је C:
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute URL starting with http:// or https://."
 msgstr "Користите апсолутни URL који почиње са http:// или https://."
+
+#: src/components/routes/settings/security.tsx
+msgid "Use an authenticator app"
+msgstr "Користи апликацију за аутентификацију"
 
 #: src/components/routes/settings/general.tsx
 msgid "Use letters, digits and _ . @ - only."

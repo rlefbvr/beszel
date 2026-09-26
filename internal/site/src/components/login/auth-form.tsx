@@ -14,7 +14,7 @@ import { $authenticated } from "@/lib/stores"
 import { cn } from "@/lib/utils"
 import { $router, Link, basePath, prependBasePath } from "../router"
 import { toast } from "../ui/use-toast"
-import { OtpInputForm } from "./otp-forms"
+import { OtpInputForm, TotpInputForm } from "./otp-forms"
 
 const honeypot = v.literal("")
 const emailSchema = v.pipe(v.string(), v.rfcEmail(t`Invalid email address.`))
@@ -68,6 +68,8 @@ export function UserAuthForm({
 	const [errors, setErrors] = useState<Record<string, string | undefined>>({})
 	const [mfaId, setMfaId] = useState<string | undefined>()
 	const [otpId, setOtpId] = useState<string | undefined>()
+	// second factor asked after the password: authenticator app or email code
+	const [totp, setTotp] = useState(false)
 
 	const handleSubmit = useCallback(
 		async (e: React.FormEvent<HTMLFormElement>) => {
@@ -116,6 +118,11 @@ export function UserAuthForm({
 				}
 				setMfaId(mfaId)
 				try {
+					const { method } = await pb.send<{ method: string }>("/api/beszel/mfa/method", { query: { mfaId } })
+					if (method === "totp") {
+						setTotp(true)
+						return
+					}
 					const { otpId } = await pb.collection("users").requestOTP(email)
 					setOtpId(otpId)
 				} catch (err) {
@@ -223,6 +230,10 @@ export function UserAuthForm({
 
 	if (otpId && mfaId) {
 		return <OtpInputForm otpId={otpId} mfaId={mfaId} />
+	}
+
+	if (totp && mfaId) {
+		return <TotpInputForm mfaId={mfaId} />
 	}
 
 	return (

@@ -361,6 +361,10 @@ msgstr "Utána"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "A környezeti változók beállítása után indítsa újra a Beszel hubot a módosítások érvénybe léptetéséhez."
 
+#: src/components/routes/settings/security.tsx
+msgid "After your password, a code is sent to your email address at each login. It replaces the authenticator app if you used one."
+msgstr "A jelszó után minden bejelentkezéskor kódot küldünk az e-mail-címére. Ez felváltja a hitelesítő alkalmazást, ha használt ilyet."
+
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -553,6 +557,10 @@ msgstr "A társított érzékelő ({sensorName}) törlése is"
 msgid "Alternative names"
 msgstr "Alternatív nevek"
 
+#: src/components/routes/settings/security.tsx
+msgid "An email code is required from every user on this hub (MFA_OTP)."
+msgstr "Ezen a hubon minden felhasználótól e-mailes kódot kérnek (MFA_OTP)."
+
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "és még {more}"
@@ -575,6 +583,11 @@ msgstr "Biztosan törölni szeretnéd {name}-t?"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "Biztos vagy benne?"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Authenticator app"
+msgstr "Hitelesítő alkalmazás"
 
 #: src/components/resolve-ip-button.tsx
 msgid "Auto-discover the IP"
@@ -999,6 +1012,11 @@ msgstr "Bezárás"
 msgid "Code"
 msgstr "Kód"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Code sent by email"
+msgstr "E-mailben küldött kód"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Gyűjtési időköz"
@@ -1031,10 +1049,22 @@ msgstr "Konfiguráld, hogyan kapod az értesítéseket."
 msgid "Configure response monitoring from this agent."
 msgstr "Válaszfigyelés beállítása erről az agentről."
 
+#: src/components/routes/settings/security.tsx
+msgid "Confirm"
+msgstr "Megerősítés"
+
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
 msgid "Confirm password"
 msgstr "Jelszó megerősítése"
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password or a code of your authenticator app."
+msgstr "Erősítse meg jelszavával vagy a hitelesítő alkalmazás egy kódjával."
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password."
+msgstr "Erősítse meg jelszavával."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Conflicts"
@@ -1085,6 +1115,7 @@ msgstr "Vágólapra másolva"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Copy"
 msgstr "Másolás"
 
@@ -1377,6 +1408,15 @@ msgstr "Eszköz"
 msgid "Devices"
 msgstr "Eszközök"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Disable"
+msgstr "Kikapcsolás"
+
+#: src/components/routes/settings/security.tsx
+msgid "Disable two-factor authentication"
+msgstr "Kétlépcsős hitelesítés kikapcsolása"
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Discharging"
@@ -1421,6 +1461,11 @@ msgstr "Docker hálózat I/O"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Documentation"
 msgstr "Dokumentáció"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Done"
+msgstr "Kész"
 
 #. Context: System is down
 #. Context: System is down
@@ -1494,10 +1539,18 @@ msgstr "Email"
 msgid "Email notifications"
 msgstr "E-mail értesítések"
 
+#: src/components/routes/settings/security.tsx
+msgid "Email sending is not configured on the hub."
+msgstr "Az e-mail-küldés nincs beállítva a hubon."
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "Üres"
+
+#: src/components/routes/settings/security.tsx
+msgid "Enable"
+msgstr "Bekapcsolás"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1524,6 +1577,14 @@ msgstr "E-mail cím megadása a jelszó visszaállításához"
 #: src/components/routes/settings/notifications.tsx
 msgid "Enter email address..."
 msgstr "Adja meg az e-mail címet..."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter one of the recovery codes saved when setting up the app."
+msgstr "Írja be az alkalmazás beállításakor elmentett helyreállító kódok egyikét."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter the code of your authenticator app."
+msgstr "Írja be a hitelesítő alkalmazás kódját."
 
 #: src/components/login/otp-forms.tsx
 msgid "Enter your one-time password."
@@ -1553,6 +1614,7 @@ msgstr "Ideiglenes"
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2509,6 +2571,11 @@ msgstr "Hálózati munkák"
 msgid "New group"
 msgstr "Új csoport"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "New recovery codes"
+msgstr "Új helyreállító kódok"
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "A logó mellett"
@@ -2611,6 +2678,10 @@ msgstr "Nem található rendszer."
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "Nincs"
+
+#: src/components/routes/settings/security.tsx
+msgid "Not enabled"
+msgstr "Nincs bekapcsolva"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
@@ -2719,9 +2790,17 @@ msgstr "Beállítások"
 msgid "Or change {directive} in the following file, then reload {service}:"
 msgstr "Vagy módosítsa a(z) {directive} értékét a következő fájlban, majd töltse újra: {service}:"
 
+#: src/components/routes/settings/security.tsx
+msgid "Or code of the app"
+msgstr "Vagy az alkalmazás kódja"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Vagy folytasd ezzel"
+
+#: src/components/routes/settings/security.tsx
+msgid "Or enter this key in the app:"
+msgstr "Vagy írja be ezt a kulcsot az alkalmazásba:"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2791,6 +2870,7 @@ msgstr "Oldalak / Beállítások"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "Jelszó"
 
@@ -2968,6 +3048,10 @@ msgstr "Folyamat elindítva"
 msgid "Production, Customers, Lab…"
 msgstr "Éles, Ügyfelek, Labor…"
 
+#: src/components/routes/settings/security.tsx
+msgid "Protect your account with a second factor asked after the password."
+msgstr "Védje fiókját a jelszó után kért második faktorral."
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -3095,6 +3179,14 @@ msgstr "Nemrég megnyitott"
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Rögzítve"
+
+#: src/components/login/otp-forms.tsx
+msgid "Recovery code"
+msgstr "Helyreállító kód"
+
+#: src/components/routes/settings/security.tsx
+msgid "Recovery codes left: {recoveryLeft}"
+msgstr "Hátralévő helyreállító kódok: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -3307,9 +3399,17 @@ msgstr "Mentse el a címet az Enter billentyű vagy a vessző használatával. H
 msgid "Save Settings"
 msgstr "Beállítások mentése"
 
+#: src/components/routes/settings/security.tsx
+msgid "Save these recovery codes: each one can replace a code of the app once, if you lose your phone. They are not shown again."
+msgstr "Mentse el ezeket a helyreállító kódokat: mindegyik egyszer helyettesíthet egy alkalmazáskódot, ha elveszíti a telefonját. Többé nem jelennek meg."
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "Elmentve az adatbázisban és nem jár le, amíg ki nem kapcsolod."
+
+#: src/components/routes/settings/security.tsx
+msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
+msgstr "Olvassa be a QR-kódot egy alkalmazással, például Microsoft Authenticator vagy Google Authenticator, majd írja be a megjelenő kódot."
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule"
@@ -3353,6 +3453,12 @@ msgstr "Rendszerek keresése"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Seconds between pings (default: 60)"
 msgstr "Pingek közötti másodpercek (alapértelmezett: 60)"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Security"
+msgstr "Biztonság"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "See <0>notification settings</0> to configure how you receive alerts."
@@ -3554,6 +3660,7 @@ msgid "Shutdown"
 msgstr "Leállítás"
 
 #: src/components/login/auth-form.tsx
+#: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "Bejelentkezés"
 
@@ -3853,6 +3960,10 @@ msgstr "Egy HTTPS-ellenőrzés tanúsítványa {value} napon belül lejár."
 msgid "The checks of the same host are grouped in one sensor."
 msgstr "Ugyanannak a gazdagépnek az ellenőrzései egy érzékelőbe kerülnek."
 
+#: src/components/routes/settings/security.tsx
+msgid "The code by email needs the mail settings of the hub."
+msgstr "Az e-mailes kódhoz a hub levelezési beállításai szükségesek."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "Az ügynök legújabb verziója még nem ismert"
@@ -4105,6 +4216,10 @@ msgstr "Riaszt, amikor a rendszer online állapota változik"
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "Riaszt, ha a lemezhasználat túllép egy küszöbértéket"
 
+#: src/components/routes/settings/security.tsx
+msgid "Two-factor authentication"
+msgstr "Kétlépcsős hitelesítés"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4264,6 +4379,14 @@ msgstr "Használat"
 msgid "Usage of storage pool {displayName}"
 msgstr "A(z) {displayName} tárolókészlet kihasználtsága"
 
+#: src/components/routes/settings/security.tsx
+msgid "Use a code by email"
+msgstr "E-mailes kód használata"
+
+#: src/components/login/otp-forms.tsx
+msgid "Use a recovery code"
+msgstr "Helyreállító kód használata"
+
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute path such as C:\\MONITORING, without special characters."
 msgstr "Abszolút elérési utat használjon, például C:\\MONITORING, speciális karakterek nélkül."
@@ -4271,6 +4394,10 @@ msgstr "Abszolút elérési utat használjon, például C:\\MONITORING, speciál
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute URL starting with http:// or https://."
 msgstr "Adjon meg http:// vagy https:// kezdetű abszolút URL-t."
+
+#: src/components/routes/settings/security.tsx
+msgid "Use an authenticator app"
+msgstr "Hitelesítő alkalmazás használata"
 
 #: src/components/routes/settings/general.tsx
 msgid "Use letters, digits and _ . @ - only."

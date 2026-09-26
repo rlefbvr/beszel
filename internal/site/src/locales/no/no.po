@@ -361,6 +361,10 @@ msgstr "Etter"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "Etter å ha angitt miljøvariablene, start Beszel-huben på nytt for at endringene skal tre i kraft."
 
+#: src/components/routes/settings/security.tsx
+msgid "After your password, a code is sent to your email address at each login. It replaces the authenticator app if you used one."
+msgstr "Etter passordet sendes en kode til e-postadressen din ved hver pålogging. Den erstatter autentiseringsappen hvis du brukte en."
+
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -553,6 +557,10 @@ msgstr "Slett også den tilknyttede sensoren {sensorName}"
 msgid "Alternative names"
 msgstr "Alternative navn"
 
+#: src/components/routes/settings/security.tsx
+msgid "An email code is required from every user on this hub (MFA_OTP)."
+msgstr "En e-postkode kreves av alle brukere på denne huben (MFA_OTP)."
+
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "og {more} til"
@@ -575,6 +583,11 @@ msgstr "Er du sikker på at du vil slette {name}?"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "Er du sikker?"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Authenticator app"
+msgstr "Autentiseringsapp"
 
 #: src/components/resolve-ip-button.tsx
 msgid "Auto-discover the IP"
@@ -999,6 +1012,11 @@ msgstr "Lukk"
 msgid "Code"
 msgstr "Kode"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Code sent by email"
+msgstr "Kode sendt på e-post"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Innsamlingsintervall"
@@ -1031,10 +1049,22 @@ msgstr "Konfigurer hvordan du vil motta alarmvarsler."
 msgid "Configure response monitoring from this agent."
 msgstr "Konfigurer overvåking av svartid fra denne agenten."
 
+#: src/components/routes/settings/security.tsx
+msgid "Confirm"
+msgstr "Bekreft"
+
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
 msgid "Confirm password"
 msgstr "Bekreft passord"
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password or a code of your authenticator app."
+msgstr "Bekreft med passordet ditt eller en kode fra autentiseringsappen."
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password."
+msgstr "Bekreft med passordet ditt."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Conflicts"
@@ -1085,6 +1115,7 @@ msgstr "Kopiert til utklippstavlen"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Copy"
 msgstr "Kopier"
 
@@ -1377,6 +1408,15 @@ msgstr "Enhet"
 msgid "Devices"
 msgstr "Enheter"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Disable"
+msgstr "Deaktiver"
+
+#: src/components/routes/settings/security.tsx
+msgid "Disable two-factor authentication"
+msgstr "Deaktiver tofaktorautentisering"
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Discharging"
@@ -1421,6 +1461,11 @@ msgstr "Docker Nettverks-I/O"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Documentation"
 msgstr "Dokumentasjon"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Done"
+msgstr "Ferdig"
 
 #. Context: System is down
 #. Context: System is down
@@ -1494,10 +1539,18 @@ msgstr "E-post"
 msgid "Email notifications"
 msgstr "E-postvarslinger"
 
+#: src/components/routes/settings/security.tsx
+msgid "Email sending is not configured on the hub."
+msgstr "Sending av e-post er ikke konfigurert på huben."
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "Tom"
+
+#: src/components/routes/settings/security.tsx
+msgid "Enable"
+msgstr "Aktiver"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1524,6 +1577,14 @@ msgstr "Skriv inn e-postadresse for å nullstille passordet"
 #: src/components/routes/settings/notifications.tsx
 msgid "Enter email address..."
 msgstr "Skriv inn e-postadresse..."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter one of the recovery codes saved when setting up the app."
+msgstr "Skriv inn en av gjenopprettingskodene du lagret da du satte opp appen."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter the code of your authenticator app."
+msgstr "Skriv inn koden fra autentiseringsappen."
 
 #: src/components/login/otp-forms.tsx
 msgid "Enter your one-time password."
@@ -1553,6 +1614,7 @@ msgstr "Midlertidig"
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2509,6 +2571,11 @@ msgstr "Nettverksarbeid"
 msgid "New group"
 msgstr "Ny gruppe"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "New recovery codes"
+msgstr "Nye gjenopprettingskoder"
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "Ved siden av logoen"
@@ -2611,6 +2678,10 @@ msgstr "Ingen systemer funnet."
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "Ingen"
+
+#: src/components/routes/settings/security.tsx
+msgid "Not enabled"
+msgstr "Ikke aktivert"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
@@ -2719,9 +2790,17 @@ msgstr "Alternativer"
 msgid "Or change {directive} in the following file, then reload {service}:"
 msgstr "Eller endre {directive} i følgende fil, og last deretter inn {service} på nytt:"
 
+#: src/components/routes/settings/security.tsx
+msgid "Or code of the app"
+msgstr "Eller kode fra appen"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Eller fortsett med"
+
+#: src/components/routes/settings/security.tsx
+msgid "Or enter this key in the app:"
+msgstr "Eller skriv inn denne nøkkelen i appen:"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2791,6 +2870,7 @@ msgstr "Sider / Innstillinger"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "Passord"
 
@@ -2968,6 +3048,10 @@ msgstr "Prosess startet"
 msgid "Production, Customers, Lab…"
 msgstr "Produksjon, Kunder, Lab…"
 
+#: src/components/routes/settings/security.tsx
+msgid "Protect your account with a second factor asked after the password."
+msgstr "Beskytt kontoen din med en annen faktor som kreves etter passordet."
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -3095,6 +3179,14 @@ msgstr "Nylig åpnet"
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Registrert"
+
+#: src/components/login/otp-forms.tsx
+msgid "Recovery code"
+msgstr "Gjenopprettingskode"
+
+#: src/components/routes/settings/security.tsx
+msgid "Recovery codes left: {recoveryLeft}"
+msgstr "Gjenværende gjenopprettingskoder: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -3307,9 +3399,17 @@ msgstr "Lagre adressen med Enter-tasten eller komma. La feltet være tomt for å
 msgid "Save Settings"
 msgstr "Lagre Innstillinger"
 
+#: src/components/routes/settings/security.tsx
+msgid "Save these recovery codes: each one can replace a code of the app once, if you lose your phone. They are not shown again."
+msgstr "Lagre disse gjenopprettingskodene: hver kan erstatte en kode fra appen én gang hvis du mister telefonen. De vises ikke igjen."
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "Lagret i databasen og utløper ikke før du deaktiverer det."
+
+#: src/components/routes/settings/security.tsx
+msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
+msgstr "Skann QR-koden med en app som Microsoft Authenticator eller Google Authenticator, og skriv deretter inn koden den viser."
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule"
@@ -3353,6 +3453,12 @@ msgstr "Søk etter systemer"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Seconds between pings (default: 60)"
 msgstr "Sekunder mellom pinger (standard: 60)"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Security"
+msgstr "Sikkerhet"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "See <0>notification settings</0> to configure how you receive alerts."
@@ -3554,6 +3660,7 @@ msgid "Shutdown"
 msgstr "Avslutning"
 
 #: src/components/login/auth-form.tsx
+#: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "Logg inn"
 
@@ -3853,6 +3960,10 @@ msgstr "Sertifikatet for en HTTPS-kontroll utløper innen {value} dager."
 msgid "The checks of the same host are grouped in one sensor."
 msgstr "Kontrollene av samme vert samles i én sensor."
 
+#: src/components/routes/settings/security.tsx
+msgid "The code by email needs the mail settings of the hub."
+msgstr "Koden på e-post krever e-postinnstillingene til huben."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "Den nyeste agentversjonen er ikke kjent ennå"
@@ -4105,6 +4216,10 @@ msgstr "Slår inn når statusen veksler mellom oppe og nede"
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "Slår inn når forbruk av hvilken som helst disk overstiger en grenseverdi"
 
+#: src/components/routes/settings/security.tsx
+msgid "Two-factor authentication"
+msgstr "Tofaktorautentisering"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4264,6 +4379,14 @@ msgstr "Forbruk"
 msgid "Usage of storage pool {displayName}"
 msgstr "Bruk av lagringspool {displayName}"
 
+#: src/components/routes/settings/security.tsx
+msgid "Use a code by email"
+msgstr "Bruk en kode på e-post"
+
+#: src/components/login/otp-forms.tsx
+msgid "Use a recovery code"
+msgstr "Bruk en gjenopprettingskode"
+
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute path such as C:\\MONITORING, without special characters."
 msgstr "Bruk en absolutt bane som C:\\MONITORING, uten spesialtegn."
@@ -4271,6 +4394,10 @@ msgstr "Bruk en absolutt bane som C:\\MONITORING, uten spesialtegn."
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute URL starting with http:// or https://."
 msgstr "Bruk en absolutt URL som starter med http:// eller https://."
+
+#: src/components/routes/settings/security.tsx
+msgid "Use an authenticator app"
+msgstr "Bruk en autentiseringsapp"
 
 #: src/components/routes/settings/general.tsx
 msgid "Use letters, digits and _ . @ - only."

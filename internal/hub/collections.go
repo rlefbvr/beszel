@@ -44,6 +44,14 @@ func setCollectionAuthSettings(app core.App) error {
 	usersCollection.MFA.Enabled = mfaOtp == "true"
 	superusersCollection.OTP.Enabled = mfaOtp == "true" || mfaOtp == "superusers"
 	superusersCollection.MFA.Enabled = mfaOtp == "true" || mfaOtp == "superusers"
+	// without MFA_OTP for everyone, each user may choose a second factor: an
+	// authenticator app or a code by email (see mfa.go)
+	usersCollection.MFA.Rule = ""
+	if mfaOtp != "true" {
+		usersCollection.OTP.Enabled = true
+		usersCollection.MFA.Enabled = true
+		usersCollection.MFA.Rule = "mfa != ''"
+	}
 	if err := app.Save(superusersCollection); err != nil {
 		return err
 	}

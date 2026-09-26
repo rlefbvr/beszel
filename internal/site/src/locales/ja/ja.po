@@ -361,6 +361,10 @@ msgstr "後"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "環境変数を設定した後、変更を有効にするために Beszel ハブを再起動してください。"
 
+#: src/components/routes/settings/security.tsx
+msgid "After your password, a code is sent to your email address at each login. It replaces the authenticator app if you used one."
+msgstr "パスワードの後、ログインのたびにメールアドレスにコードが送信されます。認証アプリを使っていた場合は置き換えられます。"
+
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -553,6 +557,10 @@ msgstr "関連付けられたセンサー {sensorName} も削除"
 msgid "Alternative names"
 msgstr "代替名"
 
+#: src/components/routes/settings/security.tsx
+msgid "An email code is required from every user on this hub (MFA_OTP)."
+msgstr "このハブではすべてのユーザーにメールのコードが必要です (MFA_OTP)。"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "他 {more} 件"
@@ -575,6 +583,11 @@ msgstr "{name}を削除してもよろしいですか？"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "よろしいですか？"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Authenticator app"
+msgstr "認証アプリ"
 
 #: src/components/resolve-ip-button.tsx
 msgid "Auto-discover the IP"
@@ -999,6 +1012,11 @@ msgstr "閉じる"
 msgid "Code"
 msgstr "コード"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Code sent by email"
+msgstr "メールで送信されるコード"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "収集間隔"
@@ -1031,10 +1049,22 @@ msgstr "アラート通知の受信方法を設定します。"
 msgid "Configure response monitoring from this agent."
 msgstr "このエージェントからの応答監視を設定します。"
 
+#: src/components/routes/settings/security.tsx
+msgid "Confirm"
+msgstr "確認"
+
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
 msgid "Confirm password"
 msgstr "パスワードを確認"
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password or a code of your authenticator app."
+msgstr "パスワードまたは認証アプリのコードで確認します。"
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password."
+msgstr "パスワードで確認します。"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Conflicts"
@@ -1085,6 +1115,7 @@ msgstr "クリップボードにコピーされました"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Copy"
 msgstr "コピー"
 
@@ -1377,6 +1408,15 @@ msgstr "デバイス"
 msgid "Devices"
 msgstr "機器"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Disable"
+msgstr "無効にする"
+
+#: src/components/routes/settings/security.tsx
+msgid "Disable two-factor authentication"
+msgstr "2 要素認証を無効にする"
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Discharging"
@@ -1421,6 +1461,11 @@ msgstr "DockerネットワークI/O"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Documentation"
 msgstr "ドキュメント"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Done"
+msgstr "完了"
 
 #. Context: System is down
 #. Context: System is down
@@ -1494,10 +1539,18 @@ msgstr "メール"
 msgid "Email notifications"
 msgstr "メール通知"
 
+#: src/components/routes/settings/security.tsx
+msgid "Email sending is not configured on the hub."
+msgstr "ハブでメール送信が設定されていません。"
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "空"
+
+#: src/components/routes/settings/security.tsx
+msgid "Enable"
+msgstr "有効にする"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1524,6 +1577,14 @@ msgstr "パスワードをリセットするためにメールアドレスを入
 #: src/components/routes/settings/notifications.tsx
 msgid "Enter email address..."
 msgstr "メールアドレスを入力..."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter one of the recovery codes saved when setting up the app."
+msgstr "アプリの設定時に保存したリカバリー コードのいずれかを入力してください。"
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter the code of your authenticator app."
+msgstr "認証アプリのコードを入力してください。"
 
 #: src/components/login/otp-forms.tsx
 msgid "Enter your one-time password."
@@ -1553,6 +1614,7 @@ msgstr "一時的"
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2509,6 +2571,11 @@ msgstr "ネットワーク作業"
 msgid "New group"
 msgstr "新しいグループ"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "New recovery codes"
+msgstr "新しいリカバリー コード"
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "ロゴの横"
@@ -2611,6 +2678,10 @@ msgstr "システムが見つかりませんでした。"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "なし"
+
+#: src/components/routes/settings/security.tsx
+msgid "Not enabled"
+msgstr "無効"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
@@ -2719,9 +2790,17 @@ msgstr "オプション"
 msgid "Or change {directive} in the following file, then reload {service}:"
 msgstr "または次のファイルの {directive} を変更してから {service} を再読み込みします:"
 
+#: src/components/routes/settings/security.tsx
+msgid "Or code of the app"
+msgstr "またはアプリのコード"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "または、以下の方法でログイン"
+
+#: src/components/routes/settings/security.tsx
+msgid "Or enter this key in the app:"
+msgstr "またはこのキーをアプリに入力します:"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2791,6 +2870,7 @@ msgstr "ページ / 設定"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "パスワード"
 
@@ -2968,6 +3048,10 @@ msgstr "プロセス開始"
 msgid "Production, Customers, Lab…"
 msgstr "本番、顧客、ラボ…"
 
+#: src/components/routes/settings/security.tsx
+msgid "Protect your account with a second factor asked after the password."
+msgstr "パスワードの後に求める 2 つ目の要素でアカウントを保護します。"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -3095,6 +3179,14 @@ msgstr "最近開いた項目"
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "記録日時"
+
+#: src/components/login/otp-forms.tsx
+msgid "Recovery code"
+msgstr "リカバリー コード"
+
+#: src/components/routes/settings/security.tsx
+msgid "Recovery codes left: {recoveryLeft}"
+msgstr "残りのリカバリー コード: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -3307,9 +3399,17 @@ msgstr "Enterキーまたはカンマを使用してアドレスを保存しま�
 msgid "Save Settings"
 msgstr "設定を保存"
 
+#: src/components/routes/settings/security.tsx
+msgid "Save these recovery codes: each one can replace a code of the app once, if you lose your phone. They are not shown again."
+msgstr "これらのリカバリー コードを保存してください。スマートフォンを紛失した場合、各コードはアプリのコードの代わりに 1 回使えます。再表示されません。"
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "データベースに保存され、無効にするまで有効期限が切れません。"
+
+#: src/components/routes/settings/security.tsx
+msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
+msgstr "Microsoft Authenticator や Google Authenticator などのアプリで QR コードをスキャンし、表示されたコードを入力します。"
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule"
@@ -3353,6 +3453,12 @@ msgstr "システムを検索"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Seconds between pings (default: 60)"
 msgstr "ping 間の秒数 (デフォルト: 60)"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Security"
+msgstr "セキュリティ"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "See <0>notification settings</0> to configure how you receive alerts."
@@ -3554,6 +3660,7 @@ msgid "Shutdown"
 msgstr "シャットダウン"
 
 #: src/components/login/auth-form.tsx
+#: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "サインイン"
 
@@ -3853,6 +3960,10 @@ msgstr "HTTPS チェックの証明書が {value} 日以内に期限切れにな
 msgid "The checks of the same host are grouped in one sensor."
 msgstr "同じホストのチェックは 1 つのセンサーにまとめられます。"
 
+#: src/components/routes/settings/security.tsx
+msgid "The code by email needs the mail settings of the hub."
+msgstr "メールのコードにはハブのメール設定が必要です。"
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "最新のエージェント バージョンはまだ不明です"
@@ -4105,6 +4216,10 @@ msgstr "ステータスが上から下に切り替わるときにトリガーさ
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "ディスクの使用量がしきい値を超えたときにトリガーされます"
 
+#: src/components/routes/settings/security.tsx
+msgid "Two-factor authentication"
+msgstr "2 要素認証"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4264,6 +4379,14 @@ msgstr "使用量"
 msgid "Usage of storage pool {displayName}"
 msgstr "ストレージプール {displayName} の使用量"
 
+#: src/components/routes/settings/security.tsx
+msgid "Use a code by email"
+msgstr "メールのコードを使用"
+
+#: src/components/login/otp-forms.tsx
+msgid "Use a recovery code"
+msgstr "リカバリー コードを使用"
+
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute path such as C:\\MONITORING, without special characters."
 msgstr "C:\\MONITORING のような絶対パスを、特殊文字なしで指定してください。"
@@ -4271,6 +4394,10 @@ msgstr "C:\\MONITORING のような絶対パスを、特殊文字なしで指定
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute URL starting with http:// or https://."
 msgstr "http:// または https:// で始まる絶対 URL を使用してください。"
+
+#: src/components/routes/settings/security.tsx
+msgid "Use an authenticator app"
+msgstr "認証アプリを使用"
 
 #: src/components/routes/settings/general.tsx
 msgid "Use letters, digits and _ . @ - only."

@@ -361,6 +361,10 @@ msgstr "Keyin"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "Muhit o'zgaruvchilarini sozlagandan so'ng, o'zgarishlar kuchga kirishi uchun Beszel hub'ini qayta ishga tushiring."
 
+#: src/components/routes/settings/security.tsx
+msgid "After your password, a code is sent to your email address at each login. It replaces the authenticator app if you used one."
+msgstr "Paroldan keyin har kirishda elektron pochta manzilingizga kod yuboriladi. Agar autentifikator ilovasidan foydalangan bo‘lsangiz, uning o‘rnini bosadi."
+
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -553,6 +557,10 @@ msgstr "Bog‘langan {sensorName} sensorini ham o‘chirish"
 msgid "Alternative names"
 msgstr "Muqobil nomlar"
 
+#: src/components/routes/settings/security.tsx
+msgid "An email code is required from every user on this hub (MFA_OTP)."
+msgstr "Ushbu hubda har bir foydalanuvchidan elektron pochta kodi talab qilinadi (MFA_OTP)."
+
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "va yana {more} ta"
@@ -575,6 +583,11 @@ msgstr "{name} ni o'chirishni xohlaysizmi?"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "Ishonchingiz komilmi?"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Authenticator app"
+msgstr "Autentifikator ilovasi"
 
 #: src/components/resolve-ip-button.tsx
 msgid "Auto-discover the IP"
@@ -999,6 +1012,11 @@ msgstr "Yopish"
 msgid "Code"
 msgstr "Kod"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Code sent by email"
+msgstr "Elektron pochta orqali yuborilgan kod"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Yig‘ish oralig‘i"
@@ -1031,10 +1049,22 @@ msgstr "Ogohlantirish bildirishnomalarini qanday olishingizni sozlang."
 msgid "Configure response monitoring from this agent."
 msgstr "Ushbu agentdan javob monitoringini sozlang."
 
+#: src/components/routes/settings/security.tsx
+msgid "Confirm"
+msgstr "Tasdiqlash"
+
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
 msgid "Confirm password"
 msgstr "Parolni tasdiqlang"
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password or a code of your authenticator app."
+msgstr "Parolingiz yoki autentifikator ilovasidagi kod bilan tasdiqlang."
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password."
+msgstr "Parolingiz bilan tasdiqlang."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Conflicts"
@@ -1085,6 +1115,7 @@ msgstr "Buferga nusxalandi"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Copy"
 msgstr "Nusxalash"
 
@@ -1377,6 +1408,15 @@ msgstr "Qurilma"
 msgid "Devices"
 msgstr "Qurilmalar"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Disable"
+msgstr "O‘chirish"
+
+#: src/components/routes/settings/security.tsx
+msgid "Disable two-factor authentication"
+msgstr "Ikki bosqichli autentifikatsiyani o‘chirish"
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Discharging"
@@ -1421,6 +1461,11 @@ msgstr "Docker tarmoq I/O"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Documentation"
 msgstr "Hujjatlar"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Done"
+msgstr "Tayyor"
 
 #. Context: System is down
 #. Context: System is down
@@ -1494,10 +1539,18 @@ msgstr "Elektron pochta"
 msgid "Email notifications"
 msgstr "Elektron pochta bildirishnomalari"
 
+#: src/components/routes/settings/security.tsx
+msgid "Email sending is not configured on the hub."
+msgstr "Hubda elektron pochta yuborish sozlanmagan."
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "Bo'sh"
+
+#: src/components/routes/settings/security.tsx
+msgid "Enable"
+msgstr "Yoqish"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1524,6 +1577,14 @@ msgstr "Parolni tiklash uchun elektron pochta manzilini kiriting"
 #: src/components/routes/settings/notifications.tsx
 msgid "Enter email address..."
 msgstr "Elektron pochta manzilini kiriting..."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter one of the recovery codes saved when setting up the app."
+msgstr "Ilovani sozlashda saqlangan tiklash kodlaridan birini kiriting."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter the code of your authenticator app."
+msgstr "Autentifikator ilovasidagi kodni kiriting."
 
 #: src/components/login/otp-forms.tsx
 msgid "Enter your one-time password."
@@ -1553,6 +1614,7 @@ msgstr "Vaqtinchalik"
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2509,6 +2571,11 @@ msgstr "Tarmoq ishlari"
 msgid "New group"
 msgstr "Yangi guruh"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "New recovery codes"
+msgstr "Yangi tiklash kodlari"
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "Logotip yonida"
@@ -2611,6 +2678,10 @@ msgstr "Tizimlar topilmadi."
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "Yo‘q"
+
+#: src/components/routes/settings/security.tsx
+msgid "Not enabled"
+msgstr "Yoqilmagan"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
@@ -2719,9 +2790,17 @@ msgstr "Parametrlar"
 msgid "Or change {directive} in the following file, then reload {service}:"
 msgstr "Yoki quyidagi faylda {directive} ni o‘zgartiring, so‘ng {service} ni qayta yuklang:"
 
+#: src/components/routes/settings/security.tsx
+msgid "Or code of the app"
+msgstr "Yoki ilova kodi"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Yoki bilan davom eting"
+
+#: src/components/routes/settings/security.tsx
+msgid "Or enter this key in the app:"
+msgstr "Yoki ushbu kalitni ilovaga kiriting:"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2791,6 +2870,7 @@ msgstr "Sahifalar / Sozlamalar"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "Parol"
 
@@ -2968,6 +3048,10 @@ msgstr "Jarayon boshlandi"
 msgid "Production, Customers, Lab…"
 msgstr "Ishlab chiqarish, Mijozlar, Laboratoriya…"
 
+#: src/components/routes/settings/security.tsx
+msgid "Protect your account with a second factor asked after the password."
+msgstr "Hisobingizni paroldan keyin so‘raladigan ikkinchi omil bilan himoyalang."
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -3095,6 +3179,14 @@ msgstr "Yaqinda ochilganlar"
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Qayd etilgan"
+
+#: src/components/login/otp-forms.tsx
+msgid "Recovery code"
+msgstr "Tiklash kodi"
+
+#: src/components/routes/settings/security.tsx
+msgid "Recovery codes left: {recoveryLeft}"
+msgstr "Qolgan tiklash kodlari: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -3307,9 +3399,17 @@ msgstr "Manzilni enter tugmasi yoki vergul yordamida saqlang. Elektron pochta bi
 msgid "Save Settings"
 msgstr "Sozlamalarni saqlash"
 
+#: src/components/routes/settings/security.tsx
+msgid "Save these recovery codes: each one can replace a code of the app once, if you lose your phone. They are not shown again."
+msgstr "Ushbu tiklash kodlarini saqlang: telefoningizni yo‘qotsangiz, har biri ilova kodining o‘rnini bir marta bosadi. Ular qayta ko‘rsatilmaydi."
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "Ma'lumotlar bazasida saqlanadi va siz o'chirishingizcha muddati tugamaydi."
+
+#: src/components/routes/settings/security.tsx
+msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
+msgstr "QR kodni Microsoft Authenticator yoki Google Authenticator kabi ilova bilan skanerlang, so‘ng ko‘rsatilgan kodni kiriting."
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule"
@@ -3353,6 +3453,12 @@ msgstr "Tizimlarni qidirish"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Seconds between pings (default: 60)"
 msgstr "Pinglar orasidagi soniyalar (standart: 60)"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Security"
+msgstr "Xavfsizlik"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "See <0>notification settings</0> to configure how you receive alerts."
@@ -3554,6 +3660,7 @@ msgid "Shutdown"
 msgstr "O‘chirish"
 
 #: src/components/login/auth-form.tsx
+#: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "Kirish"
 
@@ -3853,6 +3960,10 @@ msgstr "HTTPS tekshiruvining sertifikati {value} kun ichida tugaydi."
 msgid "The checks of the same host are grouped in one sensor."
 msgstr "Bir xostning tekshiruvlari bitta sensorga guruhlanadi."
 
+#: src/components/routes/settings/security.tsx
+msgid "The code by email needs the mail settings of the hub."
+msgstr "Elektron pochta kodi uchun hubning pochta sozlamalari kerak."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "Agentning so‘nggi versiyasi hali noma’lum"
@@ -4105,6 +4216,10 @@ msgstr "Holat ishlayapti/ishlamayapti o'rtasida o'zgarganda ishga tushadi"
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "Biron-bir disk ishlatilishi chegaradan oshganda ishga tushadi"
 
+#: src/components/routes/settings/security.tsx
+msgid "Two-factor authentication"
+msgstr "Ikki bosqichli autentifikatsiya"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4264,6 +4379,14 @@ msgstr "Ishlatilishi"
 msgid "Usage of storage pool {displayName}"
 msgstr "{displayName} saqlash pool'ining ishlatilishi"
 
+#: src/components/routes/settings/security.tsx
+msgid "Use a code by email"
+msgstr "Elektron pochta kodidan foydalanish"
+
+#: src/components/login/otp-forms.tsx
+msgid "Use a recovery code"
+msgstr "Tiklash kodidan foydalanish"
+
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute path such as C:\\MONITORING, without special characters."
 msgstr "C:\\MONITORING kabi mutlaq yo‘ldan, maxsus belgilarsiz foydalaning."
@@ -4271,6 +4394,10 @@ msgstr "C:\\MONITORING kabi mutlaq yo‘ldan, maxsus belgilarsiz foydalaning."
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute URL starting with http:// or https://."
 msgstr "http:// yoki https:// bilan boshlanadigan to‘liq URL kiriting."
+
+#: src/components/routes/settings/security.tsx
+msgid "Use an authenticator app"
+msgstr "Autentifikator ilovasidan foydalanish"
 
 #: src/components/routes/settings/general.tsx
 msgid "Use letters, digits and _ . @ - only."

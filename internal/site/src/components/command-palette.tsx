@@ -20,6 +20,7 @@ import {
 	SettingsIcon,
 	UsersIcon,
 	PaletteIcon,
+	ShieldCheckIcon,
 } from "lucide-react"
 import { memo, type ReactNode, useEffect, useMemo, useState } from "react"
 import {
@@ -245,6 +246,19 @@ export default memo(function CommandPalette({ open, setOpen }: { open: boolean; 
 							<PaletteIcon className="me-2 size-4" />
 							<span>
 								<Trans>Appearance</Trans>
+							</span>
+							{SettingsShortcut}
+						</CommandItem>
+						<CommandItem
+							keywords={["mfa", "2fa", "otp", "totp"]}
+							onSelect={() => {
+								navigate(getPagePath($router, "settings", { name: "security" }))
+								setOpen(false)
+							}}
+						>
+							<ShieldCheckIcon className="me-2 size-4" />
+							<span>
+								<Trans>Security</Trans>
 							</span>
 							{SettingsShortcut}
 						</CommandItem>

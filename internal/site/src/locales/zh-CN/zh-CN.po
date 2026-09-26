@@ -361,6 +361,10 @@ msgstr "之后"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "设置环境变量后，重新启动您的 Beszel hub 以使更改生效。"
 
+#: src/components/routes/settings/security.tsx
+msgid "After your password, a code is sent to your email address at each login. It replaces the authenticator app if you used one."
+msgstr "输入密码后，每次登录都会向您的电子邮件地址发送代码。如果您使用过身份验证器应用，将由此替代。"
+
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -553,6 +557,10 @@ msgstr "同时删除关联的传感器 {sensorName}"
 msgid "Alternative names"
 msgstr "备用名称"
 
+#: src/components/routes/settings/security.tsx
+msgid "An email code is required from every user on this hub (MFA_OTP)."
+msgstr "此中心要求所有用户输入电子邮件代码（MFA_OTP）。"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "以及另外 {more} 项"
@@ -575,6 +583,11 @@ msgstr "您确定要删除 {name} 吗？"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "您确定吗？"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Authenticator app"
+msgstr "身份验证器应用"
 
 #: src/components/resolve-ip-button.tsx
 msgid "Auto-discover the IP"
@@ -999,6 +1012,11 @@ msgstr "关闭"
 msgid "Code"
 msgstr "代码"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Code sent by email"
+msgstr "通过电子邮件发送的代码"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "收集间隔"
@@ -1031,10 +1049,22 @@ msgstr "配置您接收警报通知的方式。"
 msgid "Configure response monitoring from this agent."
 msgstr "从此客户端配置响应监控。"
 
+#: src/components/routes/settings/security.tsx
+msgid "Confirm"
+msgstr "确认"
+
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
 msgid "Confirm password"
 msgstr "确认密码"
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password or a code of your authenticator app."
+msgstr "请使用密码或身份验证器应用中的代码确认。"
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password."
+msgstr "请使用密码确认。"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Conflicts"
@@ -1085,6 +1115,7 @@ msgstr "已复制到剪贴板"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Copy"
 msgstr "复制"
 
@@ -1377,6 +1408,15 @@ msgstr "设备"
 msgid "Devices"
 msgstr "设备"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Disable"
+msgstr "停用"
+
+#: src/components/routes/settings/security.tsx
+msgid "Disable two-factor authentication"
+msgstr "停用双因素认证"
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Discharging"
@@ -1421,6 +1461,11 @@ msgstr "Docker 网络 I/O"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Documentation"
 msgstr "文档"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Done"
+msgstr "完成"
 
 #. Context: System is down
 #. Context: System is down
@@ -1494,10 +1539,18 @@ msgstr "电子邮件"
 msgid "Email notifications"
 msgstr "电子邮件通知"
 
+#: src/components/routes/settings/security.tsx
+msgid "Email sending is not configured on the hub."
+msgstr "中心尚未配置电子邮件发送。"
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "空电"
+
+#: src/components/routes/settings/security.tsx
+msgid "Enable"
+msgstr "启用"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1524,6 +1577,14 @@ msgstr "输入电子邮件地址以重置密码"
 #: src/components/routes/settings/notifications.tsx
 msgid "Enter email address..."
 msgstr "输入电子邮件地址..."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter one of the recovery codes saved when setting up the app."
+msgstr "请输入设置应用时保存的其中一个恢复码。"
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter the code of your authenticator app."
+msgstr "请输入身份验证器应用中的代码。"
 
 #: src/components/login/otp-forms.tsx
 msgid "Enter your one-time password."
@@ -1553,6 +1614,7 @@ msgstr "暂时"
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2509,6 +2571,11 @@ msgstr "网络作业"
 msgid "New group"
 msgstr "新建分组"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "New recovery codes"
+msgstr "新的恢复码"
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "标志旁"
@@ -2611,6 +2678,10 @@ msgstr "未找到系统。"
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "无"
+
+#: src/components/routes/settings/security.tsx
+msgid "Not enabled"
+msgstr "未启用"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
@@ -2719,9 +2790,17 @@ msgstr "选项"
 msgid "Or change {directive} in the following file, then reload {service}:"
 msgstr "或在以下文件中更改 {directive}，然后重新加载 {service}："
 
+#: src/components/routes/settings/security.tsx
+msgid "Or code of the app"
+msgstr "或应用代码"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "或使用以下方式登录"
+
+#: src/components/routes/settings/security.tsx
+msgid "Or enter this key in the app:"
+msgstr "或在应用中输入此密钥："
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2791,6 +2870,7 @@ msgstr "页面 / 设置"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "密码"
 
@@ -2968,6 +3048,10 @@ msgstr "进程启动"
 msgid "Production, Customers, Lab…"
 msgstr "生产、客户、实验室…"
 
+#: src/components/routes/settings/security.tsx
+msgid "Protect your account with a second factor asked after the password."
+msgstr "使用密码之后要求的第二因素保护您的账户。"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -3095,6 +3179,14 @@ msgstr "最近打开"
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "记录时间"
+
+#: src/components/login/otp-forms.tsx
+msgid "Recovery code"
+msgstr "恢复码"
+
+#: src/components/routes/settings/security.tsx
+msgid "Recovery codes left: {recoveryLeft}"
+msgstr "剩余恢复码：{recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -3307,9 +3399,17 @@ msgstr "使用回车键或逗号保存地址。留空以禁用电子邮件通知
 msgid "Save Settings"
 msgstr "保存设置"
 
+#: src/components/routes/settings/security.tsx
+msgid "Save these recovery codes: each one can replace a code of the app once, if you lose your phone. They are not shown again."
+msgstr "请保存这些恢复码：如果丢失手机，每个代码可替代一次应用代码。之后不会再显示。"
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "保存在数据库中的数据，在您禁用之前不会过期。"
+
+#: src/components/routes/settings/security.tsx
+msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
+msgstr "使用 Microsoft Authenticator 或 Google Authenticator 等应用扫描二维码，然后输入显示的代码。"
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule"
@@ -3353,6 +3453,12 @@ msgstr "搜索系统"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Seconds between pings (default: 60)"
 msgstr "Ping 之间的秒数 (默认：60)"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Security"
+msgstr "安全"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "See <0>notification settings</0> to configure how you receive alerts."
@@ -3554,6 +3660,7 @@ msgid "Shutdown"
 msgstr "关机"
 
 #: src/components/login/auth-form.tsx
+#: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "登录"
 
@@ -3853,6 +3960,10 @@ msgstr "HTTPS 检查的证书将在 {value} 天内过期。"
 msgid "The checks of the same host are grouped in one sensor."
 msgstr "同一主机的检查会归入同一个传感器。"
 
+#: src/components/routes/settings/security.tsx
+msgid "The code by email needs the mail settings of the hub."
+msgstr "电子邮件代码需要中心的邮件设置。"
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "尚不知道最新的代理版本"
@@ -4105,6 +4216,10 @@ msgstr "当状态在上线与掉线之间切换时触发"
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "当任何磁盘的使用率超过阈值时触发"
 
+#: src/components/routes/settings/security.tsx
+msgid "Two-factor authentication"
+msgstr "双因素认证"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4264,6 +4379,14 @@ msgstr "使用"
 msgid "Usage of storage pool {displayName}"
 msgstr "存储池 {displayName} 的使用量"
 
+#: src/components/routes/settings/security.tsx
+msgid "Use a code by email"
+msgstr "使用电子邮件代码"
+
+#: src/components/login/otp-forms.tsx
+msgid "Use a recovery code"
+msgstr "使用恢复码"
+
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute path such as C:\\MONITORING, without special characters."
 msgstr "请使用绝对路径（例如 C:\\MONITORING），不含特殊字符。"
@@ -4271,6 +4394,10 @@ msgstr "请使用绝对路径（例如 C:\\MONITORING），不含特殊字符。
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute URL starting with http:// or https://."
 msgstr "请使用以 http:// 或 https:// 开头的完整网址。"
+
+#: src/components/routes/settings/security.tsx
+msgid "Use an authenticator app"
+msgstr "使用身份验证器应用"
 
 #: src/components/routes/settings/general.tsx
 msgid "Use letters, digits and _ . @ - only."

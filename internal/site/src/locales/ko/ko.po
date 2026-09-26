@@ -361,6 +361,10 @@ msgstr "이후"
 msgid "After setting the environment variables, restart your Beszel hub for changes to take effect."
 msgstr "환경 변수를 설정한 후, 변경 사항을 적용하려면 Beszel 허브를 재시작하세요."
 
+#: src/components/routes/settings/security.tsx
+msgid "After your password, a code is sent to your email address at each login. It replaces the authenticator app if you used one."
+msgstr "비밀번호 다음, 로그인할 때마다 이메일 주소로 코드가 전송됩니다. 인증 앱을 사용했다면 이를 대체합니다."
+
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-button.tsx
 #: src/components/routes/system/agent-details.tsx
@@ -553,6 +557,10 @@ msgstr "연결된 센서 {sensorName}도 삭제"
 msgid "Alternative names"
 msgstr "대체 이름"
 
+#: src/components/routes/settings/security.tsx
+msgid "An email code is required from every user on this hub (MFA_OTP)."
+msgstr "이 허브에서는 모든 사용자에게 이메일 코드가 필요합니다(MFA_OTP)."
+
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "외 {more}개"
@@ -575,6 +583,11 @@ msgstr "{name}을(를) 삭제하시겠습니까?"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "확실합니까?"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Authenticator app"
+msgstr "인증 앱"
 
 #: src/components/resolve-ip-button.tsx
 msgid "Auto-discover the IP"
@@ -999,6 +1012,11 @@ msgstr "닫기"
 msgid "Code"
 msgstr "코드"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Code sent by email"
+msgstr "이메일로 보내는 코드"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "수집 간격"
@@ -1031,10 +1049,22 @@ msgstr "알림을 수신할 방법을 설정하세요."
 msgid "Configure response monitoring from this agent."
 msgstr "이 에이전트의 응답 모니터링을 구성합니다."
 
+#: src/components/routes/settings/security.tsx
+msgid "Confirm"
+msgstr "확인"
+
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
 msgid "Confirm password"
 msgstr "비밀번호 확인"
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password or a code of your authenticator app."
+msgstr "비밀번호 또는 인증 앱 코드로 확인하세요."
+
+#: src/components/routes/settings/security.tsx
+msgid "Confirm with your password."
+msgstr "비밀번호로 확인하세요."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Conflicts"
@@ -1085,6 +1115,7 @@ msgstr "클립보드에 복사됨"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Copy"
 msgstr "복사"
 
@@ -1377,6 +1408,15 @@ msgstr "장치"
 msgid "Devices"
 msgstr "장비"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Disable"
+msgstr "사용 안 함"
+
+#: src/components/routes/settings/security.tsx
+msgid "Disable two-factor authentication"
+msgstr "2단계 인증 사용 안 함"
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Discharging"
@@ -1421,6 +1461,11 @@ msgstr "Docker 네트워크 I/O"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Documentation"
 msgstr "문서"
+
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Done"
+msgstr "완료"
 
 #. Context: System is down
 #. Context: System is down
@@ -1494,10 +1539,18 @@ msgstr "이메일"
 msgid "Email notifications"
 msgstr "이메일 알림"
 
+#: src/components/routes/settings/security.tsx
+msgid "Email sending is not configured on the hub."
+msgstr "허브에 이메일 전송이 설정되어 있지 않습니다."
+
 #. Context: Battery state
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "빔"
+
+#: src/components/routes/settings/security.tsx
+msgid "Enable"
+msgstr "사용"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1524,6 +1577,14 @@ msgstr "비밀번호를 재설정하려면 이메일 주소를 입력하세요"
 #: src/components/routes/settings/notifications.tsx
 msgid "Enter email address..."
 msgstr "이메일 주소 입력..."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter one of the recovery codes saved when setting up the app."
+msgstr "앱 설정 시 저장한 복구 코드 중 하나를 입력하세요."
+
+#: src/components/login/otp-forms.tsx
+msgid "Enter the code of your authenticator app."
+msgstr "인증 앱의 코드를 입력하세요."
 
 #: src/components/login/otp-forms.tsx
 msgid "Enter your one-time password."
@@ -1553,6 +1614,7 @@ msgstr "일시적"
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2509,6 +2571,11 @@ msgstr "네트워크 작업"
 msgid "New group"
 msgstr "새 그룹"
 
+#: src/components/routes/settings/security.tsx
+#: src/components/routes/settings/security.tsx
+msgid "New recovery codes"
+msgstr "새 복구 코드"
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "로고 옆"
@@ -2611,6 +2678,10 @@ msgstr "시스템을 찾을 수 없습니다."
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
 msgstr "없음"
+
+#: src/components/routes/settings/security.tsx
+msgid "Not enabled"
+msgstr "사용 안 함"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
@@ -2719,9 +2790,17 @@ msgstr "옵션"
 msgid "Or change {directive} in the following file, then reload {service}:"
 msgstr "또는 다음 파일의 {directive}을(를) 변경한 다음 {service}을(를) 다시 로드합니다:"
 
+#: src/components/routes/settings/security.tsx
+msgid "Or code of the app"
+msgstr "또는 앱 코드"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "또는 아래 항목으로 진행하기"
+
+#: src/components/routes/settings/security.tsx
+msgid "Or enter this key in the app:"
+msgstr "또는 앱에 이 키를 입력하세요:"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2791,6 +2870,7 @@ msgstr "페이지 / 설정"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "비밀번호"
 
@@ -2968,6 +3048,10 @@ msgstr "프로세스 시작됨"
 msgid "Production, Customers, Lab…"
 msgstr "운영, 고객, 실험실…"
 
+#: src/components/routes/settings/security.tsx
+msgid "Protect your account with a second factor asked after the password."
+msgstr "비밀번호 다음에 요구되는 두 번째 인증 요소로 계정을 보호합니다."
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -3095,6 +3179,14 @@ msgstr "최근 연 항목"
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "기록됨"
+
+#: src/components/login/otp-forms.tsx
+msgid "Recovery code"
+msgstr "복구 코드"
+
+#: src/components/routes/settings/security.tsx
+msgid "Recovery codes left: {recoveryLeft}"
+msgstr "남은 복구 코드: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -3307,9 +3399,17 @@ msgstr "Enter 키 또는 쉼표를 사용하여 주소를 저장하세요. 이�
 msgid "Save Settings"
 msgstr "설정 저장"
 
+#: src/components/routes/settings/security.tsx
+msgid "Save these recovery codes: each one can replace a code of the app once, if you lose your phone. They are not shown again."
+msgstr "이 복구 코드를 저장하세요. 휴대폰을 잃어버린 경우 각 코드는 앱 코드를 한 번 대신할 수 있습니다. 다시 표시되지 않습니다."
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "데이터베이스에 저장되며 비활성화할 때까지 만료되지 않습니다."
+
+#: src/components/routes/settings/security.tsx
+msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
+msgstr "Microsoft Authenticator 또는 Google Authenticator 같은 앱으로 QR 코드를 스캔한 다음 표시되는 코드를 입력하세요."
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Schedule"
@@ -3353,6 +3453,12 @@ msgstr "시스템 검색"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Seconds between pings (default: 60)"
 msgstr "핑 사이 시간(초) (기본값: 60)"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/security.tsx
+msgid "Security"
+msgstr "보안"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "See <0>notification settings</0> to configure how you receive alerts."
@@ -3554,6 +3660,7 @@ msgid "Shutdown"
 msgstr "종료"
 
 #: src/components/login/auth-form.tsx
+#: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "로그인"
 
@@ -3853,6 +3960,10 @@ msgstr "HTTPS 검사의 인증서가 {value}일 이내에 만료됩니다."
 msgid "The checks of the same host are grouped in one sensor."
 msgstr "같은 호스트의 검사는 하나의 센서로 묶입니다."
 
+#: src/components/routes/settings/security.tsx
+msgid "The code by email needs the mail settings of the hub."
+msgstr "이메일 코드를 사용하려면 허브의 메일 설정이 필요합니다."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "최신 에이전트 버전을 아직 알 수 없습니다"
@@ -4105,6 +4216,10 @@ msgstr "시스템의 전원이 켜지거나 꺼질때 트리거됩니다."
 msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "디스크 사용량이 임계값을 초과할 때 트리거됩니다."
 
+#: src/components/routes/settings/security.tsx
+msgid "Two-factor authentication"
+msgstr "2단계 인증"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4264,6 +4379,14 @@ msgstr "사용량"
 msgid "Usage of storage pool {displayName}"
 msgstr "스토리지 풀 {displayName}의 사용량"
 
+#: src/components/routes/settings/security.tsx
+msgid "Use a code by email"
+msgstr "이메일 코드 사용"
+
+#: src/components/login/otp-forms.tsx
+msgid "Use a recovery code"
+msgstr "복구 코드 사용"
+
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute path such as C:\\MONITORING, without special characters."
 msgstr "C:\\MONITORING와 같은 절대 경로를 특수 문자 없이 사용하세요."
@@ -4271,6 +4394,10 @@ msgstr "C:\\MONITORING와 같은 절대 경로를 특수 문자 없이 사용하
 #: src/components/routes/settings/general.tsx
 msgid "Use an absolute URL starting with http:// or https://."
 msgstr "http:// 또는 https://로 시작하는 절대 URL을 사용하세요."
+
+#: src/components/routes/settings/security.tsx
+msgid "Use an authenticator app"
+msgstr "인증 앱 사용"
 
 #: src/components/routes/settings/general.tsx
 msgid "Use letters, digits and _ . @ - only."
