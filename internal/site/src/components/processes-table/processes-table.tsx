@@ -57,10 +57,10 @@ import {
 import { useProcessColumns } from "./process-columns"
 import { processesHistory, ProcessesCharts, recordProcesses } from "./processes-charts"
 
-/** Refresh of the list while the page is shown */
 /** Columns hidden until the user shows them */
 const hiddenByDefault = ["command"]
 
+/** Refresh of the list while the page is shown */
 const refreshEvery = 15_000
 
 /** Reads the processes of a host */
@@ -321,7 +321,7 @@ export default function ProcessesTable({ systemId }: { systemId: string }) {
 			<div
 				ref={scrollRef}
 				className={cn(
-					"h-min max-h-[calc(100dvh-17rem)] max-w-full relative overflow-auto border rounded-md",
+					"h-min max-h-[calc(50*2.5625rem+3rem)] max-w-full relative overflow-auto border rounded-md",
 					rows?.length && "rounded-b-none",
 					(!tableRows.length || tableRows.length > 2) && "min-h-50"
 				)}

@@ -389,7 +389,7 @@ const NetworkMonitorsTable = memo(function NetworkMonitorTable({
 	return (
 		<div
 			className={cn(
-				"h-min max-h-[calc(100dvh-17rem)] max-w-full relative overflow-auto border rounded-md",
+				"h-min max-h-[calc(50*2.5625rem+3rem)] max-w-full relative overflow-auto border rounded-md",
 				(!rows.length || rows.length > 2) && "min-h-50"
 			)}
 			ref={scrollRef}

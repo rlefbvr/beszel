@@ -179,7 +179,7 @@ export default function AlertsHistoryDataTable() {
 	// Store pagination preference in local storage
 	const [pagination, setPagination] = useBrowserStorage<PaginationState>("ah-pagination", {
 		pageIndex: 0,
-		pageSize: 10,
+		pageSize: 50,
 	})
 
 	useEffect(() => {

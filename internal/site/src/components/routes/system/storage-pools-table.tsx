@@ -668,7 +668,7 @@ export default function ZfsTable({ systemId }: { systemId?: string }) {
 						</div>
 					</div>
 				</CardHeader>
-				<div className="h-min max-h-[calc(100dvh-17rem)] max-w-full relative overflow-auto rounded-md border">
+				<div className="h-min max-h-[calc(50*2.5625rem+3rem)] max-w-full relative overflow-auto rounded-md border">
 					<Table>
 						<TableHeader className="sticky top-0 z-50 w-full border-b-2">
 							{table.getHeaderGroups().map((headerGroup) => (

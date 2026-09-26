@@ -932,7 +932,7 @@ function SensorsTable({
 	})
 	return (
 		<div className="grid gap-2">
-			<div className="h-min max-h-[calc(100dvh-17rem)] max-w-full relative overflow-auto border rounded-md">
+			<div className="h-min max-h-[calc(50*2.5625rem+3rem)] max-w-full relative overflow-auto border rounded-md">
 				<table className="text-sm w-full text-nowrap">
 					<TableHeader className="sticky top-0 z-50 w-full border-b-2">
 						{table.getHeaderGroups().map((headerGroup) => (

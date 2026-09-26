@@ -70,12 +70,8 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 	const { widths, onColumnResize, columnVisibility, onColumnVisibilityChange } = useTableLayout(
 		systemId ? "system-containers" : "containers"
 	)
-	// the ports column is hidden while no container publishes ports
+	// the ports column is left out, and out of the view options, while no container publishes ports
 	const hasPorts = !!data?.some((container) => container.ports)
-	const visibility = useMemo(
-		() => (hasPorts ? columnVisibility : { ...columnVisibility, ports: false }),
-		[columnVisibility, hasPorts]
-	)
 
 	const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
 	const [globalFilter, setGlobalFilter] = useState("")
@@ -146,9 +142,11 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 	const table = useReactTable({
 		data: shownData ?? [],
 		columns: useMemo(() => {
-			const columns = containerChartCols.filter((col) => (systemId ? col.id !== "system" : true))
+			const columns = containerChartCols.filter(
+				(col) => (!systemId || col.id !== "system") && (hasPorts || col.id !== "ports")
+			)
 			return isReadOnlyUser() ? columns : [selectionColumn<ContainerRecord>(), ...columns]
-		}, [systemId]),
+		}, [systemId, hasPorts]),
 		getRowId: targetRowId,
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
@@ -165,7 +163,7 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 		state: {
 			sorting,
 			columnFilters,
-			columnVisibility: visibility,
+			columnVisibility,
 			rowSelection,
 			globalFilter,
 		},
@@ -378,7 +376,7 @@ const AllContainersTable = memo(function AllContainersTable({
 	return (
 		<div
 			className={cn(
-				"h-min max-h-[calc(100dvh-17rem)] max-w-full relative overflow-auto border rounded-md",
+				"h-min max-h-[calc(50*2.5625rem+3rem)] max-w-full relative overflow-auto border rounded-md",
 				// don't set min height if there are less than 2 rows, do set if we need to display the empty state
 				(!rows.length || rows.length > 2) && "min-h-50"
 			)}
