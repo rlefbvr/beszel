@@ -68,7 +68,7 @@ import {
 	certificateUseLabel,
 	defaultCertificateAlertDays,
 } from "@/lib/certificates"
-import { $openRequest, rememberRecent } from "@/lib/recent"
+import { $openRequest, isRequested, rememberRecent } from "@/lib/recent"
 import { $checksBySensor, $sensors, checkName } from "@/lib/sensors"
 import { $allSystemsById, $userSettings } from "@/lib/stores"
 import { formatDateTime, useNow } from "@/lib/time"
@@ -190,7 +190,7 @@ export default function CertificatesTable() {
 	// a certificate chosen in the command palette opens once the list is loaded
 	const openRequest = useStore($openRequest)
 	useEffect(() => {
-		const cert = openRequest?.kind === "certificate" && certificates[openRequest.id]
+		const cert = Object.values(certificates).find((item) => isRequested(openRequest, "certificate", item))
 		if (cert) {
 			$openRequest.set(null)
 			setSelected(cert)

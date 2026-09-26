@@ -36,7 +36,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
-import { $openRequest, rememberRecent } from "@/lib/recent"
+import { $openRequest, isRequested, rememberRecent } from "@/lib/recent"
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { isReadOnlyUser, pb } from "@/lib/api"
 import { Os, ServiceStatus, ServiceStatusLabels, type ServiceSubState, ServiceSubStateLabels } from "@/lib/enums"
@@ -180,7 +180,7 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 	// a service chosen in the command palette opens once the list is loaded
 	const openRequest = useStore($openRequest)
 	useEffect(() => {
-		const service = openRequest?.kind === "service" && data.find((item) => item.id === openRequest.id)
+		const service = data.find((item) => isRequested(openRequest, "service", item))
 		if (service) {
 			$openRequest.set(null)
 			openSheet(service)

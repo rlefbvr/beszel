@@ -159,7 +159,8 @@ export function ProcessRuleFields({ draft, onChange }: { draft: RuleDraft; onCha
 	)
 }
 
-function describeRule(rule: RuleDraft) {
+/** The condition of a rule, such as "must be running" or "state is not active" */
+export function describeRule(rule: RuleDraft) {
 	if (rule.kind === "process") {
 		const threshold = rule.threshold ?? 0
 		switch (processMode(rule)) {

@@ -1,4 +1,5 @@
 import { useStore } from "@nanostores/react"
+import { linkedSectionEvent, linkedTab } from "@/lib/linked-section"
 import { getPagePath } from "@nanostores/router"
 import { subscribeKeys } from "nanostores"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
@@ -81,6 +82,12 @@ export function useSystemData(id: string) {
 		setActiveTabRaw(tab)
 		setMountedTabs((prev) => (prev.has(tab) ? prev : new Set([...prev, tab])))
 	}
+	// an alert of the page already shown opens one of its tabs
+	useEffect(() => {
+		const onLink = (e: Event) => setActiveTab((e as CustomEvent<string>).detail)
+		window.addEventListener(linkedSectionEvent, onLink)
+		return () => window.removeEventListener(linkedSectionEvent, onLink)
+	}, [])
 	const [system, setSystem] = useState({} as SystemRecord)
 	usePageTitle(system.name ?? "")
 	const [systemStats, setSystemStats] = useState([] as SystemStatsRecord[])
@@ -374,10 +381,4 @@ export function useSystemData(id: string) {
 		hasGpuEnginesData,
 		hasGpuPowerData,
 	}
-}
-
-/** Tab named by the hash of the address, when a link opens a part of the system page */
-export function linkedTab() {
-	const tab = window.location.hash.slice(1)
-	return ["core", "network", "disk", "gpu", "containers", "processes", "services", "reboots"].includes(tab) ? tab : undefined
 }

@@ -40,8 +40,33 @@ export function rememberRecent(item: RecentItem) {
 	queueUserSettings({ recent })
 }
 
-/** A container, service or certificate whose details its page should open once loaded */
-export const $openRequest = atom<{ kind: "container" | "service" | "certificate"; id: string } | null>(null)
+/**
+ * A container, service, process or certificate whose details its page should
+ * open once loaded: by its id, or by its name on a system (active alerts)
+ */
+export interface OpenRequest {
+	kind: "container" | "service" | "certificate" | "process"
+	id?: string
+	name?: string
+	system?: string
+}
+
+export const $openRequest = atom<OpenRequest | null>(null)
+
+/** Whether an item is the one an open request asks for */
+export function isRequested(
+	request: OpenRequest | null,
+	kind: OpenRequest["kind"],
+	item: { id?: string; name: string; system: string }
+) {
+	if (request?.kind !== kind) {
+		return false
+	}
+	if (request.id) {
+		return item.id === request.id
+	}
+	return item.system === request.system && item.name.toLowerCase() === request.name?.toLowerCase()
+}
 
 /** Remembers the systems whose page is opened, once the user settings are loaded; returns the function stopping it */
 export function trackRecentSystems() {

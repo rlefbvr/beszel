@@ -40,7 +40,7 @@ import { Sheet, SheetTitle, SheetHeader, SheetContent, SheetDescription } from "
 import { Dialog, DialogContent, DialogTitle } from "../ui/dialog"
 import { Button } from "@/components/ui/button"
 import { $stateAlerts, importantTargets } from "@/lib/state-alerts"
-import { $openRequest, rememberRecent } from "@/lib/recent"
+import { $openRequest, isRequested, rememberRecent } from "@/lib/recent"
 import { $allSystemsById } from "@/lib/stores"
 import { FilterIcon, LoaderCircleIcon, MaximizeIcon, RefreshCwIcon, XIcon } from "lucide-react"
 import {
@@ -204,7 +204,7 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 	// a container chosen in the command palette opens once the list is loaded
 	const openRequest = useStore($openRequest)
 	useEffect(() => {
-		const container = openRequest?.kind === "container" && data?.find((item) => item.id === openRequest.id)
+		const container = data?.find((item) => isRequested(openRequest, "container", item))
 		if (container) {
 			$openRequest.set(null)
 			openSheet(container)

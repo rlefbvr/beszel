@@ -1,7 +1,6 @@
 import { Trans, useLingui } from "@lingui/react/macro"
 import { memo } from "react"
 import NetworkMonitorsTableNew from "@/components/network-monitors-table/network-monitors-table"
-import { ActiveAlerts } from "@/components/active-alerts"
 import { FooterRepoLink } from "@/components/footer-repo-link"
 import { QuietHoursBanner } from "@/components/quiet-hours-banner"
 import { SensorIncidents } from "@/components/sensors/sensor-incidents"
@@ -26,7 +25,6 @@ export default memo(() => {
 	return (
 		<>
 			<div className="grid gap-4">
-				<ActiveAlerts />
 				<QuietHoursBanner />
 				<SensorsBoard />
 				<NetworkMonitorsTableNew

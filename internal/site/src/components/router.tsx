@@ -41,7 +41,12 @@ export const $router = createRouter(routes, { links: false })
  *  Base path is automatically prepended if serving from subpath
  */
 export const navigate = (urlString: string) => {
-	$router.open(urlString)
+	// the router would read a hash as part of the path: /system/id#processes
+	const [path, hash] = urlString.split("#")
+	$router.open(path)
+	if (hash) {
+		history.replaceState(history.state, "", `${path}#${hash}`)
+	}
 }
 
 export function Link(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {

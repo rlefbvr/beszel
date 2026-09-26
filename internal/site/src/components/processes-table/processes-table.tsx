@@ -42,6 +42,7 @@ import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { isReadOnlyUser, pb } from "@/lib/api"
+import { $openRequest, isRequested } from "@/lib/recent"
 import { $stateAlerts, importantTargets } from "@/lib/state-alerts"
 import { cn } from "@/lib/utils"
 import {
@@ -131,6 +132,16 @@ export default function ProcessesTable({ systemId }: { systemId: string }) {
 			document.removeEventListener("visibilitychange", onVisible)
 		}
 	}, [load, auto])
+
+	// a process of an active alert opens once the processes are read
+	const openRequest = useStore($openRequest)
+	useEffect(() => {
+		const process = rows?.find((row) => isRequested(openRequest, "process", row))
+		if (process) {
+			$openRequest.set(null)
+			setSelected(process)
+		}
+	}, [openRequest, rows])
 
 	// a process of the charts opens with its last reading, or its values in the chart once it ended
 	const selectPoint = useCallback(

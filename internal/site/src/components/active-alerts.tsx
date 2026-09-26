@@ -2,7 +2,7 @@ import { alertInfo, stateAlertHistoryInfo } from "@/lib/alerts"
 import { $sensorAlerts, sensorAlertName } from "@/lib/sensor-alerts"
 import { $sensorChecks, $sensors, checkName } from "@/lib/sensors"
 import { $certificateAlerts } from "@/lib/certificates"
-import { $stateAlerts, triggeredTargets } from "@/lib/state-alerts"
+import { $stateAlerts, stateRuleAlertKind, triggeredTargets } from "@/lib/state-alerts"
 import { $alerts, $allSystemsById, $userSettings } from "@/lib/stores"
 import { queueUserSettings } from "@/lib/api"
 import { cn } from "@/lib/utils"
@@ -12,8 +12,11 @@ import { Plural, Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
 import { getPagePath } from "@nanostores/router"
 import { type ReactNode, useMemo, useState } from "react"
-import { $router, Link } from "./router"
-import { Alert, AlertTitle, AlertDescription } from "./ui/alert"
+import { announceSection } from "@/lib/linked-section"
+import { describeRule } from "@/components/alerts/state-alert-rules"
+import { $openRequest, type OpenRequest } from "@/lib/recent"
+import type { StateAlertRecord } from "@/types"
+import { $router, Link, navigate } from "./router"
 import { Button } from "./ui/button"
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
@@ -34,6 +37,25 @@ function saveAcknowledged(keys: string[]) {
 	queueUserSettings({ ackAlerts: keys })
 }
 
+/** Part of the host page showing a kind of state rule targets */
+const ruleSection: Record<StateAlertRecord["kind"], string> = {
+	service: "services",
+	container: "containers",
+	process: "processes",
+}
+
+/** Opens an object: its page, then its details once the page loaded it */
+function openObject(href: string, request?: OpenRequest) {
+	$openRequest.set(request ?? null)
+	navigate(href)
+	// the page already shown gets the part asked by the hash
+	const hash = href.split("#")[1]
+	if (hash) {
+		announceSection(hash)
+	}
+}
+
+/** Active alerts of all the systems and sensors, on top of every page */
 export const ActiveAlerts = () => {
 	const alerts = useStore($alerts)
 	const stateAlerts = useStore($stateAlerts)
@@ -59,12 +81,9 @@ export const ActiveAlerts = () => {
 					card: (ack, onToggle) => (
 						<AlertCard
 							key={alert.id}
-							icon={<info.icon className="h-4 w-4" />}
-							title={
-								<>
-									{systems[alert.system]?.name} {info.name()}
-								</>
-							}
+							icon={<info.icon className="size-4" />}
+							kind={info.name()}
+							subject={systems[alert.system]?.name}
 							href={getPagePath($router, "system", { id: alert.system })}
 							acknowledged={ack}
 							onToggle={onToggle}
@@ -98,7 +117,10 @@ export const ActiveAlerts = () => {
 				continue
 			}
 			const targets = triggeredTargets(rule)
-			const info = stateAlertHistoryInfo[rule.kind === "service" ? "ServiceState" : "ContainerState"]
+			const href = `${getPagePath($router, "system", { id: rule.system })}#${ruleSection[rule.kind]}`
+			const open = (name?: string) =>
+				openObject(href, name ? { kind: rule.kind, name, system: rule.system } : undefined)
+			const info = stateAlertHistoryInfo[stateRuleAlertKind(rule.kind)]
 			const Icon = info.icon
 			items.push({
 				// the rule is saved on each check: its episode is the open incident of each target
@@ -106,17 +128,16 @@ export const ActiveAlerts = () => {
 				card: (ack, onToggle) => (
 					<AlertCard
 						key={rule.id}
-						icon={<Icon className="h-4 w-4" />}
-						title={
-							<>
-								{systems[rule.system]?.name} {info.name()}
-							</>
-						}
-						href={getPagePath($router, "system", { id: rule.system })}
+						icon={<Icon className="size-4" />}
+						kind={info.name()}
+						subject={systems[rule.system]?.name}
+						href={href}
+						onOpen={() => open(targets[0])}
 						acknowledged={ack}
 						onToggle={onToggle}
 					>
-						{targets.length > 0 ? targets.join(", ") : info.triggeredDesc?.()}
+						<span className="block truncate first-letter:uppercase">{describeRule(rule)}</span>
+						{targets.length > 0 && <TargetChips names={targets} onOpen={open} />}
 					</AlertCard>
 				),
 			})
@@ -137,17 +158,14 @@ export const ActiveAlerts = () => {
 				card: (ack, onToggle) => (
 					<AlertCard
 						key={alert.id}
-						icon={<NetworkIcon className="h-4 w-4" />}
-						title={
-							<>
-								{sensor?.name} {sensorAlertName(alert.name)}
-							</>
-						}
+						icon={<NetworkIcon className="size-4" />}
+						kind={sensorAlertName(alert.name)}
+						subject={sensor?.name}
 						href={getPagePath($router, "sensor", { id: alert.sensor })}
 						acknowledged={ack}
 						onToggle={onToggle}
 					>
-						{alert.name === "port" && ports.length ? ports.join(", ") : sensor?.host}
+						{alert.name === "port" && ports.length ? <TargetChips names={ports} /> : sensor?.host}
 					</AlertCard>
 				),
 			})
@@ -158,6 +176,7 @@ export const ActiveAlerts = () => {
 			if (!alert.triggered) {
 				continue
 			}
+			const certificate = { kind: "certificate" as const, name: alert.name, system: alert.system }
 			const days = alert.days
 			const name = alert.name
 			items.push({
@@ -165,13 +184,11 @@ export const ActiveAlerts = () => {
 				card: (ack, onToggle) => (
 					<AlertCard
 						key={alert.id}
-						icon={<FileBadgeIcon className="h-4 w-4" />}
-						title={
-							<>
-								{systems[alert.system]?.name} <Trans>Certificate expiry</Trans>
-							</>
-						}
+						icon={<FileBadgeIcon className="size-4" />}
+						kind={<Trans>Certificate expiry</Trans>}
+						subject={systems[alert.system]?.name}
 						href={getPagePath($router, "certificates")}
+						onOpen={() => openObject(getPagePath($router, "certificates"), certificate)}
 						acknowledged={ack}
 						onToggle={onToggle}
 					>
@@ -260,43 +277,105 @@ export const ActiveAlerts = () => {
 	)
 }
 
-/** Card of an active alert, linking to its system or sensor, with its acknowledge button */
+/** Names shown as chips in an alert card: the first ones, then the number of the others */
+function TargetChips({ names, onOpen }: { names: string[]; onOpen?: (name: string) => void }) {
+	const shown = names.slice(0, 3)
+	const more = names.length - shown.length
+	return (
+		<span className="relative z-10 flex flex-wrap gap-1 mt-0.5" title={names.join(", ")}>
+			{shown.map((name) =>
+				onOpen ? (
+					<button
+						type="button"
+						key={name}
+						onClick={() => onOpen(name)}
+						className="max-w-full truncate rounded border bg-muted/60 px-1.5 text-xs leading-5 text-foreground/90 hover:bg-accent hover:border-foreground/30"
+					>
+						{name}
+					</button>
+				) : (
+					<span key={name} className="max-w-full truncate rounded border bg-muted/60 px-1.5 text-xs leading-5 text-foreground/90">
+						{name}
+					</span>
+				)
+			)}
+			{more > 0 && <span className="text-xs leading-5 text-muted-foreground">+{more}</span>}
+		</span>
+	)
+}
+
+/**
+ * Card of an active alert: the kind of alert, what it is about and its details
+ * on their own lines. The card links to its system or sensor, and has its
+ * acknowledge button.
+ */
 function AlertCard({
 	icon,
-	title,
+	kind,
+	subject,
 	href,
+	onOpen,
 	acknowledged,
 	onToggle,
 	children,
 }: {
 	icon: ReactNode
-	title: ReactNode
+	kind: ReactNode
+	subject: ReactNode
 	href: string
+	/** opens the object of the alert instead of following href */
+	onOpen?: () => void
 	acknowledged: boolean
 	onToggle: () => void
 	children: ReactNode
 }) {
 	const label = acknowledged ? t`Cancel the acknowledgement` : t`Acknowledge`
-	// the button stays outside the Alert, whose styles indent the elements after its icon
 	return (
-		<div className={cn("relative duration-200 hover:-translate-y-px", acknowledged && "opacity-60")}>
-			<Alert
+		<div className={cn("group relative duration-200 hover:-translate-y-px", acknowledged && "opacity-60")}>
+			<div
+				role="alert"
 				className={cn(
-					"h-full bg-background border-red-500/30 hover:shadow-md shadow-black/5 pe-12",
-					acknowledged && "border-border"
+					"h-full flex gap-3 rounded-lg border bg-background ps-3 pe-11 py-2.5 shadow-black/5 transition-shadow hover:shadow-md",
+					acknowledged ? "border-border" : "border-red-500/60"
 				)}
 			>
-				{icon}
-				<AlertTitle>{title}</AlertTitle>
-				<AlertDescription className="truncate">{children}</AlertDescription>
-				<Link href={href} className="absolute inset-0 w-full h-full" aria-label={t`View`}></Link>
-			</Alert>
+				<div
+					className={cn(
+						"mt-0.5 grid size-8 shrink-0 place-items-center rounded-md",
+						acknowledged ? "bg-muted text-muted-foreground" : "bg-red-500/10 text-red-600 dark:text-red-400"
+					)}
+				>
+					{icon}
+				</div>
+				<div className="grid min-w-0 content-start gap-0.5">
+					<span
+						className={cn(
+							"truncate text-[0.7rem] font-semibold uppercase tracking-wide",
+							acknowledged ? "text-muted-foreground" : "text-red-600 dark:text-red-400"
+						)}
+					>
+						{kind}
+					</span>
+					<span className="truncate font-semibold leading-snug group-hover:underline underline-offset-2">{subject}</span>
+					<div className="text-sm leading-snug text-muted-foreground line-clamp-2 break-words">{children}</div>
+				</div>
+				{onOpen ? (
+					<button
+						type="button"
+						className="absolute inset-0 w-full h-full rounded-lg cursor-pointer"
+						aria-label={t`View`}
+						onClick={onOpen}
+					/>
+				) : (
+					<Link href={href} className="absolute inset-0 w-full h-full rounded-lg" aria-label={t`View`}></Link>
+				)}
+			</div>
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button
 						variant="ghost"
 						size="icon"
-						className="absolute top-1/2 -translate-y-1/2 end-2 z-10 size-8 text-muted-foreground hover:text-foreground"
+						className="absolute top-2 end-2 z-10 size-8 text-muted-foreground hover:text-foreground"
 						aria-label={label}
 						onClick={onToggle}
 					>

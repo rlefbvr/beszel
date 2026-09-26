@@ -2,16 +2,45 @@ import { lazy, useEffect, useRef } from "react"
 import { useIntersectionObserver } from "@/lib/use-intersection-observer"
 import { cn } from "@/lib/utils"
 import { useNetworkMonitors } from "@/lib/use-network-monitors"
-import { linkedTab } from "./use-system-data"
+import { linkedSectionEvent, linkedTab } from "@/lib/linked-section"
+
+/**
+ * Anchor of a part of the page that a link opens (#containers, #processes,
+ * #services): scrolls to it once the charts above are drawn, or at once when
+ * an alert of the page already shown asks for it.
+ */
+function LinkedAnchor({ id }: { id: string }) {
+	const anchor = useRef<HTMLDivElement>(null)
+	useEffect(() => {
+		const scroll = (delay: number) =>
+			setTimeout(() => anchor.current?.scrollIntoView({ behavior: "smooth", block: "start" }), delay)
+		let timer = linkedTab() === id ? scroll(800) : undefined
+		const onLink = (e: Event) => {
+			if ((e as CustomEvent<string>).detail === id) {
+				clearTimeout(timer)
+				timer = scroll(100)
+			}
+		}
+		window.addEventListener(linkedSectionEvent, onLink)
+		return () => {
+			clearTimeout(timer)
+			window.removeEventListener(linkedSectionEvent, onLink)
+		}
+	}, [id])
+	return <div ref={anchor} id={id} className="scroll-mt-20" />
+}
 
 const ContainersTable = lazy(() => import("../../containers-table/containers-table"))
 
 export function LazyContainersTable({ systemId }: { systemId: string }) {
 	const { isIntersecting, ref } = useIntersectionObserver({ rootMargin: "90px" })
 	return (
-		<div ref={ref} className={cn(isIntersecting && "contents")}>
-			{isIntersecting && <ContainersTable systemId={systemId} />}
-		</div>
+		<>
+			<LinkedAnchor id="containers" />
+			<div ref={ref} className={cn(isIntersecting && "contents")}>
+				{isIntersecting && <ContainersTable systemId={systemId} />}
+			</div>
+		</>
 	)
 }
 
@@ -42,18 +71,9 @@ const ProcessesTable = lazy(() => import("../../processes-table/processes-table"
 
 export function LazyProcessesTable({ systemId }: { systemId: string }) {
 	const { isIntersecting, ref } = useIntersectionObserver()
-	// a link to the processes of the host scrolls to them, once the charts above are drawn
-	const anchor = useRef<HTMLDivElement>(null)
-	useEffect(() => {
-		if (linkedTab() !== "processes") {
-			return
-		}
-		const timer = setTimeout(() => anchor.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 800)
-		return () => clearTimeout(timer)
-	}, [])
 	return (
 		<>
-			<div ref={anchor} id="processes" className="scroll-mt-20" />
+			<LinkedAnchor id="processes" />
 			<div ref={ref} className={cn(isIntersecting && "contents")}>
 				{isIntersecting && <ProcessesTable systemId={systemId} />}
 			</div>
@@ -64,9 +84,12 @@ export function LazyProcessesTable({ systemId }: { systemId: string }) {
 export function LazySystemdTable({ systemId }: { systemId: string }) {
 	const { isIntersecting, ref } = useIntersectionObserver()
 	return (
-		<div ref={ref} className={cn(isIntersecting && "contents")}>
-			{isIntersecting && <SystemdTable systemId={systemId} />}
-		</div>
+		<>
+			<LinkedAnchor id="services" />
+			<div ref={ref} className={cn(isIntersecting && "contents")}>
+				{isIntersecting && <SystemdTable systemId={systemId} />}
+			</div>
+		</>
 	)
 }
 

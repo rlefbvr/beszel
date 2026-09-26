@@ -7,6 +7,7 @@ import { DirectionProvider } from "@radix-ui/react-direction"
 import { lazy, memo, Suspense, useEffect } from "react"
 import ReactDOM from "react-dom/client"
 import Navbar from "@/components/navbar.tsx"
+import { ActiveAlerts } from "@/components/active-alerts"
 import { $router } from "@/components/router.tsx"
 import Settings from "@/components/routes/settings/layout.tsx"
 import { ThemeProvider } from "@/components/theme-provider.tsx"
@@ -148,6 +149,10 @@ const Layout = () => {
 						<Navbar />
 					</div>
 					<div className="container relative">
+						{/* the active alerts on top of every page */}
+						<div className="mb-4 empty:hidden">
+							<ActiveAlerts />
+						</div>
 						<App />
 						{copyContent && (
 							<Suspense>
