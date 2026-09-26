@@ -350,8 +350,13 @@ msgstr "Breedte van het hoofdlayout aanpassen"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Admin"
 msgstr "Administrator"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Admins group"
+msgstr "Beheerdersgroep"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "After"
@@ -670,6 +675,10 @@ msgstr "gem."
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "Gem. 1 u"
+
+#: src/components/login/ldap-form.tsx
+msgid "Back to the other logins"
+msgstr "Terug naar de andere aanmeldingen"
 
 #: src/lib/quiet-hours.ts
 msgid "Backup"
@@ -1231,6 +1240,10 @@ msgstr "Aanmaken"
 msgid "Create account"
 msgstr "Account aanmaken"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Create the users at their first login (otherwise, only the existing users of the same email)"
+msgstr "Gebruikers aanmaken bij hun eerste aanmelding (anders alleen bestaande gebruikers met hetzelfde e-mailadres)"
+
 #. Context: date created
 #. Context: date created
 #: src/components/alerts-history-columns.tsx
@@ -1408,6 +1421,17 @@ msgstr "Apparaat"
 msgid "Devices"
 msgstr "Apparaten"
 
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
+msgid "Directory (LDAP)"
+msgstr "Adreslijst (LDAP)"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+msgid "Directory account"
+msgstr "Adreslijstaccount"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Disable"
@@ -1448,6 +1472,14 @@ msgstr "Schijfgebruik van {extraFsName}"
 msgctxt "Layout display options"
 msgid "Display"
 msgstr "Weergave"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Distinguished name or user@domain of the account searching the users."
+msgstr "Distinguished name of user@domain van het account dat de gebruikers zoekt."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Do not check the certificate of the server"
+msgstr "Het certificaat van de server niet controleren"
 
 #: src/components/discard-guard.tsx
 msgid "Do you really want to cancel your input?"
@@ -1543,6 +1575,10 @@ msgstr "Sensor bewerken"
 msgid "Email"
 msgstr "E-mail"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Email attribute"
+msgstr "E-mailattribuut"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Email notifications"
 msgstr "E-mailnotificaties"
@@ -1559,6 +1595,10 @@ msgstr "Leeg"
 #: src/components/routes/settings/security.tsx
 msgid "Enable"
 msgstr "Inschakelen"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Enable the login with the directory"
+msgstr "Aanmelden met de adreslijst inschakelen"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1619,6 +1659,8 @@ msgstr "Tijdelijk"
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/ldap.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1924,6 +1966,10 @@ msgstr "Groep opgeslagen"
 msgid "Groups"
 msgstr "Groepen"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Groups and roles"
+msgstr "Groepen en rollen"
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
 msgstr "Groepen ordenen de netwerksensoren voor alle gebruikers. Een groep verwijderen behoudt de sensoren, zonder groep."
@@ -2156,6 +2202,10 @@ msgstr "Uitgegeven door {linkIssuer}, geldig tot {linkUntil}"
 msgid "Issued to"
 msgstr "Uitgegeven aan"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "It works."
+msgstr "Het werkt."
+
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "De controles, geschiedenis en onderbrekingen worden verwijderd."
@@ -2253,6 +2303,14 @@ msgstr "Indeling"
 #: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "Layoutbreedte"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "ldaps://dc.example.com:636, or ldap://dc.example.com:389 with StartTLS."
+msgstr "ldaps://dc.example.com:636, of ldap://dc.example.com:389 met StartTLS."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
+msgstr "Laat gebruikers aanmelden met hun account van een LDAP-adreslijst zoals Active Directory. Hun rol volgt hun groepen; de tweede factor van elke gebruiker blijft gelden."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
@@ -2882,6 +2940,9 @@ msgstr "Pagina's / Instellingen"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "Wachtwoord"
@@ -2893,6 +2954,10 @@ msgstr "Het wachtwoord moet minimaal 8 tekens bevatten."
 #: src/components/login/auth-form.tsx
 msgid "Password must be less than 72 bytes."
 msgstr "Het wachtwoord moet minder zijn dat 72 bytes."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Password of the service account"
+msgstr "Wachtwoord van het serviceaccount"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Password reset request received"
@@ -3145,6 +3210,14 @@ msgstr "Leesfouten"
 #: src/components/certificates/certificates-table.tsx
 msgid "Read now"
 msgstr "Nu lezen"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read only"
+msgstr "Alleen lezen"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read-only group"
+msgstr "Alleen-lezengroep"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3407,6 +3480,7 @@ msgstr "Bewaar het adres met de enter-toets of komma. Laat leeg om e-mailmelding
 
 #: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
 msgstr "Instellingen opslaan"
@@ -3418,6 +3492,10 @@ msgstr "Bewaar deze herstelcodes: elke code vervangt eenmaal een code van de app
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "Opgeslagen in de database en verloopt niet totdat u het uitschakelt."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Saved. Leave empty to keep it."
+msgstr "Opgeslagen. Laat leeg om het te behouden."
 
 #: src/components/routes/settings/security.tsx
 msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
@@ -3444,6 +3522,10 @@ msgstr "Gepland onderhoud"
 #: src/lib/header-icons.ts
 msgid "Search"
 msgstr "Zoeken"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Search base"
+msgstr "Zoekbasis"
 
 #: src/components/command-palette.tsx
 #~ msgid "Search for systems or settings..."
@@ -3579,11 +3661,19 @@ msgstr "Serienummer"
 msgid "Serial Number"
 msgstr "Serienummer"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Server URL"
+msgstr "Server-URL"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Service"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Service account"
+msgstr "Serviceaccount"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Service alerts"
@@ -3649,6 +3739,7 @@ msgstr "Instellingen"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Settings saved"
 msgstr "Instellingen opgeslagen"
 
@@ -3675,6 +3766,10 @@ msgstr "Afsluiten"
 #: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "Aanmelden"
+
+#: src/components/login/ldap-form.tsx
+msgid "Sign in with the directory"
+msgstr "Aanmelden met de adreslijst"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Signature"
@@ -3924,6 +4019,10 @@ msgstr "Temperatuureenheid"
 msgid "Temperatures of system sensors"
 msgstr "Temperatuur van systeem sensoren"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Test"
+msgstr "Test"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Test <0>URL</0>"
 msgstr "Test <0>URL</0>"
@@ -3935,6 +4034,14 @@ msgstr "Test-heartbeat"
 #: src/components/routes/settings/notifications.tsx
 msgid "Test notification sent"
 msgstr "Testmelding verzonden"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the connection"
+msgstr "Verbinding testen"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the login"
+msgstr "Aanmelding testen"
 
 #: src/lib/quiet-hours.ts
 msgid "Testing"
@@ -4039,6 +4146,10 @@ msgstr "Deze agent is te oud om vanuit de hub te beheren: werk hem één keer bi
 #: src/components/sensors/sensor-dialog.tsx
 msgid "This host already has a sensor: {added} new check(s) were added to it."
 msgstr "Deze host heeft al een sensor: er zijn {added} nieuwe controle(s) aan toegevoegd."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "This placeholder is replaced by the name typed at the login:"
+msgstr "Deze tijdelijke aanduiding wordt vervangen door de naam die bij het aanmelden is ingevoerd:"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This sensor until {until}"
@@ -4430,10 +4541,30 @@ msgstr "Gebruikt"
 msgid "Used by"
 msgstr "Gebruikt door"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "User"
+msgstr "Gebruiker"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "User filter"
+msgstr "Gebruikersfilter"
+
+#: src/components/login/ldap-form.tsx
+msgid "Username or email of the directory"
+msgstr "Gebruikersnaam of e-mail van de adreslijst"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Username to test (optional)"
+msgstr "Gebruikersnaam om te testen (optioneel)"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
 msgstr "Gebruikers"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Users group"
+msgstr "Gebruikersgroep"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgctxt "Disk I/O utilization"
@@ -4528,6 +4659,10 @@ msgstr "Wat u hebt ingevoerd, gaat verloren."
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "When enabled, this token allows agents to self-register without prior system creation."
 msgstr "Indien ingeschakeld, stelt deze token agenten in staat zich zelf te registreren zonder voorafgaande systeemcreatie."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "When set, the other accounts can't log in."
+msgstr "Indien ingesteld, kunnen de andere accounts niet aanmelden."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."

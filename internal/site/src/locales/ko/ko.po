@@ -350,8 +350,13 @@ msgstr "메인 레이아웃 너비 조정"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Admin"
 msgstr "관리자"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Admins group"
+msgstr "관리자 그룹"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "After"
@@ -670,6 +675,10 @@ msgstr "평균"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "1시간 평균"
+
+#: src/components/login/ldap-form.tsx
+msgid "Back to the other logins"
+msgstr "다른 로그인으로 돌아가기"
 
 #: src/lib/quiet-hours.ts
 msgid "Backup"
@@ -1231,6 +1240,10 @@ msgstr "생성"
 msgid "Create account"
 msgstr "계정 생성"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Create the users at their first login (otherwise, only the existing users of the same email)"
+msgstr "첫 로그인 시 사용자 생성(그렇지 않으면 같은 이메일의 기존 사용자만)"
+
 #. Context: date created
 #. Context: date created
 #: src/components/alerts-history-columns.tsx
@@ -1408,6 +1421,17 @@ msgstr "장치"
 msgid "Devices"
 msgstr "장비"
 
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
+msgid "Directory (LDAP)"
+msgstr "디렉터리(LDAP)"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+msgid "Directory account"
+msgstr "디렉터리 계정"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Disable"
@@ -1448,6 +1472,14 @@ msgstr "{extraFsName}의 디스크 사용량"
 msgctxt "Layout display options"
 msgid "Display"
 msgstr "표시"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Distinguished name or user@domain of the account searching the users."
+msgstr "사용자를 검색하는 계정의 고유 이름 또는 user@domain."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Do not check the certificate of the server"
+msgstr "서버 인증서를 확인하지 않음"
 
 #: src/components/discard-guard.tsx
 msgid "Do you really want to cancel your input?"
@@ -1543,6 +1575,10 @@ msgstr "센서 편집"
 msgid "Email"
 msgstr "이메일"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Email attribute"
+msgstr "이메일 특성"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Email notifications"
 msgstr "이메일 알림"
@@ -1559,6 +1595,10 @@ msgstr "빔"
 #: src/components/routes/settings/security.tsx
 msgid "Enable"
 msgstr "사용"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Enable the login with the directory"
+msgstr "디렉터리 로그인 사용"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1619,6 +1659,8 @@ msgstr "일시적"
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/ldap.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1924,6 +1966,10 @@ msgstr "그룹이 저장됨"
 msgid "Groups"
 msgstr "그룹"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Groups and roles"
+msgstr "그룹 및 역할"
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
 msgstr "그룹은 모든 사용자의 네트워크 센서를 정리합니다. 그룹을 삭제해도 센서는 그룹 없이 유지됩니다."
@@ -2156,6 +2202,10 @@ msgstr "발급자 {linkIssuer}, {linkUntil}까지 유효"
 msgid "Issued to"
 msgstr "발급 대상"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "It works."
+msgstr "작동합니다."
+
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "검사, 기록 및 중단 내역이 삭제됩니다."
@@ -2253,6 +2303,14 @@ msgstr "레이아웃"
 #: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "레이아웃 너비"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "ldaps://dc.example.com:636, or ldap://dc.example.com:389 with StartTLS."
+msgstr "ldaps://dc.example.com:636 또는 StartTLS를 사용하는 ldap://dc.example.com:389."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
+msgstr "사용자가 Active Directory 같은 LDAP 디렉터리 계정으로 로그인할 수 있게 합니다. 역할은 그룹을 따르며, 각 사용자의 두 번째 인증 요소도 계속 적용됩니다."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
@@ -2882,6 +2940,9 @@ msgstr "페이지 / 설정"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "비밀번호"
@@ -2893,6 +2954,10 @@ msgstr "비밀번호는 최소 8자 이상이어야 합니다."
 #: src/components/login/auth-form.tsx
 msgid "Password must be less than 72 bytes."
 msgstr "비밀번호는 72 바이트 이하여야 합니다."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Password of the service account"
+msgstr "서비스 계정 비밀번호"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Password reset request received"
@@ -3145,6 +3210,14 @@ msgstr "읽기 오류"
 #: src/components/certificates/certificates-table.tsx
 msgid "Read now"
 msgstr "지금 읽기"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read only"
+msgstr "읽기 전용"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read-only group"
+msgstr "읽기 전용 그룹"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3407,6 +3480,7 @@ msgstr "Enter 키 또는 쉼표를 사용하여 주소를 저장하세요. 이�
 
 #: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
 msgstr "설정 저장"
@@ -3418,6 +3492,10 @@ msgstr "이 복구 코드를 저장하세요. 휴대폰을 잃어버린 경우 �
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "데이터베이스에 저장되며 비활성화할 때까지 만료되지 않습니다."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Saved. Leave empty to keep it."
+msgstr "저장됨. 유지하려면 비워 두세요."
 
 #: src/components/routes/settings/security.tsx
 msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
@@ -3444,6 +3522,10 @@ msgstr "예정된 유지보수"
 #: src/lib/header-icons.ts
 msgid "Search"
 msgstr "검색"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Search base"
+msgstr "검색 기준"
 
 #: src/components/command-palette.tsx
 #~ msgid "Search for systems or settings..."
@@ -3579,11 +3661,19 @@ msgstr "일련번호"
 msgid "Serial Number"
 msgstr "시리얼 번호"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Server URL"
+msgstr "서버 URL"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "서비스"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Service account"
+msgstr "서비스 계정"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Service alerts"
@@ -3649,6 +3739,7 @@ msgstr "설정"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Settings saved"
 msgstr "설정이 저장되었습니다."
 
@@ -3675,6 +3766,10 @@ msgstr "종료"
 #: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "로그인"
+
+#: src/components/login/ldap-form.tsx
+msgid "Sign in with the directory"
+msgstr "디렉터리로 로그인"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Signature"
@@ -3924,6 +4019,10 @@ msgstr "온도 단위"
 msgid "Temperatures of system sensors"
 msgstr "시스템 센서의 온도"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Test"
+msgstr "테스트"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Test <0>URL</0>"
 msgstr "테스트 <0>URL</0>"
@@ -3935,6 +4034,14 @@ msgstr "테스트 하트비트"
 #: src/components/routes/settings/notifications.tsx
 msgid "Test notification sent"
 msgstr "테스트 알림이 전송되었습니다."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the connection"
+msgstr "연결 테스트"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the login"
+msgstr "로그인 테스트"
 
 #: src/lib/quiet-hours.ts
 msgid "Testing"
@@ -4039,6 +4146,10 @@ msgstr "이 에이전트는 너무 오래되어 허브에서 관리할 수 없�
 #: src/components/sensors/sensor-dialog.tsx
 msgid "This host already has a sensor: {added} new check(s) were added to it."
 msgstr "이 호스트에는 이미 센서가 있습니다. 새 검사 {added}개가 추가되었습니다."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "This placeholder is replaced by the name typed at the login:"
+msgstr "이 자리 표시자는 로그인할 때 입력한 이름으로 바뀝니다:"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This sensor until {until}"
@@ -4430,10 +4541,30 @@ msgstr "사용됨"
 msgid "Used by"
 msgstr "사용처"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "User"
+msgstr "사용자"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "User filter"
+msgstr "사용자 필터"
+
+#: src/components/login/ldap-form.tsx
+msgid "Username or email of the directory"
+msgstr "디렉터리 사용자 이름 또는 이메일"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Username to test (optional)"
+msgstr "테스트할 사용자 이름(선택 사항)"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
 msgstr "사용자"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Users group"
+msgstr "사용자 그룹"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgctxt "Disk I/O utilization"
@@ -4528,6 +4659,10 @@ msgstr "입력한 내용이 사라집니다."
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "When enabled, this token allows agents to self-register without prior system creation."
 msgstr "활성화되면 이 토큰은 사전 시스템 생성 없이 에이전트가 자체 등록할 수 있도록 합니다."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "When set, the other accounts can't log in."
+msgstr "설정하면 다른 계정은 로그인할 수 없습니다."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."

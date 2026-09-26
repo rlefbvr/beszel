@@ -350,8 +350,13 @@ msgstr "Điều chỉnh chiều rộng bố cục chính"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Admin"
 msgstr "Quản trị viên"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Admins group"
+msgstr "Nhóm quản trị"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "After"
@@ -670,6 +675,10 @@ msgstr "tb"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "TB 1 giờ"
+
+#: src/components/login/ldap-form.tsx
+msgid "Back to the other logins"
+msgstr "Quay lại các cách đăng nhập khác"
 
 #: src/lib/quiet-hours.ts
 msgid "Backup"
@@ -1231,6 +1240,10 @@ msgstr "Tạo"
 msgid "Create account"
 msgstr "Tạo tài khoản"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Create the users at their first login (otherwise, only the existing users of the same email)"
+msgstr "Tạo người dùng ở lần đăng nhập đầu tiên (nếu không, chỉ người dùng hiện có cùng email)"
+
 #. Context: date created
 #. Context: date created
 #: src/components/alerts-history-columns.tsx
@@ -1408,6 +1421,17 @@ msgstr "Thiết bị"
 msgid "Devices"
 msgstr "Thiết bị"
 
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
+msgid "Directory (LDAP)"
+msgstr "Thư mục (LDAP)"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+msgid "Directory account"
+msgstr "Tài khoản thư mục"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Disable"
@@ -1448,6 +1472,14 @@ msgstr "Sử dụng đĩa của {extraFsName}"
 msgctxt "Layout display options"
 msgid "Display"
 msgstr "Hiển thị"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Distinguished name or user@domain of the account searching the users."
+msgstr "Tên phân biệt hoặc user@domain của tài khoản tìm kiếm người dùng."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Do not check the certificate of the server"
+msgstr "Không kiểm tra chứng chỉ của máy chủ"
 
 #: src/components/discard-guard.tsx
 msgid "Do you really want to cancel your input?"
@@ -1543,6 +1575,10 @@ msgstr "Sửa cảm biến"
 msgid "Email"
 msgstr "Email"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Email attribute"
+msgstr "Thuộc tính email"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Email notifications"
 msgstr "Thông báo email"
@@ -1559,6 +1595,10 @@ msgstr "Hết pin"
 #: src/components/routes/settings/security.tsx
 msgid "Enable"
 msgstr "Bật"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Enable the login with the directory"
+msgstr "Bật đăng nhập bằng thư mục"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1619,6 +1659,8 @@ msgstr "Tạm thời"
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/ldap.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1924,6 +1966,10 @@ msgstr "Đã lưu nhóm"
 msgid "Groups"
 msgstr "Nhóm"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Groups and roles"
+msgstr "Nhóm và vai trò"
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
 msgstr "Nhóm sắp xếp các cảm biến mạng cho mọi người dùng. Xóa một nhóm vẫn giữ các cảm biến của nhóm, không thuộc nhóm nào."
@@ -2156,6 +2202,10 @@ msgstr "Cấp bởi {linkIssuer}, hiệu lực đến {linkUntil}"
 msgid "Issued to"
 msgstr "Cấp cho"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "It works."
+msgstr "Hoạt động."
+
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "Các kiểm tra, lịch sử và gián đoạn của nó sẽ bị xóa."
@@ -2253,6 +2303,14 @@ msgstr "Bố cục"
 #: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "Chiều rộng bố cục"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "ldaps://dc.example.com:636, or ldap://dc.example.com:389 with StartTLS."
+msgstr "ldaps://dc.example.com:636, hoặc ldap://dc.example.com:389 với StartTLS."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
+msgstr "Cho phép người dùng đăng nhập bằng tài khoản trong thư mục LDAP như Active Directory. Vai trò theo nhóm của họ; yếu tố thứ hai của mỗi người dùng vẫn được áp dụng."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
@@ -2882,6 +2940,9 @@ msgstr "Trang / Cài đặt"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "Mật khẩu"
@@ -2893,6 +2954,10 @@ msgstr "Mật khẩu phải có ít nhất 8 ký tự."
 #: src/components/login/auth-form.tsx
 msgid "Password must be less than 72 bytes."
 msgstr "Mật khẩu phải nhỏ hơn 72 byte."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Password of the service account"
+msgstr "Mật khẩu của tài khoản dịch vụ"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Password reset request received"
@@ -3145,6 +3210,14 @@ msgstr "Lỗi đọc"
 #: src/components/certificates/certificates-table.tsx
 msgid "Read now"
 msgstr "Đọc ngay"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read only"
+msgstr "Chỉ đọc"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read-only group"
+msgstr "Nhóm chỉ đọc"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3407,6 +3480,7 @@ msgstr "Lưu địa chỉ bằng cách sử dụng phím enter hoặc dấu ph�
 
 #: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
 msgstr "Lưu Cài đặt"
@@ -3418,6 +3492,10 @@ msgstr "Hãy lưu các mã khôi phục này: mỗi mã thay thế mã của ứ
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "Được lưu trong cơ sở dữ liệu và không hết hạn cho đến khi bạn tắt nó."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Saved. Leave empty to keep it."
+msgstr "Đã lưu. Để trống để giữ nguyên."
 
 #: src/components/routes/settings/security.tsx
 msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
@@ -3444,6 +3522,10 @@ msgstr "Bảo trì theo lịch"
 #: src/lib/header-icons.ts
 msgid "Search"
 msgstr "Tìm kiếm"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Search base"
+msgstr "Cơ sở tìm kiếm"
 
 #: src/components/command-palette.tsx
 #~ msgid "Search for systems or settings..."
@@ -3579,11 +3661,19 @@ msgstr "Số sê-ri"
 msgid "Serial Number"
 msgstr "Số seri"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Server URL"
+msgstr "URL máy chủ"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Dịch vụ"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Service account"
+msgstr "Tài khoản dịch vụ"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Service alerts"
@@ -3649,6 +3739,7 @@ msgstr "Cài đặt"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Settings saved"
 msgstr "Cài đặt đã được lưu"
 
@@ -3675,6 +3766,10 @@ msgstr "Tắt máy"
 #: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "Đăng nhập"
+
+#: src/components/login/ldap-form.tsx
+msgid "Sign in with the directory"
+msgstr "Đăng nhập bằng thư mục"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Signature"
@@ -3924,6 +4019,10 @@ msgstr "Đơn vị nhiệt độ"
 msgid "Temperatures of system sensors"
 msgstr "Nhiệt độ của các cảm biến hệ thống"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Test"
+msgstr "Kiểm tra"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Test <0>URL</0>"
 msgstr "Kiểm tra <0>URL</0>"
@@ -3935,6 +4034,14 @@ msgstr "Thử nghiệm heartbeat"
 #: src/components/routes/settings/notifications.tsx
 msgid "Test notification sent"
 msgstr "Thông báo thử nghiệm đã được gửi"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the connection"
+msgstr "Kiểm tra kết nối"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the login"
+msgstr "Kiểm tra đăng nhập"
 
 #: src/lib/quiet-hours.ts
 msgid "Testing"
@@ -4039,6 +4146,10 @@ msgstr "Tác nhân này quá cũ để quản lý từ hub: hãy cập nhật m�
 #: src/components/sensors/sensor-dialog.tsx
 msgid "This host already has a sensor: {added} new check(s) were added to it."
 msgstr "Máy chủ này đã có cảm biến: đã thêm {added} kiểm tra mới vào đó."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "This placeholder is replaced by the name typed at the login:"
+msgstr "Chỗ giữ này được thay bằng tên nhập khi đăng nhập:"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This sensor until {until}"
@@ -4430,10 +4541,30 @@ msgstr "Đã sử dụng"
 msgid "Used by"
 msgstr "Được dùng bởi"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "User"
+msgstr "Người dùng"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "User filter"
+msgstr "Bộ lọc người dùng"
+
+#: src/components/login/ldap-form.tsx
+msgid "Username or email of the directory"
+msgstr "Tên người dùng hoặc email trong thư mục"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Username to test (optional)"
+msgstr "Tên người dùng để kiểm tra (tùy chọn)"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
 msgstr "Người dùng"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Users group"
+msgstr "Nhóm người dùng"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgctxt "Disk I/O utilization"
@@ -4528,6 +4659,10 @@ msgstr "Nội dung đã nhập sẽ bị mất."
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "When enabled, this token allows agents to self-register without prior system creation."
 msgstr "Khi được bật, token này cho phép các tác nhân tự đăng ký mà không cần tạo hệ thống trước."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "When set, the other accounts can't log in."
+msgstr "Khi đặt, các tài khoản khác không thể đăng nhập."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."

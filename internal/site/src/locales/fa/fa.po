@@ -350,8 +350,13 @@ msgstr "تنظیم عرض چیدمان اصلی"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Admin"
 msgstr "مدیر"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Admins group"
+msgstr "گروه مدیران"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "After"
@@ -670,6 +675,10 @@ msgstr "میانگین"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "میانگین ۱ ساعت"
+
+#: src/components/login/ldap-form.tsx
+msgid "Back to the other logins"
+msgstr "بازگشت به روش‌های ورود دیگر"
 
 #: src/lib/quiet-hours.ts
 msgid "Backup"
@@ -1231,6 +1240,10 @@ msgstr "ایجاد"
 msgid "Create account"
 msgstr "ایجاد حساب کاربری"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Create the users at their first login (otherwise, only the existing users of the same email)"
+msgstr "ساخت کاربران در نخستین ورود (در غیر این صورت، فقط کاربران موجود با همان ایمیل)"
+
 #. Context: date created
 #. Context: date created
 #: src/components/alerts-history-columns.tsx
@@ -1408,6 +1421,17 @@ msgstr "دستگاه"
 msgid "Devices"
 msgstr "دستگاه‌ها"
 
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
+msgid "Directory (LDAP)"
+msgstr "دایرکتوری (LDAP)"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+msgid "Directory account"
+msgstr "حساب دایرکتوری"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Disable"
@@ -1448,6 +1472,14 @@ msgstr "میزان استفاده از دیسک {extraFsName}"
 msgctxt "Layout display options"
 msgid "Display"
 msgstr "نمایش"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Distinguished name or user@domain of the account searching the users."
+msgstr "نام متمایز یا user@domain حسابی که کاربران را جست‌وجو می‌کند."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Do not check the certificate of the server"
+msgstr "گواهی سرور بررسی نشود"
 
 #: src/components/discard-guard.tsx
 msgid "Do you really want to cancel your input?"
@@ -1543,6 +1575,10 @@ msgstr "ویرایش حسگر"
 msgid "Email"
 msgstr "ایمیل"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Email attribute"
+msgstr "ویژگی ایمیل"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Email notifications"
 msgstr "اعلان‌های ایمیلی"
@@ -1559,6 +1595,10 @@ msgstr "خالی"
 #: src/components/routes/settings/security.tsx
 msgid "Enable"
 msgstr "فعال‌سازی"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Enable the login with the directory"
+msgstr "فعال‌سازی ورود با دایرکتوری"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1619,6 +1659,8 @@ msgstr "گذرا"
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/ldap.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1924,6 +1966,10 @@ msgstr "گروه ذخیره شد"
 msgid "Groups"
 msgstr "گروه‌ها"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Groups and roles"
+msgstr "گروه‌ها و نقش‌ها"
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
 msgstr "گروه‌ها حسگرهای شبکه را برای همه کاربران سازمان‌دهی می‌کنند. حذف یک گروه حسگرهای آن را بدون گروه نگه می‌دارد."
@@ -2156,6 +2202,10 @@ msgstr "صادرشده توسط {linkIssuer}، معتبر تا {linkUntil}"
 msgid "Issued to"
 msgstr "صادرشده برای"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "It works."
+msgstr "کار می‌کند."
+
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "بررسی‌ها، تاریخچه و قطعی‌های آن حذف خواهند شد."
@@ -2253,6 +2303,14 @@ msgstr "طرح‌بندی"
 #: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "عرض چیدمان"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "ldaps://dc.example.com:636, or ldap://dc.example.com:389 with StartTLS."
+msgstr "ldaps://dc.example.com:636، یا ldap://dc.example.com:389 با StartTLS."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
+msgstr "به کاربران اجازه دهید با حساب خود در یک دایرکتوری LDAP مانند Active Directory وارد شوند. نقش آن‌ها از گروه‌هایشان پیروی می‌کند و عامل دوم هر کاربر همچنان اعمال می‌شود."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
@@ -2882,6 +2940,9 @@ msgstr "صفحات / تنظیمات"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "رمز عبور"
@@ -2893,6 +2954,10 @@ msgstr "رمز عبور باید حداقل ۸ کاراکتر باشد."
 #: src/components/login/auth-form.tsx
 msgid "Password must be less than 72 bytes."
 msgstr "رمز عبور باید کمتر از ۷۲ بایت باشد."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Password of the service account"
+msgstr "گذرواژه حساب سرویس"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Password reset request received"
@@ -3145,6 +3210,14 @@ msgstr "خطاهای خواندن"
 #: src/components/certificates/certificates-table.tsx
 msgid "Read now"
 msgstr "خواندن اکنون"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read only"
+msgstr "فقط خواندنی"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read-only group"
+msgstr "گروه فقط‌خواندنی"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3407,6 +3480,7 @@ msgstr "آدرس را با استفاده از کلید Enter یا کاما ذخ
 
 #: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
 msgstr "ذخیره تنظیمات"
@@ -3418,6 +3492,10 @@ msgstr "این کدهای بازیابی را ذخیره کنید: هر کدام
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "در پایگاه داده ذخیره شده و تا زمانی که آن را غیرفعال نکنید، منقضی نمی‌شود."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Saved. Leave empty to keep it."
+msgstr "ذخیره شده است. برای نگه‌داشتن آن خالی بگذارید."
 
 #: src/components/routes/settings/security.tsx
 msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
@@ -3444,6 +3522,10 @@ msgstr "نگهداری برنامه‌ریزی‌شده"
 #: src/lib/header-icons.ts
 msgid "Search"
 msgstr "جستجو"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Search base"
+msgstr "پایه جست‌وجو"
 
 #: src/components/command-palette.tsx
 #~ msgid "Search for systems or settings..."
@@ -3579,11 +3661,19 @@ msgstr "شماره سریال"
 msgid "Serial Number"
 msgstr "شماره سریال"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Server URL"
+msgstr "نشانی سرور"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "سرویس"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Service account"
+msgstr "حساب سرویس"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Service alerts"
@@ -3649,6 +3739,7 @@ msgstr "تنظیمات"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Settings saved"
 msgstr "تنظیمات ذخیره شد"
 
@@ -3675,6 +3766,10 @@ msgstr "خاموش شدن"
 #: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "ورود"
+
+#: src/components/login/ldap-form.tsx
+msgid "Sign in with the directory"
+msgstr "ورود با دایرکتوری"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Signature"
@@ -3924,6 +4019,10 @@ msgstr "واحد دما"
 msgid "Temperatures of system sensors"
 msgstr "دمای حسگرهای سیستم"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Test"
+msgstr "آزمایش"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Test <0>URL</0>"
 msgstr "تست <0>آدرس اینترنتی</0>"
@@ -3935,6 +4034,14 @@ msgstr "تست ضربان قلب"
 #: src/components/routes/settings/notifications.tsx
 msgid "Test notification sent"
 msgstr "اعلان آزمایشی ارسال شد"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the connection"
+msgstr "آزمایش اتصال"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the login"
+msgstr "آزمایش ورود"
 
 #: src/lib/quiet-hours.ts
 msgid "Testing"
@@ -4039,6 +4146,10 @@ msgstr "این عامل برای مدیریت از هاب خیلی قدیمی ا
 #: src/components/sensors/sensor-dialog.tsx
 msgid "This host already has a sensor: {added} new check(s) were added to it."
 msgstr "این میزبان از قبل حسگر دارد: {added} بررسی جدید به آن افزوده شد."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "This placeholder is replaced by the name typed at the login:"
+msgstr "این جای‌نگهدار با نامی که هنگام ورود تایپ می‌شود جایگزین می‌شود:"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This sensor until {until}"
@@ -4430,10 +4541,30 @@ msgstr "استفاده شده"
 msgid "Used by"
 msgstr "استفاده‌شده توسط"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "User"
+msgstr "کاربر"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "User filter"
+msgstr "فیلتر کاربر"
+
+#: src/components/login/ldap-form.tsx
+msgid "Username or email of the directory"
+msgstr "نام کاربری یا ایمیل دایرکتوری"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Username to test (optional)"
+msgstr "نام کاربری برای آزمایش (اختیاری)"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
 msgstr "کاربران"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Users group"
+msgstr "گروه کاربران"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgctxt "Disk I/O utilization"
@@ -4528,6 +4659,10 @@ msgstr "آنچه وارد کرده‌اید از دست می‌رود."
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "When enabled, this token allows agents to self-register without prior system creation."
 msgstr "هنگامی که فعال باشد، این توکن به عوامل اجازه می‌دهد بدون ایجاد سیستم قبلی، خود را ثبت کنند."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "When set, the other accounts can't log in."
+msgstr "اگر تنظیم شود، حساب‌های دیگر نمی‌توانند وارد شوند."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."

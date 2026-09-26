@@ -350,8 +350,13 @@ msgstr "Dostosuj szerokość widoku"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Admin"
 msgstr "Admin"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Admins group"
+msgstr "Grupa administratorów"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "After"
@@ -670,6 +675,10 @@ msgstr "śr."
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "Śr. 1 godz."
+
+#: src/components/login/ldap-form.tsx
+msgid "Back to the other logins"
+msgstr "Wróć do innych sposobów logowania"
 
 #: src/lib/quiet-hours.ts
 msgid "Backup"
@@ -1231,6 +1240,10 @@ msgstr "Utwórz"
 msgid "Create account"
 msgstr "Utwórz konto"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Create the users at their first login (otherwise, only the existing users of the same email)"
+msgstr "Twórz użytkowników przy pierwszym logowaniu (w przeciwnym razie tylko istniejący użytkownicy z tym samym e-mailem)"
+
 #. Context: date created
 #. Context: date created
 #: src/components/alerts-history-columns.tsx
@@ -1408,6 +1421,17 @@ msgstr "Urządzenie"
 msgid "Devices"
 msgstr "Urządzenia"
 
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
+msgid "Directory (LDAP)"
+msgstr "Katalog (LDAP)"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+msgid "Directory account"
+msgstr "Konto katalogu"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Disable"
@@ -1448,6 +1472,14 @@ msgstr "Wykorzystanie dysku {extraFsName}"
 msgctxt "Layout display options"
 msgid "Display"
 msgstr "Widok"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Distinguished name or user@domain of the account searching the users."
+msgstr "Nazwa wyróżniająca lub user@domain konta wyszukującego użytkowników."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Do not check the certificate of the server"
+msgstr "Nie sprawdzaj certyfikatu serwera"
 
 #: src/components/discard-guard.tsx
 msgid "Do you really want to cancel your input?"
@@ -1543,6 +1575,10 @@ msgstr "Edytuj czujnik"
 msgid "Email"
 msgstr "E-mail"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Email attribute"
+msgstr "Atrybut e-mail"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Email notifications"
 msgstr "Powiadomienia e-mail"
@@ -1559,6 +1595,10 @@ msgstr "Pusta"
 #: src/components/routes/settings/security.tsx
 msgid "Enable"
 msgstr "Włącz"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Enable the login with the directory"
+msgstr "Włącz logowanie przez katalog"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1619,6 +1659,8 @@ msgstr "Tymczasowy"
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/ldap.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1924,6 +1966,10 @@ msgstr "Grupa zapisana"
 msgid "Groups"
 msgstr "Grupy"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Groups and roles"
+msgstr "Grupy i role"
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
 msgstr "Grupy porządkują czujniki sieciowe dla wszystkich użytkowników. Usunięcie grupy zachowuje jej czujniki bez grupy."
@@ -2156,6 +2202,10 @@ msgstr "Wystawiony przez {linkIssuer}, ważny do {linkUntil}"
 msgid "Issued to"
 msgstr "Wystawiony dla"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "It works."
+msgstr "Działa."
+
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "Jego sprawdzenia, historia i przerwy zostaną usunięte."
@@ -2253,6 +2303,14 @@ msgstr "Układ"
 #: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "Szerokość układu"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "ldaps://dc.example.com:636, or ldap://dc.example.com:389 with StartTLS."
+msgstr "ldaps://dc.example.com:636 lub ldap://dc.example.com:389 ze StartTLS."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
+msgstr "Pozwól użytkownikom logować się kontem z katalogu LDAP, takiego jak Active Directory. Ich rola wynika z grup; drugi składnik każdego użytkownika nadal obowiązuje."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
@@ -2882,6 +2940,9 @@ msgstr "Strony / Ustawienia"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "Hasło"
@@ -2893,6 +2954,10 @@ msgstr "Hasło musi zawierać co najmniej 8 znaków."
 #: src/components/login/auth-form.tsx
 msgid "Password must be less than 72 bytes."
 msgstr "Hasło musi być mniejsze niż 72 bajty."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Password of the service account"
+msgstr "Hasło konta usługi"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Password reset request received"
@@ -3145,6 +3210,14 @@ msgstr "Błędy odczytu"
 #: src/components/certificates/certificates-table.tsx
 msgid "Read now"
 msgstr "Odczytaj teraz"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read only"
+msgstr "Tylko odczyt"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read-only group"
+msgstr "Grupa tylko do odczytu"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3407,6 +3480,7 @@ msgstr "Zapisz adres, używając klawisza enter lub przecinka. Pozostaw puste, a
 
 #: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
 msgstr "Zapisz ustawienia"
@@ -3418,6 +3492,10 @@ msgstr "Zapisz te kody odzyskiwania: każdy może raz zastąpić kod z aplikacji
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "Zapisany w bazie danych. Nie wygasa, dopóki go nie wyłączysz."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Saved. Leave empty to keep it."
+msgstr "Zapisane. Pozostaw puste, aby je zachować."
 
 #: src/components/routes/settings/security.tsx
 msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
@@ -3444,6 +3522,10 @@ msgstr "Planowana konserwacja"
 #: src/lib/header-icons.ts
 msgid "Search"
 msgstr "Szukaj"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Search base"
+msgstr "Baza wyszukiwania"
 
 #: src/components/command-palette.tsx
 #~ msgid "Search for systems or settings..."
@@ -3579,11 +3661,19 @@ msgstr "Numer seryjny"
 msgid "Serial Number"
 msgstr "Numer seryjny"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Server URL"
+msgstr "Adres URL serwera"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Usługa"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Service account"
+msgstr "Konto usługi"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Service alerts"
@@ -3649,6 +3739,7 @@ msgstr "Ustawienia"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Settings saved"
 msgstr "Ustawienia zostały zapisane"
 
@@ -3675,6 +3766,10 @@ msgstr "Wyłączenie"
 #: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "Zaloguj się"
+
+#: src/components/login/ldap-form.tsx
+msgid "Sign in with the directory"
+msgstr "Zaloguj się przez katalog"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Signature"
@@ -3924,6 +4019,10 @@ msgstr "Jednostka temperatury"
 msgid "Temperatures of system sensors"
 msgstr "Temperatury czujników systemowych."
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Test"
+msgstr "Test"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Test <0>URL</0>"
 msgstr "Test <0>URL</0>"
@@ -3935,6 +4034,14 @@ msgstr "Testuj heartbeat"
 #: src/components/routes/settings/notifications.tsx
 msgid "Test notification sent"
 msgstr "Testowe powiadomienie wysłane."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the connection"
+msgstr "Testuj połączenie"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the login"
+msgstr "Testuj logowanie"
 
 #: src/lib/quiet-hours.ts
 msgid "Testing"
@@ -4039,6 +4146,10 @@ msgstr "Ten agent jest zbyt stary, aby zarządzać nim z huba: zaktualizuj go ra
 #: src/components/sensors/sensor-dialog.tsx
 msgid "This host already has a sensor: {added} new check(s) were added to it."
 msgstr "Ten host ma już czujnik: dodano do niego {added} nowych sprawdzeń."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "This placeholder is replaced by the name typed at the login:"
+msgstr "Ten symbol zastępczy jest zastępowany nazwą wpisaną przy logowaniu:"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This sensor until {until}"
@@ -4430,10 +4541,30 @@ msgstr "Używane"
 msgid "Used by"
 msgstr "Używany przez"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "User"
+msgstr "Użytkownik"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "User filter"
+msgstr "Filtr użytkowników"
+
+#: src/components/login/ldap-form.tsx
+msgid "Username or email of the directory"
+msgstr "Nazwa użytkownika lub e-mail z katalogu"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Username to test (optional)"
+msgstr "Nazwa użytkownika do testu (opcjonalnie)"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
 msgstr "Użytkownicy"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Users group"
+msgstr "Grupa użytkowników"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgctxt "Disk I/O utilization"
@@ -4528,6 +4659,10 @@ msgstr "Wprowadzone dane zostaną utracone."
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "When enabled, this token allows agents to self-register without prior system creation."
 msgstr "Gdy jest włączony, ten token pozwala agentom na samodzielną rejestrację bez wcześniejszego tworzenia systemu."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "When set, the other accounts can't log in."
+msgstr "Po ustawieniu pozostałe konta nie mogą się zalogować."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."

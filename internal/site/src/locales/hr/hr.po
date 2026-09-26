@@ -350,8 +350,13 @@ msgstr "Prilagodite širinu glavnog rasporeda"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Admin"
 msgstr "Admin"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Admins group"
+msgstr "Grupa administratora"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "After"
@@ -670,6 +675,10 @@ msgstr "prosj."
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "Prosjek 1 h"
+
+#: src/components/login/ldap-form.tsx
+msgid "Back to the other logins"
+msgstr "Natrag na ostale prijave"
 
 #: src/lib/quiet-hours.ts
 msgid "Backup"
@@ -1231,6 +1240,10 @@ msgstr "Stvori"
 msgid "Create account"
 msgstr "Napravite račun"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Create the users at their first login (otherwise, only the existing users of the same email)"
+msgstr "Stvori korisnike pri prvoj prijavi (inače samo postojeće korisnike iste e-pošte)"
+
 #. Context: date created
 #. Context: date created
 #: src/components/alerts-history-columns.tsx
@@ -1408,6 +1421,17 @@ msgstr "Uređaj"
 msgid "Devices"
 msgstr "Uređaji"
 
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
+msgid "Directory (LDAP)"
+msgstr "Imenik (LDAP)"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+msgid "Directory account"
+msgstr "Račun imenika"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Disable"
@@ -1448,6 +1472,14 @@ msgstr "Iskorištenost diska od {extraFsName}"
 msgctxt "Layout display options"
 msgid "Display"
 msgstr "Prikaz"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Distinguished name or user@domain of the account searching the users."
+msgstr "Razlikovno ime ili user@domain računa koji traži korisnike."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Do not check the certificate of the server"
+msgstr "Ne provjeravaj certifikat poslužitelja"
 
 #: src/components/discard-guard.tsx
 msgid "Do you really want to cancel your input?"
@@ -1543,6 +1575,10 @@ msgstr "Uredi senzor"
 msgid "Email"
 msgstr "Email"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Email attribute"
+msgstr "Atribut e-pošte"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Email notifications"
 msgstr "Email obavijesti"
@@ -1559,6 +1595,10 @@ msgstr "Prazno"
 #: src/components/routes/settings/security.tsx
 msgid "Enable"
 msgstr "Uključi"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Enable the login with the directory"
+msgstr "Uključi prijavu putem imenika"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1619,6 +1659,8 @@ msgstr "Efemeran"
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/ldap.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1924,6 +1966,10 @@ msgstr "Grupa spremljena"
 msgid "Groups"
 msgstr "Grupe"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Groups and roles"
+msgstr "Grupe i uloge"
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
 msgstr "Grupe organiziraju mrežne senzore za sve korisnike. Brisanjem grupe njezini senzori ostaju bez grupe."
@@ -2156,6 +2202,10 @@ msgstr "Izdao {linkIssuer}, vrijedi do {linkUntil}"
 msgid "Issued to"
 msgstr "Izdano za"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "It works."
+msgstr "Radi."
+
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "Njegove provjere, povijest i prekidi bit će izbrisani."
@@ -2253,6 +2303,14 @@ msgstr "Izgled"
 #: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "Širina rasporeda"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "ldaps://dc.example.com:636, or ldap://dc.example.com:389 with StartTLS."
+msgstr "ldaps://dc.example.com:636 ili ldap://dc.example.com:389 sa StartTLS."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
+msgstr "Omogućite korisnicima prijavu računom iz LDAP imenika kao što je Active Directory. Uloga im prati grupe; drugi faktor svakog korisnika i dalje vrijedi."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
@@ -2882,6 +2940,9 @@ msgstr "Stranice / Postavke"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "Lozinka"
@@ -2893,6 +2954,10 @@ msgstr "Lozinka mora imati najmanje 8 znakova."
 #: src/components/login/auth-form.tsx
 msgid "Password must be less than 72 bytes."
 msgstr "Lozinka mora biti kraća od 72 bajta."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Password of the service account"
+msgstr "Lozinka servisnog računa"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Password reset request received"
@@ -3145,6 +3210,14 @@ msgstr "Pogreške čitanja"
 #: src/components/certificates/certificates-table.tsx
 msgid "Read now"
 msgstr "Pročitaj sada"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read only"
+msgstr "Samo za čitanje"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read-only group"
+msgstr "Grupa samo za čitanje"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3407,6 +3480,7 @@ msgstr "Spremite adresu pomoću tipke enter ili zarez. Ostavite prazno kako bist
 
 #: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
 msgstr "Spremi Postavke"
@@ -3418,6 +3492,10 @@ msgstr "Spremite ove kodove za oporavak: svaki jednom zamjenjuje kod aplikacije 
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "Spremljeno u bazi podataka i ne istječe dok ga ne onemogućite."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Saved. Leave empty to keep it."
+msgstr "Spremljeno. Ostavite prazno da biste je zadržali."
 
 #: src/components/routes/settings/security.tsx
 msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
@@ -3444,6 +3522,10 @@ msgstr "Planirano održavanje"
 #: src/lib/header-icons.ts
 msgid "Search"
 msgstr "Pretraži"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Search base"
+msgstr "Baza pretraživanja"
 
 #: src/components/command-palette.tsx
 #~ msgid "Search for systems or settings..."
@@ -3579,11 +3661,19 @@ msgstr "Serijski broj"
 msgid "Serial Number"
 msgstr "Serijski broj"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Server URL"
+msgstr "URL poslužitelja"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Usluga"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Service account"
+msgstr "Servisni račun"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Service alerts"
@@ -3649,6 +3739,7 @@ msgstr "Postavke"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Settings saved"
 msgstr "Postavke spremljene"
 
@@ -3675,6 +3766,10 @@ msgstr "Isključivanje"
 #: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "Prijava"
+
+#: src/components/login/ldap-form.tsx
+msgid "Sign in with the directory"
+msgstr "Prijava putem imenika"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Signature"
@@ -3924,6 +4019,10 @@ msgstr "Mjerna jedinica za temperaturu"
 msgid "Temperatures of system sensors"
 msgstr "Temperature sustavnih mjerila"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Test"
+msgstr "Test"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Test <0>URL</0>"
 msgstr "Probni <0>URL</0>"
@@ -3935,6 +4034,14 @@ msgstr "Testiraj heartbeat"
 #: src/components/routes/settings/notifications.tsx
 msgid "Test notification sent"
 msgstr "Probna obavijest poslana"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the connection"
+msgstr "Testiraj vezu"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the login"
+msgstr "Testiraj prijavu"
 
 #: src/lib/quiet-hours.ts
 msgid "Testing"
@@ -4039,6 +4146,10 @@ msgstr "Ovaj agent je prestar za upravljanje iz huba: ažurirajte ga jednom na s
 #: src/components/sensors/sensor-dialog.tsx
 msgid "This host already has a sensor: {added} new check(s) were added to it."
 msgstr "Ovaj host već ima senzor: dodano mu je {added} novih provjera."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "This placeholder is replaced by the name typed at the login:"
+msgstr "Ovaj rezervirani tekst zamjenjuje se imenom unesenim pri prijavi:"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This sensor until {until}"
@@ -4430,10 +4541,30 @@ msgstr "Iskorišteno"
 msgid "Used by"
 msgstr "Koristi"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "User"
+msgstr "Korisnik"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "User filter"
+msgstr "Filtar korisnika"
+
+#: src/components/login/ldap-form.tsx
+msgid "Username or email of the directory"
+msgstr "Korisničko ime ili e-pošta iz imenika"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Username to test (optional)"
+msgstr "Korisničko ime za test (neobavezno)"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
 msgstr "Korisnici"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Users group"
+msgstr "Grupa korisnika"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgctxt "Disk I/O utilization"
@@ -4528,6 +4659,10 @@ msgstr "Uneseno će biti izgubljeno."
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "When enabled, this token allows agents to self-register without prior system creation."
 msgstr "Kada je omogućen, ovaj token omogućuje agentima da se sami registriraju bez prethodnog stvaranja sustava."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "When set, the other accounts can't log in."
+msgstr "Ako je postavljena, ostali računi se ne mogu prijaviti."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."

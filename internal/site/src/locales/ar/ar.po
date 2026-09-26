@@ -350,8 +350,13 @@ msgstr "تعديل عرض التخطيط الرئيسي"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Admin"
 msgstr "مسؤول"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Admins group"
+msgstr "مجموعة المسؤولين"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "After"
@@ -670,6 +675,10 @@ msgstr "متوسط"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "متوسط 1h"
+
+#: src/components/login/ldap-form.tsx
+msgid "Back to the other logins"
+msgstr "العودة إلى طرق الدخول الأخرى"
 
 #: src/lib/quiet-hours.ts
 msgid "Backup"
@@ -1231,6 +1240,10 @@ msgstr "إنشاء"
 msgid "Create account"
 msgstr "إنشاء حساب"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Create the users at their first login (otherwise, only the existing users of the same email)"
+msgstr "إنشاء المستخدمين عند أول تسجيل دخول (وإلا، فقط المستخدمون الموجودون بالبريد نفسه)"
+
 #. Context: date created
 #. Context: date created
 #: src/components/alerts-history-columns.tsx
@@ -1408,6 +1421,17 @@ msgstr "الجهاز"
 msgid "Devices"
 msgstr "الأجهزة"
 
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
+msgid "Directory (LDAP)"
+msgstr "الدليل (LDAP)"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+msgid "Directory account"
+msgstr "حساب الدليل"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Disable"
@@ -1448,6 +1472,14 @@ msgstr "استخدام القرص لـ {extraFsName}"
 msgctxt "Layout display options"
 msgid "Display"
 msgstr "عرض"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Distinguished name or user@domain of the account searching the users."
+msgstr "الاسم المميز أو user@domain للحساب الذي يبحث عن المستخدمين."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Do not check the certificate of the server"
+msgstr "عدم التحقق من شهادة الخادم"
 
 #: src/components/discard-guard.tsx
 msgid "Do you really want to cancel your input?"
@@ -1543,6 +1575,10 @@ msgstr "تعديل المستشعر"
 msgid "Email"
 msgstr "البريد الإشباكي"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Email attribute"
+msgstr "سمة البريد الإلكتروني"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Email notifications"
 msgstr "إشعارات البريد الإشباكي"
@@ -1559,6 +1595,10 @@ msgstr "فارغة"
 #: src/components/routes/settings/security.tsx
 msgid "Enable"
 msgstr "تفعيل"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Enable the login with the directory"
+msgstr "تفعيل تسجيل الدخول بالدليل"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1619,6 +1659,8 @@ msgstr "مؤقت"
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/ldap.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1924,6 +1966,10 @@ msgstr "تم حفظ المجموعة"
 msgid "Groups"
 msgstr "المجموعات"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Groups and roles"
+msgstr "المجموعات والأدوار"
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
 msgstr "تنظم المجموعات مستشعرات الشبكة لجميع المستخدمين. حذف مجموعة يحتفظ بمستشعراتها دون مجموعة."
@@ -2156,6 +2202,10 @@ msgstr "صادرة عن {linkIssuer}، صالحة حتى {linkUntil}"
 msgid "Issued to"
 msgstr "صادرة لـ"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "It works."
+msgstr "يعمل."
+
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "سيتم حذف فحوصاته وسجله وانقطاعاته."
@@ -2253,6 +2303,14 @@ msgstr "التخطيط"
 #: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "عرض التخطيط"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "ldaps://dc.example.com:636, or ldap://dc.example.com:389 with StartTLS."
+msgstr "ldaps://dc.example.com:636، أو ldap://dc.example.com:389 مع StartTLS."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
+msgstr "اسمح للمستخدمين بتسجيل الدخول بحسابهم في دليل LDAP مثل Active Directory. يتبع دورهم مجموعاتهم، ويبقى العامل الثاني لكل مستخدم ساريًا."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
@@ -2882,6 +2940,9 @@ msgstr "الصفحات / الإعدادات"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "كلمة المرور"
@@ -2893,6 +2954,10 @@ msgstr "كلمة المرور يجب أن تتكون من 8 أحرف على ال
 #: src/components/login/auth-form.tsx
 msgid "Password must be less than 72 bytes."
 msgstr "يجب أن تكون كلمة المرور أقل من 72 بايت."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Password of the service account"
+msgstr "كلمة مرور حساب الخدمة"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Password reset request received"
@@ -3145,6 +3210,14 @@ msgstr "أخطاء القراءة"
 #: src/components/certificates/certificates-table.tsx
 msgid "Read now"
 msgstr "القراءة الآن"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read only"
+msgstr "قراءة فقط"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read-only group"
+msgstr "مجموعة القراءة فقط"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3407,6 +3480,7 @@ msgstr "احفظ العنوان باستخدام مفتاح الإدخال أو 
 
 #: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
 msgstr "حفظ الإعدادات"
@@ -3418,6 +3492,10 @@ msgstr "احفظ رموز الاسترداد هذه: يمكن لكل منها أ
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "محفوظ في قاعدة البيانات ولا ينتهي حتى تقوم بتعطيله."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Saved. Leave empty to keep it."
+msgstr "محفوظة. اتركها فارغة للإبقاء عليها."
 
 #: src/components/routes/settings/security.tsx
 msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
@@ -3444,6 +3522,10 @@ msgstr "صيانة مجدولة"
 #: src/lib/header-icons.ts
 msgid "Search"
 msgstr "بحث"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Search base"
+msgstr "قاعدة البحث"
 
 #: src/components/command-palette.tsx
 #~ msgid "Search for systems or settings..."
@@ -3579,11 +3661,19 @@ msgstr "الرقم التسلسلي"
 msgid "Serial Number"
 msgstr "الرقم التسلسلي"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Server URL"
+msgstr "عنوان الخادم"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "الخدمة"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Service account"
+msgstr "حساب الخدمة"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Service alerts"
@@ -3649,6 +3739,7 @@ msgstr "الإعدادات"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Settings saved"
 msgstr "تم حفظ الإعدادات"
 
@@ -3675,6 +3766,10 @@ msgstr "الإيقاف"
 #: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "تسجيل الدخول"
+
+#: src/components/login/ldap-form.tsx
+msgid "Sign in with the directory"
+msgstr "تسجيل الدخول بالدليل"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Signature"
@@ -3924,6 +4019,10 @@ msgstr "وحدة درجة الحرارة"
 msgid "Temperatures of system sensors"
 msgstr "درجات حرارة مستشعرات النظام"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Test"
+msgstr "اختبار"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Test <0>URL</0>"
 msgstr "اختبار <0>URL</0>"
@@ -3935,6 +4034,14 @@ msgstr "اختبار نبضة القلب"
 #: src/components/routes/settings/notifications.tsx
 msgid "Test notification sent"
 msgstr "تم إرسال إشعار الاختبار"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the connection"
+msgstr "اختبار الاتصال"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the login"
+msgstr "اختبار تسجيل الدخول"
 
 #: src/lib/quiet-hours.ts
 msgid "Testing"
@@ -4039,6 +4146,10 @@ msgstr "هذا الوكيل قديم جدًا لإدارته من المركز: 
 #: src/components/sensors/sensor-dialog.tsx
 msgid "This host already has a sensor: {added} new check(s) were added to it."
 msgstr "لهذا المضيف مستشعر بالفعل: أُضيف إليه {added} فحص جديد."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "This placeholder is replaced by the name typed at the login:"
+msgstr "يُستبدل هذا العنصر النائب بالاسم المُدخل عند تسجيل الدخول:"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This sensor until {until}"
@@ -4430,10 +4541,30 @@ msgstr "مستخدم"
 msgid "Used by"
 msgstr "مستخدمة بواسطة"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "User"
+msgstr "مستخدم"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "User filter"
+msgstr "مرشح المستخدم"
+
+#: src/components/login/ldap-form.tsx
+msgid "Username or email of the directory"
+msgstr "اسم المستخدم أو البريد في الدليل"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Username to test (optional)"
+msgstr "اسم المستخدم للاختبار (اختياري)"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
 msgstr "المستخدمون"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Users group"
+msgstr "مجموعة المستخدمين"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgctxt "Disk I/O utilization"
@@ -4528,6 +4659,10 @@ msgstr "سيُفقد ما كتبته."
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "When enabled, this token allows agents to self-register without prior system creation."
 msgstr "عند التفعيل، يسمح هذا الرمز المميز للوكلاء بالتسجيل الذاتي دون إنشاء نظام مسبق."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "When set, the other accounts can't log in."
+msgstr "عند تعيينها، لا يمكن للحسابات الأخرى تسجيل الدخول."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."

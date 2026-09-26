@@ -350,8 +350,13 @@ msgstr "Sesuaikan lebar layar utama"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Admin"
 msgstr "Admin"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Admins group"
+msgstr "Grup admin"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "After"
@@ -670,6 +675,10 @@ msgstr "rata-rata"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "Rata-rata 1 jam"
+
+#: src/components/login/ldap-form.tsx
+msgid "Back to the other logins"
+msgstr "Kembali ke login lain"
 
 #: src/lib/quiet-hours.ts
 msgid "Backup"
@@ -1231,6 +1240,10 @@ msgstr "Buat"
 msgid "Create account"
 msgstr "Buat akun"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Create the users at their first login (otherwise, only the existing users of the same email)"
+msgstr "Buat pengguna saat login pertama (jika tidak, hanya pengguna yang sudah ada dengan email yang sama)"
+
 #. Context: date created
 #. Context: date created
 #: src/components/alerts-history-columns.tsx
@@ -1408,6 +1421,17 @@ msgstr "Perangkat"
 msgid "Devices"
 msgstr "Perangkat"
 
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
+msgid "Directory (LDAP)"
+msgstr "Direktori (LDAP)"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+msgid "Directory account"
+msgstr "Akun direktori"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Disable"
@@ -1448,6 +1472,14 @@ msgstr "Penggunaan disk dari {extraFsName}"
 msgctxt "Layout display options"
 msgid "Display"
 msgstr "Tampilan"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Distinguished name or user@domain of the account searching the users."
+msgstr "Nama unik atau user@domain dari akun yang mencari pengguna."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Do not check the certificate of the server"
+msgstr "Jangan periksa sertifikat server"
 
 #: src/components/discard-guard.tsx
 msgid "Do you really want to cancel your input?"
@@ -1543,6 +1575,10 @@ msgstr "Edit sensor"
 msgid "Email"
 msgstr "Email"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Email attribute"
+msgstr "Atribut email"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Email notifications"
 msgstr "Notifikasi email"
@@ -1559,6 +1595,10 @@ msgstr "Kosong"
 #: src/components/routes/settings/security.tsx
 msgid "Enable"
 msgstr "Aktifkan"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Enable the login with the directory"
+msgstr "Aktifkan login dengan direktori"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1619,6 +1659,8 @@ msgstr "Sementara"
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/ldap.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1924,6 +1966,10 @@ msgstr "Grup disimpan"
 msgid "Groups"
 msgstr "Grup"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Groups and roles"
+msgstr "Grup dan peran"
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
 msgstr "Grup mengatur sensor jaringan untuk semua pengguna. Menghapus grup tetap menyimpan sensornya tanpa grup."
@@ -2156,6 +2202,10 @@ msgstr "Diterbitkan oleh {linkIssuer}, berlaku hingga {linkUntil}"
 msgid "Issued to"
 msgstr "Diterbitkan untuk"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "It works."
+msgstr "Berhasil."
+
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "Pemeriksaan, riwayat, dan gangguannya akan dihapus."
@@ -2253,6 +2303,14 @@ msgstr "Tampilan"
 #: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "Lebar tampilan"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "ldaps://dc.example.com:636, or ldap://dc.example.com:389 with StartTLS."
+msgstr "ldaps://dc.example.com:636, atau ldap://dc.example.com:389 dengan StartTLS."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
+msgstr "Izinkan pengguna masuk dengan akun direktori LDAP seperti Active Directory. Peran mereka mengikuti grup mereka; faktor kedua setiap pengguna tetap berlaku."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
@@ -2882,6 +2940,9 @@ msgstr "Halaman / Pengaturan"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "Kata sandi"
@@ -2893,6 +2954,10 @@ msgstr "Kata sandi harus minimal 8 karakter."
 #: src/components/login/auth-form.tsx
 msgid "Password must be less than 72 bytes."
 msgstr "Kata sandi harus kurang dari 72 byte."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Password of the service account"
+msgstr "Kata sandi akun layanan"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Password reset request received"
@@ -3145,6 +3210,14 @@ msgstr "Kesalahan baca"
 #: src/components/certificates/certificates-table.tsx
 msgid "Read now"
 msgstr "Baca sekarang"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read only"
+msgstr "Hanya baca"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read-only group"
+msgstr "Grup hanya baca"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3407,6 +3480,7 @@ msgstr "Simpan alamat menggunakan tombol enter atau koma. Biarkan kosong untuk m
 
 #: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
 msgstr "Simpan Pengaturan"
@@ -3418,6 +3492,10 @@ msgstr "Simpan kode pemulihan ini: masing-masing dapat menggantikan kode aplikas
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "Disimpan di database dan tidak kedaluwarsa sampai Anda menonaktifkannya."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Saved. Leave empty to keep it."
+msgstr "Tersimpan. Biarkan kosong untuk mempertahankannya."
 
 #: src/components/routes/settings/security.tsx
 msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
@@ -3444,6 +3522,10 @@ msgstr "Pemeliharaan terjadwal"
 #: src/lib/header-icons.ts
 msgid "Search"
 msgstr "Cari"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Search base"
+msgstr "Basis pencarian"
 
 #: src/components/command-palette.tsx
 #~ msgid "Search for systems or settings..."
@@ -3579,11 +3661,19 @@ msgstr "Nomor seri"
 msgid "Serial Number"
 msgstr "Nomor Seri"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Server URL"
+msgstr "URL server"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Layanan"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Service account"
+msgstr "Akun layanan"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Service alerts"
@@ -3649,6 +3739,7 @@ msgstr "Pengaturan"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Settings saved"
 msgstr "Pengaturan disimpan"
 
@@ -3675,6 +3766,10 @@ msgstr "Pematian"
 #: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "Masuk"
+
+#: src/components/login/ldap-form.tsx
+msgid "Sign in with the directory"
+msgstr "Masuk dengan direktori"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Signature"
@@ -3924,6 +4019,10 @@ msgstr "Unit temperatur"
 msgid "Temperatures of system sensors"
 msgstr "Temperatur sensor sistem"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Test"
+msgstr "Uji"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Test <0>URL</0>"
 msgstr "Tes <0>URL</0>"
@@ -3935,6 +4034,14 @@ msgstr "Tes heartbeat"
 #: src/components/routes/settings/notifications.tsx
 msgid "Test notification sent"
 msgstr "Notifikasi tes dikirim"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the connection"
+msgstr "Uji koneksi"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the login"
+msgstr "Uji login"
 
 #: src/lib/quiet-hours.ts
 msgid "Testing"
@@ -4039,6 +4146,10 @@ msgstr "Agen ini terlalu lama untuk dikelola dari hub: perbarui sekali langsung 
 #: src/components/sensors/sensor-dialog.tsx
 msgid "This host already has a sensor: {added} new check(s) were added to it."
 msgstr "Host ini sudah memiliki sensor: {added} pemeriksaan baru ditambahkan."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "This placeholder is replaced by the name typed at the login:"
+msgstr "Placeholder ini diganti dengan nama yang diketik saat login:"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This sensor until {until}"
@@ -4430,10 +4541,30 @@ msgstr "Digunakan"
 msgid "Used by"
 msgstr "Digunakan oleh"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "User"
+msgstr "Pengguna"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "User filter"
+msgstr "Filter pengguna"
+
+#: src/components/login/ldap-form.tsx
+msgid "Username or email of the directory"
+msgstr "Nama pengguna atau email direktori"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Username to test (optional)"
+msgstr "Nama pengguna untuk diuji (opsional)"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
 msgstr "Pengguna"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Users group"
+msgstr "Grup pengguna"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgctxt "Disk I/O utilization"
@@ -4528,6 +4659,10 @@ msgstr "Isian Anda akan hilang."
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "When enabled, this token allows agents to self-register without prior system creation."
 msgstr "Ketika diaktifkan, token ini memungkinkan agen untuk mendaftar sendiri tanpa pembuatan sistem."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "When set, the other accounts can't log in."
+msgstr "Jika diatur, akun lain tidak dapat login."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."

@@ -4,6 +4,7 @@ import { useStore } from "@nanostores/react"
 import { getPagePath, redirectPage } from "@nanostores/router"
 import {
 	AlertOctagonIcon,
+	Building2Icon,
 	BellIcon,
 	FileSlidersIcon,
 	FingerprintIcon,
@@ -26,6 +27,7 @@ import { SidebarNav } from "./sidebar-nav.tsx"
 const generalSettingsImport = () => import("./general.tsx")
 const appearanceSettingsImport = () => import("./appearance.tsx")
 const securitySettingsImport = () => import("./security.tsx")
+const ldapSettingsImport = () => import("./ldap.tsx")
 const notificationsSettingsImport = () => import("./notifications.tsx")
 const configYamlSettingsImport = () => import("./config-yaml.tsx")
 const fingerprintsSettingsImport = () => import("./tokens-fingerprints.tsx")
@@ -35,6 +37,7 @@ const heartbeatSettingsImport = () => import("./heartbeat.tsx")
 const GeneralSettings = lazy(generalSettingsImport)
 const AppearanceSettings = lazy(appearanceSettingsImport)
 const SecuritySettings = lazy(securitySettingsImport)
+const LdapSettings = lazy(ldapSettingsImport)
 const NotificationsSettings = lazy(notificationsSettingsImport)
 const ConfigYamlSettings = lazy(configYamlSettingsImport)
 const FingerprintsSettings = lazy(fingerprintsSettingsImport)
@@ -106,6 +109,13 @@ export default function SettingsLayout() {
 			preload: heartbeatSettingsImport,
 		},
 		{
+			title: t`Directory (LDAP)`,
+			href: getPagePath($router, "settings", { name: "ldap" }),
+			icon: Building2Icon,
+			admin: true,
+			preload: ldapSettingsImport,
+		},
+		{
 			title: t`YAML Config`,
 			href: getPagePath($router, "settings", { name: "config" }),
 			icon: FileSlidersIcon,
@@ -160,6 +170,8 @@ function SettingsContent({ name }: { name: string }) {
 			return <AppearanceSettings userSettings={userSettings} />
 		case "security":
 			return <SecuritySettings />
+		case "ldap":
+			return <LdapSettings />
 		case "notifications":
 			return <NotificationsSettings userSettings={userSettings} />
 		case "config":

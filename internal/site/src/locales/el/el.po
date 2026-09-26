@@ -350,8 +350,13 @@ msgstr "Προσαρμόστε το πλάτος της κύριας διάτα�
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Admin"
 msgstr "Διαχειριστής"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Admins group"
+msgstr "Ομάδα διαχειριστών"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "After"
@@ -670,6 +675,10 @@ msgstr "μ.ο."
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "Μέσος όρος 1ώρου"
+
+#: src/components/login/ldap-form.tsx
+msgid "Back to the other logins"
+msgstr "Επιστροφή στις άλλες συνδέσεις"
 
 #: src/lib/quiet-hours.ts
 msgid "Backup"
@@ -1231,6 +1240,10 @@ msgstr "Δημιουργία"
 msgid "Create account"
 msgstr "Δημιουργία λογαριασμού"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Create the users at their first login (otherwise, only the existing users of the same email)"
+msgstr "Δημιουργία χρηστών στην πρώτη σύνδεση (αλλιώς μόνο οι υπάρχοντες χρήστες με το ίδιο email)"
+
 #. Context: date created
 #. Context: date created
 #: src/components/alerts-history-columns.tsx
@@ -1408,6 +1421,17 @@ msgstr "Συσκευή"
 msgid "Devices"
 msgstr "Συσκευές"
 
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
+msgid "Directory (LDAP)"
+msgstr "Κατάλογος (LDAP)"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+msgid "Directory account"
+msgstr "Λογαριασμός καταλόγου"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Disable"
@@ -1448,6 +1472,14 @@ msgstr "Χρήση δίσκου του {extraFsName}"
 msgctxt "Layout display options"
 msgid "Display"
 msgstr "Εμφάνιση"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Distinguished name or user@domain of the account searching the users."
+msgstr "Διακεκριμένο όνομα ή user@domain του λογαριασμού που αναζητά τους χρήστες."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Do not check the certificate of the server"
+msgstr "Να μην ελέγχεται το πιστοποιητικό του διακομιστή"
 
 #: src/components/discard-guard.tsx
 msgid "Do you really want to cancel your input?"
@@ -1543,6 +1575,10 @@ msgstr "Επεξεργασία αισθητήρα"
 msgid "Email"
 msgstr "Email"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Email attribute"
+msgstr "Χαρακτηριστικό email"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Email notifications"
 msgstr "Ειδοποιήσεις μέσω email"
@@ -1559,6 +1595,10 @@ msgstr "Άδειο"
 #: src/components/routes/settings/security.tsx
 msgid "Enable"
 msgstr "Ενεργοποίηση"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Enable the login with the directory"
+msgstr "Ενεργοποίηση σύνδεσης με τον κατάλογο"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1619,6 +1659,8 @@ msgstr "Προσωρινό"
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/ldap.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1924,6 +1966,10 @@ msgstr "Η ομάδα αποθηκεύτηκε"
 msgid "Groups"
 msgstr "Ομάδες"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Groups and roles"
+msgstr "Ομάδες και ρόλοι"
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
 msgstr "Οι ομάδες οργανώνουν τους αισθητήρες δικτύου για όλους τους χρήστες. Η διαγραφή μιας ομάδας διατηρεί τους αισθητήρες της χωρίς ομάδα."
@@ -2156,6 +2202,10 @@ msgstr "Εκδόθηκε από {linkIssuer}, ισχύει έως {linkUntil}"
 msgid "Issued to"
 msgstr "Εκδόθηκε για"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "It works."
+msgstr "Λειτουργεί."
+
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "Οι έλεγχοι, το ιστορικό και οι διακοπές του θα διαγραφούν."
@@ -2253,6 +2303,14 @@ msgstr "Διάταξη"
 #: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "Πλάτος διάταξης"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "ldaps://dc.example.com:636, or ldap://dc.example.com:389 with StartTLS."
+msgstr "ldaps://dc.example.com:636 ή ldap://dc.example.com:389 με StartTLS."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
+msgstr "Επιτρέψτε στους χρήστες να συνδέονται με τον λογαριασμό τους σε κατάλογο LDAP όπως το Active Directory. Ο ρόλος τους ακολουθεί τις ομάδες τους· ο δεύτερος παράγοντας κάθε χρήστη εξακολουθεί να ισχύει."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
@@ -2882,6 +2940,9 @@ msgstr "Σελίδες / Ρυθμίσεις"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "Κωδικός πρόσβασης"
@@ -2893,6 +2954,10 @@ msgstr "Ο κωδικός πρόσβασης πρέπει να έχει τουλ
 #: src/components/login/auth-form.tsx
 msgid "Password must be less than 72 bytes."
 msgstr "Ο κωδικός πρόσβασης πρέπει να είναι μικρότερος από 72 byte."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Password of the service account"
+msgstr "Κωδικός πρόσβασης του λογαριασμού υπηρεσίας"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Password reset request received"
@@ -3145,6 +3210,14 @@ msgstr "Σφάλματα ανάγνωσης"
 #: src/components/certificates/certificates-table.tsx
 msgid "Read now"
 msgstr "Ανάγνωση τώρα"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read only"
+msgstr "Μόνο ανάγνωση"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read-only group"
+msgstr "Ομάδα μόνο ανάγνωσης"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3407,6 +3480,7 @@ msgstr "Αποθηκεύστε τη διεύθυνση με Enter ή κόμμα.
 
 #: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
 msgstr "Αποθήκευση ρυθμίσεων"
@@ -3418,6 +3492,10 @@ msgstr "Αποθηκεύστε αυτούς τους κωδικούς ανάκτ
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "Αποθηκεύεται στη βάση δεδομένων και δεν λήγει μέχρι να το απενεργοποιήσετε."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Saved. Leave empty to keep it."
+msgstr "Αποθηκευμένος. Αφήστε κενό για να διατηρηθεί."
 
 #: src/components/routes/settings/security.tsx
 msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
@@ -3444,6 +3522,10 @@ msgstr "Προγραμματισμένη συντήρηση"
 #: src/lib/header-icons.ts
 msgid "Search"
 msgstr "Αναζήτηση"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Search base"
+msgstr "Βάση αναζήτησης"
 
 #: src/components/command-palette.tsx
 #~ msgid "Search for systems or settings..."
@@ -3579,11 +3661,19 @@ msgstr "Σειριακός αριθμός"
 msgid "Serial Number"
 msgstr "Σειριακός αριθμός"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Server URL"
+msgstr "URL διακομιστή"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Υπηρεσία"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Service account"
+msgstr "Λογαριασμός υπηρεσίας"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Service alerts"
@@ -3649,6 +3739,7 @@ msgstr "Ρυθμίσεις"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Settings saved"
 msgstr "Οι ρυθμίσεις αποθηκεύτηκαν"
 
@@ -3675,6 +3766,10 @@ msgstr "Τερματισμός"
 #: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "Σύνδεση"
+
+#: src/components/login/ldap-form.tsx
+msgid "Sign in with the directory"
+msgstr "Σύνδεση με τον κατάλογο"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Signature"
@@ -3924,6 +4019,10 @@ msgstr "Μονάδα μέτρησης θερμοκρασίας"
 msgid "Temperatures of system sensors"
 msgstr "Θερμοκρασίες αισθητήρων συστήματος"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Test"
+msgstr "Δοκιμή"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Test <0>URL</0>"
 msgstr "Δοκιμή <0>URL</0>"
@@ -3935,6 +4034,14 @@ msgstr "Δοκιμή heartbeat"
 #: src/components/routes/settings/notifications.tsx
 msgid "Test notification sent"
 msgstr "Η δοκιμαστική ειδοποίηση στάλθηκε"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the connection"
+msgstr "Δοκιμή σύνδεσης"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the login"
+msgstr "Δοκιμή σύνδεσης χρήστη"
 
 #: src/lib/quiet-hours.ts
 msgid "Testing"
@@ -4039,6 +4146,10 @@ msgstr "Αυτός ο πράκτορας είναι πολύ παλιός για
 #: src/components/sensors/sensor-dialog.tsx
 msgid "This host already has a sensor: {added} new check(s) were added to it."
 msgstr "Αυτός ο υπολογιστής έχει ήδη αισθητήρα: προστέθηκαν {added} νέοι έλεγχοι."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "This placeholder is replaced by the name typed at the login:"
+msgstr "Αυτό το σύμβολο αντικαθίσταται από το όνομα που πληκτρολογείται στη σύνδεση:"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This sensor until {until}"
@@ -4430,10 +4541,30 @@ msgstr "Χρησιμοποιείται"
 msgid "Used by"
 msgstr "Χρησιμοποιείται από"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "User"
+msgstr "Χρήστης"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "User filter"
+msgstr "Φίλτρο χρηστών"
+
+#: src/components/login/ldap-form.tsx
+msgid "Username or email of the directory"
+msgstr "Όνομα χρήστη ή email του καταλόγου"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Username to test (optional)"
+msgstr "Όνομα χρήστη για δοκιμή (προαιρετικό)"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
 msgstr "Χρήστες"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Users group"
+msgstr "Ομάδα χρηστών"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgctxt "Disk I/O utilization"
@@ -4528,6 +4659,10 @@ msgstr "Όσα πληκτρολογήσατε θα χαθούν."
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "When enabled, this token allows agents to self-register without prior system creation."
 msgstr "Όταν είναι ενεργοποιημένο, αυτό το διακριτικό επιτρέπει στους πράκτορες να αυτοκαταχωρίζονται χωρίς προηγούμενη δημιουργία συστήματος."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "When set, the other accounts can't log in."
+msgstr "Όταν οριστεί, οι άλλοι λογαριασμοί δεν μπορούν να συνδεθούν."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."

@@ -21,6 +21,7 @@ import {
 	UsersIcon,
 	PaletteIcon,
 	ShieldCheckIcon,
+	Building2Icon,
 } from "lucide-react"
 import { memo, type ReactNode, useEffect, useMemo, useState } from "react"
 import {
@@ -262,6 +263,21 @@ export default memo(function CommandPalette({ open, setOpen }: { open: boolean; 
 							</span>
 							{SettingsShortcut}
 						</CommandItem>
+						{isAdmin() && (
+							<CommandItem
+								keywords={["ldap", "active directory", "sso"]}
+								onSelect={() => {
+									navigate(getPagePath($router, "settings", { name: "ldap" }))
+									setOpen(false)
+								}}
+							>
+								<Building2Icon className="me-2 size-4" />
+								<span>
+									<Trans>Directory (LDAP)</Trans>
+								</span>
+								{SettingsShortcut}
+							</CommandItem>
+						)}
 						<CommandItem
 							keywords={["help", "oauth", "oidc"]}
 							onSelect={() => {

@@ -350,8 +350,13 @@ msgstr "התאם את רוחב הפריסה הראשית"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Admin"
 msgstr "מנהל"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Admins group"
+msgstr "קבוצת מנהלים"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "After"
@@ -670,6 +675,10 @@ msgstr "ממוצע"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "ממוצע שעה אחת"
+
+#: src/components/login/ldap-form.tsx
+msgid "Back to the other logins"
+msgstr "חזרה לשיטות ההתחברות האחרות"
 
 #: src/lib/quiet-hours.ts
 msgid "Backup"
@@ -1231,6 +1240,10 @@ msgstr "צור"
 msgid "Create account"
 msgstr "צור חשבון"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Create the users at their first login (otherwise, only the existing users of the same email)"
+msgstr "יצירת המשתמשים בהתחברות הראשונה (אחרת, רק משתמשים קיימים עם אותו דוא״ל)"
+
 #. Context: date created
 #. Context: date created
 #: src/components/alerts-history-columns.tsx
@@ -1408,6 +1421,17 @@ msgstr "התקן"
 msgid "Devices"
 msgstr "התקנים"
 
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
+msgid "Directory (LDAP)"
+msgstr "ספרייה (LDAP)"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+msgid "Directory account"
+msgstr "חשבון ספרייה"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Disable"
@@ -1448,6 +1472,14 @@ msgstr "שימוש בדיסק של {extraFsName}"
 msgctxt "Layout display options"
 msgid "Display"
 msgstr "תצוגה"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Distinguished name or user@domain of the account searching the users."
+msgstr "השם המזהה (DN) או user@domain של החשבון שמחפש את המשתמשים."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Do not check the certificate of the server"
+msgstr "לא לבדוק את אישור השרת"
 
 #: src/components/discard-guard.tsx
 msgid "Do you really want to cancel your input?"
@@ -1543,6 +1575,10 @@ msgstr "עריכת חיישן"
 msgid "Email"
 msgstr "אימייל"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Email attribute"
+msgstr "מאפיין הדוא״ל"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Email notifications"
 msgstr "התראות אימייל"
@@ -1559,6 +1595,10 @@ msgstr "ריק"
 #: src/components/routes/settings/security.tsx
 msgid "Enable"
 msgstr "הפעלה"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Enable the login with the directory"
+msgstr "הפעלת התחברות באמצעות הספרייה"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1619,6 +1659,8 @@ msgstr "זמני"
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/ldap.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1924,6 +1966,10 @@ msgstr "הקבוצה נשמרה"
 msgid "Groups"
 msgstr "קבוצות"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Groups and roles"
+msgstr "קבוצות ותפקידים"
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
 msgstr "קבוצות מארגנות את חיישני הרשת עבור כל המשתמשים. מחיקת קבוצה שומרת את החיישנים שלה ללא קבוצה."
@@ -2156,6 +2202,10 @@ msgstr "הונפק על ידי {linkIssuer}, בתוקף עד {linkUntil}"
 msgid "Issued to"
 msgstr "הונפק עבור"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "It works."
+msgstr "זה עובד."
+
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "הבדיקות, ההיסטוריה וההפסקות שלו יימחקו."
@@ -2253,6 +2303,14 @@ msgstr "פריסה"
 #: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "רוחב פריסה"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "ldaps://dc.example.com:636, or ldap://dc.example.com:389 with StartTLS."
+msgstr "ldaps://dc.example.com:636, או ldap://dc.example.com:389 עם StartTLS."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
+msgstr "אפשרו למשתמשים להתחבר עם החשבון שלהם בספריית LDAP כמו Active Directory. התפקיד שלהם נקבע לפי הקבוצות; הגורם השני של כל משתמש עדיין חל."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
@@ -2882,6 +2940,9 @@ msgstr "עמודים / הגדרות"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "סיסמה"
@@ -2893,6 +2954,10 @@ msgstr "הסיסמה חייבת להכיל לפחות 8 תווים."
 #: src/components/login/auth-form.tsx
 msgid "Password must be less than 72 bytes."
 msgstr "הסיסמה חייבת להיות פחות מ-72 בתים."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Password of the service account"
+msgstr "סיסמת חשבון השירות"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Password reset request received"
@@ -3145,6 +3210,14 @@ msgstr "שגיאות קריאה"
 #: src/components/certificates/certificates-table.tsx
 msgid "Read now"
 msgstr "קריאה כעת"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read only"
+msgstr "קריאה בלבד"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read-only group"
+msgstr "קבוצת קריאה בלבד"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3407,6 +3480,7 @@ msgstr "שמור כתובת באמצעות מקש enter או פסיק. השאר 
 
 #: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
 msgstr "שמור הגדרות"
@@ -3418,6 +3492,10 @@ msgstr "שמרו את קודי השחזור: כל אחד מחליף פעם אח�
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "נשמר במסד הנתונים ולא פג תוקף עד שתבטל אותו."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Saved. Leave empty to keep it."
+msgstr "נשמרה. השאירו ריק כדי לשמור אותה."
 
 #: src/components/routes/settings/security.tsx
 msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
@@ -3444,6 +3522,10 @@ msgstr "תחזוקה מתוכננת"
 #: src/lib/header-icons.ts
 msgid "Search"
 msgstr "חיפוש"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Search base"
+msgstr "בסיס החיפוש"
 
 #: src/components/command-palette.tsx
 #~ msgid "Search for systems or settings..."
@@ -3579,11 +3661,19 @@ msgstr "מספר סידורי"
 msgid "Serial Number"
 msgstr "מספר סידורי"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Server URL"
+msgstr "כתובת השרת"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "שירות"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Service account"
+msgstr "חשבון שירות"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Service alerts"
@@ -3649,6 +3739,7 @@ msgstr "הגדרות"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Settings saved"
 msgstr "הגדרות נשמרו"
 
@@ -3675,6 +3766,10 @@ msgstr "כיבוי"
 #: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "התחבר"
+
+#: src/components/login/ldap-form.tsx
+msgid "Sign in with the directory"
+msgstr "התחברות באמצעות הספרייה"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Signature"
@@ -3924,6 +4019,10 @@ msgstr "יחידת טמפרטורה"
 msgid "Temperatures of system sensors"
 msgstr "טמפרטורות של חיישני המערכת"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Test"
+msgstr "בדיקה"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Test <0>URL</0>"
 msgstr "בדוק <0>URL</0>"
@@ -3935,6 +4034,14 @@ msgstr "בדיקת דופק"
 #: src/components/routes/settings/notifications.tsx
 msgid "Test notification sent"
 msgstr "התראת בדיקה נשלחה"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the connection"
+msgstr "בדיקת החיבור"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the login"
+msgstr "בדיקת ההתחברות"
 
 #: src/lib/quiet-hours.ts
 msgid "Testing"
@@ -4039,6 +4146,10 @@ msgstr "הסוכן הזה ישן מדי לניהול מהרכזת: עדכנו א
 #: src/components/sensors/sensor-dialog.tsx
 msgid "This host already has a sensor: {added} new check(s) were added to it."
 msgstr "למארח הזה כבר יש חיישן: נוספו לו {added} בדיקות חדשות."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "This placeholder is replaced by the name typed at the login:"
+msgstr "מציין המיקום הזה מוחלף בשם שהוזן בהתחברות:"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This sensor until {until}"
@@ -4430,10 +4541,30 @@ msgstr "בשימוש"
 msgid "Used by"
 msgstr "בשימוש על ידי"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "User"
+msgstr "משתמש"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "User filter"
+msgstr "מסנן משתמשים"
+
+#: src/components/login/ldap-form.tsx
+msgid "Username or email of the directory"
+msgstr "שם משתמש או דוא״ל בספרייה"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Username to test (optional)"
+msgstr "שם משתמש לבדיקה (אופציונלי)"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
 msgstr "משתמשים"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Users group"
+msgstr "קבוצת משתמשים"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgctxt "Disk I/O utilization"
@@ -4528,6 +4659,10 @@ msgstr "מה שהזנתם יאבד."
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "When enabled, this token allows agents to self-register without prior system creation."
 msgstr "כאשר מופעל, אסימון זה מאפשר לסוכנים להירשם באופן עצמי ללא יצירת מערכת מוקדמת."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "When set, the other accounts can't log in."
+msgstr "כאשר מוגדרת, חשבונות אחרים לא יכולים להתחבר."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."

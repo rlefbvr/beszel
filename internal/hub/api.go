@@ -206,6 +206,13 @@ func (h *Hub) registerApiRoutes(se *core.ServeEvent) error {
 	apiAuth.POST("/mfa/disable", h.disableMFA)
 	apiNoAuth.GET("/mfa/method", h.getMFAMethod)
 	apiNoAuth.POST("/auth-with-totp", h.authWithTOTP)
+	apiNoAuth.POST("/mfa/email-otp", h.requestMFAEmailOTP)
+	// login with the directory (LDAP / Active Directory) and its settings (admins)
+	apiNoAuth.GET("/ldap/status", h.ldapStatus)
+	apiNoAuth.POST("/auth-with-ldap", h.authWithLDAP)
+	apiAuth.GET("/ldap/config", h.getLDAPConfig).BindFunc(requireAdminRole)
+	apiAuth.POST("/ldap/config", h.saveLDAPConfig).BindFunc(requireAdminRole)
+	apiAuth.POST("/ldap/test", h.testLDAPConfig).BindFunc(requireAdminRole)
 	// get or create universal tokens
 	apiAuth.GET("/universal-token", h.getUniversalToken).BindFunc(excludeReadOnlyRole)
 	// update / delete user alerts

@@ -350,8 +350,13 @@ msgstr "Asosiy tartib kengligini sozlang"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Admin"
 msgstr "Admin"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Admins group"
+msgstr "Administratorlar guruhi"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "After"
@@ -670,6 +675,10 @@ msgstr "o‘rt."
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "1 soat o‘rtacha"
+
+#: src/components/login/ldap-form.tsx
+msgid "Back to the other logins"
+msgstr "Boshqa kirish usullariga qaytish"
 
 #: src/lib/quiet-hours.ts
 msgid "Backup"
@@ -1231,6 +1240,10 @@ msgstr "Yaratish"
 msgid "Create account"
 msgstr "Hisob yaratish"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Create the users at their first login (otherwise, only the existing users of the same email)"
+msgstr "Foydalanuvchilarni birinchi kirishda yaratish (aks holda faqat shu pochtali mavjud foydalanuvchilar)"
+
 #. Context: date created
 #. Context: date created
 #: src/components/alerts-history-columns.tsx
@@ -1408,6 +1421,17 @@ msgstr "Qurilma"
 msgid "Devices"
 msgstr "Qurilmalar"
 
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
+msgid "Directory (LDAP)"
+msgstr "Katalog (LDAP)"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+msgid "Directory account"
+msgstr "Katalog hisobi"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Disable"
@@ -1448,6 +1472,14 @@ msgstr "{extraFsName} ning disk ishlatilishi"
 msgctxt "Layout display options"
 msgid "Display"
 msgstr "Ko'rsatish"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Distinguished name or user@domain of the account searching the users."
+msgstr "Foydalanuvchilarni qidiradigan hisobning ajralib turuvchi nomi yoki user@domain."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Do not check the certificate of the server"
+msgstr "Server sertifikatini tekshirmaslik"
 
 #: src/components/discard-guard.tsx
 msgid "Do you really want to cancel your input?"
@@ -1543,6 +1575,10 @@ msgstr "Sensorni tahrirlash"
 msgid "Email"
 msgstr "Elektron pochta"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Email attribute"
+msgstr "Pochta atributi"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Email notifications"
 msgstr "Elektron pochta bildirishnomalari"
@@ -1559,6 +1595,10 @@ msgstr "Bo'sh"
 #: src/components/routes/settings/security.tsx
 msgid "Enable"
 msgstr "Yoqish"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Enable the login with the directory"
+msgstr "Katalog orqali kirishni yoqish"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1619,6 +1659,8 @@ msgstr "Vaqtinchalik"
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/ldap.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1924,6 +1966,10 @@ msgstr "Guruh saqlandi"
 msgid "Groups"
 msgstr "Guruhlar"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Groups and roles"
+msgstr "Guruhlar va rollar"
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
 msgstr "Guruhlar tarmoq sensorlarini barcha foydalanuvchilar uchun tartiblaydi. Guruhni o‘chirish uning sensorlarini guruhsiz saqlab qoladi."
@@ -2156,6 +2202,10 @@ msgstr "Beruvchi {linkIssuer}, {linkUntil} gacha amal qiladi"
 msgid "Issued to"
 msgstr "Kimga berilgan"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "It works."
+msgstr "Ishlayapti."
+
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "Uning tekshiruvlari, tarixi va uzilishlari o‘chiriladi."
@@ -2253,6 +2303,14 @@ msgstr "Tartib"
 #: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "Tartib kengligi"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "ldaps://dc.example.com:636, or ldap://dc.example.com:389 with StartTLS."
+msgstr "ldaps://dc.example.com:636 yoki StartTLS bilan ldap://dc.example.com:389."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
+msgstr "Foydalanuvchilarga Active Directory kabi LDAP katalogidagi hisobi bilan kirishga ruxsat bering. Ularning roli guruhlariga bog‘liq; har bir foydalanuvchining ikkinchi omili amal qilishda davom etadi."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
@@ -2882,6 +2940,9 @@ msgstr "Sahifalar / Sozlamalar"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "Parol"
@@ -2893,6 +2954,10 @@ msgstr "Parol kamida 8 ta belgidan iborat bo'lishi kerak."
 #: src/components/login/auth-form.tsx
 msgid "Password must be less than 72 bytes."
 msgstr "Parol 72 baytdan kam bo'lishi kerak."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Password of the service account"
+msgstr "Xizmat hisobi paroli"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Password reset request received"
@@ -3145,6 +3210,14 @@ msgstr "O‘qish xatolari"
 #: src/components/certificates/certificates-table.tsx
 msgid "Read now"
 msgstr "Hozir o‘qish"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read only"
+msgstr "Faqat o‘qish"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read-only group"
+msgstr "Faqat o‘qish guruhi"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3407,6 +3480,7 @@ msgstr "Manzilni enter tugmasi yoki vergul yordamida saqlang. Elektron pochta bi
 
 #: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
 msgstr "Sozlamalarni saqlash"
@@ -3418,6 +3492,10 @@ msgstr "Ushbu tiklash kodlarini saqlang: telefoningizni yo‘qotsangiz, har biri
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "Ma'lumotlar bazasida saqlanadi va siz o'chirishingizcha muddati tugamaydi."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Saved. Leave empty to keep it."
+msgstr "Saqlangan. Saqlab qolish uchun bo‘sh qoldiring."
 
 #: src/components/routes/settings/security.tsx
 msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
@@ -3444,6 +3522,10 @@ msgstr "Rejalashtirilgan texnik xizmat"
 #: src/lib/header-icons.ts
 msgid "Search"
 msgstr "Qidirish"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Search base"
+msgstr "Qidiruv asosi"
 
 #: src/components/command-palette.tsx
 #~ msgid "Search for systems or settings..."
@@ -3579,11 +3661,19 @@ msgstr "Seriya raqami"
 msgid "Serial Number"
 msgstr "Seriya raqami"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Server URL"
+msgstr "Server URL manzili"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Xizmat"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Service account"
+msgstr "Xizmat hisobi"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Service alerts"
@@ -3649,6 +3739,7 @@ msgstr "Sozlamalar"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Settings saved"
 msgstr "Sozlamalar saqlandi"
 
@@ -3675,6 +3766,10 @@ msgstr "O‘chirish"
 #: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "Kirish"
+
+#: src/components/login/ldap-form.tsx
+msgid "Sign in with the directory"
+msgstr "Katalog orqali kirish"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Signature"
@@ -3924,6 +4019,10 @@ msgstr "Harorat birligi"
 msgid "Temperatures of system sensors"
 msgstr "Tizim sensorlarining haroratlari"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Test"
+msgstr "Sinov"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Test <0>URL</0>"
 msgstr "Test <0>URL</0>"
@@ -3935,6 +4034,14 @@ msgstr "Test heartbeat"
 #: src/components/routes/settings/notifications.tsx
 msgid "Test notification sent"
 msgstr "Test bildirishnoma yuborildi"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the connection"
+msgstr "Ulanishni sinash"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the login"
+msgstr "Kirishni sinash"
 
 #: src/lib/quiet-hours.ts
 msgid "Testing"
@@ -4039,6 +4146,10 @@ msgstr "Bu agent hub orqali boshqarish uchun juda eski: uni tizimda bir marta ya
 #: src/components/sensors/sensor-dialog.tsx
 msgid "This host already has a sensor: {added} new check(s) were added to it."
 msgstr "Bu xostda allaqachon sensor bor: unga {added} ta yangi tekshiruv qo‘shildi."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "This placeholder is replaced by the name typed at the login:"
+msgstr "Bu to‘ldiruvchi kirishda yozilgan nom bilan almashtiriladi:"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This sensor until {until}"
@@ -4430,10 +4541,30 @@ msgstr "Ishlatilgan"
 msgid "Used by"
 msgstr "Foydalanuvchi"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "User"
+msgstr "Foydalanuvchi"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "User filter"
+msgstr "Foydalanuvchi filtri"
+
+#: src/components/login/ldap-form.tsx
+msgid "Username or email of the directory"
+msgstr "Katalog foydalanuvchi nomi yoki pochtasi"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Username to test (optional)"
+msgstr "Sinov uchun foydalanuvchi nomi (ixtiyoriy)"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
 msgstr "Foydalanuvchilar"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Users group"
+msgstr "Foydalanuvchilar guruhi"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgctxt "Disk I/O utilization"
@@ -4528,6 +4659,10 @@ msgstr "Kiritganlaringiz yo‘qoladi."
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "When enabled, this token allows agents to self-register without prior system creation."
 msgstr "Yoqilganda, ushbu token agentlarga oldindan tizim yaratmasdan o'z-o'zini ro'yxatdan o'tkazish imkonini beradi."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "When set, the other accounts can't log in."
+msgstr "Belgilansa, boshqa hisoblar kira olmaydi."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."

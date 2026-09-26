@@ -350,8 +350,13 @@ msgstr "Налаштуйте ширину основного макету"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Admin"
 msgstr "Адміністратор"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Admins group"
+msgstr "Група адміністраторів"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "After"
@@ -670,6 +675,10 @@ msgstr "сер."
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "Сер. за 1 год"
+
+#: src/components/login/ldap-form.tsx
+msgid "Back to the other logins"
+msgstr "Назад до інших способів входу"
 
 #: src/lib/quiet-hours.ts
 msgid "Backup"
@@ -1231,6 +1240,10 @@ msgstr "Створити"
 msgid "Create account"
 msgstr "Створити обліковий запис"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Create the users at their first login (otherwise, only the existing users of the same email)"
+msgstr "Створювати користувачів під час першого входу (інакше лише наявних користувачів з тією самою поштою)"
+
 #. Context: date created
 #. Context: date created
 #: src/components/alerts-history-columns.tsx
@@ -1408,6 +1421,17 @@ msgstr "Пристрій"
 msgid "Devices"
 msgstr "Пристрої"
 
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
+msgid "Directory (LDAP)"
+msgstr "Каталог (LDAP)"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+msgid "Directory account"
+msgstr "Обліковий запис каталогу"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Disable"
@@ -1448,6 +1472,14 @@ msgstr "Використання диска {extraFsName}"
 msgctxt "Layout display options"
 msgid "Display"
 msgstr "Відображення"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Distinguished name or user@domain of the account searching the users."
+msgstr "Відмітне ім’я або user@domain облікового запису, що шукає користувачів."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Do not check the certificate of the server"
+msgstr "Не перевіряти сертифікат сервера"
 
 #: src/components/discard-guard.tsx
 msgid "Do you really want to cancel your input?"
@@ -1543,6 +1575,10 @@ msgstr "Редагувати датчик"
 msgid "Email"
 msgstr "Електронна пошта"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Email attribute"
+msgstr "Атрибут пошти"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Email notifications"
 msgstr "Сповіщення електронною поштою"
@@ -1559,6 +1595,10 @@ msgstr "Порожня"
 #: src/components/routes/settings/security.tsx
 msgid "Enable"
 msgstr "Увімкнути"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Enable the login with the directory"
+msgstr "Увімкнути вхід через каталог"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1619,6 +1659,8 @@ msgstr "Тимчасовий"
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/ldap.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1924,6 +1966,10 @@ msgstr "Групу збережено"
 msgid "Groups"
 msgstr "Групи"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Groups and roles"
+msgstr "Групи й ролі"
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
 msgstr "Групи впорядковують мережеві датчики для всіх користувачів. Після видалення групи її датчики залишаються без групи."
@@ -2156,6 +2202,10 @@ msgstr "Виданий {linkIssuer}, дійсний до {linkUntil}"
 msgid "Issued to"
 msgstr "Кому виданий"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "It works."
+msgstr "Працює."
+
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "Його перевірки, історію та перерви буде видалено."
@@ -2253,6 +2303,14 @@ msgstr "Макет"
 #: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "Ширина макету"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "ldaps://dc.example.com:636, or ldap://dc.example.com:389 with StartTLS."
+msgstr "ldaps://dc.example.com:636 або ldap://dc.example.com:389 зі StartTLS."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
+msgstr "Дозвольте користувачам входити з обліковим записом каталогу LDAP, наприклад Active Directory. Їхня роль визначається групами; другий фактор кожного користувача й далі діє."
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
@@ -2882,6 +2940,9 @@ msgstr "Сторінки / Налаштування"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "Пароль"
@@ -2893,6 +2954,10 @@ msgstr "Пароль має містити щонайменше 8 символі
 #: src/components/login/auth-form.tsx
 msgid "Password must be less than 72 bytes."
 msgstr "Пароль не повинен перевищувати 72 байти."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Password of the service account"
+msgstr "Пароль службового облікового запису"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Password reset request received"
@@ -3145,6 +3210,14 @@ msgstr "Помилки читання"
 #: src/components/certificates/certificates-table.tsx
 msgid "Read now"
 msgstr "Прочитати зараз"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read only"
+msgstr "Лише читання"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read-only group"
+msgstr "Група лише для читання"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3407,6 +3480,7 @@ msgstr "Збережіть адресу, використовуючи клаві
 
 #: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
 msgstr "Зберегти налаштування"
@@ -3418,6 +3492,10 @@ msgstr "Збережіть ці резервні коди: кожен один �
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "Збережено в базі даних і залишається чинним, доки ви його не вимкнете."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Saved. Leave empty to keep it."
+msgstr "Збережено. Залиште порожнім, щоб не змінювати."
 
 #: src/components/routes/settings/security.tsx
 msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
@@ -3444,6 +3522,10 @@ msgstr "Планове обслуговування"
 #: src/lib/header-icons.ts
 msgid "Search"
 msgstr "Пошук"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Search base"
+msgstr "База пошуку"
 
 #: src/components/command-palette.tsx
 #~ msgid "Search for systems or settings..."
@@ -3579,11 +3661,19 @@ msgstr "Серійний номер"
 msgid "Serial Number"
 msgstr "Серійний номер"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Server URL"
+msgstr "URL сервера"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "Служба"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Service account"
+msgstr "Службовий обліковий запис"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Service alerts"
@@ -3649,6 +3739,7 @@ msgstr "Налаштування"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Settings saved"
 msgstr "Налаштування збережено"
 
@@ -3675,6 +3766,10 @@ msgstr "Вимкнення"
 #: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "Увійти"
+
+#: src/components/login/ldap-form.tsx
+msgid "Sign in with the directory"
+msgstr "Увійти через каталог"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Signature"
@@ -3924,6 +4019,10 @@ msgstr "Одиниця вимірювання температури"
 msgid "Temperatures of system sensors"
 msgstr "Температури датчиків системи"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Test"
+msgstr "Перевірка"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Test <0>URL</0>"
 msgstr "Тест <0>URL</0>"
@@ -3935,6 +4034,14 @@ msgstr "Тестовий heartbeat"
 #: src/components/routes/settings/notifications.tsx
 msgid "Test notification sent"
 msgstr "Тестове сповіщення надіслано"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the connection"
+msgstr "Перевірити з’єднання"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the login"
+msgstr "Перевірити вхід"
 
 #: src/lib/quiet-hours.ts
 msgid "Testing"
@@ -4039,6 +4146,10 @@ msgstr "Цей агент застарий для керування з хабу
 #: src/components/sensors/sensor-dialog.tsx
 msgid "This host already has a sensor: {added} new check(s) were added to it."
 msgstr "Цей хост уже має датчик: до нього додано нових перевірок: {added}."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "This placeholder is replaced by the name typed at the login:"
+msgstr "Цей заповнювач замінюється іменем, введеним під час входу:"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This sensor until {until}"
@@ -4430,10 +4541,30 @@ msgstr "Використано"
 msgid "Used by"
 msgstr "Використовується"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "User"
+msgstr "Користувач"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "User filter"
+msgstr "Фільтр користувачів"
+
+#: src/components/login/ldap-form.tsx
+msgid "Username or email of the directory"
+msgstr "Ім’я користувача або пошта з каталогу"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Username to test (optional)"
+msgstr "Ім’я користувача для перевірки (необов’язково)"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
 msgstr "Користувачі"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Users group"
+msgstr "Група користувачів"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgctxt "Disk I/O utilization"
@@ -4528,6 +4659,10 @@ msgstr "Введені дані буде втрачено."
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "When enabled, this token allows agents to self-register without prior system creation."
 msgstr "При ввімкненні цей токен дозволяє агентам самостійно реєструватися без попереднього створення системи."
+
+#: src/components/routes/settings/ldap.tsx
+msgid "When set, the other accounts can't log in."
+msgstr "Якщо задано, інші облікові записи не зможуть увійти."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."

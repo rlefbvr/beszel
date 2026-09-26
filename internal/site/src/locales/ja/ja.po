@@ -350,8 +350,13 @@ msgstr "メインレイアウトの幅を調整"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Admin"
 msgstr "管理者"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Admins group"
+msgstr "管理者グループ"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "After"
@@ -670,6 +675,10 @@ msgstr "平均"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "1時間平均"
+
+#: src/components/login/ldap-form.tsx
+msgid "Back to the other logins"
+msgstr "ほかのログイン方法に戻る"
 
 #: src/lib/quiet-hours.ts
 msgid "Backup"
@@ -1231,6 +1240,10 @@ msgstr "作成"
 msgid "Create account"
 msgstr "アカウントを作成"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Create the users at their first login (otherwise, only the existing users of the same email)"
+msgstr "初回ログイン時にユーザーを作成する (作成しない場合は同じメールの既存ユーザーのみ)"
+
 #. Context: date created
 #. Context: date created
 #: src/components/alerts-history-columns.tsx
@@ -1408,6 +1421,17 @@ msgstr "デバイス"
 msgid "Devices"
 msgstr "機器"
 
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
+msgid "Directory (LDAP)"
+msgstr "ディレクトリ (LDAP)"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+msgid "Directory account"
+msgstr "ディレクトリのアカウント"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Disable"
@@ -1448,6 +1472,14 @@ msgstr "{extraFsName}のディスク使用率"
 msgctxt "Layout display options"
 msgid "Display"
 msgstr "表示"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Distinguished name or user@domain of the account searching the users."
+msgstr "ユーザーを検索するアカウントの識別名または user@domain。"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Do not check the certificate of the server"
+msgstr "サーバーの証明書を確認しない"
 
 #: src/components/discard-guard.tsx
 msgid "Do you really want to cancel your input?"
@@ -1543,6 +1575,10 @@ msgstr "センサーを編集"
 msgid "Email"
 msgstr "メール"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Email attribute"
+msgstr "メールの属性"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Email notifications"
 msgstr "メール通知"
@@ -1559,6 +1595,10 @@ msgstr "空"
 #: src/components/routes/settings/security.tsx
 msgid "Enable"
 msgstr "有効にする"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Enable the login with the directory"
+msgstr "ディレクトリでのログインを有効にする"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1619,6 +1659,8 @@ msgstr "一時的"
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/ldap.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1924,6 +1966,10 @@ msgstr "グループを保存しました"
 msgid "Groups"
 msgstr "グループ"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Groups and roles"
+msgstr "グループとロール"
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
 msgstr "グループはすべてのユーザーのネットワークセンサーを整理します。グループを削除してもセンサーはグループなしで残ります。"
@@ -2156,6 +2202,10 @@ msgstr "発行者 {linkIssuer}、{linkUntil} まで有効"
 msgid "Issued to"
 msgstr "発行先"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "It works."
+msgstr "動作しています。"
+
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "チェック、履歴、停止記録が削除されます。"
@@ -2253,6 +2303,14 @@ msgstr "レイアウト"
 #: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "レイアウト幅"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "ldaps://dc.example.com:636, or ldap://dc.example.com:389 with StartTLS."
+msgstr "ldaps://dc.example.com:636、または StartTLS 付きの ldap://dc.example.com:389。"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
+msgstr "Active Directory などの LDAP ディレクトリのアカウントでユーザーがログインできるようにします。ロールはグループに従い、各ユーザーの 2 つ目の要素も引き続き適用されます。"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
@@ -2882,6 +2940,9 @@ msgstr "ページ / 設定"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "パスワード"
@@ -2893,6 +2954,10 @@ msgstr "パスワードは8文字以上である必要があります。"
 #: src/components/login/auth-form.tsx
 msgid "Password must be less than 72 bytes."
 msgstr "パスワードは72バイト未満でなければなりません。"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Password of the service account"
+msgstr "サービス アカウントのパスワード"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Password reset request received"
@@ -3145,6 +3210,14 @@ msgstr "読み取りエラー"
 #: src/components/certificates/certificates-table.tsx
 msgid "Read now"
 msgstr "今すぐ読み取る"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read only"
+msgstr "読み取り専用"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read-only group"
+msgstr "読み取り専用グループ"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3407,6 +3480,7 @@ msgstr "Enterキーまたはカンマを使用してアドレスを保存しま�
 
 #: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
 msgstr "設定を保存"
@@ -3418,6 +3492,10 @@ msgstr "これらのリカバリー コードを保存してください。ス�
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "データベースに保存され、無効にするまで有効期限が切れません。"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Saved. Leave empty to keep it."
+msgstr "保存済み。そのままにするには空欄にします。"
 
 #: src/components/routes/settings/security.tsx
 msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
@@ -3444,6 +3522,10 @@ msgstr "計画メンテナンス"
 #: src/lib/header-icons.ts
 msgid "Search"
 msgstr "検索"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Search base"
+msgstr "検索ベース"
 
 #: src/components/command-palette.tsx
 #~ msgid "Search for systems or settings..."
@@ -3579,11 +3661,19 @@ msgstr "シリアル番号"
 msgid "Serial Number"
 msgstr "シリアル番号"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Server URL"
+msgstr "サーバー URL"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "サービス"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Service account"
+msgstr "サービス アカウント"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Service alerts"
@@ -3649,6 +3739,7 @@ msgstr "設定"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Settings saved"
 msgstr "設定が保存されました"
 
@@ -3675,6 +3766,10 @@ msgstr "シャットダウン"
 #: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "サインイン"
+
+#: src/components/login/ldap-form.tsx
+msgid "Sign in with the directory"
+msgstr "ディレクトリでサインイン"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Signature"
@@ -3924,6 +4019,10 @@ msgstr "温度単位"
 msgid "Temperatures of system sensors"
 msgstr "システムセンサーの温度"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Test"
+msgstr "テスト"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Test <0>URL</0>"
 msgstr "テスト<0>URL</0>"
@@ -3935,6 +4034,14 @@ msgstr "テストハートビート"
 #: src/components/routes/settings/notifications.tsx
 msgid "Test notification sent"
 msgstr "テスト通知が送信されました"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the connection"
+msgstr "接続をテスト"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the login"
+msgstr "ログインをテスト"
 
 #: src/lib/quiet-hours.ts
 msgid "Testing"
@@ -4039,6 +4146,10 @@ msgstr "このエージェントは古すぎてハブから管理できません
 #: src/components/sensors/sensor-dialog.tsx
 msgid "This host already has a sensor: {added} new check(s) were added to it."
 msgstr "このホストには既にセンサーがあります: 新しいチェックを {added} 件追加しました。"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "This placeholder is replaced by the name typed at the login:"
+msgstr "このプレースホルダーはログイン時に入力された名前に置き換えられます:"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This sensor until {until}"
@@ -4430,10 +4541,30 @@ msgstr "使用中"
 msgid "Used by"
 msgstr "使用元"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "User"
+msgstr "ユーザー"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "User filter"
+msgstr "ユーザー フィルター"
+
+#: src/components/login/ldap-form.tsx
+msgid "Username or email of the directory"
+msgstr "ディレクトリのユーザー名またはメール"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Username to test (optional)"
+msgstr "テストするユーザー名 (任意)"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
 msgstr "ユーザー"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Users group"
+msgstr "ユーザー グループ"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgctxt "Disk I/O utilization"
@@ -4528,6 +4659,10 @@ msgstr "入力した内容は失われます。"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "When enabled, this token allows agents to self-register without prior system creation."
 msgstr "有効にすると、このトークンによりエージェントは事前のシステム作成なしで自己登録できます。"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "When set, the other accounts can't log in."
+msgstr "設定すると、ほかのアカウントはログインできません。"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."

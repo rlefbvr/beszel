@@ -1,7 +1,7 @@
 import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
 import { getPagePath } from "@nanostores/router"
-import { KeyIcon, LoaderCircle, LockIcon, LogInIcon, MailIcon } from "lucide-react"
+import { Building2Icon, KeyIcon, LoaderCircle, LockIcon, LogInIcon, MailIcon } from "lucide-react"
 import type { AuthMethodsList, AuthProviderInfo, OAuth2AuthConfig } from "pocketbase"
 import { useCallback, useEffect, useState } from "react"
 import * as v from "valibot"
@@ -14,6 +14,7 @@ import { $authenticated } from "@/lib/stores"
 import { cn } from "@/lib/utils"
 import { $router, Link, basePath, prependBasePath } from "../router"
 import { toast } from "../ui/use-toast"
+import { LdapLoginForm } from "./ldap-form"
 import { OtpInputForm, TotpInputForm } from "./otp-forms"
 
 const honeypot = v.literal("")
@@ -70,6 +71,25 @@ export function UserAuthForm({
 	const [otpId, setOtpId] = useState<string | undefined>()
 	// second factor asked after the password: authenticator app or email code
 	const [totp, setTotp] = useState(false)
+	// login with an account of the directory (LDAP), when the hub offers it
+	const [ldapEnabled, setLdapEnabled] = useState(false)
+	const [ldapMode, setLdapMode] = useState(false)
+
+	/** Asks the second factor of a directory login: code of the app, or code sent by email */
+	const startDirectoryMfa = useCallback(async (mfaId: string) => {
+		setMfaId(mfaId)
+		try {
+			const { method } = await pb.send<{ method: string }>("/api/beszel/mfa/method", { query: { mfaId } })
+			if (method === "totp") {
+				setTotp(true)
+				return
+			}
+			const { otpId } = await pb.send<{ otpId: string }>("/api/beszel/mfa/email-otp", { method: "POST", body: { mfaId } })
+			setOtpId(otpId)
+		} catch (err) {
+			showLoginFaliedToast((err as Error).message)
+		}
+	}, [])
 
 	const handleSubmit = useCallback(
 		async (e: React.FormEvent<HTMLFormElement>) => {
@@ -188,6 +208,13 @@ export function UserAuthForm({
 	}
 
 	useEffect(() => {
+		pb.send<{ enabled: boolean }>("/api/beszel/ldap/status", {}).then(
+			(res) => setLdapEnabled(res.enabled),
+			() => undefined
+		)
+	}, [])
+
+	useEffect(() => {
 		// handle redirect-based OAuth callback if we have a code
 		const params = new URLSearchParams(window.location.search)
 		const code = params.get("code")
@@ -234,6 +261,14 @@ export function UserAuthForm({
 
 	if (totp && mfaId) {
 		return <TotpInputForm mfaId={mfaId} />
+	}
+
+	if (ldapMode) {
+		return (
+			<div className={cn("grid gap-6", className)} {...props}>
+				<LdapLoginForm onBack={() => setLdapMode(false)} onMfa={startDirectoryMfa} />
+			</div>
+		)
 	}
 
 	return (
@@ -324,7 +359,7 @@ export function UserAuthForm({
 							</button>
 						</div>
 					</form>
-					{(isFirstRun || oauthEnabled || (otpEnabled && !mfaEnabled)) && (
+					{(isFirstRun || oauthEnabled || (otpEnabled && !mfaEnabled) || ldapEnabled) && (
 						// only show 'continue with' during onboarding or if we have auth providers
 						<div className="relative">
 							<div className="absolute inset-0 flex items-center">
@@ -346,6 +381,19 @@ export function UserAuthForm({
 						<KeyIcon className="size-4" />
 						<Trans>One-time password</Trans>
 					</Link>
+				</div>
+			)}
+			{ldapEnabled && !isFirstRun && (
+				<div className="grid gap-2 -mt-1">
+					<button
+						type="button"
+						className={cn(buttonVariants({ variant: "outline" }), "flex gap-2")}
+						onClick={() => setLdapMode(true)}
+						disabled={isLoading || isOauthLoading}
+					>
+						<Building2Icon className="size-4" />
+						<Trans>Directory account</Trans>
+					</button>
 				</div>
 			)}
 			{oauthEnabled && (

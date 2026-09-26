@@ -350,8 +350,13 @@ msgstr "調整主版面寬度"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Admin"
 msgstr "管理員"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Admins group"
+msgstr "管理員群組"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "After"
@@ -670,6 +675,10 @@ msgstr "平均"
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
 msgstr "1 小時平均"
+
+#: src/components/login/ldap-form.tsx
+msgid "Back to the other logins"
+msgstr "返回其他登入方式"
 
 #: src/lib/quiet-hours.ts
 msgid "Backup"
@@ -1231,6 +1240,10 @@ msgstr "建立"
 msgid "Create account"
 msgstr "建立帳號"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Create the users at their first login (otherwise, only the existing users of the same email)"
+msgstr "在首次登入時建立使用者（否則僅限相同電子郵件的現有使用者）"
+
 #. Context: date created
 #. Context: date created
 #: src/components/alerts-history-columns.tsx
@@ -1408,6 +1421,17 @@ msgstr "裝置"
 msgid "Devices"
 msgstr "裝置"
 
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
+msgid "Directory (LDAP)"
+msgstr "目錄 (LDAP)"
+
+#: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+msgid "Directory account"
+msgstr "目錄帳戶"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Disable"
@@ -1448,6 +1472,14 @@ msgstr "{extraFsName}的磁碟使用量"
 msgctxt "Layout display options"
 msgid "Display"
 msgstr "顯示"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Distinguished name or user@domain of the account searching the users."
+msgstr "搜尋使用者之帳戶的辨別名稱或 user@domain。"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Do not check the certificate of the server"
+msgstr "不檢查伺服器的憑證"
 
 #: src/components/discard-guard.tsx
 msgid "Do you really want to cancel your input?"
@@ -1543,6 +1575,10 @@ msgstr "編輯感測器"
 msgid "Email"
 msgstr "電子郵件"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Email attribute"
+msgstr "電子郵件屬性"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Email notifications"
 msgstr "電子郵件通知"
@@ -1559,6 +1595,10 @@ msgstr "空電"
 #: src/components/routes/settings/security.tsx
 msgid "Enable"
 msgstr "啟用"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Enable the login with the directory"
+msgstr "啟用目錄登入"
 
 #: src/components/sensors/sensor-incidents.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -1619,6 +1659,8 @@ msgstr "臨時"
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/routes/settings/ldap.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1924,6 +1966,10 @@ msgstr "群組已儲存"
 msgid "Groups"
 msgstr "群組"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Groups and roles"
+msgstr "群組與角色"
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
 msgstr "群組為所有使用者整理網路感測器。刪除群組會保留其感測器，但不屬於任何群組。"
@@ -2156,6 +2202,10 @@ msgstr "由 {linkIssuer} 簽發，有效期至 {linkUntil}"
 msgid "Issued to"
 msgstr "簽發對象"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "It works."
+msgstr "運作正常。"
+
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "其檢查、歷史記錄與中斷記錄將被刪除。"
@@ -2253,6 +2303,14 @@ msgstr "版面配置"
 #: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "版面寬度"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "ldaps://dc.example.com:636, or ldap://dc.example.com:389 with StartTLS."
+msgstr "ldaps://dc.example.com:636，或搭配 StartTLS 的 ldap://dc.example.com:389。"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
+msgstr "讓使用者以 Active Directory 等 LDAP 目錄的帳戶登入。角色依其群組而定；每位使用者的第二因素仍然適用。"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
@@ -2882,6 +2940,9 @@ msgstr "頁面 / 設定"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/auth-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/login/ldap-form.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Password"
 msgstr "密碼"
@@ -2893,6 +2954,10 @@ msgstr "密碼需要至少 8 個字元。"
 #: src/components/login/auth-form.tsx
 msgid "Password must be less than 72 bytes."
 msgstr "密碼必須少於 72 個位元組。"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Password of the service account"
+msgstr "服務帳戶的密碼"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Password reset request received"
@@ -3145,6 +3210,14 @@ msgstr "讀取錯誤"
 #: src/components/certificates/certificates-table.tsx
 msgid "Read now"
 msgstr "立即讀取"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read only"
+msgstr "唯讀"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Read-only group"
+msgstr "唯讀群組"
 
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3407,6 +3480,7 @@ msgstr "使用 Enter 鍵或逗號儲存地址。留空以停用電子郵件通�
 
 #: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/ldap.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
 msgstr "儲存設定"
@@ -3418,6 +3492,10 @@ msgstr "請儲存這些復原碼：若遺失手機，每組代碼可取代應用
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Saved in the database and does not expire until you disable it."
 msgstr "儲存在資料庫中，在您停用之前不會過期。"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Saved. Leave empty to keep it."
+msgstr "已儲存。留空即保留。"
 
 #: src/components/routes/settings/security.tsx
 msgid "Scan the QR code with an app such as Microsoft Authenticator or Google Authenticator, then enter the code it shows."
@@ -3444,6 +3522,10 @@ msgstr "排定維護"
 #: src/lib/header-icons.ts
 msgid "Search"
 msgstr "搜尋"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Search base"
+msgstr "搜尋基底"
 
 #: src/components/command-palette.tsx
 #~ msgid "Search for systems or settings..."
@@ -3579,11 +3661,19 @@ msgstr "序號"
 msgid "Serial Number"
 msgstr "序號"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Server URL"
+msgstr "伺服器 URL"
+
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
 msgstr "服務"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Service account"
+msgstr "服務帳戶"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Service alerts"
@@ -3649,6 +3739,7 @@ msgstr "設定"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/layout.tsx
+#: src/components/routes/settings/ldap.tsx
 msgid "Settings saved"
 msgstr "已儲存設定"
 
@@ -3675,6 +3766,10 @@ msgstr "關機"
 #: src/components/login/otp-forms.tsx
 msgid "Sign in"
 msgstr "登入"
+
+#: src/components/login/ldap-form.tsx
+msgid "Sign in with the directory"
+msgstr "以目錄登入"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Signature"
@@ -3924,6 +4019,10 @@ msgstr "溫度單位"
 msgid "Temperatures of system sensors"
 msgstr "系統感應器的溫度"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "Test"
+msgstr "測試"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Test <0>URL</0>"
 msgstr "測試<0>URL</0>"
@@ -3935,6 +4034,14 @@ msgstr "測試 Heartbeat"
 #: src/components/routes/settings/notifications.tsx
 msgid "Test notification sent"
 msgstr "已發送測試通知"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the connection"
+msgstr "測試連線"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Test the login"
+msgstr "測試登入"
 
 #: src/lib/quiet-hours.ts
 msgid "Testing"
@@ -4039,6 +4146,10 @@ msgstr "此代理程式版本過舊，無法從中樞管理：請在系統上手
 #: src/components/sensors/sensor-dialog.tsx
 msgid "This host already has a sensor: {added} new check(s) were added to it."
 msgstr "此主機已有感測器：已新增 {added} 項新檢查。"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "This placeholder is replaced by the name typed at the login:"
+msgstr "此預留位置會被替換為登入時輸入的名稱："
 
 #: src/components/quiet-hours-banner.tsx
 msgid "This sensor until {until}"
@@ -4430,10 +4541,30 @@ msgstr "已使用"
 msgid "Used by"
 msgstr "使用於"
 
+#: src/components/routes/settings/ldap.tsx
+msgid "User"
+msgstr "使用者"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "User filter"
+msgstr "使用者篩選器"
+
+#: src/components/login/ldap-form.tsx
+msgid "Username or email of the directory"
+msgstr "目錄的使用者名稱或電子郵件"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Username to test (optional)"
+msgstr "要測試的使用者名稱（選填）"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
 msgstr "使用者"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "Users group"
+msgstr "使用者群組"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgctxt "Disk I/O utilization"
@@ -4528,6 +4659,10 @@ msgstr "輸入的內容將會遺失。"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "When enabled, this token allows agents to self-register without prior system creation."
 msgstr "啟用後，此 Token 可讓 Agent 自行註冊，無需預先在系統中建立項目。"
+
+#: src/components/routes/settings/ldap.tsx
+msgid "When set, the other accounts can't log in."
+msgstr "設定後，其他帳戶將無法登入。"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."

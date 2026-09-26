@@ -21,6 +21,8 @@ import (
 	"github.com/henrygd/beszel/internal/hub/utils"
 	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
+	"github.com/pocketbase/pocketbase/mails"
+	"github.com/pocketbase/pocketbase/tools/security"
 	"rsc.io/qr"
 )
 
@@ -338,6 +340,34 @@ func (h *Hub) getMFAMethod(e *core.RequestEvent) error {
 		method = mfaEmail
 	}
 	return e.JSON(http.StatusOK, map[string]string{"method": method})
+}
+
+// requestMFAEmailOTP sends the email code of a pending MFA session, for the
+// logins without the email address at hand (directory logins).
+func (h *Hub) requestMFAEmailOTP(e *core.RequestEvent) error {
+	var body struct {
+		MfaID string `json:"mfaId"`
+	}
+	if err := e.BindBody(&body); err != nil {
+		return e.BadRequestError("", err)
+	}
+	_, record, err := mfaRecord(e.App, body.MfaID)
+	if err != nil || (record.GetString("mfa") != mfaEmail && !emailOTPForAll()) {
+		return e.BadRequestError("Invalid or expired MFA session.", nil)
+	}
+	password := security.RandomStringWithAlphabet(record.Collection().OTP.Length, "1234567890")
+	otp := core.NewOTP(e.App)
+	otp.SetCollectionRef(record.Collection().Id)
+	otp.SetRecordRef(record.Id)
+	otp.SetPassword(password)
+	if err := e.App.Save(otp); err != nil {
+		return e.InternalServerError("", err)
+	}
+	if err := mails.SendRecordOTP(e.App, record, otp.Id, password); err != nil {
+		_ = e.App.Delete(otp)
+		return e.InternalServerError("Failed to send the email.", err)
+	}
+	return e.JSON(http.StatusOK, map[string]string{"otpId": otp.Id})
 }
 
 // authWithTOTP completes a login with a code of the authenticator app, or a recovery code.
