@@ -35,6 +35,9 @@ type UserNotificationSettings struct {
 	Webhooks []string `json:"webhooks"`
 	// Lang is the interface language, used to translate notifications.
 	Lang string `json:"lang,omitempty"`
+	// HeaderLabel is the label shown next to the logo in the interface
+	// ("name", "url" or "none"), also used in the header of the emails.
+	HeaderLabel string `json:"headerLabel,omitempty"`
 }
 
 type SystemAlertFsStats struct {
@@ -261,6 +264,7 @@ func (am *AlertManager) SendAlert(data AlertMessageData) error {
 		settingsLink = am.hub.MakeLink("settings", "notifications")
 	}
 	rendered := data.render(NewTranslator(userAlertSettings.Lang), appURL, settingsLink)
+	rendered.Brand = emailBrand(userAlertSettings.HeaderLabel, am.hub.Settings().Meta.AppName, appURL)
 	for _, webhook := range userAlertSettings.Webhooks {
 		if err := am.sendShoutrrrAlert(webhook, rendered.WebhookTitle, rendered.webhookText(webhookScheme(webhook)), rendered.Link, rendered.LinkText, send); err != nil {
 			am.hub.Logger().Error("Failed to send shoutrrr alert", "err", err)

@@ -90,6 +90,7 @@ type renderedNotification struct {
 	Button        template.HTML
 	AppURL        string
 	AppHost       string
+	Brand         string // text next to the logo in the header of the emails
 	Footer        string
 	SettingsLink  string
 	SettingsLabel string
@@ -181,6 +182,7 @@ func (data AlertMessageData) render(t Translator, appURL, settingsLink string) r
 		LinkText:      t.T(data.LinkText),
 		AppURL:        appURL,
 		AppHost:       appHost(appURL),
+		Brand:         emailBrand("url", "", appURL),
 		Footer:        t.T(M("email.footer", nil)),
 		SettingsLink:  settingsLink,
 		SettingsLabel: t.T(M("email.settings", nil)),
@@ -214,6 +216,23 @@ func (data AlertMessageData) render(t Translator, appURL, settingsLink string) r
 }
 
 // appHost returns the host (and path) of the hub URL for display.
+// emailBrand is the text next to the logo in the emails, following the label
+// chosen by the user for the header of the interface: the name of the instance,
+// the host of its URL, or Beszel alone.
+func emailBrand(choice, appName, appURL string) string {
+	label := ""
+	switch choice {
+	case "name":
+		label = strings.TrimSpace(appName)
+	case "url":
+		label = appHost(appURL)
+	}
+	if label == "" {
+		return "Beszel"
+	}
+	return label
+}
+
 func appHost(appURL string) string {
 	u, err := url.Parse(appURL)
 	if err != nil || u.Host == "" {

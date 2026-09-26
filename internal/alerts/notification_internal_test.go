@@ -150,6 +150,22 @@ func TestWebhookScheme(t *testing.T) {
 	assert.Equal(t, "", webhookScheme("not a url"))
 }
 
+func TestEmailBrand(t *testing.T) {
+	assert.Equal(t, "Monitoring", emailBrand("name", " Monitoring ", "https://beszel.example.com"))
+	assert.Equal(t, "beszel.example.com", emailBrand("url", "Monitoring", "https://beszel.example.com/"))
+	assert.Equal(t, "Beszel", emailBrand("none", "Monitoring", "https://beszel.example.com"))
+	assert.Equal(t, "Beszel", emailBrand("", "Monitoring", "https://beszel.example.com"), "no label chosen")
+	assert.Equal(t, "Beszel", emailBrand("url", "Monitoring", ""), "no URL")
+	assert.Equal(t, "Beszel", emailBrand("name", "", ""), "no name")
+
+	data := AlertMessageData{Title: M("t", nil), Status: AlertStatusInfo}
+	rendered := data.render(NewTranslator("en"), "https://beszel.example", "")
+	rendered.Brand = emailBrand("name", "Monitoring", "https://beszel.example")
+	html, err := rendered.html()
+	require.NoError(t, err)
+	assert.Contains(t, html, `href="https://beszel.example" style="color:#1a1a1a;text-decoration:none;">Monitoring</a>`, "the name links to the hub")
+}
+
 func TestAppHost(t *testing.T) {
 	assert.Equal(t, "beszel.example.com", appHost("https://beszel.example.com/"))
 	assert.Equal(t, "example.com/beszel", appHost("https://example.com/beszel/"))
