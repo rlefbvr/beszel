@@ -2,7 +2,7 @@ import { Trans, useLingui } from "@lingui/react/macro"
 import type { RowData, Table, Updater, VisibilityState } from "@tanstack/react-table"
 import { EyeIcon, Settings2Icon } from "lucide-react"
 import { subscribeKeys } from "nanostores"
-import { type CSSProperties, useCallback, useEffect, useMemo, useState } from "react"
+import { type CSSProperties, type ReactNode, useCallback, useEffect, useMemo, useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
 	DropdownMenu,
@@ -163,7 +163,8 @@ export function ColumnResizer({ columnId, onColumnResize }: { columnId: string; 
 }
 
 /** "View" button choosing the visible columns of a table, among the columns with a name */
-export function ColumnsViewMenu<T>({ table }: { table: Table<T> }) {
+/** Menu of the visible columns of a table, with the filters of the table above them */
+export function ColumnsViewMenu<T>({ table, filters }: { table: Table<T>; filters?: ReactNode }) {
 	const columns = table.getAllLeafColumns().filter((column) => column.getCanHide() && column.columnDef.meta?.name)
 	if (!columns.length) {
 		return null
@@ -177,6 +178,7 @@ export function ColumnsViewMenu<T>({ table }: { table: Table<T> }) {
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end" className="min-w-48 max-h-80 overflow-y-auto">
+				{filters}
 				<DropdownMenuLabel className="pt-2 px-3.5 flex items-center gap-2">
 					<EyeIcon className="size-4" />
 					<Trans>Visible Fields</Trans>

@@ -42,7 +42,12 @@ import { Button } from "@/components/ui/button"
 import { $stateAlerts, importantTargets } from "@/lib/state-alerts"
 import { $openRequest, rememberRecent } from "@/lib/recent"
 import { $allSystemsById } from "@/lib/stores"
-import { LoaderCircleIcon, MaximizeIcon, RefreshCwIcon, XIcon } from "lucide-react"
+import { FilterIcon, LoaderCircleIcon, MaximizeIcon, RefreshCwIcon, XIcon } from "lucide-react"
+import {
+	DropdownMenuCheckboxItem,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu"
 import { Separator } from "../ui/separator"
 import { $router, Link } from "../router"
 import { listenKeys } from "nanostores"
@@ -74,6 +79,13 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 
 	const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
 	const [globalFilter, setGlobalFilter] = useState("")
+	// only the containers whose image has an update
+	const [updatesOnly, setUpdatesOnly] = useBrowserStorage(`upd-c-${systemId ? 1 : 0}`, false, sessionStorage)
+	const updateCount = data?.filter((container) => container.updatable).length ?? 0
+	const shownData = useMemo(
+		() => (updatesOnly ? data?.filter((container) => container.updatable) : data),
+		[data, updatesOnly]
+	)
 
 	useEffect(() => {
 		function fetchData(systemId?: string) {
@@ -132,7 +144,7 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 	}, [])
 
 	const table = useReactTable({
-		data: data ?? [],
+		data: shownData ?? [],
 		columns: useMemo(() => {
 			const columns = containerChartCols.filter((col) => (systemId ? col.id !== "system" : true))
 			return isReadOnlyUser() ? columns : [selectionColumn<ContainerRecord>(), ...columns]
@@ -246,6 +258,21 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 							<Trans>Up: {upCount}</Trans>
 							<Separator orientation="vertical" className="h-4 mx-2 bg-primary/40" />
 							<Trans>Down: {downCount}</Trans>
+							{updateCount > 0 && (
+								<>
+									<Separator orientation="vertical" className="h-4 mx-2 bg-primary/40" />
+									<button
+										type="button"
+										className={cn(
+											"hover:text-foreground underline-offset-2 hover:underline",
+											updatesOnly && "text-foreground font-medium"
+										)}
+										onClick={() => setUpdatesOnly(!updatesOnly)}
+									>
+										<Trans>Updates available: {updateCount}</Trans>
+									</button>
+								</>
+							)}
 						</div>
 					</div>
 					<div className="flex gap-2 ms-auto w-full md:w-auto">
@@ -269,7 +296,29 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 								</Button>
 							)}
 						</div>
-						<ColumnsViewMenu table={table} />
+						<ColumnsViewMenu
+							table={table}
+							filters={
+								<>
+									<DropdownMenuLabel className="pt-2 px-3.5 flex items-center gap-2">
+										<FilterIcon className="size-4" />
+										<Trans>Filters</Trans>
+									</DropdownMenuLabel>
+									<DropdownMenuSeparator />
+									<div className="px-1.5 pb-1">
+										<DropdownMenuCheckboxItem
+											onSelect={(e) => e.preventDefault()}
+											checked={updatesOnly}
+											onCheckedChange={(value) => setUpdatesOnly(!!value)}
+										>
+											<Trans context="Docker image">Image update available</Trans>
+											<span className="ms-auto ps-3 text-xs text-muted-foreground tabular-nums">{updateCount}</span>
+										</DropdownMenuCheckboxItem>
+									</div>
+									<DropdownMenuSeparator />
+								</>
+							}
+						/>
 						<BulkStateAlertsButton kind="container" items={selectedItems} />
 						<BulkQuietHoursButton kind="container" items={selectedItems} />
 					</div>
