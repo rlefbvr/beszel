@@ -1,4 +1,7 @@
+import { useStore } from "@nanostores/react"
 import { createContext, useContext, useEffect, useState } from "react"
+import { pb, queueUserSettings } from "@/lib/api"
+import { $userSettings } from "@/lib/stores"
 
 type Theme = "dark" | "light" | "system"
 type ResolvedTheme = "dark" | "light"
@@ -40,6 +43,15 @@ export function ThemeProvider({
 		return () => media.removeEventListener("change", onChange)
 	}, [])
 
+	// the theme saved with the user follows them from one browser to another
+	const userTheme = useStore($userSettings).theme
+	useEffect(() => {
+		if (userTheme) {
+			localStorage.setItem(storageKey, userTheme)
+			setTheme(userTheme)
+		}
+	}, [userTheme, storageKey])
+
 	const resolvedTheme = theme === "system" ? (systemDark ? "dark" : "light") : theme
 
 	useEffect(() => {
@@ -55,6 +67,10 @@ export function ThemeProvider({
 		setTheme: (theme: Theme) => {
 			localStorage.setItem(storageKey, theme)
 			setTheme(theme)
+			if (pb.authStore.isValid) {
+				$userSettings.setKey("theme", theme)
+				queueUserSettings({ theme })
+			}
 		},
 	}
 

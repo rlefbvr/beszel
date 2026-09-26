@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/correctness/useUniqueElementIds: component is only rendered once */
 import { Trans, useLingui } from "@lingui/react/macro"
-import { DownloadIcon, GlobeIcon, LanguagesIcon, LoaderCircleIcon, SaveIcon, ServerCogIcon, WandSparklesIcon } from "lucide-react"
+import { DownloadIcon, GlobeIcon, LoaderCircleIcon, SaveIcon, ServerCogIcon, WandSparklesIcon } from "lucide-react"
 import { useState } from "react"
 import { useStore } from "@nanostores/react"
 import { Button } from "@/components/ui/button"
@@ -9,18 +9,14 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
-import Slider from "@/components/ui/slider"
 import { toast } from "@/components/ui/use-toast"
-import { isAdmin, queueUserSettings, saveAgentInstallDir, saveAgentServiceName, saveChartPeriods, saveServicesInterval } from "@/lib/api"
+import { isAdmin, saveAgentInstallDir, saveAgentServiceName, saveChartPeriods, saveServicesInterval } from "@/lib/api"
 import { HourFormat, Unit } from "@/lib/enums"
-import { dynamicActivate } from "@/lib/i18n"
 import { $instance, saveInstance } from "@/lib/instance"
-import languages from "@/lib/languages"
-import { $agentInstallDir, $agentServiceName, $chartPeriods, $servicesInterval, $userSettings, defaultLayoutWidth } from "@/lib/stores"
+import { $agentInstallDir, $agentServiceName, $chartPeriods, $servicesInterval } from "@/lib/stores"
 import { chartTimeData, currentHour12, longChartPeriods, secondsToString } from "@/lib/utils"
 import type { ChartTimes, UserSettings } from "@/types"
 import { basePath } from "@/components/router"
-import { type HomePage, homePages } from "@/lib/home-page"
 import { saveSettings } from "./layout"
 
 /** Allowed agent service names: safe in file names and shell commands */
@@ -47,9 +43,7 @@ const servicesIntervals = [1, 2, 5, 10, 15, 30, 60]
 
 export default function SettingsProfilePage({ userSettings }: { userSettings: UserSettings }) {
 	const [isLoading, setIsLoading] = useState(false)
-	const { i18n, t } = useLingui()
-	const currentUserSettings = useStore($userSettings)
-	const layoutWidth = currentUserSettings.layoutWidth ?? defaultLayoutWidth
+	const { t } = useLingui()
 	const servicesInterval = useStore($servicesInterval)
 	const [newServicesInterval, setNewServicesInterval] = useState<number>()
 	const agentServiceName = useStore($agentServiceName)
@@ -181,140 +175,6 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 							<Trans>Use an absolute URL starting with http:// or https://.</Trans>
 						</p>
 					)}
-					<div className="grid sm:grid-cols-2 gap-4 mt-2">
-						<div className="grid gap-2">
-							<Label className="block" htmlFor="tabTitle">
-								<Trans>Browser tab title</Trans>
-							</Label>
-							<Select name="tabTitle" key={userSettings.tabTitle} defaultValue={userSettings.tabTitle ?? "beszel"}>
-								<SelectTrigger id="tabTitle">
-									<SelectValue />
-								</SelectTrigger>
-								<SelectContent>
-									<SelectItem value="beszel">Beszel</SelectItem>
-									<SelectItem value="name">
-										<Trans>Instance name</Trans>
-									</SelectItem>
-									<SelectItem value="url">
-										<Trans>Default URL</Trans>
-									</SelectItem>
-								</SelectContent>
-							</Select>
-						</div>
-						<div className="grid gap-2">
-							<Label className="block" htmlFor="headerLabel">
-								<Trans>Next to the logo</Trans>
-							</Label>
-							<Select name="headerLabel" key={userSettings.headerLabel} defaultValue={userSettings.headerLabel ?? "none"}>
-								<SelectTrigger id="headerLabel">
-									<SelectValue />
-								</SelectTrigger>
-								<SelectContent>
-									<SelectItem value="none">
-										<Trans>Nothing</Trans>
-									</SelectItem>
-									<SelectItem value="name">
-										<Trans>Instance name</Trans>
-									</SelectItem>
-									<SelectItem value="url">
-										<Trans>Default URL</Trans>
-									</SelectItem>
-								</SelectContent>
-							</Select>
-						</div>
-						<div className="grid gap-2">
-							<Label className="block" htmlFor="homePage">
-								<Trans>Home page</Trans>
-							</Label>
-							<Select name="homePage" key={userSettings.homePage} defaultValue={userSettings.homePage ?? "home"}>
-								<SelectTrigger id="homePage">
-									<SelectValue />
-								</SelectTrigger>
-								<SelectContent>
-									{(Object.keys(homePages) as HomePage[]).map((page) => (
-										<SelectItem key={page} value={page}>
-											{homePages[page]()}
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-							<p className="text-xs text-muted-foreground">
-								<Trans>Page opened at start and by the logo.</Trans>
-							</p>
-						</div>
-					</div>
-				</div>
-				<Separator />
-				<div className="grid gap-2">
-					<div className="mb-2">
-						<h3 className="mb-1 text-lg font-medium flex items-center gap-2">
-							<LanguagesIcon className="h-4 w-4" />
-							<Trans>Language</Trans>
-						</h3>
-						<p className="text-sm text-muted-foreground leading-relaxed">
-							<Trans>
-								Want to help improve our translations? Check{" "}
-								<a href="https://crowdin.com/project/beszel" className="link" target="_blank" rel="noopener noreferrer">
-									Crowdin
-								</a>{" "}
-								for details.
-							</Trans>
-						</p>
-					</div>
-					<Label className="block" htmlFor="lang">
-						<Trans>Preferred Language</Trans>
-					</Label>
-					<Select
-						name="lang"
-						value={i18n.locale}
-						onValueChange={(lang: string) => {
-							dynamicActivate(lang)
-							// saved right away: notifications sent by the hub use this language
-							queueUserSettings({ lang })
-						}}
-					>
-						<SelectTrigger id="lang">
-							<SelectValue />
-						</SelectTrigger>
-						<SelectContent>
-							{languages.map(([lang, label, e]) => (
-								<SelectItem key={lang} value={lang}>
-									<span className="me-2.5">
-										{e || (
-											<code
-												aria-hidden="true"
-												className="font-mono bg-muted text-[.65em] w-5 h-4 inline-grid place-items-center"
-											>
-												{lang}
-											</code>
-										)}
-									</span>
-									{label}
-								</SelectItem>
-							))}
-						</SelectContent>
-					</Select>
-				</div>
-				<Separator />
-				<div className="grid gap-2">
-					<div className="mb-2">
-						<h3 className="mb-1 text-lg font-medium">
-							<Trans>Layout width</Trans>
-						</h3>
-						<Label htmlFor="layoutWidth" className="text-sm text-muted-foreground leading-relaxed">
-							<Trans>Adjust the width of the main layout</Trans> ({layoutWidth}px)
-						</Label>
-					</div>
-					<Slider
-						id="layoutWidth"
-						name="layoutWidth"
-						value={[layoutWidth]}
-						onValueChange={(val) => $userSettings.setKey("layoutWidth", val[0])}
-						min={1000}
-						max={2000}
-						step={10}
-						className="w-full mb-1"
-					/>
 				</div>
 				<Separator />
 				<div className="grid gap-2">
@@ -451,47 +311,6 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 									</SelectItem>
 								</SelectContent>
 							</Select>
-						</div>
-					</div>
-				</div>
-				<Separator />
-				<div className="grid gap-2">
-					<div className="mb-2">
-						<h3 className="mb-1 text-lg font-medium">
-							<Trans>Warning thresholds</Trans>
-						</h3>
-						<p className="text-sm text-muted-foreground leading-relaxed">
-							<Trans>Set percentage thresholds for meter colors.</Trans>
-						</p>
-					</div>
-					<div className="grid grid-cols-2 lg:grid-cols-3 gap-4 items-end">
-						<div className="grid gap-2">
-							<Label htmlFor="colorWarn">
-								<Trans>Warning (%)</Trans>
-							</Label>
-							<Input
-								id="colorWarn"
-								name="colorWarn"
-								type="number"
-								min={1}
-								max={100}
-								className="min-w-24"
-								defaultValue={userSettings.colorWarn ?? 65}
-							/>
-						</div>
-						<div className="grid gap-1">
-							<Label htmlFor="colorCrit">
-								<Trans>Critical (%)</Trans>
-							</Label>
-							<Input
-								id="colorCrit"
-								name="colorCrit"
-								type="number"
-								min={1}
-								max={100}
-								className="min-w-24"
-								defaultValue={userSettings.colorCrit ?? 90}
-							/>
 						</div>
 					</div>
 				</div>

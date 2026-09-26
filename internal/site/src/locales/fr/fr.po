@@ -257,6 +257,7 @@ msgid "Active state"
 msgstr "État actif"
 
 #: src/components/navbar.tsx
+#: src/lib/header-icons.ts
 msgid "Add"
 msgstr "Ajouter"
 
@@ -321,7 +322,7 @@ msgstr "Adresse"
 msgid "Adjust display options for charts."
 msgstr "Ajuster les options d'affichage pour les graphiques."
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Adjust the width of the main layout"
 msgstr "Ajuster la largeur de la mise en page principale"
 
@@ -426,6 +427,7 @@ msgstr "Tous les agents sont à jour ({latest})"
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/containers.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Containers"
 msgstr "Tous les conteneurs"
@@ -439,6 +441,7 @@ msgstr "Tous les hôtes concernés ({outdatedCount})"
 #: src/components/navbar.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/reboots.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Reboots"
 msgstr "Tous les redémarrages"
@@ -453,6 +456,7 @@ msgstr "Tous les capteurs"
 #: src/components/navbar.tsx
 #: src/components/routes/services.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Services"
 msgstr "Tous les services"
@@ -468,6 +472,7 @@ msgstr "Tous les services"
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Systems"
 msgstr "Tous les systèmes"
@@ -500,6 +505,12 @@ msgstr "Noms alternatifs"
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "et {more} de plus"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/layout.tsx
+msgid "Appearance"
+msgstr "Apparence"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Apply alerts to the selection below"
@@ -680,7 +691,7 @@ msgstr "Démarrage"
 msgid "Boot state"
 msgstr "État de démarrage"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Browser tab title"
 msgstr "Nom de l’onglet du navigateur"
 
@@ -782,6 +793,10 @@ msgstr "Ajuster les unités d'affichage pour les métriques."
 #: src/components/routes/settings/general.tsx
 msgid "Change general application options."
 msgstr "Modifier les options générales de l'application."
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Change how the interface looks for your account."
+msgstr "Modifiez l’apparence de l’interface pour votre compte."
 
 #: src/components/routes/system/charts/sensor-charts.tsx
 msgid "Charge"
@@ -1111,7 +1126,7 @@ msgstr "Créer un compte"
 msgid "Created"
 msgstr "Date de création"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Critical (%)"
 msgstr "Critique (%)"
 
@@ -1158,6 +1173,10 @@ msgstr "Cycles"
 msgid "Daily"
 msgstr "Quotidien"
 
+#: src/components/routes/settings/appearance.tsx
+msgid "Dark"
+msgstr "Sombre"
+
 #: src/components/routes/system/agent-details.tsx
 msgid "Data directory"
 msgstr "Dossier de données"
@@ -1188,8 +1207,8 @@ msgstr "Couleur par défaut"
 msgid "Default time period"
 msgstr "Période par défaut"
 
-#: src/components/routes/settings/general.tsx
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Default URL"
 msgstr "URL par défaut"
@@ -1717,6 +1736,14 @@ msgstr "Les regroupements organisent les capteurs réseau pour tous les utilisat
 msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
 msgstr "Les regroupements organisent les hôtes de la page d’accueil pour tous les utilisateurs. Supprimer un regroupement conserve ses hôtes, sans catégorie."
 
+#: src/components/routes/settings/appearance.tsx
+msgid "Header"
+msgstr "En-tête"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Header icons"
+msgstr "Icônes de l’en-tête"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1745,7 +1772,7 @@ msgstr "Battement de cœur envoyé avec succès"
 msgid "Hide acknowledged"
 msgstr "Masquer les acquittées"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Home page"
 msgstr "Page d'accueil"
 
@@ -1878,8 +1905,8 @@ msgstr "Initié par"
 msgid "Instance"
 msgstr "Instance"
 
-#: src/components/routes/settings/general.tsx
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Instance name"
 msgstr "Nom de l’instance"
@@ -1953,7 +1980,7 @@ msgstr "Ports connus"
 msgid "Label"
 msgstr "Libellé"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Language"
 msgstr "Langue"
 
@@ -2001,13 +2028,17 @@ msgstr "Dernières interruptions"
 msgid "Layout"
 msgstr "Disposition"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "Largeur de la mise en page"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
 msgstr "Cycle de vie"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Light"
+msgstr "Clair"
 
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2297,6 +2328,7 @@ msgstr "Moniteurs réseau depuis un hôte"
 
 #: src/components/command-palette.tsx
 #: src/components/sensors/sensors-board.tsx
+#: src/lib/header-icons.ts
 msgid "Network sensors"
 msgstr "Capteurs réseaux"
 
@@ -2324,7 +2356,7 @@ msgstr "Intervention réseau"
 msgid "New group"
 msgstr "Nouveau regroupement"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "À côté du logo"
 
@@ -2423,7 +2455,7 @@ msgstr "Aucun"
 msgid "Not reported"
 msgstr "Non remonté"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Nothing"
 msgstr "Rien"
 
@@ -2583,7 +2615,7 @@ msgstr "Page"
 msgid "Page {0} of {1}"
 msgstr "Page {0} sur {1}"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Page opened at start and by the logo."
 msgstr "Page ouverte au démarrage et par le logo."
 
@@ -2750,7 +2782,7 @@ msgstr "Coupure électrique"
 msgid "Precise utilization at the recorded time"
 msgstr "Utilisation précise au moment enregistré"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Preferred Language"
 msgstr "Langue préférée"
 
@@ -3052,6 +3084,7 @@ msgstr "Enregistrer {foo}"
 msgid "Save address using enter key or comma. Leave blank to disable email notifications."
 msgstr "Enregistrez l'adresse en utilisant la touche Entrée ou la virgule. Laissez vide pour désactiver les notifications par email."
 
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
@@ -3079,6 +3112,7 @@ msgid "Scheduled maintenance"
 msgstr "Maintenance planifiée"
 
 #: src/components/navbar.tsx
+#: src/lib/header-icons.ts
 msgid "Search"
 msgstr "Recherche"
 
@@ -3232,7 +3266,7 @@ msgstr "Services"
 msgid "Services are checked at each collection, containers every minute."
 msgstr "Les services sont vérifiés à chaque relevé, les conteneurs chaque minute."
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Set percentage thresholds for meter colors."
 msgstr "Définir des seuils de pourcentage pour les couleurs des compteurs."
 
@@ -3397,6 +3431,7 @@ msgstr "Utilisation du swap"
 
 #: src/components/mode-toggle.tsx
 #: src/components/mode-toggle.tsx
+#: src/lib/header-icons.ts
 msgid "Switch theme"
 msgstr "Changer de thème"
 
@@ -3413,6 +3448,7 @@ msgstr "Changer de thème"
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -3576,6 +3612,10 @@ msgstr "La qualité des paquets sur 10 minutes est dégradée ou mauvaise."
 msgid "The rules are created on each system."
 msgstr "Les règles sont créées sur chaque hôte."
 
+#: src/components/routes/settings/appearance.tsx
+msgid "The settings and account menus always stay in the header."
+msgstr "Les menus des réglages et du compte restent toujours dans l’en-tête."
+
 #: src/components/routes/system/agent-details.tsx
 msgid "The system is not connected."
 msgstr "Le système n’est pas connecté."
@@ -3583,6 +3623,10 @@ msgstr "Le système n’est pas connecté."
 #: src/components/routes/settings/general.tsx
 msgid "The URL is set by the APP_URL environment variable of the hub."
 msgstr "L’URL est définie par la variable d’environnement APP_URL du hub."
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Theme"
+msgstr "Thème"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -3630,6 +3674,10 @@ msgstr "Débit du pool de stockage {displayName}"
 #: src/components/routes/settings/general.tsx
 msgid "Time format"
 msgstr "Format d'heure"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Title of the browser tab, label next to the logo and icons shown in the header."
+msgstr "Titre de l’onglet du navigateur, libellé à côté du logo et icônes affichées dans l’en-tête."
 
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-cert.tsx
@@ -4020,19 +4068,15 @@ msgstr "Colonnes visibles"
 msgid "Waiting for enough records to display"
 msgstr "En attente de suffisamment d'enregistrements à afficher"
 
-#: src/components/routes/settings/general.tsx
-msgid "Want to help improve our translations? Check <0>Crowdin</0> for details."
-msgstr "Vous voulez nous aider à améliorer nos traductions ? Consultez <0>Crowdin</0> pour plus de détails."
-
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Wants"
 msgstr "Souhaite"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Warning (%)"
 msgstr "Avertissement (%)"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Warning thresholds"
 msgstr "Seuils d'avertissement"
 

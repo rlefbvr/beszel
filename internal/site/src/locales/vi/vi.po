@@ -257,6 +257,7 @@ msgid "Active state"
 msgstr "Trạng thái hoạt động"
 
 #: src/components/navbar.tsx
+#: src/lib/header-icons.ts
 msgid "Add"
 msgstr "Thêm"
 
@@ -321,7 +322,7 @@ msgstr "Địa chỉ"
 msgid "Adjust display options for charts."
 msgstr "Điều chỉnh tùy chọn hiển thị cho biểu đồ."
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Adjust the width of the main layout"
 msgstr "Điều chỉnh chiều rộng bố cục chính"
 
@@ -426,6 +427,7 @@ msgstr "Tất cả tác nhân đều đã cập nhật ({latest})"
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/containers.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Containers"
 msgstr "Tất cả container"
@@ -439,6 +441,7 @@ msgstr "Tất cả bản cũ ({outdatedCount})"
 #: src/components/navbar.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/reboots.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Reboots"
 msgstr "Tất cả lần khởi động lại"
@@ -453,6 +456,7 @@ msgstr "Tất cả cảm biến"
 #: src/components/navbar.tsx
 #: src/components/routes/services.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Services"
 msgstr "Tất cả dịch vụ"
@@ -468,6 +472,7 @@ msgstr "Tất cả dịch vụ"
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Systems"
 msgstr "Tất cả Hệ thống"
@@ -500,6 +505,12 @@ msgstr "Tên thay thế"
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "và {more} mục khác"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/layout.tsx
+msgid "Appearance"
+msgstr "Giao diện"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Apply alerts to the selection below"
@@ -680,7 +691,7 @@ msgstr "Khởi động"
 msgid "Boot state"
 msgstr "Trạng thái khởi động"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Browser tab title"
 msgstr "Tiêu đề tab trình duyệt"
 
@@ -782,6 +793,10 @@ msgstr "Thay đổi đơn vị hiển thị cho các chỉ số."
 #: src/components/routes/settings/general.tsx
 msgid "Change general application options."
 msgstr "Thay đổi các tùy chọn ứng dụng chung."
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Change how the interface looks for your account."
+msgstr "Thay đổi giao diện cho tài khoản của bạn."
 
 #: src/components/routes/system/charts/sensor-charts.tsx
 msgid "Charge"
@@ -1111,7 +1126,7 @@ msgstr "Tạo tài khoản"
 msgid "Created"
 msgstr "Đã tạo"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Critical (%)"
 msgstr "Độ nghiêm trọng (%)"
 
@@ -1158,6 +1173,10 @@ msgstr "Chu kỳ"
 msgid "Daily"
 msgstr "Hàng ngày"
 
+#: src/components/routes/settings/appearance.tsx
+msgid "Dark"
+msgstr "Tối"
+
 #: src/components/routes/system/agent-details.tsx
 msgid "Data directory"
 msgstr "Thư mục dữ liệu"
@@ -1188,8 +1207,8 @@ msgstr "Màu mặc định"
 msgid "Default time period"
 msgstr "Thời gian mặc định"
 
-#: src/components/routes/settings/general.tsx
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Default URL"
 msgstr "URL mặc định"
@@ -1717,6 +1736,14 @@ msgstr "Nhóm sắp xếp các cảm biến mạng cho mọi người dùng. Xó
 msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
 msgstr "Nhóm sắp xếp các hệ thống trên trang chủ cho mọi người dùng. Xóa nhóm vẫn giữ các hệ thống của nhóm, không thuộc nhóm nào."
 
+#: src/components/routes/settings/appearance.tsx
+msgid "Header"
+msgstr "Đầu trang"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Header icons"
+msgstr "Biểu tượng đầu trang"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1745,7 +1772,7 @@ msgstr "Heartbeat đã được gửi thành công"
 msgid "Hide acknowledged"
 msgstr "Ẩn mục đã xác nhận"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Home page"
 msgstr "Trang chủ"
 
@@ -1878,8 +1905,8 @@ msgstr "Khởi tạo bởi"
 msgid "Instance"
 msgstr "Phiên bản"
 
-#: src/components/routes/settings/general.tsx
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Instance name"
 msgstr "Tên phiên bản"
@@ -1953,7 +1980,7 @@ msgstr "Cổng phổ biến"
 msgid "Label"
 msgstr "Nhãn"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Language"
 msgstr "Ngôn ngữ"
 
@@ -2001,13 +2028,17 @@ msgstr "Gián đoạn gần đây"
 msgid "Layout"
 msgstr "Bố cục"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "Chiều rộng bố cục"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
 msgstr "Vòng đời"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Light"
+msgstr "Sáng"
 
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2297,6 +2328,7 @@ msgstr "Giám sát mạng từ một máy chủ"
 
 #: src/components/command-palette.tsx
 #: src/components/sensors/sensors-board.tsx
+#: src/lib/header-icons.ts
 msgid "Network sensors"
 msgstr "Cảm biến mạng"
 
@@ -2324,7 +2356,7 @@ msgstr "Bảo trì mạng"
 msgid "New group"
 msgstr "Nhóm mới"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "Cạnh logo"
 
@@ -2423,7 +2455,7 @@ msgstr "Không có"
 msgid "Not reported"
 msgstr "Không được báo cáo"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Nothing"
 msgstr "Không có"
 
@@ -2583,7 +2615,7 @@ msgstr "Trang"
 msgid "Page {0} of {1}"
 msgstr "Trang {0} trên {1}"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Page opened at start and by the logo."
 msgstr "Trang được mở khi khởi động và khi nhấn vào logo."
 
@@ -2750,7 +2782,7 @@ msgstr "Mất điện"
 msgid "Precise utilization at the recorded time"
 msgstr "Sử dụng chính xác tại thời điểm ghi nhận"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Preferred Language"
 msgstr "Ngôn ngữ Ưa thích"
 
@@ -3052,6 +3084,7 @@ msgstr "Lưu {foo}"
 msgid "Save address using enter key or comma. Leave blank to disable email notifications."
 msgstr "Lưu địa chỉ bằng cách sử dụng phím enter hoặc dấu phẩy. Để trống để vô hiệu hóa thông báo email."
 
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
@@ -3079,6 +3112,7 @@ msgid "Scheduled maintenance"
 msgstr "Bảo trì theo lịch"
 
 #: src/components/navbar.tsx
+#: src/lib/header-icons.ts
 msgid "Search"
 msgstr "Tìm kiếm"
 
@@ -3232,7 +3266,7 @@ msgstr "Dịch vụ"
 msgid "Services are checked at each collection, containers every minute."
 msgstr "Dịch vụ được kiểm tra ở mỗi lần thu thập, container mỗi phút."
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Set percentage thresholds for meter colors."
 msgstr "Đặt ngưỡng cho màu sắc đồng hồ."
 
@@ -3397,6 +3431,7 @@ msgstr "Sử dụng Hoán đổi"
 
 #: src/components/mode-toggle.tsx
 #: src/components/mode-toggle.tsx
+#: src/lib/header-icons.ts
 msgid "Switch theme"
 msgstr "Đổi giao diện"
 
@@ -3413,6 +3448,7 @@ msgstr "Đổi giao diện"
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -3576,6 +3612,10 @@ msgstr "Chất lượng gói trong 10 phút bị suy giảm hoặc kém."
 msgid "The rules are created on each system."
 msgstr "Các quy tắc được tạo trên từng hệ thống."
 
+#: src/components/routes/settings/appearance.tsx
+msgid "The settings and account menus always stay in the header."
+msgstr "Menu cài đặt và tài khoản luôn ở trên đầu trang."
+
 #: src/components/routes/system/agent-details.tsx
 msgid "The system is not connected."
 msgstr "Hệ thống chưa được kết nối."
@@ -3583,6 +3623,10 @@ msgstr "Hệ thống chưa được kết nối."
 #: src/components/routes/settings/general.tsx
 msgid "The URL is set by the APP_URL environment variable of the hub."
 msgstr "URL được đặt bởi biến môi trường APP_URL của hub."
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Theme"
+msgstr "Chủ đề"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -3630,6 +3674,10 @@ msgstr "Thông lượng của pool lưu trữ {displayName}"
 #: src/components/routes/settings/general.tsx
 msgid "Time format"
 msgstr "Định dạng thời gian"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Title of the browser tab, label next to the logo and icons shown in the header."
+msgstr "Tiêu đề thẻ trình duyệt, nhãn cạnh logo và các biểu tượng trên đầu trang."
 
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-cert.tsx
@@ -4020,19 +4068,15 @@ msgstr "Các cột hiển thị"
 msgid "Waiting for enough records to display"
 msgstr "Đang chờ đủ bản ghi để hiển thị"
 
-#: src/components/routes/settings/general.tsx
-msgid "Want to help improve our translations? Check <0>Crowdin</0> for details."
-msgstr "Muốn giúp chúng tôi cải thiện bản dịch của mình? Xem <0>Crowdin</0> để biết thêm chi tiết."
-
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Wants"
 msgstr "Muốn"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Warning (%)"
 msgstr "Cảnh báo (%)"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Warning thresholds"
 msgstr "Ngưỡng cảnh báo"
 

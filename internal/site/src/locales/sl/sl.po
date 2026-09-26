@@ -257,6 +257,7 @@ msgid "Active state"
 msgstr "Aktivno stanje"
 
 #: src/components/navbar.tsx
+#: src/lib/header-icons.ts
 msgid "Add"
 msgstr "Dodaj"
 
@@ -321,7 +322,7 @@ msgstr "Naslov"
 msgid "Adjust display options for charts."
 msgstr "Prilagodi možnosti prikaza za grafikone."
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Adjust the width of the main layout"
 msgstr "Prilagodite širino glavne postavitve"
 
@@ -426,6 +427,7 @@ msgstr "Vsi agenti so posodobljeni ({latest})"
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/containers.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Containers"
 msgstr "Vsi kontejnerji"
@@ -439,6 +441,7 @@ msgstr "Vsi zastareli ({outdatedCount})"
 #: src/components/navbar.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/reboots.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Reboots"
 msgstr "Vsi ponovni zagoni"
@@ -453,6 +456,7 @@ msgstr "Vsi senzorji"
 #: src/components/navbar.tsx
 #: src/components/routes/services.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Services"
 msgstr "Vse storitve"
@@ -468,6 +472,7 @@ msgstr "Vse storitve"
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Systems"
 msgstr "Vsi sistemi"
@@ -500,6 +505,12 @@ msgstr "Nadomestna imena"
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "in še {more}"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/layout.tsx
+msgid "Appearance"
+msgstr "Videz"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Apply alerts to the selection below"
@@ -680,7 +691,7 @@ msgstr "Zagon"
 msgid "Boot state"
 msgstr "Stanje zagona"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Browser tab title"
 msgstr "Naslov zavihka brskalnika"
 
@@ -782,6 +793,10 @@ msgstr "Spremenite enote prikaza za metrike."
 #: src/components/routes/settings/general.tsx
 msgid "Change general application options."
 msgstr "Spremeni splošne možnosti aplikacije."
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Change how the interface looks for your account."
+msgstr "Spremenite videz vmesnika za svoj račun."
 
 #: src/components/routes/system/charts/sensor-charts.tsx
 msgid "Charge"
@@ -1111,7 +1126,7 @@ msgstr "Ustvari račun"
 msgid "Created"
 msgstr "Ustvarjeno"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Critical (%)"
 msgstr "Kritično (%)"
 
@@ -1158,6 +1173,10 @@ msgstr "Cikli"
 msgid "Daily"
 msgstr "Dnevno"
 
+#: src/components/routes/settings/appearance.tsx
+msgid "Dark"
+msgstr "Temna"
+
 #: src/components/routes/system/agent-details.tsx
 msgid "Data directory"
 msgstr "Podatkovna mapa"
@@ -1188,8 +1207,8 @@ msgstr "Privzeta barva"
 msgid "Default time period"
 msgstr "Privzeto časovno obdobje"
 
-#: src/components/routes/settings/general.tsx
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Default URL"
 msgstr "Privzeti URL"
@@ -1717,6 +1736,14 @@ msgstr "Skupine urejajo omrežne senzorje za vse uporabnike. Z brisanjem skupine
 msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
 msgstr "Skupine razvrščajo sisteme na domači strani za vse uporabnike. Brisanje skupine ohrani njene sisteme brez skupine."
 
+#: src/components/routes/settings/appearance.tsx
+msgid "Header"
+msgstr "Glava"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Header icons"
+msgstr "Ikone v glavi"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1745,7 +1772,7 @@ msgstr "Srčni utrip uspešno poslan"
 msgid "Hide acknowledged"
 msgstr "Skrij potrjena"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Home page"
 msgstr "Domača stran"
 
@@ -1878,8 +1905,8 @@ msgstr "Sprožil"
 msgid "Instance"
 msgstr "Instanca"
 
-#: src/components/routes/settings/general.tsx
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Instance name"
 msgstr "Ime instance"
@@ -1953,7 +1980,7 @@ msgstr "Znana vrata"
 msgid "Label"
 msgstr "Oznaka"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Language"
 msgstr "Jezik"
 
@@ -2001,13 +2028,17 @@ msgstr "Zadnje prekinitve"
 msgid "Layout"
 msgstr "Postavitev"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "Širina postavitve"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
 msgstr "Življenjski cikel"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Light"
+msgstr "Svetla"
 
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2297,6 +2328,7 @@ msgstr "Omrežni nadzorniki z gostitelja"
 
 #: src/components/command-palette.tsx
 #: src/components/sensors/sensors-board.tsx
+#: src/lib/header-icons.ts
 msgid "Network sensors"
 msgstr "Omrežni senzorji"
 
@@ -2324,7 +2356,7 @@ msgstr "Dela na omrežju"
 msgid "New group"
 msgstr "Nova skupina"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "Poleg logotipa"
 
@@ -2423,7 +2455,7 @@ msgstr "Brez"
 msgid "Not reported"
 msgstr "Ni sporočeno"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Nothing"
 msgstr "Nič"
 
@@ -2583,7 +2615,7 @@ msgstr "Stran"
 msgid "Page {0} of {1}"
 msgstr "Stran {0} od {1}"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Page opened at start and by the logo."
 msgstr "Stran, ki se odpre ob zagonu in z logotipom."
 
@@ -2750,7 +2782,7 @@ msgstr "Izpad elektrike"
 msgid "Precise utilization at the recorded time"
 msgstr "Natančna poraba v zabeleženem času"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Preferred Language"
 msgstr "Prednostni jezik"
 
@@ -3052,6 +3084,7 @@ msgstr "Shrani {foo}"
 msgid "Save address using enter key or comma. Leave blank to disable email notifications."
 msgstr "Shranite naslov s tipko enter ali vejico. Pustite prazno, da onemogočite e-poštna obvestila."
 
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
@@ -3079,6 +3112,7 @@ msgid "Scheduled maintenance"
 msgstr "Načrtovano vzdrževanje"
 
 #: src/components/navbar.tsx
+#: src/lib/header-icons.ts
 msgid "Search"
 msgstr "Iskanje"
 
@@ -3232,7 +3266,7 @@ msgstr "Storitve"
 msgid "Services are checked at each collection, containers every minute."
 msgstr "Storitve se preverijo ob vsakem zbiranju, vsebniki vsako minuto."
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Set percentage thresholds for meter colors."
 msgstr "Nastavite odstotne pragove za barve merilnikov."
 
@@ -3397,6 +3431,7 @@ msgstr "Swap uporaba"
 
 #: src/components/mode-toggle.tsx
 #: src/components/mode-toggle.tsx
+#: src/lib/header-icons.ts
 msgid "Switch theme"
 msgstr "Zamenjaj temo"
 
@@ -3413,6 +3448,7 @@ msgstr "Zamenjaj temo"
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -3576,6 +3612,10 @@ msgstr "Kakovost paketov v 10 minutah je poslabšana ali slaba."
 msgid "The rules are created on each system."
 msgstr "Pravila se ustvarijo v vsakem sistemu."
 
+#: src/components/routes/settings/appearance.tsx
+msgid "The settings and account menus always stay in the header."
+msgstr "Meniji za nastavitve in račun vedno ostanejo v glavi."
+
 #: src/components/routes/system/agent-details.tsx
 msgid "The system is not connected."
 msgstr "Sistem ni povezan."
@@ -3583,6 +3623,10 @@ msgstr "Sistem ni povezan."
 #: src/components/routes/settings/general.tsx
 msgid "The URL is set by the APP_URL environment variable of the hub."
 msgstr "URL je nastavljen s spremenljivko okolja APP_URL vozlišča."
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Theme"
+msgstr "Tema"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -3630,6 +3674,10 @@ msgstr "Prepustnost shranjevalnega poola {displayName}"
 #: src/components/routes/settings/general.tsx
 msgid "Time format"
 msgstr "Oblika časa"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Title of the browser tab, label next to the logo and icons shown in the header."
+msgstr "Naslov zavihka brskalnika, oznaka ob logotipu in ikone v glavi."
 
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-cert.tsx
@@ -4020,19 +4068,15 @@ msgstr "Vidna polja"
 msgid "Waiting for enough records to display"
 msgstr "Čakam na dovolj zapisov za prikaz"
 
-#: src/components/routes/settings/general.tsx
-msgid "Want to help improve our translations? Check <0>Crowdin</0> for details."
-msgstr "Ali nam želite pomagati, da bomo naše prevode še izboljšali? Za več podrobnosti si oglejte <0>Crowdin</0>."
-
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Wants"
 msgstr "Zahteva"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Warning (%)"
 msgstr "Opozorilo (%)"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Warning thresholds"
 msgstr "Pragovi za opozorila"
 

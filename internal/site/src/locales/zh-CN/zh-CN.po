@@ -257,6 +257,7 @@ msgid "Active state"
 msgstr "活动状态"
 
 #: src/components/navbar.tsx
+#: src/lib/header-icons.ts
 msgid "Add"
 msgstr "添加"
 
@@ -321,7 +322,7 @@ msgstr "地址"
 msgid "Adjust display options for charts."
 msgstr "调整图表的显示选项。"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Adjust the width of the main layout"
 msgstr "调整主布局宽度"
 
@@ -426,6 +427,7 @@ msgstr "所有代理均为最新版本（{latest}）"
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/containers.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Containers"
 msgstr "所有容器"
@@ -439,6 +441,7 @@ msgstr "所有需更新项（{outdatedCount}）"
 #: src/components/navbar.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/reboots.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Reboots"
 msgstr "所有重启"
@@ -453,6 +456,7 @@ msgstr "所有传感器"
 #: src/components/navbar.tsx
 #: src/components/routes/services.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Services"
 msgstr "所有服务"
@@ -468,6 +472,7 @@ msgstr "所有服务"
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Systems"
 msgstr "所有客户端"
@@ -500,6 +505,12 @@ msgstr "备用名称"
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "以及另外 {more} 项"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/layout.tsx
+msgid "Appearance"
+msgstr "外观"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Apply alerts to the selection below"
@@ -680,7 +691,7 @@ msgstr "开机"
 msgid "Boot state"
 msgstr "启动状态"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Browser tab title"
 msgstr "浏览器标签页标题"
 
@@ -782,6 +793,10 @@ msgstr "更改指标的显示单位。"
 #: src/components/routes/settings/general.tsx
 msgid "Change general application options."
 msgstr "更改常规应用程序选项。"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Change how the interface looks for your account."
+msgstr "更改您账户的界面外观。"
 
 #: src/components/routes/system/charts/sensor-charts.tsx
 msgid "Charge"
@@ -1111,7 +1126,7 @@ msgstr "创建账户"
 msgid "Created"
 msgstr "创建时间"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Critical (%)"
 msgstr "临界 (%)"
 
@@ -1158,6 +1173,10 @@ msgstr "循环次数"
 msgid "Daily"
 msgstr "每日"
 
+#: src/components/routes/settings/appearance.tsx
+msgid "Dark"
+msgstr "深色"
+
 #: src/components/routes/system/agent-details.tsx
 msgid "Data directory"
 msgstr "数据目录"
@@ -1188,8 +1207,8 @@ msgstr "默认颜色"
 msgid "Default time period"
 msgstr "默认时间段"
 
-#: src/components/routes/settings/general.tsx
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Default URL"
 msgstr "默认网址"
@@ -1717,6 +1736,14 @@ msgstr "分组为所有用户整理网络传感器。删除分组会保留其传
 msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
 msgstr "分组为所有用户整理首页上的系统。删除分组会保留其系统，变为无分组。"
 
+#: src/components/routes/settings/appearance.tsx
+msgid "Header"
+msgstr "页眉"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Header icons"
+msgstr "页眉图标"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1745,7 +1772,7 @@ msgstr "心跳发送成功"
 msgid "Hide acknowledged"
 msgstr "隐藏已确认"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Home page"
 msgstr "首页"
 
@@ -1878,8 +1905,8 @@ msgstr "发起者"
 msgid "Instance"
 msgstr "实例"
 
-#: src/components/routes/settings/general.tsx
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Instance name"
 msgstr "实例名称"
@@ -1953,7 +1980,7 @@ msgstr "常用端口"
 msgid "Label"
 msgstr "标签"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Language"
 msgstr "语言"
 
@@ -2001,13 +2028,17 @@ msgstr "最近的中断"
 msgid "Layout"
 msgstr "布局"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "布局宽度"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
 msgstr "生命周期"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Light"
+msgstr "浅色"
 
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2297,6 +2328,7 @@ msgstr "来自主机的网络监控"
 
 #: src/components/command-palette.tsx
 #: src/components/sensors/sensors-board.tsx
+#: src/lib/header-icons.ts
 msgid "Network sensors"
 msgstr "网络传感器"
 
@@ -2324,7 +2356,7 @@ msgstr "网络作业"
 msgid "New group"
 msgstr "新建分组"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "标志旁"
 
@@ -2423,7 +2455,7 @@ msgstr "无"
 msgid "Not reported"
 msgstr "未上报"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Nothing"
 msgstr "无"
 
@@ -2583,7 +2615,7 @@ msgstr "页面"
 msgid "Page {0} of {1}"
 msgstr "第 {0} 页，共 {1} 页"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Page opened at start and by the logo."
 msgstr "启动时及点击标志时打开的页面。"
 
@@ -2750,7 +2782,7 @@ msgstr "停电"
 msgid "Precise utilization at the recorded time"
 msgstr "采集时间下的精确内存使用率"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Preferred Language"
 msgstr "首选语言"
 
@@ -3052,6 +3084,7 @@ msgstr "保存 {foo}"
 msgid "Save address using enter key or comma. Leave blank to disable email notifications."
 msgstr "使用回车键或逗号保存地址。留空以禁用电子邮件通知。"
 
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
@@ -3079,6 +3112,7 @@ msgid "Scheduled maintenance"
 msgstr "计划维护"
 
 #: src/components/navbar.tsx
+#: src/lib/header-icons.ts
 msgid "Search"
 msgstr "搜索"
 
@@ -3232,7 +3266,7 @@ msgstr "服务"
 msgid "Services are checked at each collection, containers every minute."
 msgstr "服务在每次收集时检查，容器每分钟检查一次。"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Set percentage thresholds for meter colors."
 msgstr "设置仪表颜色的百分比阈值。"
 
@@ -3397,6 +3431,7 @@ msgstr "SWAP 使用率"
 
 #: src/components/mode-toggle.tsx
 #: src/components/mode-toggle.tsx
+#: src/lib/header-icons.ts
 msgid "Switch theme"
 msgstr "切换主题"
 
@@ -3413,6 +3448,7 @@ msgstr "切换主题"
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -3576,6 +3612,10 @@ msgstr "10 分钟内的数据包质量下降或差。"
 msgid "The rules are created on each system."
 msgstr "规则会创建在每个系统上。"
 
+#: src/components/routes/settings/appearance.tsx
+msgid "The settings and account menus always stay in the header."
+msgstr "设置和账户菜单会一直保留在页眉。"
+
 #: src/components/routes/system/agent-details.tsx
 msgid "The system is not connected."
 msgstr "系统未连接。"
@@ -3583,6 +3623,10 @@ msgstr "系统未连接。"
 #: src/components/routes/settings/general.tsx
 msgid "The URL is set by the APP_URL environment variable of the hub."
 msgstr "网址由中心的 APP_URL 环境变量设置。"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Theme"
+msgstr "主题"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -3630,6 +3674,10 @@ msgstr "存储池 {displayName} 的吞吐量"
 #: src/components/routes/settings/general.tsx
 msgid "Time format"
 msgstr "时间格式"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Title of the browser tab, label next to the logo and icons shown in the header."
+msgstr "浏览器标签页标题、标志旁的标签以及页眉显示的图标。"
 
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-cert.tsx
@@ -4020,19 +4068,15 @@ msgstr "可见列"
 msgid "Waiting for enough records to display"
 msgstr "正在收集足够的数据来显示"
 
-#: src/components/routes/settings/general.tsx
-msgid "Want to help improve our translations? Check <0>Crowdin</0> for details."
-msgstr "想帮助我们改进翻译吗？查看<0>Crowdin</0>以获取更多详细信息。"
-
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Wants"
 msgstr "希望"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Warning (%)"
 msgstr "警告 (%)"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Warning thresholds"
 msgstr "警告阈值"
 

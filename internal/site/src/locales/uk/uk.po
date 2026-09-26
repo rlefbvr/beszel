@@ -257,6 +257,7 @@ msgid "Active state"
 msgstr "Активний стан"
 
 #: src/components/navbar.tsx
+#: src/lib/header-icons.ts
 msgid "Add"
 msgstr "Додати"
 
@@ -321,7 +322,7 @@ msgstr "Адреса"
 msgid "Adjust display options for charts."
 msgstr "Налаштуйте параметри відображення для графіків."
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Adjust the width of the main layout"
 msgstr "Налаштуйте ширину основного макету"
 
@@ -426,6 +427,7 @@ msgstr "Усі агенти оновлені ({latest})"
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/containers.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Containers"
 msgstr "Всі контейнери"
@@ -439,6 +441,7 @@ msgstr "Усі застарілі ({outdatedCount})"
 #: src/components/navbar.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/reboots.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Reboots"
 msgstr "Усі перезавантаження"
@@ -453,6 +456,7 @@ msgstr "Усі датчики"
 #: src/components/navbar.tsx
 #: src/components/routes/services.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Services"
 msgstr "Усі служби"
@@ -468,6 +472,7 @@ msgstr "Усі служби"
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Systems"
 msgstr "Всі системи"
@@ -500,6 +505,12 @@ msgstr "Альтернативні імена"
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "і ще {more}"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/layout.tsx
+msgid "Appearance"
+msgstr "Вигляд"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Apply alerts to the selection below"
@@ -680,7 +691,7 @@ msgstr "Завантаження"
 msgid "Boot state"
 msgstr "Стан завантаження"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Browser tab title"
 msgstr "Заголовок вкладки браузера"
 
@@ -782,6 +793,10 @@ msgstr "Змінити одиниці вимірювання для метрик
 #: src/components/routes/settings/general.tsx
 msgid "Change general application options."
 msgstr "Змінити загальні параметри програми."
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Change how the interface looks for your account."
+msgstr "Змініть вигляд інтерфейсу для свого облікового запису."
 
 #: src/components/routes/system/charts/sensor-charts.tsx
 msgid "Charge"
@@ -1111,7 +1126,7 @@ msgstr "Створити обліковий запис"
 msgid "Created"
 msgstr "Створено"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Critical (%)"
 msgstr "Критично (%)"
 
@@ -1158,6 +1173,10 @@ msgstr "Цикли"
 msgid "Daily"
 msgstr "Щодня"
 
+#: src/components/routes/settings/appearance.tsx
+msgid "Dark"
+msgstr "Темна"
+
 #: src/components/routes/system/agent-details.tsx
 msgid "Data directory"
 msgstr "Каталог даних"
@@ -1188,8 +1207,8 @@ msgstr "Колір за замовчуванням"
 msgid "Default time period"
 msgstr "Стандартний період часу"
 
-#: src/components/routes/settings/general.tsx
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Default URL"
 msgstr "URL за замовчуванням"
@@ -1717,6 +1736,14 @@ msgstr "Групи впорядковують мережеві датчики д
 msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
 msgstr "Групи впорядковують системи на головній сторінці для всіх користувачів. Видалення групи зберігає її системи без групи."
 
+#: src/components/routes/settings/appearance.tsx
+msgid "Header"
+msgstr "Шапка"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Header icons"
+msgstr "Значки в шапці"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1745,7 +1772,7 @@ msgstr "Heartbeat успішно надіслано"
 msgid "Hide acknowledged"
 msgstr "Приховати підтверджені"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Home page"
 msgstr "Домашня сторінка"
 
@@ -1878,8 +1905,8 @@ msgstr "Ініціатор"
 msgid "Instance"
 msgstr "Екземпляр"
 
-#: src/components/routes/settings/general.tsx
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Instance name"
 msgstr "Назва екземпляра"
@@ -1953,7 +1980,7 @@ msgstr "Відомі порти"
 msgid "Label"
 msgstr "Мітка"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Language"
 msgstr "Мова"
 
@@ -2001,13 +2028,17 @@ msgstr "Останні перерви"
 msgid "Layout"
 msgstr "Макет"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "Ширина макету"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
 msgstr "Життєвий цикл"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Light"
+msgstr "Світла"
 
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2297,6 +2328,7 @@ msgstr "Мережеві монітори з хоста"
 
 #: src/components/command-palette.tsx
 #: src/components/sensors/sensors-board.tsx
+#: src/lib/header-icons.ts
 msgid "Network sensors"
 msgstr "Мережеві датчики"
 
@@ -2324,7 +2356,7 @@ msgstr "Роботи в мережі"
 msgid "New group"
 msgstr "Нова група"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "Поруч із логотипом"
 
@@ -2423,7 +2455,7 @@ msgstr "Немає"
 msgid "Not reported"
 msgstr "Немає даних"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Nothing"
 msgstr "Нічого"
 
@@ -2583,7 +2615,7 @@ msgstr "Сторінка"
 msgid "Page {0} of {1}"
 msgstr "Сторінка {0} з {1}"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Page opened at start and by the logo."
 msgstr "Сторінка, що відкривається під час запуску та за логотипом."
 
@@ -2750,7 +2782,7 @@ msgstr "Відключення електроенергії"
 msgid "Precise utilization at the recorded time"
 msgstr "Точне використання в записаний час"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Preferred Language"
 msgstr "Бажана мова"
 
@@ -3052,6 +3084,7 @@ msgstr "Зберегти {foo}"
 msgid "Save address using enter key or comma. Leave blank to disable email notifications."
 msgstr "Збережіть адресу, використовуючи клавішу Enter або кому. Залиште порожнім, щоб вимкнути сповіщення електронною поштою."
 
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
@@ -3079,6 +3112,7 @@ msgid "Scheduled maintenance"
 msgstr "Планове обслуговування"
 
 #: src/components/navbar.tsx
+#: src/lib/header-icons.ts
 msgid "Search"
 msgstr "Пошук"
 
@@ -3232,7 +3266,7 @@ msgstr "Служби"
 msgid "Services are checked at each collection, containers every minute."
 msgstr "Служби перевіряються під час кожного збору, контейнери — щохвилини."
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Set percentage thresholds for meter colors."
 msgstr "Встановіть відсоткові пороги для кольорів лічильників."
 
@@ -3397,6 +3431,7 @@ msgstr "Використання підкачки"
 
 #: src/components/mode-toggle.tsx
 #: src/components/mode-toggle.tsx
+#: src/lib/header-icons.ts
 msgid "Switch theme"
 msgstr "Змінити тему"
 
@@ -3413,6 +3448,7 @@ msgstr "Змінити тему"
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -3576,6 +3612,10 @@ msgstr "Якість пакетів за 10 хвилин погіршена аб
 msgid "The rules are created on each system."
 msgstr "Правила створюються в кожній системі."
 
+#: src/components/routes/settings/appearance.tsx
+msgid "The settings and account menus always stay in the header."
+msgstr "Меню налаштувань і облікового запису завжди залишаються в шапці."
+
 #: src/components/routes/system/agent-details.tsx
 msgid "The system is not connected."
 msgstr "Система не підключена."
@@ -3583,6 +3623,10 @@ msgstr "Система не підключена."
 #: src/components/routes/settings/general.tsx
 msgid "The URL is set by the APP_URL environment variable of the hub."
 msgstr "URL задано змінною середовища APP_URL хабу."
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Theme"
+msgstr "Тема"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -3630,6 +3674,10 @@ msgstr "Пропускна здатність пулу сховища {displayNa
 #: src/components/routes/settings/general.tsx
 msgid "Time format"
 msgstr "Формат часу"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Title of the browser tab, label next to the logo and icons shown in the header."
+msgstr "Заголовок вкладки браузера, підпис поруч із логотипом і значки в шапці."
 
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-cert.tsx
@@ -4020,19 +4068,15 @@ msgstr "Видимі стовпці"
 msgid "Waiting for enough records to display"
 msgstr "Очікування достатньої кількості записів для відображення"
 
-#: src/components/routes/settings/general.tsx
-msgid "Want to help improve our translations? Check <0>Crowdin</0> for details."
-msgstr "Хочете допомогти покращити наші переклади? Подробиці на <0>Crowdin</0>."
-
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Wants"
 msgstr "Потребує"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Warning (%)"
 msgstr "Попередження (%)"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Warning thresholds"
 msgstr "Пороги попередження"
 

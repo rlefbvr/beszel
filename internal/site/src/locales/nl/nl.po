@@ -257,6 +257,7 @@ msgid "Active state"
 msgstr "Actieve status"
 
 #: src/components/navbar.tsx
+#: src/lib/header-icons.ts
 msgid "Add"
 msgstr "Toevoegen"
 
@@ -321,7 +322,7 @@ msgstr "Adres"
 msgid "Adjust display options for charts."
 msgstr "Weergaveopties voor grafieken aanpassen."
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Adjust the width of the main layout"
 msgstr "Breedte van het hoofdlayout aanpassen"
 
@@ -426,6 +427,7 @@ msgstr "Alle agents zijn bijgewerkt ({latest})"
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/containers.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Containers"
 msgstr "Alle containers"
@@ -439,6 +441,7 @@ msgstr "Alle verouderde ({outdatedCount})"
 #: src/components/navbar.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/reboots.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Reboots"
 msgstr "Alle herstarts"
@@ -453,6 +456,7 @@ msgstr "Alle sensoren"
 #: src/components/navbar.tsx
 #: src/components/routes/services.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Services"
 msgstr "Alle services"
@@ -468,6 +472,7 @@ msgstr "Alle services"
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
+#: src/lib/header-icons.ts
 #: src/lib/home-page.ts
 msgid "All Systems"
 msgstr "Alle systemen"
@@ -500,6 +505,12 @@ msgstr "Alternatieve namen"
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
 msgstr "en nog {more}"
+
+#: src/components/command-palette.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/layout.tsx
+msgid "Appearance"
+msgstr "Weergave"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Apply alerts to the selection below"
@@ -680,7 +691,7 @@ msgstr "Opstart"
 msgid "Boot state"
 msgstr "Opstartstatus"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Browser tab title"
 msgstr "Titel van het browsertabblad"
 
@@ -782,6 +793,10 @@ msgstr "Verander statistiek eenheden."
 #: src/components/routes/settings/general.tsx
 msgid "Change general application options."
 msgstr "Wijzig algemene applicatie opties."
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Change how the interface looks for your account."
+msgstr "Wijzig het uiterlijk van de interface voor uw account."
 
 #: src/components/routes/system/charts/sensor-charts.tsx
 msgid "Charge"
@@ -1111,7 +1126,7 @@ msgstr "Account aanmaken"
 msgid "Created"
 msgstr "Aangemaakt"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Critical (%)"
 msgstr "Kritiek (%)"
 
@@ -1158,6 +1173,10 @@ msgstr "Cycli"
 msgid "Daily"
 msgstr "Dagelijks"
 
+#: src/components/routes/settings/appearance.tsx
+msgid "Dark"
+msgstr "Donker"
+
 #: src/components/routes/system/agent-details.tsx
 msgid "Data directory"
 msgstr "Gegevensmap"
@@ -1188,8 +1207,8 @@ msgstr "Standaardkleur"
 msgid "Default time period"
 msgstr "Standaard tijdsduur"
 
-#: src/components/routes/settings/general.tsx
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Default URL"
 msgstr "Standaard-URL"
@@ -1717,6 +1736,14 @@ msgstr "Groepen ordenen de netwerksensoren voor alle gebruikers. Een groep verwi
 msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
 msgstr "Groepen ordenen de systemen op de startpagina voor alle gebruikers. Een groep verwijderen behoudt de systemen, zonder groep."
 
+#: src/components/routes/settings/appearance.tsx
+msgid "Header"
+msgstr "Koptekst"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Header icons"
+msgstr "Pictogrammen in de koptekst"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/storage-pools-table.tsx
@@ -1745,7 +1772,7 @@ msgstr "Heartbeat succesvol verzonden"
 msgid "Hide acknowledged"
 msgstr "Bevestigde verbergen"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Home page"
 msgstr "Startpagina"
 
@@ -1878,8 +1905,8 @@ msgstr "Gestart door"
 msgid "Instance"
 msgstr "Instantie"
 
-#: src/components/routes/settings/general.tsx
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Instance name"
 msgstr "Naam van de instantie"
@@ -1953,7 +1980,7 @@ msgstr "Bekende poorten"
 msgid "Label"
 msgstr "Label"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Language"
 msgstr "Taal"
 
@@ -2001,13 +2028,17 @@ msgstr "Laatste onderbrekingen"
 msgid "Layout"
 msgstr "Indeling"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Layout width"
 msgstr "Layoutbreedte"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
 msgstr "Levenscyclus"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Light"
+msgstr "Licht"
 
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -2297,6 +2328,7 @@ msgstr "Netwerkmonitors vanaf een host"
 
 #: src/components/command-palette.tsx
 #: src/components/sensors/sensors-board.tsx
+#: src/lib/header-icons.ts
 msgid "Network sensors"
 msgstr "Netwerksensoren"
 
@@ -2324,7 +2356,7 @@ msgstr "Netwerkwerkzaamheden"
 msgid "New group"
 msgstr "Nieuwe groep"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Next to the logo"
 msgstr "Naast het logo"
 
@@ -2423,7 +2455,7 @@ msgstr "Geen"
 msgid "Not reported"
 msgstr "Niet gerapporteerd"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Nothing"
 msgstr "Niets"
 
@@ -2583,7 +2615,7 @@ msgstr "Pagina"
 msgid "Page {0} of {1}"
 msgstr "Pagina {0} van de {1}"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Page opened at start and by the logo."
 msgstr "Pagina die bij het starten en via het logo wordt geopend."
 
@@ -2750,7 +2782,7 @@ msgstr "Stroomstoring"
 msgid "Precise utilization at the recorded time"
 msgstr "Nauwkeurig gebruik op de opgenomen tijd"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Preferred Language"
 msgstr "Voorkeurstaal"
 
@@ -3052,6 +3084,7 @@ msgstr "{foo} opslaan"
 msgid "Save address using enter key or comma. Leave blank to disable email notifications."
 msgstr "Bewaar het adres met de enter-toets of komma. Laat leeg om e-mailmeldingen uit te schakelen."
 
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
@@ -3079,6 +3112,7 @@ msgid "Scheduled maintenance"
 msgstr "Gepland onderhoud"
 
 #: src/components/navbar.tsx
+#: src/lib/header-icons.ts
 msgid "Search"
 msgstr "Zoeken"
 
@@ -3232,7 +3266,7 @@ msgstr "Services"
 msgid "Services are checked at each collection, containers every minute."
 msgstr "Services worden bij elke verzameling gecontroleerd, containers elke minuut."
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Set percentage thresholds for meter colors."
 msgstr "Stel percentagedrempels in voor meterkleuren."
 
@@ -3397,6 +3431,7 @@ msgstr "Swap gebruik"
 
 #: src/components/mode-toggle.tsx
 #: src/components/mode-toggle.tsx
+#: src/lib/header-icons.ts
 msgid "Switch theme"
 msgstr "Wissel thema"
 
@@ -3413,6 +3448,7 @@ msgstr "Wissel thema"
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/settings/appearance.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -3576,6 +3612,10 @@ msgstr "De pakketkwaliteit over 10 minuten is verminderd of slecht."
 msgid "The rules are created on each system."
 msgstr "De regels worden op elk systeem aangemaakt."
 
+#: src/components/routes/settings/appearance.tsx
+msgid "The settings and account menus always stay in the header."
+msgstr "De menu’s voor instellingen en account blijven altijd in de koptekst."
+
 #: src/components/routes/system/agent-details.tsx
 msgid "The system is not connected."
 msgstr "Het systeem is niet verbonden."
@@ -3583,6 +3623,10 @@ msgstr "Het systeem is niet verbonden."
 #: src/components/routes/settings/general.tsx
 msgid "The URL is set by the APP_URL environment variable of the hub."
 msgstr "De URL wordt ingesteld door de omgevingsvariabele APP_URL van de hub."
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Theme"
+msgstr "Thema"
 
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
@@ -3630,6 +3674,10 @@ msgstr "Doorvoer van opslagpool {displayName}"
 #: src/components/routes/settings/general.tsx
 msgid "Time format"
 msgstr "Tijdnotatie"
+
+#: src/components/routes/settings/appearance.tsx
+msgid "Title of the browser tab, label next to the logo and icons shown in the header."
+msgstr "Titel van het browsertabblad, label naast het logo en pictogrammen in de koptekst."
 
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-cert.tsx
@@ -4020,19 +4068,15 @@ msgstr "Zichtbare kolommen"
 msgid "Waiting for enough records to display"
 msgstr "Wachtend op genoeg records om weer te geven"
 
-#: src/components/routes/settings/general.tsx
-msgid "Want to help improve our translations? Check <0>Crowdin</0> for details."
-msgstr "Wil je ons helpen onze vertalingen nog beter te maken? Bekijk <0>Crowdin</0> voor meer informatie."
-
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Wants"
 msgstr "Wil"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Warning (%)"
 msgstr "Waarschuwing (%)"
 
-#: src/components/routes/settings/general.tsx
+#: src/components/routes/settings/appearance.tsx
 msgid "Warning thresholds"
 msgstr "Waarschuwingsdrempels"
 

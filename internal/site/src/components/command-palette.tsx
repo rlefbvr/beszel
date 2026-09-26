@@ -18,6 +18,7 @@ import {
 	ServerIcon,
 	SettingsIcon,
 	UsersIcon,
+	PaletteIcon,
 } from "lucide-react"
 import { memo, type ReactNode, useEffect, useMemo, useState } from "react"
 import {
@@ -215,6 +216,19 @@ export default memo(function CommandPalette({ open, setOpen }: { open: boolean; 
 							<AlertOctagonIcon className="me-2 size-4" />
 							<span>
 								<Trans>Alert History</Trans>
+							</span>
+							{SettingsShortcut}
+						</CommandItem>
+						<CommandItem
+							keywords={["theme", "language", "header"]}
+							onSelect={() => {
+								navigate(getPagePath($router, "settings", { name: "appearance" }))
+								setOpen(false)
+							}}
+						>
+							<PaletteIcon className="me-2 size-4" />
+							<span>
+								<Trans>Appearance</Trans>
 							</span>
 							{SettingsShortcut}
 						</CommandItem>

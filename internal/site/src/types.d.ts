@@ -455,6 +455,10 @@ export interface UserSettings {
 	sensorsByGroup?: boolean
 	/** network sensors: order by name, or worst status or quality first */
 	sensorsSort?: "name" | "status" | "quality"
+	/** icons of the header hidden by the user */
+	hiddenHeaderIcons?: string[]
+	/** color theme of the interface, kept with the user */
+	theme?: "light" | "dark" | "system"
 	/** page opened at start: home (systems) or another page */
 	homePage?: string
 	/** acknowledged active alerts: record id and time of their last change */

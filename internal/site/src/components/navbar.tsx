@@ -40,6 +40,7 @@ import { AddSystemDialog } from "./add-system"
 import { Dialog } from "./ui/dialog"
 import { Sheet } from "./ui/sheet"
 import { Logo } from "./logo"
+import type { HeaderIcon } from "@/lib/header-icons"
 import { homePagePath } from "@/lib/home-page"
 import { $headerLabel } from "@/lib/instance"
 import { $userSettings } from "@/lib/stores"
@@ -65,7 +66,8 @@ export default function Navbar() {
 
 	const systemTranslation = t`System`
 	const headerLabel = useStore($headerLabel)
-	useStore($userSettings)
+	const hiddenIcons = useStore($userSettings).hiddenHeaderIcons ?? []
+	const show = (icon: HeaderIcon) => !hiddenIcons.includes(icon)
 	const homePath = homePagePath()
 
 	return (
@@ -88,27 +90,31 @@ export default function Navbar() {
 					{headerLabel}
 				</span>
 			)}
-			<Button
-				variant="outline"
-				className="hidden md:block text-sm text-muted-foreground px-4"
-				onClick={() => setCommandPaletteOpen(true)}
-			>
-				<span className="flex items-center">
-					<SearchIcon className="me-1.5 h-4 w-4" />
-					<Trans>Search</Trans>
-					<span className="flex items-center ms-3.5">
-						<Kbd>{isMac ? "⌘" : "Ctrl"}</Kbd>
-						<Kbd>K</Kbd>
+			{show("search") && (
+				<Button
+					variant="outline"
+					className="hidden md:block text-sm text-muted-foreground px-4"
+					onClick={() => setCommandPaletteOpen(true)}
+				>
+					<span className="flex items-center">
+						<SearchIcon className="me-1.5 h-4 w-4" />
+						<Trans>Search</Trans>
+						<span className="flex items-center ms-3.5">
+							<Kbd>{isMac ? "⌘" : "Ctrl"}</Kbd>
+							<Kbd>K</Kbd>
+						</span>
 					</span>
-				</span>
-			</Button>
+				</Button>
+			)}
 
 			{/* mobile menu */}
 			<div className="ms-auto flex items-center text-xl md:hidden">
-				<ModeToggle />
-				<Button variant="ghost" size="icon" onClick={() => setCommandPaletteOpen(true)}>
-					<SearchIcon className="h-[1.2rem] w-[1.2rem]" />
-				</Button>
+				{show("theme") && <ModeToggle />}
+				{show("search") && (
+					<Button variant="ghost" size="icon" onClick={() => setCommandPaletteOpen(true)}>
+						<SearchIcon className="h-[1.2rem] w-[1.2rem]" />
+					</Button>
+				)}
 				<DropdownMenu>
 					<DropdownMenuTrigger
 						onMouseEnter={() => import("@/components/routes/settings/general")}
@@ -202,90 +208,102 @@ export default function Navbar() {
 				className="hidden md:flex items-center ms-auto"
 				onMouseEnter={() => import("@/components/routes/settings/general")}
 			>
-				<Tooltip>
-					<TooltipTrigger asChild>
-						<Link
-							href={getPagePath($router, "monitors")}
-							className={cn("hidden md:grid", buttonVariants({ variant: "ghost", size: "icon" }))}
-							aria-label="Network Monitors"
-							onMouseEnter={() => import("@/components/routes/monitors")}
-						>
-							<NetworkIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
-						</Link>
-					</TooltipTrigger>
-					<TooltipContent>
-						<Trans>Network Monitors</Trans>
-					</TooltipContent>
-				</Tooltip>
-				<Tooltip>
-					<TooltipTrigger asChild>
-						<Link
-							href={getPagePath($router, "home")}
-							className={cn("hidden md:grid", buttonVariants({ variant: "ghost", size: "icon" }))}
-							aria-label="All Systems"
-						>
-							<ServerIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
-						</Link>
-					</TooltipTrigger>
-					<TooltipContent>
-						<Trans>All Systems</Trans>
-					</TooltipContent>
-				</Tooltip>
-				<Tooltip>
-					<TooltipTrigger asChild>
-						<Link
-							href={getPagePath($router, "containers")}
-							className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
-							aria-label="Containers"
-						>
-							<ContainerIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
-						</Link>
-					</TooltipTrigger>
-					<TooltipContent>
-						<Trans>All Containers</Trans>
-					</TooltipContent>
-				</Tooltip>
-				<Tooltip>
-					<TooltipTrigger asChild>
-						<Link
-							href={getPagePath($router, "services")}
-							className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
-							aria-label="Services"
-						>
-							<ServerCogIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
-						</Link>
-					</TooltipTrigger>
-					<TooltipContent>
-						<Trans>All Services</Trans>
-					</TooltipContent>
-				</Tooltip>
-				<Tooltip>
-					<TooltipTrigger asChild>
-						<Link
-							href={getPagePath($router, "reboots")}
-							className={cn("hidden md:grid", buttonVariants({ variant: "ghost", size: "icon" }))}
-							aria-label="Reboots"
-						>
-							<RefreshCcwDotIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
-						</Link>
-					</TooltipTrigger>
-					<TooltipContent>
-						<Trans>All Reboots</Trans>
-					</TooltipContent>
-				</Tooltip>
-				<Tooltip>
-					<TooltipTrigger asChild>
-						<Link
-							href={getPagePath($router, "smart")}
-							className={cn("hidden md:grid", buttonVariants({ variant: "ghost", size: "icon" }))}
-							aria-label="S.M.A.R.T."
-						>
-							<HardDriveIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
-						</Link>
-					</TooltipTrigger>
-					<TooltipContent>S.M.A.R.T.</TooltipContent>
-				</Tooltip>
-				<ModeToggle />
+				{show("sensors") && (
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<Link
+								href={getPagePath($router, "monitors")}
+								className={cn("hidden md:grid", buttonVariants({ variant: "ghost", size: "icon" }))}
+								aria-label="Network Monitors"
+								onMouseEnter={() => import("@/components/routes/monitors")}
+							>
+								<NetworkIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
+							</Link>
+						</TooltipTrigger>
+						<TooltipContent>
+							<Trans>Network Monitors</Trans>
+						</TooltipContent>
+					</Tooltip>
+				)}
+				{show("systems") && (
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<Link
+								href={getPagePath($router, "home")}
+								className={cn("hidden md:grid", buttonVariants({ variant: "ghost", size: "icon" }))}
+								aria-label="All Systems"
+							>
+								<ServerIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
+							</Link>
+						</TooltipTrigger>
+						<TooltipContent>
+							<Trans>All Systems</Trans>
+						</TooltipContent>
+					</Tooltip>
+				)}
+				{show("containers") && (
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<Link
+								href={getPagePath($router, "containers")}
+								className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
+								aria-label="Containers"
+							>
+								<ContainerIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
+							</Link>
+						</TooltipTrigger>
+						<TooltipContent>
+							<Trans>All Containers</Trans>
+						</TooltipContent>
+					</Tooltip>
+				)}
+				{show("services") && (
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<Link
+								href={getPagePath($router, "services")}
+								className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
+								aria-label="Services"
+							>
+								<ServerCogIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
+							</Link>
+						</TooltipTrigger>
+						<TooltipContent>
+							<Trans>All Services</Trans>
+						</TooltipContent>
+					</Tooltip>
+				)}
+				{show("reboots") && (
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<Link
+								href={getPagePath($router, "reboots")}
+								className={cn("hidden md:grid", buttonVariants({ variant: "ghost", size: "icon" }))}
+								aria-label="Reboots"
+							>
+								<RefreshCcwDotIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
+							</Link>
+						</TooltipTrigger>
+						<TooltipContent>
+							<Trans>All Reboots</Trans>
+						</TooltipContent>
+					</Tooltip>
+				)}
+				{show("smart") && (
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<Link
+								href={getPagePath($router, "smart")}
+								className={cn("hidden md:grid", buttonVariants({ variant: "ghost", size: "icon" }))}
+								aria-label="S.M.A.R.T."
+							>
+								<HardDriveIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
+							</Link>
+						</TooltipTrigger>
+						<TooltipContent>S.M.A.R.T.</TooltipContent>
+					</Tooltip>
+				)}
+				{show("theme") && <ModeToggle />}
 				<Tooltip>
 					<TooltipTrigger asChild>
 						<Link
@@ -323,7 +341,7 @@ export default function Navbar() {
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
-				{!isReadOnlyUser() && (
+				{!isReadOnlyUser() && show("add") && (
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
 							<Button variant="outline" className="flex gap-1 ms-2">
