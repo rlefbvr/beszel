@@ -161,13 +161,13 @@ export function quietHoursAlertKindLabel(kind: string) {
 }
 
 /** Whether a window silences only some alerts */
-export function quietHoursScoped(record: Pick<QuietHoursRecord, "alerts" | "rules">) {
-	return !!record.alerts?.length || !!record.rules?.length
+export function quietHoursScoped(record: Pick<QuietHoursRecord, "alerts" | "rules" | "targets">) {
+	return !!record.alerts?.length || !!record.rules?.length || !!record.targets?.length
 }
 
 /** Alerts silenced by a window limited to some of them, such as "CPU, Service state: nginx"; empty for all */
 export function quietHoursScopeText(
-	record: Pick<QuietHoursRecord, "alerts" | "rules">,
+	record: Pick<QuietHoursRecord, "alerts" | "rules" | "targets">,
 	stateAlerts: Record<string, StateAlertRecord>
 ) {
 	if (!quietHoursScoped(record)) {
@@ -180,7 +180,15 @@ export function quietHoursScopeText(
 			(rule) =>
 				`${quietHoursAlertKindLabel(rule.kind === "container" ? "ContainerState" : "ServiceState")}: ${rule.targets}`
 		)
-	return [...(record.alerts ?? []).map(quietHoursAlertKindLabel), ...rules].join(", ")
+	// the services and containers chosen on their pages
+	const targets = (["service", "container"] as const)
+		.map((kind) => {
+			const names = (record.targets ?? []).filter((target) => target.kind === kind).map((target) => target.name)
+			const label = quietHoursAlertKindLabel(kind === "container" ? "ContainerState" : "ServiceState")
+			return names.length ? `${label}: ${names.join(", ")}` : ""
+		})
+		.filter(Boolean)
+	return [...(record.alerts ?? []).map(quietHoursAlertKindLabel), ...rules, ...targets].join(", ")
 }
 
 /** Preset reasons, stored by key and translated when displayed */

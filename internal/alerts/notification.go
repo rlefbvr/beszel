@@ -51,10 +51,13 @@ type AlertMessageData struct {
 	SensorID string
 	// Kind is the alert type (CPU, Status, ServiceState…) and RuleID the state
 	// rule of the alert, for the quiet hours limited to some alerts.
-	Kind    string
-	RuleID  string
-	Title   Msg
-	Message Msg
+	Kind   string
+	RuleID string
+	// TargetName is the service or container of a state alert, for the quiet
+	// hours of chosen services and containers.
+	TargetName string
+	Title      Msg
+	Message    Msg
 	// Target is what the alert is about (a service, container, disk...),
 	// highlighted in emails under TargetLabel.
 	Target      Msg

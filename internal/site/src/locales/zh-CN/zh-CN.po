@@ -94,6 +94,14 @@ msgstr "{count, plural, other {# 个传感器}}"
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, other {# 个系统}}"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
+msgstr "{count, plural, one {此时段内不会发送所选容器的状态告警。} other {此时段内不会发送所选 # 个容器的状态告警。}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
+msgstr "{count, plural, one {此时段内不会发送所选服务的状态告警。} other {此时段内不会发送所选 # 个服务的状态告警。}}"
+
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "新增 {created} 个传感器，并为现有传感器添加 {added} 项检查。"
@@ -1325,6 +1333,7 @@ msgstr "当前状态"
 msgid "Cycles"
 msgstr "循环次数"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Daily"
@@ -1436,6 +1445,7 @@ msgstr "依赖项"
 msgid "Deployment"
 msgstr "部署"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "描述原因"
@@ -1647,6 +1657,7 @@ msgstr "启用目录登录"
 msgid "End"
 msgstr "结束"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1684,6 +1695,7 @@ msgstr "输入您的一次性密码。"
 msgid "Ephemeral"
 msgstr "暂时"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2829,6 +2841,7 @@ msgid "No systems found."
 msgstr "未找到系统。"
 
 #: src/components/add-system.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -2904,6 +2917,7 @@ msgstr "一个或多个监控的丢包率超过 {0}%"
 msgid "One or more services are in a failed state"
 msgstr "一个或多个服务处于失败状态"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "One-time"
@@ -2957,6 +2971,7 @@ msgstr "或使用以下方式登录"
 msgid "Or enter this key in the app:"
 msgstr "或在应用中输入此密钥："
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3256,6 +3271,7 @@ msgstr "队列深度"
 msgid "Quiet hours"
 msgstr "静默时段"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3271,6 +3287,10 @@ msgstr "静默时段已启用"
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours active: notifications are not sent"
 msgstr "静默时段已启用：不发送通知"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Quiet hours set up"
+msgstr "已设置静音时段"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3314,6 +3334,8 @@ msgstr "只读"
 msgid "Read-only group"
 msgstr "只读组"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3839,14 +3861,20 @@ msgstr "在您的 Beszel hub 上设置以下环境变量以启用 heartbeat 监�
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "在以下位置（或 WMI 类 Win32_TSGeneralSetting）设置新证书的指纹，然后重启远程桌面服务："
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "设置"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "设置静音时段"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Set up quiet hours for the selection below"
+msgstr "为下方所选项设置静音时段"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -3924,6 +3952,7 @@ msgstr "来源"
 msgid "Start"
 msgstr "开始"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4477,6 +4506,7 @@ msgstr "当任何磁盘的使用率超过阈值时触发"
 msgid "Two-factor authentication"
 msgstr "双因素认证"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx

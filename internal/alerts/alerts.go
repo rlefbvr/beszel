@@ -149,39 +149,69 @@ func (am *AlertManager) IsNotificationSilenced(userID, systemID string) bool {
 	return am.isSilencedAt(userID, systemID, time.Now().UTC())
 }
 
+// IsTargetSilenced checks if quiet hours silence the state alerts of a service or container of a system.
+func (am *AlertManager) IsTargetSilenced(userID, systemID, kind, targetName string) bool {
+	return am.isSilencedFor(userID, systemID, "", kind, "", targetName, time.Now().UTC())
+}
+
 // IsAlertSilenced checks if quiet hours silence an alert type or a state rule of a system.
 func (am *AlertManager) IsAlertSilenced(userID, systemID, kind, ruleID string) bool {
-	return am.isSilencedFor(userID, systemID, "", kind, ruleID, time.Now().UTC())
+	return am.isSilencedFor(userID, systemID, "", kind, ruleID, "", time.Now().UTC())
 }
 
 // IsSensorNotificationSilenced checks if quiet hours silence the notifications of a network sensor
 func (am *AlertManager) IsSensorNotificationSilenced(userID, sensorID string) bool {
-	return am.isSilencedFor(userID, "", sensorID, "", "", time.Now().UTC())
+	return am.isSilencedFor(userID, "", sensorID, "", "", "", time.Now().UTC())
 }
 
 // isSilencedAt checks if quiet hours silence the status notifications of a system at a given time
 func (am *AlertManager) isSilencedAt(userID, systemID string, now time.Time) bool {
-	return am.isSilencedFor(userID, systemID, "", "Status", "", now)
+	return am.isSilencedFor(userID, systemID, "", "Status", "", "", now)
 }
 
 // quietWindowApplies tells whether a quiet hours window silences an alert: a
 // window without alert types or rules silences all of them, else the alert
 // must be of one of its types or come from one of its rules.
-func quietWindowApplies(window *core.Record, kind, ruleID string) bool {
+func quietWindowApplies(window *core.Record, kind, ruleID, targetName string) bool {
 	var kinds []string
 	_ = window.UnmarshalJSONField("alerts", &kinds)
 	rules := window.GetStringSlice("rules")
-	if len(kinds) == 0 && len(rules) == 0 {
+	var targets []quietTarget
+	_ = window.UnmarshalJSONField("targets", &targets)
+	if len(kinds) == 0 && len(rules) == 0 && len(targets) == 0 {
 		return true
 	}
-	return (kind != "" && slices.Contains(kinds, kind)) || (ruleID != "" && slices.Contains(rules, ruleID))
+	if (kind != "" && slices.Contains(kinds, kind)) || (ruleID != "" && slices.Contains(rules, ruleID)) {
+		return true
+	}
+	return targetName != "" && slices.ContainsFunc(targets, func(target quietTarget) bool {
+		return target.matches(kind, targetName)
+	})
+}
+
+// quietTarget is a service or container silenced by a quiet hours window.
+type quietTarget struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+}
+
+// matches tells whether the target is the one of an alert: a service for the
+// service state alerts, a container for the container state alerts.
+func (t quietTarget) matches(kind, name string) bool {
+	switch kind {
+	case alertNameServiceState:
+		return t.Kind == stateAlertKindService && strings.EqualFold(t.Name, name)
+	case alertNameContainerState:
+		return t.Kind == stateAlertKindContainer && strings.EqualFold(t.Name, name)
+	}
+	return false
 }
 
 // isSilencedFor checks if quiet hours silence the notifications of a system or
 // of a network sensor at a given time: global windows (neither system nor
 // sensor), and the windows of the system or of the sensor, limited to the
 // alert types and rules they name.
-func (am *AlertManager) isSilencedFor(userID, systemID, sensorID, kind, ruleID string, now time.Time) bool {
+func (am *AlertManager) isSilencedFor(userID, systemID, sensorID, kind, ruleID, targetName string, now time.Time) bool {
 	filter := "user={:user} AND ((system='' AND COALESCE(sensor, '')='')"
 	params := dbx.Params{"user": userID}
 	if systemID != "" {
@@ -202,7 +232,7 @@ func (am *AlertManager) isSilencedFor(userID, systemID, sensorID, kind, ruleID s
 	now = now.UTC()
 
 	for _, window := range quietHourWindows {
-		if !quietWindowApplies(window, kind, ruleID) {
+		if !quietWindowApplies(window, kind, ruleID, targetName) {
 			continue
 		}
 		windowType := window.GetString("type")
@@ -247,7 +277,7 @@ func (am *AlertManager) isSilencedFor(userID, systemID, sensorID, kind, ruleID s
 // SendAlert sends an alert to the user
 func (am *AlertManager) SendAlert(data AlertMessageData) error {
 	// Check if alert is silenced
-	if am.isSilencedFor(data.UserID, data.SystemID, data.SensorID, data.Kind, data.RuleID, time.Now().UTC()) {
+	if am.isSilencedFor(data.UserID, data.SystemID, data.SensorID, data.Kind, data.RuleID, data.TargetName, time.Now().UTC()) {
 		am.hub.Logger().Info("Notification silenced", "user", data.UserID, "system", data.SystemID, "title", data.Title)
 		return nil
 	}

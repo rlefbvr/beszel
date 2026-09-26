@@ -94,6 +94,14 @@ msgstr "{count, plural, one {# датчик} few {# датчики} many {# да
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# система} few {# системи} many {# систем} other {# системи}}"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
+msgstr "{count, plural, one {Сповіщення про стан вибраного контейнера не надсилаються в цей період.} other {Сповіщення про стан вибраних контейнерів (#) не надсилаються в цей період.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
+msgstr "{count, plural, one {Сповіщення про стан вибраної служби не надсилаються в цей період.} other {Сповіщення про стан вибраних служб (#) не надсилаються в цей період.}}"
+
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "Нових датчиків: {created}, перевірок додано до наявних: {added}."
@@ -1325,6 +1333,7 @@ msgstr "Поточний стан"
 msgid "Cycles"
 msgstr "Цикли"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Daily"
@@ -1436,6 +1445,7 @@ msgstr "Залежності"
 msgid "Deployment"
 msgstr "Розгортання"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "Опишіть причину"
@@ -1647,6 +1657,7 @@ msgstr "Увімкнути вхід через каталог"
 msgid "End"
 msgstr "Кінець"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1684,6 +1695,7 @@ msgstr "Введіть ваш одноразовий пароль."
 msgid "Ephemeral"
 msgstr "Тимчасовий"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2829,6 +2841,7 @@ msgid "No systems found."
 msgstr "Систем не знайдено."
 
 #: src/components/add-system.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -2904,6 +2917,7 @@ msgstr "На одному або кількох моніторах втрати 
 msgid "One or more services are in a failed state"
 msgstr "Одна або кілька служб перебувають у стані помилки"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "One-time"
@@ -2957,6 +2971,7 @@ msgstr "Або продовжити з"
 msgid "Or enter this key in the app:"
 msgstr "Або введіть цей ключ у застосунку:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3256,6 +3271,7 @@ msgstr "Глибина черги"
 msgid "Quiet hours"
 msgstr "Тихі години"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3271,6 +3287,10 @@ msgstr "Тихі години активні"
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours active: notifications are not sent"
 msgstr "Тихі години активні: сповіщення не надсилаються"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Quiet hours set up"
+msgstr "Тихі години налаштовано"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3314,6 +3334,8 @@ msgstr "Лише читання"
 msgid "Read-only group"
 msgstr "Група лише для читання"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3839,14 +3861,20 @@ msgstr "Встановіть наступні змінні оточення в �
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "Вкажіть відбиток нового сертифіката в такому місці (або у WMI-класі Win32_TSGeneralSetting), потім перезапустіть службу віддалених робочих столів:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Налаштувати"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "Налаштувати тихі години"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Set up quiet hours for the selection below"
+msgstr "Налаштувати тихі години для вибраного нижче"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -3924,6 +3952,7 @@ msgstr "Джерело"
 msgid "Start"
 msgstr "Початок"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4477,6 +4506,7 @@ msgstr "Спрацьовує, коли використання будь-яко�
 msgid "Two-factor authentication"
 msgstr "Двофакторна автентифікація"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx

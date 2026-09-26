@@ -94,6 +94,14 @@ msgstr "{count, plural, other {# 個のセンサー}}"
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, other {# 台のシステム}}"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
+msgstr "{count, plural, one {選択したコンテナーの状態アラートはこの期間中送信されません。} other {選択した # 件のコンテナーの状態アラートはこの期間中送信されません。}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
+msgstr "{count, plural, one {選択したサービスの状態アラートはこの期間中送信されません。} other {選択した # 件のサービスの状態アラートはこの期間中送信されません。}}"
+
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "新しいセンサー {created} 件、既存のセンサーにチェック {added} 件を追加しました。"
@@ -1325,6 +1333,7 @@ msgstr "現在の状態"
 msgid "Cycles"
 msgstr "サイクル"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Daily"
@@ -1436,6 +1445,7 @@ msgstr "依存関係"
 msgid "Deployment"
 msgstr "デプロイ"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "理由を入力"
@@ -1647,6 +1657,7 @@ msgstr "ディレクトリでのログインを有効にする"
 msgid "End"
 msgstr "終了"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1684,6 +1695,7 @@ msgstr "ワンタイムパスワードを入力してください。"
 msgid "Ephemeral"
 msgstr "一時的"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2829,6 +2841,7 @@ msgid "No systems found."
 msgstr "システムが見つかりませんでした。"
 
 #: src/components/add-system.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -2904,6 +2917,7 @@ msgstr "1つ以上のモニターでパケットロス率が{0}%を超えてい�
 msgid "One or more services are in a failed state"
 msgstr "いずれかのサービスが失敗状態です"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "One-time"
@@ -2957,6 +2971,7 @@ msgstr "または、以下の方法でログイン"
 msgid "Or enter this key in the app:"
 msgstr "またはこのキーをアプリに入力します:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3256,6 +3271,7 @@ msgstr "キューの深さ"
 msgid "Quiet hours"
 msgstr "サイレント時間"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3271,6 +3287,10 @@ msgstr "サイレント時間が有効です"
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours active: notifications are not sent"
 msgstr "サイレント時間中: 通知は送信されません"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Quiet hours set up"
+msgstr "サイレント時間を設定しました"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3314,6 +3334,8 @@ msgstr "読み取り専用"
 msgid "Read-only group"
 msgstr "読み取り専用グループ"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3839,14 +3861,20 @@ msgstr "ハートビート監視を有効にするには、Beszel ハブで次�
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "次の場所 (または WMI クラス Win32_TSGeneralSetting) に新しい証明書の拇印を設定してから、リモート デスクトップ サービスを再起動します:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "設定"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "サイレント時間を設定"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Set up quiet hours for the selection below"
+msgstr "以下の選択項目にサイレント時間を設定"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -3924,6 +3952,7 @@ msgstr "ソース"
 msgid "Start"
 msgstr "開始"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4477,6 +4506,7 @@ msgstr "ディスクの使用量がしきい値を超えたときにトリガー
 msgid "Two-factor authentication"
 msgstr "2 要素認証"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx

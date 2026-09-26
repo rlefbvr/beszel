@@ -94,6 +94,14 @@ msgstr "{count, plural, one {# сензор} few {# сензора} other {# с�
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# систем} few {# система} other {# система}}"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
+msgstr "{count, plural, one {Упозорења о стању изабраног контејнера се не шаљу у овом периоду.} other {Упозорења о стању изабраних контејнера (#) се не шаљу у овом периоду.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
+msgstr "{count, plural, one {Упозорења о стању изабране услуге се не шаљу у овом периоду.} other {Упозорења о стању изабраних услуга (#) се не шаљу у овом периоду.}}"
+
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "Нових сензора: {created}, провера додато постојећим сензорима: {added}."
@@ -1325,6 +1333,7 @@ msgstr "Тренутно стање"
 msgid "Cycles"
 msgstr "Циклуси"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Daily"
@@ -1436,6 +1445,7 @@ msgstr "Зависности"
 msgid "Deployment"
 msgstr "Имплементација"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "Опишите разлог"
@@ -1647,6 +1657,7 @@ msgstr "Укључи пријаву преко именика"
 msgid "End"
 msgstr "Крај"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1684,6 +1695,7 @@ msgstr "Унесите вашу једнократну лозинку."
 msgid "Ephemeral"
 msgstr "Ефемеран"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2829,6 +2841,7 @@ msgid "No systems found."
 msgstr "Нису пронађени системи."
 
 #: src/components/add-system.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -2904,6 +2917,7 @@ msgstr "Jedan ili više monitora premašuju gubitak od {0}%"
 msgid "One or more services are in a failed state"
 msgstr "Једна или више услуга је у стању грешке"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "One-time"
@@ -2957,6 +2971,7 @@ msgstr "Или наставите са"
 msgid "Or enter this key in the app:"
 msgstr "Или унесите овај кључ у апликацију:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3256,6 +3271,7 @@ msgstr "Дубина реда"
 msgid "Quiet hours"
 msgstr "Тихи сати"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3271,6 +3287,10 @@ msgstr "Тихи сати су активни"
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours active: notifications are not sent"
 msgstr "Тихи сати су активни: обавештења се не шаљу"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Quiet hours set up"
+msgstr "Тихи сати подешени"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3314,6 +3334,8 @@ msgstr "Само читање"
 msgid "Read-only group"
 msgstr "Група само за читање"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3839,14 +3861,20 @@ msgstr "Podesite sledeće promenljive okruženja na svom Beszel hub-u da biste o
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "Поставите отисак новог сертификата на следећем месту (или у WMI класи Win32_TSGeneralSetting), затим поново покрените услугу удаљене радне површине:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Подеси"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "Подеси тихе сате"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Set up quiet hours for the selection below"
+msgstr "Подеси тихе сате за избор испод"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -3924,6 +3952,7 @@ msgstr "Извор"
 msgid "Start"
 msgstr "Почетак"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4477,6 +4506,7 @@ msgstr "Окида се када употреба било ког диска п�
 msgid "Two-factor authentication"
 msgstr "Двофакторска аутентификација"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx

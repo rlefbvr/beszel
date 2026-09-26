@@ -94,6 +94,14 @@ msgstr "{count, plural, one {# sensor} other {# sensorer}}"
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# system} other {# systemer}}"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
+msgstr "{count, plural, one {Tilstandsvarsler for den valgte containeren sendes ikke i dette tidsrommet.} other {Tilstandsvarsler for de valgte containerne (#) sendes ikke i dette tidsrommet.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
+msgstr "{count, plural, one {Tilstandsvarsler for den valgte tjenesten sendes ikke i dette tidsrommet.} other {Tilstandsvarsler for de valgte tjenestene (#) sendes ikke i dette tidsrommet.}}"
+
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} nye sensorer, {added} kontroller lagt til eksisterende sensorer."
@@ -1325,6 +1333,7 @@ msgstr "Nåværende tilstand"
 msgid "Cycles"
 msgstr "Sykluser"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Daily"
@@ -1436,6 +1445,7 @@ msgstr "Avhengigheter"
 msgid "Deployment"
 msgstr "Utrulling"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "Beskriv årsaken"
@@ -1647,6 +1657,7 @@ msgstr "Aktiver pålogging med katalogen"
 msgid "End"
 msgstr "Slutt"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1684,6 +1695,7 @@ msgstr "Skriv inn ditt engangspassord."
 msgid "Ephemeral"
 msgstr "Midlertidig"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2829,6 +2841,7 @@ msgid "No systems found."
 msgstr "Ingen systemer funnet."
 
 #: src/components/add-system.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -2904,6 +2917,7 @@ msgstr "Én eller flere monitorer overstiger {0}% tap"
 msgid "One or more services are in a failed state"
 msgstr "Én eller flere tjenester er i feilet tilstand"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "One-time"
@@ -2957,6 +2971,7 @@ msgstr "Eller fortsett med"
 msgid "Or enter this key in the app:"
 msgstr "Eller skriv inn denne nøkkelen i appen:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3256,6 +3271,7 @@ msgstr "Kødybde"
 msgid "Quiet hours"
 msgstr "Stille timer"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3271,6 +3287,10 @@ msgstr "Stille timer er aktive"
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours active: notifications are not sent"
 msgstr "Stille timer aktive: varsler sendes ikke"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Quiet hours set up"
+msgstr "Stilletimer er konfigurert"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3314,6 +3334,8 @@ msgstr "Skrivebeskyttet"
 msgid "Read-only group"
 msgstr "Skrivebeskyttet gruppe"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3839,14 +3861,20 @@ msgstr "Sett følgende miljøvariabler på Beszel-huben din for å aktivere hjer
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "Angi avtrykket til det nye sertifikatet på følgende sted (eller i WMI-klassen Win32_TSGeneralSetting), og start deretter tjenesten Eksternt skrivebord på nytt:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Konfigurer"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "Konfigurer stilletimer"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Set up quiet hours for the selection below"
+msgstr "Konfigurer stilletimer for utvalget nedenfor"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -3924,6 +3952,7 @@ msgstr "Kilde"
 msgid "Start"
 msgstr "Start"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4477,6 +4506,7 @@ msgstr "Slår inn når forbruk av hvilken som helst disk overstiger en grensever
 msgid "Two-factor authentication"
 msgstr "Tofaktorautentisering"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx

@@ -2,6 +2,7 @@
 import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
+import { BulkQuietHoursButton } from "@/components/alerts/bulk-quiet-hours"
 import { BulkStateAlertsButton, selectionColumn, targetRowId } from "@/components/alerts/bulk-state-alerts"
 import { type ImportantTile, ImportantTargets } from "@/components/important-targets"
 import {
@@ -270,6 +271,7 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 						</div>
 						<ColumnsViewMenu table={table} />
 						<BulkStateAlertsButton kind="container" items={selectedItems} />
+						<BulkQuietHoursButton kind="container" items={selectedItems} />
 					</div>
 				</div>
 			</CardHeader>

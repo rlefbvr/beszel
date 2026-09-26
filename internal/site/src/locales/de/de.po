@@ -94,6 +94,14 @@ msgstr "{count, plural, one {# Sensor} other {# Sensoren}}"
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# System} other {# Systeme}}"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
+msgstr "{count, plural, one {Die Zustandswarnungen des ausgewählten Containers werden in diesem Zeitraum nicht gesendet.} other {Die Zustandswarnungen der ausgewählten Container (#) werden in diesem Zeitraum nicht gesendet.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
+msgstr "{count, plural, one {Die Zustandswarnungen des ausgewählten Dienstes werden in diesem Zeitraum nicht gesendet.} other {Die Zustandswarnungen der ausgewählten Dienste (#) werden in diesem Zeitraum nicht gesendet.}}"
+
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} neue Sensoren, {added} Prüfungen zu vorhandenen Sensoren hinzugefügt."
@@ -1325,6 +1333,7 @@ msgstr "Aktueller Zustand"
 msgid "Cycles"
 msgstr "Zyklen"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Daily"
@@ -1436,6 +1445,7 @@ msgstr "Abhängigkeiten"
 msgid "Deployment"
 msgstr "Bereitstellung"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "Grund beschreiben"
@@ -1647,6 +1657,7 @@ msgstr "Anmeldung mit dem Verzeichnis aktivieren"
 msgid "End"
 msgstr "Ende"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1684,6 +1695,7 @@ msgstr "Geben Sie Ihr Einmalpasswort ein."
 msgid "Ephemeral"
 msgstr "Flüchtig"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2829,6 +2841,7 @@ msgid "No systems found."
 msgstr "Keine Systeme gefunden."
 
 #: src/components/add-system.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -2904,6 +2917,7 @@ msgstr "Ein oder mehrere Monitore überschreiten {0}% Verlust"
 msgid "One or more services are in a failed state"
 msgstr "Ein oder mehrere Dienste befinden sich im Fehlerzustand"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "One-time"
@@ -2957,6 +2971,7 @@ msgstr "Oder fortfahren mit"
 msgid "Or enter this key in the app:"
 msgstr "Oder geben Sie diesen Schlüssel in der App ein:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3256,6 +3271,7 @@ msgstr "Warteschlangentiefe"
 msgid "Quiet hours"
 msgstr "Ruhezeit"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3271,6 +3287,10 @@ msgstr "Ruhezeiten aktiv"
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours active: notifications are not sent"
 msgstr "Ruhezeiten aktiv: Benachrichtigungen werden nicht gesendet"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Quiet hours set up"
+msgstr "Ruhezeiten eingerichtet"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3314,6 +3334,8 @@ msgstr "Nur lesen"
 msgid "Read-only group"
 msgstr "Nur-Lesen-Gruppe"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3839,14 +3861,20 @@ msgstr "Legen Sie die folgenden Umgebungsvariablen auf Ihrem Beszel-Hub fest, um
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "Tragen Sie den Fingerabdruck des neuen Zertifikats an folgender Stelle ein (oder in der WMI-Klasse Win32_TSGeneralSetting) und starten Sie dann den Remotedesktopdienst neu:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Einrichten"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "Ruhezeiten einrichten"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Set up quiet hours for the selection below"
+msgstr "Ruhezeiten für die Auswahl unten einrichten"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -3924,6 +3952,7 @@ msgstr "Quelle"
 msgid "Start"
 msgstr "Beginn"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4477,6 +4506,7 @@ msgstr "Löst aus, wenn die Nutzung einer Festplatte einen Schwellenwert übersc
 msgid "Two-factor authentication"
 msgstr "Zwei-Faktor-Authentifizierung"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx

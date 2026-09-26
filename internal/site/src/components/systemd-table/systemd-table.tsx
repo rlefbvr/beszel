@@ -19,6 +19,7 @@ import { LoaderCircleIcon } from "lucide-react"
 import { listenKeys } from "nanostores"
 import { memo, type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { getStatusColor, systemdTableCols } from "@/components/systemd-table/systemd-table-columns"
+import { BulkQuietHoursButton } from "@/components/alerts/bulk-quiet-hours"
 import { BulkStateAlertsButton, selectionColumn, targetRowId } from "@/components/alerts/bulk-state-alerts"
 import { type ImportantTile, ImportantTargets } from "@/components/important-targets"
 import { $router, Link } from "@/components/router"
@@ -247,6 +248,7 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 						/>
 						<ColumnsViewMenu table={table} />
 						<BulkStateAlertsButton kind="service" items={selectedItems} />
+						<BulkQuietHoursButton kind="service" items={selectedItems} />
 					</div>
 				</div>
 			</CardHeader>

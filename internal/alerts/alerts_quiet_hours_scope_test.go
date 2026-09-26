@@ -42,8 +42,17 @@ func TestQuietHoursScope(t *testing.T) {
 	assert.False(t, am.IsAlertSilenced(user.Id, system.Id, "ServiceState", "otherrule"), "other rule")
 	assert.False(t, am.IsNotificationSilenced(user.Id, system.Id), "status alerts are not in the window")
 
+	// services chosen on the services page
 	window.Set("alerts", []string{})
 	window.Set("rules", []string{})
+	window.Set("targets", []map[string]string{{"kind": "service", "name": "nginx"}})
+	require.NoError(t, hub.Save(window))
+	assert.True(t, am.IsTargetSilenced(user.Id, system.Id, "ServiceState", "NGINX"), "chosen service")
+	assert.False(t, am.IsTargetSilenced(user.Id, system.Id, "ServiceState", "sshd"), "other service")
+	assert.False(t, am.IsTargetSilenced(user.Id, system.Id, "ContainerState", "nginx"), "container of the same name")
+	assert.False(t, am.IsAlertSilenced(user.Id, system.Id, "CPU", ""), "other alerts")
+
+	window.Set("targets", []map[string]string{})
 	require.NoError(t, hub.Save(window))
 	assert.True(t, am.IsAlertSilenced(user.Id, system.Id, "Memory", ""), "all the alerts")
 	assert.True(t, am.IsNotificationSilenced(user.Id, system.Id), "all the alerts")

@@ -94,6 +94,14 @@ msgstr "{count, plural, one {חיישן #} other {# חיישנים}}"
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {מערכת אחת} two {# מערכות} other {# מערכות}}"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
+msgstr "{count, plural, one {התראות המצב של הקונטיינר שנבחר לא יישלחו בפרק זמן זה.} other {התראות המצב של הקונטיינרים שנבחרו (#) לא יישלחו בפרק זמן זה.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
+msgstr "{count, plural, one {התראות המצב של השירות שנבחר לא יישלחו בפרק זמן זה.} other {התראות המצב של השירותים שנבחרו (#) לא יישלחו בפרק זמן זה.}}"
+
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} חיישנים חדשים, {added} בדיקות נוספו לחיישנים קיימים."
@@ -1325,6 +1333,7 @@ msgstr "מצב נוכחי"
 msgid "Cycles"
 msgstr "מחזורים"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Daily"
@@ -1436,6 +1445,7 @@ msgstr "תלויות"
 msgid "Deployment"
 msgstr "פריסה"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "תאר את הסיבה"
@@ -1647,6 +1657,7 @@ msgstr "הפעלת התחברות באמצעות הספרייה"
 msgid "End"
 msgstr "סיום"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1684,6 +1695,7 @@ msgstr "הכנס את הסיסמה החד-פעמית שלך."
 msgid "Ephemeral"
 msgstr "זמני"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2829,6 +2841,7 @@ msgid "No systems found."
 msgstr "לא נמצאו מערכות."
 
 #: src/components/add-system.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -2904,6 +2917,7 @@ msgstr "מנטר אחד או יותר חורגים מאובדן של {0}%"
 msgid "One or more services are in a failed state"
 msgstr "שירות אחד או יותר נמצאים במצב כשל"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "One-time"
@@ -2957,6 +2971,7 @@ msgstr "או המשך עם"
 msgid "Or enter this key in the app:"
 msgstr "או הזינו את המפתח הזה באפליקציה:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3256,6 +3271,7 @@ msgstr "עומק תור"
 msgid "Quiet hours"
 msgstr "שעות שקטות"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3271,6 +3287,10 @@ msgstr "שעות שקט פעילות"
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours active: notifications are not sent"
 msgstr "שעות שקטות פעילות: התראות אינן נשלחות"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Quiet hours set up"
+msgstr "השעות השקטות הוגדרו"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3314,6 +3334,8 @@ msgstr "קריאה בלבד"
 msgid "Read-only group"
 msgstr "קבוצת קריאה בלבד"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3839,14 +3861,20 @@ msgstr "הגדר את משתני הסביבה הבאים ב-Beszel hub שלך כ
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "הגדירו את טביעת האצבע של האישור החדש במיקום הבא (או במחלקת WMI בשם Win32_TSGeneralSetting), ולאחר מכן הפעילו מחדש את שירות שולחן העבודה המרוחק:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "הגדרה"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "הגדרת שעות שקטות"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Set up quiet hours for the selection below"
+msgstr "הגדרת שעות שקטות לבחירה שלמטה"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -3924,6 +3952,7 @@ msgstr "מקור"
 msgid "Start"
 msgstr "התחלה"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4477,6 +4506,7 @@ msgstr "מופעל כאשר שימוש בכל דיסק עולה על סף"
 msgid "Two-factor authentication"
 msgstr "אימות דו-שלבי"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx

@@ -94,6 +94,14 @@ msgstr "{count, plural, one {# senzor} few {# senzory} many {# senzoru} other {#
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# systém} few {# systémy} many {# systému} other {# systémů}}"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
+msgstr "{count, plural, one {Upozornění na stav vybraného kontejneru se v tomto období neodesílají.} other {Upozornění na stav vybraných kontejnerů (#) se v tomto období neodesílají.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
+msgstr "{count, plural, one {Upozornění na stav vybrané služby se v tomto období neodesílají.} other {Upozornění na stav vybraných služeb (#) se v tomto období neodesílají.}}"
+
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} nových senzorů, {added} kontrol přidáno ke stávajícím senzorům."
@@ -1325,6 +1333,7 @@ msgstr "Aktuální stav"
 msgid "Cycles"
 msgstr "Cykly"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Daily"
@@ -1436,6 +1445,7 @@ msgstr "Závislosti"
 msgid "Deployment"
 msgstr "Nasazení"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "Popište důvod"
@@ -1647,6 +1657,7 @@ msgstr "Zapnout přihlášení přes adresář"
 msgid "End"
 msgstr "Konec"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1684,6 +1695,7 @@ msgstr "Zadejte Vaše jednorázové heslo."
 msgid "Ephemeral"
 msgstr "Efemérní"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2829,6 +2841,7 @@ msgid "No systems found."
 msgstr "Nenalezeny žádné systémy."
 
 #: src/components/add-system.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -2904,6 +2917,7 @@ msgstr "Jeden nebo více monitorů překračuje {0}% ztrátu"
 msgid "One or more services are in a failed state"
 msgstr "Jedna nebo více služeb je ve stavu selhání"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "One-time"
@@ -2957,6 +2971,7 @@ msgstr "Nebo pokračujte s"
 msgid "Or enter this key in the app:"
 msgstr "Nebo zadejte tento klíč do aplikace:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3256,6 +3271,7 @@ msgstr "Hloubka fronty"
 msgid "Quiet hours"
 msgstr "Tiché hodiny"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3271,6 +3287,10 @@ msgstr "Tiché hodiny jsou aktivní"
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours active: notifications are not sent"
 msgstr "Tiché hodiny jsou aktivní: oznámení se neodesílají"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Quiet hours set up"
+msgstr "Tiché hodiny nastaveny"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3314,6 +3334,8 @@ msgstr "Jen pro čtení"
 msgid "Read-only group"
 msgstr "Skupina jen pro čtení"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3839,14 +3861,20 @@ msgstr "Pro povolení monitorování heartbeat nastavte na hubu Beszel následuj
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "Nastavte otisk nového certifikátu na následujícím místě (nebo ve třídě WMI Win32_TSGeneralSetting), poté restartujte službu Vzdálená plocha:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Nastavit"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "Nastavit tiché hodiny"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Set up quiet hours for the selection below"
+msgstr "Nastavit tiché hodiny pro výběr níže"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -3924,6 +3952,7 @@ msgstr "Zdroj"
 msgid "Start"
 msgstr "Začátek"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4477,6 +4506,7 @@ msgstr "Spustí se, když využití disku překročí prahovou hodnotu"
 msgid "Two-factor authentication"
 msgstr "Dvoufázové ověření"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx

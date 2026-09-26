@@ -51,6 +51,7 @@ import {
 	quietHoursAlertKinds,
 	quietHoursAppliesTo,
 	quietHoursReasonLabel,
+	quietHoursScopeText,
 	quietHoursScoped,
 	quietHoursSensorKinds,
 	quietHoursReasons,
@@ -147,12 +148,7 @@ export function QuietHours({
 	const stateAlerts = useStore($stateAlerts)
 	/** Alerts silenced by a window: all, or its alert types and rules */
 	const scopeLabel = (record: QuietHoursRecord) =>
-		quietHoursScoped(record)
-			? [
-					...(record.alerts ?? []).map(quietHoursAlertKindLabel),
-					...(record.rules ?? []).map((id) => (stateAlerts[id] ? ruleLabel(stateAlerts[id]) : id)),
-				].join(", ")
-			: t`All alerts`
+		quietHoursScoped(record) ? quietHoursScopeText(record, stateAlerts) : t`All alerts`
 
 	const formatDateTime = (record: QuietHoursRecord) => {
 		if (record.type === "daily") {

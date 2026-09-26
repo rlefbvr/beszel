@@ -380,6 +380,8 @@ export interface QuietHoursRecord extends RecordModel {
 	alerts?: string[] | null
 	/** service or container state rules silenced by the window */
 	rules?: string[]
+	/** services or containers of the system silenced by the window, from the selection of their pages */
+	targets?: { kind: "service" | "container"; name: string }[] | null
 	expand?: {
 		system?: {
 			name: string

@@ -94,6 +94,14 @@ msgstr "{count, plural, zero {# مستشعر} one {# مستشعر} two {# مست
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, zero {# أنظمة} one {نظام واحد} two {نظامان} few {# أنظمة} many {# نظامًا} other {# نظام}}"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
+msgstr "{count, plural, one {لا تُرسل تنبيهات حالة الحاوية المحددة خلال هذه الفترة.} other {لا تُرسل تنبيهات حالة الحاويات المحددة (#) خلال هذه الفترة.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
+msgstr "{count, plural, one {لا تُرسل تنبيهات حالة الخدمة المحددة خلال هذه الفترة.} other {لا تُرسل تنبيهات حالة الخدمات المحددة (#) خلال هذه الفترة.}}"
+
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} مستشعر جديد، و{added} فحص أُضيف إلى مستشعرات موجودة."
@@ -1325,6 +1333,7 @@ msgstr "الحالة الحالية"
 msgid "Cycles"
 msgstr "الدورات"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Daily"
@@ -1436,6 +1445,7 @@ msgstr "التبعيات"
 msgid "Deployment"
 msgstr "نشر"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "صف السبب"
@@ -1647,6 +1657,7 @@ msgstr "تفعيل تسجيل الدخول بالدليل"
 msgid "End"
 msgstr "النهاية"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1684,6 +1695,7 @@ msgstr "أدخل كلمة المرور لمرة واحدة الخاصة بك."
 msgid "Ephemeral"
 msgstr "مؤقت"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2829,6 +2841,7 @@ msgid "No systems found."
 msgstr "لم يتم العثور على أنظمة."
 
 #: src/components/add-system.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -2904,6 +2917,7 @@ msgstr "واحد أو أكثر من أجهزة المراقبة يتجاوز ف�
 msgid "One or more services are in a failed state"
 msgstr "خدمة واحدة أو أكثر في حالة فشل"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "One-time"
@@ -2957,6 +2971,7 @@ msgstr "أو المتابعة باستخدام"
 msgid "Or enter this key in the app:"
 msgstr "أو أدخل هذا المفتاح في التطبيق:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3256,6 +3271,7 @@ msgstr "عمق الدور"
 msgid "Quiet hours"
 msgstr "ساعات الهدوء"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3271,6 +3287,10 @@ msgstr "الساعات الهادئة نشطة"
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours active: notifications are not sent"
 msgstr "ساعات الهدوء نشطة: لا يتم إرسال الإشعارات"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Quiet hours set up"
+msgstr "تم إعداد ساعات الهدوء"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3314,6 +3334,8 @@ msgstr "قراءة فقط"
 msgid "Read-only group"
 msgstr "مجموعة القراءة فقط"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3839,14 +3861,20 @@ msgstr "قم بتعيين متغيرات البيئة التالية على مر
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "عيّن بصمة الشهادة الجديدة في الموضع التالي (أو في فئة WMI Win32_TSGeneralSetting)، ثم أعد تشغيل خدمة سطح المكتب البعيد:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "إعداد"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "إعداد ساعات الهدوء"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Set up quiet hours for the selection below"
+msgstr "إعداد ساعات الهدوء للتحديد أدناه"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -3924,6 +3952,7 @@ msgstr "المصدر"
 msgid "Start"
 msgstr "البداية"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4477,6 +4506,7 @@ msgstr "يتم التفعيل عندما يتجاوز استخدام أي قرص
 msgid "Two-factor authentication"
 msgstr "المصادقة الثنائية"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx

@@ -94,6 +94,14 @@ msgstr "{count, plural, one {# érzékelő} other {# érzékelő}}"
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# rendszer} other {# rendszer}}"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
+msgstr "{count, plural, one {A kiválasztott konténer állapotriasztásai ebben az időszakban nem kerülnek kiküldésre.} other {A kiválasztott konténerek (#) állapotriasztásai ebben az időszakban nem kerülnek kiküldésre.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
+msgstr "{count, plural, one {A kiválasztott szolgáltatás állapotriasztásai ebben az időszakban nem kerülnek kiküldésre.} other {A kiválasztott szolgáltatások (#) állapotriasztásai ebben az időszakban nem kerülnek kiküldésre.}}"
+
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} új érzékelő, {added} ellenőrzés hozzáadva meglévő érzékelőkhöz."
@@ -1325,6 +1333,7 @@ msgstr "Jelenlegi állapot"
 msgid "Cycles"
 msgstr "Ciklusok"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Daily"
@@ -1436,6 +1445,7 @@ msgstr "Függőségek"
 msgid "Deployment"
 msgstr "Telepítés"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "Adja meg az okot"
@@ -1647,6 +1657,7 @@ msgstr "Bejelentkezés engedélyezése a címtárral"
 msgid "End"
 msgstr "Vége"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1684,6 +1695,7 @@ msgstr "Adja meg az egyszeri jelszavát."
 msgid "Ephemeral"
 msgstr "Ideiglenes"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2829,6 +2841,7 @@ msgid "No systems found."
 msgstr "Nem található rendszer."
 
 #: src/components/add-system.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -2904,6 +2917,7 @@ msgstr "Egy vagy több monitor vesztesége meghaladja a(z) {0}%-ot"
 msgid "One or more services are in a failed state"
 msgstr "Egy vagy több szolgáltatás sikertelen állapotban van"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "One-time"
@@ -2957,6 +2971,7 @@ msgstr "Vagy folytasd ezzel"
 msgid "Or enter this key in the app:"
 msgstr "Vagy írja be ezt a kulcsot az alkalmazásba:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3256,6 +3271,7 @@ msgstr "Várakozási sor mélysége"
 msgid "Quiet hours"
 msgstr "Csendes órák"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3271,6 +3287,10 @@ msgstr "Csendes órák aktívak"
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours active: notifications are not sent"
 msgstr "Csendes órák aktívak: az értesítések nem kerülnek kiküldésre"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Quiet hours set up"
+msgstr "Csendes órák beállítva"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3314,6 +3334,8 @@ msgstr "Csak olvasás"
 msgid "Read-only group"
 msgstr "Csak olvasási csoport"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3839,14 +3861,20 @@ msgstr "Állítsa be a következő környezeti változókat a Beszel hubon a hea
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "Állítsa be az új tanúsítvány ujjlenyomatát a következő helyen (vagy a Win32_TSGeneralSetting WMI-osztályban), majd indítsa újra a Távoli asztal szolgáltatást:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Beállítás"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "Csendes órák beállítása"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Set up quiet hours for the selection below"
+msgstr "Csendes órák beállítása az alábbi kijelöléshez"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -3924,6 +3952,7 @@ msgstr "Forrás"
 msgid "Start"
 msgstr "Kezdete"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4477,6 +4506,7 @@ msgstr "Riaszt, ha a lemezhasználat túllép egy küszöbértéket"
 msgid "Two-factor authentication"
 msgstr "Kétlépcsős hitelesítés"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx

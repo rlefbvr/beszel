@@ -94,6 +94,14 @@ msgstr "{count, plural, one {# حسگر} other {# حسگر}}"
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# سیستم} other {# سیستم}}"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
+msgstr "{count, plural, one {هشدارهای وضعیت کانتینر انتخاب‌شده در این بازه ارسال نمی‌شوند.} other {هشدارهای وضعیت کانتینرهای انتخاب‌شده (#) در این بازه ارسال نمی‌شوند.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
+msgstr "{count, plural, one {هشدارهای وضعیت سرویس انتخاب‌شده در این بازه ارسال نمی‌شوند.} other {هشدارهای وضعیت سرویس‌های انتخاب‌شده (#) در این بازه ارسال نمی‌شوند.}}"
+
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} حسگر جدید، {added} بررسی به حسگرهای موجود افزوده شد."
@@ -1325,6 +1333,7 @@ msgstr "وضعیت فعلی"
 msgid "Cycles"
 msgstr "چرخه‌ها"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Daily"
@@ -1436,6 +1445,7 @@ msgstr "وابستگی‌ها"
 msgid "Deployment"
 msgstr "استقرار"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "دلیل را شرح دهید"
@@ -1647,6 +1657,7 @@ msgstr "فعال‌سازی ورود با دایرکتوری"
 msgid "End"
 msgstr "پایان"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1684,6 +1695,7 @@ msgstr "رمز عبور یک‌بار مصرف خود را وارد کنید."
 msgid "Ephemeral"
 msgstr "گذرا"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2829,6 +2841,7 @@ msgid "No systems found."
 msgstr "هیچ سیستمی یافت نشد."
 
 #: src/components/add-system.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -2904,6 +2917,7 @@ msgstr "یک یا چند مانیتور از افت {0}% فراتر رفته‌�
 msgid "One or more services are in a failed state"
 msgstr "یک یا چند سرویس در وضعیت ناموفق هستند"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "One-time"
@@ -2957,6 +2971,7 @@ msgstr "یا ادامه با"
 msgid "Or enter this key in the app:"
 msgstr "یا این کلید را در برنامه وارد کنید:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3256,6 +3271,7 @@ msgstr "عمق صف"
 msgid "Quiet hours"
 msgstr "ساعات سکوت"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3271,6 +3287,10 @@ msgstr "ساعات سکوت فعال است"
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours active: notifications are not sent"
 msgstr "ساعات سکوت فعال است: اعلان‌ها ارسال نمی‌شوند"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Quiet hours set up"
+msgstr "ساعات سکوت تنظیم شد"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3314,6 +3334,8 @@ msgstr "فقط خواندنی"
 msgid "Read-only group"
 msgstr "گروه فقط‌خواندنی"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3839,14 +3861,20 @@ msgstr "متغیرهای محیطی زیر را در هاب Beszel خود تنظ
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "اثرانگشت گواهی جدید را در محل زیر (یا در کلاس WMI با نام Win32_TSGeneralSetting) تنظیم کنید، سپس سرویس دسکتاپ از راه دور را دوباره راه‌اندازی کنید:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "تنظیم"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "تنظیم ساعات سکوت"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Set up quiet hours for the selection below"
+msgstr "تنظیم ساعات سکوت برای موارد انتخاب‌شده در پایین"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -3924,6 +3952,7 @@ msgstr "منبع"
 msgid "Start"
 msgstr "شروع"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4477,6 +4506,7 @@ msgstr "هنگامی که استفاده از هر دیسکی از یک آستا
 msgid "Two-factor authentication"
 msgstr "احراز هویت دومرحله‌ای"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx

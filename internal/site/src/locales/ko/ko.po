@@ -94,6 +94,14 @@ msgstr "{count, plural, other {센서 #개}}"
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, other {시스템 #개}}"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
+msgstr "{count, plural, one {선택한 컨테이너의 상태 알림은 이 시간 동안 전송되지 않습니다.} other {선택한 컨테이너 #개의 상태 알림은 이 시간 동안 전송되지 않습니다.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
+msgstr "{count, plural, one {선택한 서비스의 상태 알림은 이 시간 동안 전송되지 않습니다.} other {선택한 서비스 #개의 상태 알림은 이 시간 동안 전송되지 않습니다.}}"
+
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "새 센서 {created}개, 기존 센서에 검사 {added}개가 추가되었습니다."
@@ -1325,6 +1333,7 @@ msgstr "현재 상태"
 msgid "Cycles"
 msgstr "사이클"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Daily"
@@ -1436,6 +1445,7 @@ msgstr "종속성"
 msgid "Deployment"
 msgstr "배포"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "사유를 입력하세요"
@@ -1647,6 +1657,7 @@ msgstr "디렉터리 로그인 사용"
 msgid "End"
 msgstr "종료"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1684,6 +1695,7 @@ msgstr "OTP를 입력하세요."
 msgid "Ephemeral"
 msgstr "일시적"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2829,6 +2841,7 @@ msgid "No systems found."
 msgstr "시스템을 찾을 수 없습니다."
 
 #: src/components/add-system.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -2904,6 +2917,7 @@ msgstr "하나 이상의 모니터에서 패킷 손실률이 {0}%를 초과했�
 msgid "One or more services are in a failed state"
 msgstr "하나 이상의 서비스가 실패 상태입니다"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "One-time"
@@ -2957,6 +2971,7 @@ msgstr "또는 아래 항목으로 진행하기"
 msgid "Or enter this key in the app:"
 msgstr "또는 앱에 이 키를 입력하세요:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3256,6 +3271,7 @@ msgstr "대기열 깊이"
 msgid "Quiet hours"
 msgstr "방해 금지 시간"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3271,6 +3287,10 @@ msgstr "방해 금지 시간 활성화됨"
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours active: notifications are not sent"
 msgstr "방해 금지 시간 활성: 알림이 전송되지 않습니다"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Quiet hours set up"
+msgstr "방해 금지 시간이 설정됨"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3314,6 +3334,8 @@ msgstr "읽기 전용"
 msgid "Read-only group"
 msgstr "읽기 전용 그룹"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3839,14 +3861,20 @@ msgstr "하트비트 모니터링을 활성화하려면 Beszel 허브에 다음 
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "다음 위치(또는 WMI 클래스 Win32_TSGeneralSetting)에 새 인증서의 지문을 설정한 다음 원격 데스크톱 서비스를 다시 시작합니다:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "설정"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "방해 금지 시간 설정"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Set up quiet hours for the selection below"
+msgstr "아래 선택 항목에 방해 금지 시간 설정"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -3924,6 +3952,7 @@ msgstr "출처"
 msgid "Start"
 msgstr "시작"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4477,6 +4506,7 @@ msgstr "디스크 사용량이 임계값을 초과할 때 트리거됩니다."
 msgid "Two-factor authentication"
 msgstr "2단계 인증"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx

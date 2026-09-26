@@ -496,6 +496,7 @@ func stateAlertMessage(record *core.Record, kind, name, systemName string, obs o
 		Emoji:       "✅",
 		Kind:        alertNameServiceState,
 		RuleID:      record.Id,
+		TargetName:  name,
 	}
 	if record.GetString("kind") == "container" {
 		data.Kind = alertNameContainerState

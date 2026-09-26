@@ -94,6 +94,14 @@ msgstr "{count, plural, one {# αισθητήρας} other {# αισθητήρε
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# σύστημα} other {# συστήματα}}"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
+msgstr "{count, plural, one {Οι ειδοποιήσεις κατάστασης του επιλεγμένου κοντέινερ δεν αποστέλλονται σε αυτό το διάστημα.} other {Οι ειδοποιήσεις κατάστασης των επιλεγμένων κοντέινερ (#) δεν αποστέλλονται σε αυτό το διάστημα.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
+msgstr "{count, plural, one {Οι ειδοποιήσεις κατάστασης της επιλεγμένης υπηρεσίας δεν αποστέλλονται σε αυτό το διάστημα.} other {Οι ειδοποιήσεις κατάστασης των επιλεγμένων υπηρεσιών (#) δεν αποστέλλονται σε αυτό το διάστημα.}}"
+
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} νέοι αισθητήρες, {added} έλεγχοι προστέθηκαν σε υπάρχοντες αισθητήρες."
@@ -1325,6 +1333,7 @@ msgstr "Τρέχουσα κατάσταση"
 msgid "Cycles"
 msgstr "Κύκλοι"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Daily"
@@ -1436,6 +1445,7 @@ msgstr "Εξαρτήσεις"
 msgid "Deployment"
 msgstr "Ανάπτυξη"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "Περιγράψτε τον λόγο"
@@ -1647,6 +1657,7 @@ msgstr "Ενεργοποίηση σύνδεσης με τον κατάλογο"
 msgid "End"
 msgstr "Λήξη"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1684,6 +1695,7 @@ msgstr "Εισαγάγετε τον κωδικό μίας χρήσης."
 msgid "Ephemeral"
 msgstr "Προσωρινό"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2829,6 +2841,7 @@ msgid "No systems found."
 msgstr "Δεν βρέθηκαν συστήματα."
 
 #: src/components/add-system.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -2904,6 +2917,7 @@ msgstr "Ένα ή περισσότερα monitors υπερβαίνουν απώ�
 msgid "One or more services are in a failed state"
 msgstr "Μία ή περισσότερες υπηρεσίες βρίσκονται σε κατάσταση αποτυχίας"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "One-time"
@@ -2957,6 +2971,7 @@ msgstr "Ή συνεχίστε με"
 msgid "Or enter this key in the app:"
 msgstr "Ή πληκτρολογήστε αυτό το κλειδί στην εφαρμογή:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3256,6 +3271,7 @@ msgstr "Βάθος ουράς"
 msgid "Quiet hours"
 msgstr "Ώρες ησυχίας"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3271,6 +3287,10 @@ msgstr "Οι ώρες ησυχίας είναι ενεργές"
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours active: notifications are not sent"
 msgstr "Ώρες ησυχίας ενεργές: οι ειδοποιήσεις δεν αποστέλλονται"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Quiet hours set up"
+msgstr "Οι ώρες σιγής ρυθμίστηκαν"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3314,6 +3334,8 @@ msgstr "Μόνο ανάγνωση"
 msgid "Read-only group"
 msgstr "Ομάδα μόνο ανάγνωσης"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3839,14 +3861,20 @@ msgstr "Ορίστε τις ακόλουθες μεταβλητές περιβά
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "Ορίστε το αποτύπωμα του νέου πιστοποιητικού στην ακόλουθη θέση (ή στην κλάση WMI Win32_TSGeneralSetting) και μετά επανεκκινήστε την υπηρεσία Απομακρυσμένης επιφάνειας εργασίας:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Ρύθμιση"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "Ρύθμιση ωρών σιγής"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Set up quiet hours for the selection below"
+msgstr "Ρύθμιση ωρών σιγής για την παρακάτω επιλογή"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -3924,6 +3952,7 @@ msgstr "Πηγή"
 msgid "Start"
 msgstr "Έναρξη"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4477,6 +4506,7 @@ msgstr "Ενεργοποιείται όταν η χρήση οποιουδήπο
 msgid "Two-factor authentication"
 msgstr "Έλεγχος ταυτότητας δύο παραγόντων"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx

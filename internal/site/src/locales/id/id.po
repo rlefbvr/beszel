@@ -94,6 +94,14 @@ msgstr "{count, plural, other {# sensor}}"
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, other {# sistem}}"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
+msgstr "{count, plural, one {Peringatan status kontainer yang dipilih tidak dikirim selama periode ini.} other {Peringatan status kontainer yang dipilih (#) tidak dikirim selama periode ini.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
+msgstr "{count, plural, one {Peringatan status layanan yang dipilih tidak dikirim selama periode ini.} other {Peringatan status layanan yang dipilih (#) tidak dikirim selama periode ini.}}"
+
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} sensor baru, {added} pemeriksaan ditambahkan ke sensor yang ada."
@@ -1325,6 +1333,7 @@ msgstr "Status saat ini"
 msgid "Cycles"
 msgstr "Siklus"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Daily"
@@ -1436,6 +1445,7 @@ msgstr "Dependensi"
 msgid "Deployment"
 msgstr "Penerapan"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "Jelaskan alasannya"
@@ -1647,6 +1657,7 @@ msgstr "Aktifkan login dengan direktori"
 msgid "End"
 msgstr "Selesai"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1684,6 +1695,7 @@ msgstr "Masukkan otp anda."
 msgid "Ephemeral"
 msgstr "Sementara"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2829,6 +2841,7 @@ msgid "No systems found."
 msgstr "Sistem tidak ditemukan."
 
 #: src/components/add-system.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -2904,6 +2917,7 @@ msgstr "Satu atau beberapa monitor melebihi kehilangan paket {0}%"
 msgid "One or more services are in a failed state"
 msgstr "Satu atau beberapa layanan berada dalam status gagal"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "One-time"
@@ -2957,6 +2971,7 @@ msgstr "Atau lanjutkan dengan"
 msgid "Or enter this key in the app:"
 msgstr "Atau masukkan kunci ini di aplikasi:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3256,6 +3271,7 @@ msgstr "Kedalaman Antrian"
 msgid "Quiet hours"
 msgstr "Jam tenang"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3271,6 +3287,10 @@ msgstr "Jam tenang aktif"
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours active: notifications are not sent"
 msgstr "Jam tenang aktif: notifikasi tidak dikirim"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Quiet hours set up"
+msgstr "Jam tenang diatur"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3314,6 +3334,8 @@ msgstr "Hanya baca"
 msgid "Read-only group"
 msgstr "Grup hanya baca"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3839,14 +3861,20 @@ msgstr "Setel variabel lingkungan berikut di hub Beszel Anda untuk mengaktifkan 
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "Atur thumbprint sertifikat baru di tempat berikut (atau di kelas WMI Win32_TSGeneralSetting), lalu mulai ulang layanan Desktop Jarak Jauh:"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Atur"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "Atur jam tenang"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
+msgid "Set up quiet hours for the selection below"
+msgstr "Atur jam tenang untuk pilihan di bawah"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -3924,6 +3952,7 @@ msgstr "Sumber"
 msgid "Start"
 msgstr "Mulai"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4477,6 +4506,7 @@ msgstr "Dipicu ketika penggunaan disk apa pun melebihi ambang batas"
 msgid "Two-factor authentication"
 msgstr "Autentikasi dua faktor"
 
+#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
