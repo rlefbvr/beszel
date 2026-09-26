@@ -32,6 +32,7 @@ import {
 	PlusIcon,
 	Settings2Icon,
 	XIcon,
+	MonitorCogIcon,
 } from "lucide-react"
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -72,6 +73,7 @@ import AlertButton from "../alerts/alert-button"
 import { $router, Link } from "../router"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
 import { AgentUpdateButton } from "../agent-update-dialog"
+import { useSystemBrands } from "@/lib/os-brands"
 import { type ColumnResizeHandler, ColumnResizer, resizedAttr } from "../table-layout"
 import { type OverflowTab, OverflowTabs } from "../overflow-tabs"
 import { AddSystemDialog } from "../add-system"
@@ -109,6 +111,7 @@ export default function SystemsTable() {
 	// groups and alerts shown, chosen in the view options
 	const [groupView, setGroupView] = useState(() => $userSettings.get().groupView ?? false)
 	const [alertFilter, setAlertFilter] = useState(() => $userSettings.get().alertFilter ?? "")
+	const [osFilter, setOsFilter] = useState(() => $userSettings.get().osFilter ?? "")
 	const [activeGroupTab, setActiveGroupTab] = useState(() => $userSettings.get().groupTab ?? allGroupsTab)
 	const [groupsDialogOpen, setGroupsDialogOpen] = useState(false)
 	const [colWidths, setColWidths] = useState<Record<string, number>>(() => $userSettings.get().colWidths ?? {})
@@ -196,7 +199,7 @@ export default function SystemsTable() {
 
 	// save a view preference of the user
 	const saveViewSetting = useCallback(
-		<K extends "groupView" | "alertFilter" | "groupTab" | "colWidths">(key: K, value: UserSettings[K]) => {
+		<K extends "groupView" | "alertFilter" | "groupTab" | "colWidths" | "osFilter">(key: K, value: UserSettings[K]) => {
 			$userSettings.setKey(key, value)
 			queueUserSettings({ [key]: value })
 		},
@@ -223,6 +226,12 @@ export default function SystemsTable() {
 			}
 			return next
 		})
+	}, [])
+
+	const handleOsFilterChange = useCallback((value: string) => {
+		const next = value === "all" ? "" : value
+		setOsFilter(next)
+		saveViewSetting("osFilter", next)
 	}, [])
 
 	const handleAlertFilterChange = useCallback((value: string) => {
@@ -259,10 +268,27 @@ export default function SystemsTable() {
 		return Object.values(pausedSystems) ?? []
 	}, [data, statusFilter])
 
+	// brands of the OS of the systems, with the number of systems of each
+	const brands = useSystemBrands(data)
+	const brandKey = JSON.stringify(brands)
+	const brandCounts = useMemo(() => {
+		const counts = new Map<string, number>()
+		for (const brand of Object.values(brands)) {
+			counts.set(brand, (counts.get(brand) ?? 0) + 1)
+		}
+		return [...counts.entries()].sort((a, b) => a[0].localeCompare(b[0]))
+	}, [brandKey])
+	// the brand chosen may no longer exist
+	const osShown = brandCounts.some(([brand]) => brand === osFilter) ? osFilter : ""
+	const osData = useMemo(
+		() => (osShown ? statusData.filter((system) => brands[system.id] === osShown) : statusData),
+		[statusData, osShown, brandKey]
+	)
+
 	// then on the alerts chosen in the view options
 	const alertData = useMemo(
-		() => (alertFilter ? statusData.filter((system) => matchesAlertFilter(system, alertFilter)) : statusData),
-		[statusData, alertFilter, alerts, stateAlerts]
+		() => (alertFilter ? osData.filter((system) => matchesAlertFilter(system, alertFilter)) : osData),
+		[osData, alertFilter, alerts, stateAlerts]
 	)
 
 	// systems of each group tab
@@ -421,6 +447,29 @@ export default function SystemsTable() {
 												<Trans>Paused ({pausedSystemsLength})</Trans>
 											</DropdownMenuRadioItem>
 										</DropdownMenuRadioGroup>
+										{brandCounts.length > 1 && (
+											<>
+												<DropdownMenuLabel className="pt-2 px-3.5 flex items-center gap-2">
+													<MonitorCogIcon className="size-4" />
+													<Trans>Operating system</Trans>
+												</DropdownMenuLabel>
+												<DropdownMenuSeparator />
+												<DropdownMenuRadioGroup
+													className="px-1 pb-1"
+													value={osShown || "all"}
+													onValueChange={handleOsFilterChange}
+												>
+													<DropdownMenuRadioItem value="all" onSelect={(e) => e.preventDefault()}>
+														<Trans>All Systems</Trans>
+													</DropdownMenuRadioItem>
+													{brandCounts.map(([brand, count]) => (
+														<DropdownMenuRadioItem key={brand} value={brand} onSelect={(e) => e.preventDefault()}>
+															{brand} ({count})
+														</DropdownMenuRadioItem>
+													))}
+												</DropdownMenuRadioGroup>
+											</>
+										)}
 									</div>
 
 									<div className="border-r">
@@ -565,6 +614,8 @@ export default function SystemsTable() {
 		alertNames,
 		hasStateRules,
 		addSystemOpen,
+		osShown,
+		brandCounts,
 	])
 
 	return (

@@ -456,6 +456,8 @@ export interface UserSettings {
 	groupTab?: string
 	/** home page: only systems with alerts ("any", "state" or an alert name) */
 	alertFilter?: string
+	/** home page: systems of one OS brand only ("Windows", "Debian"…), all when empty */
+	osFilter?: string
 	/** home page: widths of the resized table columns, in pixels */
 	colWidths?: Record<string, number>
 	/** browser tab titles end with Beszel, the instance name or the instance host */
