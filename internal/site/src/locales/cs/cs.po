@@ -50,6 +50,18 @@ msgstr "{0} z {1} vybraných řádků."
 msgid "{0} selected"
 msgstr "{0} vybráno"
 
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {# active alert acknowledged} other {# active alerts acknowledged}}"
+msgstr "{ackCount, plural, one {# potvrzené aktivní upozornění} few {# potvrzená aktivní upozornění} other {# potvrzených aktivních upozornění}}"
+
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {Show # acknowledged} other {Show # acknowledged}}"
+msgstr "{ackCount, plural, other {Zobrazit potvrzená (#)}}"
+
+#: src/components/routes/sensor.tsx
+msgid "{certDays} days"
+msgstr "{certDays} dní"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# jádro} few {# jádra} many {# jader} other {# jader}}"
@@ -74,9 +86,21 @@ msgstr "{count, plural, one {# filtrovaný kontejner} few {# filtrované kontejn
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# filtrovaná služba} few {# filtrované služby} many {# filtrované služby} other {# filtrovaných služeb}}"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "{count, plural, one {# sensor} other {# sensors}}"
+msgstr "{count, plural, one {# senzor} few {# senzory} many {# senzoru} other {# senzorů}}"
+
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# systém} few {# systémy} many {# systému} other {# systémů}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
+msgstr "{created} nových senzorů, {added} kontrol přidáno ke stávajícím senzorům."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
+msgstr "{days, plural, one {Vyprší za # den} few {Vyprší za # dny} other {Vyprší za # dní}}"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "{diskName} I/O"
@@ -98,6 +122,18 @@ msgstr "{ruleCount, plural, one {Vytvořeno # pravidlo stavu.} few {Vytvořena #
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, one {# pravidlo stavu} few {# pravidla stavu} many {# pravidla stavu} other {# pravidel stavu}}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "{seconds, plural, one {# second} other {# seconds}}"
+msgstr "{seconds, plural, one {# sekunda} few {# sekundy} many {# sekundy} other {# sekund}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{sensorCount} host(s), {checkCount} check(s)"
+msgstr "Hostitelé: {sensorCount}, kontroly: {checkCount}"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "{success} of {total} successful"
+msgstr "{success} z {total} úspěšných"
+
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, one {# systém} few {# systémy} many {# systému} other {# systémů}}"
@@ -106,6 +142,7 @@ msgstr "{systemCount, plural, one {# systém} few {# systémy} many {# systému}
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# vlákno} few {# vlákna} many {# vláken} other {# vláken}}"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 hour"
 msgstr "1 hodina"
@@ -123,6 +160,7 @@ msgstr "1 minuta"
 msgid "1 week"
 msgstr "1 týden"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 year"
 msgstr "1 rok"
@@ -140,10 +178,12 @@ msgstr "15 min"
 msgid "180 days"
 msgstr "180 dní"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "24 hours"
 msgstr "24 hodin"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "30 days"
 msgstr "30 dní"
@@ -153,18 +193,44 @@ msgstr "30 dní"
 msgid "5 min"
 msgstr "5 min"
 
+#: src/components/period-select.tsx
+msgid "7 days"
+msgstr "7 dní"
+
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "90 days"
 msgstr "90 dní"
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "A check of the sensor does not respond."
+msgstr "Kontrola senzoru neodpovídá."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A sensor belongs to one group: checking it moves it from its current group."
+msgstr "Senzor patří do jedné skupiny: zaškrtnutím jej přesunete z aktuální skupiny."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A system belongs to one group: checking it moves it from its current group."
 msgstr "Systém patří do jedné skupiny: jeho zaškrtnutím se přesune ze současné skupiny."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Accepted status codes"
+msgstr "Přijímané stavové kódy"
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "Účet"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge"
+msgstr "Potvrdit"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge all"
+msgstr "Potvrdit vše"
 
 #. Table column
 #: src/components/routes/settings/quiet-hours.tsx
@@ -190,11 +256,11 @@ msgstr "Aktivní výstrahy"
 msgid "Active state"
 msgstr "Aktivní stav"
 
-#: src/components/add-system.tsx
-#: src/components/add-system.tsx
 #: src/components/navbar.tsx
+msgid "Add"
+msgstr "Přidat"
+
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -203,13 +269,50 @@ msgstr "Aktivní stav"
 msgid "Add {foo}"
 msgstr "Přidat {foo}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add a check"
+msgstr "Přidat kontrolu"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add a monitor"
+msgstr "Přidat monitor"
+
+#: src/components/add-system.tsx
+#: src/components/add-system.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Add a system"
+msgstr "Přidat systém"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add at least one check."
+msgstr "Přidejte alespoň jednu kontrolu."
+
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Add rule"
 msgstr "Přidat pravidlo"
 
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Add sensor"
+msgstr "Přidat senzor"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Add sensors"
+msgstr "Přidat senzory"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "Přidat URL"
+
+#: src/components/add-system.tsx
+msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
+msgstr "Přidání hostitele automaticky vytvoří senzor typu ICMP (Ping)."
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Address"
+msgstr "Adresa"
 
 #: src/components/routes/settings/general.tsx
 msgid "Adjust display options for charts."
@@ -287,6 +390,7 @@ msgstr "Upozornit, když stav není"
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "Výstrahy"
@@ -295,10 +399,16 @@ msgstr "Výstrahy"
 msgid "Alerts created"
 msgstr "Upozornění vytvořena"
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Alerts of {sensorName}"
+msgstr "Upozornění pro {sensorName}"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "upozornění na uživatele"
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "Vše"
@@ -312,6 +422,7 @@ msgstr "Všichni agenti jsou aktuální ({latest})"
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/containers.tsx
+#: src/lib/home-page.ts
 msgid "All Containers"
 msgstr "Všechny kontejnery"
 
@@ -324,19 +435,28 @@ msgstr "Všichni zastaralí ({outdatedCount})"
 #: src/components/navbar.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/reboots.tsx
+#: src/lib/home-page.ts
 msgid "All Reboots"
 msgstr "Všechny restarty"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "All sensors"
+msgstr "Všechny senzory"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/services.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/lib/home-page.ts
 msgid "All Services"
 msgstr "Všechny služby"
 
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -344,6 +464,7 @@ msgstr "Všechny služby"
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
+#: src/lib/home-page.ts
 msgid "All Systems"
 msgstr "Všechny systémy"
 
@@ -351,10 +472,26 @@ msgstr "Všechny systémy"
 msgid "All systems until {until}"
 msgstr "Všechny systémy do {until}"
 
+#: src/components/period-select.tsx
+msgid "All time"
+msgstr "Celé období"
+
 #: src/components/agent-update-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Already up to date."
 msgstr "Již aktuální."
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated host {systemName} and its records"
+msgstr "Smazat také přidruženého hostitele {systemName} a jeho záznamy"
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated sensor {sensorName}"
+msgstr "Smazat také přidružený senzor {sensorName}"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Alternative names"
+msgstr "Alternativní názvy"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -413,6 +550,18 @@ msgctxt "Disk I/O average operation time (iostat await)"
 msgid "Average queue to completion time per operation"
 msgstr "Průměrná doba od zařazení do fronty po dokončení operace"
 
+#: src/components/routes/sensor.tsx
+msgid "Average response"
+msgstr "Průměrná odezva"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Average response time above which the quality is degraded"
+msgstr "Průměrná doba odezvy, nad kterou je kvalita zhoršená"
+
+#: src/components/routes/sensor.tsx
+msgid "Average response time of each check"
+msgstr "Průměrná doba odezvy každé kontroly"
+
 #: src/components/routes/system/charts/cpu-charts.tsx
 msgid "Average system-wide CPU utilization"
 msgstr "Průměrné využití CPU v celém systému"
@@ -430,6 +579,10 @@ msgstr "Průměrné využití GPU engine"
 msgid "Average, minimum, and maximum response time"
 msgstr "Průměrná, minimální a maximální doba odezvy"
 
+#: src/components/routes/sensor.tsx
+msgid "avg"
+msgstr "prům."
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
@@ -443,6 +596,15 @@ msgstr "Záloha"
 #: src/components/navbar.tsx
 msgid "Backups"
 msgstr "Zálohy"
+
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Bad"
+msgstr "Špatná"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Bad"
+msgstr "Špatná"
 
 #: src/components/routes/system/charts/network-charts.tsx
 #: src/lib/alerts.ts
@@ -479,6 +641,10 @@ msgstr "Před"
 msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "Pod {0}{1} za {2, plural, one {poslední # minutu} few {poslední # minuty} other {posledních # minut}}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
+msgstr "Beszel kontroluje porty hostitele z hubu. Kontroly stejného hostitele jsou seskupeny do jednoho senzoru."
+
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
 msgstr "Beszel podporuje OpenID Connect a mnoho poskytovatelů OAuth2 ověřování."
@@ -512,12 +678,17 @@ msgstr "Název karty prohlížeče"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "Hromadné přidání"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Bulk Add {foo}"
 msgstr "Hromadné přidání {foo}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Bulk add sensors"
+msgstr "Hromadné přidání senzorů"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Bulk copy"
@@ -550,13 +721,19 @@ msgstr "Může zastavit"
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "Zrušit"
+
+#: src/components/active-alerts.tsx
+msgid "Cancel the acknowledgement"
+msgstr "Zrušit potvrzení"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Capabilities"
@@ -576,6 +753,18 @@ msgstr "Upozornění - možná ztráta dat"
 #: src/components/routes/settings/general.tsx
 msgid "Celsius (°C)"
 msgstr "Celsia (°C)"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate not trusted by the hub"
+msgstr "Certifikát není pro hub důvěryhodný"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate presented by the server at the last check."
+msgstr "Certifikát předložený serverem při poslední kontrole."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Chain"
+msgstr "Řetězec"
 
 #: src/components/routes/settings/general.tsx
 msgid "Change display units for metrics."
@@ -606,6 +795,12 @@ msgstr "Období grafů"
 msgid "Chart width"
 msgstr "Šířka grafu"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Check"
+msgstr "Kontrola"
+
 #: src/components/login/forgot-pass-form.tsx
 msgid "Check {email} for a reset link."
 msgstr "Zkontrolujte {email} pro odkaz na obnovení."
@@ -623,9 +818,30 @@ msgstr "Zkontrolujte svou monitorovací službu"
 msgid "Check your notification service"
 msgstr "Zkontrolujte službu upozornění"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Checks"
+msgstr "Kontroly"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Checks added to {sensorName}"
+msgstr "Kontroly přidány k {sensorName}"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Checksum errors"
 msgstr "Chyby kontrolního součtu"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Choose a known port"
+msgstr "Vyberte známý port"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Choose at least one port."
+msgstr "Vyberte alespoň jeden port."
 
 #: src/components/reboots-table.tsx
 msgctxt "Clean shutdown"
@@ -638,6 +854,8 @@ msgstr "Řádné"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Clear"
 msgstr "Vymazat"
@@ -671,9 +889,24 @@ msgstr "Klikněte pro zkopírování"
 msgid "Close"
 msgstr "Zavřít"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Code"
+msgstr "Kód"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Interval sběru"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Color"
+msgstr "Barva"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Columns"
+msgstr "Sloupce"
 
 #: src/components/login/forgot-pass-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -729,6 +962,7 @@ msgid "Container state"
 msgstr "Stav kontejneru"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
 msgstr "Kontejnery"
@@ -914,6 +1148,15 @@ msgstr "Denně"
 msgid "Data directory"
 msgstr "Datový adresář"
 
+#: src/components/period-select.tsx
+msgid "Dates…"
+msgstr "Data…"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "days"
+msgstr "dní"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "days of alerts"
 msgstr "dní upozornění"
@@ -922,6 +1165,10 @@ msgstr "dní upozornění"
 msgctxt "Default system layout option"
 msgid "Default"
 msgstr "Výchozí"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Default color"
+msgstr "Výchozí barva"
 
 #: src/components/routes/settings/general.tsx
 msgid "Default time period"
@@ -933,9 +1180,20 @@ msgstr "Výchozí doba"
 msgid "Default URL"
 msgstr "Výchozí URL"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Degraded"
+msgstr "Zhoršená"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Degraded or bad"
+msgstr "Zhoršená nebo špatná"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -967,6 +1225,10 @@ msgstr "Smazat skupinu {originalName}?"
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
 msgstr "Smazat vybrané restarty?"
+
+#: src/components/routes/sensor.tsx
+msgid "Delete this sensor?"
+msgstr "Smazat tento senzor?"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1043,10 +1305,15 @@ msgid "Documentation"
 msgstr "Dokumentace"
 
 #. Context: System is down
+#. Context: System is down
+#. Context: System is down
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 #: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+#: src/lib/sensors.ts
 msgid "Down"
 msgstr "Nefunkční"
 
@@ -1055,6 +1322,7 @@ msgid "Down ({downSystemsLength})"
 msgstr "Nefunkční ({downSystemsLength})"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Down: {downCount}"
 msgstr "Zastavené: {downCount}"
 
@@ -1074,11 +1342,14 @@ msgstr "Tažením změníte velikost, dvojklikem obnovíte"
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
 msgid "Duration"
 msgstr "Doba trvání"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -1090,6 +1361,10 @@ msgstr "Upravit"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit {foo}"
 msgstr "Upravit {foo}"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Edit sensor"
+msgstr "Upravit senzor"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -1105,6 +1380,11 @@ msgstr "Emailová upozornění"
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "Prázdná"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "End"
+msgstr "Konec"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1141,6 +1421,8 @@ msgstr "Efemérní"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/config-yaml.tsx
 #: src/components/routes/settings/heartbeat.tsx
@@ -1150,6 +1432,7 @@ msgstr "Efemérní"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "Chyba"
@@ -1164,6 +1447,10 @@ msgstr "Příklad:"
 #: src/components/active-alerts.tsx
 msgid "Exceeds {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "Překračuje {0}{1} za {2, plural, one {poslední # minutu} few {poslední # minuty} other {posledních # minut}}"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "Exchange quality"
+msgstr "Kvalita komunikace"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exec main PID"
@@ -1184,6 +1471,18 @@ msgstr "Návratový kód"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exited active"
 msgstr "Ukončeno aktivně"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Expected text"
+msgstr "Očekávaný text"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired certificate"
+msgstr "Certifikát vypršel"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired on {expiredOn}"
+msgstr "Vypršel {expiredOn}"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Expires after one hour or on hub restart."
@@ -1213,6 +1512,10 @@ msgstr "Selhalo"
 msgid "Failed Attributes:"
 msgstr "Neúspěšné atributy:"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Failed checks in a row tolerated before the sensor is down"
+msgstr "Počet po sobě jdoucích neúspěšných kontrol tolerovaných před výpadkem senzoru"
+
 #: src/lib/alerts.ts
 msgid "Failed Services"
 msgstr "Selhané služby"
@@ -1231,6 +1534,8 @@ msgstr "Nepodařilo se odstranit monitory."
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "Nepodařilo se uložit nastavení"
@@ -1268,6 +1573,8 @@ msgstr "Ventilátory"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1281,6 +1588,14 @@ msgstr "Otisk"
 #: src/components/routes/system/smart-table.tsx
 msgid "Firmware"
 msgstr ""
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Following the route, up to a minute…"
+msgstr "Sledování trasy, až minutu…"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "For"
+msgstr "Po dobu"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "For <0>{min}</0> {min, plural, one {minute} other {minutes}}"
@@ -1303,7 +1618,7 @@ msgctxt "Button to copy install command"
 msgid "FreeBSD command"
 msgstr "FreeBSD příkaz"
 
-#: src/components/reboots-table.tsx
+#: src/components/period-select.tsx
 msgid "From"
 msgstr "Od"
 
@@ -1323,6 +1638,11 @@ msgstr "Obecné"
 msgid "Global"
 msgstr "Globální"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Good"
+msgstr "Dobrá"
+
 #: src/components/routes/system.tsx
 msgid "GPU"
 msgstr ""
@@ -1340,18 +1660,28 @@ msgid "GPU Usage"
 msgstr "Využití GPU"
 
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "Mřížka"
 
 #: src/components/add-system.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Group"
 msgstr "Skupina"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group deleted"
 msgstr "Skupina smazána"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Group of the lines without group"
+msgstr "Skupina řádků bez skupiny"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group saved"
@@ -1360,6 +1690,10 @@ msgstr "Skupina uložena"
 #: src/components/systems-table/systems-table.tsx
 msgid "Groups"
 msgstr "Skupiny"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
+msgstr "Skupiny uspořádávají síťové senzory pro všechny uživatele. Smazání skupiny zachová její senzory bez skupiny."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
@@ -1389,18 +1723,45 @@ msgstr "Monitorování heartbeat"
 msgid "Heartbeat sent successfully"
 msgstr "Heartbeat úspěšně odeslán"
 
+#: src/components/active-alerts.tsx
+msgid "Hide acknowledged"
+msgstr "Skrýt potvrzená"
+
+#: src/components/routes/settings/general.tsx
+msgid "Home page"
+msgstr "Domovská stránka"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgctxt "Button to copy install command"
 msgid "Homebrew command"
 msgstr "Homebrew příkaz"
 
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/host-links.tsx
+msgid "Host"
+msgstr "Hostitel"
+
 #: src/components/add-system.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Host / IP"
 msgstr "Hostitel / IP"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host not reached: the last hops do not answer."
+msgstr "Hostitel nedosažen: poslední skoky neodpovídají."
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host reached in {hopCount} hops."
+msgstr "Hostitel dosažen za {hopCount} skoků."
 
 #: src/lib/quiet-hours.ts
 msgid "Host restart"
@@ -1450,6 +1811,10 @@ msgstr "Neaktivní"
 msgid "If you've lost the password to your admin account, you may reset it using the following command."
 msgstr "Pokud jste ztratili heslo k vašemu účtu správce, můžete jej obnovit pomocí následujícího příkazu."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Ignore TLS certificate errors"
+msgstr "Ignorovat chyby certifikátu TLS"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 msgctxt "Docker image"
@@ -1474,6 +1839,15 @@ msgstr "Důležité služby"
 msgid "Inactive"
 msgstr "Neaktivní"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Information"
+msgstr "Informace"
+
 #: src/components/reboots-table.tsx
 msgid "Initiated by"
 msgstr "Iniciováno uživatelem"
@@ -1488,9 +1862,14 @@ msgstr "Instance"
 msgid "Instance name"
 msgstr "Název instance"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Interruptions: {incidentCount}"
+msgstr "Výpadky: {incidentCount}"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Interval"
 msgstr ""
 
@@ -1501,6 +1880,30 @@ msgstr "Interval (sekundy)"
 #: src/components/login/auth-form.tsx
 msgid "Invalid email address."
 msgstr "Neplatná e-mailová adresa."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by"
+msgstr "Vydal"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by {linkIssuer}, valid until {linkUntil}"
+msgstr "Vydal {linkIssuer}, platný do {linkUntil}"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued to"
+msgstr "Vydáno pro"
+
+#: src/components/routes/sensor.tsx
+msgid "Its checks, history and interruptions will be deleted."
+msgstr "Jeho kontroly, historie a výpadky budou smazány."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are kept and moved to no group."
+msgstr "Její senzory zůstanou zachovány a budou bez skupiny."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are now without group."
+msgstr "Její senzory jsou nyní bez skupiny."
 
 #: src/components/important-targets.tsx
 msgid "Its state alerts stop. The following rules change:"
@@ -1518,18 +1921,60 @@ msgstr "Její systémy jsou nyní bez skupiny."
 msgid "Keep"
 msgstr "Uchovat"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Known ports"
+msgstr "Známé porty"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Label"
+msgstr "Popisek"
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "Jazyk"
+
+#: src/components/routes/sensor.tsx
+msgid "Last 30 minutes"
+msgstr "Posledních 30 minut"
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Last alert"
 msgstr "Poslední upozornění"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Last check"
+msgstr "Poslední kontrola"
+
+#: src/components/routes/sensor.tsx
+msgid "Last hour"
+msgstr "Poslední hodina"
+
 #: src/components/routes/system/agent-details.tsx
 msgid "Last lines logged by the agent of {name} since it started."
 msgstr "Poslední řádky zaznamenané agentem {name} od jeho spuštění."
 
+#: src/components/routes/sensor.tsx
+msgid "Last result of each check."
+msgstr "Poslední výsledek každé kontroly."
+
+#: src/components/routes/sensor.tsx
+msgid "Last update"
+msgstr "Poslední aktualizace"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Latency (ms)"
+msgstr "Latence (ms)"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Latest interruptions"
+msgstr "Poslední výpadky"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "Rozvržení"
@@ -1546,6 +1991,22 @@ msgstr "Životní cyklus"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "limit"
 msgstr ""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: the host is missing"
+#~ msgstr ""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: unknown service \"{check}\""
+#~ msgstr ""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: the host is missing"
+msgstr "Řádek {lineNumber}: chybí hostitel"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: unknown service \"{check}\""
+msgstr "Řádek {lineNumber}: neznámá služba \"{check}\""
 
 #: src/components/routes/system/charts/load-average-chart.tsx
 msgid "Load Average"
@@ -1576,6 +2037,7 @@ msgstr "Prům. zatížení"
 msgid "Load state"
 msgstr "Stav načtení"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
 msgstr "Načítání..."
@@ -1587,6 +2049,10 @@ msgstr "Místní disk"
 #: src/components/routes/system/agent-details.tsx
 msgid "Location"
 msgstr "Umístění"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Location, owner, role…"
+msgstr "Umístění, vlastník, role…"
 
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
@@ -1617,7 +2083,16 @@ msgstr "Logy"
 msgid "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
 msgstr "Hledáte místo kde vytvářet upozornění? Klikněte na ikonu zvonku <0/> v systémové tabulce."
 
+#. Packet loss
+#: src/components/routes/sensor.tsx
+msgid "loss"
+msgstr "ztráta"
+
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgctxt "Packet loss"
 msgid "Loss"
 msgstr "Ztráta"
@@ -1635,6 +2110,9 @@ msgstr "Hlavní PID"
 msgid "Manage display and notification preferences."
 msgstr "Správa nastavení zobrazení a oznámení."
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1686,9 +2164,19 @@ msgstr "Využití paměti"
 msgid "Memory usage of containers"
 msgstr "Využití paměti kontejnery"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Message"
+msgstr "Zpráva"
+
 #: src/lib/quiet-hours.ts
 msgid "Migration"
 msgstr "Migrace"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "min"
+msgstr "min"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -1704,7 +2192,6 @@ msgstr ""
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitor"
 msgstr ""
 
@@ -1713,6 +2200,7 @@ msgid "Monitors created"
 msgstr "Monitory vytvořeny"
 
 #: src/components/overflow-tabs.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "More"
 msgstr "Další"
 
@@ -1725,6 +2213,11 @@ msgstr "Bod připojení"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1739,6 +2232,10 @@ msgstr "Název a výchozí URL tohoto hubu, používané v odkazech oznámení a
 #: src/components/routes/settings/general.tsx
 msgid "Name of the service created when installing an agent with the Linux or Windows commands. Existing agents keep their service name."
 msgstr "Název služby vytvořené při instalaci agenta příkazy pro Linux nebo Windows. Stávající agenti si ponechají svůj název služby."
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Name to resolve"
+msgstr "Název k překladu"
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
@@ -1770,8 +2267,18 @@ msgstr "Ztráta síťového monitoru"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
+#: src/lib/home-page.ts
 msgid "Network Monitors"
 msgstr "Síťové monitory"
+
+#: src/components/routes/monitors.tsx
+msgid "Network monitors from a host"
+msgstr "Síťové monitory z hostitele"
+
+#: src/components/command-palette.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Network sensors"
+msgstr "Síťové senzory"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Network traffic of containers"
@@ -1812,17 +2319,32 @@ msgid "No alert"
 msgstr "Bez upozornění"
 
 #: src/components/alerts/alert-button.tsx
+#: src/components/routes/sensor.tsx
 msgid "No alerts configured"
 msgstr "Nejsou nastavena žádná upozornění"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "No answer"
+msgstr "Bez odpovědi"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "No certificate yet: the details appear after the next HTTPS check."
+msgstr "Zatím žádný certifikát: podrobnosti se zobrazí po další kontrole HTTPS."
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "Pro tento fond nejsou k dispozici podrobné údaje."
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "No group"
 msgstr "Bez skupiny"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "No interruptions over this period."
+msgstr "V tomto období nejsou žádné výpadky."
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1843,6 +2365,8 @@ msgstr "Nenalezeny žádné výskyty."
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No results."
 msgstr "Žádné výsledky."
@@ -1850,6 +2374,10 @@ msgstr "Žádné výsledky."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "Pro toto zařízení nejsou k dispozici žádné atributy S.M.A.R.T."
+
+#: src/components/sensors/sensors-board.tsx
+msgid "No sensor yet: add the hosts and ports that Beszel should check."
+msgstr "Zatím žádný senzor: přidejte hostitele a porty, které má Beszel kontrolovat."
 
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
@@ -1899,6 +2427,27 @@ msgstr "Podpora OAuth 2 / OIDC"
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
 msgstr "Při každém restartu budou systémy v databázi aktualizovány tak, aby odpovídaly systémům definovaným v souboru."
 
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per 15 seconds"
+#~ msgstr "Jeden pruh za 15 sekund"
+
+#: src/components/routes/sensor.tsx
+msgid "One bar per interval ({every})"
+msgstr "Jeden pruh za interval ({every})"
+
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per minute"
+#~ msgstr "Jeden pruh za minutu"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
+msgstr "Jeden řádek na hostitele: hostitel, služby, popisek, skupina, název. Služby jsou známé porty (ssh, https, dns…), čísla portů TCP nebo protokol:port, oddělené znakem +. Řádky stejného hostitele tvoří jeden senzor."
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "One of the chosen ports does not respond."
+msgstr "Jeden ze zvolených portů neodpovídá."
+
 #: src/lib/alerts.ts
 msgid "One or more containers are unhealthy"
 msgstr "Jeden nebo více kontejnerů není v pořádku"
@@ -1921,6 +2470,10 @@ msgstr "Jednorázové"
 msgid "One-time password"
 msgstr "Jednorázové heslo"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Ongoing"
+msgstr "Probíhá"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Only administrators can change this setting."
@@ -1936,6 +2489,15 @@ msgstr "Toto nastavení mohou měnit pouze administrátoři."
 msgid "Open menu"
 msgstr "Otevřít menu"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Optional, such as the name of the service"
+msgstr "Volitelné, například název služby"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Options"
+msgstr "Možnosti"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Nebo pokračujte s"
@@ -1945,13 +2507,38 @@ msgstr "Nebo pokračujte s"
 msgid "Other"
 msgstr "Jiné"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Other port…"
+msgstr "Jiný port…"
+
 #: src/components/alerts/alerts-sheet.tsx
 msgid "Overwrite existing alerts"
 msgstr "Přepsat existující upozornění"
 
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet loss"
+msgstr "Ztráta paketů"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss ({periodLabel})"
+msgstr "Ztráta paketů ({periodLabel})"
+
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Packet loss (%)"
 msgstr "Ztráta paketů (%)"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss (%) of all the checks"
+msgstr "Ztráta paketů (%) všech kontrol"
+
+#: src/components/routes/sensor.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet quality"
+msgstr "Kvalita paketů"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -1967,6 +2554,10 @@ msgstr "Stránka"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Page {0} of {1}"
 msgstr "Stránka {0} z {1}"
+
+#: src/components/routes/settings/general.tsx
+msgid "Page opened at start and by the logo."
+msgstr "Stránka otevřená při spuštění a kliknutím na logo."
 
 #: src/components/command-palette.tsx
 msgid "Pages / Settings"
@@ -1994,11 +2585,14 @@ msgid "Past"
 msgstr "Minulé"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Pause"
 msgstr "Pozastavit"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Paused"
 msgstr "Pozastaveno"
 
@@ -2009,6 +2603,10 @@ msgstr "Pozastaveno ({pausedSystemsLength})"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Payload format"
 msgstr "Formát payloadu"
+
+#: src/lib/sensors.ts
+msgid "Pending"
+msgstr "Čeká"
 
 #: src/components/routes/system/cpu-sheet.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2022,6 +2620,10 @@ msgstr "Procento času, po který je disk zaneprázdněn I/O operacemi"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Percentage of time spent in each state"
 msgstr "Procento času strávěného v každém stavu"
+
+#: src/components/period-select.tsx
+msgid "Period"
+msgstr "Období"
 
 #: src/components/routes/settings/general.tsx
 msgid "Periods offered in the charts of all users. The periods of 90 days or more keep one record per day for that long, which uses more disk space."
@@ -2081,10 +2683,22 @@ msgstr "Stav fondu"
 msgid "Pool Usage"
 msgstr "Využití fondu"
 
+#: src/lib/alerts.ts
+msgid "Poor packet quality"
+msgstr "Špatná kvalita paketů"
+
 #: src/components/add-system.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Port"
 msgstr ""
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Port not responding"
+msgstr "Port neodpovídá"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
@@ -2123,10 +2737,12 @@ msgstr "Produkce, Zákazníci, Laboratoř…"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Protocol"
 msgstr "Protokol"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Public key"
 msgstr "Veřejný klíč"
 
@@ -2134,6 +2750,13 @@ msgstr "Veřejný klíč"
 #: src/components/add-system.tsx
 msgid "Public Key"
 msgstr "Veřejný klíč"
+
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Quality"
+msgstr "Kvalita"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O average queue depth"
@@ -2214,6 +2837,15 @@ msgstr "Restarty"
 msgid "Received"
 msgstr "Přijato"
 
+#: src/components/sensors/sensor-badges.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Recent checks"
+msgstr "Nedávné kontroly"
+
+#: src/components/command-palette.tsx
+msgid "Recently opened"
+msgstr "Nedávno otevřené"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Zaznamenáno"
@@ -2232,6 +2864,7 @@ msgid "Relationships"
 msgstr "Vztahy"
 
 #: src/components/important-targets.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Remove"
 msgstr "Odebrat"
 
@@ -2281,9 +2914,24 @@ msgstr "Vyřešeno"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 msgid "Response"
 msgstr "Odezva"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Response and uptime"
+msgstr "Odezva a dostupnost"
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Response time"
+msgstr "Doba odezvy"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 msgid "Response time monitoring from agents."
@@ -2294,6 +2942,7 @@ msgid "Restarts"
 msgstr "Restarty"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Resume"
 msgstr "Pokračovat"
@@ -2310,6 +2959,10 @@ msgstr "Uchování: upozornění za posledních {days} dní"
 msgid "Retention: the last {count} alerts of each user"
 msgstr "Uchování: posledních {count} upozornění každého uživatele"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Retries"
+msgstr "Opakování"
+
 #: src/lib/utils.ts
 msgctxt "Root disk label"
 msgid "Root"
@@ -2318,6 +2971,10 @@ msgstr "Kořenový"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Rotate token"
 msgstr "Změnit token"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Route from the hub to {sensorHost}."
+msgstr "Trasa z hubu k {sensorHost}."
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
@@ -2330,6 +2987,10 @@ msgstr "Pravidlo bude smazáno, jeho vzor zahrnuje i další položky: {targets}
 #: src/components/important-targets.tsx
 msgid "Rule deleted: {targets}"
 msgstr "Pravidlo bude smazáno: {targets}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Run again"
+msgstr "Spustit znovu"
 
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
@@ -2349,6 +3010,7 @@ msgstr "S.M.A.R.T. Vlastní test"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "Uložit"
@@ -2393,8 +3055,16 @@ msgid "Search"
 msgstr "Hledat"
 
 #: src/components/command-palette.tsx
-msgid "Search for systems or settings..."
-msgstr "Hledat systémy nebo nastavení..."
+#~ msgid "Search for systems or settings..."
+#~ msgstr "Hledat systémy nebo nastavení..."
+
+#: src/components/command-palette.tsx
+#~ msgid "Search for systems, sensors or settings..."
+#~ msgstr "Hledat systémy, senzory nebo nastavení..."
+
+#: src/components/command-palette.tsx
+msgid "Search for systems, sensors, containers, services or settings..."
+msgstr "Hledat systémy, senzory, kontejnery, služby nebo nastavení..."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2413,6 +3083,7 @@ msgstr "Podívejte se na <0>nastavení upozornění</0> pro nastavení toho, jak
 msgid "Select"
 msgstr "Vybrat"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Select {foo}"
 msgstr "Vybrat {foo}"
@@ -2459,14 +3130,46 @@ msgstr "Odesílejte periodické odchozí pingy na externí monitorovací službu
 msgid "Send test heartbeat"
 msgstr "Odeslat testovací heartbeat"
 
+#: src/components/navbar.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Sensor"
+msgstr "Senzor"
+
+#: src/lib/alerts.ts
+msgid "Sensor down"
+msgstr "Senzor nedostupný"
+
+#: src/components/routes/sensor.tsx
+msgid "Sensor not found."
+msgstr "Senzor nebyl nalezen."
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Sensors"
+msgstr "Senzory"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Sensors added"
+msgstr "Senzory přidány"
+
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Sent"
 msgstr "Odeslat"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Serial number"
+msgstr "Sériové číslo"
 
 #: src/components/routes/system/smart-table.tsx
 msgid "Serial Number"
 msgstr "Sériové číslo"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
@@ -2490,6 +3193,7 @@ msgid "Service state"
 msgstr "Stav služby"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -2525,6 +3229,15 @@ msgstr "Nastavení"
 msgid "Settings saved"
 msgstr "Nastavení uloženo"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "SHA-256 fingerprint"
+msgstr "Otisk SHA-256"
+
+#: src/components/active-alerts.tsx
+msgid "Show"
+msgstr "Zobrazit"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Show by group"
 msgstr "Zobrazit podle skupin"
@@ -2539,10 +3252,15 @@ msgstr "Vypnutí"
 msgid "Sign in"
 msgstr "Přihlásit se"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Signature"
+msgstr "Podpis"
+
 #: src/components/command-palette.tsx
 msgid "SMTP settings"
 msgstr "Nastavení SMTP"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
 msgstr "Seřadit podle"
@@ -2552,6 +3270,11 @@ msgstr "Seřadit podle"
 #: src/components/reboots-table.tsx
 msgid "Source"
 msgstr "Zdroj"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Start"
+msgstr "Začátek"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2575,6 +3298,7 @@ msgstr "Spuštěno ručně"
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2610,6 +3334,11 @@ msgstr "Stavy"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/lib/alerts.ts
@@ -2648,6 +3377,7 @@ msgstr "Přepnout motiv"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2690,6 +3420,7 @@ msgstr "Aktualizace systému"
 msgid "Systemd Services"
 msgstr "Služby systemd"
 
+#: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2705,6 +3436,7 @@ msgstr "Systémy lze spravovat v souboru <0>config.yml</0> uvnitř datového adr
 msgid "Systems to update ({targetCount})"
 msgstr "Systémy k aktualizaci ({targetCount})"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
 msgstr "Tabulka"
@@ -2780,6 +3512,14 @@ msgstr "Agent se sám restartuje a znovu připojí."
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "Agenti stáhnou verzi {latest} z GitHubu a restartují se."
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The average response time over 10 minutes exceeds {value} ms."
+msgstr "Průměrná doba odezvy za 10 minut přesahuje {value} ms."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The certificate of an HTTPS check expires within {value} days."
+msgstr "Certifikát kontroly HTTPS vyprší do {value} dní."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "Nejnovější verze agenta zatím není známa"
@@ -2787,6 +3527,18 @@ msgstr "Nejnovější verze agenta zatím není známa"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Celkový stav je <0>ok</0>, když jsou všechny systémy v provozu, <1>warn</1>, když jsou spuštěny výstrahy, a <2>error</2>, když je některý systém mimo provoz."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet loss over 10 minutes exceeds {value}%."
+msgstr "Ztráta paketů za 10 minut přesahuje {value} %."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is bad."
+msgstr "Kvalita paketů za 10 minut je špatná."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is degraded or bad."
+msgstr "Kvalita paketů za 10 minut je zhoršená nebo špatná."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "The rules are created on each system."
@@ -2812,6 +3564,14 @@ msgstr "Tuto akci nelze vzít zpět. Tím se z databáze trvale odstraní všech
 msgid "This agent is too old to be managed from the hub: update it once on the system."
 msgstr "Tento agent je příliš starý na správu z hubu: jednou jej aktualizujte přímo v systému."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "This host already has a sensor: {added} new check(s) were added to it."
+msgstr "Tento hostitel už má senzor: bylo k němu přidáno {added} nových kontrol."
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This sensor until {until}"
+msgstr "Tento senzor do {until}"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
 msgstr "Tento systém do {until}"
@@ -2821,6 +3581,11 @@ msgstr "Tento systém do {until}"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "This will permanently delete all selected records from the database."
 msgstr "Tímto trvale odstraníte všechny vybrané záznamy z databáze."
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Threshold"
+msgstr "Práh"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -2834,7 +3599,14 @@ msgstr "Propustnost fondu {displayName}"
 msgid "Time format"
 msgstr "Formát času"
 
-#: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-cert.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "TLS certificate"
+msgstr "Certifikát TLS"
+
+#: src/components/period-select.tsx
 msgid "To"
 msgstr "Do"
 
@@ -2874,6 +3646,10 @@ msgstr "Celkový přijatý objem dat pro každé rozhraní"
 msgid "Total data sent for each interface"
 msgstr "Celkový odeslaný objem dat pro každé rozhraní"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Total duration: {totalDuration}"
+msgstr "Celková doba: {totalDuration}"
+
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
 msgid "Total time spent on read/write (can exceed 100%)"
@@ -2886,8 +3662,13 @@ msgstr "Celkem: {0}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Total: {totalCount}"
 msgstr "Celkem: {totalCount}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Traced with the traceroute command of the hub."
+msgstr "Trasováno příkazem traceroute hubu."
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
@@ -3011,6 +3792,7 @@ msgstr "Univerzální token"
 #. Context: Battery state
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/lib/i18n.ts
+#: src/lib/sensors.ts
 msgid "Unknown"
 msgstr "Neznámá"
 
@@ -3019,9 +3801,17 @@ msgstr "Neznámá"
 msgid "Unlimited"
 msgstr "Neomezeno"
 
+#: src/components/sensors/sensor-badges.tsx
+msgid "Unreachable"
+msgstr "Nedostupný"
+
+#. Context: System is up
+#. Context: System is up
 #. Context: System is up
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Up"
 msgstr "Funkční"
 
@@ -3034,6 +3824,7 @@ msgid "Up to date"
 msgstr "Aktuální"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Up: {upCount}"
 msgstr "Spuštěné: {upCount}"
 
@@ -3091,6 +3882,17 @@ msgstr "Odeslání"
 msgid "Uptime"
 msgstr "Doba provozu"
 
+#: src/components/routes/sensor.tsx
+msgid "Uptime ({periodLabel})"
+msgstr "Dostupnost ({periodLabel})"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Uptime (24h)"
+msgstr "Dostupnost (24 h)"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
@@ -3134,6 +3936,18 @@ msgctxt "Disk I/O utilization"
 msgid "Utilization"
 msgstr "Využití"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid and trusted certificate"
+msgstr "Platný a důvěryhodný certifikát"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid from"
+msgstr "Platný od"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid until"
+msgstr "Platný do"
+
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
@@ -3143,6 +3957,8 @@ msgstr "Hodnota"
 msgid "Version"
 msgstr "Verze"
 
+#: src/components/active-alerts.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "View"
@@ -3162,6 +3978,7 @@ msgstr "Zobrazit posledních {count} upozornění."
 msgid "View your alerts of the last {days} days."
 msgstr "Zobrazit upozornění za posledních {days} dní."
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "Visible Fields"
@@ -3257,6 +4074,10 @@ msgstr "YAML konfigurace"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Yes"
 msgstr "Ano"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Your alerts on this sensor. Quiet hours of the sensor and global ones silence them."
+msgstr "Vaše upozornění pro tento senzor. Tiché hodiny senzoru a globální tiché hodiny je ztlumí."
 
 #: src/components/routes/settings/layout.tsx
 msgid "Your user settings have been updated."

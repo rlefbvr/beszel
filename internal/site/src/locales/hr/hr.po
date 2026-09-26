@@ -50,6 +50,18 @@ msgstr "{0} od {1} redaka izabrano."
 msgid "{0} selected"
 msgstr "Odabrano: {0}"
 
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {# active alert acknowledged} other {# active alerts acknowledged}}"
+msgstr "{ackCount, plural, one {# potvrđeno aktivno upozorenje} few {# potvrđena aktivna upozorenja} other {# potvrđenih aktivnih upozorenja}}"
+
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {Show # acknowledged} other {Show # acknowledged}}"
+msgstr "{ackCount, plural, other {Prikaži potvrđena (#)}}"
+
+#: src/components/routes/sensor.tsx
+msgid "{certDays} days"
+msgstr "{certDays} dana"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# jezgra} few {# jezgre} other {# jezgri}}"
@@ -74,9 +86,21 @@ msgstr "{count, plural, one {# filtrirani kontejner} few {# filtrirana kontejner
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# filtrirana usluga} few {# filtrirane usluge} other {# filtriranih usluga}}"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "{count, plural, one {# sensor} other {# sensors}}"
+msgstr "{count, plural, one {# senzor} few {# senzora} other {# senzora}}"
+
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# sustav} few {# sustava} other {# sustava}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
+msgstr "{created} novih senzora, {added} provjera dodano postojećim senzorima."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
+msgstr "{days, plural, one {Istječe za # dan} few {Istječe za # dana} other {Istječe za # dana}}"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "{diskName} I/O"
@@ -98,6 +122,18 @@ msgstr "{ruleCount, plural, one {Stvoreno je # pravilo stanja.} few {Stvorena su
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, one {# pravilo stanja} few {# pravila stanja} other {# pravila stanja}}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "{seconds, plural, one {# second} other {# seconds}}"
+msgstr "{seconds, plural, one {# sekunda} few {# sekunde} other {# sekundi}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{sensorCount} host(s), {checkCount} check(s)"
+msgstr "Hostova: {sensorCount}, provjera: {checkCount}"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "{success} of {total} successful"
+msgstr "{success} od {total} uspješnih"
+
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, one {# sustav} few {# sustava} other {# sustava}}"
@@ -106,6 +142,7 @@ msgstr "{systemCount, plural, one {# sustav} few {# sustava} other {# sustava}}"
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# nit} few {# niti} other {# niti}}"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 hour"
 msgstr "1 sat"
@@ -123,6 +160,7 @@ msgstr "1 minuta"
 msgid "1 week"
 msgstr "1 tjedan"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 year"
 msgstr "1 godina"
@@ -140,10 +178,12 @@ msgstr "15 minuta"
 msgid "180 days"
 msgstr "180 dana"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "24 hours"
 msgstr "24 sati"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "30 days"
 msgstr "30 dana"
@@ -153,18 +193,44 @@ msgstr "30 dana"
 msgid "5 min"
 msgstr "5 minuta"
 
+#: src/components/period-select.tsx
+msgid "7 days"
+msgstr "7 dana"
+
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "90 days"
 msgstr "90 dana"
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "A check of the sensor does not respond."
+msgstr "Provjera senzora ne odgovara."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A sensor belongs to one group: checking it moves it from its current group."
+msgstr "Senzor pripada jednoj grupi: označavanjem ga premještate iz trenutne grupe."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A system belongs to one group: checking it moves it from its current group."
 msgstr "Sustav pripada jednoj grupi: označavanjem se premješta iz trenutne grupe."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Accepted status codes"
+msgstr "Prihvaćeni statusni kodovi"
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "Račun"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge"
+msgstr "Potvrdi"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge all"
+msgstr "Potvrdi sve"
 
 #. Table column
 #: src/components/routes/settings/quiet-hours.tsx
@@ -190,11 +256,11 @@ msgstr "Aktivna Upozorenja"
 msgid "Active state"
 msgstr "Aktivno stanje"
 
-#: src/components/add-system.tsx
-#: src/components/add-system.tsx
 #: src/components/navbar.tsx
+msgid "Add"
+msgstr "Dodaj"
+
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -203,13 +269,50 @@ msgstr "Aktivno stanje"
 msgid "Add {foo}"
 msgstr "Dodaj {foo}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add a check"
+msgstr "Dodaj provjeru"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add a monitor"
+msgstr "Dodaj monitor"
+
+#: src/components/add-system.tsx
+#: src/components/add-system.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Add a system"
+msgstr "Dodaj sustav"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add at least one check."
+msgstr "Dodajte barem jednu provjeru."
+
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Add rule"
 msgstr "Dodaj pravilo"
 
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Add sensor"
+msgstr "Dodaj senzor"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Add sensors"
+msgstr "Dodaj senzore"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "Dodaj URL"
+
+#: src/components/add-system.tsx
+msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
+msgstr "Dodavanje hosta automatski stvara senzor tipa ICMP (Ping)."
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Address"
+msgstr "Adresa"
 
 #: src/components/routes/settings/general.tsx
 msgid "Adjust display options for charts."
@@ -287,6 +390,7 @@ msgstr "Upozori kada stanje nije"
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "Upozorenja"
@@ -295,10 +399,16 @@ msgstr "Upozorenja"
 msgid "Alerts created"
 msgstr "Upozorenja stvorena"
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Alerts of {sensorName}"
+msgstr "Upozorenja za {sensorName}"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "upozorenja po korisniku"
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "Sve"
@@ -312,6 +422,7 @@ msgstr "Svi agenti su ažurni ({latest})"
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/containers.tsx
+#: src/lib/home-page.ts
 msgid "All Containers"
 msgstr "Svi spremnici"
 
@@ -324,19 +435,28 @@ msgstr "Svi zastarjeli ({outdatedCount})"
 #: src/components/navbar.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/reboots.tsx
+#: src/lib/home-page.ts
 msgid "All Reboots"
 msgstr "Sva ponovna pokretanja"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "All sensors"
+msgstr "Svi senzori"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/services.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/lib/home-page.ts
 msgid "All Services"
 msgstr "Sve usluge"
 
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -344,6 +464,7 @@ msgstr "Sve usluge"
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
+#: src/lib/home-page.ts
 msgid "All Systems"
 msgstr "Svi Sustavi"
 
@@ -351,10 +472,26 @@ msgstr "Svi Sustavi"
 msgid "All systems until {until}"
 msgstr "Svi sustavi do {until}"
 
+#: src/components/period-select.tsx
+msgid "All time"
+msgstr "Cijelo razdoblje"
+
 #: src/components/agent-update-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Already up to date."
 msgstr "Već ažurno."
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated host {systemName} and its records"
+msgstr "Izbriši i povezani host {systemName} i njegove zapise"
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated sensor {sensorName}"
+msgstr "Izbriši i povezani senzor {sensorName}"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Alternative names"
+msgstr "Alternativni nazivi"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -413,6 +550,18 @@ msgctxt "Disk I/O average operation time (iostat await)"
 msgid "Average queue to completion time per operation"
 msgstr "Prosječno vrijeme od čekanja do završetka po operaciji"
 
+#: src/components/routes/sensor.tsx
+msgid "Average response"
+msgstr "Prosječni odziv"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Average response time above which the quality is degraded"
+msgstr "Prosječno vrijeme odziva iznad kojeg je kvaliteta smanjena"
+
+#: src/components/routes/sensor.tsx
+msgid "Average response time of each check"
+msgstr "Prosječno vrijeme odziva svake provjere"
+
 #: src/components/routes/system/charts/cpu-charts.tsx
 msgid "Average system-wide CPU utilization"
 msgstr "Prosječna iskorištenost procesora u cijelom sustavu"
@@ -430,6 +579,10 @@ msgstr "Prosječna iskorištenost grafičkih procesora"
 msgid "Average, minimum, and maximum response time"
 msgstr "Prosječno, minimalno i maksimalno vrijeme odziva"
 
+#: src/components/routes/sensor.tsx
+msgid "avg"
+msgstr "prosj."
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
@@ -443,6 +596,15 @@ msgstr "Sigurnosna kopija"
 #: src/components/navbar.tsx
 msgid "Backups"
 msgstr "Sigurnosne kopije"
+
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Bad"
+msgstr "Loša"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Bad"
+msgstr "Loša"
 
 #: src/components/routes/system/charts/network-charts.tsx
 #: src/lib/alerts.ts
@@ -479,6 +641,10 @@ msgstr "Prije"
 msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "Ispod {0}{1} u posljednjih {2, plural, one {# minuti} few {# minute} other {# minuta}}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
+msgstr "Beszel provjerava portove hosta s huba. Provjere istog hosta grupirane su u jedan senzor."
+
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
 msgstr "Beszel podržava OpenID Connect i mnoge druge pružatelje OAuth2  autentifikacije."
@@ -512,12 +678,17 @@ msgstr "Naslov kartice preglednika"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "Skupno dodavanje"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Bulk Add {foo}"
 msgstr "Skupno dodavanje: {foo}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Bulk add sensors"
+msgstr "Skupno dodavanje senzora"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Bulk copy"
@@ -550,13 +721,19 @@ msgstr "Može se zaustaviti"
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "Otkaži"
+
+#: src/components/active-alerts.tsx
+msgid "Cancel the acknowledgement"
+msgstr "Poništi potvrdu"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Capabilities"
@@ -576,6 +753,18 @@ msgstr "Oprez - mogući gubitak podataka"
 #: src/components/routes/settings/general.tsx
 msgid "Celsius (°C)"
 msgstr "Celsius (°C)"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate not trusted by the hub"
+msgstr "Certifikat nije pouzdan za hub"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate presented by the server at the last check."
+msgstr "Certifikat koji je poslužitelj predočio pri zadnjoj provjeri."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Chain"
+msgstr "Lanac"
 
 #: src/components/routes/settings/general.tsx
 msgid "Change display units for metrics."
@@ -606,6 +795,12 @@ msgstr "Razdoblja grafikona"
 msgid "Chart width"
 msgstr "Širina grafikona"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Check"
+msgstr "Provjera"
+
 #: src/components/login/forgot-pass-form.tsx
 msgid "Check {email} for a reset link."
 msgstr "Provjerite {email} za pristup poveznici za resetiranje."
@@ -623,9 +818,30 @@ msgstr "Provjerite svoju uslugu nadzora"
 msgid "Check your notification service"
 msgstr "Provjerite svoju obavještajnu uslugu"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Checks"
+msgstr "Provjere"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Checks added to {sensorName}"
+msgstr "Provjere dodane u {sensorName}"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Checksum errors"
 msgstr "Pogreške kontrolnog zbroja"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Choose a known port"
+msgstr "Odaberite poznati port"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Choose at least one port."
+msgstr "Odaberite barem jedan port."
 
 #: src/components/reboots-table.tsx
 msgctxt "Clean shutdown"
@@ -638,6 +854,8 @@ msgstr "Uredno"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Clear"
 msgstr "Očisti"
@@ -671,9 +889,24 @@ msgstr "Pritisnite za kopiranje"
 msgid "Close"
 msgstr "Zatvori"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Code"
+msgstr "Kod"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Interval prikupljanja"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Color"
+msgstr "Boja"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Columns"
+msgstr "Stupci"
 
 #: src/components/login/forgot-pass-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -729,6 +962,7 @@ msgid "Container state"
 msgstr "Stanje kontejnera"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
 msgstr "Kontejneri"
@@ -914,6 +1148,15 @@ msgstr "Dnevno"
 msgid "Data directory"
 msgstr "Mapa podataka"
 
+#: src/components/period-select.tsx
+msgid "Dates…"
+msgstr "Datumi…"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "days"
+msgstr "dana"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "days of alerts"
 msgstr "dana upozorenja"
@@ -922,6 +1165,10 @@ msgstr "dana upozorenja"
 msgctxt "Default system layout option"
 msgid "Default"
 msgstr "Zadano"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Default color"
+msgstr "Zadana boja"
 
 #: src/components/routes/settings/general.tsx
 msgid "Default time period"
@@ -933,9 +1180,20 @@ msgstr "Zadano vremensko razdoblje"
 msgid "Default URL"
 msgstr "Zadani URL"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Degraded"
+msgstr "Smanjena"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Degraded or bad"
+msgstr "Smanjena ili loša"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -946,7 +1204,7 @@ msgstr "Izbriši"
 
 #: src/components/reboots-table.tsx
 msgid "Delete ({selectedCount})"
-msgstr ""
+msgstr "Izbriši ({selectedCount})"
 
 #: src/components/reboots-table.tsx
 #~ msgid "Delete {selectedCount} reboots?"
@@ -966,7 +1224,11 @@ msgstr "Izbrisati grupu {originalName}?"
 
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
-msgstr ""
+msgstr "Izbrisati odabrana ponovna pokretanja?"
+
+#: src/components/routes/sensor.tsx
+msgid "Delete this sensor?"
+msgstr "Izbrisati ovaj senzor?"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1043,10 +1305,15 @@ msgid "Documentation"
 msgstr "Dokumentacija"
 
 #. Context: System is down
+#. Context: System is down
+#. Context: System is down
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 #: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+#: src/lib/sensors.ts
 msgid "Down"
 msgstr "Sustav je pao"
 
@@ -1055,6 +1322,7 @@ msgid "Down ({downSystemsLength})"
 msgstr "Sustav je pao ({downSystemsLength})"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Down: {downCount}"
 msgstr "Zaustavljeni: {downCount}"
 
@@ -1074,11 +1342,14 @@ msgstr "Povucite za promjenu veličine, dvaput kliknite za vraćanje"
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
 msgid "Duration"
 msgstr "Trajanje"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -1090,6 +1361,10 @@ msgstr "Uredi"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit {foo}"
 msgstr "Uredi {foo}"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Edit sensor"
+msgstr "Uredi senzor"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -1105,6 +1380,11 @@ msgstr "Email obavijesti"
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "Prazno"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "End"
+msgstr "Kraj"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1141,6 +1421,8 @@ msgstr "Efemeran"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/config-yaml.tsx
 #: src/components/routes/settings/heartbeat.tsx
@@ -1150,6 +1432,7 @@ msgstr "Efemeran"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "Greška"
@@ -1164,6 +1447,10 @@ msgstr "Primjer:"
 #: src/components/active-alerts.tsx
 msgid "Exceeds {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "Premašuje {0}{1} u posljednjih {2, plural, one {# minuta} other {# minute}}"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "Exchange quality"
+msgstr "Kvaliteta komunikacije"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exec main PID"
@@ -1184,6 +1471,18 @@ msgstr "Izlazni kod"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exited active"
 msgstr "Izašlo aktivno"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Expected text"
+msgstr "Očekivani tekst"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired certificate"
+msgstr "Istekao certifikat"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired on {expiredOn}"
+msgstr "Istekao {expiredOn}"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Expires after one hour or on hub restart."
@@ -1213,6 +1512,10 @@ msgstr "Neuspješno"
 msgid "Failed Attributes:"
 msgstr "Neuspjeli atributi:"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Failed checks in a row tolerated before the sensor is down"
+msgstr "Uzastopne neuspjele provjere dopuštene prije nego što je senzor nedostupan"
+
 #: src/lib/alerts.ts
 msgid "Failed Services"
 msgstr "Neuspjele usluge"
@@ -1231,6 +1534,8 @@ msgstr "Brisanje monitora nije uspjelo."
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "Neuspješno spremanje postavki"
@@ -1268,6 +1573,8 @@ msgstr "Ventilatori"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1281,6 +1588,14 @@ msgstr "Otisak"
 #: src/components/routes/system/smart-table.tsx
 msgid "Firmware"
 msgstr "Firmver"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Following the route, up to a minute…"
+msgstr "Praćenje rute, do jedne minute…"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "For"
+msgstr "Tijekom"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "For <0>{min}</0> {min, plural, one {minute} other {minutes}}"
@@ -1303,7 +1618,7 @@ msgctxt "Button to copy install command"
 msgid "FreeBSD command"
 msgstr "FreeBSD naredba"
 
-#: src/components/reboots-table.tsx
+#: src/components/period-select.tsx
 msgid "From"
 msgstr "Od"
 
@@ -1323,6 +1638,11 @@ msgstr "Općenito"
 msgid "Global"
 msgstr "Globalno"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Good"
+msgstr "Dobra"
+
 #: src/components/routes/system.tsx
 msgid "GPU"
 msgstr "GPU"
@@ -1340,18 +1660,28 @@ msgid "GPU Usage"
 msgstr "Iskorištenost GPU-a"
 
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "Rešetka"
 
 #: src/components/add-system.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Group"
 msgstr "Grupa"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group deleted"
 msgstr "Grupa izbrisana"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Group of the lines without group"
+msgstr "Grupa redaka bez grupe"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group saved"
@@ -1360,6 +1690,10 @@ msgstr "Grupa spremljena"
 #: src/components/systems-table/systems-table.tsx
 msgid "Groups"
 msgstr "Grupe"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
+msgstr "Grupe organiziraju mrežne senzore za sve korisnike. Brisanjem grupe njezini senzori ostaju bez grupe."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
@@ -1389,18 +1723,45 @@ msgstr "Nadzor heartbeata"
 msgid "Heartbeat sent successfully"
 msgstr "Heartbeat uspješno poslan"
 
+#: src/components/active-alerts.tsx
+msgid "Hide acknowledged"
+msgstr "Sakrij potvrđena"
+
+#: src/components/routes/settings/general.tsx
+msgid "Home page"
+msgstr "Početna stranica"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgctxt "Button to copy install command"
 msgid "Homebrew command"
 msgstr "Homebrew naredba"
 
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/host-links.tsx
+msgid "Host"
+msgstr "Host"
+
 #: src/components/add-system.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Host / IP"
 msgstr "Host / IP"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host not reached: the last hops do not answer."
+msgstr "Host nije dosegnut: posljednji skokovi ne odgovaraju."
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host reached in {hopCount} hops."
+msgstr "Host dosegnut u {hopCount} skokova."
 
 #: src/lib/quiet-hours.ts
 msgid "Host restart"
@@ -1450,6 +1811,10 @@ msgstr "Neaktivno"
 msgid "If you've lost the password to your admin account, you may reset it using the following command."
 msgstr "Ako ste izgubili lozinku za svoj administratorski račun, možete ju resetirati pomoću sljedeće naredbe."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Ignore TLS certificate errors"
+msgstr "Zanemari pogreške TLS certifikata"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 msgctxt "Docker image"
@@ -1474,6 +1839,15 @@ msgstr "Važne usluge"
 msgid "Inactive"
 msgstr "Neaktivno"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Information"
+msgstr "Informacije"
+
 #: src/components/reboots-table.tsx
 msgid "Initiated by"
 msgstr "Pokrenuo"
@@ -1488,9 +1862,14 @@ msgstr "Instanca"
 msgid "Instance name"
 msgstr "Naziv instance"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Interruptions: {incidentCount}"
+msgstr "Prekidi: {incidentCount}"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Interval"
 msgstr "Interval"
 
@@ -1501,6 +1880,30 @@ msgstr "Interval (sekunde)"
 #: src/components/login/auth-form.tsx
 msgid "Invalid email address."
 msgstr "Nevažeća email adresa."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by"
+msgstr "Izdao"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by {linkIssuer}, valid until {linkUntil}"
+msgstr "Izdao {linkIssuer}, vrijedi do {linkUntil}"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued to"
+msgstr "Izdano za"
+
+#: src/components/routes/sensor.tsx
+msgid "Its checks, history and interruptions will be deleted."
+msgstr "Njegove provjere, povijest i prekidi bit će izbrisani."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are kept and moved to no group."
+msgstr "Njezini senzori se zadržavaju i ostaju bez grupe."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are now without group."
+msgstr "Njezini senzori sada su bez grupe."
 
 #: src/components/important-targets.tsx
 msgid "Its state alerts stop. The following rules change:"
@@ -1518,18 +1921,60 @@ msgstr "Njezini sustavi sada su bez grupe."
 msgid "Keep"
 msgstr "Zadrži"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Known ports"
+msgstr "Poznati portovi"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Label"
+msgstr "Oznaka"
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "Jezik"
+
+#: src/components/routes/sensor.tsx
+msgid "Last 30 minutes"
+msgstr "Zadnjih 30 minuta"
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Last alert"
 msgstr "Posljednje upozorenje"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Last check"
+msgstr "Zadnja provjera"
+
+#: src/components/routes/sensor.tsx
+msgid "Last hour"
+msgstr "Zadnji sat"
+
 #: src/components/routes/system/agent-details.tsx
 msgid "Last lines logged by the agent of {name} since it started."
 msgstr "Posljednji retci koje je agent sustava {name} zabilježio od pokretanja."
 
+#: src/components/routes/sensor.tsx
+msgid "Last result of each check."
+msgstr "Zadnji rezultat svake provjere."
+
+#: src/components/routes/sensor.tsx
+msgid "Last update"
+msgstr "Zadnje ažuriranje"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Latency (ms)"
+msgstr "Latencija (ms)"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Latest interruptions"
+msgstr "Nedavni prekidi"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "Izgled"
@@ -1546,6 +1991,22 @@ msgstr "Životni ciklus"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "limit"
 msgstr "ograničenje"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: the host is missing"
+#~ msgstr ""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: unknown service \"{check}\""
+#~ msgstr ""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: the host is missing"
+msgstr "Redak {lineNumber}: nedostaje host"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: unknown service \"{check}\""
+msgstr "Redak {lineNumber}: nepoznata usluga \"{check}\""
 
 #: src/components/routes/system/charts/load-average-chart.tsx
 msgid "Load Average"
@@ -1576,6 +2037,7 @@ msgstr "Prosječno Opterećenje"
 msgid "Load state"
 msgstr "Stanje učitavanja"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
 msgstr "Učitavanje..."
@@ -1587,6 +2049,10 @@ msgstr "Lokalni disk"
 #: src/components/routes/system/agent-details.tsx
 msgid "Location"
 msgstr "Lokacija"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Location, owner, role…"
+msgstr "Lokacija, vlasnik, uloga…"
 
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
@@ -1617,7 +2083,16 @@ msgstr "Zapisi"
 msgid "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
 msgstr "Tražite gdje stvoriti upozorenja? Kliknite ikonu zvona <0/> u tablici sustava."
 
+#. Packet loss
+#: src/components/routes/sensor.tsx
+msgid "loss"
+msgstr "gubitak"
+
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgctxt "Packet loss"
 msgid "Loss"
 msgstr "Gubitak"
@@ -1635,6 +2110,9 @@ msgstr "Glavni PID"
 msgid "Manage display and notification preferences."
 msgstr "Upravljajte postavkama prikaza i obavijesti."
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1686,9 +2164,19 @@ msgstr "Iskorištenost memorije"
 msgid "Memory usage of containers"
 msgstr "Upotreba memorije spremnika"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Message"
+msgstr "Poruka"
+
 #: src/lib/quiet-hours.ts
 msgid "Migration"
 msgstr "Migracija"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "min"
+msgstr "min"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -1704,7 +2192,6 @@ msgstr "Model"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitor"
 msgstr "Monitor"
 
@@ -1713,6 +2200,7 @@ msgid "Monitors created"
 msgstr "Monitori su izrađeni"
 
 #: src/components/overflow-tabs.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "More"
 msgstr "Više"
 
@@ -1725,6 +2213,11 @@ msgstr "Točka montiranja"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1739,6 +2232,10 @@ msgstr "Naziv i zadani URL ovog huba, koriste se u poveznicama obavijesti i prik
 #: src/components/routes/settings/general.tsx
 msgid "Name of the service created when installing an agent with the Linux or Windows commands. Existing agents keep their service name."
 msgstr "Naziv usluge koja se stvara pri instalaciji agenta naredbama za Linux ili Windows. Postojeći agenti zadržavaju svoj naziv usluge."
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Name to resolve"
+msgstr "Naziv za razrješavanje"
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
@@ -1770,8 +2267,18 @@ msgstr "Gubitak mrežnog monitora"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
+#: src/lib/home-page.ts
 msgid "Network Monitors"
 msgstr "Mrežni monitori"
+
+#: src/components/routes/monitors.tsx
+msgid "Network monitors from a host"
+msgstr "Mrežni monitori s hosta"
+
+#: src/components/command-palette.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Network sensors"
+msgstr "Mrežni senzori"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Network traffic of containers"
@@ -1812,17 +2319,32 @@ msgid "No alert"
 msgstr "Bez upozorenja"
 
 #: src/components/alerts/alert-button.tsx
+#: src/components/routes/sensor.tsx
 msgid "No alerts configured"
 msgstr "Nema postavljenih upozorenja"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "No answer"
+msgstr "Nema odgovora"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "No certificate yet: the details appear after the next HTTPS check."
+msgstr "Još nema certifikata: pojedinosti se prikazuju nakon sljedeće HTTPS provjere."
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "Nema detaljnih podataka za ovo spremište."
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "No group"
 msgstr "Bez grupe"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "No interruptions over this period."
+msgstr "Nema prekida u ovom razdoblju."
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1843,6 +2365,8 @@ msgstr "Nema rezultata."
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No results."
 msgstr "Nema rezultata."
@@ -1850,6 +2374,10 @@ msgstr "Nema rezultata."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "Nema dostupnih S.M.A.R.T. atributa za ovaj uređaj."
+
+#: src/components/sensors/sensors-board.tsx
+msgid "No sensor yet: add the hosts and ports that Beszel should check."
+msgstr "Još nema senzora: dodajte hostove i portove koje Beszel treba provjeravati."
 
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
@@ -1899,6 +2427,27 @@ msgstr "Podrška za OAuth 2 / OIDC"
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
 msgstr "Prilikom svakog ponovnog pokretanja, sustavi u bazi podataka bit će ažurirani kako bi odgovarali sustavima definiranim u datoteci."
 
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per 15 seconds"
+#~ msgstr "Jedna traka svakih 15 sekundi"
+
+#: src/components/routes/sensor.tsx
+msgid "One bar per interval ({every})"
+msgstr "Jedna traka po intervalu ({every})"
+
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per minute"
+#~ msgstr "Jedna traka po minuti"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
+msgstr "Jedan redak po hostu: host, usluge, oznaka, grupa, naziv. Usluge su poznati portovi (ssh, https, dns…), brojevi TCP portova ili protokol:port, odvojeni znakom +. Retci istog hosta čine jedan senzor."
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "One of the chosen ports does not respond."
+msgstr "Jedan od odabranih portova ne odgovara."
+
 #: src/lib/alerts.ts
 msgid "One or more containers are unhealthy"
 msgstr "Jedan ili više spremnika nije ispravno"
@@ -1921,6 +2470,10 @@ msgstr "Jednokratno"
 msgid "One-time password"
 msgstr "Jednokratna lozinka"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Ongoing"
+msgstr "U tijeku"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Only administrators can change this setting."
@@ -1936,6 +2489,15 @@ msgstr "Samo administratori mogu promijeniti ovu postavku."
 msgid "Open menu"
 msgstr "Otvori meni"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Optional, such as the name of the service"
+msgstr "Neobavezno, npr. naziv usluge"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Options"
+msgstr "Opcije"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Ili nastavi s"
@@ -1945,13 +2507,38 @@ msgstr "Ili nastavi s"
 msgid "Other"
 msgstr "Ostalo"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Other port…"
+msgstr "Drugi port…"
+
 #: src/components/alerts/alerts-sheet.tsx
 msgid "Overwrite existing alerts"
 msgstr "Prebriši postojeća upozorenja"
 
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet loss"
+msgstr "Gubitak paketa"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss ({periodLabel})"
+msgstr "Gubitak paketa ({periodLabel})"
+
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Packet loss (%)"
 msgstr "Gubitak paketa (%)"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss (%) of all the checks"
+msgstr "Gubitak paketa (%) svih provjera"
+
+#: src/components/routes/sensor.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet quality"
+msgstr "Kvaliteta paketa"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -1967,6 +2554,10 @@ msgstr "Stranica"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Page {0} of {1}"
 msgstr "Stranica {0} od {1}"
+
+#: src/components/routes/settings/general.tsx
+msgid "Page opened at start and by the logo."
+msgstr "Stranica koja se otvara pri pokretanju i klikom na logotip."
 
 #: src/components/command-palette.tsx
 msgid "Pages / Settings"
@@ -1994,11 +2585,14 @@ msgid "Past"
 msgstr "Prošlost"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Pause"
 msgstr "Pauza"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Paused"
 msgstr "Pauzirano"
 
@@ -2009,6 +2603,10 @@ msgstr "Pauzirano ({pausedSystemsLength})"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Payload format"
 msgstr "Format korisnog tereta (Payload)"
+
+#: src/lib/sensors.ts
+msgid "Pending"
+msgstr "Na čekanju"
 
 #: src/components/routes/system/cpu-sheet.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2022,6 +2620,10 @@ msgstr "Postotak vremena u kojem je disk zauzet I/O operacijama"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Percentage of time spent in each state"
 msgstr "Postotak vremena provedenog u svakom stanju"
+
+#: src/components/period-select.tsx
+msgid "Period"
+msgstr "Razdoblje"
 
 #: src/components/routes/settings/general.tsx
 msgid "Periods offered in the charts of all users. The periods of 90 days or more keep one record per day for that long, which uses more disk space."
@@ -2081,10 +2683,22 @@ msgstr "Stanje spremišta"
 msgid "Pool Usage"
 msgstr "Iskorištenost spremišta"
 
+#: src/lib/alerts.ts
+msgid "Poor packet quality"
+msgstr "Loša kvaliteta paketa"
+
 #: src/components/add-system.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Port"
 msgstr "Port"
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Port not responding"
+msgstr "Port ne odgovara"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
@@ -2123,10 +2737,12 @@ msgstr "Produkcija, Klijenti, Laboratorij…"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Protocol"
 msgstr "Protokol"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Public key"
 msgstr "Javni ključ"
 
@@ -2134,6 +2750,13 @@ msgstr "Javni ključ"
 #: src/components/add-system.tsx
 msgid "Public Key"
 msgstr "Javni Ključ"
+
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Quality"
+msgstr "Kvaliteta"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O average queue depth"
@@ -2214,6 +2837,15 @@ msgstr "Ponovna pokretanja"
 msgid "Received"
 msgstr "Primljeno"
 
+#: src/components/sensors/sensor-badges.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Recent checks"
+msgstr "Nedavne provjere"
+
+#: src/components/command-palette.tsx
+msgid "Recently opened"
+msgstr "Nedavno otvoreno"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Zabilježeno"
@@ -2232,6 +2864,7 @@ msgid "Relationships"
 msgstr "Odnosi"
 
 #: src/components/important-targets.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Remove"
 msgstr "Ukloni"
 
@@ -2281,9 +2914,24 @@ msgstr "Razrješeno"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 msgid "Response"
 msgstr "Odziv"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Response and uptime"
+msgstr "Odziv i dostupnost"
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Response time"
+msgstr "Vrijeme odziva"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 msgid "Response time monitoring from agents."
@@ -2294,6 +2942,7 @@ msgid "Restarts"
 msgstr "Ponovna pokretanja"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Resume"
 msgstr "Nastavi"
@@ -2310,6 +2959,10 @@ msgstr "Zadržavanje: upozorenja iz zadnjih {days} dana"
 msgid "Retention: the last {count} alerts of each user"
 msgstr "Zadržavanje: posljednjih {count} upozorenja svakog korisnika"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Retries"
+msgstr "Ponovni pokušaji"
+
 #: src/lib/utils.ts
 msgctxt "Root disk label"
 msgid "Root"
@@ -2318,6 +2971,10 @@ msgstr "Korijen"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Rotate token"
 msgstr "Promijeni token"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Route from the hub to {sensorHost}."
+msgstr "Ruta od huba do {sensorHost}."
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
@@ -2330,6 +2987,10 @@ msgstr "Pravilo se briše, njegov uzorak obuhvaća i druge stavke: {targets}"
 #: src/components/important-targets.tsx
 msgid "Rule deleted: {targets}"
 msgstr "Pravilo se briše: {targets}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Run again"
+msgstr "Pokreni ponovno"
 
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
@@ -2349,6 +3010,7 @@ msgstr "S.M.A.R.T. Samotestiranje"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "Spremi"
@@ -2393,8 +3055,16 @@ msgid "Search"
 msgstr "Pretraži"
 
 #: src/components/command-palette.tsx
-msgid "Search for systems or settings..."
-msgstr "Pretraži sustave ili postavke..."
+#~ msgid "Search for systems or settings..."
+#~ msgstr "Pretraži sustave ili postavke..."
+
+#: src/components/command-palette.tsx
+#~ msgid "Search for systems, sensors or settings..."
+#~ msgstr "Traži sustave, senzore ili postavke..."
+
+#: src/components/command-palette.tsx
+msgid "Search for systems, sensors, containers, services or settings..."
+msgstr "Traži sustave, senzore, kontejnere, usluge ili postavke..."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2413,6 +3083,7 @@ msgstr "Pogledajte <0>postavke obavijesti</0> kako biste konfigurirali način pr
 msgid "Select"
 msgstr "Odaberi"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Select {foo}"
 msgstr "Odaberi {foo}"
@@ -2459,14 +3130,46 @@ msgstr "Šaljite povremene odlazne pingove vanjskoj usluzi nadzora kako biste mo
 msgid "Send test heartbeat"
 msgstr "Pošalji testni heartbeat"
 
+#: src/components/navbar.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Sensor"
+msgstr "Senzor"
+
+#: src/lib/alerts.ts
+msgid "Sensor down"
+msgstr "Senzor nedostupan"
+
+#: src/components/routes/sensor.tsx
+msgid "Sensor not found."
+msgstr "Senzor nije pronađen."
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Sensors"
+msgstr "Senzori"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Sensors added"
+msgstr "Senzori dodani"
+
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Sent"
 msgstr "Poslano"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Serial number"
+msgstr "Serijski broj"
 
 #: src/components/routes/system/smart-table.tsx
 msgid "Serial Number"
 msgstr "Serijski broj"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
@@ -2490,6 +3193,7 @@ msgid "Service state"
 msgstr "Stanje usluge"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -2525,6 +3229,15 @@ msgstr "Postavke"
 msgid "Settings saved"
 msgstr "Postavke spremljene"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "SHA-256 fingerprint"
+msgstr "SHA-256 otisak"
+
+#: src/components/active-alerts.tsx
+msgid "Show"
+msgstr "Prikaži"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Show by group"
 msgstr "Prikaži po grupama"
@@ -2539,10 +3252,15 @@ msgstr "Isključivanje"
 msgid "Sign in"
 msgstr "Prijava"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Signature"
+msgstr "Potpis"
+
 #: src/components/command-palette.tsx
 msgid "SMTP settings"
 msgstr "SMTP postavke"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
 msgstr "Sortiraj po"
@@ -2552,6 +3270,11 @@ msgstr "Sortiraj po"
 #: src/components/reboots-table.tsx
 msgid "Source"
 msgstr "Izvor"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Start"
+msgstr "Početak"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2575,6 +3298,7 @@ msgstr "Pokrenuto ručno"
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2610,6 +3334,11 @@ msgstr "Stanja"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/lib/alerts.ts
@@ -2648,6 +3377,7 @@ msgstr "Promijeni temu"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2690,6 +3420,7 @@ msgstr "Ažuriranja sustava"
 msgid "Systemd Services"
 msgstr "Systemd servisi"
 
+#: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2705,6 +3436,7 @@ msgstr "Sustavima se može upravljati pomoću <0>config.yml</0> datoteke unutar 
 msgid "Systems to update ({targetCount})"
 msgstr "Sustavi za ažuriranje ({targetCount})"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
 msgstr "Tablica"
@@ -2780,6 +3512,14 @@ msgstr "Agent se sam ponovno pokreće i povezuje."
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "Agenti preuzimaju verziju {latest} s GitHuba, a zatim se ponovno pokreću."
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The average response time over 10 minutes exceeds {value} ms."
+msgstr "Prosječno vrijeme odziva tijekom 10 minuta premašuje {value} ms."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The certificate of an HTTPS check expires within {value} days."
+msgstr "Certifikat HTTPS provjere istječe za manje od {value} dana."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "Najnovija verzija agenta još nije poznata"
@@ -2787,6 +3527,18 @@ msgstr "Najnovija verzija agenta još nije poznata"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Ukupni status je <0>ok</0> kada su svi sustavi u radu, <1>warn</1> kada su aktivirana upozorenja i <2>error</2> kada je bilo koji sustav isključen."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet loss over 10 minutes exceeds {value}%."
+msgstr "Gubitak paketa tijekom 10 minuta premašuje {value} %."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is bad."
+msgstr "Kvaliteta paketa tijekom 10 minuta je loša."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is degraded or bad."
+msgstr "Kvaliteta paketa tijekom 10 minuta je smanjena ili loša."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "The rules are created on each system."
@@ -2812,6 +3564,14 @@ msgstr "Ova radnja ne može se poništiti. Svi trenutni zapisi za {name} bit će
 msgid "This agent is too old to be managed from the hub: update it once on the system."
 msgstr "Ovaj agent je prestar za upravljanje iz huba: ažurirajte ga jednom na sustavu."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "This host already has a sensor: {added} new check(s) were added to it."
+msgstr "Ovaj host već ima senzor: dodano mu je {added} novih provjera."
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This sensor until {until}"
+msgstr "Ovaj senzor do {until}"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
 msgstr "Ovaj sustav do {until}"
@@ -2821,6 +3581,11 @@ msgstr "Ovaj sustav do {until}"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "This will permanently delete all selected records from the database."
 msgstr "Ovom radnjom će se trajno izbrisati svi odabrani zapisi iz baze podataka."
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Threshold"
+msgstr "Prag"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -2834,7 +3599,14 @@ msgstr "Protok spremišta {displayName}"
 msgid "Time format"
 msgstr "Format vremena"
 
-#: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-cert.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "TLS certificate"
+msgstr "TLS certifikat"
+
+#: src/components/period-select.tsx
 msgid "To"
 msgstr "Do"
 
@@ -2874,6 +3646,10 @@ msgstr "Ukupni podaci primljeni za svako sučelje"
 msgid "Total data sent for each interface"
 msgstr "Ukupni podaci poslani za svako sučelje"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Total duration: {totalDuration}"
+msgstr "Ukupno trajanje: {totalDuration}"
+
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
 msgid "Total time spent on read/write (can exceed 100%)"
@@ -2886,8 +3662,13 @@ msgstr "Ukupno: {0}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Total: {totalCount}"
 msgstr "Ukupno: {totalCount}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Traced with the traceroute command of the hub."
+msgstr "Praćeno naredbom traceroute huba."
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
@@ -3011,6 +3792,7 @@ msgstr "Sveopći token"
 #. Context: Battery state
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/lib/i18n.ts
+#: src/lib/sensors.ts
 msgid "Unknown"
 msgstr "Nepoznato"
 
@@ -3019,9 +3801,17 @@ msgstr "Nepoznato"
 msgid "Unlimited"
 msgstr "Neograničeno"
 
+#: src/components/sensors/sensor-badges.tsx
+msgid "Unreachable"
+msgstr "Nedostupno"
+
+#. Context: System is up
+#. Context: System is up
 #. Context: System is up
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Up"
 msgstr "Sustav je podignut"
 
@@ -3034,6 +3824,7 @@ msgid "Up to date"
 msgstr "Ažurno"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Up: {upCount}"
 msgstr "Pokrenuti: {upCount}"
 
@@ -3091,6 +3882,17 @@ msgstr "Otpremi"
 msgid "Uptime"
 msgstr "Vrijeme rada"
 
+#: src/components/routes/sensor.tsx
+msgid "Uptime ({periodLabel})"
+msgstr "Dostupnost ({periodLabel})"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Uptime (24h)"
+msgstr "Dostupnost (24 h)"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
@@ -3134,6 +3936,18 @@ msgctxt "Disk I/O utilization"
 msgid "Utilization"
 msgstr "Iskorištenost"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid and trusted certificate"
+msgstr "Valjan i pouzdan certifikat"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid from"
+msgstr "Vrijedi od"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid until"
+msgstr "Vrijedi do"
+
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
@@ -3143,6 +3957,8 @@ msgstr "Vrijednost"
 msgid "Version"
 msgstr "Verzija"
 
+#: src/components/active-alerts.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "View"
@@ -3162,6 +3978,7 @@ msgstr "Pregledajte svojih {count} najnovijih upozorenja."
 msgid "View your alerts of the last {days} days."
 msgstr "Pregledajte upozorenja iz zadnjih {days} dana."
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "Visible Fields"
@@ -3257,6 +4074,10 @@ msgstr "YAML Konfiguracija"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Yes"
 msgstr "Da"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Your alerts on this sensor. Quiet hours of the sensor and global ones silence them."
+msgstr "Vaša upozorenja za ovaj senzor. Tihi sati senzora i globalni tihi sati ih utišavaju."
 
 #: src/components/routes/settings/layout.tsx
 msgid "Your user settings have been updated."

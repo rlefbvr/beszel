@@ -8,6 +8,7 @@ const routes = {
 	smart: "/smart",
 	monitors: "/monitors",
 	system: `/system/:id`,
+	sensor: `/sensor/:id`,
 	settings: `/settings/:name?`,
 	forgot_password: `/forgot-password`,
 	request_otp: `/request-otp`,

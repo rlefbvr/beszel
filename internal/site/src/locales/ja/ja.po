@@ -50,6 +50,18 @@ msgstr "{1}行のうち{0}行が選択されました。"
 msgid "{0} selected"
 msgstr "{0} 件選択中"
 
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {# active alert acknowledged} other {# active alerts acknowledged}}"
+msgstr "{ackCount, plural, other {確認済みのアクティブなアラート: # 件}}"
+
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {Show # acknowledged} other {Show # acknowledged}}"
+msgstr "{ackCount, plural, other {確認済みを表示 (#)}}"
+
+#: src/components/routes/sensor.tsx
+msgid "{certDays} days"
+msgstr "{certDays} 日"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# コア} other {# コア}}"
@@ -74,9 +86,21 @@ msgstr "{count, plural, other {絞り込んだコンテナー # 件}}"
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, other {絞り込んだサービス # 件}}"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "{count, plural, one {# sensor} other {# sensors}}"
+msgstr "{count, plural, other {# 個のセンサー}}"
+
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, other {# 台のシステム}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
+msgstr "新しいセンサー {created} 件、既存のセンサーにチェック {added} 件を追加しました。"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
+msgstr "{days, plural, other {あと # 日で期限切れ}}"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "{diskName} I/O"
@@ -98,6 +122,18 @@ msgstr "{ruleCount, plural, other {状態ルールを # 件作成しました。
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, other {状態ルール # 件}}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "{seconds, plural, one {# second} other {# seconds}}"
+msgstr "{seconds, plural, other {# 秒}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{sensorCount} host(s), {checkCount} check(s)"
+msgstr "ホスト {sensorCount} 件、チェック {checkCount} 件"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "{success} of {total} successful"
+msgstr "{total} 件中 {success} 件成功"
+
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, other {# システム}}"
@@ -106,6 +142,7 @@ msgstr "{systemCount, plural, other {# システム}}"
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# スレッド} other {# スレッド}}"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 hour"
 msgstr "1時間"
@@ -123,6 +160,7 @@ msgstr "1分"
 msgid "1 week"
 msgstr "1週間"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 year"
 msgstr "1年"
@@ -140,10 +178,12 @@ msgstr "15分"
 msgid "180 days"
 msgstr "180日"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "24 hours"
 msgstr "24時間"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "30 days"
 msgstr "30日間"
@@ -153,18 +193,44 @@ msgstr "30日間"
 msgid "5 min"
 msgstr "5分"
 
+#: src/components/period-select.tsx
+msgid "7 days"
+msgstr "7 日間"
+
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "90 days"
 msgstr "90日"
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "A check of the sensor does not respond."
+msgstr "センサーのチェックが応答しません。"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A sensor belongs to one group: checking it moves it from its current group."
+msgstr "センサーは 1 つのグループに属します。チェックすると現在のグループから移動します。"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A system belongs to one group: checking it moves it from its current group."
 msgstr "システムは 1 つのグループに属します。チェックすると現在のグループから移動します。"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Accepted status codes"
+msgstr "許可するステータスコード"
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "アカウント"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge"
+msgstr "確認"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge all"
+msgstr "すべて確認"
 
 #. Table column
 #: src/components/routes/settings/quiet-hours.tsx
@@ -190,11 +256,11 @@ msgstr "アクティブなアラート"
 msgid "Active state"
 msgstr "アクティブ状態"
 
-#: src/components/add-system.tsx
-#: src/components/add-system.tsx
 #: src/components/navbar.tsx
+msgid "Add"
+msgstr "追加"
+
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -203,13 +269,50 @@ msgstr "アクティブ状態"
 msgid "Add {foo}"
 msgstr "{foo}を追加"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add a check"
+msgstr "チェックを追加"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add a monitor"
+msgstr "モニターを追加"
+
+#: src/components/add-system.tsx
+#: src/components/add-system.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Add a system"
+msgstr "システムを追加"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add at least one check."
+msgstr "チェックを 1 つ以上追加してください。"
+
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Add rule"
 msgstr "ルールを追加"
 
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Add sensor"
+msgstr "センサーを追加"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Add sensors"
+msgstr "センサーを追加"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "URLを追加"
+
+#: src/components/add-system.tsx
+msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
+msgstr "ホストを追加すると、ICMP (Ping) タイプのセンサーが自動的に作成されます。"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Address"
+msgstr "アドレス"
 
 #: src/components/routes/settings/general.tsx
 msgid "Adjust display options for charts."
@@ -287,6 +390,7 @@ msgstr "状態が次でない場合に通知"
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "アラート"
@@ -295,10 +399,16 @@ msgstr "アラート"
 msgid "Alerts created"
 msgstr "アラートを作成しました"
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Alerts of {sensorName}"
+msgstr "{sensorName} のアラート"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "件のアラート（ユーザーごと）"
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "すべて"
@@ -312,6 +422,7 @@ msgstr "すべてのエージェントが最新です（{latest}）"
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/containers.tsx
+#: src/lib/home-page.ts
 msgid "All Containers"
 msgstr "すべてのコンテナ"
 
@@ -324,19 +435,28 @@ msgstr "更新が必要なすべて（{outdatedCount}）"
 #: src/components/navbar.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/reboots.tsx
+#: src/lib/home-page.ts
 msgid "All Reboots"
 msgstr "すべての再起動"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "All sensors"
+msgstr "すべてのセンサー"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/services.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/lib/home-page.ts
 msgid "All Services"
 msgstr "すべてのサービス"
 
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -344,6 +464,7 @@ msgstr "すべてのサービス"
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
+#: src/lib/home-page.ts
 msgid "All Systems"
 msgstr "すべてのシステム"
 
@@ -351,10 +472,26 @@ msgstr "すべてのシステム"
 msgid "All systems until {until}"
 msgstr "すべてのシステム（{until} まで）"
 
+#: src/components/period-select.tsx
+msgid "All time"
+msgstr "全期間"
+
 #: src/components/agent-update-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Already up to date."
 msgstr "すでに最新です。"
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated host {systemName} and its records"
+msgstr "関連付けられたホスト {systemName} とその記録も削除"
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated sensor {sensorName}"
+msgstr "関連付けられたセンサー {sensorName} も削除"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Alternative names"
+msgstr "代替名"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -413,6 +550,18 @@ msgctxt "Disk I/O average operation time (iostat await)"
 msgid "Average queue to completion time per operation"
 msgstr "操作ごとの平均キューから完了までの時間"
 
+#: src/components/routes/sensor.tsx
+msgid "Average response"
+msgstr "平均応答"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Average response time above which the quality is degraded"
+msgstr "これを超えると品質が低下とみなされる平均応答時間"
+
+#: src/components/routes/sensor.tsx
+msgid "Average response time of each check"
+msgstr "各チェックの平均応答時間"
+
 #: src/components/routes/system/charts/cpu-charts.tsx
 msgid "Average system-wide CPU utilization"
 msgstr "システム全体の平均CPU使用率"
@@ -430,6 +579,10 @@ msgstr "GPUエンジンの平均使用率"
 msgid "Average, minimum, and maximum response time"
 msgstr "応答時間の平均、最小、最大"
 
+#: src/components/routes/sensor.tsx
+msgid "avg"
+msgstr "平均"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
@@ -443,6 +596,15 @@ msgstr "バックアップ"
 #: src/components/navbar.tsx
 msgid "Backups"
 msgstr "バックアップ"
+
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Bad"
+msgstr "不良"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Bad"
+msgstr "不良"
 
 #: src/components/routes/system/charts/network-charts.tsx
 #: src/lib/alerts.ts
@@ -479,6 +641,10 @@ msgstr "前"
 msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "過去{2, plural, one {# 分} other {# 分}}で{0}{1}を下回っています"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
+msgstr "Beszel はハブからホストのポートをチェックします。同じホストのチェックは 1 つのセンサーにまとめられます。"
+
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
 msgstr "BeszelはOpenID Connectと多くのOAuth2認証プロバイダーをサポートしています。"
@@ -512,12 +678,17 @@ msgstr "ブラウザタブのタイトル"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "一括追加"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Bulk Add {foo}"
 msgstr "{foo} を一括追加"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Bulk add sensors"
+msgstr "センサーの一括追加"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Bulk copy"
@@ -550,13 +721,19 @@ msgstr "停止可能"
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "キャンセル"
+
+#: src/components/active-alerts.tsx
+msgid "Cancel the acknowledgement"
+msgstr "確認を取り消す"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Capabilities"
@@ -576,6 +753,18 @@ msgstr "注意 - データ損失の可能性"
 #: src/components/routes/settings/general.tsx
 msgid "Celsius (°C)"
 msgstr "摂氏 (°C)"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate not trusted by the hub"
+msgstr "ハブが信頼していない証明書"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate presented by the server at the last check."
+msgstr "最後のチェックでサーバーが提示した証明書。"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Chain"
+msgstr "チェーン"
 
 #: src/components/routes/settings/general.tsx
 msgid "Change display units for metrics."
@@ -606,6 +795,12 @@ msgstr "グラフの期間"
 msgid "Chart width"
 msgstr "チャートの幅"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Check"
+msgstr "チェック"
+
 #: src/components/login/forgot-pass-form.tsx
 msgid "Check {email} for a reset link."
 msgstr "{email}を確認してリセットリンクを探してください。"
@@ -623,9 +818,30 @@ msgstr "監視サービスを確認する"
 msgid "Check your notification service"
 msgstr "通知サービスを確認してください"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Checks"
+msgstr "チェック"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Checks added to {sensorName}"
+msgstr "{sensorName} にチェックを追加しました"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Checksum errors"
 msgstr "チェックサムエラー"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Choose a known port"
+msgstr "既知のポートを選択"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Choose at least one port."
+msgstr "ポートを 1 つ以上選択してください。"
 
 #: src/components/reboots-table.tsx
 msgctxt "Clean shutdown"
@@ -638,6 +854,8 @@ msgstr "正常"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Clear"
 msgstr "クリア"
@@ -671,9 +889,24 @@ msgstr "クリックしてコピー"
 msgid "Close"
 msgstr "閉じる"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Code"
+msgstr "コード"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "収集間隔"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Color"
+msgstr "色"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Columns"
+msgstr "列"
 
 #: src/components/login/forgot-pass-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -729,6 +962,7 @@ msgid "Container state"
 msgstr "コンテナーの状態"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
 msgstr "コンテナ"
@@ -914,6 +1148,15 @@ msgstr "毎日"
 msgid "Data directory"
 msgstr "データ ディレクトリ"
 
+#: src/components/period-select.tsx
+msgid "Dates…"
+msgstr "日付…"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "days"
+msgstr "日"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "days of alerts"
 msgstr "日分のアラート"
@@ -922,6 +1165,10 @@ msgstr "日分のアラート"
 msgctxt "Default system layout option"
 msgid "Default"
 msgstr "デフォルト"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Default color"
+msgstr "既定の色"
 
 #: src/components/routes/settings/general.tsx
 msgid "Default time period"
@@ -933,9 +1180,20 @@ msgstr "デフォルトの期間"
 msgid "Default URL"
 msgstr "既定の URL"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Degraded"
+msgstr "低下"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Degraded or bad"
+msgstr "低下または不良"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -946,7 +1204,7 @@ msgstr "削除"
 
 #: src/components/reboots-table.tsx
 msgid "Delete ({selectedCount})"
-msgstr ""
+msgstr "削除 ({selectedCount})"
 
 #: src/components/reboots-table.tsx
 #~ msgid "Delete {selectedCount} reboots?"
@@ -966,7 +1224,11 @@ msgstr "グループ {originalName} を削除しますか？"
 
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
-msgstr ""
+msgstr "選択した再起動を削除しますか？"
+
+#: src/components/routes/sensor.tsx
+msgid "Delete this sensor?"
+msgstr "このセンサーを削除しますか？"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1043,10 +1305,15 @@ msgid "Documentation"
 msgstr "ドキュメント"
 
 #. Context: System is down
+#. Context: System is down
+#. Context: System is down
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 #: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+#: src/lib/sensors.ts
 msgid "Down"
 msgstr "停止"
 
@@ -1055,6 +1322,7 @@ msgid "Down ({downSystemsLength})"
 msgstr "停止 ({downSystemsLength})"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Down: {downCount}"
 msgstr "停止: {downCount}"
 
@@ -1074,11 +1342,14 @@ msgstr "ドラッグでサイズ変更、ダブルクリックでリセット"
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
 msgid "Duration"
 msgstr "期間"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -1090,6 +1361,10 @@ msgstr "編集"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit {foo}"
 msgstr "{foo}を編集"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Edit sensor"
+msgstr "センサーを編集"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -1105,6 +1380,11 @@ msgstr "メール通知"
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "空"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "End"
+msgstr "終了"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1141,6 +1421,8 @@ msgstr "一時的"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/config-yaml.tsx
 #: src/components/routes/settings/heartbeat.tsx
@@ -1150,6 +1432,7 @@ msgstr "一時的"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "エラー"
@@ -1164,6 +1447,10 @@ msgstr "例:"
 #: src/components/active-alerts.tsx
 msgid "Exceeds {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "過去{2, plural, one {# 分} other {# 分}}で{0}{1}を超えています"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "Exchange quality"
+msgstr "通信品質"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exec main PID"
@@ -1184,6 +1471,18 @@ msgstr "終了コード"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exited active"
 msgstr "アクティブ状態で終了"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Expected text"
+msgstr "期待するテキスト"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired certificate"
+msgstr "期限切れの証明書"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired on {expiredOn}"
+msgstr "{expiredOn} に期限切れ"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Expires after one hour or on hub restart."
@@ -1213,6 +1512,10 @@ msgstr "失敗"
 msgid "Failed Attributes:"
 msgstr "失敗した属性:"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Failed checks in a row tolerated before the sensor is down"
+msgstr "センサーがダウンになるまでに許容される連続失敗回数"
+
 #: src/lib/alerts.ts
 msgid "Failed Services"
 msgstr "失敗したサービス"
@@ -1231,6 +1534,8 @@ msgstr "モニターの削除に失敗しました。"
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "設定の保存に失敗しました"
@@ -1268,6 +1573,8 @@ msgstr "ファン"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1281,6 +1588,14 @@ msgstr "フィンガープリント"
 #: src/components/routes/system/smart-table.tsx
 msgid "Firmware"
 msgstr "ファームウェア"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Following the route, up to a minute…"
+msgstr "経路を追跡中 (最大 1 分)…"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "For"
+msgstr "継続時間"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "For <0>{min}</0> {min, plural, one {minute} other {minutes}}"
@@ -1303,7 +1618,7 @@ msgctxt "Button to copy install command"
 msgid "FreeBSD command"
 msgstr "FreeBSD コマンド"
 
-#: src/components/reboots-table.tsx
+#: src/components/period-select.tsx
 msgid "From"
 msgstr "開始"
 
@@ -1323,6 +1638,11 @@ msgstr "一般"
 msgid "Global"
 msgstr "グローバル"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Good"
+msgstr "良好"
+
 #: src/components/routes/system.tsx
 msgid "GPU"
 msgstr "GPU"
@@ -1340,18 +1660,28 @@ msgid "GPU Usage"
 msgstr "GPU使用率"
 
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "グリッド"
 
 #: src/components/add-system.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Group"
 msgstr "グループ"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group deleted"
 msgstr "グループを削除しました"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Group of the lines without group"
+msgstr "グループ未指定の行のグループ"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group saved"
@@ -1360,6 +1690,10 @@ msgstr "グループを保存しました"
 #: src/components/systems-table/systems-table.tsx
 msgid "Groups"
 msgstr "グループ"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
+msgstr "グループはすべてのユーザーのネットワークセンサーを整理します。グループを削除してもセンサーはグループなしで残ります。"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
@@ -1389,18 +1723,45 @@ msgstr "ハートビート監視"
 msgid "Heartbeat sent successfully"
 msgstr "ハートビートが正常に送信されました"
 
+#: src/components/active-alerts.tsx
+msgid "Hide acknowledged"
+msgstr "確認済みを隠す"
+
+#: src/components/routes/settings/general.tsx
+msgid "Home page"
+msgstr "ホームページ"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgctxt "Button to copy install command"
 msgid "Homebrew command"
 msgstr "Homebrew コマンド"
 
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/host-links.tsx
+msgid "Host"
+msgstr "ホスト"
+
 #: src/components/add-system.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Host / IP"
 msgstr "ホスト / IP"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host not reached: the last hops do not answer."
+msgstr "ホストに到達しません: 最後のホップが応答しません。"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host reached in {hopCount} hops."
+msgstr "{hopCount} ホップでホストに到達しました。"
 
 #: src/lib/quiet-hours.ts
 msgid "Host restart"
@@ -1450,6 +1811,10 @@ msgstr "アイドル"
 msgid "If you've lost the password to your admin account, you may reset it using the following command."
 msgstr "管理者アカウントのパスワードを忘れた場合は、次のコマンドを使用してリセットできます。"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Ignore TLS certificate errors"
+msgstr "TLS 証明書のエラーを無視"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 msgctxt "Docker image"
@@ -1474,6 +1839,15 @@ msgstr "重要なサービス"
 msgid "Inactive"
 msgstr "非アクティブ"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Information"
+msgstr "情報"
+
 #: src/components/reboots-table.tsx
 msgid "Initiated by"
 msgstr "実行者"
@@ -1488,9 +1862,14 @@ msgstr "インスタンス"
 msgid "Instance name"
 msgstr "インスタンス名"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Interruptions: {incidentCount}"
+msgstr "停止回数: {incidentCount}"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Interval"
 msgstr "間隔"
 
@@ -1501,6 +1880,30 @@ msgstr "間隔（秒）"
 #: src/components/login/auth-form.tsx
 msgid "Invalid email address."
 msgstr "無効なメールアドレスです。"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by"
+msgstr "発行者"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by {linkIssuer}, valid until {linkUntil}"
+msgstr "発行者 {linkIssuer}、{linkUntil} まで有効"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued to"
+msgstr "発行先"
+
+#: src/components/routes/sensor.tsx
+msgid "Its checks, history and interruptions will be deleted."
+msgstr "チェック、履歴、停止記録が削除されます。"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are kept and moved to no group."
+msgstr "センサーは保持され、グループなしになります。"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are now without group."
+msgstr "センサーはグループなしになりました。"
 
 #: src/components/important-targets.tsx
 msgid "Its state alerts stop. The following rules change:"
@@ -1518,18 +1921,60 @@ msgstr "そのシステムはグループなしになりました。"
 msgid "Keep"
 msgstr "保持"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Known ports"
+msgstr "既知のポート"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Label"
+msgstr "ラベル"
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "言語"
+
+#: src/components/routes/sensor.tsx
+msgid "Last 30 minutes"
+msgstr "直近 30 分"
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Last alert"
 msgstr "最新のアラート"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Last check"
+msgstr "最終チェック"
+
+#: src/components/routes/sensor.tsx
+msgid "Last hour"
+msgstr "直近 1 時間"
+
 #: src/components/routes/system/agent-details.tsx
 msgid "Last lines logged by the agent of {name} since it started."
 msgstr "{name} のエージェントが起動後に記録した最新の行。"
 
+#: src/components/routes/sensor.tsx
+msgid "Last result of each check."
+msgstr "各チェックの最新結果。"
+
+#: src/components/routes/sensor.tsx
+msgid "Last update"
+msgstr "最終更新"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Latency (ms)"
+msgstr "レイテンシ (ms)"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Latest interruptions"
+msgstr "最近の停止"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "レイアウト"
@@ -1546,6 +1991,22 @@ msgstr "ライフサイクル"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "limit"
 msgstr "制限"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: the host is missing"
+#~ msgstr ""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: unknown service \"{check}\""
+#~ msgstr ""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: the host is missing"
+msgstr "{lineNumber} 行目: ホストがありません"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: unknown service \"{check}\""
+msgstr "{lineNumber} 行目: 不明なサービス \"{check}\""
 
 #: src/components/routes/system/charts/load-average-chart.tsx
 msgid "Load Average"
@@ -1576,6 +2037,7 @@ msgstr "負荷平均"
 msgid "Load state"
 msgstr "ロード状態"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
 msgstr "読み込み中..."
@@ -1587,6 +2049,10 @@ msgstr "ローカル ディスク"
 #: src/components/routes/system/agent-details.tsx
 msgid "Location"
 msgstr "場所"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Location, owner, role…"
+msgstr "場所、所有者、役割…"
 
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
@@ -1617,7 +2083,16 @@ msgstr "ログ"
 msgid "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
 msgstr "アラートを作成する場所を探していますか？システムテーブルのベル<0/>アイコンをクリックしてください。"
 
+#. Packet loss
+#: src/components/routes/sensor.tsx
+msgid "loss"
+msgstr "損失"
+
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgctxt "Packet loss"
 msgid "Loss"
 msgstr "パケットロス"
@@ -1635,6 +2110,9 @@ msgstr "メインPID"
 msgid "Manage display and notification preferences."
 msgstr "表示と通知の設定を管理します。"
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1686,9 +2164,19 @@ msgstr "メモリ使用率"
 msgid "Memory usage of containers"
 msgstr "コンテナのメモリ使用量"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Message"
+msgstr "メッセージ"
+
 #: src/lib/quiet-hours.ts
 msgid "Migration"
 msgstr "移行"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "min"
+msgstr "分"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -1704,7 +2192,6 @@ msgstr "モデル"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitor"
 msgstr "モニター"
 
@@ -1713,6 +2200,7 @@ msgid "Monitors created"
 msgstr "モニターを作成しました"
 
 #: src/components/overflow-tabs.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "More"
 msgstr "その他"
 
@@ -1725,6 +2213,11 @@ msgstr "マウントポイント"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1739,6 +2232,10 @@ msgstr "このハブの名前と既定の URL。通知のリンクに使われ�
 #: src/components/routes/settings/general.tsx
 msgid "Name of the service created when installing an agent with the Linux or Windows commands. Existing agents keep their service name."
 msgstr "Linux または Windows のコマンドでエージェントをインストールするときに作成されるサービスの名前。既存のエージェントはサービス名を維持します。"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Name to resolve"
+msgstr "名前解決する名前"
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
@@ -1770,8 +2267,18 @@ msgstr "ネットワークモニターのパケットロス"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
+#: src/lib/home-page.ts
 msgid "Network Monitors"
 msgstr "ネットワークモニター"
+
+#: src/components/routes/monitors.tsx
+msgid "Network monitors from a host"
+msgstr "ホストからのネットワークモニター"
+
+#: src/components/command-palette.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Network sensors"
+msgstr "ネットワークセンサー"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Network traffic of containers"
@@ -1812,17 +2319,32 @@ msgid "No alert"
 msgstr "アラートなし"
 
 #: src/components/alerts/alert-button.tsx
+#: src/components/routes/sensor.tsx
 msgid "No alerts configured"
 msgstr "アラートは設定されていません"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "No answer"
+msgstr "応答なし"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "No certificate yet: the details appear after the next HTTPS check."
+msgstr "まだ証明書がありません。次の HTTPS チェック後に詳細が表示されます。"
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "このプールの詳細データはありません。"
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "No group"
 msgstr "グループなし"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "No interruptions over this period."
+msgstr "この期間に停止はありません。"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1843,6 +2365,8 @@ msgstr "結果が見つかりませんでした。"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No results."
 msgstr "結果がありません。"
@@ -1850,6 +2374,10 @@ msgstr "結果がありません。"
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "このデバイスのS.M.A.R.T.属性は利用できません。"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "No sensor yet: add the hosts and ports that Beszel should check."
+msgstr "センサーはまだありません。Beszel がチェックするホストとポートを追加してください。"
 
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
@@ -1899,6 +2427,27 @@ msgstr "OAuth 2 / OIDCサポート"
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
 msgstr "再起動のたびに、データベース内のシステムはファイルに定義されたシステムに一致するように更新されます。"
 
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per 15 seconds"
+#~ msgstr "15 秒ごとに 1 本"
+
+#: src/components/routes/sensor.tsx
+msgid "One bar per interval ({every})"
+msgstr "間隔ごとに 1 本 ({every})"
+
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per minute"
+#~ msgstr "1 分ごとに 1 本"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
+msgstr "ホストごとに 1 行: ホスト、サービス、ラベル、グループ、名前。サービスは既知のポート (ssh、https、dns…)、TCP ポート番号、またはプロトコル:ポートで、+ で区切ります。同じホストの行は 1 つのセンサーになります。"
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "One of the chosen ports does not respond."
+msgstr "選択したポートの 1 つが応答しません。"
+
 #: src/lib/alerts.ts
 msgid "One or more containers are unhealthy"
 msgstr "いずれかのコンテナが異常な状態です"
@@ -1921,6 +2470,10 @@ msgstr "1回限り"
 msgid "One-time password"
 msgstr "ワンタイムパスワード"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Ongoing"
+msgstr "継続中"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Only administrators can change this setting."
@@ -1936,6 +2489,15 @@ msgstr "この設定を変更できるのは管理者のみです。"
 msgid "Open menu"
 msgstr "メニューを開く"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Optional, such as the name of the service"
+msgstr "任意（サービス名など）"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Options"
+msgstr "オプション"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "または、以下の方法でログイン"
@@ -1945,13 +2507,38 @@ msgstr "または、以下の方法でログイン"
 msgid "Other"
 msgstr "その他"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Other port…"
+msgstr "その他のポート…"
+
 #: src/components/alerts/alerts-sheet.tsx
 msgid "Overwrite existing alerts"
 msgstr "既存のアラートを上書き"
 
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet loss"
+msgstr "パケットロス"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss ({periodLabel})"
+msgstr "パケットロス ({periodLabel})"
+
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Packet loss (%)"
 msgstr "パケット損失（%）"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss (%) of all the checks"
+msgstr "すべてのチェックのパケットロス (%)"
+
+#: src/components/routes/sensor.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet quality"
+msgstr "パケット品質"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -1967,6 +2554,10 @@ msgstr "ページ"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Page {0} of {1}"
 msgstr "{1}ページ中{0}ページ目"
+
+#: src/components/routes/settings/general.tsx
+msgid "Page opened at start and by the logo."
+msgstr "起動時とロゴから開くページ。"
 
 #: src/components/command-palette.tsx
 msgid "Pages / Settings"
@@ -1994,11 +2585,14 @@ msgid "Past"
 msgstr "過去"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Pause"
 msgstr "一時停止"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Paused"
 msgstr "一時停止中"
 
@@ -2009,6 +2603,10 @@ msgstr "一時停止 ({pausedSystemsLength})"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Payload format"
 msgstr "ペイロード形式"
+
+#: src/lib/sensors.ts
+msgid "Pending"
+msgstr "保留中"
 
 #: src/components/routes/system/cpu-sheet.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2022,6 +2620,10 @@ msgstr "ディスクが I/O でビジー状態である時間の割合"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Percentage of time spent in each state"
 msgstr "各状態で費やした時間の割合"
+
+#: src/components/period-select.tsx
+msgid "Period"
+msgstr "期間"
 
 #: src/components/routes/settings/general.tsx
 msgid "Periods offered in the charts of all users. The periods of 90 days or more keep one record per day for that long, which uses more disk space."
@@ -2081,10 +2683,22 @@ msgstr "プールの健全性"
 msgid "Pool Usage"
 msgstr "プール使用量"
 
+#: src/lib/alerts.ts
+msgid "Poor packet quality"
+msgstr "パケット品質の低下"
+
 #: src/components/add-system.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Port"
 msgstr "ポート"
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Port not responding"
+msgstr "ポートが応答しない"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
@@ -2123,10 +2737,12 @@ msgstr "本番、顧客、ラボ…"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Protocol"
 msgstr "プロトコル"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Public key"
 msgstr "公開鍵"
 
@@ -2134,6 +2750,13 @@ msgstr "公開鍵"
 #: src/components/add-system.tsx
 msgid "Public Key"
 msgstr "公開鍵"
+
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Quality"
+msgstr "品質"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O average queue depth"
@@ -2214,6 +2837,15 @@ msgstr "再起動"
 msgid "Received"
 msgstr "受信"
 
+#: src/components/sensors/sensor-badges.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Recent checks"
+msgstr "最近のチェック"
+
+#: src/components/command-palette.tsx
+msgid "Recently opened"
+msgstr "最近開いた項目"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "記録日時"
@@ -2232,6 +2864,7 @@ msgid "Relationships"
 msgstr "関係"
 
 #: src/components/important-targets.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Remove"
 msgstr "削除"
 
@@ -2281,9 +2914,24 @@ msgstr "解決済み"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 msgid "Response"
 msgstr "応答"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Response and uptime"
+msgstr "応答と稼働率"
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Response time"
+msgstr "応答時間"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 msgid "Response time monitoring from agents."
@@ -2294,6 +2942,7 @@ msgid "Restarts"
 msgstr "再起動"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Resume"
 msgstr "再開"
@@ -2310,6 +2959,10 @@ msgstr "保持期間: 過去 {days} 日間のアラート"
 msgid "Retention: the last {count} alerts of each user"
 msgstr "保持期間: 各ユーザーの最新 {count} 件のアラート"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Retries"
+msgstr "再試行"
+
 #: src/lib/utils.ts
 msgctxt "Root disk label"
 msgid "Root"
@@ -2318,6 +2971,10 @@ msgstr "ルート"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Rotate token"
 msgstr "トークンをローテート"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Route from the hub to {sensorHost}."
+msgstr "ハブから {sensorHost} への経路。"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
@@ -2330,6 +2987,10 @@ msgstr "ルールを削除（パターンが他の項目も対象）: {targets}"
 #: src/components/important-targets.tsx
 msgid "Rule deleted: {targets}"
 msgstr "ルールを削除: {targets}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Run again"
+msgstr "再実行"
 
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
@@ -2349,6 +3010,7 @@ msgstr "S.M.A.R.T.セルフテスト"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "保存"
@@ -2393,8 +3055,16 @@ msgid "Search"
 msgstr "検索"
 
 #: src/components/command-palette.tsx
-msgid "Search for systems or settings..."
-msgstr "システムまたは設定を検索..."
+#~ msgid "Search for systems or settings..."
+#~ msgstr "システムまたは設定を検索..."
+
+#: src/components/command-palette.tsx
+#~ msgid "Search for systems, sensors or settings..."
+#~ msgstr "システム、センサー、設定を検索..."
+
+#: src/components/command-palette.tsx
+msgid "Search for systems, sensors, containers, services or settings..."
+msgstr "システム、センサー、コンテナー、サービス、設定を検索..."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2413,6 +3083,7 @@ msgstr "アラートの受信方法を設定するには<0>通知設定</0>を�
 msgid "Select"
 msgstr "選択"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Select {foo}"
 msgstr "{foo}を選択"
@@ -2459,14 +3130,46 @@ msgstr "外部監視サービスに定期的にアウトバウンド ping を送
 msgid "Send test heartbeat"
 msgstr "テストハートビートを送信"
 
+#: src/components/navbar.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Sensor"
+msgstr "センサー"
+
+#: src/lib/alerts.ts
+msgid "Sensor down"
+msgstr "センサーダウン"
+
+#: src/components/routes/sensor.tsx
+msgid "Sensor not found."
+msgstr "センサーが見つかりません。"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Sensors"
+msgstr "センサー"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Sensors added"
+msgstr "センサーを追加しました"
+
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Sent"
 msgstr "送信"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Serial number"
+msgstr "シリアル番号"
 
 #: src/components/routes/system/smart-table.tsx
 msgid "Serial Number"
 msgstr "シリアル番号"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
@@ -2490,6 +3193,7 @@ msgid "Service state"
 msgstr "サービスの状態"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -2525,6 +3229,15 @@ msgstr "設定"
 msgid "Settings saved"
 msgstr "設定が保存されました"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "SHA-256 fingerprint"
+msgstr "SHA-256 フィンガープリント"
+
+#: src/components/active-alerts.tsx
+msgid "Show"
+msgstr "表示"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Show by group"
 msgstr "グループ別に表示"
@@ -2539,10 +3252,15 @@ msgstr "シャットダウン"
 msgid "Sign in"
 msgstr "サインイン"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Signature"
+msgstr "署名"
+
 #: src/components/command-palette.tsx
 msgid "SMTP settings"
 msgstr "SMTP設定"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
 msgstr "並び替え基準"
@@ -2552,6 +3270,11 @@ msgstr "並び替え基準"
 #: src/components/reboots-table.tsx
 msgid "Source"
 msgstr "ソース"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Start"
+msgstr "開始"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2575,6 +3298,7 @@ msgstr "手動で起動"
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2610,6 +3334,11 @@ msgstr "状態"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/lib/alerts.ts
@@ -2648,6 +3377,7 @@ msgstr "テーマを切り替え"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2690,6 +3420,7 @@ msgstr "システム更新"
 msgid "Systemd Services"
 msgstr "Systemdサービス"
 
+#: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2705,6 +3436,7 @@ msgstr "システムはデータディレクトリ内の<0>config.yml</0>ファ�
 msgid "Systems to update ({targetCount})"
 msgstr "更新するシステム（{targetCount}）"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
 msgstr "テーブル"
@@ -2780,6 +3512,14 @@ msgstr "エージェントは自動的に再起動して再接続します。"
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "エージェントは GitHub からバージョン {latest} をダウンロードして再起動します。"
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The average response time over 10 minutes exceeds {value} ms."
+msgstr "10 分間の平均応答時間が {value} ms を超えています。"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The certificate of an HTTPS check expires within {value} days."
+msgstr "HTTPS チェックの証明書が {value} 日以内に期限切れになります。"
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "最新のエージェント バージョンはまだ不明です"
@@ -2787,6 +3527,18 @@ msgstr "最新のエージェント バージョンはまだ不明です"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "全体的なステータスは、すべてのシステムが稼働している場合は <0>ok</0>、アラートがトリガーされた場合は <1>警告</1>、いずれかのシステムがダウンしている場合は <2>エラー</2> になります。"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet loss over 10 minutes exceeds {value}%."
+msgstr "10 分間のパケットロスが {value}% を超えています。"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is bad."
+msgstr "10 分間のパケット品質が不良です。"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is degraded or bad."
+msgstr "10 分間のパケット品質が低下または不良です。"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "The rules are created on each system."
@@ -2812,6 +3564,14 @@ msgstr "この操作は元に戻せません。これにより、データベー
 msgid "This agent is too old to be managed from the hub: update it once on the system."
 msgstr "このエージェントは古すぎてハブから管理できません。システム上で一度更新してください。"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "This host already has a sensor: {added} new check(s) were added to it."
+msgstr "このホストには既にセンサーがあります: 新しいチェックを {added} 件追加しました。"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This sensor until {until}"
+msgstr "このセンサー（{until} まで）"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
 msgstr "このシステム（{until} まで）"
@@ -2821,6 +3581,11 @@ msgstr "このシステム（{until} まで）"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "This will permanently delete all selected records from the database."
 msgstr "これにより、選択したすべてのレコードがデータベースから完全に削除されます。"
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Threshold"
+msgstr "しきい値"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -2834,7 +3599,14 @@ msgstr "ストレージプール {displayName} のスループット"
 msgid "Time format"
 msgstr "時間形式"
 
-#: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-cert.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "TLS certificate"
+msgstr "TLS 証明書"
+
+#: src/components/period-select.tsx
 msgid "To"
 msgstr "終了"
 
@@ -2874,6 +3646,10 @@ msgstr "各インターフェースの総受信データ量"
 msgid "Total data sent for each interface"
 msgstr "各インターフェースの総送信データ量"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Total duration: {totalDuration}"
+msgstr "合計時間: {totalDuration}"
+
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
 msgid "Total time spent on read/write (can exceed 100%)"
@@ -2886,8 +3662,13 @@ msgstr "合計: {0}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Total: {totalCount}"
 msgstr "合計: {totalCount}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Traced with the traceroute command of the hub."
+msgstr "ハブの traceroute コマンドで追跡しました。"
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
@@ -3011,6 +3792,7 @@ msgstr "ユニバーサルトークン"
 #. Context: Battery state
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/lib/i18n.ts
+#: src/lib/sensors.ts
 msgid "Unknown"
 msgstr "不明"
 
@@ -3019,9 +3801,17 @@ msgstr "不明"
 msgid "Unlimited"
 msgstr "無制限"
 
+#: src/components/sensors/sensor-badges.tsx
+msgid "Unreachable"
+msgstr "到達不能"
+
+#. Context: System is up
+#. Context: System is up
 #. Context: System is up
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Up"
 msgstr "正常"
 
@@ -3034,6 +3824,7 @@ msgid "Up to date"
 msgstr "最新"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Up: {upCount}"
 msgstr "稼働中: {upCount}"
 
@@ -3091,6 +3882,17 @@ msgstr "アップロード"
 msgid "Uptime"
 msgstr "稼働時間"
 
+#: src/components/routes/sensor.tsx
+msgid "Uptime ({periodLabel})"
+msgstr "稼働率 ({periodLabel})"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Uptime (24h)"
+msgstr "稼働率 (24 時間)"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
@@ -3134,6 +3936,18 @@ msgctxt "Disk I/O utilization"
 msgid "Utilization"
 msgstr "利用率"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid and trusted certificate"
+msgstr "有効で信頼された証明書"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid from"
+msgstr "有効期間の開始"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid until"
+msgstr "有効期限"
+
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
@@ -3143,6 +3957,8 @@ msgstr "値"
 msgid "Version"
 msgstr "バージョン"
 
+#: src/components/active-alerts.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "View"
@@ -3162,6 +3978,7 @@ msgstr "最新 {count} 件のアラートを表示します。"
 msgid "View your alerts of the last {days} days."
 msgstr "過去 {days} 日間のアラートを表示します。"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "Visible Fields"
@@ -3257,6 +4074,10 @@ msgstr "YAML設定"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Yes"
 msgstr "はい"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Your alerts on this sensor. Quiet hours of the sensor and global ones silence them."
+msgstr "このセンサーのあなたのアラート。センサーとグローバルのサイレント時間中は通知されません。"
 
 #: src/components/routes/settings/layout.tsx
 msgid "Your user settings have been updated."

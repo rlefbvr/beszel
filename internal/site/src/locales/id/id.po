@@ -50,6 +50,18 @@ msgstr "{0} dari {1} baris terpilih."
 msgid "{0} selected"
 msgstr "{0} dipilih"
 
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {# active alert acknowledged} other {# active alerts acknowledged}}"
+msgstr "{ackCount, plural, other {# peringatan aktif dikonfirmasi}}"
+
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {Show # acknowledged} other {Show # acknowledged}}"
+msgstr "{ackCount, plural, other {Tampilkan yang dikonfirmasi (#)}}"
+
+#: src/components/routes/sensor.tsx
+msgid "{certDays} days"
+msgstr "{certDays} hari"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# inti} other {# inti}}"
@@ -74,9 +86,21 @@ msgstr "{count, plural, other {# kontainer terfilter}}"
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, other {# layanan terfilter}}"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "{count, plural, one {# sensor} other {# sensors}}"
+msgstr "{count, plural, other {# sensor}}"
+
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, other {# sistem}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
+msgstr "{created} sensor baru, {added} pemeriksaan ditambahkan ke sensor yang ada."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
+msgstr "{days, plural, other {Kedaluwarsa dalam # hari}}"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "{diskName} I/O"
@@ -98,6 +122,18 @@ msgstr "{ruleCount, plural, other {# aturan status dibuat.}}"
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, other {# aturan status}}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "{seconds, plural, one {# second} other {# seconds}}"
+msgstr "{seconds, plural, other {# detik}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{sensorCount} host(s), {checkCount} check(s)"
+msgstr "{sensorCount} host, {checkCount} pemeriksaan"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "{success} of {total} successful"
+msgstr "{success} dari {total} berhasil"
+
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, other {# sistem}}"
@@ -106,6 +142,7 @@ msgstr "{systemCount, plural, other {# sistem}}"
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# thread} other {# thread}}"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 hour"
 msgstr "1 jam"
@@ -123,6 +160,7 @@ msgstr "1 menit"
 msgid "1 week"
 msgstr "1 minggu"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 year"
 msgstr "1 tahun"
@@ -140,10 +178,12 @@ msgstr "15 menit"
 msgid "180 days"
 msgstr "180 hari"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "24 hours"
 msgstr "24 jam"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "30 days"
 msgstr "30 hari"
@@ -153,18 +193,44 @@ msgstr "30 hari"
 msgid "5 min"
 msgstr "5 mnt"
 
+#: src/components/period-select.tsx
+msgid "7 days"
+msgstr "7 hari"
+
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "90 days"
 msgstr "90 hari"
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "A check of the sensor does not respond."
+msgstr "Salah satu pemeriksaan sensor tidak merespons."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A sensor belongs to one group: checking it moves it from its current group."
+msgstr "Sensor hanya termasuk dalam satu grup: mencentangnya memindahkannya dari grup saat ini."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A system belongs to one group: checking it moves it from its current group."
 msgstr "Sebuah sistem hanya berada di satu grup: mencentangnya memindahkannya dari grup saat ini."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Accepted status codes"
+msgstr "Kode status yang diterima"
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "Akun"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge"
+msgstr "Konfirmasi"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge all"
+msgstr "Konfirmasi semua"
 
 #. Table column
 #: src/components/routes/settings/quiet-hours.tsx
@@ -190,11 +256,11 @@ msgstr "Peringatan Aktif"
 msgid "Active state"
 msgstr "Status aktif"
 
-#: src/components/add-system.tsx
-#: src/components/add-system.tsx
 #: src/components/navbar.tsx
+msgid "Add"
+msgstr "Tambah"
+
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -203,13 +269,50 @@ msgstr "Status aktif"
 msgid "Add {foo}"
 msgstr "Tambah {foo}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add a check"
+msgstr "Tambah pemeriksaan"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add a monitor"
+msgstr "Tambah monitor"
+
+#: src/components/add-system.tsx
+#: src/components/add-system.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Add a system"
+msgstr "Tambah sistem"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add at least one check."
+msgstr "Tambahkan setidaknya satu pemeriksaan."
+
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Add rule"
 msgstr "Tambah aturan"
 
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Add sensor"
+msgstr "Tambah sensor"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Add sensors"
+msgstr "Tambah sensor"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "Tambah URL"
+
+#: src/components/add-system.tsx
+msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
+msgstr "Menambahkan host akan otomatis membuat sensor bertipe ICMP (Ping)."
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Address"
+msgstr "Alamat"
 
 #: src/components/routes/settings/general.tsx
 msgid "Adjust display options for charts."
@@ -287,6 +390,7 @@ msgstr "Beri peringatan saat status bukan"
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "Peringatan"
@@ -295,10 +399,16 @@ msgstr "Peringatan"
 msgid "Alerts created"
 msgstr "Peringatan dibuat"
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Alerts of {sensorName}"
+msgstr "Peringatan {sensorName}"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "peringatan per pengguna"
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "Semua"
@@ -312,6 +422,7 @@ msgstr "Semua agen sudah terbaru ({latest})"
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/containers.tsx
+#: src/lib/home-page.ts
 msgid "All Containers"
 msgstr "Semua Container"
 
@@ -324,19 +435,28 @@ msgstr "Semua yang usang ({outdatedCount})"
 #: src/components/navbar.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/reboots.tsx
+#: src/lib/home-page.ts
 msgid "All Reboots"
 msgstr "Semua mulai ulang"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "All sensors"
+msgstr "Semua sensor"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/services.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/lib/home-page.ts
 msgid "All Services"
 msgstr "Semua layanan"
 
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -344,6 +464,7 @@ msgstr "Semua layanan"
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
+#: src/lib/home-page.ts
 msgid "All Systems"
 msgstr "Semua Sistem"
 
@@ -351,10 +472,26 @@ msgstr "Semua Sistem"
 msgid "All systems until {until}"
 msgstr "Semua sistem hingga {until}"
 
+#: src/components/period-select.tsx
+msgid "All time"
+msgstr "Sepanjang waktu"
+
 #: src/components/agent-update-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Already up to date."
 msgstr "Sudah terbaru."
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated host {systemName} and its records"
+msgstr "Hapus juga host terkait {systemName} beserta catatannya"
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated sensor {sensorName}"
+msgstr "Hapus juga sensor terkait {sensorName}"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Alternative names"
+msgstr "Nama alternatif"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -413,6 +550,18 @@ msgctxt "Disk I/O average operation time (iostat await)"
 msgid "Average queue to completion time per operation"
 msgstr "Waktu rata-rata antrian hingga selesai per operasi"
 
+#: src/components/routes/sensor.tsx
+msgid "Average response"
+msgstr "Respons rata-rata"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Average response time above which the quality is degraded"
+msgstr "Waktu respons rata-rata yang di atasnya kualitas menurun"
+
+#: src/components/routes/sensor.tsx
+msgid "Average response time of each check"
+msgstr "Waktu respons rata-rata setiap pemeriksaan"
+
 #: src/components/routes/system/charts/cpu-charts.tsx
 msgid "Average system-wide CPU utilization"
 msgstr "Rata-rata utilisasi CPU seluruh sistem"
@@ -430,6 +579,10 @@ msgstr "Rata-rata utilisasi GPU"
 msgid "Average, minimum, and maximum response time"
 msgstr "Waktu respons rata-rata, minimum, dan maksimum"
 
+#: src/components/routes/sensor.tsx
+msgid "avg"
+msgstr "rata-rata"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
@@ -443,6 +596,15 @@ msgstr "Pencadangan"
 #: src/components/navbar.tsx
 msgid "Backups"
 msgstr "Cadangan"
+
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Bad"
+msgstr "Buruk"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Bad"
+msgstr "Buruk"
 
 #: src/components/routes/system/charts/network-charts.tsx
 #: src/lib/alerts.ts
@@ -479,6 +641,10 @@ msgstr "Sebelum"
 msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "Di bawah {0}{1} dalam {2, plural, one {# menit} other {# menit}} terakhir"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
+msgstr "Beszel memeriksa port host dari hub. Pemeriksaan untuk host yang sama dikelompokkan dalam satu sensor."
+
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
 msgstr "Beszel mendukung OpenID Connect dan OAuth2 dari berbagai penyedia layanan."
@@ -512,12 +678,17 @@ msgstr "Judul tab peramban"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "Tambah massal"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Bulk Add {foo}"
 msgstr "Tambah {foo} secara massal"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Bulk add sensors"
+msgstr "Tambah sensor massal"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Bulk copy"
@@ -550,13 +721,19 @@ msgstr "Dapat diberhentikan"
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "Batal"
+
+#: src/components/active-alerts.tsx
+msgid "Cancel the acknowledgement"
+msgstr "Batalkan konfirmasi"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Capabilities"
@@ -576,6 +753,18 @@ msgstr "Perhatian - potensi kehilangan data"
 #: src/components/routes/settings/general.tsx
 msgid "Celsius (°C)"
 msgstr "Celsius (°C)"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate not trusted by the hub"
+msgstr "Sertifikat tidak dipercaya oleh hub"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate presented by the server at the last check."
+msgstr "Sertifikat yang diberikan server pada pemeriksaan terakhir."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Chain"
+msgstr "Rantai"
 
 #: src/components/routes/settings/general.tsx
 msgid "Change display units for metrics."
@@ -606,6 +795,12 @@ msgstr "Periode grafik"
 msgid "Chart width"
 msgstr "Lebar grafik"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Check"
+msgstr "Pemeriksaan"
+
 #: src/components/login/forgot-pass-form.tsx
 msgid "Check {email} for a reset link."
 msgstr "Periksa {email} untuk tautan atur ulang password."
@@ -623,9 +818,30 @@ msgstr "Periksa layanan pemantauan Anda"
 msgid "Check your notification service"
 msgstr "Periksa jasa penyedia notifikasi anda"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Checks"
+msgstr "Pemeriksaan"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Checks added to {sensorName}"
+msgstr "Pemeriksaan ditambahkan ke {sensorName}"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Checksum errors"
 msgstr "Kesalahan checksum"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Choose a known port"
+msgstr "Pilih port yang dikenal"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Choose at least one port."
+msgstr "Pilih setidaknya satu port."
 
 #: src/components/reboots-table.tsx
 msgctxt "Clean shutdown"
@@ -638,6 +854,8 @@ msgstr "Normal"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Clear"
 msgstr "Bersihkan"
@@ -671,9 +889,24 @@ msgstr "Klik untuk menyalin"
 msgid "Close"
 msgstr "Tutup"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Code"
+msgstr "Kode"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Interval pengumpulan"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Color"
+msgstr "Warna"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Columns"
+msgstr "Kolom"
 
 #: src/components/login/forgot-pass-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -729,6 +962,7 @@ msgid "Container state"
 msgstr "Status kontainer"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
 msgstr "Kontainer"
@@ -914,6 +1148,15 @@ msgstr "Harian"
 msgid "Data directory"
 msgstr "Direktori data"
 
+#: src/components/period-select.tsx
+msgid "Dates…"
+msgstr "Tanggal…"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "days"
+msgstr "hari"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "days of alerts"
 msgstr "hari peringatan"
@@ -922,6 +1165,10 @@ msgstr "hari peringatan"
 msgctxt "Default system layout option"
 msgid "Default"
 msgstr "Bawaan"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Default color"
+msgstr "Warna bawaan"
 
 #: src/components/routes/settings/general.tsx
 msgid "Default time period"
@@ -933,9 +1180,20 @@ msgstr "Standar waktu"
 msgid "Default URL"
 msgstr "URL bawaan"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Degraded"
+msgstr "Menurun"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Degraded or bad"
+msgstr "Menurun atau buruk"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -946,7 +1204,7 @@ msgstr "Hapus"
 
 #: src/components/reboots-table.tsx
 msgid "Delete ({selectedCount})"
-msgstr ""
+msgstr "Hapus ({selectedCount})"
 
 #: src/components/reboots-table.tsx
 #~ msgid "Delete {selectedCount} reboots?"
@@ -966,7 +1224,11 @@ msgstr "Hapus grup {originalName}?"
 
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
-msgstr ""
+msgstr "Hapus mulai ulang yang dipilih?"
+
+#: src/components/routes/sensor.tsx
+msgid "Delete this sensor?"
+msgstr "Hapus sensor ini?"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1043,10 +1305,15 @@ msgid "Documentation"
 msgstr "Dokumentasi"
 
 #. Context: System is down
+#. Context: System is down
+#. Context: System is down
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 #: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+#: src/lib/sensors.ts
 msgid "Down"
 msgstr "Mati"
 
@@ -1055,6 +1322,7 @@ msgid "Down ({downSystemsLength})"
 msgstr "Mati ({downSystemsLength})"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Down: {downCount}"
 msgstr "Berhenti: {downCount}"
 
@@ -1074,11 +1342,14 @@ msgstr "Seret untuk mengubah ukuran, klik dua kali untuk mengatur ulang"
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
 msgid "Duration"
 msgstr "Durasi"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -1090,6 +1361,10 @@ msgstr "Ubah"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit {foo}"
 msgstr "Ubah {foo}"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Edit sensor"
+msgstr "Edit sensor"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -1105,6 +1380,11 @@ msgstr "Notifikasi email"
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "Kosong"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "End"
+msgstr "Selesai"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1141,6 +1421,8 @@ msgstr "Sementara"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/config-yaml.tsx
 #: src/components/routes/settings/heartbeat.tsx
@@ -1150,6 +1432,7 @@ msgstr "Sementara"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "Kesalahan"
@@ -1164,6 +1447,10 @@ msgstr "Contoh:"
 #: src/components/active-alerts.tsx
 msgid "Exceeds {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "Melebihi {0}{1} dalam {2, plural, one {# menit} other {# menit}} terakhir"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "Exchange quality"
+msgstr "Kualitas pertukaran"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exec main PID"
@@ -1184,6 +1471,18 @@ msgstr "Kode keluar"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exited active"
 msgstr "Keluar aktif"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Expected text"
+msgstr "Teks yang diharapkan"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired certificate"
+msgstr "Sertifikat kedaluwarsa"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired on {expiredOn}"
+msgstr "Kedaluwarsa pada {expiredOn}"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Expires after one hour or on hub restart."
@@ -1213,6 +1512,10 @@ msgstr "Gagal"
 msgid "Failed Attributes:"
 msgstr "Atribut yang Gagal:"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Failed checks in a row tolerated before the sensor is down"
+msgstr "Pemeriksaan gagal berturut-turut yang ditoleransi sebelum sensor dianggap mati"
+
 #: src/lib/alerts.ts
 msgid "Failed Services"
 msgstr "Layanan gagal"
@@ -1231,6 +1534,8 @@ msgstr "Gagal menghapus monitor."
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "Gagal menyimpan pengaturan"
@@ -1268,6 +1573,8 @@ msgstr "Kipas"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1281,6 +1588,14 @@ msgstr "Sidik jari"
 #: src/components/routes/system/smart-table.tsx
 msgid "Firmware"
 msgstr "Firmware"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Following the route, up to a minute…"
+msgstr "Menelusuri rute, hingga satu menit…"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "For"
+msgstr "Selama"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "For <0>{min}</0> {min, plural, one {minute} other {minutes}}"
@@ -1303,7 +1618,7 @@ msgctxt "Button to copy install command"
 msgid "FreeBSD command"
 msgstr "Perintah FreeBSD"
 
-#: src/components/reboots-table.tsx
+#: src/components/period-select.tsx
 msgid "From"
 msgstr "Dari"
 
@@ -1323,6 +1638,11 @@ msgstr "Umum"
 msgid "Global"
 msgstr "Global"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Good"
+msgstr "Baik"
+
 #: src/components/routes/system.tsx
 msgid "GPU"
 msgstr "GPU"
@@ -1340,18 +1660,28 @@ msgid "GPU Usage"
 msgstr "Penggunaan GPU"
 
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "Kartu"
 
 #: src/components/add-system.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Group"
 msgstr "Grup"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group deleted"
 msgstr "Grup dihapus"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Group of the lines without group"
+msgstr "Grup untuk baris tanpa grup"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group saved"
@@ -1360,6 +1690,10 @@ msgstr "Grup disimpan"
 #: src/components/systems-table/systems-table.tsx
 msgid "Groups"
 msgstr "Grup"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
+msgstr "Grup mengatur sensor jaringan untuk semua pengguna. Menghapus grup tetap menyimpan sensornya tanpa grup."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
@@ -1389,18 +1723,45 @@ msgstr "Pemantauan Heartbeat"
 msgid "Heartbeat sent successfully"
 msgstr "Heartbeat berhasil dikirim"
 
+#: src/components/active-alerts.tsx
+msgid "Hide acknowledged"
+msgstr "Sembunyikan yang dikonfirmasi"
+
+#: src/components/routes/settings/general.tsx
+msgid "Home page"
+msgstr "Halaman beranda"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgctxt "Button to copy install command"
 msgid "Homebrew command"
 msgstr "Perintah Homebrew"
 
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/host-links.tsx
+msgid "Host"
+msgstr "Host"
+
 #: src/components/add-system.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Host / IP"
 msgstr "Host / IP"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host not reached: the last hops do not answer."
+msgstr "Host tidak tercapai: hop terakhir tidak merespons."
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host reached in {hopCount} hops."
+msgstr "Host tercapai dalam {hopCount} hop."
 
 #: src/lib/quiet-hours.ts
 msgid "Host restart"
@@ -1450,6 +1811,10 @@ msgstr "Menganggur"
 msgid "If you've lost the password to your admin account, you may reset it using the following command."
 msgstr "Jika anda kehilangan kata sandi untuk akun admin anda, anda dapat meresetnya menggunakan perintah berikut."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Ignore TLS certificate errors"
+msgstr "Abaikan kesalahan sertifikat TLS"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 msgctxt "Docker image"
@@ -1474,6 +1839,15 @@ msgstr "Layanan penting"
 msgid "Inactive"
 msgstr "Tidak aktif"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Information"
+msgstr "Informasi"
+
 #: src/components/reboots-table.tsx
 msgid "Initiated by"
 msgstr "Dimulai oleh"
@@ -1488,9 +1862,14 @@ msgstr "Instans"
 msgid "Instance name"
 msgstr "Nama instans"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Interruptions: {incidentCount}"
+msgstr "Gangguan: {incidentCount}"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Interval"
 msgstr "Interval"
 
@@ -1501,6 +1880,30 @@ msgstr "Interval (detik)"
 #: src/components/login/auth-form.tsx
 msgid "Invalid email address."
 msgstr "Alamat email tidak valid."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by"
+msgstr "Diterbitkan oleh"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by {linkIssuer}, valid until {linkUntil}"
+msgstr "Diterbitkan oleh {linkIssuer}, berlaku hingga {linkUntil}"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued to"
+msgstr "Diterbitkan untuk"
+
+#: src/components/routes/sensor.tsx
+msgid "Its checks, history and interruptions will be deleted."
+msgstr "Pemeriksaan, riwayat, dan gangguannya akan dihapus."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are kept and moved to no group."
+msgstr "Sensornya tetap disimpan dan dipindahkan tanpa grup."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are now without group."
+msgstr "Sensornya kini tanpa grup."
 
 #: src/components/important-targets.tsx
 msgid "Its state alerts stop. The following rules change:"
@@ -1518,18 +1921,60 @@ msgstr "Sistemnya sekarang tanpa grup."
 msgid "Keep"
 msgstr "Simpan"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Known ports"
+msgstr "Port yang dikenal"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Label"
+msgstr "Label"
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "Bahasa"
+
+#: src/components/routes/sensor.tsx
+msgid "Last 30 minutes"
+msgstr "30 menit terakhir"
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Last alert"
 msgstr "Peringatan terakhir"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Last check"
+msgstr "Pemeriksaan terakhir"
+
+#: src/components/routes/sensor.tsx
+msgid "Last hour"
+msgstr "Satu jam terakhir"
+
 #: src/components/routes/system/agent-details.tsx
 msgid "Last lines logged by the agent of {name} since it started."
 msgstr "Baris terakhir yang dicatat agen {name} sejak dimulai."
 
+#: src/components/routes/sensor.tsx
+msgid "Last result of each check."
+msgstr "Hasil terakhir setiap pemeriksaan."
+
+#: src/components/routes/sensor.tsx
+msgid "Last update"
+msgstr "Pembaruan terakhir"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Latency (ms)"
+msgstr "Latensi (ms)"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Latest interruptions"
+msgstr "Gangguan terbaru"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "Tampilan"
@@ -1546,6 +1991,22 @@ msgstr "Siklus hidup"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "limit"
 msgstr "batas"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: the host is missing"
+#~ msgstr ""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: unknown service \"{check}\""
+#~ msgstr ""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: the host is missing"
+msgstr "Baris {lineNumber}: host tidak ada"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: unknown service \"{check}\""
+msgstr "Baris {lineNumber}: layanan tidak dikenal \"{check}\""
 
 #: src/components/routes/system/charts/load-average-chart.tsx
 msgid "Load Average"
@@ -1576,6 +2037,7 @@ msgstr "Rata-rata Beban"
 msgid "Load state"
 msgstr "Beban saat ini"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
 msgstr "Memuat..."
@@ -1587,6 +2049,10 @@ msgstr "Disk Lokal"
 #: src/components/routes/system/agent-details.tsx
 msgid "Location"
 msgstr "Lokasi"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Location, owner, role…"
+msgstr "Lokasi, pemilik, peran…"
 
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
@@ -1617,7 +2083,16 @@ msgstr "Log"
 msgid "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
 msgstr "Mencari tempat untuk membuat peringatan? Klik ikon lonceng <0/> di tabel sistem."
 
+#. Packet loss
+#: src/components/routes/sensor.tsx
+msgid "loss"
+msgstr "hilang"
+
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgctxt "Packet loss"
 msgid "Loss"
 msgstr "Kehilangan paket"
@@ -1635,6 +2110,9 @@ msgstr "PID utama"
 msgid "Manage display and notification preferences."
 msgstr "Kelola preferensi tampilan dan notifikasi."
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1686,9 +2164,19 @@ msgstr "Penggunaan Memori"
 msgid "Memory usage of containers"
 msgstr "Penggunaan memori container"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Message"
+msgstr "Pesan"
+
 #: src/lib/quiet-hours.ts
 msgid "Migration"
 msgstr "Migrasi"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "min"
+msgstr "mnt"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -1704,7 +2192,6 @@ msgstr "Model"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitor"
 msgstr "Monitor"
 
@@ -1713,6 +2200,7 @@ msgid "Monitors created"
 msgstr "Monitor dibuat"
 
 #: src/components/overflow-tabs.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "More"
 msgstr "Lainnya"
 
@@ -1725,6 +2213,11 @@ msgstr "Titik kait"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1739,6 +2232,10 @@ msgstr "Nama dan URL bawaan hub ini, dipakai di tautan notifikasi dan ditampilka
 #: src/components/routes/settings/general.tsx
 msgid "Name of the service created when installing an agent with the Linux or Windows commands. Existing agents keep their service name."
 msgstr "Nama layanan yang dibuat saat memasang agen dengan perintah Linux atau Windows. Agen yang sudah ada tetap memakai nama layanannya."
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Name to resolve"
+msgstr "Nama yang akan di-resolve"
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
@@ -1770,8 +2267,18 @@ msgstr "Kehilangan paket monitor jaringan"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
+#: src/lib/home-page.ts
 msgid "Network Monitors"
 msgstr "Monitor jaringan"
+
+#: src/components/routes/monitors.tsx
+msgid "Network monitors from a host"
+msgstr "Monitor jaringan dari host"
+
+#: src/components/command-palette.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Network sensors"
+msgstr "Sensor jaringan"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Network traffic of containers"
@@ -1812,17 +2319,32 @@ msgid "No alert"
 msgstr "Tanpa peringatan"
 
 #: src/components/alerts/alert-button.tsx
+#: src/components/routes/sensor.tsx
 msgid "No alerts configured"
 msgstr "Tidak ada peringatan yang dikonfigurasi"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "No answer"
+msgstr "Tidak ada jawaban"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "No certificate yet: the details appear after the next HTTPS check."
+msgstr "Belum ada sertifikat: detail muncul setelah pemeriksaan HTTPS berikutnya."
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "Tidak ada data terperinci yang tersedia untuk pool ini."
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "No group"
 msgstr "Tanpa grup"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "No interruptions over this period."
+msgstr "Tidak ada gangguan dalam periode ini."
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1843,6 +2365,8 @@ msgstr "Tidak ada hasil ditemukan."
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No results."
 msgstr "Tidak ada hasil."
@@ -1850,6 +2374,10 @@ msgstr "Tidak ada hasil."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "Tidak ada atribut S.M.A.R.T. yang tersedia untuk perangkat ini."
+
+#: src/components/sensors/sensors-board.tsx
+msgid "No sensor yet: add the hosts and ports that Beszel should check."
+msgstr "Belum ada sensor: tambahkan host dan port yang harus diperiksa Beszel."
 
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
@@ -1899,6 +2427,27 @@ msgstr "Dukungan OAuth 2 / OIDC"
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
 msgstr "Pada setiap restart, sistem dalam database akan diperbarui untuk mencocokkan sistem yang didefinisikan dalam file."
 
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per 15 seconds"
+#~ msgstr "Satu batang per 15 detik"
+
+#: src/components/routes/sensor.tsx
+msgid "One bar per interval ({every})"
+msgstr "Satu batang per interval ({every})"
+
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per minute"
+#~ msgstr "Satu batang per menit"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
+msgstr "Satu baris per host: host, layanan, label, grup, nama. Layanan berupa port yang dikenal (ssh, https, dns…), nomor port TCP, atau protokol:port, dipisahkan dengan +. Baris dari host yang sama menjadi satu sensor."
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "One of the chosen ports does not respond."
+msgstr "Salah satu port yang dipilih tidak merespons."
+
 #: src/lib/alerts.ts
 msgid "One or more containers are unhealthy"
 msgstr "Satu atau beberapa kontainer tidak sehat"
@@ -1921,6 +2470,10 @@ msgstr "Sekali pakai"
 msgid "One-time password"
 msgstr "Kata sandi sekali pakai (OTP)"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Ongoing"
+msgstr "Berlangsung"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Only administrators can change this setting."
@@ -1936,6 +2489,15 @@ msgstr "Hanya administrator yang dapat mengubah pengaturan ini."
 msgid "Open menu"
 msgstr "Buka menu"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Optional, such as the name of the service"
+msgstr "Opsional, misalnya nama layanan"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Options"
+msgstr "Opsi"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Atau lanjutkan dengan"
@@ -1945,13 +2507,38 @@ msgstr "Atau lanjutkan dengan"
 msgid "Other"
 msgstr "Lainnya"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Other port…"
+msgstr "Port lain…"
+
 #: src/components/alerts/alerts-sheet.tsx
 msgid "Overwrite existing alerts"
 msgstr "Timpa peringatan yang ada"
 
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet loss"
+msgstr "Kehilangan paket"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss ({periodLabel})"
+msgstr "Kehilangan paket ({periodLabel})"
+
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Packet loss (%)"
 msgstr "Kehilangan paket (%)"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss (%) of all the checks"
+msgstr "Kehilangan paket (%) dari semua pemeriksaan"
+
+#: src/components/routes/sensor.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet quality"
+msgstr "Kualitas paket"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -1967,6 +2554,10 @@ msgstr "Halaman"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Page {0} of {1}"
 msgstr "Halaman {0} dari {1}"
+
+#: src/components/routes/settings/general.tsx
+msgid "Page opened at start and by the logo."
+msgstr "Halaman yang dibuka saat mulai dan melalui logo."
 
 #: src/components/command-palette.tsx
 msgid "Pages / Settings"
@@ -1994,11 +2585,14 @@ msgid "Past"
 msgstr "Lalu"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Pause"
 msgstr "Jeda"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Paused"
 msgstr "Dijeda"
 
@@ -2009,6 +2603,10 @@ msgstr "Dijeda ({pausedSystemsLength})"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Payload format"
 msgstr "Format payload"
+
+#: src/lib/sensors.ts
+msgid "Pending"
+msgstr "Tertunda"
 
 #: src/components/routes/system/cpu-sheet.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2022,6 +2620,10 @@ msgstr "Persentase waktu disk sibuk dengan I/O"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Percentage of time spent in each state"
 msgstr "Persentase waktu yang dihabiskan di setiap status"
+
+#: src/components/period-select.tsx
+msgid "Period"
+msgstr "Periode"
 
 #: src/components/routes/settings/general.tsx
 msgid "Periods offered in the charts of all users. The periods of 90 days or more keep one record per day for that long, which uses more disk space."
@@ -2081,10 +2683,22 @@ msgstr "Kesehatan pool"
 msgid "Pool Usage"
 msgstr "Penggunaan pool"
 
+#: src/lib/alerts.ts
+msgid "Poor packet quality"
+msgstr "Kualitas paket buruk"
+
 #: src/components/add-system.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Port"
 msgstr "Port"
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Port not responding"
+msgstr "Port tidak merespons"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
@@ -2123,10 +2737,12 @@ msgstr "Produksi, Pelanggan, Lab…"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Protocol"
 msgstr "Protokol"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Public key"
 msgstr "Kunci publik"
 
@@ -2134,6 +2750,13 @@ msgstr "Kunci publik"
 #: src/components/add-system.tsx
 msgid "Public Key"
 msgstr "Kunci Publik"
+
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Quality"
+msgstr "Kualitas"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O average queue depth"
@@ -2214,6 +2837,15 @@ msgstr "Mulai ulang"
 msgid "Received"
 msgstr "Diterima"
 
+#: src/components/sensors/sensor-badges.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Recent checks"
+msgstr "Pemeriksaan terbaru"
+
+#: src/components/command-palette.tsx
+msgid "Recently opened"
+msgstr "Baru dibuka"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Tercatat"
@@ -2232,6 +2864,7 @@ msgid "Relationships"
 msgstr "Relasi"
 
 #: src/components/important-targets.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Remove"
 msgstr "Hapus"
 
@@ -2281,9 +2914,24 @@ msgstr "Diselesaikan"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 msgid "Response"
 msgstr "Respons"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Response and uptime"
+msgstr "Respons dan waktu aktif"
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Response time"
+msgstr "Waktu respons"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 msgid "Response time monitoring from agents."
@@ -2294,6 +2942,7 @@ msgid "Restarts"
 msgstr "Restart"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Resume"
 msgstr "Lanjutkan"
@@ -2310,6 +2959,10 @@ msgstr "Retensi: peringatan {days} hari terakhir"
 msgid "Retention: the last {count} alerts of each user"
 msgstr "Retensi: {count} peringatan terakhir setiap pengguna"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Retries"
+msgstr "Percobaan ulang"
+
 #: src/lib/utils.ts
 msgctxt "Root disk label"
 msgid "Root"
@@ -2318,6 +2971,10 @@ msgstr "Root"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Rotate token"
 msgstr "Ganti ulang token"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Route from the hub to {sensorHost}."
+msgstr "Rute dari hub ke {sensorHost}."
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
@@ -2330,6 +2987,10 @@ msgstr "Aturan dihapus, polanya juga mencakup item lain: {targets}"
 #: src/components/important-targets.tsx
 msgid "Rule deleted: {targets}"
 msgstr "Aturan dihapus: {targets}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Run again"
+msgstr "Jalankan lagi"
 
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
@@ -2349,6 +3010,7 @@ msgstr "Self-Test S.M.A.R.T."
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "Simpan"
@@ -2393,8 +3055,16 @@ msgid "Search"
 msgstr "Cari"
 
 #: src/components/command-palette.tsx
-msgid "Search for systems or settings..."
-msgstr "Cari sistem atau pengaturan..."
+#~ msgid "Search for systems or settings..."
+#~ msgstr "Cari sistem atau pengaturan..."
+
+#: src/components/command-palette.tsx
+#~ msgid "Search for systems, sensors or settings..."
+#~ msgstr "Cari sistem, sensor, atau pengaturan..."
+
+#: src/components/command-palette.tsx
+msgid "Search for systems, sensors, containers, services or settings..."
+msgstr "Cari sistem, sensor, kontainer, layanan, atau pengaturan..."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2413,6 +3083,7 @@ msgstr "Lihat <0>pengaturan notifikasi</0> untuk mengkonfigurasi bagaimana anda 
 msgid "Select"
 msgstr "Pilih"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Select {foo}"
 msgstr "Pilih {foo}"
@@ -2459,14 +3130,46 @@ msgstr "Kirim ping keluar secara berkala ke layanan pemantauan eksternal sehingg
 msgid "Send test heartbeat"
 msgstr "Kirim tes heartbeat"
 
+#: src/components/navbar.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Sensor"
+msgstr "Sensor"
+
+#: src/lib/alerts.ts
+msgid "Sensor down"
+msgstr "Sensor mati"
+
+#: src/components/routes/sensor.tsx
+msgid "Sensor not found."
+msgstr "Sensor tidak ditemukan."
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Sensors"
+msgstr "Sensor"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Sensors added"
+msgstr "Sensor ditambahkan"
+
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Sent"
 msgstr "Dikirim"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Serial number"
+msgstr "Nomor seri"
 
 #: src/components/routes/system/smart-table.tsx
 msgid "Serial Number"
 msgstr "Nomor Seri"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
@@ -2490,6 +3193,7 @@ msgid "Service state"
 msgstr "Status layanan"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -2525,6 +3229,15 @@ msgstr "Pengaturan"
 msgid "Settings saved"
 msgstr "Pengaturan disimpan"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "SHA-256 fingerprint"
+msgstr "Sidik jari SHA-256"
+
+#: src/components/active-alerts.tsx
+msgid "Show"
+msgstr "Tampilkan"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Show by group"
 msgstr "Tampilkan per grup"
@@ -2539,10 +3252,15 @@ msgstr "Pematian"
 msgid "Sign in"
 msgstr "Masuk"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Signature"
+msgstr "Tanda tangan"
+
 #: src/components/command-palette.tsx
 msgid "SMTP settings"
 msgstr "Pengaturan SMTP"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
 msgstr "Urutkan Berdasarkan"
@@ -2552,6 +3270,11 @@ msgstr "Urutkan Berdasarkan"
 #: src/components/reboots-table.tsx
 msgid "Source"
 msgstr "Sumber"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Start"
+msgstr "Mulai"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2575,6 +3298,7 @@ msgstr "Dimulai secara manual"
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2610,6 +3334,11 @@ msgstr "Status"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/lib/alerts.ts
@@ -2648,6 +3377,7 @@ msgstr "Ganti tema"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2690,6 +3420,7 @@ msgstr "Pembaruan sistem"
 msgid "Systemd Services"
 msgstr "Layanan Systemd"
 
+#: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2705,6 +3436,7 @@ msgstr "Sistem dapat dikelola dalam file <0>config.yml</0> di dalam direktori da
 msgid "Systems to update ({targetCount})"
 msgstr "Sistem yang akan diperbarui ({targetCount})"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
 msgstr "Tabel"
@@ -2780,6 +3512,14 @@ msgstr "Agen memulai ulang dan terhubung kembali dengan sendirinya."
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "Agen mengunduh versi {latest} dari GitHub, lalu memulai ulang."
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The average response time over 10 minutes exceeds {value} ms."
+msgstr "Waktu respons rata-rata selama 10 menit melebihi {value} ms."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The certificate of an HTTPS check expires within {value} days."
+msgstr "Sertifikat pemeriksaan HTTPS kedaluwarsa dalam {value} hari."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "Versi agen terbaru belum diketahui"
@@ -2787,6 +3527,18 @@ msgstr "Versi agen terbaru belum diketahui"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Status keseluruhan adalah <0>ok</0> ketika semua sistem aktif, <1>warn</1> ketika peringatan dipicu, dan <2>error</2> ketika ada sistem yang mati."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet loss over 10 minutes exceeds {value}%."
+msgstr "Kehilangan paket selama 10 menit melebihi {value}%."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is bad."
+msgstr "Kualitas paket selama 10 menit buruk."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is degraded or bad."
+msgstr "Kualitas paket selama 10 menit menurun atau buruk."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "The rules are created on each system."
@@ -2812,6 +3564,14 @@ msgstr "Aksi ini tidak dapat di kembalikan. ini akan menghapus permanen semua re
 msgid "This agent is too old to be managed from the hub: update it once on the system."
 msgstr "Agen ini terlalu lama untuk dikelola dari hub: perbarui sekali langsung di sistem."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "This host already has a sensor: {added} new check(s) were added to it."
+msgstr "Host ini sudah memiliki sensor: {added} pemeriksaan baru ditambahkan."
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This sensor until {until}"
+msgstr "Sensor ini hingga {until}"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
 msgstr "Sistem ini hingga {until}"
@@ -2821,6 +3581,11 @@ msgstr "Sistem ini hingga {until}"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "This will permanently delete all selected records from the database."
 msgstr "Ini akan menghapus secara permanen semua record yang dipilih dari database."
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Threshold"
+msgstr "Ambang"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -2834,7 +3599,14 @@ msgstr "Laju transfer pool penyimpanan {displayName}"
 msgid "Time format"
 msgstr "Format waktu"
 
-#: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-cert.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "TLS certificate"
+msgstr "Sertifikat TLS"
+
+#: src/components/period-select.tsx
 msgid "To"
 msgstr "Sampai"
 
@@ -2874,6 +3646,10 @@ msgstr "Total data yang diterima untuk setiap antarmuka"
 msgid "Total data sent for each interface"
 msgstr "Total data yang dikirim untuk setiap antarmuka"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Total duration: {totalDuration}"
+msgstr "Durasi total: {totalDuration}"
+
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
 msgid "Total time spent on read/write (can exceed 100%)"
@@ -2886,8 +3662,13 @@ msgstr "Total: {0}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Total: {totalCount}"
 msgstr "Total: {totalCount}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Traced with the traceroute command of the hub."
+msgstr "Dilacak dengan perintah traceroute pada hub."
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
@@ -3011,6 +3792,7 @@ msgstr "Token universal"
 #. Context: Battery state
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/lib/i18n.ts
+#: src/lib/sensors.ts
 msgid "Unknown"
 msgstr "Tidak diketahui"
 
@@ -3019,9 +3801,17 @@ msgstr "Tidak diketahui"
 msgid "Unlimited"
 msgstr "Tidak terbatas"
 
+#: src/components/sensors/sensor-badges.tsx
+msgid "Unreachable"
+msgstr "Tidak terjangkau"
+
+#. Context: System is up
+#. Context: System is up
 #. Context: System is up
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Up"
 msgstr "Nyala"
 
@@ -3034,6 +3824,7 @@ msgid "Up to date"
 msgstr "Terbaru"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Up: {upCount}"
 msgstr "Berjalan: {upCount}"
 
@@ -3091,6 +3882,17 @@ msgstr "Unggah"
 msgid "Uptime"
 msgstr "Waktu aktif"
 
+#: src/components/routes/sensor.tsx
+msgid "Uptime ({periodLabel})"
+msgstr "Waktu aktif ({periodLabel})"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Uptime (24h)"
+msgstr "Waktu aktif (24 jam)"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
@@ -3134,6 +3936,18 @@ msgctxt "Disk I/O utilization"
 msgid "Utilization"
 msgstr "Utilisasi"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid and trusted certificate"
+msgstr "Sertifikat valid dan tepercaya"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid from"
+msgstr "Berlaku dari"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid until"
+msgstr "Berlaku hingga"
+
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
@@ -3143,6 +3957,8 @@ msgstr "Nilai"
 msgid "Version"
 msgstr "Versi"
 
+#: src/components/active-alerts.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "View"
@@ -3162,6 +3978,7 @@ msgstr "Lihat {count} peringatan terbaru Anda."
 msgid "View your alerts of the last {days} days."
 msgstr "Lihat peringatan Anda dalam {days} hari terakhir."
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "Visible Fields"
@@ -3257,6 +4074,10 @@ msgstr "Konfigurasi YAML"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Yes"
 msgstr "Ya"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Your alerts on this sensor. Quiet hours of the sensor and global ones silence them."
+msgstr "Peringatan Anda untuk sensor ini. Jam tenang sensor dan jam tenang global membisukannya."
 
 #: src/components/routes/settings/layout.tsx
 msgid "Your user settings have been updated."

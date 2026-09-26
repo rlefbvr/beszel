@@ -334,6 +334,8 @@ export interface AlertRecord extends RecordModel {
 
 export interface AlertsHistoryRecord extends RecordModel {
 	monitor_name?: string
+	/** network sensor of a sensor alert, which has no system */
+	sensor?: string
 	alert: string
 	user: string
 	system: string
@@ -367,6 +369,8 @@ export interface QuietHoursRecord extends RecordModel {
 	id: string
 	user: string
 	system: string
+	/** network sensor of the window, empty for the others */
+	sensor?: string
 	type: "one-time" | "daily"
 	start: string
 	end: string
@@ -438,6 +442,21 @@ export interface UserSettings {
 	tabTitle?: "beszel" | "name" | "url"
 	/** label next to the logo: none, the instance name or the instance host */
 	headerLabel?: "none" | "name" | "url"
+	/** network sensors: grid or table, group tab, status filter and hidden fields of the grid */
+	sensorsView?: "grid" | "table"
+	sensorsGroupTab?: string
+	sensorsStatus?: "all" | "up" | "down" | "paused"
+	sensorsHiddenFields?: string[]
+	/** network sensors: sections by group in the All tab */
+	sensorsByGroup?: boolean
+	/** network sensors: order by name, or worst status or quality first */
+	sensorsSort?: "name" | "status" | "quality"
+	/** page opened at start: home (systems) or another page */
+	homePage?: string
+	/** acknowledged active alerts: record id and time of their last change */
+	ackAlerts?: string[]
+	/** objects opened recently, listed first by the command palette */
+	recent?: import("@/lib/recent").RecentItem[]
 	/** other tables: widths of the resized columns and hidden columns, by table */
 	tables?: Record<string, TableLayout>
 }
@@ -732,6 +751,8 @@ export interface NetworkMonitorRecord {
 	target: string
 	protocol: "icmp" | "tcp" | "http" | "dns"
 	port: number
+	/** label of the monitor, such as the service checked */
+	label?: string
 	res: number
 	resMin1h: number
 	resMax1h: number
@@ -773,4 +794,119 @@ export interface NetworkMonitorStatsRecord {
 	type?: string
 	stats: Record<string, MonitorStats>
 	created: number // unix timestamp (ms) for Recharts xAxis
+}
+
+export type SensorProtocol = "icmp" | "tcp" | "http" | "dns" | "ntp"
+
+/** Network host checked by the hub, with its state */
+export interface SensorRecord extends RecordModel {
+	id: string
+	name: string
+	host: string
+	description: string
+	group: string
+	/** seconds between two probes */
+	interval: number
+	/** failed probes in a row tolerated before a check is down */
+	retries: number
+	/** average response time (ms) above which the quality is degraded, 0 for none */
+	latency_threshold: number
+	paused: boolean
+	status: "pending" | "up" | "down" | "paused" | ""
+	quality: "good" | "degraded" | "bad" | ""
+	/** average response time (ms) over the last 10 minutes */
+	res: number
+	/** packet loss (%) over the last 10 minutes */
+	loss: number
+	/** successful probes (%) over the last 24 hours */
+	uptime: number
+	last_check: string
+	updated: string
+}
+
+/** Check of a sensor: a protocol and port */
+export interface SensorCheckRecord extends RecordModel {
+	id: string
+	sensor: string
+	protocol: SensorProtocol
+	port: number
+	label: string
+	/** HTTP: address checked; DNS: name resolved */
+	url: string
+	keyword: string
+	accepted_codes: string
+	ignore_tls: boolean
+	/** color chosen for the pill of another port */
+	color?: string
+	/** details of the TLS certificate of an HTTPS check */
+	cert?: SensorCertInfo | null
+	status: "pending" | "up" | "down" | ""
+	/** response time of the last probe (ms) */
+	res: number
+	code: number
+	message: string
+	cert_expiry: string
+	last_check: string
+}
+
+/** TLS certificate of an HTTPS check, as seen by the hub */
+export interface SensorCertInfo {
+	subject: string
+	subjectDN: string
+	issuer: string
+	issuerDN: string
+	names?: string[]
+	notBefore: string
+	notAfter: string
+	serial: string
+	signature: string
+	publicKey: string
+	sha256: string
+	tlsVersion: string
+	cipher: string
+	/** chain valid for the host with the roots of the hub */
+	trusted: boolean
+	trustError?: string
+	chain?: { subject: string; issuer: string; notAfter: string }[]
+}
+
+/** Probes of a check over a period */
+export interface SensorStatsRecord {
+	id?: string
+	sensor: string
+	check: string
+	type: string
+	/** unix time in milliseconds */
+	created: number
+	total_count: number
+	success_count: number
+	/** microseconds */
+	res_sum: number
+	res_min: number
+	res_max: number
+}
+
+/** Interruption of a check */
+export interface SensorIncidentRecord extends RecordModel {
+	id: string
+	sensor: string
+	check: string
+	start: string
+	/** empty while the interruption lasts */
+	end: string
+	code: number
+	message: string
+}
+
+/** Alert of the user on a sensor */
+export interface SensorAlertRecord extends RecordModel {
+	id: string
+	user: string
+	sensor: string
+	name: "down" | "loss" | "latency" | "cert" | "quality" | "port"
+	/** checks of a port alert */
+	checks?: string[]
+	value: number
+	min: number
+	triggered: boolean
 }

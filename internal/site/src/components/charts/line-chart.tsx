@@ -101,7 +101,7 @@ export default function LineChartDefault({
 	}, [displayData, displayMaxToggled, isIntersecting, maxToggled, sourceData])
 
 	// Use a stable key derived from data point identities and visual properties
-	const linesKey = dataPoints?.map((d) => `${d.label}:${d.strokeOpacity}${d.dot}${d.yAxisId}${d.strokeDasharray}`).join("\0")
+	const linesKey = dataPoints?.map((d) => `${d.label}:${d.color}${d.strokeOpacity}${d.dot}${d.yAxisId}${d.strokeDasharray}`).join("\0")
 
 	const XAxis = xAxis(chartData.chartTime, displayData.at(-1)?.created)
 

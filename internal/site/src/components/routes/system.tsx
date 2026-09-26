@@ -1,3 +1,4 @@
+import { FooterRepoLink } from "@/components/footer-repo-link"
 import { memo, useState } from "react"
 import { Trans } from "@lingui/react/macro"
 import { compareSemVer, parseSemVer, supportsNetworkMonitors } from "@/lib/utils"
@@ -310,6 +311,7 @@ export default memo(function SystemDetail({ id }: { id: string }) {
 	}
 
 	return (
+		<>
 		<div className="grid gap-4 mb-14 overflow-x-clip">
 			{/* system info */}
 			<InfoBar
@@ -326,5 +328,7 @@ export default memo(function SystemDetail({ id }: { id: string }) {
 
 			{displayMode === "tabs" ? tabbedLayout() : defaultLayout()}
 		</div>
+		<FooterRepoLink />
+		</>
 	)
 })

@@ -53,6 +53,8 @@ type Result struct {
 	Message string
 	// CertExpiry is the expiry of the TLS certificate of an HTTPS address.
 	CertExpiry time.Time
+	// Cert describes the TLS certificate of an HTTPS address.
+	Cert *CertInfo
 }
 
 func failed(err error) Result {
@@ -63,11 +65,12 @@ func failed(err error) Result {
 func Probe(ctx context.Context, check Check) Result {
 	switch check.Protocol {
 	case "icmp":
-		us, err := probeICMP(ctx, check.Host)
+		us, ip, err := probeICMP(ctx, check.Host)
 		if err != nil {
 			return failed(err)
 		}
-		return Result{OK: true, ResponseUs: us}
+		// the address pinged, shown with the statistics of the check
+		return Result{OK: true, ResponseUs: us, Message: ip.String()}
 	case "tcp":
 		return probeTCP(ctx, check.Host, check.Port)
 	case "http":
@@ -102,7 +105,7 @@ func httpAddress(check Check) string {
 		return check.URL
 	}
 	scheme := "http"
-	if check.Port == 443 || check.Port == 8443 {
+	if check.Port == 443 || check.Port == 8443 || check.Port == 8006 {
 		scheme = "https"
 	}
 	host := check.Host
@@ -139,6 +142,7 @@ func probeHTTP(ctx context.Context, check Check) Result {
 	result := Result{Code: resp.StatusCode, Message: resp.Status, ResponseUs: us}
 	if resp.TLS != nil && len(resp.TLS.PeerCertificates) > 0 {
 		result.CertExpiry = resp.TLS.PeerCertificates[0].NotAfter
+		result.Cert = certInfo(resp.TLS, resp.Request.URL.Host)
 	}
 	accepted := check.AcceptedCodes
 	if strings.TrimSpace(accepted) == "" {

@@ -50,6 +50,18 @@ msgstr "已選取 {1} 個項目中的 {0} 個"
 msgid "{0} selected"
 msgstr "已選取 {0} 個"
 
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {# active alert acknowledged} other {# active alerts acknowledged}}"
+msgstr "{ackCount, plural, other {已確認 # 個作用中的警報}}"
+
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {Show # acknowledged} other {Show # acknowledged}}"
+msgstr "{ackCount, plural, other {顯示已確認 (#)}}"
+
+#: src/components/routes/sensor.tsx
+msgid "{certDays} days"
+msgstr "{certDays} 天"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# 核心} other {# 核心}}"
@@ -74,9 +86,21 @@ msgstr "{count, plural, other {# 個篩選後的容器}}"
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, other {# 個篩選後的服務}}"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "{count, plural, one {# sensor} other {# sensors}}"
+msgstr "{count, plural, other {# 個感測器}}"
+
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, other {# 個系統}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
+msgstr "新增 {created} 個感測器，並為現有感測器新增 {added} 項檢查。"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
+msgstr "{days, plural, other {# 天後到期}}"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "{diskName} I/O"
@@ -98,6 +122,18 @@ msgstr "{ruleCount, plural, other {已建立 # 條狀態規則。}}"
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, other {# 條狀態規則}}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "{seconds, plural, one {# second} other {# seconds}}"
+msgstr "{seconds, plural, other {# 秒}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{sensorCount} host(s), {checkCount} check(s)"
+msgstr "{sensorCount} 台主機，{checkCount} 項檢查"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "{success} of {total} successful"
+msgstr "{total} 次中成功 {success} 次"
+
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, other {# 個系統}}"
@@ -106,6 +142,7 @@ msgstr "{systemCount, plural, other {# 個系統}}"
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# 執行緒} other {# 執行緒}}"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 hour"
 msgstr "1小時"
@@ -123,6 +160,7 @@ msgstr "1 分鐘"
 msgid "1 week"
 msgstr "1週"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 year"
 msgstr "1 年"
@@ -140,10 +178,12 @@ msgstr "15 分鐘"
 msgid "180 days"
 msgstr "180 天"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "24 hours"
 msgstr "24小時"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "30 days"
 msgstr "30天"
@@ -153,18 +193,44 @@ msgstr "30天"
 msgid "5 min"
 msgstr "5 分鐘"
 
+#: src/components/period-select.tsx
+msgid "7 days"
+msgstr "7 天"
+
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "90 days"
 msgstr "90 天"
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "A check of the sensor does not respond."
+msgstr "感測器的某項檢查沒有回應。"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A sensor belongs to one group: checking it moves it from its current group."
+msgstr "感測器只屬於一個群組：勾選後會從目前群組移出。"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A system belongs to one group: checking it moves it from its current group."
 msgstr "每個系統只屬於一個群組：勾選後會從目前的群組移出。"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Accepted status codes"
+msgstr "接受的狀態碼"
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "帳戶"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge"
+msgstr "確認"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge all"
+msgstr "全部確認"
 
 #. Table column
 #: src/components/routes/settings/quiet-hours.tsx
@@ -190,11 +256,11 @@ msgstr "活動警報"
 msgid "Active state"
 msgstr "活動狀態"
 
-#: src/components/add-system.tsx
-#: src/components/add-system.tsx
 #: src/components/navbar.tsx
+msgid "Add"
+msgstr "新增"
+
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -203,13 +269,50 @@ msgstr "活動狀態"
 msgid "Add {foo}"
 msgstr "新增{foo}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add a check"
+msgstr "新增檢查"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add a monitor"
+msgstr "新增監控"
+
+#: src/components/add-system.tsx
+#: src/components/add-system.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Add a system"
+msgstr "新增系統"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add at least one check."
+msgstr "請至少新增一項檢查。"
+
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Add rule"
 msgstr "新增規則"
 
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Add sensor"
+msgstr "新增感測器"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Add sensors"
+msgstr "新增感測器"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "新增 URL"
+
+#: src/components/add-system.tsx
+msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
+msgstr "新增主機會自動建立一個 ICMP (Ping) 類型的感測器。"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Address"
+msgstr "位址"
 
 #: src/components/routes/settings/general.tsx
 msgid "Adjust display options for charts."
@@ -287,6 +390,7 @@ msgstr "當狀態不為下列時發出警報"
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "警報"
@@ -295,10 +399,16 @@ msgstr "警報"
 msgid "Alerts created"
 msgstr "已建立警報"
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Alerts of {sensorName}"
+msgstr "{sensorName} 的警報"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "則警報（每位使用者）"
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "全部"
@@ -312,6 +422,7 @@ msgstr "所有代理程式皆為最新版本（{latest}）"
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/containers.tsx
+#: src/lib/home-page.ts
 msgid "All Containers"
 msgstr "所有容器"
 
@@ -324,19 +435,28 @@ msgstr "所有需更新項目（{outdatedCount}）"
 #: src/components/navbar.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/reboots.tsx
+#: src/lib/home-page.ts
 msgid "All Reboots"
 msgstr "所有重新啟動"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "All sensors"
+msgstr "所有感測器"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/services.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/lib/home-page.ts
 msgid "All Services"
 msgstr "所有服務"
 
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -344,6 +464,7 @@ msgstr "所有服務"
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
+#: src/lib/home-page.ts
 msgid "All Systems"
 msgstr "所有系統"
 
@@ -351,10 +472,26 @@ msgstr "所有系統"
 msgid "All systems until {until}"
 msgstr "所有系統，直到 {until}"
 
+#: src/components/period-select.tsx
+msgid "All time"
+msgstr "全部時間"
+
 #: src/components/agent-update-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Already up to date."
 msgstr "已是最新版本。"
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated host {systemName} and its records"
+msgstr "同時刪除關聯的主機 {systemName} 及其記錄"
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated sensor {sensorName}"
+msgstr "同時刪除關聯的感測器 {sensorName}"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Alternative names"
+msgstr "替代名稱"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -413,6 +550,18 @@ msgctxt "Disk I/O average operation time (iostat await)"
 msgid "Average queue to completion time per operation"
 msgstr "每次操作的平均隊列到完成時間"
 
+#: src/components/routes/sensor.tsx
+msgid "Average response"
+msgstr "平均回應"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Average response time above which the quality is degraded"
+msgstr "超過此平均回應時間即視為品質下降"
+
+#: src/components/routes/sensor.tsx
+msgid "Average response time of each check"
+msgstr "每項檢查的平均回應時間"
+
 #: src/components/routes/system/charts/cpu-charts.tsx
 msgid "Average system-wide CPU utilization"
 msgstr "系統的平均 CPU 使用率"
@@ -430,6 +579,10 @@ msgstr "GPU 引擎的平均利用率"
 msgid "Average, minimum, and maximum response time"
 msgstr "平均、最小及最大回應時間"
 
+#: src/components/routes/sensor.tsx
+msgid "avg"
+msgstr "平均"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
@@ -443,6 +596,15 @@ msgstr "備份"
 #: src/components/navbar.tsx
 msgid "Backups"
 msgstr "備份"
+
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Bad"
+msgstr "不佳"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Bad"
+msgstr "不佳"
 
 #: src/components/routes/system/charts/network-charts.tsx
 #: src/lib/alerts.ts
@@ -479,6 +641,10 @@ msgstr "之前"
 msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "在過去的{2, plural, one {# 分鐘} other {# 分鐘}}中低於{0}{1}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
+msgstr "Beszel 從中樞檢查主機的連接埠。同一主機的檢查會歸在同一個感測器。"
+
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
 msgstr "Beszel 支援 OpenID Connect 和許多 OAuth2 認證提供者。"
@@ -512,12 +678,17 @@ msgstr "瀏覽器分頁標題"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "批次新增"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Bulk Add {foo}"
 msgstr "批次新增{foo}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Bulk add sensors"
+msgstr "批次新增感測器"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Bulk copy"
@@ -550,13 +721,19 @@ msgstr "可停止"
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "取消"
+
+#: src/components/active-alerts.tsx
+msgid "Cancel the acknowledgement"
+msgstr "取消確認"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Capabilities"
@@ -576,6 +753,18 @@ msgstr "注意 - 可能遺失資料"
 #: src/components/routes/settings/general.tsx
 msgid "Celsius (°C)"
 msgstr "攝氏 (°C)"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate not trusted by the hub"
+msgstr "中樞不信任此憑證"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate presented by the server at the last check."
+msgstr "伺服器在上次檢查時提供的憑證。"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Chain"
+msgstr "憑證鏈"
 
 #: src/components/routes/settings/general.tsx
 msgid "Change display units for metrics."
@@ -606,6 +795,12 @@ msgstr "圖表期間"
 msgid "Chart width"
 msgstr "圖表寬度"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Check"
+msgstr "檢查"
+
 #: src/components/login/forgot-pass-form.tsx
 msgid "Check {email} for a reset link."
 msgstr "檢查 {email} 以取得重設連結。"
@@ -623,9 +818,30 @@ msgstr "檢查您的監控服務"
 msgid "Check your notification service"
 msgstr "檢查您的通知服務"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Checks"
+msgstr "檢查項目"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Checks added to {sensorName}"
+msgstr "已將檢查新增至 {sensorName}"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Checksum errors"
 msgstr "校驗和錯誤"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Choose a known port"
+msgstr "選擇常用連接埠"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Choose at least one port."
+msgstr "請至少選擇一個連接埠。"
 
 #: src/components/reboots-table.tsx
 msgctxt "Clean shutdown"
@@ -638,6 +854,8 @@ msgstr "正常"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Clear"
 msgstr "清除"
@@ -671,9 +889,24 @@ msgstr "點擊複製"
 msgid "Close"
 msgstr "關閉"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Code"
+msgstr "代碼"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "收集間隔"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Color"
+msgstr "顏色"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Columns"
+msgstr "欄位"
 
 #: src/components/login/forgot-pass-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -729,6 +962,7 @@ msgid "Container state"
 msgstr "容器狀態"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
 msgstr "容器"
@@ -914,6 +1148,15 @@ msgstr "每日"
 msgid "Data directory"
 msgstr "資料目錄"
 
+#: src/components/period-select.tsx
+msgid "Dates…"
+msgstr "日期…"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "days"
+msgstr "天"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "days of alerts"
 msgstr "天的警報"
@@ -922,6 +1165,10 @@ msgstr "天的警報"
 msgctxt "Default system layout option"
 msgid "Default"
 msgstr "預設"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Default color"
+msgstr "預設顏色"
 
 #: src/components/routes/settings/general.tsx
 msgid "Default time period"
@@ -933,9 +1180,20 @@ msgstr "預設時間段"
 msgid "Default URL"
 msgstr "預設網址"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Degraded"
+msgstr "下降"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Degraded or bad"
+msgstr "下降或不佳"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -946,7 +1204,7 @@ msgstr "刪除"
 
 #: src/components/reboots-table.tsx
 msgid "Delete ({selectedCount})"
-msgstr ""
+msgstr "刪除 ({selectedCount})"
 
 #: src/components/reboots-table.tsx
 #~ msgid "Delete {selectedCount} reboots?"
@@ -966,7 +1224,11 @@ msgstr "要刪除群組 {originalName} 嗎？"
 
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
-msgstr ""
+msgstr "要刪除選取的重新開機紀錄嗎？"
+
+#: src/components/routes/sensor.tsx
+msgid "Delete this sensor?"
+msgstr "要刪除此感測器嗎？"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1043,10 +1305,15 @@ msgid "Documentation"
 msgstr "文件"
 
 #. Context: System is down
+#. Context: System is down
+#. Context: System is down
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 #: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+#: src/lib/sensors.ts
 msgid "Down"
 msgstr "離線"
 
@@ -1055,6 +1322,7 @@ msgid "Down ({downSystemsLength})"
 msgstr "離線 ({downSystemsLength})"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Down: {downCount}"
 msgstr "已停止: {downCount}"
 
@@ -1074,11 +1342,14 @@ msgstr "拖曳以調整大小，按兩下以重設"
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
 msgid "Duration"
 msgstr "持續時間"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -1090,6 +1361,10 @@ msgstr "編輯"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit {foo}"
 msgstr "編輯{foo}"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Edit sensor"
+msgstr "編輯感測器"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -1105,6 +1380,11 @@ msgstr "電子郵件通知"
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "空電"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "End"
+msgstr "結束"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1141,6 +1421,8 @@ msgstr "臨時"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/config-yaml.tsx
 #: src/components/routes/settings/heartbeat.tsx
@@ -1150,6 +1432,7 @@ msgstr "臨時"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "錯誤"
@@ -1164,6 +1447,10 @@ msgstr "範例："
 #: src/components/active-alerts.tsx
 msgid "Exceeds {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "在過去的{2, plural, one {# 分鐘} other {# 分鐘}}中超過{0}{1}"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "Exchange quality"
+msgstr "通訊品質"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exec main PID"
@@ -1184,6 +1471,18 @@ msgstr "結束代碼"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exited active"
 msgstr "結束"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Expected text"
+msgstr "預期文字"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired certificate"
+msgstr "憑證已過期"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired on {expiredOn}"
+msgstr "已於 {expiredOn} 過期"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Expires after one hour or on hub restart."
@@ -1213,6 +1512,10 @@ msgstr "失敗"
 msgid "Failed Attributes:"
 msgstr "失敗屬性："
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Failed checks in a row tolerated before the sensor is down"
+msgstr "感測器判定為離線前可容許的連續失敗次數"
+
 #: src/lib/alerts.ts
 msgid "Failed Services"
 msgstr "失敗的服務"
@@ -1231,6 +1534,8 @@ msgstr "刪除監控失敗。"
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "儲存設定失敗"
@@ -1268,6 +1573,8 @@ msgstr "風扇"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1281,6 +1588,14 @@ msgstr "Fingerprint"
 #: src/components/routes/system/smart-table.tsx
 msgid "Firmware"
 msgstr "韌體"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Following the route, up to a minute…"
+msgstr "正在追蹤路由，最多一分鐘…"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "For"
+msgstr "持續"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "For <0>{min}</0> {min, plural, one {minute} other {minutes}}"
@@ -1303,7 +1618,7 @@ msgctxt "Button to copy install command"
 msgid "FreeBSD command"
 msgstr "FreeBSD 指令"
 
-#: src/components/reboots-table.tsx
+#: src/components/period-select.tsx
 msgid "From"
 msgstr "從"
 
@@ -1323,6 +1638,11 @@ msgstr "一般"
 msgid "Global"
 msgstr "全域"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Good"
+msgstr "良好"
+
 #: src/components/routes/system.tsx
 msgid "GPU"
 msgstr "GPU"
@@ -1340,18 +1660,28 @@ msgid "GPU Usage"
 msgstr "GPU 使用率"
 
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "網格"
 
 #: src/components/add-system.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Group"
 msgstr "群組"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group deleted"
 msgstr "群組已刪除"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Group of the lines without group"
+msgstr "未指定群組的行所屬群組"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group saved"
@@ -1360,6 +1690,10 @@ msgstr "群組已儲存"
 #: src/components/systems-table/systems-table.tsx
 msgid "Groups"
 msgstr "群組"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
+msgstr "群組為所有使用者整理網路感測器。刪除群組會保留其感測器，但不屬於任何群組。"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
@@ -1389,18 +1723,45 @@ msgstr "Heartbeat 監控"
 msgid "Heartbeat sent successfully"
 msgstr "Heartbeat 發送成功"
 
+#: src/components/active-alerts.tsx
+msgid "Hide acknowledged"
+msgstr "隱藏已確認"
+
+#: src/components/routes/settings/general.tsx
+msgid "Home page"
+msgstr "首頁"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgctxt "Button to copy install command"
 msgid "Homebrew command"
 msgstr "Homebrew 指令"
 
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/host-links.tsx
+msgid "Host"
+msgstr "主機"
+
 #: src/components/add-system.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Host / IP"
 msgstr "Host / IP"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host not reached: the last hops do not answer."
+msgstr "未到達主機：最後幾個躍點沒有回應。"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host reached in {hopCount} hops."
+msgstr "經過 {hopCount} 個躍點到達主機。"
 
 #: src/lib/quiet-hours.ts
 msgid "Host restart"
@@ -1450,6 +1811,10 @@ msgstr "閒置"
 msgid "If you've lost the password to your admin account, you may reset it using the following command."
 msgstr "如果您遺失管理員帳號密碼，可以使用以下指令重設。"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Ignore TLS certificate errors"
+msgstr "忽略 TLS 憑證錯誤"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 msgctxt "Docker image"
@@ -1474,6 +1839,15 @@ msgstr "重要服務"
 msgid "Inactive"
 msgstr "未啟用"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Information"
+msgstr "資訊"
+
 #: src/components/reboots-table.tsx
 msgid "Initiated by"
 msgstr "發起者"
@@ -1488,9 +1862,14 @@ msgstr "執行個體"
 msgid "Instance name"
 msgstr "執行個體名稱"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Interruptions: {incidentCount}"
+msgstr "中斷次數：{incidentCount}"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Interval"
 msgstr "間隔"
 
@@ -1501,6 +1880,30 @@ msgstr "間隔 (秒)"
 #: src/components/login/auth-form.tsx
 msgid "Invalid email address."
 msgstr "無效的電子郵件地址。"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by"
+msgstr "簽發者"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by {linkIssuer}, valid until {linkUntil}"
+msgstr "由 {linkIssuer} 簽發，有效期至 {linkUntil}"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued to"
+msgstr "簽發對象"
+
+#: src/components/routes/sensor.tsx
+msgid "Its checks, history and interruptions will be deleted."
+msgstr "其檢查、歷史記錄與中斷記錄將被刪除。"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are kept and moved to no group."
+msgstr "其感測器會保留，並移至無群組。"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are now without group."
+msgstr "其感測器現在不屬於任何群組。"
 
 #: src/components/important-targets.tsx
 msgid "Its state alerts stop. The following rules change:"
@@ -1518,18 +1921,60 @@ msgstr "其系統現在沒有群組。"
 msgid "Keep"
 msgstr "保留"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Known ports"
+msgstr "常用連接埠"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Label"
+msgstr "標籤"
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "語言"
+
+#: src/components/routes/sensor.tsx
+msgid "Last 30 minutes"
+msgstr "最近 30 分鐘"
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Last alert"
 msgstr "最近的警報"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Last check"
+msgstr "最後檢查"
+
+#: src/components/routes/sensor.tsx
+msgid "Last hour"
+msgstr "最近一小時"
+
 #: src/components/routes/system/agent-details.tsx
 msgid "Last lines logged by the agent of {name} since it started."
 msgstr "{name} 的代理程式自啟動以來記錄的最後幾行。"
 
+#: src/components/routes/sensor.tsx
+msgid "Last result of each check."
+msgstr "每項檢查的最新結果。"
+
+#: src/components/routes/sensor.tsx
+msgid "Last update"
+msgstr "最後更新"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Latency (ms)"
+msgstr "延遲 (ms)"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Latest interruptions"
+msgstr "最近的中斷"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "版面配置"
@@ -1546,6 +1991,22 @@ msgstr "生命週期"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "limit"
 msgstr "限制"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: the host is missing"
+#~ msgstr ""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: unknown service \"{check}\""
+#~ msgstr ""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: the host is missing"
+msgstr "第 {lineNumber} 行：缺少主機"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: unknown service \"{check}\""
+msgstr "第 {lineNumber} 行：未知的服務「{check}」"
 
 #: src/components/routes/system/charts/load-average-chart.tsx
 msgid "Load Average"
@@ -1576,6 +2037,7 @@ msgstr "平均負載"
 msgid "Load state"
 msgstr "載入狀態"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
 msgstr "載入中..."
@@ -1587,6 +2049,10 @@ msgstr "本機磁碟"
 #: src/components/routes/system/agent-details.tsx
 msgid "Location"
 msgstr "位置"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Location, owner, role…"
+msgstr "位置、擁有者、用途…"
 
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
@@ -1617,7 +2083,16 @@ msgstr "系統記錄"
 msgid "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
 msgstr "在尋找從哪裡建立警報嗎？點擊系統列表中的小鈴鐺<0/>。"
 
+#. Packet loss
+#: src/components/routes/sensor.tsx
+msgid "loss"
+msgstr "遺失"
+
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgctxt "Packet loss"
 msgid "Loss"
 msgstr "封包遺失"
@@ -1635,6 +2110,9 @@ msgstr "主 PID"
 msgid "Manage display and notification preferences."
 msgstr "管理顯示和通知偏好。"
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1686,9 +2164,19 @@ msgstr "記憶體使用量"
 msgid "Memory usage of containers"
 msgstr "容器的記憶體使用量"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Message"
+msgstr "訊息"
+
 #: src/lib/quiet-hours.ts
 msgid "Migration"
 msgstr "遷移"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "min"
+msgstr "分鐘"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -1704,7 +2192,6 @@ msgstr "型號"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitor"
 msgstr "監控"
 
@@ -1713,6 +2200,7 @@ msgid "Monitors created"
 msgstr "已建立監控"
 
 #: src/components/overflow-tabs.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "More"
 msgstr "更多"
 
@@ -1725,6 +2213,11 @@ msgstr "掛載點"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1739,6 +2232,10 @@ msgstr "此中樞的名稱與預設網址，用於通知連結並顯示在介面
 #: src/components/routes/settings/general.tsx
 msgid "Name of the service created when installing an agent with the Linux or Windows commands. Existing agents keep their service name."
 msgstr "使用 Linux 或 Windows 指令安裝代理程式時所建立的服務名稱。現有代理程式會保留其服務名稱。"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Name to resolve"
+msgstr "要解析的名稱"
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
@@ -1770,8 +2267,18 @@ msgstr "網路監控封包遺失"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
+#: src/lib/home-page.ts
 msgid "Network Monitors"
 msgstr "網路監控"
+
+#: src/components/routes/monitors.tsx
+msgid "Network monitors from a host"
+msgstr "來自主機的網路監控"
+
+#: src/components/command-palette.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Network sensors"
+msgstr "網路感測器"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Network traffic of containers"
@@ -1812,17 +2319,32 @@ msgid "No alert"
 msgstr "無警報"
 
 #: src/components/alerts/alert-button.tsx
+#: src/components/routes/sensor.tsx
 msgid "No alerts configured"
 msgstr "未設定警報"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "No answer"
+msgstr "沒有回應"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "No certificate yet: the details appear after the next HTTPS check."
+msgstr "尚無憑證：詳細資料會在下次 HTTPS 檢查後顯示。"
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "此儲存池沒有可用的詳細資料。"
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "No group"
 msgstr "無群組"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "No interruptions over this period."
+msgstr "此期間沒有中斷。"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1843,6 +2365,8 @@ msgstr "找不到結果。"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No results."
 msgstr "沒有結果。"
@@ -1850,6 +2374,10 @@ msgstr "沒有結果。"
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "此裝置沒有可用的 S.M.A.R.T. 屬性。"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "No sensor yet: add the hosts and ports that Beszel should check."
+msgstr "尚無感測器：請新增 Beszel 要檢查的主機與連接埠。"
 
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
@@ -1899,6 +2427,27 @@ msgstr "支援 OAuth 2 / OIDC"
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
 msgstr "每次重新啟動時，將會以檔案中的系統定義更新資料庫。"
 
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per 15 seconds"
+#~ msgstr "每 15 秒一個長條"
+
+#: src/components/routes/sensor.tsx
+msgid "One bar per interval ({every})"
+msgstr "每個間隔一個長條（{every}）"
+
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per minute"
+#~ msgstr "每分鐘一個長條"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
+msgstr "每台主機一行：主機、服務、標籤、群組、名稱。服務為常用連接埠（ssh、https、dns…）、TCP 連接埠號碼或 協定:連接埠，以 + 分隔。同一主機的各行會合併為一個感測器。"
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "One of the chosen ports does not respond."
+msgstr "所選連接埠之一沒有回應。"
+
 #: src/lib/alerts.ts
 msgid "One or more containers are unhealthy"
 msgstr "一個或多個容器處於不健康狀態"
@@ -1921,6 +2470,10 @@ msgstr "一次性"
 msgid "One-time password"
 msgstr "一次性密碼"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Ongoing"
+msgstr "進行中"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Only administrators can change this setting."
@@ -1936,6 +2489,15 @@ msgstr "只有管理員可以變更此設定。"
 msgid "Open menu"
 msgstr "開啟選單"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Optional, such as the name of the service"
+msgstr "選填，例如服務名稱"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Options"
+msgstr "選項"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "或繼續使用"
@@ -1945,13 +2507,38 @@ msgstr "或繼續使用"
 msgid "Other"
 msgstr "其他"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Other port…"
+msgstr "其他連接埠…"
+
 #: src/components/alerts/alerts-sheet.tsx
 msgid "Overwrite existing alerts"
 msgstr "覆蓋現有警報"
 
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet loss"
+msgstr "封包遺失"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss ({periodLabel})"
+msgstr "封包遺失（{periodLabel}）"
+
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Packet loss (%)"
 msgstr "封包遺失 (%)"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss (%) of all the checks"
+msgstr "所有檢查的封包遺失率 (%)"
+
+#: src/components/routes/sensor.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet quality"
+msgstr "封包品質"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -1967,6 +2554,10 @@ msgstr "頁面"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Page {0} of {1}"
 msgstr "第 {0} 頁，共 {1} 頁"
+
+#: src/components/routes/settings/general.tsx
+msgid "Page opened at start and by the logo."
+msgstr "啟動時及點選標誌時開啟的頁面。"
 
 #: src/components/command-palette.tsx
 msgid "Pages / Settings"
@@ -1994,11 +2585,14 @@ msgid "Past"
 msgstr "已過期"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Pause"
 msgstr "暫停"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Paused"
 msgstr "已暫停"
 
@@ -2009,6 +2603,10 @@ msgstr "已暫停 ({pausedSystemsLength})"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Payload format"
 msgstr "Payload 格式"
+
+#: src/lib/sensors.ts
+msgid "Pending"
+msgstr "等待中"
 
 #: src/components/routes/system/cpu-sheet.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2022,6 +2620,10 @@ msgstr "磁碟忙於 I/O 操作的時間百分比"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Percentage of time spent in each state"
 msgstr "狀態時間佔比"
+
+#: src/components/period-select.tsx
+msgid "Period"
+msgstr "期間"
 
 #: src/components/routes/settings/general.tsx
 msgid "Periods offered in the charts of all users. The periods of 90 days or more keep one record per day for that long, which uses more disk space."
@@ -2081,10 +2683,22 @@ msgstr "儲存池健康狀態"
 msgid "Pool Usage"
 msgstr "儲存池使用率"
 
+#: src/lib/alerts.ts
+msgid "Poor packet quality"
+msgstr "封包品質不佳"
+
 #: src/components/add-system.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Port"
 msgstr "Port"
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Port not responding"
+msgstr "連接埠無回應"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
@@ -2123,10 +2737,12 @@ msgstr "正式環境、客戶、實驗室…"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Protocol"
 msgstr "通訊協定"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Public key"
 msgstr "公鑰"
 
@@ -2134,6 +2750,13 @@ msgstr "公鑰"
 #: src/components/add-system.tsx
 msgid "Public Key"
 msgstr "公鑰"
+
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Quality"
+msgstr "品質"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O average queue depth"
@@ -2214,6 +2837,15 @@ msgstr "重新開機"
 msgid "Received"
 msgstr "接收"
 
+#: src/components/sensors/sensor-badges.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Recent checks"
+msgstr "最近的檢查"
+
+#: src/components/command-palette.tsx
+msgid "Recently opened"
+msgstr "最近開啟"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "記錄時間"
@@ -2232,6 +2864,7 @@ msgid "Relationships"
 msgstr "關係"
 
 #: src/components/important-targets.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Remove"
 msgstr "移除"
 
@@ -2281,9 +2914,24 @@ msgstr "已解決"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 msgid "Response"
 msgstr "回應"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Response and uptime"
+msgstr "回應與上線時間"
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Response time"
+msgstr "回應時間"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 msgid "Response time monitoring from agents."
@@ -2294,6 +2942,7 @@ msgid "Restarts"
 msgstr "重啟次數"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Resume"
 msgstr "繼續"
@@ -2310,6 +2959,10 @@ msgstr "保留：最近 {days} 天的警報"
 msgid "Retention: the last {count} alerts of each user"
 msgstr "保留：每位使用者最近的 {count} 則警報"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Retries"
+msgstr "重試次數"
+
 #: src/lib/utils.ts
 msgctxt "Root disk label"
 msgid "Root"
@@ -2318,6 +2971,10 @@ msgstr "Root"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Rotate token"
 msgstr "重設 Token"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Route from the hub to {sensorHost}."
+msgstr "從中樞到 {sensorHost} 的路由。"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
@@ -2330,6 +2987,10 @@ msgstr "規則將刪除，其模式也涵蓋其他項目：{targets}"
 #: src/components/important-targets.tsx
 msgid "Rule deleted: {targets}"
 msgstr "規則將刪除：{targets}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Run again"
+msgstr "重新執行"
 
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
@@ -2349,6 +3010,7 @@ msgstr "S.M.A.R.T. 自我測試"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "儲存"
@@ -2393,8 +3055,16 @@ msgid "Search"
 msgstr "搜尋"
 
 #: src/components/command-palette.tsx
-msgid "Search for systems or settings..."
-msgstr "在設定或系統中搜尋..."
+#~ msgid "Search for systems or settings..."
+#~ msgstr "在設定或系統中搜尋..."
+
+#: src/components/command-palette.tsx
+#~ msgid "Search for systems, sensors or settings..."
+#~ msgstr "搜尋系統、感測器或設定..."
+
+#: src/components/command-palette.tsx
+msgid "Search for systems, sensors, containers, services or settings..."
+msgstr "搜尋系統、感測器、容器、服務或設定..."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2413,6 +3083,7 @@ msgstr "查看<0>通知設定</0>以設定您如何接收警報。"
 msgid "Select"
 msgstr "選取"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Select {foo}"
 msgstr "選取{foo}"
@@ -2459,14 +3130,46 @@ msgstr "定期發送 Outbound Ping 至外部監控服務，讓您無需將 Besze
 msgid "Send test heartbeat"
 msgstr "發送測試 Heartbeat"
 
+#: src/components/navbar.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Sensor"
+msgstr "感測器"
+
+#: src/lib/alerts.ts
+msgid "Sensor down"
+msgstr "感測器離線"
+
+#: src/components/routes/sensor.tsx
+msgid "Sensor not found."
+msgstr "找不到感測器。"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Sensors"
+msgstr "感測器"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Sensors added"
+msgstr "已新增感測器"
+
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Sent"
 msgstr "傳送"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Serial number"
+msgstr "序號"
 
 #: src/components/routes/system/smart-table.tsx
 msgid "Serial Number"
 msgstr "序號"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
@@ -2490,6 +3193,7 @@ msgid "Service state"
 msgstr "服務狀態"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -2525,6 +3229,15 @@ msgstr "設定"
 msgid "Settings saved"
 msgstr "已儲存設定"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "SHA-256 fingerprint"
+msgstr "SHA-256 指紋"
+
+#: src/components/active-alerts.tsx
+msgid "Show"
+msgstr "顯示"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Show by group"
 msgstr "依群組顯示"
@@ -2539,10 +3252,15 @@ msgstr "關機"
 msgid "Sign in"
 msgstr "登入"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Signature"
+msgstr "簽章"
+
 #: src/components/command-palette.tsx
 msgid "SMTP settings"
 msgstr "SMTP 設定"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
 msgstr "排序"
@@ -2552,6 +3270,11 @@ msgstr "排序"
 #: src/components/reboots-table.tsx
 msgid "Source"
 msgstr "來源"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Start"
+msgstr "開始"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2575,6 +3298,7 @@ msgstr "手動啟動"
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2610,6 +3334,11 @@ msgstr "狀態"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/lib/alerts.ts
@@ -2648,6 +3377,7 @@ msgstr "切換主題"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2690,6 +3420,7 @@ msgstr "系統更新"
 msgid "Systemd Services"
 msgstr "Systemd 服務"
 
+#: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2705,6 +3436,7 @@ msgstr "可以用您Data資料夾中的<0>config.yml</0>來管理系統。"
 msgid "Systems to update ({targetCount})"
 msgstr "要更新的系統（{targetCount}）"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
 msgstr "列表"
@@ -2780,6 +3512,14 @@ msgstr "代理程式會自行重新啟動並重新連線。"
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "代理程式會從 GitHub 下載 {latest} 版，然後重新啟動。"
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The average response time over 10 minutes exceeds {value} ms."
+msgstr "10 分鐘平均回應時間超過 {value} ms。"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The certificate of an HTTPS check expires within {value} days."
+msgstr "HTTPS 檢查的憑證將在 {value} 天內到期。"
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "尚不知道最新的代理程式版本"
@@ -2787,6 +3527,18 @@ msgstr "尚不知道最新的代理程式版本"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "當所有系統都正常運行時，整體狀態為 <0>正常</0>；當觸發警報時為 <1>警告</1>；當任何系統故障時為 <2>錯誤</2>。"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet loss over 10 minutes exceeds {value}%."
+msgstr "10 分鐘封包遺失率超過 {value}%。"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is bad."
+msgstr "10 分鐘內的封包品質不佳。"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is degraded or bad."
+msgstr "10 分鐘內的封包品質下降或不佳。"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "The rules are created on each system."
@@ -2812,6 +3564,14 @@ msgstr "此操作無法復原。這將永久刪除資料庫中{name}的所有當
 msgid "This agent is too old to be managed from the hub: update it once on the system."
 msgstr "此代理程式版本過舊，無法從中樞管理：請在系統上手動更新一次。"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "This host already has a sensor: {added} new check(s) were added to it."
+msgstr "此主機已有感測器：已新增 {added} 項新檢查。"
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This sensor until {until}"
+msgstr "此感測器，直到 {until}"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
 msgstr "此系統，直到 {until}"
@@ -2821,6 +3581,11 @@ msgstr "此系統，直到 {until}"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "This will permanently delete all selected records from the database."
 msgstr "這將從資料庫中永久刪除所有選定的記錄。"
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Threshold"
+msgstr "閾值"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -2834,7 +3599,14 @@ msgstr "儲存池 {displayName} 的傳輸速率"
 msgid "Time format"
 msgstr "時間格式"
 
-#: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-cert.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "TLS certificate"
+msgstr "TLS 憑證"
+
+#: src/components/period-select.tsx
 msgid "To"
 msgstr "至"
 
@@ -2874,6 +3646,10 @@ msgstr "每個介面的總接收資料量"
 msgid "Total data sent for each interface"
 msgstr "每個介面的總傳送資料量"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Total duration: {totalDuration}"
+msgstr "總時長：{totalDuration}"
+
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
 msgid "Total time spent on read/write (can exceed 100%)"
@@ -2886,8 +3662,13 @@ msgstr "總計：{0}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Total: {totalCount}"
 msgstr "總計: {totalCount}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Traced with the traceroute command of the hub."
+msgstr "使用中樞的 traceroute 命令追蹤。"
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
@@ -3011,6 +3792,7 @@ msgstr "通用 Token"
 #. Context: Battery state
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/lib/i18n.ts
+#: src/lib/sensors.ts
 msgid "Unknown"
 msgstr "未知"
 
@@ -3019,9 +3801,17 @@ msgstr "未知"
 msgid "Unlimited"
 msgstr "無限制"
 
+#: src/components/sensors/sensor-badges.tsx
+msgid "Unreachable"
+msgstr "無法連線"
+
+#. Context: System is up
+#. Context: System is up
 #. Context: System is up
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Up"
 msgstr "上線"
 
@@ -3034,6 +3824,7 @@ msgid "Up to date"
 msgstr "最新"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Up: {upCount}"
 msgstr "執行中: {upCount}"
 
@@ -3091,6 +3882,17 @@ msgstr "上傳"
 msgid "Uptime"
 msgstr "運行時間"
 
+#: src/components/routes/sensor.tsx
+msgid "Uptime ({periodLabel})"
+msgstr "上線率（{periodLabel}）"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Uptime (24h)"
+msgstr "上線率（24 小時）"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
@@ -3134,6 +3936,18 @@ msgctxt "Disk I/O utilization"
 msgid "Utilization"
 msgstr "利用率"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid and trusted certificate"
+msgstr "有效且受信任的憑證"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid from"
+msgstr "生效日期"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid until"
+msgstr "到期日期"
+
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
@@ -3143,6 +3957,8 @@ msgstr "值"
 msgid "Version"
 msgstr "版本"
 
+#: src/components/active-alerts.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "View"
@@ -3162,6 +3978,7 @@ msgstr "檢視最近的 {count} 則警報。"
 msgid "View your alerts of the last {days} days."
 msgstr "檢視最近 {days} 天的警報。"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "Visible Fields"
@@ -3257,6 +4074,10 @@ msgstr "YAML 設定檔"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Yes"
 msgstr "是"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Your alerts on this sensor. Quiet hours of the sensor and global ones silence them."
+msgstr "您對此感測器的警報。感測器與全域的靜音時段會使其靜音。"
 
 #: src/components/routes/settings/layout.tsx
 msgid "Your user settings have been updated."

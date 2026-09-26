@@ -79,13 +79,35 @@ export function quietHoursEnd(record: QuietHoursRecord, now = new Date()): Date 
 	return end
 }
 
+/** A system or a network sensor, whose quiet hours are the global windows and its own */
+export interface QuietHoursTarget {
+	system?: string
+	sensor?: string
+}
+
+/** Whether a window applies to a target: global windows and the windows of the target; all without target */
+export function quietHoursAppliesTo(record: QuietHoursRecord, target?: QuietHoursTarget) {
+	if (!target?.system && !target?.sensor) {
+		return true
+	}
+	if (!record.system && !record.sensor) {
+		return true
+	}
+	return (!!target.system && record.system === target.system) || (!!target.sensor && record.sensor === target.sensor)
+}
+
 /**
- * Active windows, soonest ending first. With a systemId, only the windows that
- * apply to it (global or for this system); otherwise all active windows.
+ * Active windows, soonest ending first. With a system id or a target, only the
+ * windows that apply to it (global or its own); otherwise all active windows.
  */
-export function activeQuietHours(records: Record<string, QuietHoursRecord>, systemId?: string, now = new Date()) {
+export function activeQuietHours(
+	records: Record<string, QuietHoursRecord>,
+	target?: string | QuietHoursTarget,
+	now = new Date()
+) {
+	const applies = typeof target === "string" ? { system: target } : target
 	return Object.values(records)
-		.filter((record) => (!systemId || !record.system || record.system === systemId) && quietHoursState(record, now) === "active")
+		.filter((record) => quietHoursAppliesTo(record, applies) && quietHoursState(record, now) === "active")
 		.sort((a, b) => quietHoursEnd(a, now).getTime() - quietHoursEnd(b, now).getTime())
 }
 

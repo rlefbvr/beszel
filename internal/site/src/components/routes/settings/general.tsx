@@ -20,6 +20,7 @@ import { $agentInstallDir, $agentServiceName, $chartPeriods, $servicesInterval, 
 import { chartTimeData, currentHour12, longChartPeriods, secondsToString } from "@/lib/utils"
 import type { ChartTimes, UserSettings } from "@/types"
 import { basePath } from "@/components/router"
+import { type HomePage, homePages } from "@/lib/home-page"
 import { saveSettings } from "./layout"
 
 /** Allowed agent service names: safe in file names and shell commands */
@@ -220,6 +221,26 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 									</SelectItem>
 								</SelectContent>
 							</Select>
+						</div>
+						<div className="grid gap-2">
+							<Label className="block" htmlFor="homePage">
+								<Trans>Home page</Trans>
+							</Label>
+							<Select name="homePage" key={userSettings.homePage} defaultValue={userSettings.homePage ?? "home"}>
+								<SelectTrigger id="homePage">
+									<SelectValue />
+								</SelectTrigger>
+								<SelectContent>
+									{(Object.keys(homePages) as HomePage[]).map((page) => (
+										<SelectItem key={page} value={page}>
+											{homePages[page]()}
+										</SelectItem>
+									))}
+								</SelectContent>
+							</Select>
+							<p className="text-xs text-muted-foreground">
+								<Trans>Page opened at start and by the logo.</Trans>
+							</p>
 						</div>
 					</div>
 				</div>

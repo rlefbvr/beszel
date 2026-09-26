@@ -3,6 +3,7 @@ import { Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
 import { getPagePath } from "@nanostores/router"
 import {
+	ChevronDownIcon,
 	ContainerIcon,
 	DatabaseBackupIcon,
 	HardDriveIcon,
@@ -36,24 +37,31 @@ import {
 import { isAdmin, isReadOnlyUser, logOut, pb } from "@/lib/api"
 import { cn, runOnce } from "@/lib/utils"
 import { AddSystemDialog } from "./add-system"
+import { Dialog } from "./ui/dialog"
 import { Logo } from "./logo"
+import { homePagePath } from "@/lib/home-page"
 import { $headerLabel } from "@/lib/instance"
+import { $userSettings } from "@/lib/stores"
 import { ModeToggle } from "./mode-toggle"
-import { $router, basePath, Link, navigate, prependBasePath } from "./router"
+import { $router, Link, navigate, prependBasePath } from "./router"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 
 const CommandPalette = lazy(() => import("./command-palette"))
+const SensorDialog = lazy(() => import("./sensors/sensor-dialog").then((module) => ({ default: module.SensorDialog })))
 
 const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0
 
 export default function Navbar() {
 	const [addSystemDialogOpen, setAddSystemDialogOpen] = useState(false)
 	const [commandPaletteOpen, setCommandPaletteOpen] = useState(false)
+	const [addSensorOpen, setAddSensorOpen] = useState(false)
 
 	const AdminLinks = AdminDropdownGroup()
 
 	const systemTranslation = t`System`
 	const headerLabel = useStore($headerLabel)
+	useStore($userSettings)
+	const homePath = homePagePath()
 
 	return (
 		<div className="flex items-center h-14 md:h-16 bg-card px-4 pe-3 sm:px-6 border border-border/60 bt-0 rounded-md my-4">
@@ -63,7 +71,7 @@ export default function Navbar() {
 			<AddSystemDialog open={addSystemDialogOpen} setOpen={setAddSystemDialogOpen} />
 
 			<Link
-				href={basePath}
+				href={homePath}
 				aria-label="Home"
 				className="p-2 ps-0 me-3 group"
 				onMouseEnter={runOnce(() => import("@/components/routes/home"))}
@@ -114,6 +122,10 @@ export default function Navbar() {
 							>
 								<NetworkIcon className="h-4 w-4 me-2.5" strokeWidth={1.5} />
 								<Trans>Network Monitors</Trans>
+							</DropdownMenuItem>
+							<DropdownMenuItem onClick={() => navigate(getPagePath($router, "home"))} className="flex items-center">
+								<ServerIcon className="h-4 w-4 me-2.5" strokeWidth={1.5} />
+								<Trans>All Systems</Trans>
 							</DropdownMenuItem>
 							<DropdownMenuItem
 								onClick={() => navigate(getPagePath($router, "containers"))}
@@ -198,6 +210,20 @@ export default function Navbar() {
 					</TooltipTrigger>
 					<TooltipContent>
 						<Trans>Network Monitors</Trans>
+					</TooltipContent>
+				</Tooltip>
+				<Tooltip>
+					<TooltipTrigger asChild>
+						<Link
+							href={getPagePath($router, "home")}
+							className={cn("hidden md:grid", buttonVariants({ variant: "ghost", size: "icon" }))}
+							aria-label="All Systems"
+						>
+							<ServerIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
+						</Link>
+					</TooltipTrigger>
+					<TooltipContent>
+						<Trans>All Systems</Trans>
 					</TooltipContent>
 				</Tooltip>
 				<Tooltip>
@@ -293,11 +319,33 @@ export default function Navbar() {
 					</DropdownMenuContent>
 				</DropdownMenu>
 				{!isReadOnlyUser() && (
-					<Button variant="outline" className="flex gap-1 ms-2" onClick={() => setAddSystemDialogOpen(true)}>
-						<PlusIcon className="h-4 w-4 -ms-1" />
-						<Trans>Add {{ foo: systemTranslation }}</Trans>
-					</Button>
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<Button variant="outline" className="flex gap-1 ms-2">
+								<PlusIcon className="h-4 w-4 -ms-1" />
+								<Trans>Add</Trans>
+								<ChevronDownIcon className="size-4 opacity-60" />
+							</Button>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent align="end">
+							<DropdownMenuItem className="gap-2.5" onSelect={() => setAddSystemDialogOpen(true)}>
+								<ServerIcon className="size-4" strokeWidth={1.5} />
+								<Trans>System</Trans>
+							</DropdownMenuItem>
+							<DropdownMenuItem className="gap-2.5" onSelect={() => setAddSensorOpen(true)}>
+								<NetworkIcon className="size-4" strokeWidth={1.5} />
+								<Trans>Sensor</Trans>
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
 				)}
+				<Dialog open={addSensorOpen} onOpenChange={setAddSensorOpen}>
+					{addSensorOpen && (
+						<Suspense>
+							<SensorDialog onDone={() => setAddSensorOpen(false)} />
+						</Suspense>
+					)}
+				</Dialog>
 			</div>
 		</div>
 	)

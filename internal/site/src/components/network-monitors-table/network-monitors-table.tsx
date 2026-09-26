@@ -25,7 +25,7 @@ import {
 	AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
 import { Button, buttonVariants } from "@/components/ui/button"
-import { memo, useCallback, useMemo, useRef, useState } from "react"
+import { memo, type ReactNode, useCallback, useMemo, useRef, useState } from "react"
 import { getMonitorColumns } from "@/components/network-monitors-table/network-monitors-columns"
 import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -69,10 +69,13 @@ export default function NetworkMonitorsTableNew({
 	systemId,
 	monitors,
 	isLoading,
+	title,
 }: {
 	systemId?: string
 	monitors: NetworkMonitorRecord[]
 	isLoading: boolean
+	/** title of the card, "Network Monitors" by default */
+	title?: ReactNode
 }) {
 	const [sorting, setSorting] = useBrowserStorage<SortingState>(
 		`sort-np-target-${systemId ? 1 : 0}`,
@@ -253,9 +256,7 @@ export default function NetworkMonitorsTableNew({
 			<CardHeader className="p-0 mb-3 sm:mb-4">
 				<div className="grid md:flex gap-x-5 gap-y-3 w-full items-end">
 					<div className="px-2 sm:px-1">
-						<CardTitle className="mb-2">
-							<Trans>Network Monitors</Trans>
-						</CardTitle>
+						<CardTitle className="mb-2">{title ?? <Trans>Network Monitors</Trans>}</CardTitle>
 						<div className="text-sm text-muted-foreground flex items-center flex-wrap">
 							<Trans>Response time monitoring from agents.</Trans>
 						</div>

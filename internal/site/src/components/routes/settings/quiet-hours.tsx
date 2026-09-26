@@ -11,6 +11,8 @@ import {
 	ActivityIcon,
 	PenSquareIcon,
 	MessageSquareTextIcon,
+	NetworkIcon,
+	GlobeIcon,
 } from "lucide-react"
 import { useEffect, useMemo, useState } from "react"
 
@@ -43,10 +45,12 @@ import {
 	$quietHours,
 	isPresetReason,
 	type QuietHoursState,
+	quietHoursAppliesTo,
 	quietHoursReasonLabel,
 	quietHoursReasons,
 	quietHoursState,
 } from "@/lib/quiet-hours"
+import { $sensors } from "@/lib/sensors"
 import { useNow } from "@/lib/time"
 import { $allSystemsById, $systems } from "@/lib/stores"
 import { cn, formatShortDate } from "@/lib/utils"
@@ -58,13 +62,22 @@ const quietHoursTranslation = t`Quiet Hours`
 const customReason = "other"
 
 /**
- * Quiet hours windows with their state. With a systemId, only the windows
- * that apply to that system (global or its own), and new windows target it.
+ * Quiet hours windows with their state. With a systemId or a sensorId, only
+ * the windows that apply to it (global or its own), and new windows target it.
  * compact leaves the title and description to the dialog showing the table.
  */
-export function QuietHours({ systemId, compact = false }: { systemId?: string; compact?: boolean }) {
+export function QuietHours({
+	systemId,
+	sensorId,
+	compact = false,
+}: {
+	systemId?: string
+	sensorId?: string
+	compact?: boolean
+}) {
 	const records = useStore($quietHours)
 	const systemsById = useStore($allSystemsById)
+	const sensors = useStore($sensors)
 	const [dialogOpen, setDialogOpen] = useState(false)
 	const [editingRecord, setEditingRecord] = useState<QuietHoursRecord | null>(null)
 	const { toast } = useToast()
@@ -75,15 +88,23 @@ export function QuietHours({ systemId, compact = false }: { systemId?: string; c
 	const data = useMemo(
 		() =>
 			Object.values(records)
-				.filter((record) => !systemId || !record.system || record.system === systemId)
+				.filter((record) => quietHoursAppliesTo(record, { system: systemId, sensor: sensorId }))
 				.sort(
 					(a, b) =>
-						Number(!!a.system) - Number(!!b.system) ||
-						(systemsById[a.system]?.name ?? "").localeCompare(systemsById[b.system]?.name ?? "") ||
+						Number(!!(a.system || a.sensor)) - Number(!!(b.system || b.sensor)) ||
+						targetName(a).localeCompare(targetName(b)) ||
 						a.start.localeCompare(b.start)
 				),
-		[records, systemId, systemsById]
+		[records, systemId, sensorId, systemsById, sensors]
 	)
+
+	/** Name of the system or sensor of a window */
+	function targetName(record: QuietHoursRecord) {
+		if (record.sensor) {
+			return sensors[record.sensor]?.name ?? record.sensor
+		}
+		return systemsById[record.system]?.name ?? record.system
+	}
 
 	const handleDelete = async (id: string) => {
 		try {
@@ -146,6 +167,7 @@ export function QuietHours({ systemId, compact = false }: { systemId?: string; c
 						editingRecord={editingRecord}
 						systems={systems}
 						defaultSystem={systemId}
+						defaultSensor={sensorId}
 						onClose={closeDialog}
 						toast={toast}
 					/>
@@ -195,7 +217,21 @@ export function QuietHours({ systemId, compact = false }: { systemId?: string; c
 							{data.map((record) => (
 								<TableRow key={record.id}>
 									<TableCell className="px-4 py-3">
-										{record.system ? systemsById[record.system]?.name || record.system : <Trans>All Systems</Trans>}
+										{record.system || record.sensor ? (
+											<span className="flex items-center gap-1.5">
+												{record.sensor ? (
+													<NetworkIcon className="size-3.5 text-muted-foreground" />
+												) : (
+													<ServerIcon className="size-3.5 text-muted-foreground" />
+												)}
+												{targetName(record)}
+											</span>
+										) : (
+											<span className="flex items-center gap-1.5">
+												<GlobeIcon className="size-3.5 text-muted-foreground" />
+												<Trans>All Systems</Trans>
+											</span>
+										)}
 									</TableCell>
 									<TableCell className="px-4 py-3">
 										{record.type === "daily" ? <Trans>Daily</Trans> : <Trans>One-time</Trans>}
@@ -265,6 +301,7 @@ function QuietHoursDialog({
 	editingRecord,
 	systems,
 	defaultSystem,
+	defaultSensor,
 	onClose,
 	toast,
 }: {
@@ -272,11 +309,20 @@ function QuietHoursDialog({
 	systems: SystemRecord[]
 	/** system selected for new windows */
 	defaultSystem?: string
+	/** network sensor of new windows: the dialog then targets it instead of a system */
+	defaultSensor?: string
 	onClose: () => void
 	toast: ReturnType<typeof useToast>["toast"]
 }) {
+	const sensors = useStore($sensors)
+	const sensorList = Object.values(sensors).sort((a, b) => a.name.localeCompare(b.name))
+	/** what the window silences: all, a system or a network sensor */
+	const initialTarget = (system?: string, sensor?: string) => (sensor ? "sensor" : system ? "system" : "global")
+	const [target, setTarget] = useState<"global" | "system" | "sensor">(
+		editingRecord ? initialTarget(editingRecord.system, editingRecord.sensor) : initialTarget(defaultSystem, defaultSensor)
+	)
 	const [selectedSystem, setSelectedSystem] = useState(editingRecord?.system || "")
-	const [isGlobal, setIsGlobal] = useState(!editingRecord?.system)
+	const [selectedSensor, setSelectedSensor] = useState(editingRecord?.sensor || defaultSensor || "")
 	const [windowType, setWindowType] = useState<"one-time" | "daily">(editingRecord?.type || "one-time")
 	const [startDateTime, setStartDateTime] = useState("")
 	const [endDateTime, setEndDateTime] = useState("")
@@ -289,7 +335,8 @@ function QuietHoursDialog({
 	useEffect(() => {
 		if (editingRecord) {
 			setSelectedSystem(editingRecord.system || "")
-			setIsGlobal(!editingRecord.system)
+			setSelectedSensor(editingRecord.sensor || "")
+			setTarget(initialTarget(editingRecord.system, editingRecord.sensor))
 			setWindowType(editingRecord.type)
 			if (editingRecord.type === "daily") {
 				// Extract time from datetime
@@ -317,7 +364,8 @@ function QuietHoursDialog({
 			onePm.setHours(13, 0, 0, 0)
 
 			setSelectedSystem(defaultSystem ?? "")
-			setIsGlobal(!defaultSystem)
+			setSelectedSensor(defaultSensor ?? "")
+			setTarget(initialTarget(defaultSystem, defaultSensor))
 			setWindowType("one-time")
 			setStartDateTime(formatDateTimeLocal(noon))
 			setEndDateTime(formatDateTimeLocal(onePm))
@@ -326,7 +374,7 @@ function QuietHoursDialog({
 			setReasonChoice("")
 			setCustomReasonText("")
 		}
-	}, [editingRecord, defaultSystem])
+	}, [editingRecord, defaultSystem, defaultSensor])
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
@@ -354,7 +402,8 @@ function QuietHoursDialog({
 
 			const data = {
 				user: pb.authStore.record?.id,
-				system: isGlobal ? "" : selectedSystem,
+				system: target === "system" ? selectedSystem : "",
+				sensor: target === "sensor" ? selectedSensor : "",
 				type: windowType,
 				start: startValue,
 				end: endValue,
@@ -392,16 +441,51 @@ function QuietHoursDialog({
 				</DialogDescription>
 			</DialogHeader>
 			<form onSubmit={handleSubmit} className="space-y-4">
-				<Tabs value={isGlobal ? "global" : "system"} onValueChange={(value) => setIsGlobal(value === "global")}>
-					<TabsList className="grid w-full grid-cols-2">
-						<TabsTrigger value="global">
+				<Tabs value={target} onValueChange={(value) => setTarget(value as typeof target)}>
+					<TabsList className="grid w-full grid-cols-3">
+						<TabsTrigger value="global" className="gap-1.5">
+							<GlobeIcon className="size-3.5" />
 							<Trans>Global</Trans>
 						</TabsTrigger>
-						<TabsTrigger value="system">
+						<TabsTrigger value="system" className="gap-1.5">
+							<ServerIcon className="size-3.5" />
 							<Trans>System</Trans>
+						</TabsTrigger>
+						<TabsTrigger value="sensor" className="gap-1.5">
+							<NetworkIcon className="size-3.5" />
+							<Trans>Sensor</Trans>
 						</TabsTrigger>
 					</TabsList>
 
+					<TabsContent value="sensor" className="mt-4">
+						<div className="grid gap-2">
+							<Label htmlFor="sensor">
+								<Trans>Sensor</Trans>
+							</Label>
+							<Select value={selectedSensor} onValueChange={setSelectedSensor}>
+								<SelectTrigger id="sensor">
+									<SelectValue placeholder={t`Select ${{ foo: t`Sensor`.toLocaleLowerCase() }}`} />
+								</SelectTrigger>
+								<SelectContent>
+									{sensorList.map((sensor) => (
+										<SelectItem key={sensor.id} value={sensor.id}>
+											{sensor.name}
+										</SelectItem>
+									))}
+								</SelectContent>
+							</Select>
+							{/* Hidden input for native form validation */}
+							<input
+								className="sr-only"
+								type="text"
+								tabIndex={-1}
+								autoComplete="off"
+								value={selectedSensor}
+								onChange={() => {}}
+								required={target === "sensor"}
+							/>
+						</div>
+					</TabsContent>
 					<TabsContent value="system" className="mt-4 space-y-4">
 						<div className="grid gap-2">
 							<Label htmlFor="system">
@@ -427,7 +511,7 @@ function QuietHoursDialog({
 								autoComplete="off"
 								value={selectedSystem}
 								onChange={() => {}}
-								required={!isGlobal}
+								required={target === "system"}
 							/>
 						</div>
 					</TabsContent>

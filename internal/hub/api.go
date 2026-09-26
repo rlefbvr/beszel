@@ -9,6 +9,7 @@ import (
 	"net/url"
 	"net/netip"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
 	"uuid"
@@ -18,6 +19,7 @@ import (
 	"github.com/henrygd/beszel/internal/alerts"
 	"github.com/henrygd/beszel/internal/ghupdate"
 	"github.com/henrygd/beszel/internal/hub/config"
+	"github.com/henrygd/beszel/internal/hub/sensors"
 	"github.com/henrygd/beszel/internal/hub/systems"
 	"github.com/henrygd/beszel/internal/hub/utils"
 	"github.com/pocketbase/dbx"
@@ -207,6 +209,9 @@ func (h *Hub) registerApiRoutes(se *core.ServeEvent) error {
 	apiAuth.GET("/systemd/info", h.getSystemdInfo)
 	// agent details, logs and updates
 	apiAuth.GET("/agent/info", h.getAgentInfo)
+	apiAuth.GET("/sensors/{id}/heartbeat", h.getSensorHeartbeat)
+	apiAuth.GET("/sensors/heartbeats", h.getSensorsHeartbeats)
+	apiAuth.GET("/sensors/{id}/traceroute", h.getSensorTraceroute).BindFunc(excludeReadOnlyRole)
 	apiAuth.GET("/agent/logs", h.getAgentLogs)
 	apiAuth.GET("/agent/latest", h.getLatestAgentVersion)
 	apiAuth.POST("/agent/update", h.updateAgents).BindFunc(excludeReadOnlyRole)
@@ -533,4 +538,55 @@ func (h *Hub) refreshZfsData(e *core.RequestEvent) error {
 	}
 
 	return e.JSON(http.StatusOK, map[string]string{"status": "ok"})
+}
+
+// getSensorsHeartbeats returns the last "bars" periods of every network sensor
+// (30 by default), one per interval of the sensor, for the tiles of the sensors page.
+func (h *Hub) getSensorsHeartbeats(e *core.RequestEvent) error {
+	if h.sensors == nil {
+		return e.JSON(http.StatusOK, map[string]any{})
+	}
+	bars := 30
+	if value, err := strconv.Atoi(e.Request.URL.Query().Get("bars")); err == nil {
+		bars = min(max(value, 1), 360)
+	}
+	return e.JSON(http.StatusOK, h.sensors.Heartbeats(bars, time.Now()))
+}
+
+// getSensorHeartbeat returns the probes of a network sensor over the last hour,
+// by periods of the "period" query parameter in seconds (the interval of the
+// sensor, 15 by default) over the "window" one (an hour by default), for the
+// heartbeat bar of its page.
+func (h *Hub) getSensorHeartbeat(e *core.RequestEvent) error {
+	if h.sensors == nil {
+		return e.NotFoundError("", nil)
+	}
+	period := 15
+	if value, err := strconv.Atoi(e.Request.URL.Query().Get("period")); err == nil {
+		period = min(max(value, 10), 3600)
+	}
+	window := 3600
+	if value, err := strconv.Atoi(e.Request.URL.Query().Get("window")); err == nil {
+		window = min(max(value, 60), 3600)
+	}
+	beats, ok := h.sensors.Heartbeat(e.Request.PathValue("id"), time.Duration(period)*time.Second, time.Duration(window)*time.Second, time.Now())
+	if !ok {
+		return e.NotFoundError("", nil)
+	}
+	return e.JSON(http.StatusOK, beats)
+}
+
+// getSensorTraceroute follows the route from the hub to the host of a network sensor.
+func (h *Hub) getSensorTraceroute(e *core.RequestEvent) error {
+	sensor, err := e.App.FindRecordById("sensors", e.Request.PathValue("id"))
+	if err != nil {
+		return e.NotFoundError("", nil)
+	}
+	ctx, cancel := context.WithTimeout(e.Request.Context(), 90*time.Second)
+	defer cancel()
+	result, err := sensors.RunTraceroute(ctx, sensor.GetString("host"))
+	if err != nil {
+		return e.BadRequestError(err.Error(), nil)
+	}
+	return e.JSON(http.StatusOK, result)
 }

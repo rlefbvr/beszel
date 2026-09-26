@@ -90,14 +90,35 @@ var (
 // unprivileged datagram, or exec fallback) is detected once per address
 // family and cached for subsequent monitors.
 // Returns response in microseconds, or -1 and an error on failure.
-func probeICMP(ctx context.Context, target string) (int64, error) {
+// probeICMP pings the target once: the response time in microseconds, and the
+// address pinged, resolved from a host name.
+func probeICMP(ctx context.Context, target string) (int64, net.IP, error) {
 	ctx, cancel := context.WithTimeout(ctx, 3*time.Second)
 	defer cancel()
 
 	family, ip, err := resolveICMPTarget(ctx, target)
 	if err != nil {
-		return -1, err
+		return -1, nil, err
 	}
+	if ip == nil {
+		return -1, nil, fmt.Errorf("no address for %s", target)
+	}
+	us, err := pingIP(ctx, family, ip)
+	if err != nil && (ctx.Err() != nil || isTimeout(err)) {
+		// the socket closed by the deadline gives a confusing error
+		err = fmt.Errorf("no reply from %s (timeout)", ip)
+	}
+	return us, ip, err
+}
+
+// isTimeout tells whether a network error is a timeout.
+func isTimeout(err error) bool {
+	var netErr net.Error
+	return errors.As(err, &netErr) && netErr.Timeout()
+}
+
+// pingIP pings an address with the method found to work for its family.
+func pingIP(ctx context.Context, family *icmpFamily, ip net.IP) (int64, error) {
 
 	icmpModeMu.Lock()
 	if family.mode == icmpUntried {

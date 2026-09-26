@@ -2,7 +2,7 @@ import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
 import { FolderIcon, LoaderCircleIcon, PlusIcon, Trash2Icon } from "lucide-react"
-import { useMemo, useState } from "react"
+import { type ReactNode, useMemo, useState } from "react"
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -19,6 +19,7 @@ import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTit
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
+import { $sensorGroups, $sensors, saveSensorGroups } from "@/lib/sensors"
 import { $systems } from "@/lib/stores"
 import { $systemGroups, saveSystemGroups, systemGroup } from "@/lib/system-groups"
 import { cn } from "@/lib/utils"
@@ -30,39 +31,127 @@ interface GroupDraft {
 	members: Set<string>
 }
 
-/**
- * Creates, renames and deletes the groups of systems, and chooses their systems.
- * Groups only exist through their systems: deleting a group moves its systems
- * to no group.
- */
+/** An item that belongs to a group: a system or a sensor */
+interface GroupItem {
+	id: string
+	name: string
+	group: string
+}
+
+/** Texts of the dialog, for systems or sensors */
+interface GroupTexts {
+	description: ReactNode
+	items: ReactNode
+	oneGroup: ReactNode
+	kept: ReactNode
+	deleted: () => string
+}
+
+/** Groups of the systems of the home page */
 export function ManageGroupsDialog({ initialGroup, onDone }: { initialGroup?: string; onDone: () => void }) {
 	const systems = useStore($systems)
 	const groups = useStore($systemGroups)
+	const items = useMemo(
+		() => systems.map((system) => ({ id: system.id, name: system.name, group: systemGroup(system) })),
+		[systems]
+	)
+	return (
+		<GroupsDialog
+			items={items}
+			groups={groups}
+			save={saveSystemGroups}
+			initialGroup={initialGroup}
+			onDone={onDone}
+			texts={{
+				description: (
+					<Trans>
+						Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without
+						group.
+					</Trans>
+				),
+				items: <Trans>Systems</Trans>,
+				oneGroup: <Trans>A system belongs to one group: checking it moves it from its current group.</Trans>,
+				kept: <Trans>Its systems are kept and moved to no group.</Trans>,
+				deleted: () => t`Its systems are now without group.`,
+			}}
+		/>
+	)
+}
+
+/** Groups of the network sensors */
+export function ManageSensorGroupsDialog({ initialGroup, onDone }: { initialGroup?: string; onDone: () => void }) {
+	const sensors = useStore($sensors)
+	const groups = useStore($sensorGroups)
+	const items = useMemo(
+		() =>
+			Object.values(sensors).map((sensor) => ({ id: sensor.id, name: sensor.name, group: sensor.group?.trim() ?? "" })),
+		[sensors]
+	)
+	return (
+		<GroupsDialog
+			items={items}
+			groups={groups}
+			save={saveSensorGroups}
+			initialGroup={initialGroup}
+			onDone={onDone}
+			texts={{
+				description: (
+					<Trans>
+						Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group.
+					</Trans>
+				),
+				items: <Trans>Sensors</Trans>,
+				oneGroup: <Trans>A sensor belongs to one group: checking it moves it from its current group.</Trans>,
+				kept: <Trans>Its sensors are kept and moved to no group.</Trans>,
+				deleted: () => t`Its sensors are now without group.`,
+			}}
+		/>
+	)
+}
+
+/**
+ * Creates, renames and deletes groups, and chooses their items. Groups only
+ * exist through their items: deleting a group moves its items to no group.
+ */
+function GroupsDialog({
+	items,
+	groups,
+	save: saveChanges,
+	initialGroup,
+	onDone,
+	texts,
+}: {
+	items: GroupItem[]
+	groups: string[]
+	save: (changes: { id: string; group: string }[]) => Promise<void>
+	initialGroup?: string
+	onDone: () => void
+	texts: GroupTexts
+}) {
 	const [draft, setDraft] = useState<GroupDraft>(() => editGroup(initialGroup ?? groups[0] ?? null))
 	const [search, setSearch] = useState("")
 	const [saving, setSaving] = useState(false)
 	const [confirmDelete, setConfirmDelete] = useState(false)
 
 	function editGroup(group: string | null): GroupDraft {
-		const members = new Set(group ? $systems.get().filter((s) => systemGroup(s) === group).map((s) => s.id) : [])
+		const members = new Set(group ? items.filter((item) => item.group === group).map((item) => item.id) : [])
 		return { original: group, name: group ?? "", members }
 	}
 
 	const counts = useMemo(() => {
 		const counts: Record<string, number> = {}
-		for (const system of systems) {
-			const group = systemGroup(system)
-			counts[group] = (counts[group] ?? 0) + 1
+		for (const item of items) {
+			counts[item.group] = (counts[item.group] ?? 0) + 1
 		}
 		return counts
-	}, [systems])
+	}, [items])
 
-	const visibleSystems = useMemo(() => {
+	const visibleItems = useMemo(() => {
 		const terms = search.toLowerCase().split(" ").filter(Boolean)
-		return systems
-			.filter((system) => terms.every((term) => `${system.name} ${systemGroup(system)}`.toLowerCase().includes(term)))
+		return items
+			.filter((item) => terms.every((term) => `${item.name} ${item.group}`.toLowerCase().includes(term)))
 			.sort((a, b) => a.name.localeCompare(b.name))
-	}, [systems, search])
+	}, [items, search])
 
 	const name = draft.name.trim()
 	const originalName = draft.original
@@ -78,7 +167,7 @@ export function ManageGroupsDialog({ initialGroup, onDone }: { initialGroup?: st
 	const apply = async (changes: { id: string; group: string }[], done: () => void) => {
 		setSaving(true)
 		try {
-			await saveSystemGroups(changes)
+			await saveChanges(changes)
 			done()
 		} catch (e) {
 			toast({ variant: "destructive", title: t`Failed to save settings`, description: (e as Error).message })
@@ -89,14 +178,13 @@ export function ManageGroupsDialog({ initialGroup, onDone }: { initialGroup?: st
 
 	const save = () => {
 		const changes: { id: string; group: string }[] = []
-		for (const system of $systems.get()) {
-			const current = systemGroup(system)
-			if (draft.members.has(system.id)) {
-				if (current !== name) {
-					changes.push({ id: system.id, group: name })
+		for (const item of items) {
+			if (draft.members.has(item.id)) {
+				if (item.group !== name) {
+					changes.push({ id: item.id, group: name })
 				}
-			} else if (draft.original && current === draft.original) {
-				changes.push({ id: system.id, group: "" })
+			} else if (draft.original && item.group === draft.original) {
+				changes.push({ id: item.id, group: "" })
 			}
 		}
 		apply(changes, () => {
@@ -110,12 +198,9 @@ export function ManageGroupsDialog({ initialGroup, onDone }: { initialGroup?: st
 		if (!original) {
 			return
 		}
-		const changes = $systems
-			.get()
-			.filter((system) => systemGroup(system) === original)
-			.map((system) => ({ id: system.id, group: "" }))
+		const changes = items.filter((item) => item.group === original).map((item) => ({ id: item.id, group: "" }))
 		apply(changes, () => {
-			toast({ title: t`Group deleted`, description: t`Its systems are now without group.` })
+			toast({ title: t`Group deleted`, description: texts.deleted() })
 			setDraft(editGroup(groups.find((group) => group !== original) ?? null))
 		})
 	}
@@ -126,12 +211,7 @@ export function ManageGroupsDialog({ initialGroup, onDone }: { initialGroup?: st
 				<DialogTitle>
 					<Trans>Manage groups</Trans>
 				</DialogTitle>
-				<DialogDescription>
-					<Trans>
-						Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without
-						group.
-					</Trans>
-				</DialogDescription>
+				<DialogDescription>{texts.description}</DialogDescription>
 			</DialogHeader>
 
 			<div className="grid sm:grid-cols-[16rem_minmax(0,1fr)] gap-4 min-w-0">
@@ -179,9 +259,7 @@ export function ManageGroupsDialog({ initialGroup, onDone }: { initialGroup?: st
 					</div>
 					<div className="grid gap-1.5">
 						<div className="flex items-center gap-2">
-							<Label>
-								<Trans>Systems</Trans>
-							</Label>
+							<Label>{texts.items}</Label>
 							<span className="text-sm text-muted-foreground tabular-nums">({draft.members.size})</span>
 							<Input
 								placeholder={t`Filter...`}
@@ -191,8 +269,8 @@ export function ManageGroupsDialog({ initialGroup, onDone }: { initialGroup?: st
 							/>
 						</div>
 						<div className="grid gap-1 max-h-72 overflow-y-auto rounded-md border p-2">
-							{visibleSystems.map((system) => {
-								const current = systemGroup(system)
+							{visibleItems.map((system) => {
+								const current = system.group
 								return (
 									<div key={system.id} className="flex items-center gap-2 rounded px-1.5 py-1 text-sm hover:bg-accent/40">
 										<Checkbox
@@ -212,9 +290,7 @@ export function ManageGroupsDialog({ initialGroup, onDone }: { initialGroup?: st
 								)
 							})}
 						</div>
-						<p className="text-xs text-muted-foreground">
-							<Trans>A system belongs to one group: checking it moves it from its current group.</Trans>
-						</p>
+						<p className="text-xs text-muted-foreground">{texts.oneGroup}</p>
 					</div>
 				</div>
 			</div>
@@ -242,12 +318,10 @@ export function ManageGroupsDialog({ initialGroup, onDone }: { initialGroup?: st
 			<AlertDialog open={confirmDelete} onOpenChange={setConfirmDelete}>
 				<AlertDialogContent>
 					<AlertDialogHeader>
-						<AlertDialogTitle>
+						<AlertDialogTitle className="break-words">
 							<Trans>Delete the group {originalName}?</Trans>
 						</AlertDialogTitle>
-						<AlertDialogDescription>
-							<Trans>Its systems are kept and moved to no group.</Trans>
-						</AlertDialogDescription>
+						<AlertDialogDescription>{texts.kept}</AlertDialogDescription>
 					</AlertDialogHeader>
 					<AlertDialogFooter>
 						<AlertDialogCancel>

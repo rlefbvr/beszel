@@ -50,6 +50,18 @@ msgstr "{1}개의 행 중 {0}개가 선택되었습니다."
 msgid "{0} selected"
 msgstr "{0}개 선택됨"
 
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {# active alert acknowledged} other {# active alerts acknowledged}}"
+msgstr "{ackCount, plural, other {확인된 활성 알림 #개}}"
+
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {Show # acknowledged} other {Show # acknowledged}}"
+msgstr "{ackCount, plural, other {확인된 항목 표시 (#)}}"
+
+#: src/components/routes/sensor.tsx
+msgid "{certDays} days"
+msgstr "{certDays}일"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# 코어} other {# 코어}}"
@@ -74,9 +86,21 @@ msgstr "{count, plural, other {필터링된 컨테이너 #개}}"
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, other {필터링된 서비스 #개}}"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "{count, plural, one {# sensor} other {# sensors}}"
+msgstr "{count, plural, other {센서 #개}}"
+
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, other {시스템 #개}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
+msgstr "새 센서 {created}개, 기존 센서에 검사 {added}개가 추가되었습니다."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
+msgstr "{days, plural, other {#일 후 만료}}"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "{diskName} I/O"
@@ -98,6 +122,18 @@ msgstr "{ruleCount, plural, other {상태 규칙 #개를 만들었습니다.}}"
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, other {상태 규칙 #개}}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "{seconds, plural, one {# second} other {# seconds}}"
+msgstr "{seconds, plural, other {#초}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{sensorCount} host(s), {checkCount} check(s)"
+msgstr "호스트 {sensorCount}개, 검사 {checkCount}개"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "{success} of {total} successful"
+msgstr "{total}개 중 {success}개 성공"
+
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, other {시스템 #개}}"
@@ -106,6 +142,7 @@ msgstr "{systemCount, plural, other {시스템 #개}}"
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# 스레드} other {# 스레드}}"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 hour"
 msgstr "1시간"
@@ -123,6 +160,7 @@ msgstr "1분"
 msgid "1 week"
 msgstr "1주"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 year"
 msgstr "1년"
@@ -140,10 +178,12 @@ msgstr "15분"
 msgid "180 days"
 msgstr "180일"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "24 hours"
 msgstr "24시간"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "30 days"
 msgstr "30일"
@@ -153,18 +193,44 @@ msgstr "30일"
 msgid "5 min"
 msgstr "5분"
 
+#: src/components/period-select.tsx
+msgid "7 days"
+msgstr "7일"
+
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "90 days"
 msgstr "90일"
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "A check of the sensor does not respond."
+msgstr "센서의 검사가 응답하지 않습니다."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A sensor belongs to one group: checking it moves it from its current group."
+msgstr "센서는 하나의 그룹에만 속합니다. 선택하면 현재 그룹에서 이동됩니다."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A system belongs to one group: checking it moves it from its current group."
 msgstr "시스템은 하나의 그룹에 속합니다. 선택하면 현재 그룹에서 이동합니다."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Accepted status codes"
+msgstr "허용되는 상태 코드"
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "계정"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge"
+msgstr "확인"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge all"
+msgstr "모두 확인"
 
 #. Table column
 #: src/components/routes/settings/quiet-hours.tsx
@@ -190,11 +256,11 @@ msgstr "활성화된 알림들"
 msgid "Active state"
 msgstr "활성 상태"
 
-#: src/components/add-system.tsx
-#: src/components/add-system.tsx
 #: src/components/navbar.tsx
+msgid "Add"
+msgstr "추가"
+
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -203,13 +269,50 @@ msgstr "활성 상태"
 msgid "Add {foo}"
 msgstr "{foo} 추가"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add a check"
+msgstr "검사 추가"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add a monitor"
+msgstr "모니터 추가"
+
+#: src/components/add-system.tsx
+#: src/components/add-system.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Add a system"
+msgstr "시스템 추가"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add at least one check."
+msgstr "검사를 하나 이상 추가하세요."
+
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Add rule"
 msgstr "규칙 추가"
 
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Add sensor"
+msgstr "센서 추가"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Add sensors"
+msgstr "센서 추가"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "URL 추가"
+
+#: src/components/add-system.tsx
+msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
+msgstr "호스트를 추가하면 ICMP (Ping) 유형의 센서가 자동으로 생성됩니다."
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Address"
+msgstr "주소"
 
 #: src/components/routes/settings/general.tsx
 msgid "Adjust display options for charts."
@@ -287,6 +390,7 @@ msgstr "상태가 다음이 아닐 때 알림"
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "알림"
@@ -295,10 +399,16 @@ msgstr "알림"
 msgid "Alerts created"
 msgstr "알림이 생성됨"
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Alerts of {sensorName}"
+msgstr "{sensorName} 알림"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "개 알림(사용자별)"
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "전체"
@@ -312,6 +422,7 @@ msgstr "모든 에이전트가 최신입니다 ({latest})"
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/containers.tsx
+#: src/lib/home-page.ts
 msgid "All Containers"
 msgstr "모든 컨테이너"
 
@@ -324,19 +435,28 @@ msgstr "업데이트 필요 전체 ({outdatedCount})"
 #: src/components/navbar.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/reboots.tsx
+#: src/lib/home-page.ts
 msgid "All Reboots"
 msgstr "모든 재시작"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "All sensors"
+msgstr "모든 센서"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/services.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/lib/home-page.ts
 msgid "All Services"
 msgstr "모든 서비스"
 
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -344,6 +464,7 @@ msgstr "모든 서비스"
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
+#: src/lib/home-page.ts
 msgid "All Systems"
 msgstr "모든 시스템"
 
@@ -351,10 +472,26 @@ msgstr "모든 시스템"
 msgid "All systems until {until}"
 msgstr "모든 시스템 ({until}까지)"
 
+#: src/components/period-select.tsx
+msgid "All time"
+msgstr "전체 기간"
+
 #: src/components/agent-update-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Already up to date."
 msgstr "이미 최신입니다."
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated host {systemName} and its records"
+msgstr "연결된 호스트 {systemName} 및 해당 기록도 삭제"
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated sensor {sensorName}"
+msgstr "연결된 센서 {sensorName}도 삭제"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Alternative names"
+msgstr "대체 이름"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -413,6 +550,18 @@ msgctxt "Disk I/O average operation time (iostat await)"
 msgid "Average queue to completion time per operation"
 msgstr "작업당 평균 대기 후 완료 시간"
 
+#: src/components/routes/sensor.tsx
+msgid "Average response"
+msgstr "평균 응답"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Average response time above which the quality is degraded"
+msgstr "이 값을 넘으면 품질이 저하된 것으로 보는 평균 응답 시간"
+
+#: src/components/routes/sensor.tsx
+msgid "Average response time of each check"
+msgstr "각 검사의 평균 응답 시간"
+
 #: src/components/routes/system/charts/cpu-charts.tsx
 msgid "Average system-wide CPU utilization"
 msgstr "시스템 전체의 평균 CPU 사용량"
@@ -430,6 +579,10 @@ msgstr "GPU 엔진 평균 사용량"
 msgid "Average, minimum, and maximum response time"
 msgstr "평균, 최소 및 최대 응답 시간"
 
+#: src/components/routes/sensor.tsx
+msgid "avg"
+msgstr "평균"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
@@ -443,6 +596,15 @@ msgstr "백업"
 #: src/components/navbar.tsx
 msgid "Backups"
 msgstr "백업"
+
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Bad"
+msgstr "나쁨"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Bad"
+msgstr "나쁨"
 
 #: src/components/routes/system/charts/network-charts.tsx
 #: src/lib/alerts.ts
@@ -479,6 +641,10 @@ msgstr "이전"
 msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "마지막 {2, plural, one {# 분} other {# 분}} 동안 {0}{1} 미만"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
+msgstr "Beszel이 허브에서 호스트의 포트를 검사합니다. 같은 호스트의 검사는 하나의 센서로 묶입니다."
+
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
 msgstr "Beszel은 OpenID Connect 및 많은 OAuth2 인증 제공자를 지원합니다."
@@ -512,12 +678,17 @@ msgstr "브라우저 탭 제목"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "일괄 추가"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Bulk Add {foo}"
 msgstr "{foo} 일괄 추가"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Bulk add sensors"
+msgstr "센서 일괄 추가"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Bulk copy"
@@ -550,13 +721,19 @@ msgstr "중지 가능"
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "취소"
+
+#: src/components/active-alerts.tsx
+msgid "Cancel the acknowledgement"
+msgstr "확인 취소"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Capabilities"
@@ -576,6 +753,18 @@ msgstr "주의 - 데이터 손실 가능성"
 #: src/components/routes/settings/general.tsx
 msgid "Celsius (°C)"
 msgstr "섭씨 (°C)"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate not trusted by the hub"
+msgstr "허브에서 신뢰하지 않는 인증서"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate presented by the server at the last check."
+msgstr "마지막 검사에서 서버가 제시한 인증서입니다."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Chain"
+msgstr "체인"
 
 #: src/components/routes/settings/general.tsx
 msgid "Change display units for metrics."
@@ -606,6 +795,12 @@ msgstr "차트 기간"
 msgid "Chart width"
 msgstr "차트 너비"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Check"
+msgstr "검사"
+
 #: src/components/login/forgot-pass-form.tsx
 msgid "Check {email} for a reset link."
 msgstr "{email}에서 재설정 링크를 확인하세요."
@@ -623,9 +818,30 @@ msgstr "모니터링 서비스 확인"
 msgid "Check your notification service"
 msgstr "알림 서비스를 확인하세요."
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Checks"
+msgstr "검사"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Checks added to {sensorName}"
+msgstr "{sensorName}에 검사가 추가되었습니다"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Checksum errors"
 msgstr "체크섬 오류"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Choose a known port"
+msgstr "알려진 포트 선택"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Choose at least one port."
+msgstr "포트를 하나 이상 선택하세요."
 
 #: src/components/reboots-table.tsx
 msgctxt "Clean shutdown"
@@ -638,6 +854,8 @@ msgstr "정상"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Clear"
 msgstr "지우기"
@@ -671,9 +889,24 @@ msgstr "클릭하여 복사"
 msgid "Close"
 msgstr "닫기"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Code"
+msgstr "코드"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "수집 간격"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Color"
+msgstr "색상"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Columns"
+msgstr "열"
 
 #: src/components/login/forgot-pass-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -729,6 +962,7 @@ msgid "Container state"
 msgstr "컨테이너 상태"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
 msgstr "컨테이너"
@@ -914,6 +1148,15 @@ msgstr "매일"
 msgid "Data directory"
 msgstr "데이터 디렉터리"
 
+#: src/components/period-select.tsx
+msgid "Dates…"
+msgstr "날짜…"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "days"
+msgstr "일"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "days of alerts"
 msgstr "일간의 알림"
@@ -922,6 +1165,10 @@ msgstr "일간의 알림"
 msgctxt "Default system layout option"
 msgid "Default"
 msgstr "기본값"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Default color"
+msgstr "기본 색상"
 
 #: src/components/routes/settings/general.tsx
 msgid "Default time period"
@@ -933,9 +1180,20 @@ msgstr "기본 기간"
 msgid "Default URL"
 msgstr "기본 URL"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Degraded"
+msgstr "저하"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Degraded or bad"
+msgstr "저하 또는 나쁨"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -946,7 +1204,7 @@ msgstr "삭제"
 
 #: src/components/reboots-table.tsx
 msgid "Delete ({selectedCount})"
-msgstr ""
+msgstr "삭제 ({selectedCount})"
 
 #: src/components/reboots-table.tsx
 #~ msgid "Delete {selectedCount} reboots?"
@@ -966,7 +1224,11 @@ msgstr "{originalName} 그룹을 삭제할까요?"
 
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
-msgstr ""
+msgstr "선택한 재부팅을 삭제할까요?"
+
+#: src/components/routes/sensor.tsx
+msgid "Delete this sensor?"
+msgstr "이 센서를 삭제할까요?"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1043,10 +1305,15 @@ msgid "Documentation"
 msgstr "문서"
 
 #. Context: System is down
+#. Context: System is down
+#. Context: System is down
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 #: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+#: src/lib/sensors.ts
 msgid "Down"
 msgstr "오프라인"
 
@@ -1055,6 +1322,7 @@ msgid "Down ({downSystemsLength})"
 msgstr "오프라인 ({downSystemsLength})"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Down: {downCount}"
 msgstr "중지됨: {downCount}"
 
@@ -1074,11 +1342,14 @@ msgstr "끌어서 크기 조정, 두 번 클릭하여 초기화"
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
 msgid "Duration"
 msgstr "기간"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -1090,6 +1361,10 @@ msgstr "수정"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit {foo}"
 msgstr "{foo} 수정"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Edit sensor"
+msgstr "센서 편집"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -1105,6 +1380,11 @@ msgstr "이메일 알림"
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "빔"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "End"
+msgstr "종료"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1141,6 +1421,8 @@ msgstr "일시적"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/config-yaml.tsx
 #: src/components/routes/settings/heartbeat.tsx
@@ -1150,6 +1432,7 @@ msgstr "일시적"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "오류"
@@ -1164,6 +1447,10 @@ msgstr "예시:"
 #: src/components/active-alerts.tsx
 msgid "Exceeds {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "마지막 {2, plural, one {# 분} other {# 분}} 동안 {0}{1} 초과"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "Exchange quality"
+msgstr "통신 품질"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exec main PID"
@@ -1184,6 +1471,18 @@ msgstr "종료 코드"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exited active"
 msgstr "활성 종료됨"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Expected text"
+msgstr "예상 텍스트"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired certificate"
+msgstr "만료된 인증서"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired on {expiredOn}"
+msgstr "{expiredOn}에 만료됨"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Expires after one hour or on hub restart."
@@ -1213,6 +1512,10 @@ msgstr "실패"
 msgid "Failed Attributes:"
 msgstr "실패한 속성:"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Failed checks in a row tolerated before the sensor is down"
+msgstr "센서가 다운으로 판단되기 전에 허용되는 연속 실패 횟수"
+
 #: src/lib/alerts.ts
 msgid "Failed Services"
 msgstr "실패한 서비스"
@@ -1231,6 +1534,8 @@ msgstr "모니터를 삭제하지 못했습니다."
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "설정 저장 실패"
@@ -1268,6 +1573,8 @@ msgstr "팬"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1281,6 +1588,14 @@ msgstr "지문"
 #: src/components/routes/system/smart-table.tsx
 msgid "Firmware"
 msgstr "펌웨어"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Following the route, up to a minute…"
+msgstr "경로 추적 중, 최대 1분…"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "For"
+msgstr "지속"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "For <0>{min}</0> {min, plural, one {minute} other {minutes}}"
@@ -1303,7 +1618,7 @@ msgctxt "Button to copy install command"
 msgid "FreeBSD command"
 msgstr "FreeBSD 명령어"
 
-#: src/components/reboots-table.tsx
+#: src/components/period-select.tsx
 msgid "From"
 msgstr "시작"
 
@@ -1323,6 +1638,11 @@ msgstr "일반"
 msgid "Global"
 msgstr "전역"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Good"
+msgstr "좋음"
+
 #: src/components/routes/system.tsx
 msgid "GPU"
 msgstr "GPU"
@@ -1340,18 +1660,28 @@ msgid "GPU Usage"
 msgstr "GPU 사용량"
 
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "그리드"
 
 #: src/components/add-system.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Group"
 msgstr "그룹"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group deleted"
 msgstr "그룹이 삭제됨"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Group of the lines without group"
+msgstr "그룹이 없는 줄의 그룹"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group saved"
@@ -1360,6 +1690,10 @@ msgstr "그룹이 저장됨"
 #: src/components/systems-table/systems-table.tsx
 msgid "Groups"
 msgstr "그룹"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
+msgstr "그룹은 모든 사용자의 네트워크 센서를 정리합니다. 그룹을 삭제해도 센서는 그룹 없이 유지됩니다."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
@@ -1389,18 +1723,45 @@ msgstr "하트비트 모니터링"
 msgid "Heartbeat sent successfully"
 msgstr "하트비트 전송 성공"
 
+#: src/components/active-alerts.tsx
+msgid "Hide acknowledged"
+msgstr "확인된 항목 숨기기"
+
+#: src/components/routes/settings/general.tsx
+msgid "Home page"
+msgstr "홈 페이지"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgctxt "Button to copy install command"
 msgid "Homebrew command"
 msgstr "Homebrew 명령어"
 
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/host-links.tsx
+msgid "Host"
+msgstr "호스트"
+
 #: src/components/add-system.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Host / IP"
 msgstr "호스트 / IP"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host not reached: the last hops do not answer."
+msgstr "호스트에 도달하지 못함: 마지막 홉이 응답하지 않습니다."
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host reached in {hopCount} hops."
+msgstr "{hopCount}개 홉으로 호스트에 도달했습니다."
 
 #: src/lib/quiet-hours.ts
 msgid "Host restart"
@@ -1450,6 +1811,10 @@ msgstr "대기"
 msgid "If you've lost the password to your admin account, you may reset it using the following command."
 msgstr "관리자 계정의 비밀번호를 잃어버린 경우, 다음 명령어를 사용하여 재설정할 수 있습니다."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Ignore TLS certificate errors"
+msgstr "TLS 인증서 오류 무시"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 msgctxt "Docker image"
@@ -1474,6 +1839,15 @@ msgstr "중요한 서비스"
 msgid "Inactive"
 msgstr "비활성"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Information"
+msgstr "정보"
+
 #: src/components/reboots-table.tsx
 msgid "Initiated by"
 msgstr "시작한 사용자"
@@ -1488,9 +1862,14 @@ msgstr "인스턴스"
 msgid "Instance name"
 msgstr "인스턴스 이름"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Interruptions: {incidentCount}"
+msgstr "중단: {incidentCount}"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Interval"
 msgstr "간격"
 
@@ -1501,6 +1880,30 @@ msgstr "간격(초)"
 #: src/components/login/auth-form.tsx
 msgid "Invalid email address."
 msgstr "잘못된 이메일 주소입니다."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by"
+msgstr "발급자"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by {linkIssuer}, valid until {linkUntil}"
+msgstr "발급자 {linkIssuer}, {linkUntil}까지 유효"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued to"
+msgstr "발급 대상"
+
+#: src/components/routes/sensor.tsx
+msgid "Its checks, history and interruptions will be deleted."
+msgstr "검사, 기록 및 중단 내역이 삭제됩니다."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are kept and moved to no group."
+msgstr "센서는 유지되며 그룹 없음으로 이동합니다."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are now without group."
+msgstr "센서가 이제 그룹 없음 상태입니다."
 
 #: src/components/important-targets.tsx
 msgid "Its state alerts stop. The following rules change:"
@@ -1518,18 +1921,60 @@ msgstr "이제 시스템에 그룹이 없습니다."
 msgid "Keep"
 msgstr "보관"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Known ports"
+msgstr "알려진 포트"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Label"
+msgstr "레이블"
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "언어"
+
+#: src/components/routes/sensor.tsx
+msgid "Last 30 minutes"
+msgstr "최근 30분"
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Last alert"
 msgstr "마지막 알림"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Last check"
+msgstr "마지막 검사"
+
+#: src/components/routes/sensor.tsx
+msgid "Last hour"
+msgstr "최근 1시간"
+
 #: src/components/routes/system/agent-details.tsx
 msgid "Last lines logged by the agent of {name} since it started."
 msgstr "{name} 에이전트가 시작된 이후 기록한 마지막 줄입니다."
 
+#: src/components/routes/sensor.tsx
+msgid "Last result of each check."
+msgstr "각 검사의 최근 결과입니다."
+
+#: src/components/routes/sensor.tsx
+msgid "Last update"
+msgstr "마지막 업데이트"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Latency (ms)"
+msgstr "지연 시간 (ms)"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Latest interruptions"
+msgstr "최근 중단"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "레이아웃"
@@ -1546,6 +1991,22 @@ msgstr "생명주기"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "limit"
 msgstr "제한"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: the host is missing"
+#~ msgstr ""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: unknown service \"{check}\""
+#~ msgstr ""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: the host is missing"
+msgstr "{lineNumber}번째 줄: 호스트가 없습니다"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: unknown service \"{check}\""
+msgstr "{lineNumber}번째 줄: 알 수 없는 서비스 \"{check}\""
 
 #: src/components/routes/system/charts/load-average-chart.tsx
 msgid "Load Average"
@@ -1576,6 +2037,7 @@ msgstr "부하 평균"
 msgid "Load state"
 msgstr "로드 상태"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
 msgstr "로딩 중..."
@@ -1587,6 +2049,10 @@ msgstr "로컬 디스크"
 #: src/components/routes/system/agent-details.tsx
 msgid "Location"
 msgstr "위치"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Location, owner, role…"
+msgstr "위치, 소유자, 역할…"
 
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
@@ -1617,7 +2083,16 @@ msgstr "로그"
 msgid "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
 msgstr "알림을 생성하려 하시나요? 시스템 테이블의 종 <0/> 아이콘을 클릭하세요."
 
+#. Packet loss
+#: src/components/routes/sensor.tsx
+msgid "loss"
+msgstr "손실"
+
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgctxt "Packet loss"
 msgid "Loss"
 msgstr "패킷 손실"
@@ -1635,6 +2110,9 @@ msgstr "주 PID"
 msgid "Manage display and notification preferences."
 msgstr "디스플레이 및 알림 설정"
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1686,9 +2164,19 @@ msgstr "메모리 사용량"
 msgid "Memory usage of containers"
 msgstr "컨테이너 메모리 사용량"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Message"
+msgstr "메시지"
+
 #: src/lib/quiet-hours.ts
 msgid "Migration"
 msgstr "마이그레이션"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "min"
+msgstr "분"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -1704,7 +2192,6 @@ msgstr "모델"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitor"
 msgstr "모니터"
 
@@ -1713,6 +2200,7 @@ msgid "Monitors created"
 msgstr "모니터가 생성되었습니다"
 
 #: src/components/overflow-tabs.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "More"
 msgstr "더 보기"
 
@@ -1725,6 +2213,11 @@ msgstr "마운트 지점"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1739,6 +2232,10 @@ msgstr "이 허브의 이름과 기본 URL로, 알림 링크에 사용되고 화
 #: src/components/routes/settings/general.tsx
 msgid "Name of the service created when installing an agent with the Linux or Windows commands. Existing agents keep their service name."
 msgstr "Linux 또는 Windows 명령으로 에이전트를 설치할 때 생성되는 서비스 이름입니다. 기존 에이전트는 서비스 이름을 유지합니다."
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Name to resolve"
+msgstr "확인할 이름"
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
@@ -1770,8 +2267,18 @@ msgstr "네트워크 모니터 패킷 손실"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
+#: src/lib/home-page.ts
 msgid "Network Monitors"
 msgstr "네트워크 모니터"
+
+#: src/components/routes/monitors.tsx
+msgid "Network monitors from a host"
+msgstr "호스트에서의 네트워크 모니터"
+
+#: src/components/command-palette.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Network sensors"
+msgstr "네트워크 센서"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Network traffic of containers"
@@ -1812,17 +2319,32 @@ msgid "No alert"
 msgstr "알림 없음"
 
 #: src/components/alerts/alert-button.tsx
+#: src/components/routes/sensor.tsx
 msgid "No alerts configured"
 msgstr "구성된 알림 없음"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "No answer"
+msgstr "응답 없음"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "No certificate yet: the details appear after the next HTTPS check."
+msgstr "아직 인증서가 없습니다. 다음 HTTPS 검사 후 세부 정보가 표시됩니다."
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "이 풀에 대한 상세 데이터가 없습니다."
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "No group"
 msgstr "그룹 없음"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "No interruptions over this period."
+msgstr "이 기간에 중단이 없습니다."
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1843,6 +2365,8 @@ msgstr "결과가 없습니다."
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No results."
 msgstr "결과 없음."
@@ -1850,6 +2374,10 @@ msgstr "결과 없음."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "이 장치에 사용할 수 있는 S.M.A.R.T. 속성이 없습니다."
+
+#: src/components/sensors/sensors-board.tsx
+msgid "No sensor yet: add the hosts and ports that Beszel should check."
+msgstr "아직 센서가 없습니다. Beszel이 검사할 호스트와 포트를 추가하세요."
 
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
@@ -1899,6 +2427,27 @@ msgstr "OAuth 2 / OIDC 지원"
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
 msgstr "매 시작 시, 데이터베이스가 파일에 정의된 시스템과 일치하도록 업데이트됩니다."
 
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per 15 seconds"
+#~ msgstr "15초당 막대 1개"
+
+#: src/components/routes/sensor.tsx
+msgid "One bar per interval ({every})"
+msgstr "간격당 막대 1개 ({every})"
+
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per minute"
+#~ msgstr "1분당 막대 1개"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
+msgstr "호스트당 한 줄: 호스트, 서비스, 레이블, 그룹, 이름. 서비스는 알려진 포트(ssh, https, dns…), TCP 포트 번호 또는 프로토콜:포트이며 +로 구분합니다. 같은 호스트의 줄은 하나의 센서가 됩니다."
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "One of the chosen ports does not respond."
+msgstr "선택한 포트 중 하나가 응답하지 않습니다."
+
 #: src/lib/alerts.ts
 msgid "One or more containers are unhealthy"
 msgstr "하나 이상의 컨테이너가 비정상 상태입니다"
@@ -1921,6 +2470,10 @@ msgstr "일회성"
 msgid "One-time password"
 msgstr "OTP"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Ongoing"
+msgstr "진행 중"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Only administrators can change this setting."
@@ -1936,6 +2489,15 @@ msgstr "관리자만 이 설정을 변경할 수 있습니다."
 msgid "Open menu"
 msgstr "메뉴 열기"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Optional, such as the name of the service"
+msgstr "선택 사항 (예: 서비스 이름)"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Options"
+msgstr "옵션"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "또는 아래 항목으로 진행하기"
@@ -1945,13 +2507,38 @@ msgstr "또는 아래 항목으로 진행하기"
 msgid "Other"
 msgstr "기타"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Other port…"
+msgstr "다른 포트…"
+
 #: src/components/alerts/alerts-sheet.tsx
 msgid "Overwrite existing alerts"
 msgstr "기존 알림 덮어쓰기"
 
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet loss"
+msgstr "패킷 손실"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss ({periodLabel})"
+msgstr "패킷 손실 ({periodLabel})"
+
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Packet loss (%)"
 msgstr "패킷 손실(%)"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss (%) of all the checks"
+msgstr "모든 검사의 패킷 손실 (%)"
+
+#: src/components/routes/sensor.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet quality"
+msgstr "패킷 품질"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -1967,6 +2554,10 @@ msgstr "페이지"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Page {0} of {1}"
 msgstr "{1}페이지 중 {0}페이지"
+
+#: src/components/routes/settings/general.tsx
+msgid "Page opened at start and by the logo."
+msgstr "시작할 때와 로고를 눌렀을 때 열리는 페이지입니다."
 
 #: src/components/command-palette.tsx
 msgid "Pages / Settings"
@@ -1994,11 +2585,14 @@ msgid "Past"
 msgstr "과거"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Pause"
 msgstr "일시 중지"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Paused"
 msgstr "일시 정지됨"
 
@@ -2009,6 +2603,10 @@ msgstr "일시 정지됨 ({pausedSystemsLength})"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Payload format"
 msgstr "페이로드 형식"
+
+#: src/lib/sensors.ts
+msgid "Pending"
+msgstr "대기 중"
 
 #: src/components/routes/system/cpu-sheet.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2022,6 +2620,10 @@ msgstr "디스크가 I/O로 바쁜 시간의 비율"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Percentage of time spent in each state"
 msgstr "각 상태에서 보낸 시간의 백분율"
+
+#: src/components/period-select.tsx
+msgid "Period"
+msgstr "기간"
 
 #: src/components/routes/settings/general.tsx
 msgid "Periods offered in the charts of all users. The periods of 90 days or more keep one record per day for that long, which uses more disk space."
@@ -2081,10 +2683,22 @@ msgstr "풀 상태"
 msgid "Pool Usage"
 msgstr "풀 사용량"
 
+#: src/lib/alerts.ts
+msgid "Poor packet quality"
+msgstr "패킷 품질 불량"
+
 #: src/components/add-system.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Port"
 msgstr "포트"
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Port not responding"
+msgstr "포트 응답 없음"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
@@ -2123,10 +2737,12 @@ msgstr "운영, 고객, 실험실…"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Protocol"
 msgstr "프로토콜"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Public key"
 msgstr "공개 키"
 
@@ -2134,6 +2750,13 @@ msgstr "공개 키"
 #: src/components/add-system.tsx
 msgid "Public Key"
 msgstr "공개 키"
+
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Quality"
+msgstr "품질"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O average queue depth"
@@ -2214,6 +2837,15 @@ msgstr "재부팅"
 msgid "Received"
 msgstr "수신됨"
 
+#: src/components/sensors/sensor-badges.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Recent checks"
+msgstr "최근 검사"
+
+#: src/components/command-palette.tsx
+msgid "Recently opened"
+msgstr "최근 연 항목"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "기록됨"
@@ -2232,6 +2864,7 @@ msgid "Relationships"
 msgstr "관계"
 
 #: src/components/important-targets.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Remove"
 msgstr "제거"
 
@@ -2281,9 +2914,24 @@ msgstr "해결됨"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 msgid "Response"
 msgstr "응답"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Response and uptime"
+msgstr "응답 및 가동 시간"
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Response time"
+msgstr "응답 시간"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 msgid "Response time monitoring from agents."
@@ -2294,6 +2942,7 @@ msgid "Restarts"
 msgstr "재시작 횟수"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Resume"
 msgstr "재개"
@@ -2310,6 +2959,10 @@ msgstr "보관: 최근 {days}일간의 알림"
 msgid "Retention: the last {count} alerts of each user"
 msgstr "보관: 사용자별 최근 알림 {count}개"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Retries"
+msgstr "재시도"
+
 #: src/lib/utils.ts
 msgctxt "Root disk label"
 msgid "Root"
@@ -2318,6 +2971,10 @@ msgstr "최상위"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Rotate token"
 msgstr "토큰 회전"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Route from the hub to {sensorHost}."
+msgstr "허브에서 {sensorHost}까지의 경로입니다."
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
@@ -2330,6 +2987,10 @@ msgstr "규칙 삭제됨 (패턴이 다른 항목도 포함): {targets}"
 #: src/components/important-targets.tsx
 msgid "Rule deleted: {targets}"
 msgstr "규칙 삭제됨: {targets}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Run again"
+msgstr "다시 실행"
 
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
@@ -2349,6 +3010,7 @@ msgstr "S.M.A.R.T. 자체 테스트"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "저장"
@@ -2393,8 +3055,16 @@ msgid "Search"
 msgstr "검색"
 
 #: src/components/command-palette.tsx
-msgid "Search for systems or settings..."
-msgstr "시스템 또는 설정 검색..."
+#~ msgid "Search for systems or settings..."
+#~ msgstr "시스템 또는 설정 검색..."
+
+#: src/components/command-palette.tsx
+#~ msgid "Search for systems, sensors or settings..."
+#~ msgstr "시스템, 센서 또는 설정 검색..."
+
+#: src/components/command-palette.tsx
+msgid "Search for systems, sensors, containers, services or settings..."
+msgstr "시스템, 센서, 컨테이너, 서비스 또는 설정 검색..."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2413,6 +3083,7 @@ msgstr "알림을 받는 방법을 구성하려면 <0>알림 설정</0>을 참�
 msgid "Select"
 msgstr "선택"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Select {foo}"
 msgstr "{foo} 선택"
@@ -2459,14 +3130,46 @@ msgstr "외부 모니터링 서비스에 주기적으로 아웃바운드 핑을 
 msgid "Send test heartbeat"
 msgstr "테스트 하트비트 전송"
 
+#: src/components/navbar.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Sensor"
+msgstr "센서"
+
+#: src/lib/alerts.ts
+msgid "Sensor down"
+msgstr "센서 다운"
+
+#: src/components/routes/sensor.tsx
+msgid "Sensor not found."
+msgstr "센서를 찾을 수 없습니다."
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Sensors"
+msgstr "센서"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Sensors added"
+msgstr "센서가 추가되었습니다"
+
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Sent"
 msgstr "보냄"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Serial number"
+msgstr "일련번호"
 
 #: src/components/routes/system/smart-table.tsx
 msgid "Serial Number"
 msgstr "시리얼 번호"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
@@ -2490,6 +3193,7 @@ msgid "Service state"
 msgstr "서비스 상태"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -2525,6 +3229,15 @@ msgstr "설정"
 msgid "Settings saved"
 msgstr "설정이 저장되었습니다."
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "SHA-256 fingerprint"
+msgstr "SHA-256 지문"
+
+#: src/components/active-alerts.tsx
+msgid "Show"
+msgstr "표시"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Show by group"
 msgstr "그룹별 표시"
@@ -2539,10 +3252,15 @@ msgstr "종료"
 msgid "Sign in"
 msgstr "로그인"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Signature"
+msgstr "서명"
+
 #: src/components/command-palette.tsx
 msgid "SMTP settings"
 msgstr "SMTP 설정"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
 msgstr "정렬 기준"
@@ -2552,6 +3270,11 @@ msgstr "정렬 기준"
 #: src/components/reboots-table.tsx
 msgid "Source"
 msgstr "출처"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Start"
+msgstr "시작"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2575,6 +3298,7 @@ msgstr "수동으로 시작됨"
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2610,6 +3334,11 @@ msgstr "상태"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/lib/alerts.ts
@@ -2648,6 +3377,7 @@ msgstr "테마 전환"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2690,6 +3420,7 @@ msgstr "시스템 업데이트"
 msgid "Systemd Services"
 msgstr "Systemd 서비스"
 
+#: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2705,6 +3436,7 @@ msgstr "시스템은 데이터 디렉토리 내의 <0>config.yml</0> 파일에�
 msgid "Systems to update ({targetCount})"
 msgstr "업데이트할 시스템 ({targetCount})"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
 msgstr "표"
@@ -2780,6 +3512,14 @@ msgstr "에이전트가 자동으로 다시 시작되고 다시 연결됩니다.
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "에이전트가 GitHub에서 버전 {latest}을(를) 다운로드한 후 다시 시작합니다."
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The average response time over 10 minutes exceeds {value} ms."
+msgstr "10분 평균 응답 시간이 {value}ms를 초과합니다."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The certificate of an HTTPS check expires within {value} days."
+msgstr "HTTPS 검사의 인증서가 {value}일 이내에 만료됩니다."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "최신 에이전트 버전을 아직 알 수 없습니다"
@@ -2787,6 +3527,18 @@ msgstr "최신 에이전트 버전을 아직 알 수 없습니다"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "모든 시스템이 정상이면 <0>ok</0>, 알림이 트리거되면 <1>경고</1>, 시스템이 다운되면 <2>오류</2> 상태가 됩니다."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet loss over 10 minutes exceeds {value}%."
+msgstr "10분 패킷 손실이 {value}%를 초과합니다."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is bad."
+msgstr "10분 동안의 패킷 품질이 나쁩니다."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is degraded or bad."
+msgstr "10분 동안의 패킷 품질이 저하되었거나 나쁩니다."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "The rules are created on each system."
@@ -2812,6 +3564,14 @@ msgstr "이 작업은 되돌릴 수 없습니다. 데이터베이스에서 {name
 msgid "This agent is too old to be managed from the hub: update it once on the system."
 msgstr "이 에이전트는 너무 오래되어 허브에서 관리할 수 없습니다. 시스템에서 한 번 업데이트하세요."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "This host already has a sensor: {added} new check(s) were added to it."
+msgstr "이 호스트에는 이미 센서가 있습니다. 새 검사 {added}개가 추가되었습니다."
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This sensor until {until}"
+msgstr "이 센서 ({until}까지)"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
 msgstr "이 시스템 ({until}까지)"
@@ -2821,6 +3581,11 @@ msgstr "이 시스템 ({until}까지)"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "This will permanently delete all selected records from the database."
 msgstr "선택한 모든 레코드를 데이터베이스에서 영구적으로 삭제합니다."
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Threshold"
+msgstr "임계값"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -2834,7 +3599,14 @@ msgstr "스토리지 풀 {displayName}의 처리량"
 msgid "Time format"
 msgstr "시간 형식"
 
-#: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-cert.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "TLS certificate"
+msgstr "TLS 인증서"
+
+#: src/components/period-select.tsx
 msgid "To"
 msgstr "종료"
 
@@ -2874,6 +3646,10 @@ msgstr "각 인터페이스별 총합 다운로드 데이터량"
 msgid "Total data sent for each interface"
 msgstr "각 인터페이스별 총합 업로드 데이터량"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Total duration: {totalDuration}"
+msgstr "총 시간: {totalDuration}"
+
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
 msgid "Total time spent on read/write (can exceed 100%)"
@@ -2886,8 +3662,13 @@ msgstr "총: {0}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Total: {totalCount}"
 msgstr "합계: {totalCount}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Traced with the traceroute command of the hub."
+msgstr "허브의 traceroute 명령으로 추적했습니다."
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
@@ -3011,6 +3792,7 @@ msgstr "범용 토큰"
 #. Context: Battery state
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/lib/i18n.ts
+#: src/lib/sensors.ts
 msgid "Unknown"
 msgstr "알 수 없음"
 
@@ -3019,9 +3801,17 @@ msgstr "알 수 없음"
 msgid "Unlimited"
 msgstr "무제한"
 
+#: src/components/sensors/sensor-badges.tsx
+msgid "Unreachable"
+msgstr "연결 불가"
+
+#. Context: System is up
+#. Context: System is up
 #. Context: System is up
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Up"
 msgstr "온라인"
 
@@ -3034,6 +3824,7 @@ msgid "Up to date"
 msgstr "최신"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Up: {upCount}"
 msgstr "실행 중: {upCount}"
 
@@ -3091,6 +3882,17 @@ msgstr "업로드"
 msgid "Uptime"
 msgstr "가동시간"
 
+#: src/components/routes/sensor.tsx
+msgid "Uptime ({periodLabel})"
+msgstr "가동률 ({periodLabel})"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Uptime (24h)"
+msgstr "가동률 (24시간)"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
@@ -3134,6 +3936,18 @@ msgctxt "Disk I/O utilization"
 msgid "Utilization"
 msgstr "사용률"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid and trusted certificate"
+msgstr "유효하고 신뢰할 수 있는 인증서"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid from"
+msgstr "유효 시작"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid until"
+msgstr "유효 기한"
+
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
@@ -3143,6 +3957,8 @@ msgstr "값"
 msgid "Version"
 msgstr "버전"
 
+#: src/components/active-alerts.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "View"
@@ -3162,6 +3978,7 @@ msgstr "최근 알림 {count}개를 확인하세요."
 msgid "View your alerts of the last {days} days."
 msgstr "최근 {days}일간의 알림을 확인하세요."
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "Visible Fields"
@@ -3257,6 +4074,10 @@ msgstr "YAML 구성"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Yes"
 msgstr "예"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Your alerts on this sensor. Quiet hours of the sensor and global ones silence them."
+msgstr "이 센서에 대한 내 알림입니다. 센서 및 전역 방해 금지 시간에는 알림이 꺼집니다."
 
 #: src/components/routes/settings/layout.tsx
 msgid "Your user settings have been updated."

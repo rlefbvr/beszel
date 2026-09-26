@@ -169,9 +169,15 @@ export function getMonitorColumns(
 			meta: { name: () => t`Protocol` },
 			accessorFn: (record) => record.protocol,
 			header: ({ column }) => <HeaderButton column={column} name={t`Protocol`} Icon={ArrowLeftRightIcon} />,
-			cell: ({ getValue }) => {
+			cell: ({ getValue, row }) => {
 				const protocol = getValue() as string
-				return <Badge className={cn("uppercase", protocolColors[protocol])}>{protocol}</Badge>
+				const { label } = row.original
+				return (
+					<span className="flex items-center gap-2 whitespace-nowrap">
+						<Badge className={cn("uppercase", protocolColors[protocol])}>{protocol}</Badge>
+						{label && <span className="text-muted-foreground text-xs">{label}</span>}
+					</span>
+				)
 			},
 		},
 		{

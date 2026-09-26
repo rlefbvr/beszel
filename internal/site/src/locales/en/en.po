@@ -45,6 +45,18 @@ msgstr "{0} of {1} row(s) selected."
 msgid "{0} selected"
 msgstr "{0} selected"
 
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {# active alert acknowledged} other {# active alerts acknowledged}}"
+msgstr "{ackCount, plural, one {# active alert acknowledged} other {# active alerts acknowledged}}"
+
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {Show # acknowledged} other {Show # acknowledged}}"
+msgstr "{ackCount, plural, one {Show # acknowledged} other {Show # acknowledged}}"
+
+#: src/components/routes/sensor.tsx
+msgid "{certDays} days"
+msgstr "{certDays} days"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# core} other {# cores}}"
@@ -69,9 +81,21 @@ msgstr "{count, plural, one {# filtered container} other {# filtered containers}
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# filtered service} other {# filtered services}}"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "{count, plural, one {# sensor} other {# sensors}}"
+msgstr "{count, plural, one {# sensor} other {# sensors}}"
+
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# system} other {# systems}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
+msgstr "{created} new sensor(s), {added} check(s) added to existing sensors."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
+msgstr "{days, plural, one {Expires in # day} other {Expires in # days}}"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "{diskName} I/O"
@@ -93,6 +117,18 @@ msgstr "{ruleCount, plural, one {# state rule created.} other {# state rules cre
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, one {# state rule} other {# state rules}}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "{seconds, plural, one {# second} other {# seconds}}"
+msgstr "{seconds, plural, one {# second} other {# seconds}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{sensorCount} host(s), {checkCount} check(s)"
+msgstr "{sensorCount} host(s), {checkCount} check(s)"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "{success} of {total} successful"
+msgstr "{success} of {total} successful"
+
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, one {# system} other {# systems}}"
@@ -101,6 +137,7 @@ msgstr "{systemCount, plural, one {# system} other {# systems}}"
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# thread} other {# threads}}"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 hour"
 msgstr "1 hour"
@@ -118,6 +155,7 @@ msgstr "1 minute"
 msgid "1 week"
 msgstr "1 week"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 year"
 msgstr "1 year"
@@ -135,10 +173,12 @@ msgstr "15 min"
 msgid "180 days"
 msgstr "180 days"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "24 hours"
 msgstr "24 hours"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "30 days"
 msgstr "30 days"
@@ -148,18 +188,44 @@ msgstr "30 days"
 msgid "5 min"
 msgstr "5 min"
 
+#: src/components/period-select.tsx
+msgid "7 days"
+msgstr "7 days"
+
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "90 days"
 msgstr "90 days"
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "A check of the sensor does not respond."
+msgstr "A check of the sensor does not respond."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A sensor belongs to one group: checking it moves it from its current group."
+msgstr "A sensor belongs to one group: checking it moves it from its current group."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A system belongs to one group: checking it moves it from its current group."
 msgstr "A system belongs to one group: checking it moves it from its current group."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Accepted status codes"
+msgstr "Accepted status codes"
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "Account"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge"
+msgstr "Acknowledge"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge all"
+msgstr "Acknowledge all"
 
 #. Table column
 #: src/components/routes/settings/quiet-hours.tsx
@@ -185,11 +251,11 @@ msgstr "Active Alerts"
 msgid "Active state"
 msgstr "Active state"
 
-#: src/components/add-system.tsx
-#: src/components/add-system.tsx
 #: src/components/navbar.tsx
+msgid "Add"
+msgstr "Add"
+
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -198,13 +264,50 @@ msgstr "Active state"
 msgid "Add {foo}"
 msgstr "Add {foo}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add a check"
+msgstr "Add a check"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add a monitor"
+msgstr "Add a monitor"
+
+#: src/components/add-system.tsx
+#: src/components/add-system.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Add a system"
+msgstr "Add a system"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add at least one check."
+msgstr "Add at least one check."
+
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Add rule"
 msgstr "Add rule"
 
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Add sensor"
+msgstr "Add sensor"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Add sensors"
+msgstr "Add sensors"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "Add URL"
+
+#: src/components/add-system.tsx
+msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
+msgstr "Adding the host automatically creates a sensor of type ICMP (Ping)."
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Address"
+msgstr "Address"
 
 #: src/components/routes/settings/general.tsx
 msgid "Adjust display options for charts."
@@ -282,6 +385,7 @@ msgstr "Alert when state is not"
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "Alerts"
@@ -290,10 +394,16 @@ msgstr "Alerts"
 msgid "Alerts created"
 msgstr "Alerts created"
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Alerts of {sensorName}"
+msgstr "Alerts of {sensorName}"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "alerts per user"
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "All"
@@ -307,6 +417,7 @@ msgstr "All agents are up to date ({latest})"
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/containers.tsx
+#: src/lib/home-page.ts
 msgid "All Containers"
 msgstr "All Containers"
 
@@ -319,19 +430,28 @@ msgstr "All outdated ({outdatedCount})"
 #: src/components/navbar.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/reboots.tsx
+#: src/lib/home-page.ts
 msgid "All Reboots"
 msgstr "All Reboots"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "All sensors"
+msgstr "All sensors"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/services.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/lib/home-page.ts
 msgid "All Services"
 msgstr "All Services"
 
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -339,6 +459,7 @@ msgstr "All Services"
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
+#: src/lib/home-page.ts
 msgid "All Systems"
 msgstr "All Systems"
 
@@ -346,10 +467,26 @@ msgstr "All Systems"
 msgid "All systems until {until}"
 msgstr "All systems until {until}"
 
+#: src/components/period-select.tsx
+msgid "All time"
+msgstr "All time"
+
 #: src/components/agent-update-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Already up to date."
 msgstr "Already up to date."
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated host {systemName} and its records"
+msgstr "Also delete the associated host {systemName} and its records"
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated sensor {sensorName}"
+msgstr "Also delete the associated sensor {sensorName}"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Alternative names"
+msgstr "Alternative names"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -408,6 +545,18 @@ msgctxt "Disk I/O average operation time (iostat await)"
 msgid "Average queue to completion time per operation"
 msgstr "Average queue to completion time per operation"
 
+#: src/components/routes/sensor.tsx
+msgid "Average response"
+msgstr "Average response"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Average response time above which the quality is degraded"
+msgstr "Average response time above which the quality is degraded"
+
+#: src/components/routes/sensor.tsx
+msgid "Average response time of each check"
+msgstr "Average response time of each check"
+
 #: src/components/routes/system/charts/cpu-charts.tsx
 msgid "Average system-wide CPU utilization"
 msgstr "Average system-wide CPU utilization"
@@ -425,6 +574,10 @@ msgstr "Average utilization of GPU engines"
 msgid "Average, minimum, and maximum response time"
 msgstr "Average, minimum, and maximum response time"
 
+#: src/components/routes/sensor.tsx
+msgid "avg"
+msgstr "avg"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
@@ -438,6 +591,15 @@ msgstr "Backup"
 #: src/components/navbar.tsx
 msgid "Backups"
 msgstr "Backups"
+
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Bad"
+msgstr "Bad"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Bad"
+msgstr "Bad"
 
 #: src/components/routes/system/charts/network-charts.tsx
 #: src/lib/alerts.ts
@@ -474,6 +636,10 @@ msgstr "Before"
 msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
+msgstr "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
+
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
 msgstr "Beszel supports OpenID Connect and many OAuth2 authentication providers."
@@ -507,12 +673,17 @@ msgstr "Browser tab title"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "Bulk Add"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Bulk Add {foo}"
 msgstr "Bulk Add {foo}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Bulk add sensors"
+msgstr "Bulk add sensors"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Bulk copy"
@@ -545,13 +716,19 @@ msgstr "Can stop"
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "Cancel"
+
+#: src/components/active-alerts.tsx
+msgid "Cancel the acknowledgement"
+msgstr "Cancel the acknowledgement"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Capabilities"
@@ -571,6 +748,18 @@ msgstr "Caution - potential data loss"
 #: src/components/routes/settings/general.tsx
 msgid "Celsius (°C)"
 msgstr "Celsius (°C)"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate not trusted by the hub"
+msgstr "Certificate not trusted by the hub"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate presented by the server at the last check."
+msgstr "Certificate presented by the server at the last check."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Chain"
+msgstr "Chain"
 
 #: src/components/routes/settings/general.tsx
 msgid "Change display units for metrics."
@@ -601,6 +790,12 @@ msgstr "Chart periods"
 msgid "Chart width"
 msgstr "Chart width"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Check"
+msgstr "Check"
+
 #: src/components/login/forgot-pass-form.tsx
 msgid "Check {email} for a reset link."
 msgstr "Check {email} for a reset link."
@@ -618,9 +813,30 @@ msgstr "Check your monitoring service"
 msgid "Check your notification service"
 msgstr "Check your notification service"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Checks"
+msgstr "Checks"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Checks added to {sensorName}"
+msgstr "Checks added to {sensorName}"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Checksum errors"
 msgstr "Checksum errors"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Choose a known port"
+msgstr "Choose a known port"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Choose at least one port."
+msgstr "Choose at least one port."
 
 #: src/components/reboots-table.tsx
 msgctxt "Clean shutdown"
@@ -633,6 +849,8 @@ msgstr "Clean"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Clear"
 msgstr "Clear"
@@ -666,9 +884,24 @@ msgstr "Click to copy"
 msgid "Close"
 msgstr "Close"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Code"
+msgstr "Code"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Collection interval"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Color"
+msgstr "Color"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Columns"
+msgstr "Columns"
 
 #: src/components/login/forgot-pass-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -724,6 +957,7 @@ msgid "Container state"
 msgstr "Container state"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
 msgstr "Containers"
@@ -909,6 +1143,15 @@ msgstr "Daily"
 msgid "Data directory"
 msgstr "Data directory"
 
+#: src/components/period-select.tsx
+msgid "Dates…"
+msgstr "Dates…"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "days"
+msgstr "days"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "days of alerts"
 msgstr "days of alerts"
@@ -917,6 +1160,10 @@ msgstr "days of alerts"
 msgctxt "Default system layout option"
 msgid "Default"
 msgstr "Default"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Default color"
+msgstr "Default color"
 
 #: src/components/routes/settings/general.tsx
 msgid "Default time period"
@@ -928,9 +1175,20 @@ msgstr "Default time period"
 msgid "Default URL"
 msgstr "Default URL"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Degraded"
+msgstr "Degraded"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Degraded or bad"
+msgstr "Degraded or bad"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -962,6 +1220,10 @@ msgstr "Delete the group {originalName}?"
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
 msgstr "Delete the selected reboots?"
+
+#: src/components/routes/sensor.tsx
+msgid "Delete this sensor?"
+msgstr "Delete this sensor?"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1038,10 +1300,15 @@ msgid "Documentation"
 msgstr "Documentation"
 
 #. Context: System is down
+#. Context: System is down
+#. Context: System is down
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 #: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+#: src/lib/sensors.ts
 msgid "Down"
 msgstr "Down"
 
@@ -1050,6 +1317,7 @@ msgid "Down ({downSystemsLength})"
 msgstr "Down ({downSystemsLength})"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Down: {downCount}"
 msgstr "Down: {downCount}"
 
@@ -1069,11 +1337,14 @@ msgstr "Drag to resize, double click to reset"
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
 msgid "Duration"
 msgstr "Duration"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -1085,6 +1356,10 @@ msgstr "Edit"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit {foo}"
 msgstr "Edit {foo}"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Edit sensor"
+msgstr "Edit sensor"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -1100,6 +1375,11 @@ msgstr "Email notifications"
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "Empty"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "End"
+msgstr "End"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1136,6 +1416,8 @@ msgstr "Ephemeral"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/config-yaml.tsx
 #: src/components/routes/settings/heartbeat.tsx
@@ -1145,6 +1427,7 @@ msgstr "Ephemeral"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "Error"
@@ -1159,6 +1442,10 @@ msgstr "Example:"
 #: src/components/active-alerts.tsx
 msgid "Exceeds {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "Exceeds {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "Exchange quality"
+msgstr "Exchange quality"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exec main PID"
@@ -1179,6 +1466,18 @@ msgstr "Exit code"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exited active"
 msgstr "Exited active"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Expected text"
+msgstr "Expected text"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired certificate"
+msgstr "Expired certificate"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired on {expiredOn}"
+msgstr "Expired on {expiredOn}"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Expires after one hour or on hub restart."
@@ -1208,6 +1507,10 @@ msgstr "Failed"
 msgid "Failed Attributes:"
 msgstr "Failed Attributes:"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Failed checks in a row tolerated before the sensor is down"
+msgstr "Failed checks in a row tolerated before the sensor is down"
+
 #: src/lib/alerts.ts
 msgid "Failed Services"
 msgstr "Failed Services"
@@ -1226,6 +1529,8 @@ msgstr "Failed to delete monitors."
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "Failed to save settings"
@@ -1263,6 +1568,8 @@ msgstr "Fans"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1276,6 +1583,14 @@ msgstr "Fingerprint"
 #: src/components/routes/system/smart-table.tsx
 msgid "Firmware"
 msgstr "Firmware"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Following the route, up to a minute…"
+msgstr "Following the route, up to a minute…"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "For"
+msgstr "For"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "For <0>{min}</0> {min, plural, one {minute} other {minutes}}"
@@ -1298,7 +1613,7 @@ msgctxt "Button to copy install command"
 msgid "FreeBSD command"
 msgstr "FreeBSD command"
 
-#: src/components/reboots-table.tsx
+#: src/components/period-select.tsx
 msgid "From"
 msgstr "From"
 
@@ -1318,6 +1633,11 @@ msgstr "General"
 msgid "Global"
 msgstr "Global"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Good"
+msgstr "Good"
+
 #: src/components/routes/system.tsx
 msgid "GPU"
 msgstr "GPU"
@@ -1335,18 +1655,28 @@ msgid "GPU Usage"
 msgstr "GPU Usage"
 
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "Grid"
 
 #: src/components/add-system.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Group"
 msgstr "Group"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group deleted"
 msgstr "Group deleted"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Group of the lines without group"
+msgstr "Group of the lines without group"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group saved"
@@ -1355,6 +1685,10 @@ msgstr "Group saved"
 #: src/components/systems-table/systems-table.tsx
 msgid "Groups"
 msgstr "Groups"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
+msgstr "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
@@ -1384,18 +1718,45 @@ msgstr "Heartbeat Monitoring"
 msgid "Heartbeat sent successfully"
 msgstr "Heartbeat sent successfully"
 
+#: src/components/active-alerts.tsx
+msgid "Hide acknowledged"
+msgstr "Hide acknowledged"
+
+#: src/components/routes/settings/general.tsx
+msgid "Home page"
+msgstr "Home page"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgctxt "Button to copy install command"
 msgid "Homebrew command"
 msgstr "Homebrew command"
 
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/host-links.tsx
+msgid "Host"
+msgstr "Host"
+
 #: src/components/add-system.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Host / IP"
 msgstr "Host / IP"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host not reached: the last hops do not answer."
+msgstr "Host not reached: the last hops do not answer."
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host reached in {hopCount} hops."
+msgstr "Host reached in {hopCount} hops."
 
 #: src/lib/quiet-hours.ts
 msgid "Host restart"
@@ -1445,6 +1806,10 @@ msgstr "Idle"
 msgid "If you've lost the password to your admin account, you may reset it using the following command."
 msgstr "If you've lost the password to your admin account, you may reset it using the following command."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Ignore TLS certificate errors"
+msgstr "Ignore TLS certificate errors"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 msgctxt "Docker image"
@@ -1469,6 +1834,15 @@ msgstr "Important services"
 msgid "Inactive"
 msgstr "Inactive"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Information"
+msgstr "Information"
+
 #: src/components/reboots-table.tsx
 msgid "Initiated by"
 msgstr "Initiated by"
@@ -1483,9 +1857,14 @@ msgstr "Instance"
 msgid "Instance name"
 msgstr "Instance name"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Interruptions: {incidentCount}"
+msgstr "Interruptions: {incidentCount}"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Interval"
 msgstr "Interval"
 
@@ -1496,6 +1875,30 @@ msgstr "Interval (seconds)"
 #: src/components/login/auth-form.tsx
 msgid "Invalid email address."
 msgstr "Invalid email address."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by"
+msgstr "Issued by"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by {linkIssuer}, valid until {linkUntil}"
+msgstr "Issued by {linkIssuer}, valid until {linkUntil}"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued to"
+msgstr "Issued to"
+
+#: src/components/routes/sensor.tsx
+msgid "Its checks, history and interruptions will be deleted."
+msgstr "Its checks, history and interruptions will be deleted."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are kept and moved to no group."
+msgstr "Its sensors are kept and moved to no group."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are now without group."
+msgstr "Its sensors are now without group."
 
 #: src/components/important-targets.tsx
 msgid "Its state alerts stop. The following rules change:"
@@ -1513,18 +1916,60 @@ msgstr "Its systems are now without group."
 msgid "Keep"
 msgstr "Keep"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Known ports"
+msgstr "Known ports"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Label"
+msgstr "Label"
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "Language"
+
+#: src/components/routes/sensor.tsx
+msgid "Last 30 minutes"
+msgstr "Last 30 minutes"
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Last alert"
 msgstr "Last alert"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Last check"
+msgstr "Last check"
+
+#: src/components/routes/sensor.tsx
+msgid "Last hour"
+msgstr "Last hour"
+
 #: src/components/routes/system/agent-details.tsx
 msgid "Last lines logged by the agent of {name} since it started."
 msgstr "Last lines logged by the agent of {name} since it started."
 
+#: src/components/routes/sensor.tsx
+msgid "Last result of each check."
+msgstr "Last result of each check."
+
+#: src/components/routes/sensor.tsx
+msgid "Last update"
+msgstr "Last update"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Latency (ms)"
+msgstr "Latency (ms)"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Latest interruptions"
+msgstr "Latest interruptions"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "Layout"
@@ -1541,6 +1986,22 @@ msgstr "Lifecycle"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "limit"
 msgstr "limit"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: the host is missing"
+#~ msgstr "Line {0}: the host is missing"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: unknown service \"{check}\""
+#~ msgstr "Line {0}: unknown service \"{check}\""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: the host is missing"
+msgstr "Line {lineNumber}: the host is missing"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: unknown service \"{check}\""
+msgstr "Line {lineNumber}: unknown service \"{check}\""
 
 #: src/components/routes/system/charts/load-average-chart.tsx
 msgid "Load Average"
@@ -1571,6 +2032,7 @@ msgstr "Load Avg"
 msgid "Load state"
 msgstr "Load state"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
 msgstr "Loading..."
@@ -1582,6 +2044,10 @@ msgstr "Local Disk"
 #: src/components/routes/system/agent-details.tsx
 msgid "Location"
 msgstr "Location"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Location, owner, role…"
+msgstr "Location, owner, role…"
 
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
@@ -1612,7 +2078,16 @@ msgstr "Logs"
 msgid "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
 msgstr "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
 
+#. Packet loss
+#: src/components/routes/sensor.tsx
+msgid "loss"
+msgstr "loss"
+
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgctxt "Packet loss"
 msgid "Loss"
 msgstr "Loss"
@@ -1630,6 +2105,9 @@ msgstr "Main PID"
 msgid "Manage display and notification preferences."
 msgstr "Manage display and notification preferences."
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1681,9 +2159,19 @@ msgstr "Memory Usage"
 msgid "Memory usage of containers"
 msgstr "Memory usage of containers"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Message"
+msgstr "Message"
+
 #: src/lib/quiet-hours.ts
 msgid "Migration"
 msgstr "Migration"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "min"
+msgstr "min"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -1699,7 +2187,6 @@ msgstr "Model"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitor"
 msgstr "Monitor"
 
@@ -1708,6 +2195,7 @@ msgid "Monitors created"
 msgstr "Monitors created"
 
 #: src/components/overflow-tabs.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "More"
 msgstr "More"
 
@@ -1720,6 +2208,11 @@ msgstr "Mountpoint"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1734,6 +2227,10 @@ msgstr "Name and default URL of this hub, used in notification links and shown i
 #: src/components/routes/settings/general.tsx
 msgid "Name of the service created when installing an agent with the Linux or Windows commands. Existing agents keep their service name."
 msgstr "Name of the service created when installing an agent with the Linux or Windows commands. Existing agents keep their service name."
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Name to resolve"
+msgstr "Name to resolve"
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
@@ -1765,8 +2262,18 @@ msgstr "Network Monitor Loss"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
+#: src/lib/home-page.ts
 msgid "Network Monitors"
 msgstr "Network Monitors"
+
+#: src/components/routes/monitors.tsx
+msgid "Network monitors from a host"
+msgstr "Network monitors from a host"
+
+#: src/components/command-palette.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Network sensors"
+msgstr "Network sensors"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Network traffic of containers"
@@ -1807,17 +2314,32 @@ msgid "No alert"
 msgstr "No alert"
 
 #: src/components/alerts/alert-button.tsx
+#: src/components/routes/sensor.tsx
 msgid "No alerts configured"
 msgstr "No alerts configured"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "No answer"
+msgstr "No answer"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "No certificate yet: the details appear after the next HTTPS check."
+msgstr "No certificate yet: the details appear after the next HTTPS check."
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "No detail data for this pool."
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "No group"
 msgstr "No group"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "No interruptions over this period."
+msgstr "No interruptions over this period."
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1838,6 +2360,8 @@ msgstr "No results found."
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No results."
 msgstr "No results."
@@ -1845,6 +2369,10 @@ msgstr "No results."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "No S.M.A.R.T. attributes available for this device."
+
+#: src/components/sensors/sensors-board.tsx
+msgid "No sensor yet: add the hosts and ports that Beszel should check."
+msgstr "No sensor yet: add the hosts and ports that Beszel should check."
 
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
@@ -1894,6 +2422,27 @@ msgstr "OAuth 2 / OIDC support"
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
 msgstr "On each restart, systems in the database will be updated to match the systems defined in the file."
 
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per 15 seconds"
+#~ msgstr "One bar per 15 seconds"
+
+#: src/components/routes/sensor.tsx
+msgid "One bar per interval ({every})"
+msgstr "One bar per interval ({every})"
+
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per minute"
+#~ msgstr "One bar per minute"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
+msgstr "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "One of the chosen ports does not respond."
+msgstr "One of the chosen ports does not respond."
+
 #: src/lib/alerts.ts
 msgid "One or more containers are unhealthy"
 msgstr "One or more containers are unhealthy"
@@ -1916,6 +2465,10 @@ msgstr "One-time"
 msgid "One-time password"
 msgstr "One-time password"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Ongoing"
+msgstr "Ongoing"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Only administrators can change this setting."
@@ -1931,6 +2484,15 @@ msgstr "Only administrators can change this setting."
 msgid "Open menu"
 msgstr "Open menu"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Optional, such as the name of the service"
+msgstr "Optional, such as the name of the service"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Options"
+msgstr "Options"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Or continue with"
@@ -1940,13 +2502,38 @@ msgstr "Or continue with"
 msgid "Other"
 msgstr "Other"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Other port…"
+msgstr "Other port…"
+
 #: src/components/alerts/alerts-sheet.tsx
 msgid "Overwrite existing alerts"
 msgstr "Overwrite existing alerts"
 
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet loss"
+msgstr "Packet loss"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss ({periodLabel})"
+msgstr "Packet loss ({periodLabel})"
+
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Packet loss (%)"
 msgstr "Packet loss (%)"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss (%) of all the checks"
+msgstr "Packet loss (%) of all the checks"
+
+#: src/components/routes/sensor.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet quality"
+msgstr "Packet quality"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -1962,6 +2549,10 @@ msgstr "Page"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Page {0} of {1}"
 msgstr "Page {0} of {1}"
+
+#: src/components/routes/settings/general.tsx
+msgid "Page opened at start and by the logo."
+msgstr "Page opened at start and by the logo."
 
 #: src/components/command-palette.tsx
 msgid "Pages / Settings"
@@ -1989,11 +2580,14 @@ msgid "Past"
 msgstr "Past"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Pause"
 msgstr "Pause"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Paused"
 msgstr "Paused"
 
@@ -2004,6 +2598,10 @@ msgstr "Paused ({pausedSystemsLength})"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Payload format"
 msgstr "Payload format"
+
+#: src/lib/sensors.ts
+msgid "Pending"
+msgstr "Pending"
 
 #: src/components/routes/system/cpu-sheet.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2017,6 +2615,10 @@ msgstr "Percent of time the disk is busy with I/O"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Percentage of time spent in each state"
 msgstr "Percentage of time spent in each state"
+
+#: src/components/period-select.tsx
+msgid "Period"
+msgstr "Period"
 
 #: src/components/routes/settings/general.tsx
 msgid "Periods offered in the charts of all users. The periods of 90 days or more keep one record per day for that long, which uses more disk space."
@@ -2076,10 +2678,22 @@ msgstr "Pool Health"
 msgid "Pool Usage"
 msgstr "Pool Usage"
 
+#: src/lib/alerts.ts
+msgid "Poor packet quality"
+msgstr "Poor packet quality"
+
 #: src/components/add-system.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Port"
 msgstr "Port"
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Port not responding"
+msgstr "Port not responding"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
@@ -2118,10 +2732,12 @@ msgstr "Production, Customers, Lab…"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Protocol"
 msgstr "Protocol"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Public key"
 msgstr "Public key"
 
@@ -2129,6 +2745,13 @@ msgstr "Public key"
 #: src/components/add-system.tsx
 msgid "Public Key"
 msgstr "Public Key"
+
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Quality"
+msgstr "Quality"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O average queue depth"
@@ -2209,6 +2832,15 @@ msgstr "Reboots"
 msgid "Received"
 msgstr "Received"
 
+#: src/components/sensors/sensor-badges.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Recent checks"
+msgstr "Recent checks"
+
+#: src/components/command-palette.tsx
+msgid "Recently opened"
+msgstr "Recently opened"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Recorded"
@@ -2227,6 +2859,7 @@ msgid "Relationships"
 msgstr "Relationships"
 
 #: src/components/important-targets.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Remove"
 msgstr "Remove"
 
@@ -2276,9 +2909,24 @@ msgstr "Resolved"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 msgid "Response"
 msgstr "Response"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Response and uptime"
+msgstr "Response and uptime"
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Response time"
+msgstr "Response time"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 msgid "Response time monitoring from agents."
@@ -2289,6 +2937,7 @@ msgid "Restarts"
 msgstr "Restarts"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Resume"
 msgstr "Resume"
@@ -2305,6 +2954,10 @@ msgstr "Retention: the alerts of the last {days} days"
 msgid "Retention: the last {count} alerts of each user"
 msgstr "Retention: the last {count} alerts of each user"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Retries"
+msgstr "Retries"
+
 #: src/lib/utils.ts
 msgctxt "Root disk label"
 msgid "Root"
@@ -2313,6 +2966,10 @@ msgstr "Root"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Rotate token"
 msgstr "Rotate token"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Route from the hub to {sensorHost}."
+msgstr "Route from the hub to {sensorHost}."
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
@@ -2325,6 +2982,10 @@ msgstr "Rule deleted, its pattern also covers other items: {targets}"
 #: src/components/important-targets.tsx
 msgid "Rule deleted: {targets}"
 msgstr "Rule deleted: {targets}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Run again"
+msgstr "Run again"
 
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
@@ -2344,6 +3005,7 @@ msgstr "S.M.A.R.T. Self-Test"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "Save"
@@ -2388,8 +3050,16 @@ msgid "Search"
 msgstr "Search"
 
 #: src/components/command-palette.tsx
-msgid "Search for systems or settings..."
-msgstr "Search for systems or settings..."
+#~ msgid "Search for systems or settings..."
+#~ msgstr "Search for systems or settings..."
+
+#: src/components/command-palette.tsx
+#~ msgid "Search for systems, sensors or settings..."
+#~ msgstr "Search for systems, sensors or settings..."
+
+#: src/components/command-palette.tsx
+msgid "Search for systems, sensors, containers, services or settings..."
+msgstr "Search for systems, sensors, containers, services or settings..."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2408,6 +3078,7 @@ msgstr "See <0>notification settings</0> to configure how you receive alerts."
 msgid "Select"
 msgstr "Select"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Select {foo}"
 msgstr "Select {foo}"
@@ -2454,14 +3125,46 @@ msgstr "Send periodic outbound pings to an external monitoring service so you ca
 msgid "Send test heartbeat"
 msgstr "Send test heartbeat"
 
+#: src/components/navbar.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Sensor"
+msgstr "Sensor"
+
+#: src/lib/alerts.ts
+msgid "Sensor down"
+msgstr "Sensor down"
+
+#: src/components/routes/sensor.tsx
+msgid "Sensor not found."
+msgstr "Sensor not found."
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Sensors"
+msgstr "Sensors"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Sensors added"
+msgstr "Sensors added"
+
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Sent"
 msgstr "Sent"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Serial number"
+msgstr "Serial number"
 
 #: src/components/routes/system/smart-table.tsx
 msgid "Serial Number"
 msgstr "Serial Number"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
@@ -2485,6 +3188,7 @@ msgid "Service state"
 msgstr "Service state"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -2520,6 +3224,15 @@ msgstr "Settings"
 msgid "Settings saved"
 msgstr "Settings saved"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "SHA-256 fingerprint"
+msgstr "SHA-256 fingerprint"
+
+#: src/components/active-alerts.tsx
+msgid "Show"
+msgstr "Show"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Show by group"
 msgstr "Show by group"
@@ -2534,10 +3247,15 @@ msgstr "Shutdown"
 msgid "Sign in"
 msgstr "Sign in"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Signature"
+msgstr "Signature"
+
 #: src/components/command-palette.tsx
 msgid "SMTP settings"
 msgstr "SMTP settings"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
 msgstr "Sort By"
@@ -2547,6 +3265,11 @@ msgstr "Sort By"
 #: src/components/reboots-table.tsx
 msgid "Source"
 msgstr "Source"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Start"
+msgstr "Start"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2570,6 +3293,7 @@ msgstr "Started manually"
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2605,6 +3329,11 @@ msgstr "States"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/lib/alerts.ts
@@ -2643,6 +3372,7 @@ msgstr "Switch theme"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2685,6 +3415,7 @@ msgstr "System updates"
 msgid "Systemd Services"
 msgstr "Systemd Services"
 
+#: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2700,6 +3431,7 @@ msgstr "Systems may be managed in a <0>config.yml</0> file inside your data dire
 msgid "Systems to update ({targetCount})"
 msgstr "Systems to update ({targetCount})"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
 msgstr "Table"
@@ -2775,6 +3507,14 @@ msgstr "The agent restarts and reconnects on its own."
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "The agents download version {latest} from GitHub, then restart."
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The average response time over 10 minutes exceeds {value} ms."
+msgstr "The average response time over 10 minutes exceeds {value} ms."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The certificate of an HTTPS check expires within {value} days."
+msgstr "The certificate of an HTTPS check expires within {value} days."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "The latest agent version is not known yet"
@@ -2782,6 +3522,18 @@ msgstr "The latest agent version is not known yet"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet loss over 10 minutes exceeds {value}%."
+msgstr "The packet loss over 10 minutes exceeds {value}%."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is bad."
+msgstr "The packet quality over 10 minutes is bad."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is degraded or bad."
+msgstr "The packet quality over 10 minutes is degraded or bad."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "The rules are created on each system."
@@ -2807,6 +3559,14 @@ msgstr "This action cannot be undone. This will permanently delete all current r
 msgid "This agent is too old to be managed from the hub: update it once on the system."
 msgstr "This agent is too old to be managed from the hub: update it once on the system."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "This host already has a sensor: {added} new check(s) were added to it."
+msgstr "This host already has a sensor: {added} new check(s) were added to it."
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This sensor until {until}"
+msgstr "This sensor until {until}"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
 msgstr "This system until {until}"
@@ -2816,6 +3576,11 @@ msgstr "This system until {until}"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "This will permanently delete all selected records from the database."
 msgstr "This will permanently delete all selected records from the database."
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Threshold"
+msgstr "Threshold"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -2829,7 +3594,14 @@ msgstr "Throughput of storage pool {displayName}"
 msgid "Time format"
 msgstr "Time format"
 
-#: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-cert.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "TLS certificate"
+msgstr "TLS certificate"
+
+#: src/components/period-select.tsx
 msgid "To"
 msgstr "To"
 
@@ -2869,6 +3641,10 @@ msgstr "Total data received for each interface"
 msgid "Total data sent for each interface"
 msgstr "Total data sent for each interface"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Total duration: {totalDuration}"
+msgstr "Total duration: {totalDuration}"
+
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
 msgid "Total time spent on read/write (can exceed 100%)"
@@ -2881,8 +3657,13 @@ msgstr "Total: {0}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Total: {totalCount}"
 msgstr "Total: {totalCount}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Traced with the traceroute command of the hub."
+msgstr "Traced with the traceroute command of the hub."
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
@@ -3006,6 +3787,7 @@ msgstr "Universal token"
 #. Context: Battery state
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/lib/i18n.ts
+#: src/lib/sensors.ts
 msgid "Unknown"
 msgstr "Unknown"
 
@@ -3014,9 +3796,17 @@ msgstr "Unknown"
 msgid "Unlimited"
 msgstr "Unlimited"
 
+#: src/components/sensors/sensor-badges.tsx
+msgid "Unreachable"
+msgstr "Unreachable"
+
+#. Context: System is up
+#. Context: System is up
 #. Context: System is up
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Up"
 msgstr "Up"
 
@@ -3029,6 +3819,7 @@ msgid "Up to date"
 msgstr "Up to date"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Up: {upCount}"
 msgstr "Up: {upCount}"
 
@@ -3086,6 +3877,17 @@ msgstr "Upload"
 msgid "Uptime"
 msgstr "Uptime"
 
+#: src/components/routes/sensor.tsx
+msgid "Uptime ({periodLabel})"
+msgstr "Uptime ({periodLabel})"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Uptime (24h)"
+msgstr "Uptime (24h)"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
@@ -3129,6 +3931,18 @@ msgctxt "Disk I/O utilization"
 msgid "Utilization"
 msgstr "Utilization"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid and trusted certificate"
+msgstr "Valid and trusted certificate"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid from"
+msgstr "Valid from"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid until"
+msgstr "Valid until"
+
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
@@ -3138,6 +3952,8 @@ msgstr "Value"
 msgid "Version"
 msgstr "Version"
 
+#: src/components/active-alerts.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "View"
@@ -3157,6 +3973,7 @@ msgstr "View your {count} most recent alerts."
 msgid "View your alerts of the last {days} days."
 msgstr "View your alerts of the last {days} days."
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "Visible Fields"
@@ -3252,6 +4069,10 @@ msgstr "YAML Configuration"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Yes"
 msgstr "Yes"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Your alerts on this sensor. Quiet hours of the sensor and global ones silence them."
+msgstr "Your alerts on this sensor. Quiet hours of the sensor and global ones silence them."
 
 #: src/components/routes/settings/layout.tsx
 msgid "Your user settings have been updated."

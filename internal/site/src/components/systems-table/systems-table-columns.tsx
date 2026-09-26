@@ -58,6 +58,7 @@ import {
 	AlertDialogTitle,
 } from "../ui/alert-dialog"
 import { QuietHoursIndicator } from "../quiet-hours-banner"
+import { LinkedSensorDeleteOption } from "../sensors/host-links"
 import { Button, buttonVariants } from "../ui/button"
 import { Dialog } from "../ui/dialog"
 import {
@@ -610,6 +611,16 @@ function DiskCellWithMultiple(info: CellContext<SystemRecord, unknown>) {
 }
 
 export function IndicatorDot({ system, className }: { system: SystemRecord; className?: ClassValue }) {
+	// the status dot of an up or down system pulses, like on the system page
+	if (!className && (system.status === SystemStatus.Up || system.status === SystemStatus.Down)) {
+		const color = STATUS_COLORS[system.status]
+		return (
+			<span className="relative flex shrink-0 size-2">
+				<span className={cn("absolute inline-flex size-full animate-ping rounded-full opacity-75", color)} />
+				<span className={cn("relative inline-flex size-full rounded-full", color)} />
+			</span>
+		)
+	}
 	className ||= STATUS_COLORS[system.status as keyof typeof STATUS_COLORS] || ""
 	return (
 		<span
@@ -621,6 +632,8 @@ export function IndicatorDot({ system, className }: { system: SystemRecord; clas
 
 export const ActionsButton = memo(({ system }: { system: SystemRecord }) => {
 	const [deleteOpen, setDeleteOpen] = useState(false)
+	// sensor to delete with the system, chosen in the confirmation
+	const linkedSensor = useRef<string | null>(null)
 	const [editOpen, setEditOpen] = useState(false)
 	const editOpened = useRef(false)
 	const { t } = useLingui()
@@ -703,13 +716,22 @@ export const ActionsButton = memo(({ system }: { system: SystemRecord }) => {
 								</Trans>
 							</AlertDialogDescription>
 						</AlertDialogHeader>
+						<LinkedSensorDeleteOption host={host} onChange={(sensorId) => {
+							linkedSensor.current = sensorId
+						}} />
 						<AlertDialogFooter>
 							<AlertDialogCancel>
 								<Trans>Cancel</Trans>
 							</AlertDialogCancel>
 							<AlertDialogAction
 								className={cn(buttonVariants({ variant: "destructive" }))}
-								onClick={() => pb.collection("systems").delete(id)}
+								onClick={async () => {
+									await pb.collection("systems").delete(id)
+									// the sensor of the same address, when chosen
+									if (linkedSensor.current) {
+										await pb.collection("sensors").delete(linkedSensor.current)
+									}
+								}}
 							>
 								<Trans>Continue</Trans>
 							</AlertDialogAction>

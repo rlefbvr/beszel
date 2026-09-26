@@ -29,6 +29,7 @@ import {
 	LayersIcon,
 	LayoutGridIcon,
 	LayoutListIcon,
+	PlusIcon,
 	Settings2Icon,
 	XIcon,
 } from "lucide-react"
@@ -73,6 +74,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui
 import { AgentUpdateButton } from "../agent-update-dialog"
 import { type ColumnResizeHandler, ColumnResizer, resizedAttr } from "../table-layout"
 import { type OverflowTab, OverflowTabs } from "../overflow-tabs"
+import { AddSystemDialog } from "../add-system"
 import { ManageGroupsDialog } from "./groups-dialog"
 import { SystemsTableColumns, ActionsButton, IndicatorDot } from "./systems-table-columns"
 
@@ -82,6 +84,7 @@ type StatusFilter = "all" | SystemRecord["status"]
 const preloadSystemDetail = runOnce(() => import("@/components/routes/system.tsx"))
 
 export default function SystemsTable() {
+	const [addSystemOpen, setAddSystemOpen] = useState(false)
 	const data = useStore($systems)
 	const downSystems = $downSystems.get()
 	const upSystems = $upSystems.get()
@@ -534,6 +537,13 @@ export default function SystemsTable() {
 								</div>
 							</DropdownMenuContent>
 						</DropdownMenu>
+						{!isReadOnlyUser() && (
+							<Button variant="outline" className="gap-1.5 shrink-0" onClick={() => setAddSystemOpen(true)}>
+								<PlusIcon className="size-4" />
+								<Trans>Add a system</Trans>
+							</Button>
+						)}
+						<AddSystemDialog open={addSystemOpen} setOpen={setAddSystemOpen} />
 						<AgentUpdateButton />
 					</div>
 				</div>
@@ -554,6 +564,7 @@ export default function SystemsTable() {
 		alertFilter,
 		alertNames,
 		hasStateRules,
+		addSystemOpen,
 	])
 
 	return (
@@ -681,19 +692,26 @@ function GroupTabs({
 	}, [groups, counts, showUngrouped])
 	return (
 		<div className="flex items-center gap-2 mb-3 sm:mb-4">
-			<OverflowTabs tabs={tabs} value={value} onChange={onChange} className="min-w-0 flex-1" />
-			{!isReadOnlyUser() && (
-				<Button
-					variant="ghost"
-					size="icon"
-					className="shrink-0"
-					aria-label={t`Manage groups`}
-					title={t`Manage groups`}
-					onClick={onManage}
-				>
-					<FolderCogIcon className="size-4" />
-				</Button>
-			)}
+			<OverflowTabs
+				tabs={tabs}
+				value={value}
+				onChange={onChange}
+				className="min-w-0 flex-1"
+				trailing={
+					!isReadOnlyUser() && (
+						<Button
+							variant="ghost"
+							size="icon"
+							className="shrink-0"
+							aria-label={t`Manage groups`}
+							title={t`Manage groups`}
+							onClick={onManage}
+						>
+							<FolderCogIcon className="size-4" />
+						</Button>
+					)
+				}
+			/>
 		</div>
 	)
 }

@@ -14,6 +14,7 @@ import {
 import { useMemo } from "react"
 import AlertsButton from "@/components/alerts/alert-button"
 import { QuietHoursButton } from "@/components/quiet-hours-banner"
+import { SensorLinkButton } from "@/components/sensors/host-links"
 import { AgentButton } from "./agent-button"
 import ChartTimeSelect from "@/components/charts/chart-time-select"
 import { Button } from "@/components/ui/button"
@@ -206,6 +207,7 @@ export default function InfoBar({
 					</div>
 				</div>
 				<div className="xl:ms-auto flex items-center gap-2 max-sm:-mb-1">
+					<SensorLinkButton host={system.host} />
 					<AlertsButton system={system} outline />
 					<QuietHoursButton systemId={system.id} />
 					<AgentButton system={system} />

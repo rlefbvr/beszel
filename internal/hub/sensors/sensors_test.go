@@ -4,10 +4,12 @@ package sensors
 
 import (
 	"context"
+	"encoding/binary"
 	"fmt"
 	"net"
 	"net/http"
 	"net/http/httptest"
+	"strconv"
 	"strings"
 	"testing"
 	"time"
@@ -32,6 +34,7 @@ func TestHTTPAddress(t *testing.T) {
 	assert.Equal(t, "https://example.com/", httpAddress(Check{Host: "example.com", Port: 443}))
 	assert.Equal(t, "http://example.com/", httpAddress(Check{Host: "example.com", Port: 80}))
 	assert.Equal(t, "http://10.0.0.1:8080/", httpAddress(Check{Host: "10.0.0.1", Port: 8080}))
+	assert.Equal(t, "https://pve.lan:8006/", httpAddress(Check{Host: "pve.lan", Port: 8006}), "Proxmox answers in HTTPS")
 	assert.Equal(t, "http://[::1]/", httpAddress(Check{Host: "::1"}))
 	assert.Equal(t, "https://site/status", httpAddress(Check{Host: "ignored", URL: "https://site/status"}))
 }
@@ -223,4 +226,188 @@ func TestQuality(t *testing.T) {
 	s.summarize(now)
 	assert.Equal(t, 0.0, s.loss, "failures older than the window don't count")
 	assert.Len(t, c.recent, 49)
+}
+
+func TestQualityAndPortAlerts(t *testing.T) {
+	now := time.Now()
+	ssh := &checkState{id: "ssh", label: "SSH", check: Check{Protocol: "tcp", Port: 22}, status: "down"}
+	web := &checkState{id: "web", check: Check{Protocol: "http", Port: 443}, status: "up"}
+	s := &sensor{name: "srv", host: "10.0.0.1", status: "down", quality: "bad", hasRecentSamples: true, checks: []*checkState{ssh, web}}
+
+	port := s.alertCondition("port", 0, []string{"ssh", "web"}, now)
+	assert.True(t, port.active, "a chosen port is down")
+	assert.Equal(t, "SSH, HTTP 443", port.subject)
+	assert.Equal(t, "SSH", port.title.Args["checks"], "the title names the ports down")
+	assert.False(t, s.alertCondition("port", 0, []string{"web"}, now).active, "only the chosen ports count")
+
+	s.status, s.quality = "up", "degraded"
+	assert.True(t, s.alertCondition("quality", 1, nil, now).active, "degraded or bad")
+	assert.False(t, s.alertCondition("quality", 2, nil, now).active, "bad only")
+	s.quality = "bad"
+	assert.True(t, s.alertCondition("quality", 2, nil, now).active)
+	s.hasRecentSamples = false
+	assert.False(t, s.alertCondition("quality", 1, nil, now).active, "no samples, no alert")
+}
+
+func TestHeartbeat(t *testing.T) {
+	now := time.Date(2026, 9, 25, 12, 0, 20, 0, time.UTC)
+	latest := now.Add(-5 * time.Second)
+	// rounds of two checks every 15 s, with a few milliseconds of jitter
+	s := &sensor{id: "s1", beats: []sample{
+		{at: now.Add(-2 * time.Hour), ok: true}, // outside the hour
+		{at: latest.Add(-30*time.Second - 20*time.Millisecond), ok: false},
+		{at: latest.Add(-30*time.Second - 20*time.Millisecond), ok: true},
+		{at: latest.Add(-15*time.Second + 30*time.Millisecond), ok: true},
+		{at: latest.Add(-15*time.Second + 30*time.Millisecond), ok: true},
+		{at: latest, ok: true},
+		{at: latest, ok: true},
+	}}
+	m := &Manager{sensors: map[string]*sensor{"s1": s}}
+
+	beats, ok := m.Heartbeat("s1", 15*time.Second, time.Hour, now)
+	require.True(t, ok)
+	require.Len(t, beats, 240)
+	last := beats[len(beats)-1]
+	assert.Equal(t, latest.UnixMilli(), last.Time, "the last period is the latest round")
+	assert.Equal(t, Beat{Time: last.Time, Total: 2, Success: 2}, last, "the last bar always holds the latest round")
+	// one round per period, despite the jitter
+	assert.Equal(t, Beat{Time: latest.Add(-15 * time.Second).UnixMilli(), Total: 2, Success: 2}, beats[len(beats)-2])
+	assert.Equal(t, Beat{Time: latest.Add(-30 * time.Second).UnixMilli(), Total: 2, Success: 1}, beats[len(beats)-3])
+	assert.Equal(t, 0, beats[len(beats)-4].Total)
+	total := 0
+	for _, beat := range beats {
+		total += beat.Total
+	}
+	assert.Equal(t, 6, total, "probes older than an hour are ignored")
+
+	// without a recent probe, the periods end now and the gap shows
+	stale, _ := m.Heartbeat("s1", 15*time.Second, time.Hour, now.Add(time.Minute))
+	assert.Equal(t, 0, stale[len(stale)-1].Total)
+
+	half, _ := m.Heartbeat("s1", 10*time.Second, 30*time.Minute, now)
+	assert.Len(t, half, 180, "half an hour of 10 s periods")
+
+	// every sensor at once, one period per interval of the sensor
+	s.interval = 15 * time.Second
+	all := m.Heartbeats(30, now)
+	require.Len(t, all["s1"], 30)
+	assert.Equal(t, beats[len(beats)-3:], all["s1"][27:], "the same periods as the page of the sensor")
+
+	_, ok = m.Heartbeat("unknown", 15*time.Second, time.Hour, now)
+	assert.False(t, ok)
+}
+
+func TestCertInfo(t *testing.T) {
+	server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+	defer server.Close()
+	host, port, _ := net.SplitHostPort(strings.TrimPrefix(server.URL, "https://"))
+	portNumber, _ := strconv.Atoi(port)
+
+	result := Probe(context.Background(), Check{Protocol: "http", Host: host, Port: portNumber, URL: server.URL, IgnoreTLS: true})
+	require.True(t, result.OK, result.Message)
+	require.NotNil(t, result.Cert)
+	cert := result.Cert
+	assert.Equal(t, cert.NotAfter, result.CertExpiry.UTC())
+	assert.NotEmpty(t, cert.Issuer)
+	assert.Contains(t, cert.Names, "127.0.0.1")
+	assert.Len(t, strings.Split(cert.SHA256, ":"), 32, "SHA-256 fingerprint as 32 bytes")
+	assert.NotEmpty(t, cert.PublicKey)
+	assert.True(t, strings.HasPrefix(cert.TLSVersion, "TLS"), cert.TLSVersion)
+	assert.False(t, cert.Trusted, "the test certificate is not trusted by the system roots")
+	assert.NotEmpty(t, cert.TrustError)
+}
+
+func TestAddSystemSensor(t *testing.T) {
+	m, _, app := newTestManager(t)
+	user := createRecord(t, app, "users", map[string]any{"email": "owner@example.com", "password": "testtesttest", "passwordConfirm": "testtesttest"})
+	newSystem := func(name, host string) *core.Record {
+		return createRecord(t, app, "systems", map[string]any{"name": name, "host": host, "port": "45876", "users": []string{user.Id}, "group": "Prod"})
+	}
+
+	require.NoError(t, m.addSystemSensor(newSystem("web-01", "10.0.0.5")))
+	count, err := app.CountRecords("sensors", dbx.HashExp{"host": "10.0.0.5"})
+	require.NoError(t, err)
+	assert.EqualValues(t, 1, count, "one sensor, even if called again")
+	sensor, err := app.FindFirstRecordByFilter("sensors", "host = '10.0.0.5'")
+	require.NoError(t, err)
+	assert.Equal(t, "web-01", sensor.GetString("name"))
+	assert.Equal(t, "Prod", sensor.GetString("group"))
+	checks, err := app.FindAllRecords("sensor_checks", dbx.HashExp{"sensor": sensor.Id})
+	require.NoError(t, err)
+	require.Len(t, checks, 1)
+	assert.Equal(t, "icmp", checks[0].GetString("protocol"))
+
+	// the host already has a sensor, compared without case
+	createRecord(t, app, "sensors", map[string]any{"name": "NAS", "host": "NAS.lan", "interval": 60})
+	require.NoError(t, m.addSystemSensor(newSystem("nas", "nas.lan")))
+	count, err = app.CountRecords("sensors", dbx.NewExp("lower(host) = 'nas.lan'"))
+	require.NoError(t, err)
+	assert.EqualValues(t, 1, count, "no second sensor for the same host")
+
+	// no address to ping
+	require.NoError(t, m.addSystemSensor(newSystem("local", "/var/run/beszel.sock")))
+	count, _ = app.CountRecords("sensors", dbx.HashExp{"host": "/var/run/beszel.sock"})
+	assert.EqualValues(t, 0, count)
+}
+
+func TestHeartbeatSurvivesRestart(t *testing.T) {
+	m, _, app := newTestManager(t)
+	record := createRecord(t, app, "sensors", map[string]any{"name": "NAS", "host": "192.0.2.20", "interval": 60, "paused": true})
+	now := time.Now().UTC().Truncate(time.Millisecond)
+	beats := []sample{
+		{at: now.Add(-2 * time.Hour), ok: true}, // too old, not restored
+		{at: now.Add(-time.Minute), ok: true},
+		{at: now.Add(-time.Minute), ok: false},
+		{at: now, ok: true},
+		{at: now, ok: true},
+	}
+	rounds := packBeats(beats)
+	require.Len(t, rounds, 3)
+	assert.Equal(t, round{Time: now.Add(-time.Minute).UnixMilli(), Total: 2, Success: 1}, rounds[1])
+	m.saveBeats(record.Id, rounds)
+	m.saveBeats(record.Id, rounds) // updates the same record
+	count, err := app.CountRecords(heartbeatCollection)
+	require.NoError(t, err)
+	assert.EqualValues(t, 1, count)
+
+	// a restarted hub reads them back
+	m.reload(record.Id)
+	restored := m.sensors[record.Id].beats
+	require.Len(t, restored, 4)
+	heartbeat, _ := m.Heartbeat(record.Id, time.Minute, time.Hour, now)
+	assert.Equal(t, Beat{Time: now.UnixMilli(), Total: 2, Success: 2}, heartbeat[len(heartbeat)-1])
+	assert.Equal(t, Beat{Time: now.Add(-time.Minute).UnixMilli(), Total: 2, Success: 1}, heartbeat[len(heartbeat)-2])
+}
+
+func TestParseTracerouteOutput(t *testing.T) {
+	linux := []byte("traceroute to 1.1.1.1 (1.1.1.1), 30 hops max, 60 byte packets\n" +
+		" 1  192.168.1.1  0.512 ms\n" +
+		" 2  *\n" +
+		" 3  1.1.1.1  12.345 ms\n")
+	hops := parseTracerouteOutput(linux)
+	require.Len(t, hops, 3)
+	assert.Equal(t, Hop{TTL: 1, IP: "192.168.1.1", RTT: 0.512}, hops[0])
+	assert.Equal(t, Hop{TTL: 2}, hops[1], "a silent hop")
+	assert.Equal(t, "1.1.1.1", hops[2].IP)
+
+	windows := []byte("\r\nDétermination de l'itinéraire vers 1.1.1.1 avec un maximum de 30 sauts.\r\n\r\n" +
+		"  1    <1 ms    <1 ms    <1 ms  192.168.1.1\r\n" +
+		"  2     *        *        *     Délai d'attente de la demande dépassé.\r\n" +
+		"  3    12 ms    11 ms    13 ms  1.1.1.1\r\n\r\nItinéraire déterminé.\r\n")
+	hops = parseTracerouteOutput(windows)
+	require.Len(t, hops, 3)
+	assert.Equal(t, Hop{TTL: 1, IP: "192.168.1.1", RTT: 1}, hops[0], "<1 ms read as 1 ms")
+	assert.Equal(t, "", hops[1].IP)
+	assert.Equal(t, Hop{TTL: 3, IP: "1.1.1.1", RTT: 12}, hops[2])
+}
+
+func TestMatchesEcho(t *testing.T) {
+	// quoted IPv4 header of 20 bytes, then the echo request: type, code, checksum, id, seq
+	quoted := make([]byte, 28)
+	quoted[0] = 0x45
+	binary.BigEndian.PutUint16(quoted[24:], 0x1234)
+	binary.BigEndian.PutUint16(quoted[26:], 7)
+	assert.True(t, matchesEcho(quoted, false, 0x1234, 7))
+	assert.False(t, matchesEcho(quoted, false, 0x1234, 8), "another TTL")
+	assert.False(t, matchesEcho(quoted[:20], false, 0x1234, 7), "truncated")
 }

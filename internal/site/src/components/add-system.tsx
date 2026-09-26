@@ -2,7 +2,7 @@ import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
 import { getPagePath } from "@nanostores/router"
-import { ChevronDownIcon, ExternalLinkIcon } from "lucide-react"
+import { ChevronDownIcon, ExternalLinkIcon, NetworkIcon } from "lucide-react"
 import { memo, useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
@@ -130,11 +130,7 @@ export const SystemDialog = ({ setOpen, system }: { setOpen: (open: boolean) => 
 			<Tabs defaultValue={tab} onValueChange={setTab}>
 				<DialogHeader>
 					<DialogTitle className="mb-1 pb-1 max-w-100 truncate pr-8">
-						{system ? (
-							<Trans>Edit {{ foo: systemTranslation }}</Trans>
-						) : (
-							<Trans>Add {{ foo: systemTranslation }}</Trans>
-						)}
+						{system ? <Trans>Edit {{ foo: systemTranslation }}</Trans> : <Trans>Add a system</Trans>}
 					</DialogTitle>
 					<TabsList className="grid w-full grid-cols-2">
 						<TabsTrigger value="docker">Docker</TabsTrigger>
@@ -177,6 +173,12 @@ export const SystemDialog = ({ setOpen, system }: { setOpen: (open: boolean) => 
 						</Trans>
 					</DialogDescription>
 				</TabsContent>
+				{!system && (
+					<p className="flex items-start gap-2 rounded-md bg-muted/60 px-3 py-2 mb-3 text-sm text-muted-foreground w-0 min-w-full">
+						<NetworkIcon className="size-4 shrink-0 mt-0.5" />
+						<Trans>Adding the host automatically creates a sensor of type ICMP (Ping).</Trans>
+					</p>
+				)}
 				<form onSubmit={handleSubmit as any}>
 					<div className="grid xs:grid-cols-[auto_1fr] gap-y-3 gap-x-4 items-center mt-1 mb-4">
 						<Label htmlFor="name" className="xs:text-end">
@@ -285,11 +287,7 @@ export const SystemDialog = ({ setOpen, system }: { setOpen: (open: boolean) => 
 						</TabsContent>
 						{/* Save */}
 						<Button>
-							{system ? (
-								<Trans>Save {{ foo: systemTranslation }}</Trans>
-							) : (
-								<Trans>Add {{ foo: systemTranslation }}</Trans>
-							)}
+							{system ? <Trans>Save {{ foo: systemTranslation }}</Trans> : <Trans>Add a system</Trans>}
 						</Button>
 					</DialogFooter>
 				</form>

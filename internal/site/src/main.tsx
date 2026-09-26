@@ -28,6 +28,8 @@ import {
 	defaultLayoutWidth,
 } from "@/lib/stores.ts"
 import * as systemsManager from "@/lib/systemsManager.ts"
+import { openHomePage } from "@/lib/home-page"
+import { trackRecentSystems } from "@/lib/recent"
 import { $instance } from "@/lib/instance"
 import type { BeszelInfo, UpdateInfo } from "./types"
 
@@ -39,6 +41,7 @@ const Reboots = lazy(() => import("@/components/routes/reboots.tsx"))
 const Smart = lazy(() => import("@/components/routes/smart.tsx"))
 const Monitors = lazy(() => import("@/components/routes/monitors.tsx"))
 const SystemDetail = lazy(() => import("@/components/routes/system.tsx"))
+const SensorPage = lazy(() => import("@/components/routes/sensor.tsx"))
 const CopyToClipboardDialog = lazy(() => import("@/components/copy-to-clipboard.tsx"))
 
 const App = memo(() => {
@@ -59,7 +62,13 @@ const App = memo(() => {
 			}
 		})
 		// get user settings
-		updateUserSettings()
+		// the page chosen to open at start replaces the home page once the settings are loaded
+		// systems opened, listed first by the command palette, once the settings holding them are loaded
+		let stopRecent: (() => void) | undefined
+		updateUserSettings().then(() => {
+			openHomePage()
+			stopRecent = trackRecentSystems()
+		})
 		updateHubSettings()
 		// need to get system list before alerts
 		systemsManager.init()
@@ -78,6 +87,7 @@ const App = memo(() => {
 		refreshLatestAgentVersion()
 		refreshLastAlerts().then(subscribeLastAlerts)
 		return () => {
+			stopRecent?.()
 			unsubscribeAuth()
 			alertManager.unsubscribe()
 			unsubscribeStateAlerts()
@@ -93,6 +103,8 @@ const App = memo(() => {
 		return <Home />
 	} else if (page.route === "system") {
 		return <SystemDetail id={page.params.id} />
+	} else if (page.route === "sensor") {
+		return <SensorPage id={page.params.id} />
 	} else if (page.route === "containers") {
 		return <Containers />
 	} else if (page.route === "services") {

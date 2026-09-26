@@ -50,6 +50,18 @@ msgstr "{0} از {1} ردیف انتخاب شده است."
 msgid "{0} selected"
 msgstr "{0} مورد انتخاب شد"
 
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {# active alert acknowledged} other {# active alerts acknowledged}}"
+msgstr "{ackCount, plural, other {# هشدار فعال تأیید شد}}"
+
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {Show # acknowledged} other {Show # acknowledged}}"
+msgstr "{ackCount, plural, other {نمایش تأییدشده‌ها (#)}}"
+
+#: src/components/routes/sensor.tsx
+msgid "{certDays} days"
+msgstr "{certDays} روز"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# هسته} other {# هسته}}"
@@ -74,9 +86,21 @@ msgstr "{count, plural, one {# کانتینر فیلترشده} other {# کان�
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# سرویس فیلترشده} other {# سرویس فیلترشده}}"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "{count, plural, one {# sensor} other {# sensors}}"
+msgstr "{count, plural, one {# حسگر} other {# حسگر}}"
+
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# سیستم} other {# سیستم}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
+msgstr "{created} حسگر جدید، {added} بررسی به حسگرهای موجود افزوده شد."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
+msgstr "{days, plural, other {# روز دیگر منقضی می‌شود}}"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "{diskName} I/O"
@@ -98,6 +122,18 @@ msgstr "{ruleCount, plural, one {# قانون وضعیت ایجاد شد.} other
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, one {# قانون وضعیت} other {# قانون وضعیت}}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "{seconds, plural, one {# second} other {# seconds}}"
+msgstr "{seconds, plural, one {# ثانیه} other {# ثانیه}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{sensorCount} host(s), {checkCount} check(s)"
+msgstr "{sensorCount} میزبان، {checkCount} بررسی"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "{success} of {total} successful"
+msgstr "{success} از {total} موفق"
+
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, one {# سیستم} other {# سیستم}}"
@@ -106,6 +142,7 @@ msgstr "{systemCount, plural, one {# سیستم} other {# سیستم}}"
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, one {# رشته} other {# رشته}}"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 hour"
 msgstr "۱ ساعت"
@@ -123,6 +160,7 @@ msgstr "1 دقیقه"
 msgid "1 week"
 msgstr "۱ هفته"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 year"
 msgstr "۱ سال"
@@ -140,10 +178,12 @@ msgstr "۱۵ دقیقه"
 msgid "180 days"
 msgstr "۱۸۰ روز"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "24 hours"
 msgstr "۲۴ ساعت"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "30 days"
 msgstr "۳۰ روز"
@@ -153,18 +193,44 @@ msgstr "۳۰ روز"
 msgid "5 min"
 msgstr "۵ دقیقه"
 
+#: src/components/period-select.tsx
+msgid "7 days"
+msgstr "۷ روز"
+
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "90 days"
 msgstr "۹۰ روز"
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "A check of the sensor does not respond."
+msgstr "یکی از بررسی‌های حسگر پاسخ نمی‌دهد."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A sensor belongs to one group: checking it moves it from its current group."
+msgstr "هر حسگر به یک گروه تعلق دارد: انتخاب آن، حسگر را از گروه فعلی‌اش جابه‌جا می‌کند."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A system belongs to one group: checking it moves it from its current group."
 msgstr "هر سیستم به یک گروه تعلق دارد: انتخاب آن، سیستم را از گروه فعلی‌اش جابه‌جا می‌کند."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Accepted status codes"
+msgstr "کدهای وضعیت پذیرفته"
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "حساب"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge"
+msgstr "تأیید"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge all"
+msgstr "تأیید همه"
 
 #. Table column
 #: src/components/routes/settings/quiet-hours.tsx
@@ -190,11 +256,11 @@ msgstr " هشدارهای فعال"
 msgid "Active state"
 msgstr "وضعیت فعال"
 
-#: src/components/add-system.tsx
-#: src/components/add-system.tsx
 #: src/components/navbar.tsx
+msgid "Add"
+msgstr "افزودن"
+
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -203,13 +269,50 @@ msgstr "وضعیت فعال"
 msgid "Add {foo}"
 msgstr "افزودن {foo}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add a check"
+msgstr "افزودن بررسی"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add a monitor"
+msgstr "افزودن پایشگر"
+
+#: src/components/add-system.tsx
+#: src/components/add-system.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Add a system"
+msgstr "افزودن سیستم"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add at least one check."
+msgstr "دست‌کم یک بررسی اضافه کنید."
+
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Add rule"
 msgstr "افزودن قانون"
 
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Add sensor"
+msgstr "افزودن حسگر"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Add sensors"
+msgstr "افزودن حسگرها"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "افزودن آدرس اینترنتی"
+
+#: src/components/add-system.tsx
+msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
+msgstr "افزودن میزبان به‌طور خودکار یک حسگر از نوع ICMP (Ping) ایجاد می‌کند."
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Address"
+msgstr "نشانی"
 
 #: src/components/routes/settings/general.tsx
 msgid "Adjust display options for charts."
@@ -287,6 +390,7 @@ msgstr "هشدار هنگامی که وضعیت برابر نیست با"
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "هشدارها"
@@ -295,10 +399,16 @@ msgstr "هشدارها"
 msgid "Alerts created"
 msgstr "هشدارها ایجاد شدند"
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Alerts of {sensorName}"
+msgstr "هشدارهای {sensorName}"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "هشدار برای هر کاربر"
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "همه"
@@ -312,6 +422,7 @@ msgstr "همه عامل‌ها به‌روز هستند ({latest})"
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/containers.tsx
+#: src/lib/home-page.ts
 msgid "All Containers"
 msgstr "همه کانتینرها"
 
@@ -324,19 +435,28 @@ msgstr "همه قدیمی‌ها ({outdatedCount})"
 #: src/components/navbar.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/reboots.tsx
+#: src/lib/home-page.ts
 msgid "All Reboots"
 msgstr "همه راه‌اندازی‌های مجدد"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "All sensors"
+msgstr "همه حسگرها"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/services.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/lib/home-page.ts
 msgid "All Services"
 msgstr "همه سرویس‌ها"
 
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -344,6 +464,7 @@ msgstr "همه سرویس‌ها"
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
+#: src/lib/home-page.ts
 msgid "All Systems"
 msgstr "همه سیستم‌ها"
 
@@ -351,10 +472,26 @@ msgstr "همه سیستم‌ها"
 msgid "All systems until {until}"
 msgstr "همه سیستم‌ها تا {until}"
 
+#: src/components/period-select.tsx
+msgid "All time"
+msgstr "همه زمان‌ها"
+
 #: src/components/agent-update-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Already up to date."
 msgstr "از قبل به‌روز است."
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated host {systemName} and its records"
+msgstr "میزبان مرتبط {systemName} و سوابق آن نیز حذف شود"
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated sensor {sensorName}"
+msgstr "حسگر مرتبط {sensorName} نیز حذف شود"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Alternative names"
+msgstr "نام‌های جایگزین"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -413,6 +550,18 @@ msgctxt "Disk I/O average operation time (iostat await)"
 msgid "Average queue to completion time per operation"
 msgstr "میانگین زمان صف تا تکمیل به ازای هر عملیات"
 
+#: src/components/routes/sensor.tsx
+msgid "Average response"
+msgstr "میانگین پاسخ"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Average response time above which the quality is degraded"
+msgstr "میانگین زمان پاسخی که بالاتر از آن کیفیت افت‌کرده است"
+
+#: src/components/routes/sensor.tsx
+msgid "Average response time of each check"
+msgstr "میانگین زمان پاسخ هر بررسی"
+
 #: src/components/routes/system/charts/cpu-charts.tsx
 msgid "Average system-wide CPU utilization"
 msgstr "میانگین استفاده از CPU در کل سیستم"
@@ -430,6 +579,10 @@ msgstr "میانگین استفاده از موتورهای GPU"
 msgid "Average, minimum, and maximum response time"
 msgstr "میانگین، حداقل و حداکثر زمان پاسخ"
 
+#: src/components/routes/sensor.tsx
+msgid "avg"
+msgstr "میانگین"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
@@ -443,6 +596,15 @@ msgstr "پشتیبان‌گیری"
 #: src/components/navbar.tsx
 msgid "Backups"
 msgstr "پشتیبان‌گیری‌ها"
+
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Bad"
+msgstr "بد"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Bad"
+msgstr "بد"
 
 #: src/components/routes/system/charts/network-charts.tsx
 #: src/lib/alerts.ts
@@ -479,6 +641,10 @@ msgstr "قبل از"
 msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "زیر {0}{1} در آخرین {2, plural, one {# دقیقه} other {# دقیقه}}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
+msgstr "Beszel درگاه‌های میزبان را از هاب بررسی می‌کند. بررسی‌های یک میزبان در یک حسگر گروه‌بندی می‌شوند."
+
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
 msgstr "بِزل از OpenID Connect و بسیاری از ارائه‌دهندگان احراز هویت OAuth2 پشتیبانی می‌کند."
@@ -512,12 +678,17 @@ msgstr "عنوان زبانه مرورگر"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "افزودن گروهی"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Bulk Add {foo}"
 msgstr "افزودن گروهی {foo}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Bulk add sensors"
+msgstr "افزودن گروهی حسگرها"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Bulk copy"
@@ -550,13 +721,19 @@ msgstr "می‌تواند متوقف شود"
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "لغو"
+
+#: src/components/active-alerts.tsx
+msgid "Cancel the acknowledgement"
+msgstr "لغو تأیید"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Capabilities"
@@ -576,6 +753,18 @@ msgstr "احتیاط - احتمال از دست رفتن داده‌ها"
 #: src/components/routes/settings/general.tsx
 msgid "Celsius (°C)"
 msgstr "سلسیوس (°C)"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate not trusted by the hub"
+msgstr "گواهی برای هاب قابل‌اعتماد نیست"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate presented by the server at the last check."
+msgstr "گواهی ارائه‌شده توسط سرور در آخرین بررسی."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Chain"
+msgstr "زنجیره"
 
 #: src/components/routes/settings/general.tsx
 msgid "Change display units for metrics."
@@ -606,6 +795,12 @@ msgstr "بازه‌های نمودار"
 msgid "Chart width"
 msgstr "عرض نمودار"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Check"
+msgstr "بررسی"
+
 #: src/components/login/forgot-pass-form.tsx
 msgid "Check {email} for a reset link."
 msgstr "ایمیل {email} خود را برای لینک بازنشانی بررسی کنید."
@@ -623,9 +818,30 @@ msgstr "سرویس نظارتی خود را بررسی کنید"
 msgid "Check your notification service"
 msgstr "سرویس اطلاع‌رسانی خود را بررسی کنید"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Checks"
+msgstr "بررسی‌ها"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Checks added to {sensorName}"
+msgstr "بررسی‌ها به {sensorName} افزوده شد"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Checksum errors"
 msgstr "خطاهای مجموع بررسی"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Choose a known port"
+msgstr "یک درگاه شناخته‌شده انتخاب کنید"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Choose at least one port."
+msgstr "دست‌کم یک درگاه انتخاب کنید."
 
 #: src/components/reboots-table.tsx
 msgctxt "Clean shutdown"
@@ -638,6 +854,8 @@ msgstr "عادی"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Clear"
 msgstr "پاک کردن"
@@ -671,9 +889,24 @@ msgstr "برای کپی کردن کلیک کنید"
 msgid "Close"
 msgstr "بستن"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Code"
+msgstr "کد"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "فاصله جمع‌آوری"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Color"
+msgstr "رنگ"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Columns"
+msgstr "ستون‌ها"
 
 #: src/components/login/forgot-pass-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -729,6 +962,7 @@ msgid "Container state"
 msgstr "وضعیت کانتینر"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
 msgstr "کانتینرها"
@@ -914,6 +1148,15 @@ msgstr "روزانه"
 msgid "Data directory"
 msgstr "پوشه داده"
 
+#: src/components/period-select.tsx
+msgid "Dates…"
+msgstr "تاریخ‌ها…"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "days"
+msgstr "روز"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "days of alerts"
 msgstr "روز هشدار"
@@ -922,6 +1165,10 @@ msgstr "روز هشدار"
 msgctxt "Default system layout option"
 msgid "Default"
 msgstr "پیش‌فرض"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Default color"
+msgstr "رنگ پیش‌فرض"
 
 #: src/components/routes/settings/general.tsx
 msgid "Default time period"
@@ -933,9 +1180,20 @@ msgstr "بازه زمانی پیش‌فرض"
 msgid "Default URL"
 msgstr "نشانی پیش‌فرض"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Degraded"
+msgstr "افت‌کرده"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Degraded or bad"
+msgstr "افت‌کرده یا بد"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -967,6 +1225,10 @@ msgstr "گروه {originalName} حذف شود؟"
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
 msgstr "راه‌اندازی‌های مجدد انتخاب‌شده حذف شوند؟"
+
+#: src/components/routes/sensor.tsx
+msgid "Delete this sensor?"
+msgstr "این حسگر حذف شود؟"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1043,10 +1305,15 @@ msgid "Documentation"
 msgstr "مستندات"
 
 #. Context: System is down
+#. Context: System is down
+#. Context: System is down
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 #: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+#: src/lib/sensors.ts
 msgid "Down"
 msgstr "قطع"
 
@@ -1055,6 +1322,7 @@ msgid "Down ({downSystemsLength})"
 msgstr "قطع ({downSystemsLength})"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Down: {downCount}"
 msgstr "متوقف: {downCount}"
 
@@ -1074,11 +1342,14 @@ msgstr "برای تغییر اندازه بکشید، برای بازنشانی 
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
 msgid "Duration"
 msgstr "مدت زمان"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -1090,6 +1361,10 @@ msgstr "ویرایش"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit {foo}"
 msgstr "ویرایش {foo}"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Edit sensor"
+msgstr "ویرایش حسگر"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -1105,6 +1380,11 @@ msgstr "اعلان‌های ایمیلی"
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "خالی"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "End"
+msgstr "پایان"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1141,6 +1421,8 @@ msgstr "گذرا"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/config-yaml.tsx
 #: src/components/routes/settings/heartbeat.tsx
@@ -1150,6 +1432,7 @@ msgstr "گذرا"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "خطا"
@@ -1164,6 +1447,10 @@ msgstr "مثال:"
 #: src/components/active-alerts.tsx
 msgid "Exceeds {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "در {2, plural, one {# دقیقه} other {# دقیقه}} گذشته از {0}{1} بیشتر است"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "Exchange quality"
+msgstr "کیفیت تبادل‌ها"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exec main PID"
@@ -1184,6 +1471,18 @@ msgstr "کد خروج"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exited active"
 msgstr "خروج فعال"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Expected text"
+msgstr "متن مورد انتظار"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired certificate"
+msgstr "گواهی منقضی‌شده"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired on {expiredOn}"
+msgstr "منقضی‌شده در {expiredOn}"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Expires after one hour or on hub restart."
@@ -1213,6 +1512,10 @@ msgstr "ناموفق"
 msgid "Failed Attributes:"
 msgstr "ویژگی‌های ناموفق:"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Failed checks in a row tolerated before the sensor is down"
+msgstr "تعداد بررسی‌های ناموفق پیاپی مجاز پیش از قطع‌شدن حسگر"
+
 #: src/lib/alerts.ts
 msgid "Failed Services"
 msgstr "سرویس‌های ناموفق"
@@ -1231,6 +1534,8 @@ msgstr "حذف مانیتورها ناموفق بود."
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "ذخیره تنظیمات ناموفق بود"
@@ -1268,6 +1573,8 @@ msgstr "فن‌ها"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1281,6 +1588,14 @@ msgstr "اثر انگشت"
 #: src/components/routes/system/smart-table.tsx
 msgid "Firmware"
 msgstr "فرم‌ویر"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Following the route, up to a minute…"
+msgstr "در حال ردیابی مسیر، تا یک دقیقه…"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "For"
+msgstr "به مدت"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "For <0>{min}</0> {min, plural, one {minute} other {minutes}}"
@@ -1303,7 +1618,7 @@ msgctxt "Button to copy install command"
 msgid "FreeBSD command"
 msgstr "دستور FreeBSD"
 
-#: src/components/reboots-table.tsx
+#: src/components/period-select.tsx
 msgid "From"
 msgstr "از"
 
@@ -1323,6 +1638,11 @@ msgstr "عمومی"
 msgid "Global"
 msgstr "جهانی"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Good"
+msgstr "خوب"
+
 #: src/components/routes/system.tsx
 msgid "GPU"
 msgstr "پردازنده گرافیکی"
@@ -1340,18 +1660,28 @@ msgid "GPU Usage"
 msgstr "میزان استفاده از GPU"
 
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "جدول"
 
 #: src/components/add-system.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Group"
 msgstr "گروه"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group deleted"
 msgstr "گروه حذف شد"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Group of the lines without group"
+msgstr "گروه خطوط بدون گروه"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group saved"
@@ -1360,6 +1690,10 @@ msgstr "گروه ذخیره شد"
 #: src/components/systems-table/systems-table.tsx
 msgid "Groups"
 msgstr "گروه‌ها"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
+msgstr "گروه‌ها حسگرهای شبکه را برای همه کاربران سازمان‌دهی می‌کنند. حذف یک گروه حسگرهای آن را بدون گروه نگه می‌دارد."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
@@ -1389,18 +1723,45 @@ msgstr "نظارت بر ضربان قلب"
 msgid "Heartbeat sent successfully"
 msgstr "ضربان قلب با موفقیت ارسال شد"
 
+#: src/components/active-alerts.tsx
+msgid "Hide acknowledged"
+msgstr "پنهان‌کردن تأییدشده‌ها"
+
+#: src/components/routes/settings/general.tsx
+msgid "Home page"
+msgstr "صفحه اصلی"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgctxt "Button to copy install command"
 msgid "Homebrew command"
 msgstr "دستور Homebrew"
 
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/host-links.tsx
+msgid "Host"
+msgstr "میزبان"
+
 #: src/components/add-system.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Host / IP"
 msgstr "میزبان / IP"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host not reached: the last hops do not answer."
+msgstr "به میزبان نرسید: آخرین گام‌ها پاسخ نمی‌دهند."
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host reached in {hopCount} hops."
+msgstr "میزبان در {hopCount} گام در دسترس قرار گرفت."
 
 #: src/lib/quiet-hours.ts
 msgid "Host restart"
@@ -1450,6 +1811,10 @@ msgstr "بیکار"
 msgid "If you've lost the password to your admin account, you may reset it using the following command."
 msgstr "اگر رمز عبور حساب مدیر خود را گم کرده‌اید، می‌توانید آن را با استفاده از دستور زیر بازنشانی کنید."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Ignore TLS certificate errors"
+msgstr "نادیده گرفتن خطاهای گواهی TLS"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 msgctxt "Docker image"
@@ -1474,6 +1839,15 @@ msgstr "سرویس‌های مهم"
 msgid "Inactive"
 msgstr "غیرفعال"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Information"
+msgstr "اطلاعات"
+
 #: src/components/reboots-table.tsx
 msgid "Initiated by"
 msgstr "آغازشده توسط"
@@ -1488,9 +1862,14 @@ msgstr "نمونه"
 msgid "Instance name"
 msgstr "نام نمونه"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Interruptions: {incidentCount}"
+msgstr "قطعی‌ها: {incidentCount}"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Interval"
 msgstr "بازه زمانی"
 
@@ -1501,6 +1880,30 @@ msgstr "بازه (ثانیه)"
 #: src/components/login/auth-form.tsx
 msgid "Invalid email address."
 msgstr "آدرس ایمیل نامعتبر است."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by"
+msgstr "صادرشده توسط"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by {linkIssuer}, valid until {linkUntil}"
+msgstr "صادرشده توسط {linkIssuer}، معتبر تا {linkUntil}"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued to"
+msgstr "صادرشده برای"
+
+#: src/components/routes/sensor.tsx
+msgid "Its checks, history and interruptions will be deleted."
+msgstr "بررسی‌ها، تاریخچه و قطعی‌های آن حذف خواهند شد."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are kept and moved to no group."
+msgstr "حسگرهای آن حفظ شده و بدون گروه می‌شوند."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are now without group."
+msgstr "حسگرهای آن اکنون بدون گروه هستند."
 
 #: src/components/important-targets.tsx
 msgid "Its state alerts stop. The following rules change:"
@@ -1518,18 +1921,60 @@ msgstr "سیستم‌های آن اکنون بدون گروه هستند."
 msgid "Keep"
 msgstr "نگه‌داری"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Known ports"
+msgstr "درگاه‌های شناخته‌شده"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Label"
+msgstr "برچسب"
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "زبان"
+
+#: src/components/routes/sensor.tsx
+msgid "Last 30 minutes"
+msgstr "۳۰ دقیقه گذشته"
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Last alert"
 msgstr "آخرین هشدار"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Last check"
+msgstr "آخرین بررسی"
+
+#: src/components/routes/sensor.tsx
+msgid "Last hour"
+msgstr "ساعت گذشته"
+
 #: src/components/routes/system/agent-details.tsx
 msgid "Last lines logged by the agent of {name} since it started."
 msgstr "آخرین خطوط ثبت‌شده توسط عامل {name} از زمان شروع."
 
+#: src/components/routes/sensor.tsx
+msgid "Last result of each check."
+msgstr "آخرین نتیجه هر بررسی."
+
+#: src/components/routes/sensor.tsx
+msgid "Last update"
+msgstr "آخرین به‌روزرسانی"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Latency (ms)"
+msgstr "تأخیر (ms)"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Latest interruptions"
+msgstr "آخرین قطعی‌ها"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "طرح‌بندی"
@@ -1546,6 +1991,22 @@ msgstr "چرخه حیات"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "limit"
 msgstr "محدودیت"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: the host is missing"
+#~ msgstr ""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: unknown service \"{check}\""
+#~ msgstr ""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: the host is missing"
+msgstr "خط {lineNumber}: میزبان وارد نشده است"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: unknown service \"{check}\""
+msgstr "خط {lineNumber}: سرویس ناشناخته \"{check}\""
 
 #: src/components/routes/system/charts/load-average-chart.tsx
 msgid "Load Average"
@@ -1576,6 +2037,7 @@ msgstr "میانگین بار"
 msgid "Load state"
 msgstr "وضعیت بارگذاری"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
 msgstr "در حال بارگذاری..."
@@ -1587,6 +2049,10 @@ msgstr "دیسک محلی"
 #: src/components/routes/system/agent-details.tsx
 msgid "Location"
 msgstr "مکان"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Location, owner, role…"
+msgstr "مکان، مالک، نقش…"
 
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
@@ -1617,7 +2083,16 @@ msgstr "لاگ‌ها"
 msgid "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
 msgstr "به دنبال جایی برای ایجاد هشدار هستید؟ روی آیکون‌های زنگ <0/> در جدول سیستم‌ها کلیک کنید."
 
+#. Packet loss
+#: src/components/routes/sensor.tsx
+msgid "loss"
+msgstr "اتلاف"
+
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgctxt "Packet loss"
 msgid "Loss"
 msgstr "افت"
@@ -1635,6 +2110,9 @@ msgstr "PID اصلی"
 msgid "Manage display and notification preferences."
 msgstr "مدیریت تنظیمات نمایش و اعلان‌ها."
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1686,9 +2164,19 @@ msgstr "میزان استفاده از حافظه"
 msgid "Memory usage of containers"
 msgstr "میزان استفاده حافظه کانتینرها"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Message"
+msgstr "پیام"
+
 #: src/lib/quiet-hours.ts
 msgid "Migration"
 msgstr "مهاجرت"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "min"
+msgstr "دقیقه"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -1704,7 +2192,6 @@ msgstr "مدل"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitor"
 msgstr "مانیتور"
 
@@ -1713,6 +2200,7 @@ msgid "Monitors created"
 msgstr "مانیتورها ایجاد شدند"
 
 #: src/components/overflow-tabs.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "More"
 msgstr "بیشتر"
 
@@ -1725,6 +2213,11 @@ msgstr "نقطه اتصال"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1739,6 +2232,10 @@ msgstr "نام و نشانی پیش‌فرض این هاب که در پیوند�
 #: src/components/routes/settings/general.tsx
 msgid "Name of the service created when installing an agent with the Linux or Windows commands. Existing agents keep their service name."
 msgstr "نام سرویسی که هنگام نصب عامل با دستورات Linux یا Windows ایجاد می‌شود. عامل‌های موجود نام سرویس خود را حفظ می‌کنند."
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Name to resolve"
+msgstr "نامی که باید تفکیک شود"
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
@@ -1770,8 +2267,18 @@ msgstr "افت مانیتور شبکه"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
+#: src/lib/home-page.ts
 msgid "Network Monitors"
 msgstr "مانیتورهای شبکه"
+
+#: src/components/routes/monitors.tsx
+msgid "Network monitors from a host"
+msgstr "پایشگرهای شبکه از یک میزبان"
+
+#: src/components/command-palette.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Network sensors"
+msgstr "حسگرهای شبکه"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Network traffic of containers"
@@ -1812,17 +2319,32 @@ msgid "No alert"
 msgstr "بدون هشدار"
 
 #: src/components/alerts/alert-button.tsx
+#: src/components/routes/sensor.tsx
 msgid "No alerts configured"
 msgstr "هیچ هشداری پیکربندی نشده است"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "No answer"
+msgstr "بدون پاسخ"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "No certificate yet: the details appear after the next HTTPS check."
+msgstr "هنوز گواهی‌ای نیست: جزئیات پس از بررسی HTTPS بعدی نمایش داده می‌شود."
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "دادهٔ جزئی برای این استخر موجود نیست."
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "No group"
 msgstr "بدون گروه"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "No interruptions over this period."
+msgstr "در این بازه قطعی‌ای نبوده است."
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1843,6 +2365,8 @@ msgstr "هیچ نتیجه‌ای یافت نشد."
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No results."
 msgstr "نتیجه‌ای یافت نشد."
@@ -1850,6 +2374,10 @@ msgstr "نتیجه‌ای یافت نشد."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "هیچ ویژگی S.M.A.R.T برای این دستگاه موجود نیست."
+
+#: src/components/sensors/sensors-board.tsx
+msgid "No sensor yet: add the hosts and ports that Beszel should check."
+msgstr "هنوز حسگری وجود ندارد: میزبان‌ها و درگاه‌هایی را که Beszel باید بررسی کند اضافه کنید."
 
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
@@ -1899,6 +2427,27 @@ msgstr "پشتیبانی از OAuth 2 / OIDC"
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
 msgstr "در هر بار راه‌اندازی مجدد، سیستم‌های موجود در پایگاه داده با سیستم‌های تعریف شده در فایل مطابقت داده می‌شوند."
 
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per 15 seconds"
+#~ msgstr "یک نوار برای هر ۱۵ ثانیه"
+
+#: src/components/routes/sensor.tsx
+msgid "One bar per interval ({every})"
+msgstr "یک نوار برای هر بازه ({every})"
+
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per minute"
+#~ msgstr "یک نوار برای هر دقیقه"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
+msgstr "یک خط برای هر میزبان: میزبان، سرویس‌ها، برچسب، گروه، نام. سرویس‌ها درگاه‌های شناخته‌شده (ssh، https، dns…)، شماره درگاه‌های TCP یا پروتکل:درگاه هستند که با + جدا می‌شوند. خطوط یک میزبان یک حسگر را می‌سازند."
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "One of the chosen ports does not respond."
+msgstr "یکی از درگاه‌های انتخاب‌شده پاسخ نمی‌دهد."
+
 #: src/lib/alerts.ts
 msgid "One or more containers are unhealthy"
 msgstr "یک یا چند کانتینر در وضعیت ناسالم هستند"
@@ -1921,6 +2470,10 @@ msgstr "یک‌بار مصرف"
 msgid "One-time password"
 msgstr "رمز عبور یک‌بار مصرف"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Ongoing"
+msgstr "در جریان"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Only administrators can change this setting."
@@ -1936,6 +2489,15 @@ msgstr "فقط مدیران می‌توانند این تنظیم را تغیی�
 msgid "Open menu"
 msgstr "باز کردن منو"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Optional, such as the name of the service"
+msgstr "اختیاری، مانند نام سرویس"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Options"
+msgstr "گزینه‌ها"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "یا ادامه با"
@@ -1945,13 +2507,38 @@ msgstr "یا ادامه با"
 msgid "Other"
 msgstr "سایر"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Other port…"
+msgstr "درگاه دیگر…"
+
 #: src/components/alerts/alerts-sheet.tsx
 msgid "Overwrite existing alerts"
 msgstr "بازنویسی هشدارهای موجود"
 
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet loss"
+msgstr "اتلاف بسته"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss ({periodLabel})"
+msgstr "اتلاف بسته ({periodLabel})"
+
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Packet loss (%)"
 msgstr "افت بسته‌ها (%)"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss (%) of all the checks"
+msgstr "اتلاف بسته (%) همه بررسی‌ها"
+
+#: src/components/routes/sensor.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet quality"
+msgstr "کیفیت بسته‌ها"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -1967,6 +2554,10 @@ msgstr "صفحه"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Page {0} of {1}"
 msgstr "صفحه {0} از {1}"
+
+#: src/components/routes/settings/general.tsx
+msgid "Page opened at start and by the logo."
+msgstr "صفحه‌ای که هنگام شروع و با لوگو باز می‌شود."
 
 #: src/components/command-palette.tsx
 msgid "Pages / Settings"
@@ -1994,11 +2585,14 @@ msgid "Past"
 msgstr "گذشته"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Pause"
 msgstr "توقف"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Paused"
 msgstr "مکث شده"
 
@@ -2009,6 +2603,10 @@ msgstr "مکث شده ({pausedSystemsLength})"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Payload format"
 msgstr "فرمت پی‌لود"
+
+#: src/lib/sensors.ts
+msgid "Pending"
+msgstr "در انتظار"
 
 #: src/components/routes/system/cpu-sheet.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2022,6 +2620,10 @@ msgstr "درصد زمانی که دیسک مشغول عملیات ورودی/خ�
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Percentage of time spent in each state"
 msgstr "درصد زمان صرف شده در هر حالت"
+
+#: src/components/period-select.tsx
+msgid "Period"
+msgstr "بازه"
 
 #: src/components/routes/settings/general.tsx
 msgid "Periods offered in the charts of all users. The periods of 90 days or more keep one record per day for that long, which uses more disk space."
@@ -2081,10 +2683,22 @@ msgstr "سلامت استخر"
 msgid "Pool Usage"
 msgstr "استفاده از استخر"
 
+#: src/lib/alerts.ts
+msgid "Poor packet quality"
+msgstr "کیفیت بد بسته‌ها"
+
 #: src/components/add-system.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Port"
 msgstr "پورت"
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Port not responding"
+msgstr "درگاه پاسخ نمی‌دهد"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
@@ -2123,10 +2737,12 @@ msgstr "تولید، مشتریان، آزمایشگاه…"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Protocol"
 msgstr "پروتکل"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Public key"
 msgstr "کلید عمومی"
 
@@ -2134,6 +2750,13 @@ msgstr "کلید عمومی"
 #: src/components/add-system.tsx
 msgid "Public Key"
 msgstr "کلید عمومی"
+
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Quality"
+msgstr "کیفیت"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O average queue depth"
@@ -2214,6 +2837,15 @@ msgstr "راه‌اندازی‌های مجدد"
 msgid "Received"
 msgstr "دریافت شد"
 
+#: src/components/sensors/sensor-badges.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Recent checks"
+msgstr "بررسی‌های اخیر"
+
+#: src/components/command-palette.tsx
+msgid "Recently opened"
+msgstr "اخیراً باز شده"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "ثبت‌شده"
@@ -2232,6 +2864,7 @@ msgid "Relationships"
 msgstr "روابط"
 
 #: src/components/important-targets.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Remove"
 msgstr "حذف"
 
@@ -2281,9 +2914,24 @@ msgstr "حل شده"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 msgid "Response"
 msgstr "پاسخ"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Response and uptime"
+msgstr "پاسخ و زمان فعالیت"
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Response time"
+msgstr "زمان پاسخ"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 msgid "Response time monitoring from agents."
@@ -2294,6 +2942,7 @@ msgid "Restarts"
 msgstr "راه‌اندازی مجدد"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Resume"
 msgstr "ادامه"
@@ -2310,6 +2959,10 @@ msgstr "نگه‌داری: هشدارهای {days} روز گذشته"
 msgid "Retention: the last {count} alerts of each user"
 msgstr "نگه‌داری: {count} هشدار آخر هر کاربر"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Retries"
+msgstr "تلاش‌های مجدد"
+
 #: src/lib/utils.ts
 msgctxt "Root disk label"
 msgid "Root"
@@ -2318,6 +2971,10 @@ msgstr "ریشه"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Rotate token"
 msgstr "چرخش توکن"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Route from the hub to {sensorHost}."
+msgstr "مسیر از هاب تا {sensorHost}."
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
@@ -2330,6 +2987,10 @@ msgstr "قانون حذف می‌شود، الگوی آن موارد دیگری 
 #: src/components/important-targets.tsx
 msgid "Rule deleted: {targets}"
 msgstr "قانون حذف می‌شود: {targets}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Run again"
+msgstr "اجرای دوباره"
 
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
@@ -2349,6 +3010,7 @@ msgstr "تست خود S.M.A.R.T"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "ذخیره"
@@ -2393,8 +3055,16 @@ msgid "Search"
 msgstr "جستجو"
 
 #: src/components/command-palette.tsx
-msgid "Search for systems or settings..."
-msgstr "جستجو برای سیستم‌ها یا تنظیمات..."
+#~ msgid "Search for systems or settings..."
+#~ msgstr "جستجو برای سیستم‌ها یا تنظیمات..."
+
+#: src/components/command-palette.tsx
+#~ msgid "Search for systems, sensors or settings..."
+#~ msgstr "جستجوی سیستم‌ها، حسگرها یا تنظیمات..."
+
+#: src/components/command-palette.tsx
+msgid "Search for systems, sensors, containers, services or settings..."
+msgstr "جستجوی سیستم‌ها، حسگرها، کانتینرها، سرویس‌ها یا تنظیمات..."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2413,6 +3083,7 @@ msgstr "برای پیکربندی نحوه دریافت هشدارها، به <0
 msgid "Select"
 msgstr "انتخاب"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Select {foo}"
 msgstr "انتخاب {foo}"
@@ -2459,14 +3130,46 @@ msgstr "پینگ‌های خروجی دوره‌ای را به یک سرویس �
 msgid "Send test heartbeat"
 msgstr "ارسال ضربان قلب آزمایشی"
 
+#: src/components/navbar.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Sensor"
+msgstr "حسگر"
+
+#: src/lib/alerts.ts
+msgid "Sensor down"
+msgstr "حسگر قطع است"
+
+#: src/components/routes/sensor.tsx
+msgid "Sensor not found."
+msgstr "حسگر پیدا نشد."
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Sensors"
+msgstr "حسگرها"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Sensors added"
+msgstr "حسگرها افزوده شدند"
+
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Sent"
 msgstr "ارسال شد"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Serial number"
+msgstr "شماره سریال"
 
 #: src/components/routes/system/smart-table.tsx
 msgid "Serial Number"
 msgstr "شماره سریال"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
@@ -2490,6 +3193,7 @@ msgid "Service state"
 msgstr "وضعیت سرویس"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -2525,6 +3229,15 @@ msgstr "تنظیمات"
 msgid "Settings saved"
 msgstr "تنظیمات ذخیره شد"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "SHA-256 fingerprint"
+msgstr "اثر انگشت SHA-256"
+
+#: src/components/active-alerts.tsx
+msgid "Show"
+msgstr "نمایش"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Show by group"
 msgstr "نمایش بر اساس گروه"
@@ -2539,10 +3252,15 @@ msgstr "خاموش شدن"
 msgid "Sign in"
 msgstr "ورود"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Signature"
+msgstr "امضا"
+
 #: src/components/command-palette.tsx
 msgid "SMTP settings"
 msgstr "تنظیمات SMTP"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
 msgstr "مرتب‌سازی بر اساس"
@@ -2552,6 +3270,11 @@ msgstr "مرتب‌سازی بر اساس"
 #: src/components/reboots-table.tsx
 msgid "Source"
 msgstr "منبع"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Start"
+msgstr "شروع"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2575,6 +3298,7 @@ msgstr "دستی شروع شده"
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2610,6 +3334,11 @@ msgstr "وضعیت‌ها"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/lib/alerts.ts
@@ -2648,6 +3377,7 @@ msgstr "تغییر تم"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2690,6 +3420,7 @@ msgstr "به‌روزرسانی‌های سیستم"
 msgid "Systemd Services"
 msgstr "خدمات Systemd"
 
+#: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2705,6 +3436,7 @@ msgstr "سیستم‌ها ممکن است در یک فایل <0>config.yml</0> �
 msgid "Systems to update ({targetCount})"
 msgstr "سیستم‌های نیازمند به‌روزرسانی ({targetCount})"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
 msgstr "جدول"
@@ -2780,6 +3512,14 @@ msgstr "عامل خودش دوباره راه‌اندازی و وصل می‌ش
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "عامل‌ها نسخه {latest} را از GitHub دانلود کرده و دوباره راه‌اندازی می‌شوند."
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The average response time over 10 minutes exceeds {value} ms."
+msgstr "میانگین زمان پاسخ در ۱۰ دقیقه از {value} میلی‌ثانیه بیشتر است."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The certificate of an HTTPS check expires within {value} days."
+msgstr "گواهی یکی از بررسی‌های HTTPS ظرف {value} روز منقضی می‌شود."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "آخرین نسخه عامل هنوز مشخص نیست"
@@ -2787,6 +3527,18 @@ msgstr "آخرین نسخه عامل هنوز مشخص نیست"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "وضعیت کلی زمانی <0>ok</0> است که همه سیستم‌ها بالا باشند، <1>warn</1> زمانی که هشدارها فعال شوند، و <2>error</2> زمانی که هر سیستمی پایین باشد."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet loss over 10 minutes exceeds {value}%."
+msgstr "اتلاف بسته در ۱۰ دقیقه از {value}٪ بیشتر است."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is bad."
+msgstr "کیفیت بسته‌ها در ۱۰ دقیقه بد است."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is degraded or bad."
+msgstr "کیفیت بسته‌ها در ۱۰ دقیقه افت‌کرده یا بد است."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "The rules are created on each system."
@@ -2812,6 +3564,14 @@ msgstr "این عمل قابل برگشت نیست. این کار تمام رک�
 msgid "This agent is too old to be managed from the hub: update it once on the system."
 msgstr "این عامل برای مدیریت از هاب خیلی قدیمی است: یک بار آن را روی سیستم به‌روزرسانی کنید."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "This host already has a sensor: {added} new check(s) were added to it."
+msgstr "این میزبان از قبل حسگر دارد: {added} بررسی جدید به آن افزوده شد."
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This sensor until {until}"
+msgstr "این حسگر تا {until}"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
 msgstr "این سیستم تا {until}"
@@ -2821,6 +3581,11 @@ msgstr "این سیستم تا {until}"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "This will permanently delete all selected records from the database."
 msgstr "این کار تمام رکوردهای انتخاب شده را برای همیشه از پایگاه داده حذف خواهد کرد."
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Threshold"
+msgstr "آستانه"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -2834,7 +3599,14 @@ msgstr "توان عملیاتی استخر ذخیره‌سازی {displayName}"
 msgid "Time format"
 msgstr "فرمت زمان"
 
-#: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-cert.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "TLS certificate"
+msgstr "گواهی TLS"
+
+#: src/components/period-select.tsx
 msgid "To"
 msgstr "تا"
 
@@ -2874,6 +3646,10 @@ msgstr "داده‌های کل دریافت شده برای هر رابط"
 msgid "Total data sent for each interface"
 msgstr "داده‌های کل ارسال شده برای هر رابط"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Total duration: {totalDuration}"
+msgstr "مدت کل: {totalDuration}"
+
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
 msgid "Total time spent on read/write (can exceed 100%)"
@@ -2886,8 +3662,13 @@ msgstr "کل: {0}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Total: {totalCount}"
 msgstr "مجموع: {totalCount}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Traced with the traceroute command of the hub."
+msgstr "با فرمان traceroute هاب ردیابی شد."
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
@@ -3011,6 +3792,7 @@ msgstr "توکن جهانی"
 #. Context: Battery state
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/lib/i18n.ts
+#: src/lib/sensors.ts
 msgid "Unknown"
 msgstr "ناشناخته"
 
@@ -3019,9 +3801,17 @@ msgstr "ناشناخته"
 msgid "Unlimited"
 msgstr "نامحدود"
 
+#: src/components/sensors/sensor-badges.tsx
+msgid "Unreachable"
+msgstr "غیرقابل دسترس"
+
+#. Context: System is up
+#. Context: System is up
 #. Context: System is up
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Up"
 msgstr "فعال"
 
@@ -3034,6 +3824,7 @@ msgid "Up to date"
 msgstr "به‌روز"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Up: {upCount}"
 msgstr "در حال اجرا: {upCount}"
 
@@ -3091,6 +3882,17 @@ msgstr "آپلود"
 msgid "Uptime"
 msgstr "آپتایم"
 
+#: src/components/routes/sensor.tsx
+msgid "Uptime ({periodLabel})"
+msgstr "زمان فعالیت ({periodLabel})"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Uptime (24h)"
+msgstr "زمان فعالیت (۲۴ ساعت)"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
@@ -3134,6 +3936,18 @@ msgctxt "Disk I/O utilization"
 msgid "Utilization"
 msgstr "بهره‌وری"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid and trusted certificate"
+msgstr "گواهی معتبر و قابل‌اعتماد"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid from"
+msgstr "معتبر از"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid until"
+msgstr "معتبر تا"
+
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
@@ -3143,6 +3957,8 @@ msgstr "مقدار"
 msgid "Version"
 msgstr "نسخه"
 
+#: src/components/active-alerts.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "View"
@@ -3162,6 +3978,7 @@ msgstr "{count} هشدار اخیر خود را ببینید."
 msgid "View your alerts of the last {days} days."
 msgstr "هشدارهای {days} روز گذشته خود را ببینید."
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "Visible Fields"
@@ -3257,6 +4074,10 @@ msgstr "پیکربندی YAML"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Yes"
 msgstr "بله"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Your alerts on this sensor. Quiet hours of the sensor and global ones silence them."
+msgstr "هشدارهای شما برای این حسگر. ساعات سکوت حسگر و ساعات سکوت سراسری آن‌ها را بی‌صدا می‌کنند."
 
 #: src/components/routes/settings/layout.tsx
 msgid "Your user settings have been updated."

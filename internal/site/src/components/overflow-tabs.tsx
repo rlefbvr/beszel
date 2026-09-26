@@ -31,15 +31,19 @@ export function OverflowTabs({
 	value,
 	onChange,
 	className,
+	trailing,
 }: {
 	tabs: OverflowTab[]
 	value: string
 	onChange: (value: string) => void
 	className?: string
+	/** shown right after the last tab, such as a button managing the tabs */
+	trailing?: ReactNode
 }) {
 	const { t } = useLingui()
 	const containerRef = useRef<HTMLDivElement>(null)
 	const measureRef = useRef<HTMLDivElement>(null)
+	const trailingRef = useRef<HTMLDivElement>(null)
 	const [fitCount, setFitCount] = useState(tabs.length)
 
 	// count the tabs fitting in the width, measured on an invisible copy of all the tabs
@@ -50,7 +54,7 @@ export function OverflowTabs({
 			return
 		}
 		const update = () => {
-			const available = container.clientWidth
+			const available = container.clientWidth - (trailingRef.current?.offsetWidth ?? 0)
 			const widths = [...measure.children].map((child) => (child as HTMLElement).offsetWidth + 4)
 			const total = widths.reduce((sum, width) => sum + width, 0) + 8
 			if (total <= available) {
@@ -72,7 +76,7 @@ export function OverflowTabs({
 		const observer = new ResizeObserver(update)
 		observer.observe(container)
 		return () => observer.disconnect()
-	}, [tabs])
+	}, [tabs, trailing])
 
 	// the selected tab replaces the last visible one when it doesn't fit
 	let visible = tabs.slice(0, fitCount)
@@ -119,6 +123,11 @@ export function OverflowTabs({
 							</DropdownMenuRadioGroup>
 						</DropdownMenuContent>
 					</DropdownMenu>
+				)}
+				{trailing && (
+					<div ref={trailingRef} className="shrink-0 flex items-center">
+						{trailing}
+					</div>
 				)}
 			</div>
 		</div>

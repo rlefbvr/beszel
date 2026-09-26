@@ -23,8 +23,9 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { ChevronDownIcon, ListIcon, SearchIcon, ServerIcon } from "lucide-react"
+import { ChevronDownIcon, ListIcon, PlusIcon, SearchIcon, ServerIcon } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
+import { type PortPreset, portPresets } from "@/lib/sensors"
 import { $systems } from "@/lib/stores"
 import { cn, supportsNetworkMonitors } from "@/lib/utils"
 import type { NetworkMonitorRecord } from "@/types"
@@ -127,6 +128,27 @@ function normalizeHttpTarget(target: string, port = 0) {
 	}
 
 	return parsedUrl.toString()
+}
+
+/** Known ports the agents can check (no NTP), and "other" for a port with its own label */
+const agentPresets = portPresets.filter((preset) => preset.protocol !== "ntp")
+const otherPreset = "other"
+
+/** URL of an HTTP preset for a bare host, like https://host:8006 */
+function presetHttpTarget(target: string, port: number) {
+	if (!port || /^https?:\/\//i.test(target)) {
+		return target
+	}
+	const scheme = port === 80 || port === 8080 ? "http" : "https"
+	return normalizeHttpTarget(`${scheme}://${target}`, port)
+}
+
+/** Transport and port of a preset, such as "TCP 22" */
+function presetPort(preset: PortPreset) {
+	if (preset.protocol === "icmp") {
+		return "ICMP"
+	}
+	return `${preset.protocol === "dns" ? "UDP" : "TCP"} ${preset.port}`
 }
 
 function trimTrailingEmptyFields(fields: string[]) {
@@ -446,8 +468,8 @@ export function AddMonitorDialog({ systemId, monitors }: { systemId?: string; mo
 		<>
 			<div className="flex gap-0 rounded-lg">
 				<Button variant="outline" onClick={openAdd} className="rounded-e-none grow" disabled={!hasEligibleSystems}>
-					{/* <PlusIcon className="size-4 me-1" /> */}
-					<Trans>Add {{ foo: t`Monitor` }}</Trans>
+					<PlusIcon className="size-4 me-1" />
+					<Trans>Add a monitor</Trans>
 				</Button>
 				<div className="w-px h-full bg-muted"></div>
 				<DropdownMenu>
@@ -583,6 +605,9 @@ function MonitorDialogContent({
 	const [target, setTarget] = useState(monitor?.target ?? "")
 	const [port, setPort] = useState(monitor?.protocol === "tcp" && monitor.port ? String(monitor.port) : "")
 	const [monitorInterval, setMonitorInterval] = useState(String(monitor?.interval ?? defaultInterval))
+	const [label, setLabel] = useState(monitor?.label ?? "")
+	const [service, setService] = useState("")
+	const [httpPort, setHttpPort] = useState(0)
 	const [loading, setLoading] = useState(false)
 	const [selectedSystemId, setSelectedSystemId] = useState(monitor?.system ?? "")
 	const [selectedSystemIds, setSelectedSystemIds] = useState<Set<string>>(new Set())
@@ -601,10 +626,32 @@ function MonitorDialogContent({
 		setTarget(monitor?.target ?? "")
 		setPort(monitor?.protocol === "tcp" && monitor.port ? String(monitor.port) : "")
 		setMonitorInterval(String(monitor?.interval ?? defaultInterval))
+		setLabel(monitor?.label ?? "")
+		setService("")
+		setHttpPort(0)
 		setSelectedSystemId(monitor?.system ?? "")
 		setSelectedSystemIds(new Set())
 		setLoading(false)
 	}, [open, monitor])
+
+	function chooseService(key: string) {
+		setService(key)
+		if (key === otherPreset) {
+			setProtocol("tcp")
+			setPort("")
+			setLabel("")
+			setHttpPort(0)
+			return
+		}
+		const preset = agentPresets.find((item) => item.key === key)
+		if (!preset) {
+			return
+		}
+		setProtocol(preset.protocol as MonitorProtocol)
+		setPort(preset.protocol === "tcp" ? String(preset.port) : "")
+		setHttpPort(preset.protocol === "http" ? preset.port : 0)
+		setLabel(preset.label)
+	}
 
 	async function handleSubmit(e: React.FormEvent) {
 		e.preventDefault()
@@ -617,13 +664,14 @@ function MonitorDialogContent({
 			const payload = buildMonitorPayload(
 				{
 					system: targetSystems[0],
-					target,
+					target: protocol === "http" ? presetHttpTarget(target.trim(), httpPort) : target,
 					protocol,
 					port: protocol === "tcp" ? Number(port) : 0,
 					interval: monitorInterval,
 				},
 				monitor ? monitor.enabled : true
 			)
+			Object.assign(payload, { label: label.trim() })
 			if (monitor) {
 				await pb.collection("network_monitors").update(monitor.id, payload)
 			} else {
@@ -694,6 +742,29 @@ function MonitorDialogContent({
 					</div>
 				)}
 				<div className="grid gap-2">
+					<Label htmlFor="monitor-service">
+						<Trans>Service</Trans>
+					</Label>
+					<Select value={service} onValueChange={chooseService}>
+						<SelectTrigger id="monitor-service">
+							<SelectValue placeholder={t`Choose a known port`} />
+						</SelectTrigger>
+						<SelectContent className="max-h-80">
+							{agentPresets.map((preset) => (
+								<SelectItem key={preset.key} value={preset.key}>
+									<span className="flex items-center gap-2">
+										{preset.label}
+										<span className="text-xs text-muted-foreground tabular-nums">{presetPort(preset)}</span>
+									</span>
+								</SelectItem>
+							))}
+							<SelectItem value={otherPreset}>
+								<Trans>Other port…</Trans>
+							</SelectItem>
+						</SelectContent>
+					</Select>
+				</div>
+				<div className="grid gap-2">
 					<Label>
 						<Trans>Target</Trans>
 					</Label>
@@ -709,7 +780,14 @@ function MonitorDialogContent({
 						<Trans>Protocol</Trans>
 					</Label>
 
-					<Select value={protocol} onValueChange={(value) => setProtocol(value as MonitorProtocol)}>
+					<Select
+						value={protocol}
+						onValueChange={(value) => {
+							setProtocol(value as MonitorProtocol)
+							setService("")
+							setHttpPort(0)
+						}}
+					>
 						<SelectTrigger>
 							<SelectValue />
 						</SelectTrigger>
@@ -736,6 +814,18 @@ function MonitorDialogContent({
 						/>
 					</div>
 				)}
+				<div className="grid gap-2">
+					<Label htmlFor="monitor-label">
+						<Trans>Label</Trans>
+					</Label>
+					<Input
+						id="monitor-label"
+						value={label}
+						maxLength={60}
+						onChange={(e) => setLabel(e.target.value)}
+						placeholder={t`Optional, such as the name of the service`}
+					/>
+				</div>
 				<div className="grid gap-2">
 					<Label>
 						<Trans>Interval (seconds)</Trans>

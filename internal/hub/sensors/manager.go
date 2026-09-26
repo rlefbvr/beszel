@@ -7,6 +7,7 @@ package sensors
 import (
 	"context"
 	"fmt"
+	"strings"
 	"sync"
 	"time"
 
@@ -18,6 +19,8 @@ import (
 const (
 	// recentWindow is the period of the packet quality and of the loss and latency alerts.
 	recentWindow = 10 * time.Minute
+	// heartbeatWindow is the period of the heartbeat bar of a sensor page.
+	heartbeatWindow = time.Hour
 	// lossDegraded and lossBad are the packet loss (%) of a degraded and of a bad quality.
 	lossDegraded = 2.0
 	lossBad      = 20.0
@@ -65,6 +68,9 @@ type sensor struct {
 	checks []*checkState
 	stop   context.CancelFunc
 
+	// beats are the probes of all the checks over the last hour, for the heartbeat bar
+	beats []sample
+
 	status, quality  string
 	res, loss        float64
 	uptime           float64
@@ -96,6 +102,7 @@ type checkState struct {
 	last         Result
 	lastAt       time.Time
 	certExpiry   time.Time
+	cert         *CertInfo
 	changed      bool
 }
 
@@ -132,6 +139,13 @@ func (m *Manager) Start() error {
 		m.app.OnRecordAfterUpdateSuccess(name).BindFunc(reload)
 		m.app.OnRecordAfterDeleteSuccess(name).BindFunc(reload)
 	}
+	// a new system gets the sensor pinging its host
+	m.app.OnRecordAfterCreateSuccess("systems").BindFunc(func(e *core.RecordEvent) error {
+		if err := m.addSystemSensor(e.Record); err != nil {
+			m.app.Logger().Error("Failed to create the sensor of a system", "system", e.Record.Id, "err", err)
+		}
+		return e.Next()
+	})
 	go m.flushLoop()
 	return nil
 }
@@ -172,6 +186,7 @@ func (m *Manager) reload(sensorID string) {
 		next.keepState(current)
 	} else {
 		m.restoreIncidents(next)
+		m.restoreBeats(next, time.Now().UTC())
 	}
 	m.sensors[sensorID] = next
 	if next.paused || len(next.checks) == 0 {
@@ -233,11 +248,12 @@ func (s *sensor) keepState(previous *sensor) {
 		for _, old := range previous.checks {
 			if old.id == c.id {
 				c.status, c.incidentID, c.failures, c.firstFailure = old.status, old.incidentID, old.failures, old.firstFailure
-				c.recent, c.certExpiry, c.last, c.lastAt = old.recent, old.certExpiry, old.last, old.lastAt
+				c.recent, c.certExpiry, c.last, c.lastAt, c.cert = old.recent, old.certExpiry, old.last, old.lastAt, old.cert
 			}
 		}
 	}
 	s.uptime = previous.uptime
+	s.beats = previous.beats
 }
 
 // restoreIncidents finds the interruptions still open when the hub starts.
@@ -268,6 +284,8 @@ func (m *Manager) probeLoop(ctx context.Context, s *sensor) {
 
 // probeSensor probes all the checks of a sensor at once.
 func (m *Manager) probeSensor(ctx context.Context, s *sensor) {
+	// the rounds are dated by their start, one interval apart, whatever their duration
+	start := time.Now().UTC()
 	results := make([]Result, len(s.checks))
 	var wg sync.WaitGroup
 	for i, c := range s.checks {
@@ -283,6 +301,11 @@ func (m *Manager) probeSensor(ctx context.Context, s *sensor) {
 	for i, c := range s.checks {
 		m.applyResult(s, c, results[i], now)
 	}
+	m.mu.Lock()
+	for _, r := range results {
+		s.beats = append(trimOlder(s.beats, start, heartbeatWindow), sample{at: start, ok: r.OK})
+	}
+	m.mu.Unlock()
 }
 
 // applyResult counts a probe and follows the state of the check: down after
@@ -295,6 +318,9 @@ func (m *Manager) applyResult(s *sensor, c *checkState, result Result, at time.T
 	c.last, c.lastAt, c.changed = result, at, true
 	if !result.CertExpiry.IsZero() {
 		c.certExpiry = result.CertExpiry
+	}
+	if result.Cert != nil {
+		c.cert = result.Cert
 	}
 	c.recent = append(trimSamples(c.recent, at), sample{at: at, ok: result.OK, us: result.ResponseUs})
 	if result.OK {
@@ -323,11 +349,81 @@ func (m *Manager) applyResult(s *sensor, c *checkState, result Result, at time.T
 
 // trimSamples drops the samples older than the recent window.
 func trimSamples(samples []sample, now time.Time) []sample {
+	return trimOlder(samples, now, recentWindow)
+}
+
+// trimOlder drops the samples older than the window.
+func trimOlder(samples []sample, now time.Time, window time.Duration) []sample {
 	cut := 0
-	for cut < len(samples) && now.Sub(samples[cut].at) > recentWindow {
+	for cut < len(samples) && now.Sub(samples[cut].at) > window {
 		cut++
 	}
 	return samples[cut:]
+}
+
+// Beat is the count of probes of a sensor in a period of the heartbeat bar.
+type Beat struct {
+	// Start of the period, in milliseconds
+	Time    int64 `json:"t"`
+	Total   int   `json:"total"`
+	Success int   `json:"success"`
+}
+
+// Heartbeat returns the probes of a sensor over the window (an hour at most),
+// by period of the given length ending with the latest probe, oldest first;
+// periods without probes have a zero total. ok is false for an unknown sensor.
+func (m *Manager) Heartbeat(sensorID string, period, window time.Duration, now time.Time) (beats []Beat, ok bool) {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+	s := m.sensors[sensorID]
+	if s == nil {
+		return nil, false
+	}
+	return s.heartbeat(period, window, now), true
+}
+
+// Heartbeats returns the last periods of every sensor, one per interval of the
+// sensor (within the last hour), for the tiles of the sensors page.
+func (m *Manager) Heartbeats(bars int, now time.Time) map[string][]Beat {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+	result := make(map[string][]Beat, len(m.sensors))
+	for id, s := range m.sensors {
+		result[id] = s.heartbeat(s.interval, time.Duration(bars)*s.interval, now)
+	}
+	return result
+}
+
+// heartbeat counts the probes of the sensor by period; the caller holds the lock.
+func (s *sensor) heartbeat(period, window time.Duration, now time.Time) (beats []Beat) {
+	count := max(1, int(min(window, heartbeatWindow)/period))
+	// The periods are counted back from the latest probe, so the last one always
+	// holds it: aligned on the clock, the current period is often still empty.
+	// Without a recent probe (paused, stopped), they end now and show the gap.
+	end := now
+	if n := len(s.beats); n > 0 && now.Sub(s.beats[n-1].at) <= 2*period {
+		end = s.beats[n-1].at
+	}
+	beats = make([]Beat, count)
+	for i := range beats {
+		// the time of the round of each period
+		beats[i].Time = end.Add(-time.Duration(count-1-i) * period).UnixMilli()
+	}
+	for _, sm := range s.beats {
+		if sm.at.After(end) {
+			continue
+		}
+		// rounded to the nearest period: the rounds are one interval apart, give or take a few milliseconds
+		i := count - 1 - int((end.Sub(sm.at)+period/2)/period)
+		if i < 0 {
+			continue
+		}
+		beats[i].Total++
+		if sm.ok {
+			beats[i].Success++
+		}
+	}
+	return beats
 }
 
 // openIncident records the start of an interruption.
@@ -365,11 +461,13 @@ func (m *Manager) closeIncident(c *checkState, at time.Time) {
 	}
 }
 
+// truncate keeps the first characters of a text, without cutting one in two.
 func truncate(text string, size int) string {
-	if len(text) <= size {
+	runes := []rune(text)
+	if len(runes) <= size {
 		return text
 	}
-	return text[:size]
+	return string(runes[:size])
 }
 
 // flushLoop saves the stats and the state every minute.
@@ -405,10 +503,17 @@ func (m *Manager) flush(now time.Time) {
 		res                   float64
 		code                  int
 		certExpiry, lastCheck time.Time
+		cert                  *CertInfo
 	}
 	var checkUpdates []checkUpdate
 	sensors := make([]*sensor, 0, len(m.sensors))
+	// probes of the last hour of each sensor, saved for the heartbeat bar
+	beats := map[string][]round{}
 	for _, s := range m.sensors {
+		if len(s.beats) > 0 {
+			s.beats = trimOlder(s.beats, now, heartbeatWindow)
+			beats[s.id] = packBeats(s.beats)
+		}
 		for _, c := range s.checks {
 			if c.total > 0 {
 				rows = append(rows, statsRow{s.id, c.id, c.total, c.success, c.resSum, c.resMin, c.resMax})
@@ -420,7 +525,7 @@ func (m *Manager) flush(now time.Time) {
 				if c.last.OK {
 					res = float64(c.last.ResponseUs) / 1000
 				}
-				checkUpdates = append(checkUpdates, checkUpdate{c.id, c.status, c.last.Message, res, c.last.Code, c.certExpiry, c.lastAt})
+				checkUpdates = append(checkUpdates, checkUpdate{c.id, c.status, c.last.Message, res, c.last.Code, c.certExpiry, c.lastAt, c.cert})
 			}
 		}
 		s.summarize(now)
@@ -448,6 +553,9 @@ func (m *Manager) flush(now time.Time) {
 		if !u.certExpiry.IsZero() {
 			record.Set("cert_expiry", u.certExpiry)
 		}
+		if u.cert != nil {
+			record.Set("cert", u.cert)
+		}
 		if err := m.app.Save(record); err != nil {
 			m.app.Logger().Error("Failed to save sensor check", "err", err)
 		}
@@ -457,6 +565,9 @@ func (m *Manager) flush(now time.Time) {
 			m.refreshUptime(s, now)
 		}
 		m.saveSensor(s)
+		if rounds, ok := beats[s.id]; ok {
+			m.saveBeats(s.id, rounds)
+		}
 	}
 	m.evaluateAlerts(now)
 }
@@ -599,4 +710,42 @@ func (m *Manager) saveSensor(s *sensor) {
 	if err := m.app.Save(record); err != nil {
 		m.app.Logger().Error("Failed to save sensor", "err", err)
 	}
+}
+
+// addSystemSensor creates the sensor pinging the host of a new system, named
+// and grouped like it, unless a sensor already checks this host. The host and
+// the sensor are then associated by their shared address.
+func (m *Manager) addSystemSensor(system *core.Record) error {
+	host := strings.TrimSpace(system.GetString("host"))
+	// no address to ping: agents behind a unix socket or without a known address
+	if host == "" || strings.HasPrefix(host, "/") {
+		return nil
+	}
+	existing, err := m.app.CountRecords("sensors", dbx.NewExp("lower(host) = lower({:host})", dbx.Params{"host": host}))
+	if err != nil || existing > 0 {
+		return err
+	}
+	sensors, err := m.app.FindCollectionByNameOrId("sensors")
+	if err != nil {
+		return err
+	}
+	checks, err := m.app.FindCollectionByNameOrId("sensor_checks")
+	if err != nil {
+		return err
+	}
+	sensor := core.NewRecord(sensors)
+	sensor.Set("name", truncate(system.GetString("name"), 100))
+	sensor.Set("host", host)
+	sensor.Set("group", truncate(strings.TrimSpace(system.GetString("group")), 40))
+	sensor.Set("interval", 60)
+	sensor.Set("retries", 1)
+	sensor.Set("status", "pending")
+	if err := m.app.Save(sensor); err != nil {
+		return err
+	}
+	check := core.NewRecord(checks)
+	check.Set("sensor", sensor.Id)
+	check.Set("protocol", "icmp")
+	check.Set("label", "Ping")
+	return m.app.Save(check)
 }

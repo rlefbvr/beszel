@@ -2,7 +2,7 @@ import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
 import { getPagePath } from "@nanostores/router"
-import { ClockIcon, MoonIcon, Settings2Icon } from "lucide-react"
+import { ClockIcon, MoonIcon, NetworkIcon, ServerIcon, Settings2Icon } from "lucide-react"
 import { atom } from "nanostores"
 import { lazy, Suspense } from "react"
 import { $router, Link } from "@/components/router"
@@ -11,6 +11,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { $quietHours, activeQuietHours, quietHoursEnd, quietHoursReasonLabel } from "@/lib/quiet-hours"
 import { useNow } from "@/lib/time"
+import { $sensors } from "@/lib/sensors"
 import { $allSystemsById } from "@/lib/stores"
 import { cn } from "@/lib/utils"
 import type { QuietHoursRecord } from "@/types"
@@ -25,6 +26,9 @@ const QuietHours = lazy(() =>
 /** System whose quiet hours dialog is open, "" when closed */
 const $quietHoursDialog = atom("")
 
+/** Key of the quiet hours dialog of a system or of a sensor */
+const dialogKey = (systemId?: string, sensorId?: string) => (sensorId ? `sensor:${sensorId}` : (systemId ?? ""))
+
 /** "14:30" today, or a short date and time on another day */
 function formatEnd(end: Date, now: Date) {
 	const sameDay = end.toDateString() === now.toDateString()
@@ -36,11 +40,12 @@ function formatEnd(end: Date, now: Date) {
  * With a systemId, only the windows that silence this system, and the button
  * opens the quiet hours dialog of the system.
  */
-export function QuietHoursBanner({ systemId }: { systemId?: string }) {
+export function QuietHoursBanner({ systemId, sensorId }: { systemId?: string; sensorId?: string }) {
 	const records = useStore($quietHours)
 	const systems = useStore($allSystemsById)
+	const sensors = useStore($sensors)
 	const now = useNow()
-	const active = activeQuietHours(records, systemId, now)
+	const active = activeQuietHours(records, { system: systemId, sensor: sensorId }, now)
 	if (!active.length) {
 		return null
 	}
@@ -49,19 +54,27 @@ export function QuietHoursBanner({ systemId }: { systemId?: string }) {
 	const describe = (record: QuietHoursRecord) => {
 		const until = formatEnd(quietHoursEnd(record, now), now)
 		const reason = quietHoursReasonLabel(record.reason)
-		const name = systems[record.system]?.name ?? record.system
+		const name = record.sensor
+			? (sensors[record.sensor]?.name ?? record.sensor)
+			: (systems[record.system]?.name ?? record.system)
+		const Icon = record.sensor ? NetworkIcon : ServerIcon
 		return (
-			<li key={record.id}>
-				{!record.system ? (
+			<li key={record.id} className="flex flex-wrap items-center gap-x-1.5">
+				{(record.system || record.sensor) && !systemId && !sensorId && (
+					<Icon className="size-3.5 shrink-0 text-muted-foreground" />
+				)}
+				{!record.system && !record.sensor ? (
 					<Trans>All systems until {until}</Trans>
 				) : systemId ? (
 					<Trans>This system until {until}</Trans>
+				) : sensorId ? (
+					<Trans>This sensor until {until}</Trans>
 				) : (
 					<Trans>
 						{name} until {until}
 					</Trans>
 				)}
-				{reason && <span className="text-muted-foreground"> · {reason}</span>}
+				{reason && <span className="text-muted-foreground">· {reason}</span>}
 			</li>
 		)
 	}
@@ -82,8 +95,13 @@ export function QuietHoursBanner({ systemId }: { systemId?: string }) {
 					)}
 				</ul>
 			</div>
-			{systemId ? (
-				<Button variant="outline" size="sm" className="shrink-0 gap-1.5" onClick={() => $quietHoursDialog.set(systemId)}>
+			{systemId || sensorId ? (
+				<Button
+					variant="outline"
+					size="sm"
+					className="shrink-0 gap-1.5"
+					onClick={() => $quietHoursDialog.set(dialogKey(systemId, sensorId))}
+				>
 					<Settings2Icon className="size-4" />
 					<Trans>Settings</Trans>
 				</Button>
@@ -123,17 +141,18 @@ export function QuietHoursIndicator({ systemId }: { systemId: string }) {
 	)
 }
 
-/** Button of the system page toolbar opening the quiet hours of the system */
-export function QuietHoursButton({ systemId }: { systemId: string }) {
-	const open = useStore($quietHoursDialog) === systemId
+/** Button of the system or sensor page toolbar opening its quiet hours, blue while they are active */
+export function QuietHoursButton({ systemId, sensorId }: { systemId?: string; sensorId?: string }) {
+	const key = dialogKey(systemId, sensorId)
+	const open = useStore($quietHoursDialog) === key
 	const records = useStore($quietHours)
 	const now = useNow()
-	const active = activeQuietHours(records, systemId, now).length > 0
+	const active = activeQuietHours(records, { system: systemId, sensor: sensorId }, now).length > 0
 	return (
-		<Dialog open={open} onOpenChange={(value) => $quietHoursDialog.set(value ? systemId : "")}>
+		<Dialog open={open} onOpenChange={(value) => $quietHoursDialog.set(value ? key : "")}>
 			<Tooltip>
 				<TooltipTrigger asChild>
-					<Button variant="outline" size="icon" aria-label={t`Quiet Hours`} onClick={() => $quietHoursDialog.set(systemId)}>
+					<Button variant="outline" size="icon" aria-label={t`Quiet Hours`} onClick={() => $quietHoursDialog.set(key)}>
 						<ClockIcon className={cn("size-4", active && "text-indigo-600 dark:text-indigo-400")} />
 					</Button>
 				</TooltipTrigger>
@@ -152,7 +171,7 @@ export function QuietHoursButton({ systemId }: { systemId: string }) {
 						</DialogDescription>
 					</DialogHeader>
 					<Suspense>
-						<QuietHours systemId={systemId} compact />
+						<QuietHours systemId={systemId} sensorId={sensorId} compact />
 					</Suspense>
 				</DialogContent>
 			)}

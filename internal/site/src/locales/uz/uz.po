@@ -50,6 +50,18 @@ msgstr "{1} dan {0} qator tanlandi."
 msgid "{0} selected"
 msgstr "{0} ta tanlandi"
 
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {# active alert acknowledged} other {# active alerts acknowledged}}"
+msgstr "{ackCount, plural, other {# ta faol ogohlantirish tasdiqlandi}}"
+
+#: src/components/active-alerts.tsx
+msgid "{ackCount, plural, one {Show # acknowledged} other {Show # acknowledged}}"
+msgstr "{ackCount, plural, other {Tasdiqlanganlarni ko‘rsatish (#)}}"
+
+#: src/components/routes/sensor.tsx
+msgid "{certDays} days"
+msgstr "{certDays} kun"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, other {# yadro}}"
@@ -74,9 +86,21 @@ msgstr "{count, plural, one {# ta saralangan konteyner} other {# ta saralangan k
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# ta saralangan xizmat} other {# ta saralangan xizmat}}"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "{count, plural, one {# sensor} other {# sensors}}"
+msgstr "{count, plural, one {# sensor} other {# sensor}}"
+
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# tizim} other {# tizim}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
+msgstr "{created} ta yangi sensor, mavjud sensorlarga {added} ta tekshiruv qo‘shildi."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
+msgstr "{days, plural, other {# kundan keyin tugaydi}}"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "{diskName} I/O"
@@ -98,6 +122,18 @@ msgstr "{ruleCount, plural, one {# ta holat qoidasi yaratildi.} other {# ta hola
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, one {# holat qoidasi} other {# holat qoidasi}}"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "{seconds, plural, one {# second} other {# seconds}}"
+msgstr "{seconds, plural, one {# soniya} other {# soniya}}"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "{sensorCount} host(s), {checkCount} check(s)"
+msgstr "{sensorCount} ta xost, {checkCount} ta tekshiruv"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "{success} of {total} successful"
+msgstr "{total} tadan {success} muvaffaqiyatli"
+
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, one {# ta tizim} other {# ta tizim}}"
@@ -106,6 +142,7 @@ msgstr "{systemCount, plural, one {# ta tizim} other {# ta tizim}}"
 msgid "{threads, plural, one {# thread} other {# threads}}"
 msgstr "{threads, plural, other {# ip}}"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 hour"
 msgstr "1 soat"
@@ -123,6 +160,7 @@ msgstr "1 daqiqa"
 msgid "1 week"
 msgstr "1 hafta"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "1 year"
 msgstr "1 yil"
@@ -140,10 +178,12 @@ msgstr "15 daq"
 msgid "180 days"
 msgstr "180 kun"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "24 hours"
 msgstr "24 soat"
 
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "30 days"
 msgstr "30 kun"
@@ -153,18 +193,44 @@ msgstr "30 kun"
 msgid "5 min"
 msgstr "5 daq"
 
+#: src/components/period-select.tsx
+msgid "7 days"
+msgstr "7 kun"
+
+#: src/components/period-select.tsx
 #: src/lib/utils.ts
 msgid "90 days"
 msgstr "90 kun"
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "A check of the sensor does not respond."
+msgstr "Sensor tekshiruvi javob bermayapti."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "A sensor belongs to one group: checking it moves it from its current group."
+msgstr "Sensor bitta guruhga tegishli: belgilash uni joriy guruhidan ko‘chiradi."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A system belongs to one group: checking it moves it from its current group."
 msgstr "Tizim bitta guruhga tegishli: belgilash uni joriy guruhidan ko‘chiradi."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Accepted status codes"
+msgstr "Qabul qilinadigan holat kodlari"
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
 msgstr "Hisob"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge"
+msgstr "Tasdiqlash"
+
+#: src/components/active-alerts.tsx
+msgid "Acknowledge all"
+msgstr "Hammasini tasdiqlash"
 
 #. Table column
 #: src/components/routes/settings/quiet-hours.tsx
@@ -190,11 +256,11 @@ msgstr "Faol ogohlantirishlar"
 msgid "Active state"
 msgstr "Faol holat"
 
-#: src/components/add-system.tsx
-#: src/components/add-system.tsx
 #: src/components/navbar.tsx
+msgid "Add"
+msgstr "Qo‘shish"
+
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -203,13 +269,50 @@ msgstr "Faol holat"
 msgid "Add {foo}"
 msgstr "{foo} qo'shish"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add a check"
+msgstr "Tekshiruv qo‘shish"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add a monitor"
+msgstr "Monitor qo‘shish"
+
+#: src/components/add-system.tsx
+#: src/components/add-system.tsx
+#: src/components/systems-table/systems-table.tsx
+msgid "Add a system"
+msgstr "Tizim qo‘shish"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Add at least one check."
+msgstr "Kamida bitta tekshiruv qo‘shing."
+
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Add rule"
 msgstr "Qoida qo‘shish"
 
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Add sensor"
+msgstr "Sensor qo‘shish"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Add sensors"
+msgstr "Sensorlar qo‘shish"
+
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "URL qo'shish"
+
+#: src/components/add-system.tsx
+msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
+msgstr "Xost qo‘shilganda ICMP (Ping) turidagi sensor avtomatik yaratiladi."
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Address"
+msgstr "Manzil"
 
 #: src/components/routes/settings/general.tsx
 msgid "Adjust display options for charts."
@@ -287,6 +390,7 @@ msgstr "Holat quyidagicha bo‘lmaganda ogohlantirish"
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Alerts"
 msgstr "Ogohlantirishlar"
@@ -295,10 +399,16 @@ msgstr "Ogohlantirishlar"
 msgid "Alerts created"
 msgstr "Ogohlantirishlar yaratildi"
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Alerts of {sensorName}"
+msgstr "{sensorName} ogohlantirishlari"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "foydalanuvchi uchun ogohlantirish"
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "Hammasi"
@@ -312,6 +422,7 @@ msgstr "Barcha agentlar yangilangan ({latest})"
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/containers.tsx
+#: src/lib/home-page.ts
 msgid "All Containers"
 msgstr "Barcha konteynerlar"
 
@@ -324,19 +435,28 @@ msgstr "Barcha eskirganlar ({outdatedCount})"
 #: src/components/navbar.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/reboots.tsx
+#: src/lib/home-page.ts
 msgid "All Reboots"
 msgstr "Barcha qayta ishga tushirishlar"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "All sensors"
+msgstr "Barcha sensorlar"
 
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/services.tsx
 #: src/components/systemd-table/systemd-table.tsx
+#: src/lib/home-page.ts
 msgid "All Services"
 msgstr "Barcha xizmatlar"
 
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -344,6 +464,7 @@ msgstr "Barcha xizmatlar"
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
+#: src/lib/home-page.ts
 msgid "All Systems"
 msgstr "Barcha tizimlar"
 
@@ -351,10 +472,26 @@ msgstr "Barcha tizimlar"
 msgid "All systems until {until}"
 msgstr "Barcha tizimlar {until} gacha"
 
+#: src/components/period-select.tsx
+msgid "All time"
+msgstr "Butun davr"
+
 #: src/components/agent-update-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Already up to date."
 msgstr "Allaqachon yangilangan."
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated host {systemName} and its records"
+msgstr "Bog‘langan {systemName} xostini va uning yozuvlarini ham o‘chirish"
+
+#: src/components/sensors/host-links.tsx
+msgid "Also delete the associated sensor {sensorName}"
+msgstr "Bog‘langan {sensorName} sensorini ham o‘chirish"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Alternative names"
+msgstr "Muqobil nomlar"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "and {more} more"
@@ -413,6 +550,18 @@ msgctxt "Disk I/O average operation time (iostat await)"
 msgid "Average queue to completion time per operation"
 msgstr "Operatsiya boshlanishidan yakunlanishigacha o'rtacha vaqt"
 
+#: src/components/routes/sensor.tsx
+msgid "Average response"
+msgstr "O‘rtacha javob"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Average response time above which the quality is degraded"
+msgstr "Undan oshsa sifat pasaygan hisoblanadigan o‘rtacha javob vaqti"
+
+#: src/components/routes/sensor.tsx
+msgid "Average response time of each check"
+msgstr "Har bir tekshiruvning o‘rtacha javob vaqti"
+
 #: src/components/routes/system/charts/cpu-charts.tsx
 msgid "Average system-wide CPU utilization"
 msgstr "Tizim bo'yicha o'rtacha CPU yuklanishi"
@@ -430,6 +579,10 @@ msgstr "GPU dvigatellarining o'rtacha yuklanishi"
 msgid "Average, minimum, and maximum response time"
 msgstr "Ortacha, minimal va maksimal javob vaqti"
 
+#: src/components/routes/sensor.tsx
+msgid "avg"
+msgstr "o‘rt."
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Avg 1h"
@@ -443,6 +596,15 @@ msgstr "Zaxira nusxa"
 #: src/components/navbar.tsx
 msgid "Backups"
 msgstr "Zaxira nusxalar"
+
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Bad"
+msgstr "Yomon"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Bad"
+msgstr "Yomon"
 
 #: src/components/routes/system/charts/network-charts.tsx
 #: src/lib/alerts.ts
@@ -479,6 +641,10 @@ msgstr "Oldin"
 msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "So'nggi {2, plural, other {# daqiqa}} da {0}{1} dan past"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
+msgstr "Beszel xost portlarini hubdan tekshiradi. Bir xostning tekshiruvlari bitta sensorga guruhlanadi."
+
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
 msgstr "Beszel OpenID Connect va ko'plab OAuth2 autentifikatsiya provayderlarini qo'llab-quvvatlaydi."
@@ -512,12 +678,17 @@ msgstr "Brauzer yorlig‘i sarlavhasi"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "Ommaviy qo‘shish"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Bulk Add {foo}"
 msgstr "{foo} ni ommaviy qo‘shish"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Bulk add sensors"
+msgstr "Sensorlarni ommaviy qo‘shish"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Bulk copy"
@@ -550,13 +721,19 @@ msgstr "To'xtata oladi"
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Cancel"
 msgstr "Bekor qilish"
+
+#: src/components/active-alerts.tsx
+msgid "Cancel the acknowledgement"
+msgstr "Tasdiqni bekor qilish"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Capabilities"
@@ -576,6 +753,18 @@ msgstr "Ehtiyot bo'ling - ma'lumotlar yo'qolishi mumkin"
 #: src/components/routes/settings/general.tsx
 msgid "Celsius (°C)"
 msgstr "Selsiy (°C)"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate not trusted by the hub"
+msgstr "Sertifikatga hub ishonmaydi"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Certificate presented by the server at the last check."
+msgstr "Server oxirgi tekshiruvda taqdim etgan sertifikat."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Chain"
+msgstr "Zanjir"
 
 #: src/components/routes/settings/general.tsx
 msgid "Change display units for metrics."
@@ -606,6 +795,12 @@ msgstr "Grafik davrlari"
 msgid "Chart width"
 msgstr "Grafik kengligi"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Check"
+msgstr "Tekshiruv"
+
 #: src/components/login/forgot-pass-form.tsx
 msgid "Check {email} for a reset link."
 msgstr "Tiklash havolasi uchun {email} ni tekshiring."
@@ -623,9 +818,30 @@ msgstr "Monitoring xizmatingizni tekshiring"
 msgid "Check your notification service"
 msgstr "Bildirishnoma xizmatingizni tekshiring"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Checks"
+msgstr "Tekshiruvlar"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Checks added to {sensorName}"
+msgstr "Tekshiruvlar {sensorName} ga qo‘shildi"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Checksum errors"
 msgstr "Nazorat summasi xatolari"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Choose a known port"
+msgstr "Ma’lum portni tanlang"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Choose at least one port."
+msgstr "Kamida bitta portni tanlang."
 
 #: src/components/reboots-table.tsx
 msgctxt "Clean shutdown"
@@ -638,6 +854,8 @@ msgstr "Odatiy"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Clear"
 msgstr "Tozalash"
@@ -671,9 +889,24 @@ msgstr "Nusxalash uchun bosing"
 msgid "Close"
 msgstr "Yopish"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Code"
+msgstr "Kod"
+
 #: src/components/routes/settings/general.tsx
 msgid "Collection interval"
 msgstr "Yig‘ish oralig‘i"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Color"
+msgstr "Rang"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Columns"
+msgstr "Ustunlar"
 
 #: src/components/login/forgot-pass-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -729,6 +962,7 @@ msgid "Container state"
 msgstr "Konteyner holati"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
 msgstr "Konteynerlar"
@@ -914,6 +1148,15 @@ msgstr "Kunlik"
 msgid "Data directory"
 msgstr "Ma’lumotlar jildi"
 
+#: src/components/period-select.tsx
+msgid "Dates…"
+msgstr "Sanalar…"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "days"
+msgstr "kun"
+
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "days of alerts"
 msgstr "kunlik ogohlantirishlar"
@@ -922,6 +1165,10 @@ msgstr "kunlik ogohlantirishlar"
 msgctxt "Default system layout option"
 msgid "Default"
 msgstr "Standart"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Default color"
+msgstr "Standart rang"
 
 #: src/components/routes/settings/general.tsx
 msgid "Default time period"
@@ -933,9 +1180,20 @@ msgstr "Standart vaqt oralig'i"
 msgid "Default URL"
 msgstr "Standart URL"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Degraded"
+msgstr "Pasaygan"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Degraded or bad"
+msgstr "Pasaygan yoki yomon"
+
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -946,7 +1204,7 @@ msgstr "O'chirish"
 
 #: src/components/reboots-table.tsx
 msgid "Delete ({selectedCount})"
-msgstr ""
+msgstr "O‘chirish ({selectedCount})"
 
 #: src/components/reboots-table.tsx
 #~ msgid "Delete {selectedCount} reboots?"
@@ -966,7 +1224,11 @@ msgstr "{originalName} guruhi o‘chirilsinmi?"
 
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
-msgstr ""
+msgstr "Tanlangan qayta ishga tushirishlar o‘chirilsinmi?"
+
+#: src/components/routes/sensor.tsx
+msgid "Delete this sensor?"
+msgstr "Ushbu sensor o‘chirilsinmi?"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Dependencies"
@@ -1043,10 +1305,15 @@ msgid "Documentation"
 msgstr "Hujjatlar"
 
 #. Context: System is down
+#. Context: System is down
+#. Context: System is down
 #: src/components/alerts-history-columns.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 #: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+#: src/lib/sensors.ts
 msgid "Down"
 msgstr "Ishlamayapti"
 
@@ -1055,6 +1322,7 @@ msgid "Down ({downSystemsLength})"
 msgstr "Ishlamayapti ({downSystemsLength})"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Down: {downCount}"
 msgstr "To‘xtagan: {downCount}"
 
@@ -1074,11 +1342,14 @@ msgstr "O‘lchamini o‘zgartirish uchun torting, tiklash uchun ikki marta bosi
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
 msgid "Duration"
 msgstr "Davomiylik"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -1090,6 +1361,10 @@ msgstr "Tahrirlash"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit {foo}"
 msgstr "{foo} tahrirlash"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Edit sensor"
+msgstr "Sensorni tahrirlash"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -1105,6 +1380,11 @@ msgstr "Elektron pochta bildirishnomalari"
 #: src/lib/i18n.ts
 msgid "Empty"
 msgstr "Bo'sh"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "End"
+msgstr "Tugash"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -1141,6 +1421,8 @@ msgstr "Vaqtinchalik"
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/config-yaml.tsx
 #: src/components/routes/settings/heartbeat.tsx
@@ -1150,6 +1432,7 @@ msgstr "Vaqtinchalik"
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-bulk-add.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "Xato"
@@ -1164,6 +1447,10 @@ msgstr "Misol:"
 #: src/components/active-alerts.tsx
 msgid "Exceeds {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "So'nggi {2, plural, other {# daqiqa}} da {0}{1} dan oshadi"
+
+#: src/components/sensors/sensor-badges.tsx
+msgid "Exchange quality"
+msgstr "Aloqa sifati"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exec main PID"
@@ -1184,6 +1471,18 @@ msgstr "Chiqish kodi"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Exited active"
 msgstr "Faollikdan chiqdi"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Expected text"
+msgstr "Kutilgan matn"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired certificate"
+msgstr "Muddati o‘tgan sertifikat"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Expired on {expiredOn}"
+msgstr "{expiredOn} da tugagan"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Expires after one hour or on hub restart."
@@ -1213,6 +1512,10 @@ msgstr "Muvaffaqiyatsiz"
 msgid "Failed Attributes:"
 msgstr "Muvaffaqiyatsiz atributlar:"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Failed checks in a row tolerated before the sensor is down"
+msgstr "Sensor ishlamayapti deb hisoblanishidan oldin ruxsat etilgan ketma-ket muvaffaqiyatsiz tekshiruvlar"
+
 #: src/lib/alerts.ts
 msgid "Failed Services"
 msgstr "Ishlamay qolgan xizmatlar"
@@ -1231,6 +1534,8 @@ msgstr "Monitorlarni o‘chirish amalga oshmadi."
 #: src/components/routes/settings/layout.tsx
 #: src/components/routes/settings/notifications.tsx
 #: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Failed to save settings"
 msgstr "Sozlamalarni saqlash muvaffaqiyatsiz tugadi"
@@ -1268,6 +1573,8 @@ msgstr "Ventilyatorlar"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1281,6 +1588,14 @@ msgstr "Barmoq izi"
 #: src/components/routes/system/smart-table.tsx
 msgid "Firmware"
 msgstr "Proshivka"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Following the route, up to a minute…"
+msgstr "Marshrut kuzatilmoqda, bir daqiqagacha…"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "For"
+msgstr "Davomida"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "For <0>{min}</0> {min, plural, one {minute} other {minutes}}"
@@ -1303,7 +1618,7 @@ msgctxt "Button to copy install command"
 msgid "FreeBSD command"
 msgstr "FreeBSD buyrug'i"
 
-#: src/components/reboots-table.tsx
+#: src/components/period-select.tsx
 msgid "From"
 msgstr "Dan"
 
@@ -1323,6 +1638,11 @@ msgstr "Umumiy"
 msgid "Global"
 msgstr "Global"
 
+#: src/lib/sensors.ts
+msgctxt "Packet quality"
+msgid "Good"
+msgstr "Yaxshi"
+
 #: src/components/routes/system.tsx
 msgid "GPU"
 msgstr "GPU"
@@ -1340,18 +1660,28 @@ msgid "GPU Usage"
 msgstr "GPU yuklanishi"
 
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Grid"
 msgstr "Grid"
 
 #: src/components/add-system.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Group"
 msgstr "Guruh"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group deleted"
 msgstr "Guruh o‘chirildi"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Group of the lines without group"
+msgstr "Guruhsiz qatorlar guruhi"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Group saved"
@@ -1360,6 +1690,10 @@ msgstr "Guruh saqlandi"
 #: src/components/systems-table/systems-table.tsx
 msgid "Groups"
 msgstr "Guruhlar"
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Groups organize the network sensors for all users. Deleting a group keeps its sensors, without group."
+msgstr "Guruhlar tarmoq sensorlarini barcha foydalanuvchilar uchun tartiblaydi. Guruhni o‘chirish uning sensorlarini guruhsiz saqlab qoladi."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Groups organize the systems on the home page for all users. Deleting a group keeps its systems, without group."
@@ -1389,18 +1723,45 @@ msgstr "Heartbeat monitoring"
 msgid "Heartbeat sent successfully"
 msgstr "Heartbeat muvaffaqiyatli yuborildi"
 
+#: src/components/active-alerts.tsx
+msgid "Hide acknowledged"
+msgstr "Tasdiqlanganlarni yashirish"
+
+#: src/components/routes/settings/general.tsx
+msgid "Home page"
+msgstr "Bosh sahifa"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgctxt "Button to copy install command"
 msgid "Homebrew command"
 msgstr "Homebrew buyrug'i"
 
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/host-links.tsx
+msgid "Host"
+msgstr "Xost"
+
 #: src/components/add-system.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Host / IP"
 msgstr "Xost / IP"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host not reached: the last hops do not answer."
+msgstr "Xostga yetib bo‘lmadi: oxirgi sakrashlar javob bermayapti."
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Host reached in {hopCount} hops."
+msgstr "Xostga {hopCount} sakrashda yetildi."
 
 #: src/lib/quiet-hours.ts
 msgid "Host restart"
@@ -1450,6 +1811,10 @@ msgstr "Faolsiz"
 msgid "If you've lost the password to your admin account, you may reset it using the following command."
 msgstr "Agar admin hisobingiz parolini yo'qotgan bo'lsangiz, quyidagi buyruq yordamida uni tiklashingiz mumkin."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Ignore TLS certificate errors"
+msgstr "TLS sertifikati xatolarini e’tiborsiz qoldirish"
+
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 msgctxt "Docker image"
@@ -1474,6 +1839,15 @@ msgstr "Muhim xizmatlar"
 msgid "Inactive"
 msgstr "Nofaol"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Information"
+msgstr "Ma’lumot"
+
 #: src/components/reboots-table.tsx
 msgid "Initiated by"
 msgstr "Boshlagan"
@@ -1488,9 +1862,14 @@ msgstr "Nusxa"
 msgid "Instance name"
 msgstr "Nusxa nomi"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Interruptions: {incidentCount}"
+msgstr "Uzilishlar: {incidentCount}"
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/settings/heartbeat.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Interval"
 msgstr "Interval"
 
@@ -1501,6 +1880,30 @@ msgstr "Oraliq (soniya)"
 #: src/components/login/auth-form.tsx
 msgid "Invalid email address."
 msgstr "Noto'g'ri elektron pochta manzili."
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by"
+msgstr "Beruvchi"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued by {linkIssuer}, valid until {linkUntil}"
+msgstr "Beruvchi {linkIssuer}, {linkUntil} gacha amal qiladi"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Issued to"
+msgstr "Kimga berilgan"
+
+#: src/components/routes/sensor.tsx
+msgid "Its checks, history and interruptions will be deleted."
+msgstr "Uning tekshiruvlari, tarixi va uzilishlari o‘chiriladi."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are kept and moved to no group."
+msgstr "Uning sensorlari saqlanadi va guruhsiz qoladi."
+
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Its sensors are now without group."
+msgstr "Uning sensorlari endi guruhsiz."
 
 #: src/components/important-targets.tsx
 msgid "Its state alerts stop. The following rules change:"
@@ -1518,18 +1921,60 @@ msgstr "Uning tizimlari endi guruhsiz."
 msgid "Keep"
 msgstr "Saqlash"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Known ports"
+msgstr "Ma’lum portlar"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Label"
+msgstr "Yorliq"
+
 #: src/components/routes/settings/general.tsx
 msgid "Language"
 msgstr "Til"
+
+#: src/components/routes/sensor.tsx
+msgid "Last 30 minutes"
+msgstr "Oxirgi 30 daqiqa"
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Last alert"
 msgstr "So‘nggi ogohlantirish"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Last check"
+msgstr "Oxirgi tekshiruv"
+
+#: src/components/routes/sensor.tsx
+msgid "Last hour"
+msgstr "Oxirgi soat"
+
 #: src/components/routes/system/agent-details.tsx
 msgid "Last lines logged by the agent of {name} since it started."
 msgstr "{name} agenti ishga tushganidan beri yozgan so‘nggi qatorlar."
 
+#: src/components/routes/sensor.tsx
+msgid "Last result of each check."
+msgstr "Har bir tekshiruvning oxirgi natijasi."
+
+#: src/components/routes/sensor.tsx
+msgid "Last update"
+msgstr "Oxirgi yangilanish"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Latency (ms)"
+msgstr "Kechikish (ms)"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Latest interruptions"
+msgstr "So‘nggi uzilishlar"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Layout"
 msgstr "Tartib"
@@ -1546,6 +1991,22 @@ msgstr "Hayot sikli"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "limit"
 msgstr "chegara"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: the host is missing"
+#~ msgstr ""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#~ msgid "Line {0}: unknown service \"{check}\""
+#~ msgstr ""
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: the host is missing"
+msgstr "{lineNumber}-qator: xost ko‘rsatilmagan"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Line {lineNumber}: unknown service \"{check}\""
+msgstr "{lineNumber}-qator: noma’lum xizmat \"{check}\""
 
 #: src/components/routes/system/charts/load-average-chart.tsx
 msgid "Load Average"
@@ -1576,6 +2037,7 @@ msgstr "O'rt. yuklanish"
 msgid "Load state"
 msgstr "Yuklash holati"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
 msgstr "Yuklanmoqda..."
@@ -1587,6 +2049,10 @@ msgstr "Mahalliy disk"
 #: src/components/routes/system/agent-details.tsx
 msgid "Location"
 msgstr "Joylashuv"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Location, owner, role…"
+msgstr "Joylashuv, egasi, vazifasi…"
 
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
@@ -1617,7 +2083,16 @@ msgstr "Jurnallar"
 msgid "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
 msgstr "Ogohlantirishlarni qayerda yaratishni izlayapsizmi? Tizimlar jadvalidagi qo'ng'iroq <0/> ikonkalarini bosing."
 
+#. Packet loss
+#: src/components/routes/sensor.tsx
+msgid "loss"
+msgstr "yo‘qotish"
+
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 msgctxt "Packet loss"
 msgid "Loss"
 msgstr "Yo‘qotish"
@@ -1635,6 +2110,9 @@ msgstr "Asosiy PID"
 msgid "Manage display and notification preferences."
 msgstr "Ko'rsatish va bildirishnoma parametrlarini boshqaring."
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/groups-dialog.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -1686,9 +2164,19 @@ msgstr "Xotira ishlatilishi"
 msgid "Memory usage of containers"
 msgstr "Konteynerlarning xotira ishlatilishi"
 
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Message"
+msgstr "Xabar"
+
 #: src/lib/quiet-hours.ts
 msgid "Migration"
 msgstr "Ko‘chirish"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "min"
+msgstr "daq"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -1704,7 +2192,6 @@ msgstr "Model"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitor"
 msgstr "Monitor"
 
@@ -1713,6 +2200,7 @@ msgid "Monitors created"
 msgstr "Monitorlar yaratildi"
 
 #: src/components/overflow-tabs.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "More"
 msgstr "Ko‘proq"
 
@@ -1725,6 +2213,11 @@ msgstr "Ulash nuqtasi"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table.tsx
@@ -1739,6 +2232,10 @@ msgstr "Ushbu hub nomi va standart URL manzili; bildirish havolalarida ishlatila
 #: src/components/routes/settings/general.tsx
 msgid "Name of the service created when installing an agent with the Linux or Windows commands. Existing agents keep their service name."
 msgstr "Agent Linux yoki Windows buyruqlari bilan o‘rnatilganda yaratiladigan xizmat nomi. Mavjud agentlar xizmat nomini saqlab qoladi."
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Name to resolve"
+msgstr "Aniqlanadigan nom"
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
@@ -1770,8 +2267,18 @@ msgstr "Tarmoq monitori yo‘qotishi"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
+#: src/lib/home-page.ts
 msgid "Network Monitors"
 msgstr "Tarmoq monitorlari"
+
+#: src/components/routes/monitors.tsx
+msgid "Network monitors from a host"
+msgstr "Xostdan tarmoq monitorlari"
+
+#: src/components/command-palette.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Network sensors"
+msgstr "Tarmoq sensorlari"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Network traffic of containers"
@@ -1812,17 +2319,32 @@ msgid "No alert"
 msgstr "Ogohlantirish yo‘q"
 
 #: src/components/alerts/alert-button.tsx
+#: src/components/routes/sensor.tsx
 msgid "No alerts configured"
 msgstr "Ogohlantirishlar sozlanmagan"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "No answer"
+msgstr "Javob yo‘q"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "No certificate yet: the details appear after the next HTTPS check."
+msgstr "Hali sertifikat yo‘q: tafsilotlar keyingi HTTPS tekshiruvidan so‘ng ko‘rinadi."
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
 msgstr "Bu pool uchun batafsil ma’lumot mavjud emas."
 
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "No group"
 msgstr "Guruhsiz"
+
+#: src/components/sensors/sensor-incidents.tsx
+msgid "No interruptions over this period."
+msgstr "Bu davrda uzilishlar yo‘q."
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -1843,6 +2365,8 @@ msgstr "Natijalar topilmadi."
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No results."
 msgstr "Natijalar yo'q."
@@ -1850,6 +2374,10 @@ msgstr "Natijalar yo'q."
 #: src/components/routes/system/smart-table.tsx
 msgid "No S.M.A.R.T. attributes available for this device."
 msgstr "Ushbu qurilma uchun S.M.A.R.T. atributlari mavjud emas."
+
+#: src/components/sensors/sensors-board.tsx
+msgid "No sensor yet: add the hosts and ports that Beszel should check."
+msgstr "Hali sensor yo‘q: Beszel tekshirishi kerak bo‘lgan xostlar va portlarni qo‘shing."
 
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
@@ -1899,6 +2427,27 @@ msgstr "OAuth 2 / OIDC qo'llab-quvvatlash"
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
 msgstr "Har qayta ishga tushirilganda, ma'lumotlar bazasidagi tizimlar fayldagi tizimlarga mos yangilanadi."
 
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per 15 seconds"
+#~ msgstr "Har 15 soniyaga bitta ustun"
+
+#: src/components/routes/sensor.tsx
+msgid "One bar per interval ({every})"
+msgstr "Har bir oraliq uchun bitta ustun ({every})"
+
+#: src/components/routes/sensor.tsx
+#~ msgid "One bar per minute"
+#~ msgstr "Har daqiqaga bitta ustun"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
+msgstr "Har bir xost uchun bitta qator: xost, xizmatlar, yorliq, guruh, nom. Xizmatlar ma’lum portlar (ssh, https, dns…), TCP port raqamlari yoki protokol:port bo‘lib, + bilan ajratiladi. Bir xostning qatorlari bitta sensorni tashkil qiladi."
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/lib/alerts.ts
+msgid "One of the chosen ports does not respond."
+msgstr "Tanlangan portlardan biri javob bermayapti."
+
 #: src/lib/alerts.ts
 msgid "One or more containers are unhealthy"
 msgstr "Bir yoki bir nechta konteyner nosog‘lom holatda"
@@ -1921,6 +2470,10 @@ msgstr "Bir martalik"
 msgid "One-time password"
 msgstr "Bir martalik parol"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Ongoing"
+msgstr "Davom etmoqda"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Only administrators can change this setting."
@@ -1936,6 +2489,15 @@ msgstr "Bu sozlamani faqat administratorlar o‘zgartirishi mumkin."
 msgid "Open menu"
 msgstr "Menyuni ochish"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Optional, such as the name of the service"
+msgstr "Ixtiyoriy, masalan, xizmat nomi"
+
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Options"
+msgstr "Parametrlar"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Yoki bilan davom eting"
@@ -1945,13 +2507,38 @@ msgstr "Yoki bilan davom eting"
 msgid "Other"
 msgstr "Boshqa"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Other port…"
+msgstr "Boshqa port…"
+
 #: src/components/alerts/alerts-sheet.tsx
 msgid "Overwrite existing alerts"
 msgstr "Mavjud ogohlantirishlarni qayta yozish"
 
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet loss"
+msgstr "Paket yo‘qotilishi"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss ({periodLabel})"
+msgstr "Paket yo‘qotilishi ({periodLabel})"
+
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Packet loss (%)"
 msgstr "Paket yo‘qotilishi (%)"
+
+#: src/components/routes/sensor.tsx
+msgid "Packet loss (%) of all the checks"
+msgstr "Barcha tekshiruvlar bo‘yicha paket yo‘qotilishi (%)"
+
+#: src/components/routes/sensor.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Packet quality"
+msgstr "Paket sifati"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -1967,6 +2554,10 @@ msgstr "Sahifa"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Page {0} of {1}"
 msgstr "{0} / {1} sahifa"
+
+#: src/components/routes/settings/general.tsx
+msgid "Page opened at start and by the logo."
+msgstr "Ishga tushganda va logotip orqali ochiladigan sahifa."
 
 #: src/components/command-palette.tsx
 msgid "Pages / Settings"
@@ -1994,11 +2585,14 @@ msgid "Past"
 msgstr "O'tgan"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Pause"
 msgstr "Pauza"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Paused"
 msgstr "To'xtatilgan"
 
@@ -2009,6 +2603,10 @@ msgstr "To'xtatilgan ({pausedSystemsLength})"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Payload format"
 msgstr "Yuklanma formati"
+
+#: src/lib/sensors.ts
+msgid "Pending"
+msgstr "Kutilmoqda"
 
 #: src/components/routes/system/cpu-sheet.tsx
 #: src/components/routes/system/cpu-sheet.tsx
@@ -2022,6 +2620,10 @@ msgstr "Diskni I/O bilan band bo'lish vaqti foizi"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Percentage of time spent in each state"
 msgstr "Har bir holatda sarflangan vaqt foizi"
+
+#: src/components/period-select.tsx
+msgid "Period"
+msgstr "Davr"
 
 #: src/components/routes/settings/general.tsx
 msgid "Periods offered in the charts of all users. The periods of 90 days or more keep one record per day for that long, which uses more disk space."
@@ -2081,10 +2683,22 @@ msgstr "Pool holati"
 msgid "Pool Usage"
 msgstr "Pool ishlatilishi"
 
+#: src/lib/alerts.ts
+msgid "Poor packet quality"
+msgstr "Paket sifati yomon"
+
 #: src/components/add-system.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Port"
 msgstr "Port"
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Port not responding"
+msgstr "Port javob bermayapti"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
@@ -2123,10 +2737,12 @@ msgstr "Ishlab chiqarish, Mijozlar, Laboratoriya…"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Protocol"
 msgstr "Protokol"
 
 #: src/components/routes/settings/tokens-fingerprints.tsx
+#: src/components/sensors/sensor-cert.tsx
 msgid "Public key"
 msgstr "Ochiq kalit"
 
@@ -2134,6 +2750,13 @@ msgstr "Ochiq kalit"
 #: src/components/add-system.tsx
 msgid "Public Key"
 msgstr "Ochiq kalit"
+
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Quality"
+msgstr "Sifat"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O average queue depth"
@@ -2214,6 +2837,15 @@ msgstr "Qayta ishga tushirishlar"
 msgid "Received"
 msgstr "Qabul qilindi"
 
+#: src/components/sensors/sensor-badges.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Recent checks"
+msgstr "So‘nggi tekshiruvlar"
+
+#: src/components/command-palette.tsx
+msgid "Recently opened"
+msgstr "Yaqinda ochilganlar"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Qayd etilgan"
@@ -2232,6 +2864,7 @@ msgid "Relationships"
 msgstr "Munosabatlar"
 
 #: src/components/important-targets.tsx
+#: src/components/sensors/sensor-dialog.tsx
 msgid "Remove"
 msgstr "Olib tashlash"
 
@@ -2281,9 +2914,24 @@ msgstr "Hal qilindi"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/system/charts/monitors-charts.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/traceroute-dialog.tsx
 msgid "Response"
 msgstr "Javob"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Response and uptime"
+msgstr "Javob va ishlash vaqti"
+
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "Response time"
+msgstr "Javob vaqti"
 
 #: src/components/network-monitors-table/network-monitors-table.tsx
 msgid "Response time monitoring from agents."
@@ -2294,6 +2942,7 @@ msgid "Restarts"
 msgstr "Qayta ishga tushirishlar"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Resume"
 msgstr "Davom ettirish"
@@ -2310,6 +2959,10 @@ msgstr "Saqlash: so‘nggi {days} kunlik ogohlantirishlar"
 msgid "Retention: the last {count} alerts of each user"
 msgstr "Saqlash: har bir foydalanuvchining so‘nggi {count} ta ogohlantirishi"
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "Retries"
+msgstr "Qayta urinishlar"
+
 #: src/lib/utils.ts
 msgctxt "Root disk label"
 msgid "Root"
@@ -2318,6 +2971,10 @@ msgstr "Ildiz"
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Rotate token"
 msgstr "Tokenni yangilash"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Route from the hub to {sensorHost}."
+msgstr "Hubdan {sensorHost} gacha marshrut."
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
@@ -2330,6 +2987,10 @@ msgstr "Qoida o‘chiriladi, uning namunasi boshqa elementlarni ham qamraydi: {t
 #: src/components/important-targets.tsx
 msgid "Rule deleted: {targets}"
 msgstr "Qoida o‘chiriladi: {targets}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Run again"
+msgstr "Qayta ishga tushirish"
 
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
@@ -2349,6 +3010,7 @@ msgstr "S.M.A.R.T. o'z-o'zini test"
 
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Save"
 msgstr "Saqlash"
@@ -2393,8 +3055,16 @@ msgid "Search"
 msgstr "Qidirish"
 
 #: src/components/command-palette.tsx
-msgid "Search for systems or settings..."
-msgstr "Tizimlar yoki sozlamalarni qidiring..."
+#~ msgid "Search for systems or settings..."
+#~ msgstr "Tizimlar yoki sozlamalarni qidiring..."
+
+#: src/components/command-palette.tsx
+#~ msgid "Search for systems, sensors or settings..."
+#~ msgstr "Tizimlar, sensorlar yoki sozlamalarni qidirish..."
+
+#: src/components/command-palette.tsx
+msgid "Search for systems, sensors, containers, services or settings..."
+msgstr "Tizimlar, sensorlar, konteynerlar, xizmatlar yoki sozlamalarni qidirish..."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2413,6 +3083,7 @@ msgstr "Ogohlantirishlarni qanday olishingizni sozlash uchun <0>bildirishnoma so
 msgid "Select"
 msgstr "Tanlash"
 
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Select {foo}"
 msgstr "{foo} tanlash"
@@ -2459,14 +3130,46 @@ msgstr "Beszel'ni internetga ochmasdan monitoring qilish uchun tashqi monitoring
 msgid "Send test heartbeat"
 msgstr "Test heartbeat yuborish"
 
+#: src/components/navbar.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/routes/settings/quiet-hours.tsx
+#: src/components/sensors/host-links.tsx
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Sensor"
+msgstr "Sensor"
+
+#: src/lib/alerts.ts
+msgid "Sensor down"
+msgstr "Sensor ishlamayapti"
+
+#: src/components/routes/sensor.tsx
+msgid "Sensor not found."
+msgstr "Sensor topilmadi."
+
+#: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/systems-table/groups-dialog.tsx
+msgid "Sensors"
+msgstr "Sensorlar"
+
+#: src/components/sensors/sensor-bulk-add.tsx
+msgid "Sensors added"
+msgstr "Sensorlar qo‘shildi"
+
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Sent"
 msgstr "Yuborildi"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Serial number"
+msgstr "Seriya raqami"
 
 #: src/components/routes/system/smart-table.tsx
 msgid "Serial Number"
 msgstr "Seriya raqami"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Service"
@@ -2490,6 +3193,7 @@ msgid "Service state"
 msgstr "Xizmat holati"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
@@ -2525,6 +3229,15 @@ msgstr "Sozlamalar"
 msgid "Settings saved"
 msgstr "Sozlamalar saqlandi"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "SHA-256 fingerprint"
+msgstr "SHA-256 barmoq izi"
+
+#: src/components/active-alerts.tsx
+msgid "Show"
+msgstr "Ko‘rsatish"
+
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Show by group"
 msgstr "Guruh bo‘yicha ko‘rsatish"
@@ -2539,10 +3252,15 @@ msgstr "O‘chirish"
 msgid "Sign in"
 msgstr "Kirish"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Signature"
+msgstr "Imzo"
+
 #: src/components/command-palette.tsx
 msgid "SMTP settings"
 msgstr "SMTP sozlamalari"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
 msgstr "Saralash"
@@ -2552,6 +3270,11 @@ msgstr "Saralash"
 #: src/components/reboots-table.tsx
 msgid "Source"
 msgstr "Manba"
+
+#: src/components/sensors/sensor-incidents.tsx
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Start"
+msgstr "Boshlanish"
 
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -2575,6 +3298,7 @@ msgstr "Qo‘lda ishga tushirilgan"
 #. Context: alert state (active or resolved)
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/routes/sensor.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2610,6 +3334,11 @@ msgstr "Holatlar"
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/lib/alerts.ts
@@ -2648,6 +3377,7 @@ msgstr "Mavzuni almashtirish"
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
@@ -2690,6 +3420,7 @@ msgstr "Tizim yangilanishlari"
 msgid "Systemd Services"
 msgstr "Systemd xizmatlari"
 
+#: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -2705,6 +3436,7 @@ msgstr "Tizimlar ma'lumotlar katalogingiz ichidagi <0>config.yml</0> faylida bos
 msgid "Systems to update ({targetCount})"
 msgstr "Yangilanadigan tizimlar ({targetCount})"
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Table"
 msgstr "Jadval"
@@ -2780,6 +3512,14 @@ msgstr "Agent o‘zi qayta ishga tushadi va qayta ulanadi."
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "Agentlar GitHub’dan {latest} versiyasini yuklab oladi va qayta ishga tushadi."
 
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The average response time over 10 minutes exceeds {value} ms."
+msgstr "10 daqiqalik o‘rtacha javob vaqti {value} ms dan oshadi."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The certificate of an HTTPS check expires within {value} days."
+msgstr "HTTPS tekshiruvining sertifikati {value} kun ichida tugaydi."
+
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
 msgstr "Agentning so‘nggi versiyasi hali noma’lum"
@@ -2787,6 +3527,18 @@ msgstr "Agentning so‘nggi versiyasi hali noma’lum"
 #: src/components/routes/settings/heartbeat.tsx
 msgid "The overall status is <0>ok</0> when all systems are up, <1>warn</1> when alerts are triggered, and <2>error</2> when any system is down."
 msgstr "Barcha tizimlar ishlayotganida umumiy holat <0>yaxshi</0>, ogohlantirishlar ishga tushganda <1>ogohlantirish</1> va biron-bir tizim ishlamayotganida <2>xato</2>."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet loss over 10 minutes exceeds {value}%."
+msgstr "10 daqiqalik paket yo‘qotilishi {value}% dan oshadi."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is bad."
+msgstr "10 daqiqalik paket sifati yomon."
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "The packet quality over 10 minutes is degraded or bad."
+msgstr "10 daqiqalik paket sifati pasaygan yoki yomon."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "The rules are created on each system."
@@ -2812,6 +3564,14 @@ msgstr "Bu amalni bekor qilib bo'lmaydi. Bu {name} uchun barcha joriy yozuvlarni
 msgid "This agent is too old to be managed from the hub: update it once on the system."
 msgstr "Bu agent hub orqali boshqarish uchun juda eski: uni tizimda bir marta yangilang."
 
+#: src/components/sensors/sensor-dialog.tsx
+msgid "This host already has a sensor: {added} new check(s) were added to it."
+msgstr "Bu xostda allaqachon sensor bor: unga {added} ta yangi tekshiruv qo‘shildi."
+
+#: src/components/quiet-hours-banner.tsx
+msgid "This sensor until {until}"
+msgstr "Ushbu sensor {until} gacha"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "This system until {until}"
 msgstr "Ushbu tizim {until} gacha"
@@ -2821,6 +3581,11 @@ msgstr "Ushbu tizim {until} gacha"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "This will permanently delete all selected records from the database."
 msgstr "Bu barcha tanlangan yozuvlarni ma'lumotlar bazasidan butunlay o'chiradi."
+
+#: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Threshold"
+msgstr "Chegara"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -2834,7 +3599,14 @@ msgstr "{displayName} saqlash pool'ining o'tkazish qobiliyati"
 msgid "Time format"
 msgstr "Vaqt formati"
 
-#: src/components/reboots-table.tsx
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensor-cert.tsx
+#: src/lib/alerts.ts
+#: src/lib/sensor-alerts.ts
+msgid "TLS certificate"
+msgstr "TLS sertifikati"
+
+#: src/components/period-select.tsx
 msgid "To"
 msgstr "Gacha"
 
@@ -2874,6 +3646,10 @@ msgstr "Har bir interfeys uchun qabul qilingan jami ma'lumotlar"
 msgid "Total data sent for each interface"
 msgstr "Har bir interfeys uchun yuborilgan jami ma'lumotlar"
 
+#: src/components/sensors/sensor-incidents.tsx
+msgid "Total duration: {totalDuration}"
+msgstr "Umumiy davomiylik: {totalDuration}"
+
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
 msgid "Total time spent on read/write (can exceed 100%)"
@@ -2886,8 +3662,13 @@ msgstr "Jami: {0}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/reboots-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Total: {totalCount}"
 msgstr "Jami: {totalCount}"
+
+#: src/components/sensors/traceroute-dialog.tsx
+msgid "Traced with the traceroute command of the hub."
+msgstr "Hubning traceroute buyrug‘i bilan kuzatildi."
 
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
@@ -3011,6 +3792,7 @@ msgstr "Universal token"
 #. Context: Battery state
 #: src/components/routes/system/storage-pools-table.tsx
 #: src/lib/i18n.ts
+#: src/lib/sensors.ts
 msgid "Unknown"
 msgstr "Noma'lum"
 
@@ -3019,9 +3801,17 @@ msgstr "Noma'lum"
 msgid "Unlimited"
 msgstr "Cheksiz"
 
+#: src/components/sensors/sensor-badges.tsx
+msgid "Unreachable"
+msgstr "Erishib bo‘lmaydi"
+
+#. Context: System is up
+#. Context: System is up
 #. Context: System is up
 #: src/components/routes/system/info-bar.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table-columns.tsx
+#: src/lib/sensors.ts
 msgid "Up"
 msgstr "Ishlayapti"
 
@@ -3034,6 +3824,7 @@ msgid "Up to date"
 msgstr "Yangilangan"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Up: {upCount}"
 msgstr "Ishlamoqda: {upCount}"
 
@@ -3091,6 +3882,17 @@ msgstr "Yuklash"
 msgid "Uptime"
 msgstr "Ishlash vaqti"
 
+#: src/components/routes/sensor.tsx
+msgid "Uptime ({periodLabel})"
+msgstr "Ishlash vaqti ({periodLabel})"
+
+#: src/components/routes/sensor.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
+msgid "Uptime (24h)"
+msgstr "Ishlash vaqti (24 soat)"
+
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
 #: src/components/routes/system/charts/gpu-charts.tsx
@@ -3134,6 +3936,18 @@ msgctxt "Disk I/O utilization"
 msgid "Utilization"
 msgstr "Yuklanish"
 
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid and trusted certificate"
+msgstr "Amaldagi va ishonchli sertifikat"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid from"
+msgstr "Amal qilish boshlanishi"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid until"
+msgstr "Amal qilish muddati"
+
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 msgid "Value"
@@ -3143,6 +3957,8 @@ msgstr "Qiymat"
 msgid "Version"
 msgstr "Versiya"
 
+#: src/components/active-alerts.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "View"
@@ -3162,6 +3978,7 @@ msgstr "So‘nggi {count} ta ogohlantirishingizni ko‘ring."
 msgid "View your alerts of the last {days} days."
 msgstr "So‘nggi {days} kunlik ogohlantirishlaringizni ko‘ring."
 
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
 msgid "Visible Fields"
@@ -3257,6 +4074,10 @@ msgstr "YAML konfiguratsiyasi"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Yes"
 msgstr "Ha"
+
+#: src/components/sensors/sensor-alerts.tsx
+msgid "Your alerts on this sensor. Quiet hours of the sensor and global ones silence them."
+msgstr "Ushbu sensor bo‘yicha ogohlantirishlaringiz. Sensorning va umumiy sokin soatlar ularni o‘chiradi."
 
 #: src/components/routes/settings/layout.tsx
 msgid "Your user settings have been updated."

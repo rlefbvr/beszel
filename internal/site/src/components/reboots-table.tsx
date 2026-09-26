@@ -27,6 +27,7 @@ import {
 } from "lucide-react"
 import { type ReactNode, useCallback, useEffect, useMemo, useState } from "react"
 import { selectionColumn } from "@/components/alerts/bulk-state-alerts"
+import { type Period, PeriodSelect, periodRange } from "@/components/period-select"
 import { $router, Link } from "@/components/router"
 import { SystemsSelect } from "@/components/systems-select"
 import {
@@ -50,8 +51,6 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
@@ -67,12 +66,6 @@ const sourceLabels: Record<SystemRebootRecord["source"], () => string> = {
 	eventlog: () => t`Windows event log`,
 	journal: () => "systemd journal",
 	wtmp: () => t`Login records`,
-}
-
-/** Start of a local day (yyyy-mm-dd), shifted by a number of days */
-function localDay(value: string, addDays = 0) {
-	const [year, month, day] = value.split("-").map(Number)
-	return new Date(year, month - 1, day + addDays)
 }
 
 /** Time of a date field in milliseconds, 0 when empty */
@@ -156,6 +149,7 @@ function rebootColumns(userId: string): ColumnDef<SystemRebootRecord>[] {
  * searchable by date and, without a systemId, by systems.
  */
 export default function RebootsTable({ systemId }: { systemId?: string }) {
+	const [period, setPeriod] = useState<Period>("all")
 	const [from, setFrom] = useState("")
 	const [to, setTo] = useState("")
 	const [systemsFilter, setSystemsFilter] = useState<string[]>([])
@@ -184,16 +178,17 @@ export default function RebootsTable({ systemId }: { systemId?: string }) {
 				params[`system${i}`] = id
 			})
 		}
-		if (from) {
+		const range = periodRange(period, from, to)
+		if (range.start) {
 			conditions.push("boot >= {:from}")
-			params.from = localDay(from)
+			params.from = range.start
 		}
-		if (to) {
+		if (range.end) {
 			conditions.push("boot < {:to}")
-			params.to = localDay(to, 1)
+			params.to = range.end
 		}
 		return { conditions, params }
-	}, [systemsKey, from, to])
+	}, [systemsKey, period, from, to])
 
 	// all the reboots of the filters: they are sorted and selected in the page
 	const load = useCallback(async () => {
@@ -303,33 +298,19 @@ export default function RebootsTable({ systemId }: { systemId?: string }) {
 						</div>
 					</div>
 					<div className="flex flex-wrap items-center gap-x-3 gap-y-2 md:ms-auto">
-						<div className="flex items-center gap-2">
-							<Label htmlFor={`reboots-from-${systemId ?? "all"}`}>
-								<Trans>From</Trans>
-							</Label>
-							<Input
-								id={`reboots-from-${systemId ?? "all"}`}
-								type="date"
-								value={from}
-								max={to || undefined}
-								onChange={(e) => setFrom(e.target.value)}
-								className="w-40 tabular-nums"
-							/>
-						</div>
-						<div className="flex items-center gap-2">
-							<Label htmlFor={`reboots-to-${systemId ?? "all"}`}>
-								<Trans>To</Trans>
-							</Label>
-							<Input
-								id={`reboots-to-${systemId ?? "all"}`}
-								type="date"
-								value={to}
-								min={from || undefined}
-								onChange={(e) => setTo(e.target.value)}
-								className="w-40 tabular-nums"
-							/>
-						</div>
-						{!systemId && <SystemsSelect value={systemsFilter} onChange={setSystemsFilter} className="min-w-52 max-w-80" />}
+						<PeriodSelect
+							id={`reboots-${systemId ?? "all"}`}
+							period={period}
+							from={from}
+							to={to}
+							onPeriodChange={setPeriod}
+							onFromChange={setFrom}
+							onToChange={setTo}
+							allowAll
+						/>
+						{!systemId && (
+							<SystemsSelect value={systemsFilter} onChange={setSystemsFilter} className="min-w-52 max-w-80" />
+						)}
 						<ColumnsViewMenu table={table} />
 						{selectedCount > 0 && (
 							<Button variant="destructive" className="gap-2" onClick={() => setConfirmDelete(true)}>

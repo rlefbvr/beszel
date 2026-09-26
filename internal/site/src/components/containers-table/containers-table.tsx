@@ -39,6 +39,7 @@ import { Sheet, SheetTitle, SheetHeader, SheetContent, SheetDescription } from "
 import { Dialog, DialogContent, DialogTitle } from "../ui/dialog"
 import { Button } from "@/components/ui/button"
 import { $stateAlerts, importantTargets } from "@/lib/state-alerts"
+import { $openRequest, rememberRecent } from "@/lib/recent"
 import { $allSystemsById } from "@/lib/stores"
 import { LoaderCircleIcon, MaximizeIcon, RefreshCwIcon, XIcon } from "lucide-react"
 import { Separator } from "../ui/separator"
@@ -184,7 +185,18 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 	const openSheet = useCallback((container: ContainerRecord) => {
 		activeContainer.current = container
 		setSheetOpen(true)
+		rememberRecent({ kind: "container", id: container.id, name: container.name, system: container.system })
 	}, [])
+
+	// a container chosen in the command palette opens once the list is loaded
+	const openRequest = useStore($openRequest)
+	useEffect(() => {
+		const container = openRequest?.kind === "container" && data?.find((item) => item.id === openRequest.id)
+		if (container) {
+			$openRequest.set(null)
+			openSheet(container)
+		}
+	}, [openRequest, data, openSheet])
 
 	// containers targeted by a state alert rule
 	const stateAlerts = useStore($stateAlerts)

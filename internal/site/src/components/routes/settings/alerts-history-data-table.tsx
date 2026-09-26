@@ -185,8 +185,8 @@ export default function AlertsHistoryDataTable() {
 	useEffect(() => {
 		let unsubscribe: (() => void) | undefined
 		const pbOptions = {
-			expand: "system",
-			fields: "id,name,monitor_name,value,state,created,resolved,expand.system.name",
+			expand: "system,sensor",
+			fields: "id,name,monitor_name,value,state,created,resolved,system,sensor,expand.system.name,expand.sensor.name",
 		}
 		// Initial load: the whole history kept by the retention setting
 		pb.collection<AlertsHistoryRecord>("alerts_history")
@@ -263,7 +263,7 @@ export default function AlertsHistoryDataTable() {
 		},
 		onGlobalFilterChange: setGlobalFilter,
 		globalFilterFn: (row, _columnId, filterValue) => {
-			const system = row.original.expand?.system?.name ?? ""
+			const system = row.original.expand?.system?.name ?? row.original.expand?.sensor?.name ?? ""
 			const name = row.getValue("name") ?? ""
 			const created = row.getValue("created") ?? ""
 			const search = String(filterValue).toLowerCase()
@@ -307,9 +307,12 @@ export default function AlertsHistoryDataTable() {
 		const selectedRows = table.getSelectedRowModel().rows
 		if (!selectedRows.length) return
 		const cells: Record<string, (record: AlertsHistoryRecord) => string> = {
-			system: (record) => record.expand?.system?.name || record.system,
-			name: (record) => [(alertInfo[record.name] ?? stateAlertHistoryInfo[record.name])?.name() || record.name, record.monitor_name].filter(Boolean).join(": "),
-			value: (record) => record.value + (alertInfo[record.name]?.unit ?? ""),
+			system: (record) => record.expand?.system?.name || record.expand?.sensor?.name || record.system,
+			name: (record) =>
+				[(alertInfo[record.name] ?? stateAlertHistoryInfo[record.name])?.name() || record.name, record.monitor_name]
+					.filter(Boolean)
+					.join(": "),
+			value: (record) => record.value + ((alertInfo[record.name] ?? stateAlertHistoryInfo[record.name])?.unit ?? ""),
 			state: (record) => (record.resolved ? t`Resolved` : t`Active`),
 			created: (record) => formatShortDate(record.created),
 			resolved: (record) => (record.resolved ? formatShortDate(record.resolved) : ""),

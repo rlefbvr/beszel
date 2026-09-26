@@ -1,5 +1,19 @@
 import { t } from "@lingui/core/macro"
-import { ContainerIcon, CpuIcon, HardDriveIcon, MemoryStickIcon, NetworkIcon, ServerCrashIcon, ServerIcon } from "lucide-react"
+import {
+  ContainerIcon,
+  CpuIcon,
+  GaugeIcon,
+  HardDriveIcon,
+  MemoryStickIcon,
+  NetworkIcon,
+  PercentIcon,
+  PlugZapIcon,
+  ServerCrashIcon,
+  ServerIcon,
+  ServerOffIcon,
+  ShieldAlertIcon,
+  TimerIcon,
+} from "lucide-react"
 import type { RecordSubscription } from "pocketbase"
 import { EthernetIcon, GpuIcon } from "@/components/ui/icons"
 import { $alerts } from "@/lib/stores"
@@ -140,8 +154,41 @@ export const alertInfo: Record<string, AlertInfo> = {
   },
 } as const
 
-/** History labels for state rule incidents (not toggles in the alerts dialog) */
-export const stateAlertHistoryInfo: Record<string, Pick<AlertInfo, "name" | "icon" | "triggeredDesc">> = {
+/** History labels for state rule incidents and sensor alerts (not toggles in the alerts dialog) */
+export const stateAlertHistoryInfo: Record<
+  string,
+  Pick<AlertInfo, "name" | "icon" | "triggeredDesc"> & { unit?: string }
+> = {
+  SensorDown: {
+    name: () => t`Sensor down`,
+    icon: ServerOffIcon,
+    triggeredDesc: () => t`A check of the sensor does not respond.`,
+  },
+  SensorPort: {
+    name: () => t`Port not responding`,
+    icon: PlugZapIcon,
+    triggeredDesc: () => t`One of the chosen ports does not respond.`,
+  },
+  SensorQuality: {
+    name: () => t`Packet quality`,
+    icon: GaugeIcon,
+    triggeredDesc: () => t`Poor packet quality`,
+  },
+  SensorLoss: {
+    name: () => t`Packet loss`,
+    icon: PercentIcon,
+    unit: "%",
+  },
+  SensorLatency: {
+    name: () => t`Response time`,
+    icon: TimerIcon,
+    unit: " ms",
+  },
+  SensorCert: {
+    name: () => t`TLS certificate`,
+    icon: ShieldAlertIcon,
+    unit: " d",
+  },
   ServiceState: {
     name: () => t`Service state`,
     icon: ServerCrashIcon,
@@ -160,7 +207,7 @@ export const alertManager = (() => {
   let unsub: () => void
 
   /** Fields to fetch from alerts collection */
-  const fields = "id,name,system,value,min,triggered"
+  const fields = "id,name,system,value,min,triggered,updated"
 
   /** Fetch alerts from collection */
   async function fetchAlerts(): Promise<AlertRecord[]> {

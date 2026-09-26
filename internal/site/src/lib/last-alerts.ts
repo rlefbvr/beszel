@@ -15,6 +15,10 @@ let unsubscribeFn: (() => void) | undefined
 
 /** Keep the alert if it is the most recent of its system */
 function remember(record: Pick<AlertsHistoryRecord, "system" | "name" | "created">) {
+	// alerts of the network sensors have no system
+	if (!record.system) {
+		return
+	}
 	const current = $lastAlerts.get()[record.system]
 	if (!current || current.created < record.created) {
 		$lastAlerts.setKey(record.system, { name: record.name, created: record.created })

@@ -1,8 +1,11 @@
-import { useLingui } from "@lingui/react/macro"
+import { Trans, useLingui } from "@lingui/react/macro"
 import { memo } from "react"
 import NetworkMonitorsTableNew from "@/components/network-monitors-table/network-monitors-table"
 import { ActiveAlerts } from "@/components/active-alerts"
 import { FooterRepoLink } from "@/components/footer-repo-link"
+import { QuietHoursBanner } from "@/components/quiet-hours-banner"
+import { SensorIncidents } from "@/components/sensors/sensor-incidents"
+import SensorsBoard from "@/components/sensors/sensors-board"
 import { useNetworkMonitors } from "@/lib/use-network-monitors"
 import { $allSystemsById } from "@/lib/stores"
 import { supportsNetworkMonitors } from "@/lib/utils"
@@ -24,7 +27,14 @@ export default memo(() => {
 		<>
 			<div className="grid gap-4">
 				<ActiveAlerts />
-				<NetworkMonitorsTableNew monitors={visibleMonitors} isLoading={isLoading} />
+				<QuietHoursBanner />
+				<SensorsBoard />
+				<NetworkMonitorsTableNew
+					monitors={visibleMonitors}
+					isLoading={isLoading}
+					title={<Trans>Network monitors from a host</Trans>}
+				/>
+				<SensorIncidents />
 			</div>
 			<FooterRepoLink />
 		</>

@@ -1,6 +1,7 @@
 import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
 import type { ColumnDef } from "@tanstack/react-table"
+import { NetworkIcon } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { alertInfo, stateAlertHistoryInfo } from "@/lib/alerts"
@@ -17,11 +18,18 @@ export const alertsHistoryColumns: ColumnDef<AlertsHistoryRecord>[] = [
 				<Trans>System</Trans>
 			</Button>
 		),
-		cell: ({ row }) => (
-			<div className="ps-2 max-w-60 truncate">{row.original.expand?.system?.name || row.original.system}</div>
-		),
+		cell: ({ row }) =>
+			row.original.sensor ? (
+				<div className="ps-2 max-w-60 truncate flex items-center gap-1.5">
+					<NetworkIcon className="size-3.5 shrink-0 text-muted-foreground" />
+					{row.original.expand?.sensor?.name || row.original.sensor}
+				</div>
+			) : (
+				<div className="ps-2 max-w-60 truncate">{row.original.expand?.system?.name || row.original.system}</div>
+			),
 		filterFn: (row, _, filterValue) => {
-			const display = row.original.expand?.system?.name || row.original.system || ""
+			const display =
+				row.original.expand?.system?.name || row.original.expand?.sensor?.name || row.original.system || ""
 			return display.toLowerCase().includes(filterValue.toLowerCase())
 		},
 	},

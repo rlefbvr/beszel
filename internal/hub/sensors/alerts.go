@@ -7,12 +7,15 @@ import (
 	"time"
 
 	"github.com/henrygd/beszel/internal/alerts"
+	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase/core"
 )
 
 // alertCondition is the state of an alert condition on a sensor.
 type alertCondition struct {
 	active bool
+	// subject is what the alert is about beside the sensor, such as its ports
+	subject string
 	// messages of the triggered and resolved notifications
 	title, body, resolvedTitle, resolvedBody alerts.Msg
 }
@@ -29,7 +32,7 @@ func (m *Manager) evaluateAlerts(now time.Time) {
 		s := m.sensors[record.GetString("sensor")]
 		var condition alertCondition
 		if s != nil && !s.paused {
-			condition = s.alertCondition(record.GetString("name"), record.GetFloat("value"), now)
+			condition = s.alertCondition(record.GetString("name"), record.GetFloat("value"), record.GetStringSlice("checks"), now)
 		}
 		since, pending := m.alertSince[record.Id]
 		if condition.active && !pending {
@@ -49,18 +52,61 @@ func (m *Manager) evaluateAlerts(now time.Time) {
 		switch {
 		case condition.active && !triggered && now.Sub(since) >= delay:
 			m.sendAlert(record, sensorID, sensorName, condition.title, condition.body, alerts.AlertStatusTriggered)
-			m.setTriggered(record, true)
+			m.setTriggered(record, true, sensorName, condition.subject)
 		case !condition.active && triggered && s != nil:
 			m.sendAlert(record, sensorID, sensorName, condition.resolvedTitle, condition.resolvedBody, alerts.AlertStatusResolved)
-			m.setTriggered(record, false)
+			m.setTriggered(record, false, sensorName, condition.subject)
 		}
 	}
 }
 
-func (m *Manager) setTriggered(record *core.Record, triggered bool) {
+// historyNames are the names of the sensor alerts in the alerts history.
+var historyNames = map[string]string{
+	"down":    "SensorDown",
+	"loss":    "SensorLoss",
+	"latency": "SensorLatency",
+	"cert":    "SensorCert",
+	"quality": "SensorQuality",
+	"port":    "SensorPort",
+}
+
+// setTriggered saves the state of an alert, and opens or closes its record in
+// the alerts history, like the alerts of the systems.
+func (m *Manager) setTriggered(record *core.Record, triggered bool, sensorName, subject string) {
 	record.Set("triggered", triggered)
 	if err := m.app.Save(record); err != nil {
 		m.app.Logger().Error("Failed to save sensor alert", "err", err)
+	}
+	if triggered {
+		collection, err := m.app.FindCachedCollectionByNameOrId("alerts_history")
+		if err != nil {
+			return
+		}
+		history := core.NewRecord(collection)
+		history.Set("alert_id", record.Id)
+		history.Set("user", record.GetString("user"))
+		history.Set("sensor", record.GetString("sensor"))
+		history.Set("name", historyNames[record.GetString("name")])
+		history.Set("value", record.GetFloat("value"))
+		monitorName := sensorName
+		if subject != "" {
+			monitorName += " (" + subject + ")"
+		}
+		history.Set("monitor_name", monitorName)
+		if err := m.app.Save(history); err != nil {
+			m.app.Logger().Error("Failed to save sensor alert history", "err", err)
+		}
+		return
+	}
+	open, err := m.app.FindAllRecords("alerts_history", dbx.HashExp{"alert_id": record.Id, "resolved": ""})
+	if err != nil {
+		return
+	}
+	for _, history := range open {
+		history.Set("resolved", time.Now().UTC())
+		if err := m.app.Save(history); err != nil {
+			m.app.Logger().Error("Failed to resolve sensor alert history", "err", err)
+		}
 	}
 }
 
@@ -83,7 +129,7 @@ func (m *Manager) sendAlert(record *core.Record, sensorID, sensorName string, ti
 }
 
 // alertCondition evaluates an alert of the sensor; the caller holds the lock.
-func (s *sensor) alertCondition(name string, value float64, now time.Time) alertCondition {
+func (s *sensor) alertCondition(name string, value float64, checkIDs []string, now time.Time) alertCondition {
 	args := alerts.Args{"sensor": s.name, "host": s.host, "threshold": value}
 	switch name {
 	case "down":
@@ -118,6 +164,45 @@ func (s *sensor) alertCondition(name string, value float64, now time.Time) alert
 			body:          alerts.M("sensor.latency.body", args),
 			resolvedTitle: alerts.M("sensor.latency.resolved.title", args),
 			resolvedBody:  alerts.M("sensor.latency.resolved.body", args),
+		}
+	case "quality":
+		// value 1: degraded or bad, 2: bad only
+		worst := map[string]int{"good": 0, "degraded": 1, "bad": 2}[s.quality]
+		if s.status == "down" {
+			worst = 2
+		}
+		args["loss"], args["latency"] = s.loss, s.res
+		return alertCondition{
+			active:        s.hasRecentSamples && s.status != "pending" && worst >= int(math.Max(1, value)),
+			title:         alerts.M("sensor.quality.title", args),
+			body:          alerts.M("sensor.quality.body", args),
+			resolvedTitle: alerts.M("sensor.quality.resolved.title", args),
+			resolvedBody:  alerts.M("sensor.quality.resolved.body", args),
+		}
+	case "port":
+		chosen := map[string]bool{}
+		for _, id := range checkIDs {
+			chosen[id] = true
+		}
+		var names, down []string
+		for _, c := range s.checks {
+			if !chosen[c.id] {
+				continue
+			}
+			names = append(names, c.name())
+			if c.status == "down" {
+				down = append(down, c.name())
+			}
+		}
+		args["checks"] = strings.Join(down, ", ")
+		resolvedArgs := alerts.Args{"sensor": s.name, "host": s.host, "checks": strings.Join(names, ", ")}
+		return alertCondition{
+			active:        len(down) > 0,
+			subject:       strings.Join(names, ", "),
+			title:         alerts.M("sensor.port.title", args),
+			body:          alerts.M("sensor.port.body", args),
+			resolvedTitle: alerts.M("sensor.port.resolved.title", resolvedArgs),
+			resolvedBody:  alerts.M("sensor.port.resolved.body", resolvedArgs),
 		}
 	case "cert":
 		// the certificate expiring first among the HTTPS checks
