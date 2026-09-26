@@ -119,7 +119,6 @@ export const SystemDialog = ({ setOpen, system }: { setOpen: (open: boolean) => 
 		}
 	}
 
-	const systemTranslation = t`System`
 
 	return (
 		<DialogContent
@@ -131,7 +130,7 @@ export const SystemDialog = ({ setOpen, system }: { setOpen: (open: boolean) => 
 			<Tabs defaultValue={tab} onValueChange={setTab}>
 				<DialogHeader>
 					<DialogTitle className="mb-1 pb-1 max-w-100 truncate pr-8">
-						{system ? <Trans>Edit {{ foo: systemTranslation }}</Trans> : <Trans>Add a system</Trans>}
+						{system ? <Trans>Edit the system</Trans> : <Trans>Add a system</Trans>}
 					</DialogTitle>
 					<TabsList className="grid w-full grid-cols-2">
 						<TabsTrigger value="docker">Docker</TabsTrigger>
@@ -291,7 +290,7 @@ export const SystemDialog = ({ setOpen, system }: { setOpen: (open: boolean) => 
 						</TabsContent>
 						{/* Save */}
 						<Button>
-							{system ? <Trans>Save {{ foo: systemTranslation }}</Trans> : <Trans>Add a system</Trans>}
+							{system ? <Trans>Save the system</Trans> : <Trans>Add a system</Trans>}
 						</Button>
 					</DialogFooter>
 				</form>

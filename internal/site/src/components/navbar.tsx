@@ -1,4 +1,3 @@
-import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
 import { getPagePath } from "@nanostores/router"
@@ -65,7 +64,6 @@ export default function Navbar() {
 
 	const AdminLinks = AdminDropdownGroup()
 
-	const systemTranslation = t`System`
 	const headerLabel = useStore($headerLabel)
 	const hiddenIcons = useStore($userSettings).hiddenHeaderIcons ?? []
 	const show = (icon: HeaderIcon) => !hiddenIcons.includes(icon)
@@ -202,7 +200,7 @@ export default function Navbar() {
 									}}
 								>
 									<PlusIcon className="h-4 w-4 me-2.5" />
-									<Trans>Add {{ foo: systemTranslation }}</Trans>
+									<Trans>Add a system</Trans>
 								</DropdownMenuItem>
 							)}
 						</DropdownMenuGroup>

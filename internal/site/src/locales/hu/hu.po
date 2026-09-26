@@ -353,15 +353,10 @@ msgstr "Tevékenységnapló"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/navbar.tsx
+#: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/header-icons.ts
 msgid "Add"
 msgstr "Hozzáadás"
-
-#: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
-msgid "Add {foo}"
-msgstr "Hozzáadás {foo}"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -376,8 +371,13 @@ msgstr "Ellenőrzés hozzáadása"
 msgid "Add a monitor"
 msgstr "Monitor hozzáadása"
 
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add a network monitor"
+msgstr "Hálózatfigyelő hozzáadása"
+
 #: src/components/add-system.tsx
 #: src/components/add-system.tsx
+#: src/components/navbar.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Add a system"
 msgstr "Rendszer hozzáadása"
@@ -399,6 +399,10 @@ msgstr "Érzékelő hozzáadása"
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Add sensors"
 msgstr "Érzékelők hozzáadása"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add the monitor"
+msgstr "Figyelő hozzáadása"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Add the network monitors"
@@ -1814,15 +1818,21 @@ msgstr "Időtartam"
 msgid "Edit"
 msgstr "Szerkesztés"
 
-#: src/components/add-system.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/routes/settings/quiet-hours.tsx
-msgid "Edit {foo}"
-msgstr "Szerkesztés {foo}"
-
 #: src/components/sensors/sensor-dialog.tsx
 msgid "Edit sensor"
 msgstr "Érzékelő szerkesztése"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Edit the network monitor"
+msgstr "Hálózatfigyelő szerkesztése"
+
+#: src/components/routes/settings/quiet-hours.tsx
+msgid "Edit the quiet hours"
+msgstr "Csendes órák szerkesztése"
+
+#: src/components/add-system.tsx
+msgid "Edit the system"
+msgstr "Rendszer szerkesztése"
 
 #: src/components/login/auth-form.tsx
 #: src/components/login/forgot-pass-form.tsx
@@ -2876,11 +2886,6 @@ msgid "Model"
 msgstr "Modell"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
-msgid "Monitor"
-msgstr "Monitor"
-
-#: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Monitors created"
 msgstr "Monitorok létrehozva"
 
@@ -2965,11 +2970,6 @@ msgstr "Hálózati kapcsolatok"
 
 #: src/components/routes/settings/audit-log.tsx
 msgid "Network monitor"
-msgstr "Hálózati monitor"
-
-#: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
-msgid "Network Monitor"
 msgstr "Hálózati monitor"
 
 #: src/lib/alerts.ts
@@ -3972,11 +3972,6 @@ msgstr "S.M.A.R.T. Önteszt"
 msgid "Save"
 msgstr "Mentés"
 
-#: src/components/add-system.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
-msgid "Save {foo}"
-msgstr "{foo} mentése"
-
 #: src/components/routes/settings/notifications.tsx
 msgid "Save address using enter key or comma. Leave blank to disable email notifications."
 msgstr "Mentse el a címet az Enter billentyű vagy a vessző használatával. Hagyja üresen az e-mail értesítések letiltásához."
@@ -3987,6 +3982,14 @@ msgstr "Mentse el a címet az Enter billentyű vagy a vessző használatával. H
 #: src/components/routes/settings/notifications.tsx
 msgid "Save Settings"
 msgstr "Beállítások mentése"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Save the monitor"
+msgstr "Figyelő mentése"
+
+#: src/components/add-system.tsx
+msgid "Save the system"
+msgstr "Rendszer mentése"
 
 #: src/components/routes/settings/security.tsx
 msgid "Save these recovery codes: each one can replace a code of the app once, if you lose your phone. They are not shown again."
@@ -4459,7 +4462,6 @@ msgstr "Swap használat"
 msgid "Switch theme"
 msgstr "Téma váltása"
 
-#: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -4468,7 +4470,6 @@ msgstr "Téma váltása"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
-#: src/components/navbar.tsx
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx

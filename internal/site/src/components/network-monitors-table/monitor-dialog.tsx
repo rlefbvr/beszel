@@ -698,9 +698,9 @@ function MonitorDialogContent({
 			<DialogHeader>
 				<DialogTitle>
 					{isEditing ? (
-						<Trans>Edit {{ foo: t`Network Monitor` }}</Trans>
+						<Trans>Edit the network monitor</Trans>
 					) : (
-						<Trans>Add {{ foo: t`Network Monitor` }}</Trans>
+						<Trans>Add a network monitor</Trans>
 					)}
 				</DialogTitle>
 				<DialogDescription>
@@ -858,9 +858,9 @@ function MonitorDialogContent({
 						disabled={loading || (!systemId && (isEditing ? !selectedSystemId : !selectedSystemIds.size))}
 					>
 						{isEditing ? (
-							<Trans>Save {{ foo: t`Monitor` }}</Trans>
+							<Trans>Save the monitor</Trans>
 						) : (
-							<Trans>Add {{ foo: t`Monitor` }}</Trans>
+							<Trans>Add the monitor</Trans>
 						)}
 					</Button>
 				</DialogFooter>

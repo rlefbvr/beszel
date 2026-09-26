@@ -15,6 +15,7 @@ import {
 	BellOffIcon,
 	ChevronDownIcon,
 	RepeatIcon,
+	PlusIcon,
 } from "lucide-react"
 import { useEffect, useMemo, useState } from "react"
 
@@ -173,9 +174,10 @@ export function QuietHours({
 				<GuardedDialog open={dialogOpen} onOpenChange={setDialogOpen}>
 					<DialogTrigger asChild>
 						<Button variant="outline" className="h-10 shrink-0" onClick={() => setEditingRecord(null)}>
-							<CalendarIcon className="size-4" />
+							{/* in the dialog of the quiet hours, its title already names them */}
+							{compact ? <PlusIcon className="size-4" /> : <CalendarIcon className="size-4" />}
 							<span className="ms-1">
-								<Trans>Set up quiet hours</Trans>
+								{compact ? <Trans>Add</Trans> : <Trans>Set up quiet hours</Trans>}
 							</span>
 						</Button>
 					</DialogTrigger>
@@ -500,7 +502,7 @@ function QuietHoursDialog({
 			<DialogHeader>
 				<DialogTitle>
 					{editingRecord ? (
-						<Trans>Edit {{ foo: quietHoursTranslation }}</Trans>
+						<Trans>Edit the quiet hours</Trans>
 					) : (
 						<Trans>Set up quiet hours</Trans>
 					)}
