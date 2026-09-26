@@ -117,6 +117,7 @@ func (m *Manager) sendAlert(record *core.Record, sensorID, sensorName string, ti
 	err := m.notifier.SendAlert(alerts.AlertMessageData{
 		UserID:   record.GetString("user"),
 		SensorID: sensorID,
+		Kind:     historyNames[record.GetString("name")],
 		Title:    title,
 		Message:  body,
 		Status:   status,

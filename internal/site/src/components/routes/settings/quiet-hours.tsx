@@ -3,7 +3,6 @@ import { Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
 import {
 	MoreHorizontalIcon,
-	PlusIcon,
 	Trash2Icon,
 	ServerIcon,
 	ClockIcon,
@@ -13,6 +12,8 @@ import {
 	MessageSquareTextIcon,
 	NetworkIcon,
 	GlobeIcon,
+	BellOffIcon,
+	ChevronDownIcon,
 } from "lucide-react"
 import { useEffect, useMemo, useState } from "react"
 
@@ -29,8 +30,10 @@ import {
 } from "@/components/ui/dialog"
 import {
 	DropdownMenu,
+	DropdownMenuCheckboxItem,
 	DropdownMenuContent,
 	DropdownMenuItem,
+	DropdownMenuLabel,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
@@ -45,18 +48,31 @@ import {
 	$quietHours,
 	isPresetReason,
 	type QuietHoursState,
+	quietHoursAlertKindLabel,
+	quietHoursAlertKinds,
 	quietHoursAppliesTo,
 	quietHoursReasonLabel,
+	quietHoursScoped,
+	quietHoursSensorKinds,
 	quietHoursReasons,
 	quietHoursState,
 } from "@/lib/quiet-hours"
 import { $sensors } from "@/lib/sensors"
+import { $stateAlerts, refreshStateAlerts } from "@/lib/state-alerts"
 import { useNow } from "@/lib/time"
 import { $allSystemsById, $systems } from "@/lib/stores"
 import { cn, formatShortDate } from "@/lib/utils"
-import type { QuietHoursRecord, SystemRecord } from "@/types"
+import type { QuietHoursRecord, StateAlertRecord, SystemRecord } from "@/types"
 
 const quietHoursTranslation = t`Quiet Hours`
+
+/** Longest text shown in the fields of the dialog */
+const maxShownLength = 60
+
+/** A text cut to the longest shown in the fields of the dialog */
+function clamp(text: string) {
+	return text.length > maxShownLength ? `${text.slice(0, maxShownLength - 1)}…` : text
+}
 
 /** Value of the reason select for a custom reason */
 const customReason = "other"
@@ -128,6 +144,16 @@ export function QuietHours({
 		setEditingRecord(null)
 	}
 
+	const stateAlerts = useStore($stateAlerts)
+	/** Alerts silenced by a window: all, or its alert types and rules */
+	const scopeLabel = (record: QuietHoursRecord) =>
+		quietHoursScoped(record)
+			? [
+					...(record.alerts ?? []).map(quietHoursAlertKindLabel),
+					...(record.rules ?? []).map((id) => (stateAlerts[id] ? ruleLabel(stateAlerts[id]) : id)),
+				].join(", ")
+			: t`All alerts`
+
 	const formatDateTime = (record: QuietHoursRecord) => {
 		if (record.type === "daily") {
 			// For daily windows, show only time
@@ -157,9 +183,9 @@ export function QuietHours({
 				<Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
 					<DialogTrigger asChild>
 						<Button variant="outline" className="h-10 shrink-0" onClick={() => setEditingRecord(null)}>
-							<PlusIcon className="size-4" />
+							<CalendarIcon className="size-4" />
 							<span className="ms-1">
-								<Trans>Add {{ foo: quietHoursTranslation }}</Trans>
+								<Trans>Set up quiet hours</Trans>
 							</span>
 						</Button>
 					</DialogTrigger>
@@ -194,6 +220,12 @@ export function QuietHours({
 									<span className="flex items-center gap-2">
 										<CalendarIcon className="size-4" />
 										<Trans>Schedule</Trans>
+									</span>
+								</TableHead>
+								<TableHead className="px-4">
+									<span className="flex items-center gap-2">
+										<BellOffIcon className="size-4" />
+										<Trans>Alerts</Trans>
 									</span>
 								</TableHead>
 								<TableHead className="px-4">
@@ -237,6 +269,9 @@ export function QuietHours({
 										{record.type === "daily" ? <Trans>Daily</Trans> : <Trans>One-time</Trans>}
 									</TableCell>
 									<TableCell className="px-4 py-3">{formatDateTime(record)}</TableCell>
+									<TableCell className="px-4 py-3 max-w-60 truncate" title={scopeLabel(record)}>
+										{scopeLabel(record)}
+									</TableCell>
 									<TableCell className="px-4 py-3 max-w-60 truncate" title={quietHoursReasonLabel(record.reason)}>
 										{quietHoursReasonLabel(record.reason) || <span className="text-muted-foreground">-</span>}
 									</TableCell>
@@ -315,6 +350,10 @@ function QuietHoursDialog({
 	toast: ReturnType<typeof useToast>["toast"]
 }) {
 	const sensors = useStore($sensors)
+	const stateAlerts = useStore($stateAlerts)
+	useEffect(() => {
+		refreshStateAlerts()
+	}, [])
 	const sensorList = Object.values(sensors).sort((a, b) => a.name.localeCompare(b.name))
 	/** what the window silences: all, a system or a network sensor */
 	const initialTarget = (system?: string, sensor?: string) => (sensor ? "sensor" : system ? "system" : "global")
@@ -331,6 +370,9 @@ function QuietHoursDialog({
 	// preset reason key, customReason, or "" for none
 	const [reasonChoice, setReasonChoice] = useState("")
 	const [customReasonText, setCustomReasonText] = useState("")
+	// alert types and state rules silenced; all the alerts when both are empty
+	const [kinds, setKinds] = useState<string[]>([])
+	const [rules, setRules] = useState<string[]>([])
 
 	useEffect(() => {
 		if (editingRecord) {
@@ -355,6 +397,8 @@ function QuietHoursDialog({
 			const reason = editingRecord.reason ?? ""
 			setReasonChoice(isPresetReason(reason) ? reason : reason ? customReason : "")
 			setCustomReasonText(isPresetReason(reason) ? "" : reason)
+			setKinds(editingRecord.alerts ?? [])
+			setRules(editingRecord.rules ?? [])
 		} else {
 			// Reset form with default dates: today at 12pm and 1pm
 			const today = new Date()
@@ -373,6 +417,8 @@ function QuietHoursDialog({
 			setEndTime("13:00")
 			setReasonChoice("")
 			setCustomReasonText("")
+			setKinds([])
+			setRules([])
 		}
 	}, [editingRecord, defaultSystem, defaultSensor])
 
@@ -408,6 +454,10 @@ function QuietHoursDialog({
 				start: startValue,
 				end: endValue,
 				reason: reasonChoice === customReason ? customReasonText.trim() : reasonChoice,
+				alerts: kinds.filter((kind) =>
+					(target === "sensor" ? quietHoursSensorKinds : quietHoursAlertKinds).includes(kind as never)
+				),
+				rules: target === "system" ? rules.filter((id) => stateAlerts[id]?.system === selectedSystem) : [],
 			}
 
 			if (editingRecord) {
@@ -427,13 +477,13 @@ function QuietHoursDialog({
 	}
 
 	return (
-		<DialogContent>
+		<DialogContent className="w-fit max-w-[calc(100vw-2rem)] sm:min-w-[32rem]">
 			<DialogHeader>
 				<DialogTitle>
 					{editingRecord ? (
 						<Trans>Edit {{ foo: quietHoursTranslation }}</Trans>
 					) : (
-						<Trans>Add {{ foo: quietHoursTranslation }}</Trans>
+						<Trans>Set up quiet hours</Trans>
 					)}
 				</DialogTitle>
 				<DialogDescription>
@@ -469,7 +519,7 @@ function QuietHoursDialog({
 								<SelectContent>
 									{sensorList.map((sensor) => (
 										<SelectItem key={sensor.id} value={sensor.id}>
-											{sensor.name}
+											{clamp(sensor.name)}
 										</SelectItem>
 									))}
 								</SelectContent>
@@ -498,7 +548,7 @@ function QuietHoursDialog({
 								<SelectContent>
 									{systems.map((system) => (
 										<SelectItem key={system.id} value={system.id}>
-											{system.name}
+											{clamp(system.name)}
 										</SelectItem>
 									))}
 								</SelectContent>
@@ -516,6 +566,21 @@ function QuietHoursDialog({
 						</div>
 					</TabsContent>
 				</Tabs>
+
+				<QuietHoursScopePicker
+					kindList={target === "sensor" ? quietHoursSensorKinds : quietHoursAlertKinds}
+					kinds={kinds}
+					rules={rules}
+					systemRules={
+						target === "system"
+							? Object.values(stateAlerts).filter((rule) => rule.system === selectedSystem)
+							: []
+					}
+					onChange={(nextKinds, nextRules) => {
+						setKinds(nextKinds)
+						setRules(nextRules)
+					}}
+				/>
 
 				<div className="grid gap-2">
 					<Label htmlFor="type">
@@ -636,9 +701,116 @@ function QuietHoursDialog({
 					<Button type="button" variant="outline" onClick={onClose}>
 						<Trans>Cancel</Trans>
 					</Button>
-					<Button type="submit">{editingRecord ? <Trans>Update</Trans> : <Trans>Create</Trans>}</Button>
+					<Button type="submit" className="gap-2">
+						{editingRecord ? (
+							<Trans>Update</Trans>
+						) : (
+							<>
+								<CalendarIcon className="size-4" />
+								<Trans>Set up</Trans>
+							</>
+						)}
+					</Button>
 				</DialogFooter>
 			</form>
 		</DialogContent>
+	)
+}
+
+/** Label of a state rule: its kind and targets, such as "Service state: nginx, sshd" */
+function ruleLabel(rule: StateAlertRecord) {
+	const kind = quietHoursAlertKindLabel(rule.kind === "container" ? "ContainerState" : "ServiceState")
+	return `${kind}: ${rule.targets}`
+}
+
+/** Choice of the alerts silenced by a window: all, or some alert types and state rules of the system */
+function QuietHoursScopePicker({
+	kindList,
+	kinds,
+	rules,
+	systemRules,
+	onChange,
+}: {
+	/** alert types offered: of the systems or of the sensors */
+	kindList: readonly string[]
+	kinds: string[]
+	rules: string[]
+	systemRules: StateAlertRecord[]
+	onChange: (kinds: string[], rules: string[]) => void
+}) {
+	const shownRules = rules.filter((id) => systemRules.some((rule) => rule.id === id))
+	const shownKinds = kinds.filter((kind) => kindList.includes(kind))
+	const count = shownKinds.length + shownRules.length
+	const toggle = (list: string[], value: string, checked: boolean) =>
+		checked ? [...list.filter((item) => item !== value), value] : list.filter((item) => item !== value)
+	return (
+		<div className="grid gap-2">
+			<Label htmlFor="quiet-alerts">
+				<Trans>Silenced alerts</Trans>
+			</Label>
+			<DropdownMenu>
+				<DropdownMenuTrigger asChild>
+					<Button id="quiet-alerts" type="button" variant="outline" className="justify-between font-normal">
+						<span className="whitespace-nowrap">
+							{count === 0 ? (
+								<Trans>All alerts</Trans>
+							) : (
+								clamp(
+									[
+										...shownKinds.map(quietHoursAlertKindLabel),
+										...systemRules.filter((rule) => shownRules.includes(rule.id)).map(ruleLabel),
+									].join(", ")
+								)
+							)}
+						</span>
+						<ChevronDownIcon className="size-4 opacity-50 shrink-0" />
+					</Button>
+				</DropdownMenuTrigger>
+				<DropdownMenuContent
+					align="start"
+					className="w-[var(--radix-dropdown-menu-trigger-width)] max-h-[min(24rem,var(--radix-dropdown-menu-content-available-height))] overflow-y-auto"
+				>
+					<DropdownMenuCheckboxItem
+						checked={count === 0}
+						onSelect={(e) => e.preventDefault()}
+						onCheckedChange={() => onChange([], [])}
+					>
+						<Trans>All alerts</Trans>
+					</DropdownMenuCheckboxItem>
+					<DropdownMenuSeparator />
+					<DropdownMenuLabel className="text-xs text-muted-foreground">
+						<Trans>Alert types</Trans>
+					</DropdownMenuLabel>
+					{kindList.map((kind) => (
+						<DropdownMenuCheckboxItem
+							key={kind}
+							checked={shownKinds.includes(kind)}
+							onSelect={(e) => e.preventDefault()}
+							onCheckedChange={(checked) => onChange(toggle(shownKinds, kind, checked === true), shownRules)}
+						>
+							{quietHoursAlertKindLabel(kind)}
+						</DropdownMenuCheckboxItem>
+					))}
+					{systemRules.length > 0 && (
+						<>
+							<DropdownMenuSeparator />
+							<DropdownMenuLabel className="text-xs text-muted-foreground">
+								<Trans>Rules of this system</Trans>
+							</DropdownMenuLabel>
+							{systemRules.map((rule) => (
+								<DropdownMenuCheckboxItem
+									key={rule.id}
+									checked={shownRules.includes(rule.id)}
+									onSelect={(e) => e.preventDefault()}
+									onCheckedChange={(checked) => onChange(shownKinds, toggle(shownRules, rule.id, checked === true))}
+								>
+									<span className="whitespace-nowrap">{clamp(ruleLabel(rule))}</span>
+								</DropdownMenuCheckboxItem>
+							))}
+						</>
+					)}
+				</DropdownMenuContent>
+			</DropdownMenu>
+		</div>
 	)
 }

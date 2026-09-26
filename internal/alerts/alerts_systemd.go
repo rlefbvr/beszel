@@ -120,6 +120,7 @@ func (am *AlertManager) sendSystemdAlert(triggered bool, systemName string, aler
 	systemID := alertData.SystemID
 
 	return am.SendAlert(AlertMessageData{
+		Kind:        alertNameSystemdFailed,
 		UserID:      alertData.UserID,
 		SystemID:    systemID,
 		SystemName:  systemName,

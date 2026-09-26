@@ -1,7 +1,8 @@
 import { t } from "@lingui/core/macro"
 import { map } from "nanostores"
+import { alertInfo, stateAlertHistoryInfo } from "@/lib/alerts"
 import { pb } from "@/lib/api"
-import type { QuietHoursRecord } from "@/types"
+import type { QuietHoursRecord, StateAlertRecord } from "@/types"
 
 const collection = "quiet_hours"
 
@@ -109,6 +110,77 @@ export function activeQuietHours(
 	return Object.values(records)
 		.filter((record) => quietHoursAppliesTo(record, applies) && quietHoursState(record, now) === "active")
 		.sort((a, b) => quietHoursEnd(a, now).getTime() - quietHoursEnd(b, now).getTime())
+}
+
+/** Alert types a window can be limited to, in the order of the alerts sheet */
+export const quietHoursAlertKinds = [
+	"Status",
+	"CPU",
+	"CPUIOWait",
+	"CPUSteal",
+	"Memory",
+	"Disk",
+	"Bandwidth",
+	"NetworkMonitorLoss",
+	"GPU",
+	"Temperature",
+	"LoadAvg1",
+	"LoadAvg5",
+	"LoadAvg15",
+	"Battery",
+	"ContainerHealth",
+	"SystemdFailed",
+	"ServiceState",
+	"ContainerState",
+	"Certificate",
+	"Smart",
+	"ZFS",
+] as const
+
+/** Alert types of the network sensors a window can be limited to */
+export const quietHoursSensorKinds = [
+	"SensorDown",
+	"SensorPort",
+	"SensorQuality",
+	"SensorLoss",
+	"SensorLatency",
+	"SensorCert",
+] as const
+
+/** Name of an alert type of a window */
+export function quietHoursAlertKindLabel(kind: string) {
+	switch (kind) {
+		case "Smart":
+			return "S.M.A.R.T."
+		case "ZFS":
+			return "ZFS"
+		case "Certificate":
+			return t`Certificate expiry`
+	}
+	return (alertInfo[kind] ?? stateAlertHistoryInfo[kind])?.name() ?? kind
+}
+
+/** Whether a window silences only some alerts */
+export function quietHoursScoped(record: Pick<QuietHoursRecord, "alerts" | "rules">) {
+	return !!record.alerts?.length || !!record.rules?.length
+}
+
+/** Alerts silenced by a window limited to some of them, such as "CPU, Service state: nginx"; empty for all */
+export function quietHoursScopeText(
+	record: Pick<QuietHoursRecord, "alerts" | "rules">,
+	stateAlerts: Record<string, StateAlertRecord>
+) {
+	if (!quietHoursScoped(record)) {
+		return ""
+	}
+	const rules = (record.rules ?? [])
+		.map((id) => stateAlerts[id])
+		.filter(Boolean)
+		.map(
+			(rule) =>
+				`${quietHoursAlertKindLabel(rule.kind === "container" ? "ContainerState" : "ServiceState")}: ${rule.targets}`
+		)
+	return [...(record.alerts ?? []).map(quietHoursAlertKindLabel), ...rules].join(", ")
 }
 
 /** Preset reasons, stored by key and translated when displayed */

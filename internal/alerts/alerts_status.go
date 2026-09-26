@@ -154,6 +154,7 @@ func (am *AlertManager) sendStatusAlert(alertStatus string, systemName string, a
 	systemID := alertData.SystemID
 
 	return am.SendAlert(AlertMessageData{
+		Kind:       "Status",
 		UserID:     alertData.UserID,
 		SystemID:   systemID,
 		SystemName: systemName,

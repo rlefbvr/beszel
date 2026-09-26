@@ -494,6 +494,11 @@ func stateAlertMessage(record *core.Record, kind, name, systemName string, obs o
 		TargetLabel: M("target."+kind, nil),
 		Status:      AlertStatusResolved,
 		Emoji:       "✅",
+		Kind:        alertNameServiceState,
+		RuleID:      record.Id,
+	}
+	if record.GetString("kind") == "container" {
+		data.Kind = alertNameContainerState
 	}
 	if triggered {
 		data.Title, data.Message = M(key+".triggered.title", args), M(key+".triggered.body", args)

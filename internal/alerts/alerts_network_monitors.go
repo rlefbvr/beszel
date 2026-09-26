@@ -198,6 +198,7 @@ func (am *AlertManager) evaluateNetworkMonitorAlerts(app core.App, systemID stri
 					args := Args{"system": systemName, "target": label, "loss": result.PacketLoss1h, "threshold": alert.GetFloat("value")}
 					messages = append(messages, AlertMessageData{
 						UserID: alert.GetString("user"), SystemID: systemID, SystemName: systemName,
+						Kind:    alertNameNetworkMonitorLoss,
 						Title:   M(key+".title", args),
 						Message: M(key+".body", args),
 						Target:  RawMsg(label), TargetLabel: M("target.monitor", nil),

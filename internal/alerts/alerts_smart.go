@@ -52,6 +52,7 @@ func (am *AlertManager) handleSmartDeviceAlert(e *core.RecordEvent) error {
 	// Send alert to each user
 	for _, userID := range userIDs {
 		if err := am.SendAlert(AlertMessageData{
+			Kind:        "Smart",
 			UserID:      userID,
 			SystemID:    systemID,
 			SystemName:  systemName,

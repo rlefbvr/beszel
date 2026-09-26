@@ -202,6 +202,7 @@ func (am *AlertManager) sendContainerHealthAlert(unhealthy bool, systemName stri
 		}
 		message := M("container.healthy", Args{"system": systemName})
 		return am.SendAlert(AlertMessageData{
+			Kind:       containerAlertName,
 			UserID:     alertData.UserID,
 			SystemID:   alertData.SystemID,
 			SystemName: systemName,
@@ -233,6 +234,7 @@ func (am *AlertManager) sendContainerHealthAlert(unhealthy bool, systemName stri
 	}
 
 	return am.SendAlert(AlertMessageData{
+		Kind:        containerAlertName,
 		UserID:      alertData.UserID,
 		SystemID:    alertData.SystemID,
 		SystemName:  systemName,

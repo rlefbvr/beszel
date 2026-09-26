@@ -9,7 +9,14 @@ import { $router, Link } from "@/components/router"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
-import { $quietHours, activeQuietHours, quietHoursEnd, quietHoursReasonLabel } from "@/lib/quiet-hours"
+import {
+	$quietHours,
+	activeQuietHours,
+	quietHoursEnd,
+	quietHoursReasonLabel,
+	quietHoursScopeText,
+} from "@/lib/quiet-hours"
+import { $stateAlerts } from "@/lib/state-alerts"
 import { useNow } from "@/lib/time"
 import { $sensors } from "@/lib/sensors"
 import { $allSystemsById } from "@/lib/stores"
@@ -44,6 +51,7 @@ export function QuietHoursBanner({ systemId, sensorId }: { systemId?: string; se
 	const records = useStore($quietHours)
 	const systems = useStore($allSystemsById)
 	const sensors = useStore($sensors)
+	const stateAlerts = useStore($stateAlerts)
 	const now = useNow()
 	const active = activeQuietHours(records, { system: systemId, sensor: sensorId }, now)
 	if (!active.length) {
@@ -54,6 +62,7 @@ export function QuietHoursBanner({ systemId, sensorId }: { systemId?: string; se
 	const describe = (record: QuietHoursRecord) => {
 		const until = formatEnd(quietHoursEnd(record, now), now)
 		const reason = quietHoursReasonLabel(record.reason)
+		const scope = quietHoursScopeText(record, stateAlerts)
 		const name = record.sensor
 			? (sensors[record.sensor]?.name ?? record.sensor)
 			: (systems[record.system]?.name ?? record.system)
@@ -74,6 +83,7 @@ export function QuietHoursBanner({ systemId, sensorId }: { systemId?: string; se
 						{name} until {until}
 					</Trans>
 				)}
+				{scope && <span className="text-muted-foreground">· {scope}</span>}
 				{reason && <span className="text-muted-foreground">· {reason}</span>}
 			</li>
 		)
@@ -122,12 +132,14 @@ export function QuietHoursBanner({ systemId, sensorId }: { systemId?: string; se
 export function QuietHoursIndicator({ systemId }: { systemId: string }) {
 	const records = useStore($quietHours)
 	const now = useNow()
+	const stateAlerts = useStore($stateAlerts)
 	const [first] = activeQuietHours(records, systemId, now)
 	if (!first) {
 		return null
 	}
 	const until = formatEnd(quietHoursEnd(first, now), now)
 	const reason = quietHoursReasonLabel(first.reason)
+	const scope = quietHoursScopeText(first, stateAlerts)
 	return (
 		<Tooltip>
 			<TooltipTrigger asChild>
@@ -135,6 +147,7 @@ export function QuietHoursIndicator({ systemId }: { systemId: string }) {
 			</TooltipTrigger>
 			<TooltipContent>
 				<Trans>Quiet hours until {until}</Trans>
+				{scope && <span className="text-muted-foreground"> · {scope}</span>}
 				{reason && <span className="text-muted-foreground"> · {reason}</span>}
 			</TooltipContent>
 		</Tooltip>

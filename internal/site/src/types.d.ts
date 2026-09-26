@@ -376,6 +376,10 @@ export interface QuietHoursRecord extends RecordModel {
 	end: string
 	/** preset reason key or custom text */
 	reason?: string
+	/** alert types silenced by the window (CPU, Status…); with rules empty too, all the alerts */
+	alerts?: string[] | null
+	/** service or container state rules silenced by the window */
+	rules?: string[]
 	expand?: {
 		system?: {
 			name: string

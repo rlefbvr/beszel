@@ -64,6 +64,7 @@ func (am *AlertManager) handleZfsPoolHealthAlert(e *core.RecordEvent, oldHealth 
 
 	for _, userID := range userIDs {
 		if err := am.SendAlert(AlertMessageData{
+			Kind:        "ZFS",
 			UserID:      userID,
 			SystemID:    systemID,
 			SystemName:  systemName,

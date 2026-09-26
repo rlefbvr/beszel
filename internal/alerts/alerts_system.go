@@ -417,6 +417,7 @@ func (am *AlertManager) sendSystemAlert(alert SystemAlertData) {
 		status = AlertStatusTriggered
 	}
 	am.SendAlert(AlertMessageData{
+		Kind:       alert.name,
 		UserID:     alert.alertData.UserID,
 		SystemID:   alert.systemRecord.Id,
 		SystemName: systemName,
