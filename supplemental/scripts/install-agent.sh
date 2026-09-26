@@ -1408,6 +1408,11 @@ EOF
     [ "$KEY_PROVIDED" = "true" ] && sed -i "s|^Environment=\"KEY=.*\"|Environment=\"KEY=$SED_KEY\"|" /etc/systemd/system/${SERVICE_NAME}.service
     [ "$TOKEN_PROVIDED" = "true" ] && sed -i "s|^Environment=\"TOKEN=.*\"|Environment=\"TOKEN=$SED_TOKEN\"|" /etc/systemd/system/${SERVICE_NAME}.service
     [ "$HUB_URL_PROVIDED" = "true" ] && sed -i "s|^Environment=\"HUB_URL=.*\"|Environment=\"HUB_URL=$SED_HUB_URL\"|" /etc/systemd/system/${SERVICE_NAME}.service
+    # Services created by older scripts: allow the agent to update itself
+    if ! grep -q "^ReadWritePaths=" /etc/systemd/system/${SERVICE_NAME}.service; then
+      sed -i "/^\[Service\]/a ReadWritePaths=$BIN_DIR" /etc/systemd/system/${SERVICE_NAME}.service
+    fi
+    chown "${AGENT_USER}:${AGENT_USER}" "$BIN_DIR"
   fi
 
   # Load and start the service

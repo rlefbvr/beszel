@@ -3,6 +3,7 @@ package agent
 import (
 	"bufio"
 	"errors"
+	"fmt"
 	"log/slog"
 	"os"
 	"os/exec"
@@ -72,10 +73,18 @@ func selfUpdate(dataDir string) (bool, error) {
 	if dataDir == "" {
 		dataDir = os.TempDir()
 	}
+	// read before the update: once the executable is replaced, Linux gives the
+	// path of the old one ("beszel-agent.old (deleted)")
+	exe, exeErr := os.Executable()
 	updated, err := ghupdate.Update(ghupdate.Config{ArchiveExecutable: "beszel-agent", DataDir: dataDir})
 	if err == nil && updated && runtime.GOOS != "windows" {
-		if exe, exeErr := os.Executable(); exeErr == nil {
-			_ = os.Chmod(exe, 0o755)
+		// the executables extracted from tar archives lose their executable bit,
+		// and systemd would no longer start the agent (status 203/EXEC)
+		if exeErr != nil {
+			return updated, fmt.Errorf("updated, but the new executable could not be made executable: %w", exeErr)
+		}
+		if chmodErr := os.Chmod(exe, 0o755); chmodErr != nil {
+			return updated, fmt.Errorf("updated, but the new executable could not be made executable: %w", chmodErr)
 		}
 	}
 	return updated, err
