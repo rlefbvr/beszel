@@ -2,6 +2,7 @@ import { t } from "@lingui/core/macro"
 import {
   ContainerIcon,
   CpuIcon,
+  FileBadgeIcon,
   GaugeIcon,
   HardDriveIcon,
   MemoryStickIcon,
@@ -198,6 +199,11 @@ export const stateAlertHistoryInfo: Record<
     name: () => t`Container state`,
     icon: ContainerIcon,
     triggeredDesc: () => t`State rule matched`,
+  },
+  Certificate: {
+    name: () => t`Certificate expiry`,
+    icon: FileBadgeIcon,
+    unit: " d",
   },
 }
 

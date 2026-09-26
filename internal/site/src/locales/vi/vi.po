@@ -98,6 +98,11 @@ msgstr "{count, plural, other {# hệ thống}}"
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} cảm biến mới, {added} kiểm tra được thêm vào cảm biến hiện có."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "{days, plural, one {# day} other {# days}}"
+msgstr "{days, plural, other {# ngày}}"
+
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
 msgstr "{days, plural, other {Hết hạn sau # ngày}}"
@@ -110,9 +115,17 @@ msgstr "I/O {diskName}"
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, other {# phút}}"
 
+#: src/components/active-alerts.tsx
+msgid "{name} expires in less than {days} days"
+msgstr "{name} hết hạn trong chưa đầy {days} ngày"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "{name} until {until}"
 msgstr "{name} đến {until}"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "{outdated} system(s) need an agent update to read their certificates."
+msgstr "{outdated} hệ thống cần cập nhật tác nhân để đọc chứng chỉ."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
@@ -256,6 +269,7 @@ msgstr "Cảnh báo hoạt động"
 msgid "Active state"
 msgstr "Trạng thái hoạt động"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/navbar.tsx
 #: src/lib/header-icons.ts
 msgid "Add"
@@ -266,6 +280,11 @@ msgstr "Thêm"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Add {foo}"
 msgstr "Thêm {foo}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Add a certificate"
+msgstr "Thêm chứng chỉ"
 
 #: src/components/sensors/sensor-dialog.tsx
 msgid "Add a check"
@@ -306,6 +325,10 @@ msgstr "Thêm các giám sát mạng"
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "Thêm URL"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Added"
+msgstr "Đã thêm"
 
 #: src/components/add-system.tsx
 msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
@@ -375,6 +398,10 @@ msgstr "Lịch sử Cảnh báo"
 msgid "Alert sent"
 msgstr "Đã gửi cảnh báo"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Alert threshold (days before expiry)"
+msgstr "Ngưỡng cảnh báo (số ngày trước khi hết hạn)"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Alert types"
 msgstr "Loại cảnh báo"
@@ -392,6 +419,10 @@ msgstr "Cảnh báo khi trạng thái là"
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is not"
 msgstr "Cảnh báo khi trạng thái không phải là"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
+msgstr "Cảnh báo khi chứng chỉ {name} của {systemName} hết hạn trong số ngày ít hơn ngưỡng. Các chứng chỉ được gia hạn cùng tên vẫn được kiểm tra và chứng chỉ trở thành quan trọng."
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -414,6 +445,7 @@ msgstr "Cảnh báo của {sensorName}"
 msgid "alerts per user"
 msgstr "cảnh báo mỗi người dùng"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -430,6 +462,16 @@ msgstr "Tất cả tác nhân đều đã cập nhật ({latest})"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "All alerts"
 msgstr "Tất cả cảnh báo"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+#: src/components/routes/certificates.tsx
+#: src/lib/header-icons.ts
+#: src/lib/home-page.ts
+msgid "All certificates"
+msgstr "Tất cả chứng chỉ"
 
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -748,6 +790,7 @@ msgstr "Có thể dừng"
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/important-targets.tsx
+#: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/sensor.tsx
@@ -783,6 +826,12 @@ msgstr "Cẩn thận - có thể mất dữ liệu"
 msgid "Celsius (°C)"
 msgstr "Độ C (°C)"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificate added"
+msgstr "Đã thêm chứng chỉ"
+
+#: src/components/active-alerts.tsx
+#: src/lib/alerts.ts
 #: src/lib/quiet-hours.ts
 msgid "Certificate expiry"
 msgstr "Chứng chỉ hết hạn"
@@ -794,6 +843,18 @@ msgstr "Chứng chỉ không được hub tin cậy"
 #: src/components/sensors/sensor-cert.tsx
 msgid "Certificate presented by the server at the last check."
 msgstr "Chứng chỉ do máy chủ cung cấp ở lần kiểm tra gần nhất."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificate read on the host by its agent."
+msgstr "Chứng chỉ được tác nhân đọc trên máy chủ."
+
+#: src/components/command-palette.tsx
+msgid "Certificates"
+msgstr "Chứng chỉ"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificates read"
+msgstr "Đã đọc chứng chỉ"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Chain"
@@ -889,6 +950,7 @@ msgctxt "Clean shutdown"
 msgid "Clean"
 msgstr "Bình thường"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
@@ -946,6 +1008,7 @@ msgstr "Khoảng thời gian thu thập"
 msgid "Color"
 msgstr "Màu"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Columns"
 msgstr "Cột"
@@ -1018,6 +1081,12 @@ msgstr "Tiếp tục"
 #: src/lib/utils.ts
 msgid "Copied to clipboard"
 msgstr "Đã sao chép vào clipboard"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Copy"
+msgstr "Sao chép"
 
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
@@ -1464,6 +1533,10 @@ msgstr "Nhập mật khẩu một lần của bạn."
 msgid "Ephemeral"
 msgstr "Tạm thời"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1525,6 +1598,12 @@ msgstr "Đã thoát khi hoạt động"
 msgid "Expected text"
 msgstr "Văn bản mong đợi"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expired"
+msgstr "Đã hết hạn"
+
 #: src/components/sensors/sensor-cert.tsx
 msgid "Expired certificate"
 msgstr "Chứng chỉ đã hết hạn"
@@ -1533,9 +1612,39 @@ msgstr "Chứng chỉ đã hết hạn"
 msgid "Expired on {expiredOn}"
 msgstr "Hết hạn vào {expiredOn}"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Expired: {expired}"
+msgstr "Đã hết hạn: {expired}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expires"
+msgstr "Hết hạn"
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Expires after one hour or on hub restart."
 msgstr "Hết hạn sau một giờ hoặc khi khởi động lại hub."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiring soon"
+msgstr "Sắp hết hạn"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiring: {expiring}"
+msgstr "Sắp hết hạn: {expiring}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiry alert"
+msgstr "Cảnh báo hết hạn"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiry alert: {alertDays} days"
+msgstr "Cảnh báo hết hạn: {alertDays} ngày"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Export"
@@ -1615,6 +1724,11 @@ msgstr "Thất bại: {0}"
 msgid "Fans"
 msgstr "Quạt"
 
+#: src/lib/certificates.ts
+msgid "File"
+msgstr "Tệp"
+
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -1888,6 +2002,10 @@ msgctxt "Docker image"
 msgid "Image update available"
 msgstr "Có bản cập nhật image"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Important certificates"
+msgstr "Chứng chỉ quan trọng"
+
 #: src/components/containers-table/containers-table.tsx
 msgid "Important containers"
 msgstr "Container quan trọng"
@@ -1895,6 +2013,18 @@ msgstr "Container quan trọng"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "Dịch vụ quan trọng"
+
+#: src/lib/certificates.ts
+msgid "In IIS Manager: site {detail} > Bindings > https {location} > SSL certificate."
+msgstr "Trong IIS Manager: trang {detail} > Bindings > https {location} > SSL certificate."
+
+#: src/lib/certificates.ts
+msgid "In IIS Manager: the site bound to https {location} > Bindings > SSL certificate."
+msgstr "Trong IIS Manager: trang gắn với https {location} > Bindings > SSL certificate."
+
+#: src/lib/certificates.ts
+msgid "In Proxmox VE: node > System > Certificates."
+msgstr "Trong Proxmox VE: node > System > Certificates."
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Inactive"
@@ -1942,6 +2072,8 @@ msgstr "Khoảng thời gian (giây)"
 msgid "Invalid email address."
 msgstr "Địa chỉ email không hợp lệ."
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "Issued by"
 msgstr "Cấp bởi"
@@ -1957,6 +2089,10 @@ msgstr "Cấp cho"
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "Các kiểm tra, lịch sử và gián đoạn của nó sẽ bị xóa."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Its expiry alert is deleted: no notification is sent before it expires."
+msgstr "Cảnh báo hết hạn của nó bị xóa: sẽ không có thông báo nào trước khi hết hạn."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Its sensors are kept and moved to no group."
@@ -2111,6 +2247,9 @@ msgstr "Đang tải..."
 msgid "Local Disk"
 msgstr "Đĩa cục bộ"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Location"
 msgstr "Vị trí"
@@ -2276,6 +2415,8 @@ msgstr "Điểm gắn kết"
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -2398,6 +2539,14 @@ msgstr "Không phản hồi"
 #: src/components/sensors/sensor-cert.tsx
 msgid "No certificate yet: the details appear after the next HTTPS check."
 msgstr "Chưa có chứng chỉ: chi tiết sẽ xuất hiện sau lần kiểm tra HTTPS tiếp theo."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "No certificates match the filter."
+msgstr "Không có chứng chỉ nào khớp với bộ lọc."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "No certificates yet. The agents (0.20.0-fork.5 or newer) read the certificates of their host every 6 hours."
+msgstr "Chưa có chứng chỉ. Các tác nhân (0.20.0-fork.5 trở lên) đọc chứng chỉ của máy chủ mỗi 6 giờ."
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
@@ -2566,6 +2715,10 @@ msgstr "Tùy chọn, ví dụ tên dịch vụ"
 msgid "Options"
 msgstr "Tùy chọn"
 
+#: src/lib/certificates.ts
+msgid "Or change {directive} in the following file, then reload {service}:"
+msgstr "Hoặc sửa {directive} trong tệp sau, rồi tải lại {service}:"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Hoặc tiếp tục với"
@@ -2618,6 +2771,7 @@ msgstr "Chất lượng gói"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
+#: src/components/command-palette.tsx
 msgid "Page"
 msgstr "Trang"
 
@@ -2655,6 +2809,14 @@ msgstr "Yêu cầu đặt lại mật khẩu đã được nhận"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Past"
 msgstr "Quá khứ"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Path"
+msgstr "Đường dẫn"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Path of a certificate file on the host (PEM or DER), read by its agent with the other certificates. The agent must be allowed to read the file."
+msgstr "Đường dẫn tệp chứng chỉ trên máy chủ (PEM hoặc DER), được tác nhân đọc cùng các chứng chỉ khác. Tác nhân phải có quyền đọc tệp."
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -2884,6 +3046,10 @@ msgstr "Đọc"
 msgid "Read errors"
 msgstr "Lỗi đọc"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Read now"
+msgstr "Đọc ngay"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -2904,6 +3070,14 @@ msgstr "Lịch sử khởi động lại"
 #: src/components/routes/system.tsx
 msgid "Reboots"
 msgstr "Khởi động lại"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Recap"
+msgstr "Tóm tắt"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Recap of the important certificates"
+msgstr "Tóm tắt các chứng chỉ quan trọng"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -2935,11 +3109,17 @@ msgstr "Làm mới"
 msgid "Relationships"
 msgstr "Mối quan hệ"
 
+#: src/lib/certificates.ts
+msgid "Remote Desktop"
+msgstr "Máy tính từ xa"
+
+#: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/sensors/sensor-dialog.tsx
 msgid "Remove"
 msgstr "Xóa"
 
+#: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 msgid "Remove {name} from important?"
 msgstr "Xóa {name} khỏi mục quan trọng?"
@@ -2949,9 +3129,21 @@ msgstr "Xóa {name} khỏi mục quan trọng?"
 msgid "Remove from important"
 msgstr "Xóa khỏi mục quan trọng"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Remove the alert"
+msgstr "Xóa cảnh báo"
+
 #: src/components/important-targets.tsx
 msgid "Removed from the rule, which keeps: {targets}"
 msgstr "Đã xóa khỏi quy tắc, còn lại: {targets}"
+
+#: src/lib/certificates.ts
+msgid "Renewed by certbot (certbot renew), with the settings of the following file:"
+msgstr "Được certbot (certbot renew) gia hạn với cài đặt trong tệp sau:"
+
+#: src/lib/certificates.ts
+msgid "Replace the file {name} reachable at the following path:"
+msgstr "Thay tệp {name} tại đường dẫn sau:"
 
 #: src/components/login/login.tsx
 msgid "Request a one-time password"
@@ -3068,6 +3260,14 @@ msgstr "Quy tắc của hệ thống này"
 msgid "Run again"
 msgstr "Chạy lại"
 
+#: src/lib/certificates.ts
+msgid "Run the following command with the thumbprint of the new certificate (application {detail}):"
+msgstr "Chạy lệnh sau với thumbprint của chứng chỉ mới (ứng dụng {detail}):"
+
+#: src/lib/certificates.ts
+msgid "Run the following command with the thumbprint of the new certificate:"
+msgstr "Chạy lệnh sau với thumbprint của chứng chỉ mới:"
+
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
 msgstr "Chạy trong container: hãy cập nhật image của nó."
@@ -3085,6 +3285,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "Tự kiểm tra S.M.A.R.T."
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
@@ -3141,8 +3342,8 @@ msgstr "Tìm kiếm"
 #~ msgstr "Tìm hệ thống, cảm biến hoặc cài đặt..."
 
 #: src/components/command-palette.tsx
-msgid "Search for systems, sensors, containers, services or settings..."
-msgstr "Tìm hệ thống, cảm biến, container, dịch vụ hoặc cài đặt..."
+msgid "Search for systems, sensors, containers, services, certificates or settings..."
+msgstr "Tìm hệ thống, cảm biến, container, dịch vụ, chứng chỉ hoặc cài đặt..."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -3157,6 +3358,14 @@ msgstr "Số giây giữa các lần ping (mặc định: 60)"
 msgid "See <0>notification settings</0> to configure how you receive alerts."
 msgstr "Xem <0>cài đặt thông báo</0> để cấu hình cách bạn nhận cảnh báo."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Seen by a sensor"
+msgstr "Được cảm biến ghi nhận"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Seen by the sensors"
+msgstr "Được các cảm biến ghi nhận"
+
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Select"
 msgstr "Chọn"
@@ -3166,6 +3375,7 @@ msgstr "Chọn"
 msgid "Select {foo}"
 msgstr "Chọn {foo}"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Select a system"
 msgstr "Chọn một hệ thống"
@@ -3195,6 +3405,10 @@ msgstr "Chọn các hệ thống cần cập nhật."
 #: src/components/agent-update-dialog.tsx
 msgid "Selection"
 msgstr "Lựa chọn"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Self-signed"
+msgstr "Tự ký"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
@@ -3290,6 +3504,10 @@ msgstr "Đặt ngưỡng cho màu sắc đồng hồ."
 msgid "Set the following environment variables on your Beszel hub to enable heartbeat monitoring:"
 msgstr "Thiết lập các biến môi trường sau trên hub Beszel của bạn để bật giám sát heartbeat:"
 
+#: src/lib/certificates.ts
+msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
+msgstr "Đặt thumbprint của chứng chỉ mới tại vị trí sau (hoặc trong lớp WMI Win32_TSGeneralSetting), rồi khởi động lại dịch vụ Máy tính từ xa:"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Thiết lập"
@@ -3351,6 +3569,7 @@ msgstr "Cảnh báo bị tắt tiếng"
 msgid "SMTP settings"
 msgstr "Cài đặt SMTP"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
@@ -3421,6 +3640,7 @@ msgstr "Quy tắc trạng thái"
 msgid "States"
 msgstr "Trạng thái"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -3435,6 +3655,10 @@ msgstr "Trạng thái"
 #: src/lib/alerts.ts
 msgid "Status"
 msgstr "Trạng thái"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Stop watching"
+msgstr "Ngừng theo dõi"
 
 #: src/components/containers-table/containers-table.tsx
 msgid "Stopped"
@@ -3467,6 +3691,10 @@ msgstr "Đổi giao diện"
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/navbar.tsx
@@ -3597,6 +3825,14 @@ msgstr "Kiểm thử"
 msgid "The agent can't replace its executable. Reinstall it with the current install command."
 msgstr "Tác nhân không thể thay thế tệp thực thi của nó. Hãy cài đặt lại bằng lệnh cài đặt hiện tại."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "The agent could not read this certificate: {error}"
+msgstr "Tác nhân không thể đọc chứng chỉ này: {error}"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "The agent of this system must be updated (0.20.0-fork.5 or newer) to read it."
+msgstr "Cần cập nhật tác nhân của hệ thống này (0.20.0-fork.5 trở lên) để đọc."
+
 #: src/components/routes/system/agent-details.tsx
 msgid "The agent restarts and reconnects on its own."
 msgstr "Tác nhân sẽ tự khởi động lại và kết nối lại."
@@ -3660,6 +3896,14 @@ msgstr "Chủ đề"
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
 msgstr "Sau đó đăng nhập vào backend và đặt lại mật khẩu tài khoản người dùng của bạn trong bảng người dùng."
+
+#: src/lib/certificates.ts
+msgid "Then restart cockpit."
+msgstr "Sau đó khởi động lại cockpit."
+
+#: src/lib/certificates.ts
+msgid "Then restart pveproxy."
+msgstr "Sau đó khởi động lại pveproxy."
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
@@ -3764,7 +4008,9 @@ msgctxt "Disk I/O"
 msgid "Total time spent on read/write (can exceed 100%)"
 msgstr "Tổng thời gian đọc/ghi (có thể vượt quá 100%)"
 
+#. placeholder {0}: all.length
 #. placeholder {0}: data.length
+#: src/components/certificates/certificates-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Total: {0}"
 msgstr "Tổng: {0}"
@@ -3914,6 +4160,10 @@ msgstr "Không giới hạn"
 msgid "Unreachable"
 msgstr "Không thể truy cập"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Unreadable"
+msgstr "Không đọc được"
+
 #. Context: System is up
 #. Context: System is up
 #. Context: System is up
@@ -4035,6 +4285,12 @@ msgstr "Chỉ dùng chữ cái, chữ số và _ . @ -."
 msgid "Used"
 msgstr "Đã sử dụng"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Used by"
+msgstr "Được dùng bởi"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
@@ -4045,13 +4301,25 @@ msgctxt "Disk I/O utilization"
 msgid "Utilization"
 msgstr "Sử dụng"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Valid"
+msgstr "Hợp lệ"
+
 #: src/components/sensors/sensor-cert.tsx
 msgid "Valid and trusted certificate"
 msgstr "Chứng chỉ hợp lệ và đáng tin cậy"
 
 #: src/components/sensors/sensor-cert.tsx
+msgid "Valid certificate"
+msgstr "Chứng chỉ hợp lệ"
+
+#: src/components/sensors/sensor-cert.tsx
 msgid "Valid from"
 msgstr "Hiệu lực từ"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid self-signed certificate"
+msgstr "Chứng chỉ tự ký hợp lệ"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Valid until"
@@ -4067,6 +4335,7 @@ msgid "Version"
 msgstr "Phiên bản"
 
 #: src/components/active-alerts.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
@@ -4121,6 +4390,10 @@ msgstr "Khi được bật, token này cho phép các tác nhân tự đăng ký
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."
 msgstr "Khi sử dụng POST, mỗi heartbeat bao gồm một tải trọng JSON với bản tóm tắt trạng thái hệ thống, danh sách các hệ thống bị hỏng và các cảnh báo đã được kích hoạt."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Where to change each important certificate, for each service using it."
+msgstr "Nơi thay đổi từng chứng chỉ quan trọng, cho từng dịch vụ sử dụng nó."
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgctxt "Button to copy install command"
@@ -4150,6 +4423,10 @@ msgstr "Có quy tắc cảnh báo trạng thái"
 #: src/components/systems-table/systems-table.tsx
 msgid "With alerts"
 msgstr "Có cảnh báo"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "With an expiry alert"
+msgstr "Có cảnh báo hết hạn"
 
 #. Disk write
 #. Disk write

@@ -125,6 +125,23 @@ func setCollectionAuthSettings(app core.App) error {
 		return err
 	}
 
+	// certificates are kept by the hub; the files added by the users can be edited
+	if err := applyCollectionRules(app, []string{"certificates"}, collectionRules{
+		list: &systemScopedReadRule,
+		view: &systemScopedReadRule,
+	}); err != nil {
+		return err
+	}
+	if err := applyCollectionRules(app, []string{"certificate_paths"}, collectionRules{
+		list:   &systemScopedReadRule,
+		view:   &systemScopedReadRule,
+		create: &systemScopedWriteRule,
+		update: &systemScopedWriteRule,
+		delete: &systemScopedWriteRule,
+	}); err != nil {
+		return err
+	}
+
 	// reboots can be deleted from the reboot history by the users who can edit the system
 	if err := applyCollectionRules(app, []string{"system_reboots"}, collectionRules{
 		list:   &systemScopedReadRule,

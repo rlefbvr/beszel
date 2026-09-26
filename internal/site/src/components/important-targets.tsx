@@ -31,11 +31,25 @@ export interface ImportantTile {
 	onClick?: () => void
 	/** the target, to remove it from the state rules */
 	target?: { kind: StateAlertRecord["kind"]; system: string }
+	/** removes the tile from the important ones, for targets without state rules, once confirmed */
+	onRemove?: () => void | Promise<void>
+	/** what the removal changes, shown in its confirmation */
+	removeDescription?: ReactNode
 }
 
 /** Services or containers targeted by a state alert rule, shown above their table */
-export function ImportantTargets({ title, tiles }: { title: ReactNode; tiles: ImportantTile[] }) {
+export function ImportantTargets({
+	title,
+	subtitle,
+	tiles,
+}: {
+	title: ReactNode
+	/** why they are important, a state alert rule by default */
+	subtitle?: ReactNode
+	tiles: ImportantTile[]
+}) {
 	const [removing, setRemoving] = useState<ImportantTile | null>(null)
+	const [confirming, setConfirming] = useState<ImportantTile | null>(null)
 	const canRemove = !isReadOnlyUser()
 	if (tiles.length === 0) {
 		return null
@@ -46,7 +60,7 @@ export function ImportantTargets({ title, tiles }: { title: ReactNode; tiles: Im
 				<BellRingIcon className="size-3.5 text-muted-foreground" />
 				{title}
 				<span className="text-muted-foreground font-normal">
-					<Trans>With a state alert rule</Trans>
+					{subtitle ?? <Trans>With a state alert rule</Trans>}
 				</span>
 			</div>
 			<div className="grid gap-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
@@ -60,7 +74,7 @@ export function ImportantTargets({ title, tiles }: { title: ReactNode; tiles: Im
 								"w-full text-start rounded-md border px-3 py-2.5 grid gap-1 min-w-0 transition-colors",
 								tile.onClick ? "hover:bg-muted/50 cursor-pointer" : "cursor-default",
 								tile.triggered ? "border-red-500/50 bg-red-500/5" : "bg-muted/20",
-								canRemove && tile.target && "pe-9"
+								canRemove && (tile.target || tile.onRemove) && "pe-9"
 							)}
 						>
 							<span className="flex items-center gap-2 min-w-0">
@@ -79,12 +93,12 @@ export function ImportantTargets({ title, tiles }: { title: ReactNode; tiles: Im
 								)}
 							</span>
 						</button>
-						{canRemove && tile.target && (
+						{canRemove && (tile.target || tile.onRemove) && (
 							<button
 								type="button"
 								aria-label={t`Remove from important`}
 								title={t`Remove from important`}
-								onClick={() => setRemoving(tile)}
+								onClick={() => (tile.onRemove ? setConfirming(tile) : setRemoving(tile))}
 								className="absolute top-1.5 end-1.5 rounded p-1 text-muted-foreground opacity-0 group-hover:opacity-100 focus-visible:opacity-100 hover:bg-muted hover:text-foreground transition-opacity"
 							>
 								<XIcon className="size-3.5" />
@@ -94,7 +108,53 @@ export function ImportantTargets({ title, tiles }: { title: ReactNode; tiles: Im
 				))}
 			</div>
 			{removing && <RemoveImportantDialog tile={removing} onClose={() => setRemoving(null)} />}
+			{confirming && <ConfirmRemoveDialog tile={confirming} onClose={() => setConfirming(null)} />}
 		</div>
+	)
+}
+
+/** Confirms the removal of a tile that removes itself, such as an important certificate */
+function ConfirmRemoveDialog({ tile, onClose }: { tile: ImportantTile; onClose: () => void }) {
+	const [saving, setSaving] = useState(false)
+	const name = tile.name
+
+	async function remove() {
+		setSaving(true)
+		try {
+			await tile.onRemove?.()
+			onClose()
+		} catch (e) {
+			failedToast(e)
+		} finally {
+			setSaving(false)
+		}
+	}
+
+	return (
+		<AlertDialog open onOpenChange={(open) => !open && onClose()}>
+			<AlertDialogContent>
+				<AlertDialogHeader>
+					<AlertDialogTitle>
+						<Trans>Remove {name} from important?</Trans>
+					</AlertDialogTitle>
+					{tile.removeDescription && <AlertDialogDescription>{tile.removeDescription}</AlertDialogDescription>}
+				</AlertDialogHeader>
+				<AlertDialogFooter>
+					<AlertDialogCancel disabled={saving}>
+						<Trans>Cancel</Trans>
+					</AlertDialogCancel>
+					<AlertDialogAction
+						disabled={saving}
+						onClick={(e) => {
+							e.preventDefault()
+							remove()
+						}}
+					>
+						<Trans>Remove</Trans>
+					</AlertDialogAction>
+				</AlertDialogFooter>
+			</AlertDialogContent>
+		</AlertDialog>
 	)
 }
 

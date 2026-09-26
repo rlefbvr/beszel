@@ -4,7 +4,7 @@ import { $router } from "@/components/router"
 import { $allSystemsById, $userSettings } from "@/lib/stores"
 
 /** Kinds of objects remembered as recently opened */
-export type RecentKind = "system" | "sensor" | "container" | "service"
+export type RecentKind = "system" | "sensor" | "container" | "service" | "certificate"
 
 /** An object opened recently, listed first by the command palette */
 export interface RecentItem {
@@ -12,7 +12,7 @@ export interface RecentItem {
 	id: string
 	/** name when opened; the palette shows the current name when it knows it */
 	name: string
-	/** system of a container or service */
+	/** system of a container, service or certificate */
 	system?: string
 }
 
@@ -40,8 +40,8 @@ export function rememberRecent(item: RecentItem) {
 	queueUserSettings({ recent })
 }
 
-/** A container or service whose details sheet its page should open once loaded */
-export const $openRequest = atom<{ kind: "container" | "service"; id: string } | null>(null)
+/** A container, service or certificate whose details its page should open once loaded */
+export const $openRequest = atom<{ kind: "container" | "service" | "certificate"; id: string } | null>(null)
 
 /** Remembers the systems whose page is opened, once the user settings are loaded; returns the function stopping it */
 export function trackRecentSystems() {

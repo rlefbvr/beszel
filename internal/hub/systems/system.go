@@ -66,6 +66,10 @@ type System struct {
 	lastSavedMonitorProbe map[string]int64
 	// Boots of the system, to record its reboots.
 	boots bootTracker
+	// Reading of the certificates of the host.
+	certs certTracker
+	// True if the agent reads the certificates of its host.
+	certificates atomic.Bool
 	// True if the agent answers the requests added by this fork.
 	forkRequests atomic.Bool
 }
@@ -164,7 +168,9 @@ func (sys *System) update() error {
 	_, err = sys.createRecords(data)
 	if err == nil {
 		sys.forkRequests.Store(supportsForkRequests(data.Info.AgentVersion))
+		sys.certificates.Store(supportsCertificates(data.Info.AgentVersion))
 		sys.trackBoot(data.Info.Uptime, time.Now())
+		sys.maybeSyncCertificates(time.Now())
 	}
 
 	// if details were included and fetched successfully, mark details as fetched and update smart interval if set by agent

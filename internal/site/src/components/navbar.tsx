@@ -6,6 +6,7 @@ import {
 	ChevronDownIcon,
 	ContainerIcon,
 	DatabaseBackupIcon,
+	FileBadgeIcon,
 	HardDriveIcon,
 	LogOutIcon,
 	LogsIcon,
@@ -159,6 +160,13 @@ export default function Navbar() {
 								<RefreshCcwDotIcon className="h-4 w-4 me-2.5" strokeWidth={1.5} />
 								<Trans>All Reboots</Trans>
 							</DropdownMenuItem>
+							<DropdownMenuItem
+								onClick={() => navigate(getPagePath($router, "certificates"))}
+								className="flex items-center"
+							>
+								<FileBadgeIcon className="h-4 w-4 me-2.5" strokeWidth={1.5} />
+								<Trans>All certificates</Trans>
+							</DropdownMenuItem>
 							<DropdownMenuItem onClick={() => navigate(getPagePath($router, "smart"))} className="flex items-center">
 								<HardDriveIcon className="h-4 w-4 me-2.5" strokeWidth={1.5} />
 								<span>S.M.A.R.T.</span>
@@ -286,6 +294,23 @@ export default function Navbar() {
 						</TooltipTrigger>
 						<TooltipContent>
 							<Trans>All Reboots</Trans>
+						</TooltipContent>
+					</Tooltip>
+				)}
+				{show("certificates") && (
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<Link
+								href={getPagePath($router, "certificates")}
+								className={cn("hidden md:grid", buttonVariants({ variant: "ghost", size: "icon" }))}
+								aria-label="Certificates"
+								onMouseEnter={() => import("@/components/routes/certificates")}
+							>
+								<FileBadgeIcon className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.5} />
+							</Link>
+						</TooltipTrigger>
+						<TooltipContent>
+							<Trans>All certificates</Trans>
 						</TooltipContent>
 					</Tooltip>
 				)}

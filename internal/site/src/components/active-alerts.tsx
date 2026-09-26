@@ -1,11 +1,12 @@
 import { alertInfo, stateAlertHistoryInfo } from "@/lib/alerts"
 import { $sensorAlerts, sensorAlertName } from "@/lib/sensor-alerts"
 import { $sensorChecks, $sensors, checkName } from "@/lib/sensors"
+import { $certificateAlerts } from "@/lib/certificates"
 import { $stateAlerts, triggeredTargets } from "@/lib/state-alerts"
 import { $alerts, $allSystemsById, $userSettings } from "@/lib/stores"
 import { queueUserSettings } from "@/lib/api"
 import { cn } from "@/lib/utils"
-import { CheckCheckIcon, CheckIcon, EyeIcon, EyeOffIcon, NetworkIcon, UndoIcon } from "lucide-react"
+import { CheckCheckIcon, CheckIcon, EyeIcon, EyeOffIcon, FileBadgeIcon, NetworkIcon, UndoIcon } from "lucide-react"
 import { t } from "@lingui/core/macro"
 import { Plural, Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
@@ -40,6 +41,7 @@ export const ActiveAlerts = () => {
 	const sensorAlerts = useStore($sensorAlerts)
 	const sensors = useStore($sensors)
 	const sensorChecks = useStore($sensorChecks)
+	const certificateAlerts = useStore($certificateAlerts)
 	const acknowledged = useStore($userSettings).ackAlerts
 	const [showAcknowledged, setShowAcknowledged] = useState(false)
 
@@ -150,8 +152,38 @@ export const ActiveAlerts = () => {
 				),
 			})
 		}
+
+		// expiry alerts of the certificates of the hosts
+		for (const alert of Object.values(certificateAlerts)) {
+			if (!alert.triggered) {
+				continue
+			}
+			const days = alert.days
+			const name = alert.name
+			items.push({
+				key: `${alert.id}:${alert.history}`,
+				card: (ack, onToggle) => (
+					<AlertCard
+						key={alert.id}
+						icon={<FileBadgeIcon className="h-4 w-4" />}
+						title={
+							<>
+								{systems[alert.system]?.name} <Trans>Certificate expiry</Trans>
+							</>
+						}
+						href={getPagePath($router, "certificates")}
+						acknowledged={ack}
+						onToggle={onToggle}
+					>
+						<Trans>
+							{name} expires in less than {days} days
+						</Trans>
+					</AlertCard>
+				),
+			})
+		}
 		return items
-	}, [alerts, stateAlerts, sensorAlerts, sensors, sensorChecks, systems])
+	}, [alerts, stateAlerts, sensorAlerts, sensors, sensorChecks, systems, certificateAlerts])
 
 	if (!items.length) {
 		return null

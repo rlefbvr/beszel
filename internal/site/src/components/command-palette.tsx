@@ -12,6 +12,7 @@ import {
 	LogsIcon,
 	MailIcon,
 	NetworkIcon,
+	FileBadgeIcon,
 	RefreshCcwDotIcon,
 	Server,
 	ServerCogIcon,
@@ -36,7 +37,7 @@ import { isAdmin, pb } from "@/lib/api"
 import { $openRequest, type RecentItem } from "@/lib/recent"
 import { $checksBySensor, $sensors } from "@/lib/sensors"
 import { $allSystemsById, $systems, $userSettings } from "@/lib/stores"
-import type { ContainerRecord, SystemdRecord } from "@/types"
+import type { CertificateRecord, ContainerRecord, SystemdRecord } from "@/types"
 import { getHostDisplayValue, listen } from "@/lib/utils"
 import { $router, basePath, navigate, prependBasePath } from "./router"
 
@@ -73,7 +74,7 @@ export default memo(function CommandPalette({ open, setOpen }: { open: boolean; 
 			<CommandDialog open={open} onOpenChange={setOpen} className="sm:max-w-[calc(32rem+200px)]">
 				<DialogDescription className="sr-only">Command palette</DialogDescription>
 				<CommandInput
-					placeholder={t`Search for systems, sensors, containers, services or settings...`}
+					placeholder={t`Search for systems, sensors, containers, services, certificates or settings...`}
 					value={search}
 					onValueChange={setSearch}
 				/>
@@ -152,6 +153,21 @@ export default memo(function CommandPalette({ open, setOpen }: { open: boolean; 
 							<RefreshCcwDotIcon className="me-2 size-4" />
 							<span>
 								<Trans>All Reboots</Trans>
+							</span>
+							<CommandShortcut>
+								<Trans>Page</Trans>
+							</CommandShortcut>
+						</CommandItem>
+						<CommandItem
+							keywords={["certificate", "tls", "ssl", "https", "expiry"]}
+							onSelect={() => {
+								navigate(getPagePath($router, "certificates"))
+								setOpen(false)
+							}}
+						>
+							<FileBadgeIcon className="me-2 size-4" />
+							<span>
+								<Trans>All certificates</Trans>
 							</span>
 							<CommandShortcut>
 								<Trans>Page</Trans>
@@ -328,10 +344,20 @@ function openObject(item: Pick<RecentItem, "kind" | "id">) {
 			$openRequest.set({ kind: "service", id: item.id })
 			navigate(getPagePath($router, "services"))
 			break
+		case "certificate":
+			$openRequest.set({ kind: "certificate", id: item.id })
+			navigate(getPagePath($router, "certificates"))
+			break
 	}
 }
 
-const kindIcons = { system: Server, sensor: NetworkIcon, container: ContainerIcon, service: ServerCogIcon }
+const kindIcons = {
+	system: Server,
+	sensor: NetworkIcon,
+	container: ContainerIcon,
+	service: ServerCogIcon,
+	certificate: FileBadgeIcon,
+}
 
 /** An object of the palette: its icon, name and where it is */
 function ObjectItem({
@@ -410,9 +436,14 @@ function SearchResults({ query, onDone }: { query: string; onDone: () => void })
 	const systemsById = useStore($allSystemsById)
 	const sensors = useStore($sensors)
 	const checksBySensor = useStore($checksBySensor)
-	const [remote, setRemote] = useState<{ containers: ContainerRecord[]; services: SystemdRecord[] }>({
+	const [remote, setRemote] = useState<{
+		containers: ContainerRecord[]
+		services: SystemdRecord[]
+		certificates: CertificateRecord[]
+	}>({
 		containers: [],
 		services: [],
+		certificates: [],
 	})
 
 	useEffect(() => {
@@ -424,14 +455,21 @@ function SearchResults({ query, onDone }: { query: string; onDone: () => void })
 				sort: "name",
 			}
 			try {
-				const [containers, services] = await Promise.all([
+				const [containers, services, certificates] = await Promise.all([
 					pb.collection<ContainerRecord>("containers").getList(1, 10, { ...options, requestKey: "palette-containers" }),
 					pb
 						.collection<SystemdRecord>("systemd_services")
 						.getList(1, 10, { ...options, requestKey: "palette-services" }),
+					// by name, alternative names or path on the host
+					pb.collection<CertificateRecord>("certificates").getList(1, 10, {
+						filter: pb.filter("name ~ {:query} || names ~ {:query} || path ~ {:query}", { query }),
+						fields: "id,name,system,path",
+						sort: "name",
+						requestKey: "palette-certificates",
+					}),
 				])
 				if (!cancelled) {
-					setRemote({ containers: containers.items, services: services.items })
+					setRemote({ containers: containers.items, services: services.items, certificates: certificates.items })
 				}
 			} catch {
 				// canceled by a newer search
@@ -502,6 +540,20 @@ function SearchResults({ query, onDone }: { query: string; onDone: () => void })
 							value={`service ${service.id} ${service.name}`}
 							keywords={[systemsById[service.system]?.name ?? ""]}
 							detail={systemsById[service.system]?.name}
+							onDone={onDone}
+						/>
+					))}
+				</CommandGroup>
+			)}
+			{remote.certificates.length > 0 && (
+				<CommandGroup heading={t`Certificates`}>
+					{remote.certificates.map((cert) => (
+						<ObjectItem
+							key={cert.id}
+							item={{ kind: "certificate", id: cert.id, name: cert.name }}
+							value={`certificate ${cert.id} ${cert.name}`}
+							keywords={[query, systemsById[cert.system]?.name ?? "", cert.path]}
+							detail={systemsById[cert.system]?.name}
 							onDone={onDone}
 						/>
 					))}

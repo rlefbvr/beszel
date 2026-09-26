@@ -98,6 +98,11 @@ msgstr "{count, plural, other {# 個系統}}"
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "新增 {created} 個感測器，並為現有感測器新增 {added} 項檢查。"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "{days, plural, one {# day} other {# days}}"
+msgstr "{days, plural, other {# 天}}"
+
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
 msgstr "{days, plural, other {# 天後到期}}"
@@ -110,9 +115,17 @@ msgstr "{diskName} I/O"
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, other {# 分鐘}}"
 
+#: src/components/active-alerts.tsx
+msgid "{name} expires in less than {days} days"
+msgstr "{name} 將在 {days} 天內到期"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "{name} until {until}"
 msgstr "{name}，直到 {until}"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "{outdated} system(s) need an agent update to read their certificates."
+msgstr "{outdated} 個系統需要更新代理程式才能讀取憑證。"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
@@ -256,6 +269,7 @@ msgstr "活動警報"
 msgid "Active state"
 msgstr "活動狀態"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/navbar.tsx
 #: src/lib/header-icons.ts
 msgid "Add"
@@ -266,6 +280,11 @@ msgstr "新增"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Add {foo}"
 msgstr "新增{foo}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Add a certificate"
+msgstr "新增憑證"
 
 #: src/components/sensors/sensor-dialog.tsx
 msgid "Add a check"
@@ -306,6 +325,10 @@ msgstr "新增網路監控"
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "新增 URL"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Added"
+msgstr "已新增"
 
 #: src/components/add-system.tsx
 msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
@@ -375,6 +398,10 @@ msgstr "警報歷史"
 msgid "Alert sent"
 msgstr "已傳送警報"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Alert threshold (days before expiry)"
+msgstr "警示門檻（到期前天數）"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Alert types"
 msgstr "警示類型"
@@ -392,6 +419,10 @@ msgstr "當狀態為下列時發出警報"
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is not"
 msgstr "當狀態不為下列時發出警報"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
+msgstr "當 {systemName} 的憑證 {name} 在少於門檻的天數內到期時發出警示。同名的續期憑證會持續檢查，且此憑證會標示為重要。"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -414,6 +445,7 @@ msgstr "{sensorName} 的警報"
 msgid "alerts per user"
 msgstr "則警報（每位使用者）"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -430,6 +462,16 @@ msgstr "所有代理程式皆為最新版本（{latest}）"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "All alerts"
 msgstr "所有警示"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+#: src/components/routes/certificates.tsx
+#: src/lib/header-icons.ts
+#: src/lib/home-page.ts
+msgid "All certificates"
+msgstr "所有憑證"
 
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -748,6 +790,7 @@ msgstr "可停止"
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/important-targets.tsx
+#: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/sensor.tsx
@@ -783,6 +826,12 @@ msgstr "注意 - 可能遺失資料"
 msgid "Celsius (°C)"
 msgstr "攝氏 (°C)"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificate added"
+msgstr "已新增憑證"
+
+#: src/components/active-alerts.tsx
+#: src/lib/alerts.ts
 #: src/lib/quiet-hours.ts
 msgid "Certificate expiry"
 msgstr "憑證到期"
@@ -794,6 +843,18 @@ msgstr "中樞不信任此憑證"
 #: src/components/sensors/sensor-cert.tsx
 msgid "Certificate presented by the server at the last check."
 msgstr "伺服器在上次檢查時提供的憑證。"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificate read on the host by its agent."
+msgstr "由主機代理程式讀取的憑證。"
+
+#: src/components/command-palette.tsx
+msgid "Certificates"
+msgstr "憑證"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificates read"
+msgstr "已讀取憑證"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Chain"
@@ -889,6 +950,7 @@ msgctxt "Clean shutdown"
 msgid "Clean"
 msgstr "正常"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
@@ -946,6 +1008,7 @@ msgstr "收集間隔"
 msgid "Color"
 msgstr "顏色"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Columns"
 msgstr "欄位"
@@ -1018,6 +1081,12 @@ msgstr "繼續"
 #: src/lib/utils.ts
 msgid "Copied to clipboard"
 msgstr "已複製到剪貼簿"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Copy"
+msgstr "複製"
 
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
@@ -1464,6 +1533,10 @@ msgstr "輸入您的一次性密碼。"
 msgid "Ephemeral"
 msgstr "臨時"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1525,6 +1598,12 @@ msgstr "結束"
 msgid "Expected text"
 msgstr "預期文字"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expired"
+msgstr "已到期"
+
 #: src/components/sensors/sensor-cert.tsx
 msgid "Expired certificate"
 msgstr "憑證已過期"
@@ -1533,9 +1612,39 @@ msgstr "憑證已過期"
 msgid "Expired on {expiredOn}"
 msgstr "已於 {expiredOn} 過期"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Expired: {expired}"
+msgstr "已到期：{expired}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expires"
+msgstr "到期"
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Expires after one hour or on hub restart."
 msgstr "在一個小時後或者重新啟動 Hub 時過期。"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiring soon"
+msgstr "即將到期"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiring: {expiring}"
+msgstr "即將到期：{expiring}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiry alert"
+msgstr "到期警示"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiry alert: {alertDays} days"
+msgstr "到期警示：{alertDays} 天"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Export"
@@ -1615,6 +1724,11 @@ msgstr "失敗：{0}"
 msgid "Fans"
 msgstr "風扇"
 
+#: src/lib/certificates.ts
+msgid "File"
+msgstr "檔案"
+
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -1888,6 +2002,10 @@ msgctxt "Docker image"
 msgid "Image update available"
 msgstr "有可用的映像檔更新"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Important certificates"
+msgstr "重要憑證"
+
 #: src/components/containers-table/containers-table.tsx
 msgid "Important containers"
 msgstr "重要容器"
@@ -1895,6 +2013,18 @@ msgstr "重要容器"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "重要服務"
+
+#: src/lib/certificates.ts
+msgid "In IIS Manager: site {detail} > Bindings > https {location} > SSL certificate."
+msgstr "在 IIS 管理員：站台 {detail} > 繫結 > https {location} > SSL 憑證。"
+
+#: src/lib/certificates.ts
+msgid "In IIS Manager: the site bound to https {location} > Bindings > SSL certificate."
+msgstr "在 IIS 管理員：繫結至 https {location} 的站台 > 繫結 > SSL 憑證。"
+
+#: src/lib/certificates.ts
+msgid "In Proxmox VE: node > System > Certificates."
+msgstr "在 Proxmox VE：節點 > System > Certificates。"
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Inactive"
@@ -1942,6 +2072,8 @@ msgstr "間隔 (秒)"
 msgid "Invalid email address."
 msgstr "無效的電子郵件地址。"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "Issued by"
 msgstr "簽發者"
@@ -1957,6 +2089,10 @@ msgstr "簽發對象"
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "其檢查、歷史記錄與中斷記錄將被刪除。"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Its expiry alert is deleted: no notification is sent before it expires."
+msgstr "其到期警示將被刪除：到期前不會傳送任何通知。"
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Its sensors are kept and moved to no group."
@@ -2111,6 +2247,9 @@ msgstr "載入中..."
 msgid "Local Disk"
 msgstr "本機磁碟"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Location"
 msgstr "位置"
@@ -2276,6 +2415,8 @@ msgstr "掛載點"
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -2398,6 +2539,14 @@ msgstr "沒有回應"
 #: src/components/sensors/sensor-cert.tsx
 msgid "No certificate yet: the details appear after the next HTTPS check."
 msgstr "尚無憑證：詳細資料會在下次 HTTPS 檢查後顯示。"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "No certificates match the filter."
+msgstr "沒有符合篩選條件的憑證。"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "No certificates yet. The agents (0.20.0-fork.5 or newer) read the certificates of their host every 6 hours."
+msgstr "尚無憑證。代理程式（0.20.0-fork.5 或更新版本）每 6 小時讀取一次主機的憑證。"
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
@@ -2566,6 +2715,10 @@ msgstr "選填，例如服務名稱"
 msgid "Options"
 msgstr "選項"
 
+#: src/lib/certificates.ts
+msgid "Or change {directive} in the following file, then reload {service}:"
+msgstr "或在以下檔案中變更 {directive}，然後重新載入 {service}："
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "或繼續使用"
@@ -2618,6 +2771,7 @@ msgstr "封包品質"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
+#: src/components/command-palette.tsx
 msgid "Page"
 msgstr "頁面"
 
@@ -2655,6 +2809,14 @@ msgstr "已收到密碼重設請求"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Past"
 msgstr "已過期"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Path"
+msgstr "路徑"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Path of a certificate file on the host (PEM or DER), read by its agent with the other certificates. The agent must be allowed to read the file."
+msgstr "主機上憑證檔案（PEM 或 DER）的路徑，由其代理程式與其他憑證一起讀取。代理程式必須有權讀取該檔案。"
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -2884,6 +3046,10 @@ msgstr "讀取"
 msgid "Read errors"
 msgstr "讀取錯誤"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Read now"
+msgstr "立即讀取"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -2904,6 +3070,14 @@ msgstr "重新啟動紀錄"
 #: src/components/routes/system.tsx
 msgid "Reboots"
 msgstr "重新開機"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Recap"
+msgstr "摘要"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Recap of the important certificates"
+msgstr "重要憑證摘要"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -2935,11 +3109,17 @@ msgstr "重新整理"
 msgid "Relationships"
 msgstr "關係"
 
+#: src/lib/certificates.ts
+msgid "Remote Desktop"
+msgstr "遠端桌面"
+
+#: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/sensors/sensor-dialog.tsx
 msgid "Remove"
 msgstr "移除"
 
+#: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 msgid "Remove {name} from important?"
 msgstr "要從重要項目中移除 {name} 嗎？"
@@ -2949,9 +3129,21 @@ msgstr "要從重要項目中移除 {name} 嗎？"
 msgid "Remove from important"
 msgstr "從重要項目移除"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Remove the alert"
+msgstr "移除警示"
+
 #: src/components/important-targets.tsx
 msgid "Removed from the rule, which keeps: {targets}"
 msgstr "已從規則移除，保留：{targets}"
+
+#: src/lib/certificates.ts
+msgid "Renewed by certbot (certbot renew), with the settings of the following file:"
+msgstr "由 certbot（certbot renew）依以下檔案的設定續期："
+
+#: src/lib/certificates.ts
+msgid "Replace the file {name} reachable at the following path:"
+msgstr "替換可透過以下路徑存取的檔案 {name}："
 
 #: src/components/login/login.tsx
 msgid "Request a one-time password"
@@ -3068,6 +3260,14 @@ msgstr "此系統的規則"
 msgid "Run again"
 msgstr "重新執行"
 
+#: src/lib/certificates.ts
+msgid "Run the following command with the thumbprint of the new certificate (application {detail}):"
+msgstr "以新憑證的指紋執行以下命令（應用程式 {detail}）："
+
+#: src/lib/certificates.ts
+msgid "Run the following command with the thumbprint of the new certificate:"
+msgstr "以新憑證的指紋執行以下命令："
+
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
 msgstr "在容器中執行：請改為更新其映像。"
@@ -3085,6 +3285,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. 自我測試"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
@@ -3141,8 +3342,8 @@ msgstr "搜尋"
 #~ msgstr "搜尋系統、感測器或設定..."
 
 #: src/components/command-palette.tsx
-msgid "Search for systems, sensors, containers, services or settings..."
-msgstr "搜尋系統、感測器、容器、服務或設定..."
+msgid "Search for systems, sensors, containers, services, certificates or settings..."
+msgstr "搜尋系統、感測器、容器、服務、憑證或設定..."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -3157,6 +3358,14 @@ msgstr "Ping 之間的秒數 (預設：60)"
 msgid "See <0>notification settings</0> to configure how you receive alerts."
 msgstr "查看<0>通知設定</0>以設定您如何接收警報。"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Seen by a sensor"
+msgstr "感測器已偵測"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Seen by the sensors"
+msgstr "感測器已偵測"
+
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Select"
 msgstr "選取"
@@ -3166,6 +3375,7 @@ msgstr "選取"
 msgid "Select {foo}"
 msgstr "選取{foo}"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Select a system"
 msgstr "選取系統"
@@ -3195,6 +3405,10 @@ msgstr "選擇要更新的系統。"
 #: src/components/agent-update-dialog.tsx
 msgid "Selection"
 msgstr "選取"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Self-signed"
+msgstr "自我簽署"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
@@ -3290,6 +3504,10 @@ msgstr "設定儀表顏色的百分比閾值。"
 msgid "Set the following environment variables on your Beszel hub to enable heartbeat monitoring:"
 msgstr "設定以下環境變數至 Beszel Hub 以啟用 Heartbeat 監控："
 
+#: src/lib/certificates.ts
+msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
+msgstr "在以下位置（或 WMI 類別 Win32_TSGeneralSetting）設定新憑證的指紋，然後重新啟動遠端桌面服務："
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "設定"
@@ -3351,6 +3569,7 @@ msgstr "靜音的警示"
 msgid "SMTP settings"
 msgstr "SMTP 設定"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
@@ -3421,6 +3640,7 @@ msgstr "狀態規則"
 msgid "States"
 msgstr "狀態"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -3435,6 +3655,10 @@ msgstr "狀態"
 #: src/lib/alerts.ts
 msgid "Status"
 msgstr "狀態"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Stop watching"
+msgstr "停止監看"
 
 #: src/components/containers-table/containers-table.tsx
 msgid "Stopped"
@@ -3467,6 +3691,10 @@ msgstr "切換主題"
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/navbar.tsx
@@ -3597,6 +3825,14 @@ msgstr "測試"
 msgid "The agent can't replace its executable. Reinstall it with the current install command."
 msgstr "代理程式無法取代其執行檔。請使用目前的安裝指令重新安裝。"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "The agent could not read this certificate: {error}"
+msgstr "代理程式無法讀取此憑證：{error}"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "The agent of this system must be updated (0.20.0-fork.5 or newer) to read it."
+msgstr "此系統的代理程式必須更新（0.20.0-fork.5 或更新版本）才能讀取。"
+
 #: src/components/routes/system/agent-details.tsx
 msgid "The agent restarts and reconnects on its own."
 msgstr "代理程式會自行重新啟動並重新連線。"
@@ -3660,6 +3896,14 @@ msgstr "主題"
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
 msgstr "然後登入後台並在使用者列表中重設您的帳號密碼。"
+
+#: src/lib/certificates.ts
+msgid "Then restart cockpit."
+msgstr "然後重新啟動 cockpit。"
+
+#: src/lib/certificates.ts
+msgid "Then restart pveproxy."
+msgstr "然後重新啟動 pveproxy。"
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
@@ -3764,7 +4008,9 @@ msgctxt "Disk I/O"
 msgid "Total time spent on read/write (can exceed 100%)"
 msgstr "讀寫總耗時（可能超過 100%）"
 
+#. placeholder {0}: all.length
 #. placeholder {0}: data.length
+#: src/components/certificates/certificates-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Total: {0}"
 msgstr "總計：{0}"
@@ -3914,6 +4160,10 @@ msgstr "無限制"
 msgid "Unreachable"
 msgstr "無法連線"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Unreadable"
+msgstr "無法讀取"
+
 #. Context: System is up
 #. Context: System is up
 #. Context: System is up
@@ -4035,6 +4285,12 @@ msgstr "只能使用字母、數字及 _ . @ -。"
 msgid "Used"
 msgstr "已使用"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Used by"
+msgstr "使用於"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
@@ -4045,13 +4301,25 @@ msgctxt "Disk I/O utilization"
 msgid "Utilization"
 msgstr "利用率"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Valid"
+msgstr "有效"
+
 #: src/components/sensors/sensor-cert.tsx
 msgid "Valid and trusted certificate"
 msgstr "有效且受信任的憑證"
 
 #: src/components/sensors/sensor-cert.tsx
+msgid "Valid certificate"
+msgstr "有效憑證"
+
+#: src/components/sensors/sensor-cert.tsx
 msgid "Valid from"
 msgstr "生效日期"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid self-signed certificate"
+msgstr "有效的自我簽署憑證"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Valid until"
@@ -4067,6 +4335,7 @@ msgid "Version"
 msgstr "版本"
 
 #: src/components/active-alerts.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
@@ -4121,6 +4390,10 @@ msgstr "啟用後，此 Token 可讓 Agent 自行註冊，無需預先在系統�
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."
 msgstr "使用 POST 時，每個 Heartbeat 都會包含一個 JSON Payload，內容涵蓋系統狀態概況、離線系統清單以及已觸發的警報。"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Where to change each important certificate, for each service using it."
+msgstr "每個重要憑證在各個使用它的服務中的變更位置。"
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgctxt "Button to copy install command"
@@ -4150,6 +4423,10 @@ msgstr "設有狀態警報規則"
 #: src/components/systems-table/systems-table.tsx
 msgid "With alerts"
 msgstr "有警報"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "With an expiry alert"
+msgstr "設有到期警示"
 
 #. Disk write
 #. Disk write

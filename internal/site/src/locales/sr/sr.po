@@ -98,6 +98,11 @@ msgstr "{count, plural, one {# систем} few {# система} other {# с�
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "Нових сензора: {created}, провера додато постојећим сензорима: {added}."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "{days, plural, one {# day} other {# days}}"
+msgstr "{days, plural, one {# дан} few {# дана} other {# дана}}"
+
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
 msgstr "{days, plural, one {Истиче за # дан} few {Истиче за # дана} other {Истиче за # дана}}"
@@ -110,9 +115,17 @@ msgstr "I/O за {diskName}"
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, one {# минут} few {# минута} other {# минута}}"
 
+#: src/components/active-alerts.tsx
+msgid "{name} expires in less than {days} days"
+msgstr "{name} истиче за мање од {days} дана"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "{name} until {until}"
 msgstr "{name} до {until}"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "{outdated} system(s) need an agent update to read their certificates."
+msgstr "{outdated} систем(а) треба да ажурира агента за читање сертификата."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
@@ -256,6 +269,7 @@ msgstr "Активна упозорења"
 msgid "Active state"
 msgstr "Активно стање"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/navbar.tsx
 #: src/lib/header-icons.ts
 msgid "Add"
@@ -266,6 +280,11 @@ msgstr "Додај"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Add {foo}"
 msgstr "Додај {foo}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Add a certificate"
+msgstr "Додај сертификат"
 
 #: src/components/sensors/sensor-dialog.tsx
 msgid "Add a check"
@@ -306,6 +325,10 @@ msgstr "Додај мрежне мониторе"
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "Додај URL"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Added"
+msgstr "Додат"
 
 #: src/components/add-system.tsx
 msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
@@ -375,6 +398,10 @@ msgstr "Историја упозорења"
 msgid "Alert sent"
 msgstr "Упозорење послато"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Alert threshold (days before expiry)"
+msgstr "Праг упозорења (дана пре истека)"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Alert types"
 msgstr "Врсте упозорења"
@@ -392,6 +419,10 @@ msgstr "Упозори када је стање"
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is not"
 msgstr "Упозори када стање није"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
+msgstr "Упозори када сертификат {name} система {systemName} истиче за мање дана од прага. Обновљени сертификати са истим именом и даље се проверавају, а сертификат постаје важан."
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -414,6 +445,7 @@ msgstr "Упозорења за {sensorName}"
 msgid "alerts per user"
 msgstr "упозорења по кориснику"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -430,6 +462,16 @@ msgstr "Сви агенти су ажурни ({latest})"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "All alerts"
 msgstr "Сва упозорења"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+#: src/components/routes/certificates.tsx
+#: src/lib/header-icons.ts
+#: src/lib/home-page.ts
+msgid "All certificates"
+msgstr "Сви сертификати"
 
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -748,6 +790,7 @@ msgstr "Може се зауставити"
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/important-targets.tsx
+#: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/sensor.tsx
@@ -783,6 +826,12 @@ msgstr "Пажња - потенцијални губитак података"
 msgid "Celsius (°C)"
 msgstr "Целзијус (°C)"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificate added"
+msgstr "Сертификат додат"
+
+#: src/components/active-alerts.tsx
+#: src/lib/alerts.ts
 #: src/lib/quiet-hours.ts
 msgid "Certificate expiry"
 msgstr "Истек сертификата"
@@ -794,6 +843,18 @@ msgstr "Хаб не верује сертификату"
 #: src/components/sensors/sensor-cert.tsx
 msgid "Certificate presented by the server at the last check."
 msgstr "Сертификат који је сервер показао при последњој провери."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificate read on the host by its agent."
+msgstr "Сертификат који је на хосту прочитао његов агент."
+
+#: src/components/command-palette.tsx
+msgid "Certificates"
+msgstr "Сертификати"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificates read"
+msgstr "Сертификати прочитани"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Chain"
@@ -889,6 +950,7 @@ msgctxt "Clean shutdown"
 msgid "Clean"
 msgstr "Уредно"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
@@ -946,6 +1008,7 @@ msgstr "Интервал прикупљања"
 msgid "Color"
 msgstr "Боја"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Columns"
 msgstr "Колоне"
@@ -1018,6 +1081,12 @@ msgstr "Настави"
 #: src/lib/utils.ts
 msgid "Copied to clipboard"
 msgstr "Копирано у међуспремник"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Copy"
+msgstr "Копирај"
 
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
@@ -1464,6 +1533,10 @@ msgstr "Унесите вашу једнократну лозинку."
 msgid "Ephemeral"
 msgstr "Ефемеран"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1525,6 +1598,12 @@ msgstr "Излазак активан"
 msgid "Expected text"
 msgstr "Очекивани текст"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expired"
+msgstr "Истекао"
+
 #: src/components/sensors/sensor-cert.tsx
 msgid "Expired certificate"
 msgstr "Истекао сертификат"
@@ -1533,9 +1612,39 @@ msgstr "Истекао сертификат"
 msgid "Expired on {expiredOn}"
 msgstr "Истекао {expiredOn}"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Expired: {expired}"
+msgstr "Истекли: {expired}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expires"
+msgstr "Истиче"
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Expires after one hour or on hub restart."
 msgstr "Истиче након једног сата или при поновном покретању хаба."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiring soon"
+msgstr "Ускоро истиче"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiring: {expiring}"
+msgstr "Ускоро истичу: {expiring}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiry alert"
+msgstr "Упозорење о истеку"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiry alert: {alertDays} days"
+msgstr "Упозорење о истеку: {alertDays} дана"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Export"
@@ -1615,6 +1724,11 @@ msgstr "Неуспело: {0}"
 msgid "Fans"
 msgstr "Вентилатори"
 
+#: src/lib/certificates.ts
+msgid "File"
+msgstr "Датотека"
+
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -1888,6 +2002,10 @@ msgctxt "Docker image"
 msgid "Image update available"
 msgstr "Dostupno je ažuriranje slike"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Important certificates"
+msgstr "Важни сертификати"
+
 #: src/components/containers-table/containers-table.tsx
 msgid "Important containers"
 msgstr "Важни контејнери"
@@ -1895,6 +2013,18 @@ msgstr "Важни контејнери"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "Важне услуге"
+
+#: src/lib/certificates.ts
+msgid "In IIS Manager: site {detail} > Bindings > https {location} > SSL certificate."
+msgstr "У IIS Manager-у: сајт {detail} > Bindings > https {location} > SSL certificate."
+
+#: src/lib/certificates.ts
+msgid "In IIS Manager: the site bound to https {location} > Bindings > SSL certificate."
+msgstr "У IIS Manager-у: сајт повезан са https {location} > Bindings > SSL certificate."
+
+#: src/lib/certificates.ts
+msgid "In Proxmox VE: node > System > Certificates."
+msgstr "У Proxmox VE: чвор > System > Certificates."
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Inactive"
@@ -1942,6 +2072,8 @@ msgstr "Interval (sekunde)"
 msgid "Invalid email address."
 msgstr "Неважећа имејл адреса."
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "Issued by"
 msgstr "Издао"
@@ -1957,6 +2089,10 @@ msgstr "Издато за"
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "Његове провере, историја и прекиди биће обрисани."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Its expiry alert is deleted: no notification is sent before it expires."
+msgstr "Његово упозорење о истеку се брише: пре истека неће бити послато обавештење."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Its sensors are kept and moved to no group."
@@ -2111,6 +2247,9 @@ msgstr "Учитавање..."
 msgid "Local Disk"
 msgstr "Локални диск"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Location"
 msgstr "Локација"
@@ -2276,6 +2415,8 @@ msgstr "Тачка монтирања"
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -2398,6 +2539,14 @@ msgstr "Нема одговора"
 #: src/components/sensors/sensor-cert.tsx
 msgid "No certificate yet: the details appear after the next HTTPS check."
 msgstr "Још нема сертификата: детаљи се приказују после следеће HTTPS провере."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "No certificates match the filter."
+msgstr "Ниједан сертификат не одговара филтеру."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "No certificates yet. The agents (0.20.0-fork.5 or newer) read the certificates of their host every 6 hours."
+msgstr "Још нема сертификата. Агенти (0.20.0-fork.5 или новији) читају сертификате свог хоста сваких 6 сати."
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
@@ -2566,6 +2715,10 @@ msgstr "Опционо, нпр. назив услуге"
 msgid "Options"
 msgstr "Опције"
 
+#: src/lib/certificates.ts
+msgid "Or change {directive} in the following file, then reload {service}:"
+msgstr "Или промените {directive} у следећој датотеци, затим поново учитајте {service}:"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Или наставите са"
@@ -2618,6 +2771,7 @@ msgstr "Квалитет пакета"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
+#: src/components/command-palette.tsx
 msgid "Page"
 msgstr "Страница"
 
@@ -2655,6 +2809,14 @@ msgstr "Захтев за ресетовање лозинке примљен"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Past"
 msgstr "Прошлост"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Path"
+msgstr "Путања"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Path of a certificate file on the host (PEM or DER), read by its agent with the other certificates. The agent must be allowed to read the file."
+msgstr "Путања датотеке сертификата на хосту (PEM или DER), коју агент чита са осталим сертификатима. Агент мора имати дозволу да чита датотеку."
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -2884,6 +3046,10 @@ msgstr "Читање"
 msgid "Read errors"
 msgstr "Грешке при читању"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Read now"
+msgstr "Прочитај сада"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -2904,6 +3070,14 @@ msgstr "Историја поновних покретања"
 #: src/components/routes/system.tsx
 msgid "Reboots"
 msgstr "Поновна покретања"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Recap"
+msgstr "Резиме"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Recap of the important certificates"
+msgstr "Резиме важних сертификата"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -2935,11 +3109,17 @@ msgstr "Освежи"
 msgid "Relationships"
 msgstr "Односи"
 
+#: src/lib/certificates.ts
+msgid "Remote Desktop"
+msgstr "Удаљена радна површина"
+
+#: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/sensors/sensor-dialog.tsx
 msgid "Remove"
 msgstr "Уклони"
 
+#: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 msgid "Remove {name} from important?"
 msgstr "Уклонити {name} из важних?"
@@ -2949,9 +3129,21 @@ msgstr "Уклонити {name} из важних?"
 msgid "Remove from important"
 msgstr "Уклони из важних"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Remove the alert"
+msgstr "Уклони упозорење"
+
 #: src/components/important-targets.tsx
 msgid "Removed from the rule, which keeps: {targets}"
 msgstr "Уклоњено из правила, које задржава: {targets}"
+
+#: src/lib/certificates.ts
+msgid "Renewed by certbot (certbot renew), with the settings of the following file:"
+msgstr "Обнавља га certbot (certbot renew) са подешавањима из следеће датотеке:"
+
+#: src/lib/certificates.ts
+msgid "Replace the file {name} reachable at the following path:"
+msgstr "Замените датотеку {name} доступну на следећој путањи:"
 
 #: src/components/login/login.tsx
 msgid "Request a one-time password"
@@ -3068,6 +3260,14 @@ msgstr "Правила овог система"
 msgid "Run again"
 msgstr "Покрени поново"
 
+#: src/lib/certificates.ts
+msgid "Run the following command with the thumbprint of the new certificate (application {detail}):"
+msgstr "Покрените следећу команду са отиском новог сертификата (апликација {detail}):"
+
+#: src/lib/certificates.ts
+msgid "Run the following command with the thumbprint of the new certificate:"
+msgstr "Покрените следећу команду са отиском новог сертификата:"
+
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
 msgstr "Ради у контејнеру: уместо тога ажурирајте његову слику."
@@ -3085,6 +3285,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. самопровера"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
@@ -3141,8 +3342,8 @@ msgstr "Претрага"
 #~ msgstr "Претражи системе, сензоре или подешавања..."
 
 #: src/components/command-palette.tsx
-msgid "Search for systems, sensors, containers, services or settings..."
-msgstr "Претражи системе, сензоре, контејнере, услуге или подешавања..."
+msgid "Search for systems, sensors, containers, services, certificates or settings..."
+msgstr "Претражи системе, сензоре, контејнере, услуге, сертификате или подешавања..."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -3157,6 +3358,14 @@ msgstr "Sekunde između pingova (podrazumevano: 60)"
 msgid "See <0>notification settings</0> to configure how you receive alerts."
 msgstr "Погледајте <0>подешавања обавештења</0> да конфигуришете како primate упозорења."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Seen by a sensor"
+msgstr "Видео га је сензор"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Seen by the sensors"
+msgstr "Видели су га сензори"
+
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Select"
 msgstr "Изабери"
@@ -3166,6 +3375,7 @@ msgstr "Изабери"
 msgid "Select {foo}"
 msgstr "Изаберите {foo}"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Select a system"
 msgstr "Izaberi sistem"
@@ -3195,6 +3405,10 @@ msgstr "Изаберите системе за ажурирање."
 #: src/components/agent-update-dialog.tsx
 msgid "Selection"
 msgstr "Избор"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Self-signed"
+msgstr "Самопотписан"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
@@ -3290,6 +3504,10 @@ msgstr "Подесите процентуалне прагове за боје �
 msgid "Set the following environment variables on your Beszel hub to enable heartbeat monitoring:"
 msgstr "Podesite sledeće promenljive okruženja na svom Beszel hub-u da biste omogućili monitoring heartbeat-a:"
 
+#: src/lib/certificates.ts
+msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
+msgstr "Поставите отисак новог сертификата на следећем месту (или у WMI класи Win32_TSGeneralSetting), затим поново покрените услугу удаљене радне површине:"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Подеси"
@@ -3351,6 +3569,7 @@ msgstr "Утишана упозорења"
 msgid "SMTP settings"
 msgstr "SMTP подешавања"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
@@ -3421,6 +3640,7 @@ msgstr "Правила стања"
 msgid "States"
 msgstr "Стања"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -3435,6 +3655,10 @@ msgstr "Стања"
 #: src/lib/alerts.ts
 msgid "Status"
 msgstr "Статус"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Stop watching"
+msgstr "Престани да пратиш"
 
 #: src/components/containers-table/containers-table.tsx
 msgid "Stopped"
@@ -3467,6 +3691,10 @@ msgstr "Промени тему"
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/navbar.tsx
@@ -3597,6 +3825,14 @@ msgstr "Тестирање"
 msgid "The agent can't replace its executable. Reinstall it with the current install command."
 msgstr "Агент не може да замени своју извршну датотеку. Поново га инсталирајте тренутном командом за инсталацију."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "The agent could not read this certificate: {error}"
+msgstr "Агент није могао да прочита овај сертификат: {error}"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "The agent of this system must be updated (0.20.0-fork.5 or newer) to read it."
+msgstr "Агент овог система мора бити ажуриран (0.20.0-fork.5 или новији) да би га прочитао."
+
 #: src/components/routes/system/agent-details.tsx
 msgid "The agent restarts and reconnects on its own."
 msgstr "Агент се сам поново покреће и повезује."
@@ -3660,6 +3896,14 @@ msgstr "Тема"
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
 msgstr "Затим се пријавите на backend и ресетујте лозинку корисничког налога у табели корисника."
+
+#: src/lib/certificates.ts
+msgid "Then restart cockpit."
+msgstr "Затим поново покрените cockpit."
+
+#: src/lib/certificates.ts
+msgid "Then restart pveproxy."
+msgstr "Затим поново покрените pveproxy."
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
@@ -3764,7 +4008,9 @@ msgctxt "Disk I/O"
 msgid "Total time spent on read/write (can exceed 100%)"
 msgstr "Укупно време проведено на читању/писању (може бити веће од 100%)"
 
+#. placeholder {0}: all.length
 #. placeholder {0}: data.length
+#: src/components/certificates/certificates-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Total: {0}"
 msgstr "Укупно: {0}"
@@ -3914,6 +4160,10 @@ msgstr "Неограничено"
 msgid "Unreachable"
 msgstr "Недоступно"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Unreadable"
+msgstr "Нечитљив"
+
 #. Context: System is up
 #. Context: System is up
 #. Context: System is up
@@ -4035,6 +4285,12 @@ msgstr "Користите само слова, цифре и _ . @ -."
 msgid "Used"
 msgstr "Коришћено"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Used by"
+msgstr "Користи"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
@@ -4045,13 +4301,25 @@ msgctxt "Disk I/O utilization"
 msgid "Utilization"
 msgstr "Искоришћеност"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Valid"
+msgstr "Важећи"
+
 #: src/components/sensors/sensor-cert.tsx
 msgid "Valid and trusted certificate"
 msgstr "Важећи и поуздан сертификат"
 
 #: src/components/sensors/sensor-cert.tsx
+msgid "Valid certificate"
+msgstr "Важећи сертификат"
+
+#: src/components/sensors/sensor-cert.tsx
 msgid "Valid from"
 msgstr "Важи од"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid self-signed certificate"
+msgstr "Важећи самопотписан сертификат"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Valid until"
@@ -4067,6 +4335,7 @@ msgid "Version"
 msgstr "Верзија"
 
 #: src/components/active-alerts.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
@@ -4121,6 +4390,10 @@ msgstr "Када је омогућен, овај токен омогућава �
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."
 msgstr "Kada koristite POST, svaki heartbeat uključuje JSON payload sa rezimeom statusa sistema, listom isključenih sistema i aktiviranim upozorenjima."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Where to change each important certificate, for each service using it."
+msgstr "Где променити сваки важан сертификат, за сваку услугу која га користи."
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgctxt "Button to copy install command"
@@ -4150,6 +4423,10 @@ msgstr "Са правилом упозорења о стању"
 #: src/components/systems-table/systems-table.tsx
 msgid "With alerts"
 msgstr "Са упозорењима"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "With an expiry alert"
+msgstr "Са упозорењем о истеку"
 
 #. Disk write
 #. Disk write

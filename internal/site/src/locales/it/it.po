@@ -98,6 +98,11 @@ msgstr "{count, plural, one {# sistema} other {# sistemi}}"
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} nuovi sensori, {added} controlli aggiunti a sensori esistenti."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "{days, plural, one {# day} other {# days}}"
+msgstr "{days, plural, one {# giorno} other {# giorni}}"
+
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
 msgstr "{days, plural, one {Scade tra # giorno} other {Scade tra # giorni}}"
@@ -110,9 +115,17 @@ msgstr "I/O di {diskName}"
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, one {# minuto} other {# minuti}}"
 
+#: src/components/active-alerts.tsx
+msgid "{name} expires in less than {days} days"
+msgstr "{name} scade tra meno di {days} giorni"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "{name} until {until}"
 msgstr "{name} fino alle {until}"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "{outdated} system(s) need an agent update to read their certificates."
+msgstr "{outdated} sistema/i richiedono l’aggiornamento dell’agente per leggere i certificati."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
@@ -256,6 +269,7 @@ msgstr "Avvisi Attivi"
 msgid "Active state"
 msgstr "Stato attivo"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/navbar.tsx
 #: src/lib/header-icons.ts
 msgid "Add"
@@ -266,6 +280,11 @@ msgstr "Aggiungi"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Add {foo}"
 msgstr "Aggiungi {foo}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Add a certificate"
+msgstr "Aggiungi un certificato"
 
 #: src/components/sensors/sensor-dialog.tsx
 msgid "Add a check"
@@ -306,6 +325,10 @@ msgstr "Aggiungi i monitor di rete"
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "Aggiungi URL"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Added"
+msgstr "Aggiunto"
 
 #: src/components/add-system.tsx
 msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
@@ -375,6 +398,10 @@ msgstr "Cronologia Avvisi"
 msgid "Alert sent"
 msgstr "Avviso inviato"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Alert threshold (days before expiry)"
+msgstr "Soglia di avviso (giorni prima della scadenza)"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Alert types"
 msgstr "Tipi di avviso"
@@ -392,6 +419,10 @@ msgstr "Avvisa quando lo stato è"
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is not"
 msgstr "Avvisa quando lo stato non è"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
+msgstr "Avvisa quando il certificato {name} di {systemName} scade in meno giorni della soglia. I certificati rinnovati con lo stesso nome restano controllati e il certificato diventa importante."
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -414,6 +445,7 @@ msgstr "Avvisi di {sensorName}"
 msgid "alerts per user"
 msgstr "avvisi per utente"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -430,6 +462,16 @@ msgstr "Tutti gli agenti sono aggiornati ({latest})"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "All alerts"
 msgstr "Tutti gli avvisi"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+#: src/components/routes/certificates.tsx
+#: src/lib/header-icons.ts
+#: src/lib/home-page.ts
+msgid "All certificates"
+msgstr "Tutti i certificati"
 
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -748,6 +790,7 @@ msgstr "Può fermare"
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/important-targets.tsx
+#: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/sensor.tsx
@@ -783,6 +826,12 @@ msgstr "Attenzione - possibile perdita di dati"
 msgid "Celsius (°C)"
 msgstr "Celsius (°C)"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificate added"
+msgstr "Certificato aggiunto"
+
+#: src/components/active-alerts.tsx
+#: src/lib/alerts.ts
 #: src/lib/quiet-hours.ts
 msgid "Certificate expiry"
 msgstr "Scadenza del certificato"
@@ -794,6 +843,18 @@ msgstr "Certificato non attendibile per l'hub"
 #: src/components/sensors/sensor-cert.tsx
 msgid "Certificate presented by the server at the last check."
 msgstr "Certificato presentato dal server all'ultimo controllo."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificate read on the host by its agent."
+msgstr "Certificato letto sull’host dal suo agente."
+
+#: src/components/command-palette.tsx
+msgid "Certificates"
+msgstr "Certificati"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificates read"
+msgstr "Certificati letti"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Chain"
@@ -889,6 +950,7 @@ msgctxt "Clean shutdown"
 msgid "Clean"
 msgstr "Regolare"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
@@ -946,6 +1008,7 @@ msgstr "Intervallo di raccolta"
 msgid "Color"
 msgstr "Colore"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Columns"
 msgstr "Colonne"
@@ -1018,6 +1081,12 @@ msgstr "Continua"
 #: src/lib/utils.ts
 msgid "Copied to clipboard"
 msgstr "Copiato negli appunti"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Copy"
+msgstr "Copia"
 
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
@@ -1464,6 +1533,10 @@ msgstr "Inserisci la tua password monouso."
 msgid "Ephemeral"
 msgstr "Effimero"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1525,6 +1598,12 @@ msgstr "Uscito attivo"
 msgid "Expected text"
 msgstr "Testo atteso"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expired"
+msgstr "Scaduto"
+
 #: src/components/sensors/sensor-cert.tsx
 msgid "Expired certificate"
 msgstr "Certificato scaduto"
@@ -1533,9 +1612,39 @@ msgstr "Certificato scaduto"
 msgid "Expired on {expiredOn}"
 msgstr "Scaduto il {expiredOn}"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Expired: {expired}"
+msgstr "Scaduti: {expired}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expires"
+msgstr "Scade"
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Expires after one hour or on hub restart."
 msgstr "Scade dopo un'ora o al riavvio dell'hub."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiring soon"
+msgstr "In scadenza"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiring: {expiring}"
+msgstr "In scadenza: {expiring}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiry alert"
+msgstr "Avviso di scadenza"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiry alert: {alertDays} days"
+msgstr "Avviso di scadenza: {alertDays} giorni"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Export"
@@ -1615,6 +1724,11 @@ msgstr "Fallito: {0}"
 msgid "Fans"
 msgstr "Ventole"
 
+#: src/lib/certificates.ts
+msgid "File"
+msgstr "File"
+
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -1888,6 +2002,10 @@ msgctxt "Docker image"
 msgid "Image update available"
 msgstr "Aggiornamento dell’immagine disponibile"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Important certificates"
+msgstr "Certificati importanti"
+
 #: src/components/containers-table/containers-table.tsx
 msgid "Important containers"
 msgstr "Container importanti"
@@ -1895,6 +2013,18 @@ msgstr "Container importanti"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "Servizi importanti"
+
+#: src/lib/certificates.ts
+msgid "In IIS Manager: site {detail} > Bindings > https {location} > SSL certificate."
+msgstr "In Gestione IIS: sito {detail} > Binding > https {location} > Certificato SSL."
+
+#: src/lib/certificates.ts
+msgid "In IIS Manager: the site bound to https {location} > Bindings > SSL certificate."
+msgstr "In Gestione IIS: il sito associato a https {location} > Binding > Certificato SSL."
+
+#: src/lib/certificates.ts
+msgid "In Proxmox VE: node > System > Certificates."
+msgstr "In Proxmox VE: nodo > System > Certificates."
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Inactive"
@@ -1942,6 +2072,8 @@ msgstr "Intervallo (secondi)"
 msgid "Invalid email address."
 msgstr "Indirizzo email non valido."
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "Issued by"
 msgstr "Emesso da"
@@ -1957,6 +2089,10 @@ msgstr "Emesso a"
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "I suoi controlli, la cronologia e le interruzioni verranno eliminati."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Its expiry alert is deleted: no notification is sent before it expires."
+msgstr "Il suo avviso di scadenza viene eliminato: nessuna notifica sarà inviata prima della scadenza."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Its sensors are kept and moved to no group."
@@ -2111,6 +2247,9 @@ msgstr "Caricamento..."
 msgid "Local Disk"
 msgstr "Disco locale"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Location"
 msgstr "Posizione"
@@ -2276,6 +2415,8 @@ msgstr "Punto di montaggio"
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -2398,6 +2539,14 @@ msgstr "Nessuna risposta"
 #: src/components/sensors/sensor-cert.tsx
 msgid "No certificate yet: the details appear after the next HTTPS check."
 msgstr "Nessun certificato: i dettagli compaiono dopo il prossimo controllo HTTPS."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "No certificates match the filter."
+msgstr "Nessun certificato corrisponde al filtro."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "No certificates yet. The agents (0.20.0-fork.5 or newer) read the certificates of their host every 6 hours."
+msgstr "Ancora nessun certificato. Gli agenti (0.20.0-fork.5 o successivi) leggono i certificati del loro host ogni 6 ore."
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
@@ -2566,6 +2715,10 @@ msgstr "Facoltativo, ad esempio il nome del servizio"
 msgid "Options"
 msgstr "Opzioni"
 
+#: src/lib/certificates.ts
+msgid "Or change {directive} in the following file, then reload {service}:"
+msgstr "Oppure modifica {directive} nel file seguente, poi ricarica {service}:"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Oppure continua con"
@@ -2618,6 +2771,7 @@ msgstr "Qualità dei pacchetti"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
+#: src/components/command-palette.tsx
 msgid "Page"
 msgstr "Pagina"
 
@@ -2655,6 +2809,14 @@ msgstr "Richiesta di reimpostazione password ricevuta"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Past"
 msgstr "Passato"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Path"
+msgstr "Percorso"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Path of a certificate file on the host (PEM or DER), read by its agent with the other certificates. The agent must be allowed to read the file."
+msgstr "Percorso di un file di certificato sull’host (PEM o DER), letto dal suo agente insieme agli altri certificati. L’agente deve poter leggere il file."
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -2884,6 +3046,10 @@ msgstr "Lettura"
 msgid "Read errors"
 msgstr "Errori di lettura"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Read now"
+msgstr "Leggi ora"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -2904,6 +3070,14 @@ msgstr "Cronologia dei riavvii"
 #: src/components/routes/system.tsx
 msgid "Reboots"
 msgstr "Riavvii"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Recap"
+msgstr "Riepilogo"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Recap of the important certificates"
+msgstr "Riepilogo dei certificati importanti"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -2935,11 +3109,17 @@ msgstr "Aggiorna"
 msgid "Relationships"
 msgstr "Relazioni"
 
+#: src/lib/certificates.ts
+msgid "Remote Desktop"
+msgstr "Desktop remoto"
+
+#: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/sensors/sensor-dialog.tsx
 msgid "Remove"
 msgstr "Rimuovi"
 
+#: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 msgid "Remove {name} from important?"
 msgstr "Rimuovere {name} dagli importanti?"
@@ -2949,9 +3129,21 @@ msgstr "Rimuovere {name} dagli importanti?"
 msgid "Remove from important"
 msgstr "Rimuovi dagli importanti"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Remove the alert"
+msgstr "Rimuovi l’avviso"
+
 #: src/components/important-targets.tsx
 msgid "Removed from the rule, which keeps: {targets}"
 msgstr "Rimosso dalla regola, che mantiene: {targets}"
+
+#: src/lib/certificates.ts
+msgid "Renewed by certbot (certbot renew), with the settings of the following file:"
+msgstr "Rinnovato da certbot (certbot renew), con le impostazioni del file seguente:"
+
+#: src/lib/certificates.ts
+msgid "Replace the file {name} reachable at the following path:"
+msgstr "Sostituisci il file {name} accessibile tramite il seguente percorso:"
 
 #: src/components/login/login.tsx
 msgid "Request a one-time password"
@@ -3068,6 +3260,14 @@ msgstr "Regole di questo sistema"
 msgid "Run again"
 msgstr "Esegui di nuovo"
 
+#: src/lib/certificates.ts
+msgid "Run the following command with the thumbprint of the new certificate (application {detail}):"
+msgstr "Esegui il comando seguente con l’impronta del nuovo certificato (applicazione {detail}):"
+
+#: src/lib/certificates.ts
+msgid "Run the following command with the thumbprint of the new certificate:"
+msgstr "Esegui il comando seguente con l’impronta del nuovo certificato:"
+
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
 msgstr "Eseguito in un container: aggiorna invece la sua immagine."
@@ -3085,6 +3285,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "Autotest S.M.A.R.T."
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
@@ -3141,8 +3342,8 @@ msgstr "Cerca"
 #~ msgstr "Cerca sistemi, sensori o impostazioni..."
 
 #: src/components/command-palette.tsx
-msgid "Search for systems, sensors, containers, services or settings..."
-msgstr "Cerca sistemi, sensori, container, servizi o impostazioni..."
+msgid "Search for systems, sensors, containers, services, certificates or settings..."
+msgstr "Cerca sistemi, sensori, container, servizi, certificati o impostazioni..."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -3157,6 +3358,14 @@ msgstr "Secondi tra i ping (predefinito: 60)"
 msgid "See <0>notification settings</0> to configure how you receive alerts."
 msgstr "Vedi <0>impostazioni di notifica</0> per configurare come ricevere gli avvisi."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Seen by a sensor"
+msgstr "Visto da un sensore"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Seen by the sensors"
+msgstr "Visto dai sensori"
+
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Select"
 msgstr "Seleziona"
@@ -3166,6 +3375,7 @@ msgstr "Seleziona"
 msgid "Select {foo}"
 msgstr "Seleziona {foo}"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Select a system"
 msgstr "Seleziona un sistema"
@@ -3195,6 +3405,10 @@ msgstr "Seleziona i sistemi da aggiornare."
 #: src/components/agent-update-dialog.tsx
 msgid "Selection"
 msgstr "Selezione"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Self-signed"
+msgstr "Autofirmato"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
@@ -3290,6 +3504,10 @@ msgstr "Imposta le soglie percentuali per i colori dei contatori."
 msgid "Set the following environment variables on your Beszel hub to enable heartbeat monitoring:"
 msgstr "Imposta le seguenti variabili d'ambiente sul tuo Beszel hub per abilitare il monitoraggio heartbeat:"
 
+#: src/lib/certificates.ts
+msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
+msgstr "Imposta l’impronta del nuovo certificato nel percorso seguente (o nella classe WMI Win32_TSGeneralSetting), poi riavvia il servizio Desktop remoto:"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Imposta"
@@ -3351,6 +3569,7 @@ msgstr "Avvisi silenziati"
 msgid "SMTP settings"
 msgstr "Impostazioni SMTP"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
@@ -3421,6 +3640,7 @@ msgstr "Regole di stato"
 msgid "States"
 msgstr "Stati"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -3435,6 +3655,10 @@ msgstr "Stati"
 #: src/lib/alerts.ts
 msgid "Status"
 msgstr "Stato"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Stop watching"
+msgstr "Smetti di monitorare"
 
 #: src/components/containers-table/containers-table.tsx
 msgid "Stopped"
@@ -3467,6 +3691,10 @@ msgstr "Cambia tema"
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/navbar.tsx
@@ -3597,6 +3825,14 @@ msgstr "Test"
 msgid "The agent can't replace its executable. Reinstall it with the current install command."
 msgstr "L’agente non può sostituire il proprio eseguibile. Reinstallalo con il comando di installazione attuale."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "The agent could not read this certificate: {error}"
+msgstr "L’agente non è riuscito a leggere questo certificato: {error}"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "The agent of this system must be updated (0.20.0-fork.5 or newer) to read it."
+msgstr "L’agente di questo sistema deve essere aggiornato (0.20.0-fork.5 o successivo) per leggerlo."
+
 #: src/components/routes/system/agent-details.tsx
 msgid "The agent restarts and reconnects on its own."
 msgstr "L’agente si riavvia e si riconnette da solo."
@@ -3660,6 +3896,14 @@ msgstr "Tema"
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
 msgstr "Quindi accedi al backend e reimposta la password del tuo account utente nella tabella degli utenti."
+
+#: src/lib/certificates.ts
+msgid "Then restart cockpit."
+msgstr "Poi riavvia cockpit."
+
+#: src/lib/certificates.ts
+msgid "Then restart pveproxy."
+msgstr "Poi riavvia pveproxy."
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
@@ -3764,7 +4008,9 @@ msgctxt "Disk I/O"
 msgid "Total time spent on read/write (can exceed 100%)"
 msgstr "Tempo totale dedicato a lettura/scrittura (può superare il 100%)"
 
+#. placeholder {0}: all.length
 #. placeholder {0}: data.length
+#: src/components/certificates/certificates-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Total: {0}"
 msgstr "Totale: {0}"
@@ -3914,6 +4160,10 @@ msgstr "Illimitato"
 msgid "Unreachable"
 msgstr "Irraggiungibile"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Unreadable"
+msgstr "Illeggibile"
+
 #. Context: System is up
 #. Context: System is up
 #. Context: System is up
@@ -4035,6 +4285,12 @@ msgstr "Usa solo lettere, cifre e _ . @ -."
 msgid "Used"
 msgstr "Utilizzato"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Used by"
+msgstr "Usato da"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
@@ -4045,13 +4301,25 @@ msgctxt "Disk I/O utilization"
 msgid "Utilization"
 msgstr "Utilizzo"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Valid"
+msgstr "Valido"
+
 #: src/components/sensors/sensor-cert.tsx
 msgid "Valid and trusted certificate"
 msgstr "Certificato valido e attendibile"
 
 #: src/components/sensors/sensor-cert.tsx
+msgid "Valid certificate"
+msgstr "Certificato valido"
+
+#: src/components/sensors/sensor-cert.tsx
 msgid "Valid from"
 msgstr "Valido dal"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid self-signed certificate"
+msgstr "Certificato autofirmato valido"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Valid until"
@@ -4067,6 +4335,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: src/components/active-alerts.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
@@ -4121,6 +4390,10 @@ msgstr "Quando abilitato, questo token consente agli agenti di registrarsi autom
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."
 msgstr "Quando si usa POST, ogni heartbeat include un payload JSON con il riepilogo dello stato del sistema, l'elenco dei sistemi inattivi e gli avvisi attivati."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Where to change each important certificate, for each service using it."
+msgstr "Dove modificare ogni certificato importante, per ogni servizio che lo usa."
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgctxt "Button to copy install command"
@@ -4150,6 +4423,10 @@ msgstr "Con una regola di avviso sullo stato"
 #: src/components/systems-table/systems-table.tsx
 msgid "With alerts"
 msgstr "Con avvisi"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "With an expiry alert"
+msgstr "Con un avviso di scadenza"
 
 #. Disk write
 #. Disk write

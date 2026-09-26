@@ -161,6 +161,8 @@ func (h *Hub) registerCronJobs(_ *core.ServeEvent) error {
 	h.Cron().MustAdd("delete old records", "8 * * * *", h.rm.DeleteOldRecords)
 	// create longer records every 10 minutes
 	h.Cron().MustAdd("create longer records", "*/10 * * * *", h.rm.CreateLongerRecords)
+	// the days left of the certificates go down between their readings
+	h.Cron().MustAdd("certificate alerts", "17 * * * *", h.HandleAllCertificateAlerts)
 	return nil
 }
 

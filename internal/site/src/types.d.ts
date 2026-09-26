@@ -459,6 +459,11 @@ export interface UserSettings {
 	sensorsByGroup?: boolean
 	/** network sensors: order by name, or worst status or quality first */
 	sensorsSort?: "name" | "status" | "quality"
+	/** all certificates: sort, direction, status filter and hidden columns */
+	certificatesSort?: "expiry" | "name" | "system" | "issuer" | "uses" | "location"
+	certificatesSortDesc?: boolean
+	certificatesStatus?: "all" | "valid" | "expiring" | "expired" | "error"
+	certificatesHidden?: string[]
 	/** icons of the header hidden by the user */
 	hiddenHeaderIcons?: string[]
 	/** color theme of the interface, kept with the user */
@@ -880,6 +885,58 @@ export interface SensorCertInfo {
 	trusted: boolean
 	trustError?: string
 	chain?: { subject: string; issuer: string; notAfter: string }[]
+}
+
+/** Place where a certificate is configured on its host */
+export interface CertificateUse {
+	/** service: nginx, apache, haproxy, postfix, dovecot, letsencrypt, proxmox, cockpit, iis, httpsys, rdp, winrm, file */
+	kind: string
+	/** configuration file and line, binding or store */
+	location?: string
+	/** server name, IIS site or port */
+	detail?: string
+}
+
+/** Server certificate found on a host by its agent */
+export interface CertificateRecord extends RecordModel {
+	system: string
+	/** file:<path>, custom:<path> or store:<store>\<thumbprint> */
+	key: string
+	path: string
+	/** common name or first alternative name */
+	name: string
+	names: string[] | null
+	subject: string
+	issuer: string
+	not_before: string
+	not_after: string
+	fingerprint: string
+	thumbprint: string
+	serial: string
+	self_signed: boolean
+	/** file added by a user */
+	custom: boolean
+	/** why the certificate could not be read */
+	error: string
+	uses: CertificateUse[] | null
+	updated: string
+}
+
+/** Certificate file added by a user on a host */
+export interface CertificatePathRecord extends RecordModel {
+	system: string
+	path: string
+}
+
+/** Expiry alert of a user on the certificates of a name on a host */
+export interface CertificateAlertRecord extends RecordModel {
+	user: string
+	system: string
+	name: string
+	/** days before expiry when the alert triggers */
+	days: number
+	triggered: boolean
+	history: string
 }
 
 /** Probes of a check over a period */

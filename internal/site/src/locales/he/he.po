@@ -98,6 +98,11 @@ msgstr "{count, plural, one {מערכת אחת} two {# מערכות} other {# מ
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} חיישנים חדשים, {added} בדיקות נוספו לחיישנים קיימים."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "{days, plural, one {# day} other {# days}}"
+msgstr "{days, plural, one {יום אחד} other {# ימים}}"
+
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
 msgstr "{days, plural, one {יפוג בעוד יום אחד} other {יפוג בעוד # ימים}}"
@@ -110,9 +115,17 @@ msgstr "קלט/פלט של {diskName}"
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, one {דקה אחת} two {# דקות} other {# דקות}}"
 
+#: src/components/active-alerts.tsx
+msgid "{name} expires in less than {days} days"
+msgstr "{name} יפוג בעוד פחות מ-{days} ימים"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "{name} until {until}"
 msgstr "{name} עד {until}"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "{outdated} system(s) need an agent update to read their certificates."
+msgstr "{outdated} מערכות זקוקות לעדכון הסוכן כדי לקרוא את האישורים שלהן."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
@@ -256,6 +269,7 @@ msgstr "התראות פעילות"
 msgid "Active state"
 msgstr "מצב פעיל"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/navbar.tsx
 #: src/lib/header-icons.ts
 msgid "Add"
@@ -266,6 +280,11 @@ msgstr "הוספה"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Add {foo}"
 msgstr "הוסף {foo}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Add a certificate"
+msgstr "הוספת אישור"
 
 #: src/components/sensors/sensor-dialog.tsx
 msgid "Add a check"
@@ -306,6 +325,10 @@ msgstr "הוספת ניטורי הרשת"
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "הוסף URL"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Added"
+msgstr "נוסף"
 
 #: src/components/add-system.tsx
 msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
@@ -375,6 +398,10 @@ msgstr "היסטוריית התראות"
 msgid "Alert sent"
 msgstr "ההתראה נשלחה"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Alert threshold (days before expiry)"
+msgstr "סף התראה (ימים לפני תפוגה)"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Alert types"
 msgstr "סוגי התראות"
@@ -392,6 +419,10 @@ msgstr "התראה כאשר המצב הוא"
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is not"
 msgstr "התראה כאשר המצב אינו"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
+msgstr "התראה כאשר האישור {name} של {systemName} יפוג בפחות ימים מהסף. אישורים מחודשים באותו שם ממשיכים להיבדק, והאישור הופך לחשוב."
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -414,6 +445,7 @@ msgstr "התראות של {sensorName}"
 msgid "alerts per user"
 msgstr "התראות לכל משתמש"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -430,6 +462,16 @@ msgstr "כל הסוכנים מעודכנים ({latest})"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "All alerts"
 msgstr "כל ההתראות"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+#: src/components/routes/certificates.tsx
+#: src/lib/header-icons.ts
+#: src/lib/home-page.ts
+msgid "All certificates"
+msgstr "כל האישורים"
 
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -748,6 +790,7 @@ msgstr "יכול לעצור"
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/important-targets.tsx
+#: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/sensor.tsx
@@ -783,6 +826,12 @@ msgstr "זהירות - אפשרות לאובדן נתונים"
 msgid "Celsius (°C)"
 msgstr "צלזיוס (°C)"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificate added"
+msgstr "האישור נוסף"
+
+#: src/components/active-alerts.tsx
+#: src/lib/alerts.ts
 #: src/lib/quiet-hours.ts
 msgid "Certificate expiry"
 msgstr "תפוגת אישור"
@@ -794,6 +843,18 @@ msgstr "האישור אינו מהימן עבור ה-hub"
 #: src/components/sensors/sensor-cert.tsx
 msgid "Certificate presented by the server at the last check."
 msgstr "האישור שהציג השרת בבדיקה האחרונה."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificate read on the host by its agent."
+msgstr "אישור שנקרא במארח על ידי הסוכן שלו."
+
+#: src/components/command-palette.tsx
+msgid "Certificates"
+msgstr "אישורים"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificates read"
+msgstr "האישורים נקראו"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Chain"
@@ -889,6 +950,7 @@ msgctxt "Clean shutdown"
 msgid "Clean"
 msgstr "תקין"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
@@ -946,6 +1008,7 @@ msgstr "מרווח איסוף"
 msgid "Color"
 msgstr "צבע"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Columns"
 msgstr "עמודות"
@@ -1018,6 +1081,12 @@ msgstr "המשך"
 #: src/lib/utils.ts
 msgid "Copied to clipboard"
 msgstr "הועתק ללוח"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Copy"
+msgstr "העתקה"
 
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
@@ -1464,6 +1533,10 @@ msgstr "הכנס את הסיסמה החד-פעמית שלך."
 msgid "Ephemeral"
 msgstr "זמני"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1525,6 +1598,12 @@ msgstr "יצא פעיל"
 msgid "Expected text"
 msgstr "טקסט צפוי"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expired"
+msgstr "פג תוקף"
+
 #: src/components/sensors/sensor-cert.tsx
 msgid "Expired certificate"
 msgstr "אישור שפג תוקפו"
@@ -1533,9 +1612,39 @@ msgstr "אישור שפג תוקפו"
 msgid "Expired on {expiredOn}"
 msgstr "פג תוקף ב-{expiredOn}"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Expired: {expired}"
+msgstr "פג תוקף: {expired}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expires"
+msgstr "תפוגה"
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Expires after one hour or on hub restart."
 msgstr "התוקף פג לאחר שעה או לאחר הפעלת ה־hub מחדש."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiring soon"
+msgstr "עומד לפוג"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiring: {expiring}"
+msgstr "עומדים לפוג: {expiring}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiry alert"
+msgstr "התראת תפוגה"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiry alert: {alertDays} days"
+msgstr "התראת תפוגה: {alertDays} ימים"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Export"
@@ -1615,6 +1724,11 @@ msgstr "נכשל: {0}"
 msgid "Fans"
 msgstr "מאווררים"
 
+#: src/lib/certificates.ts
+msgid "File"
+msgstr "קובץ"
+
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -1888,6 +2002,10 @@ msgctxt "Docker image"
 msgid "Image update available"
 msgstr "עדכון תמונה זמין"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Important certificates"
+msgstr "אישורים חשובים"
+
 #: src/components/containers-table/containers-table.tsx
 msgid "Important containers"
 msgstr "מכולות חשובות"
@@ -1895,6 +2013,18 @@ msgstr "מכולות חשובות"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "שירותים חשובים"
+
+#: src/lib/certificates.ts
+msgid "In IIS Manager: site {detail} > Bindings > https {location} > SSL certificate."
+msgstr "במנהל IIS: אתר {detail} > Bindings > https {location} > SSL certificate."
+
+#: src/lib/certificates.ts
+msgid "In IIS Manager: the site bound to https {location} > Bindings > SSL certificate."
+msgstr "במנהל IIS: האתר המקושר ל-https {location} > Bindings > SSL certificate."
+
+#: src/lib/certificates.ts
+msgid "In Proxmox VE: node > System > Certificates."
+msgstr "ב-Proxmox VE: צומת > System > Certificates."
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Inactive"
@@ -1942,6 +2072,8 @@ msgstr "מרווח (שניות)"
 msgid "Invalid email address."
 msgstr "כתובת אימייל לא תקינה."
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "Issued by"
 msgstr "הונפק על ידי"
@@ -1957,6 +2089,10 @@ msgstr "הונפק עבור"
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "הבדיקות, ההיסטוריה וההפסקות שלו יימחקו."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Its expiry alert is deleted: no notification is sent before it expires."
+msgstr "התראת התפוגה שלו נמחקת: לא תישלח הודעה לפני שיפוג."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Its sensors are kept and moved to no group."
@@ -2111,6 +2247,9 @@ msgstr "טוען..."
 msgid "Local Disk"
 msgstr "דיסק מקומי"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Location"
 msgstr "מיקום"
@@ -2276,6 +2415,8 @@ msgstr "נקודת עגינה"
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -2398,6 +2539,14 @@ msgstr "אין תשובה"
 #: src/components/sensors/sensor-cert.tsx
 msgid "No certificate yet: the details appear after the next HTTPS check."
 msgstr "עדיין אין אישור: הפרטים יופיעו אחרי בדיקת ה-HTTPS הבאה."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "No certificates match the filter."
+msgstr "אין אישורים התואמים את המסנן."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "No certificates yet. The agents (0.20.0-fork.5 or newer) read the certificates of their host every 6 hours."
+msgstr "אין עדיין אישורים. הסוכנים (0.20.0-fork.5 ומעלה) קוראים את אישורי המארח שלהם כל 6 שעות."
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
@@ -2566,6 +2715,10 @@ msgstr "אופציונלי, למשל שם השירות"
 msgid "Options"
 msgstr "אפשרויות"
 
+#: src/lib/certificates.ts
+msgid "Or change {directive} in the following file, then reload {service}:"
+msgstr "או שנו את {directive} בקובץ הבא, ולאחר מכן טענו מחדש את {service}:"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "או המשך עם"
@@ -2618,6 +2771,7 @@ msgstr "איכות מנות"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
+#: src/components/command-palette.tsx
 msgid "Page"
 msgstr "עמוד"
 
@@ -2655,6 +2809,14 @@ msgstr "בקשת איפוס סיסמה התקבלה"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Past"
 msgstr "עבר"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Path"
+msgstr "נתיב"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Path of a certificate file on the host (PEM or DER), read by its agent with the other certificates. The agent must be allowed to read the file."
+msgstr "נתיב של קובץ אישור במארח (PEM או DER), שהסוכן קורא יחד עם שאר האישורים. לסוכן חייבת להיות הרשאה לקרוא את הקובץ."
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -2884,6 +3046,10 @@ msgstr "קריאה"
 msgid "Read errors"
 msgstr "שגיאות קריאה"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Read now"
+msgstr "קריאה כעת"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -2904,6 +3070,14 @@ msgstr "היסטוריית הפעלות מחדש"
 #: src/components/routes/system.tsx
 msgid "Reboots"
 msgstr "אתחולים"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Recap"
+msgstr "סיכום"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Recap of the important certificates"
+msgstr "סיכום האישורים החשובים"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -2935,11 +3109,17 @@ msgstr "רענן"
 msgid "Relationships"
 msgstr "קשרים"
 
+#: src/lib/certificates.ts
+msgid "Remote Desktop"
+msgstr "שולחן עבודה מרוחק"
+
+#: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/sensors/sensor-dialog.tsx
 msgid "Remove"
 msgstr "הסר"
 
+#: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 msgid "Remove {name} from important?"
 msgstr "להסיר את {name} מהחשובים?"
@@ -2949,9 +3129,21 @@ msgstr "להסיר את {name} מהחשובים?"
 msgid "Remove from important"
 msgstr "הסר מהחשובים"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Remove the alert"
+msgstr "הסרת ההתראה"
+
 #: src/components/important-targets.tsx
 msgid "Removed from the rule, which keeps: {targets}"
 msgstr "הוסר מהכלל, שנשאר עם: {targets}"
+
+#: src/lib/certificates.ts
+msgid "Renewed by certbot (certbot renew), with the settings of the following file:"
+msgstr "מחודש על ידי certbot (certbot renew) לפי ההגדרות בקובץ הבא:"
+
+#: src/lib/certificates.ts
+msgid "Replace the file {name} reachable at the following path:"
+msgstr "החליפו את הקובץ {name} הזמין בנתיב הבא:"
 
 #: src/components/login/login.tsx
 msgid "Request a one-time password"
@@ -3068,6 +3260,14 @@ msgstr "כללים של מערכת זו"
 msgid "Run again"
 msgstr "הרצה מחדש"
 
+#: src/lib/certificates.ts
+msgid "Run the following command with the thumbprint of the new certificate (application {detail}):"
+msgstr "הריצו את הפקודה הבאה עם טביעת האצבע של האישור החדש (יישום {detail}):"
+
+#: src/lib/certificates.ts
+msgid "Run the following command with the thumbprint of the new certificate:"
+msgstr "הריצו את הפקודה הבאה עם טביעת האצבע של האישור החדש:"
+
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
 msgstr "פועל בתוך מכולה: עדכן את האימג׳ שלה במקום."
@@ -3085,6 +3285,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "בדיקה עצמית S.M.A.R.T."
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
@@ -3141,8 +3342,8 @@ msgstr "חיפוש"
 #~ msgstr "חיפוש מערכות, חיישנים או הגדרות..."
 
 #: src/components/command-palette.tsx
-msgid "Search for systems, sensors, containers, services or settings..."
-msgstr "חיפוש מערכות, חיישנים, קונטיינרים, שירותים או הגדרות..."
+msgid "Search for systems, sensors, containers, services, certificates or settings..."
+msgstr "חיפוש מערכות, חיישנים, קונטיינרים, שירותים, אישורים או הגדרות..."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -3157,6 +3358,14 @@ msgstr "שניות בין פינגים (ברירת מחדל: 60)"
 msgid "See <0>notification settings</0> to configure how you receive alerts."
 msgstr "ראה <0>הגדרות התראות</0> כדי להגדיר כיצד אתה מקבל התראות."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Seen by a sensor"
+msgstr "נצפה על ידי חיישן"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Seen by the sensors"
+msgstr "נצפה על ידי החיישנים"
+
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Select"
 msgstr "בחירה"
@@ -3166,6 +3375,7 @@ msgstr "בחירה"
 msgid "Select {foo}"
 msgstr "בחר {foo}"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Select a system"
 msgstr "בחר מערכת"
@@ -3195,6 +3405,10 @@ msgstr "בחר את המערכות לעדכון."
 #: src/components/agent-update-dialog.tsx
 msgid "Selection"
 msgstr "בחירה"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Self-signed"
+msgstr "חתום עצמית"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
@@ -3290,6 +3504,10 @@ msgstr "הגדר סף אחוזים עבור צבעי מד."
 msgid "Set the following environment variables on your Beszel hub to enable heartbeat monitoring:"
 msgstr "הגדר את משתני הסביבה הבאים ב-Beszel hub שלך כדי לאפשר ניטור פעימות לב:"
 
+#: src/lib/certificates.ts
+msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
+msgstr "הגדירו את טביעת האצבע של האישור החדש במיקום הבא (או במחלקת WMI בשם Win32_TSGeneralSetting), ולאחר מכן הפעילו מחדש את שירות שולחן העבודה המרוחק:"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "הגדרה"
@@ -3351,6 +3569,7 @@ msgstr "התראות מושתקות"
 msgid "SMTP settings"
 msgstr "הגדרות SMTP"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
@@ -3421,6 +3640,7 @@ msgstr "כללי מצב"
 msgid "States"
 msgstr "מצבים"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -3435,6 +3655,10 @@ msgstr "מצבים"
 #: src/lib/alerts.ts
 msgid "Status"
 msgstr "סטטוס"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Stop watching"
+msgstr "הפסקת המעקב"
 
 #: src/components/containers-table/containers-table.tsx
 msgid "Stopped"
@@ -3467,6 +3691,10 @@ msgstr "החלף ערכת נושא"
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/navbar.tsx
@@ -3597,6 +3825,14 @@ msgstr "בדיקות"
 msgid "The agent can't replace its executable. Reinstall it with the current install command."
 msgstr "הסוכן אינו יכול להחליף את קובץ ההפעלה שלו. התקן אותו מחדש באמצעות פקודת ההתקנה הנוכחית."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "The agent could not read this certificate: {error}"
+msgstr "הסוכן לא הצליח לקרוא את האישור: {error}"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "The agent of this system must be updated (0.20.0-fork.5 or newer) to read it."
+msgstr "יש לעדכן את הסוכן של מערכת זו (0.20.0-fork.5 ומעלה) כדי לקרוא אותו."
+
 #: src/components/routes/system/agent-details.tsx
 msgid "The agent restarts and reconnects on its own."
 msgstr "הסוכן מופעל מחדש ומתחבר שוב בעצמו."
@@ -3660,6 +3896,14 @@ msgstr "ערכת נושא"
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
 msgstr "לאחר מכן התחבר ל-backend ואפס את סיסמת חשבון המשתמש שלך בטבלת המשתמשים."
+
+#: src/lib/certificates.ts
+msgid "Then restart cockpit."
+msgstr "לאחר מכן הפעילו מחדש את cockpit."
+
+#: src/lib/certificates.ts
+msgid "Then restart pveproxy."
+msgstr "לאחר מכן הפעילו מחדש את pveproxy."
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
@@ -3764,7 +4008,9 @@ msgctxt "Disk I/O"
 msgid "Total time spent on read/write (can exceed 100%)"
 msgstr "הזמן הכולל שהושקע בקריאה/כתיבה (יכול לחרוג מ־100%)"
 
+#. placeholder {0}: all.length
 #. placeholder {0}: data.length
+#: src/components/certificates/certificates-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Total: {0}"
 msgstr "סה\"כ: {0}"
@@ -3914,6 +4160,10 @@ msgstr "ללא הגבלה"
 msgid "Unreachable"
 msgstr "לא נגיש"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Unreadable"
+msgstr "לא קריא"
+
 #. Context: System is up
 #. Context: System is up
 #. Context: System is up
@@ -4035,6 +4285,12 @@ msgstr "השתמש רק באותיות, ספרות ו-_ . @ -."
 msgid "Used"
 msgstr "בשימוש"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Used by"
+msgstr "בשימוש על ידי"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
@@ -4045,13 +4301,25 @@ msgctxt "Disk I/O utilization"
 msgid "Utilization"
 msgstr "ניצולת"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Valid"
+msgstr "תקף"
+
 #: src/components/sensors/sensor-cert.tsx
 msgid "Valid and trusted certificate"
 msgstr "אישור תקף ומהימן"
 
 #: src/components/sensors/sensor-cert.tsx
+msgid "Valid certificate"
+msgstr "אישור תקף"
+
+#: src/components/sensors/sensor-cert.tsx
 msgid "Valid from"
 msgstr "בתוקף מ-"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid self-signed certificate"
+msgstr "אישור תקף בחתימה עצמית"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Valid until"
@@ -4067,6 +4335,7 @@ msgid "Version"
 msgstr "גרסה"
 
 #: src/components/active-alerts.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
@@ -4121,6 +4390,10 @@ msgstr "כאשר מופעל, אסימון זה מאפשר לסוכנים להי�
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."
 msgstr "בשימוש ב-POST, כל פעימת לב כוללת מטען JSON עם סיכום סטטוס המערכת, רשימת מערכות מושבתות והתראות שהופעלו."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Where to change each important certificate, for each service using it."
+msgstr "היכן לשנות כל אישור חשוב, עבור כל שירות שמשתמש בו."
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgctxt "Button to copy install command"
@@ -4150,6 +4423,10 @@ msgstr "עם כלל התראת מצב"
 #: src/components/systems-table/systems-table.tsx
 msgid "With alerts"
 msgstr "עם התראות"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "With an expiry alert"
+msgstr "עם התראת תפוגה"
 
 #. Disk write
 #. Disk write

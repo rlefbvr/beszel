@@ -98,6 +98,11 @@ msgstr "{count, plural, one {# σύστημα} other {# συστήματα}}"
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} νέοι αισθητήρες, {added} έλεγχοι προστέθηκαν σε υπάρχοντες αισθητήρες."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "{days, plural, one {# day} other {# days}}"
+msgstr "{days, plural, one {# ημέρα} other {# ημέρες}}"
+
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
 msgstr "{days, plural, one {Λήγει σε # ημέρα} other {Λήγει σε # ημέρες}}"
@@ -110,9 +115,17 @@ msgstr "I/O {diskName}"
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, one {# λεπτό} other {# λεπτά}}"
 
+#: src/components/active-alerts.tsx
+msgid "{name} expires in less than {days} days"
+msgstr "Το {name} λήγει σε λιγότερο από {days} ημέρες"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "{name} until {until}"
 msgstr "{name} έως {until}"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "{outdated} system(s) need an agent update to read their certificates."
+msgstr "{outdated} σύστημα(τα) χρειάζονται ενημέρωση του agent για την ανάγνωση των πιστοποιητικών τους."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
@@ -256,6 +269,7 @@ msgstr "Ενεργές ειδοποιήσεις"
 msgid "Active state"
 msgstr "Ενεργή κατάσταση"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/navbar.tsx
 #: src/lib/header-icons.ts
 msgid "Add"
@@ -266,6 +280,11 @@ msgstr "Προσθήκη"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Add {foo}"
 msgstr "Προσθήκη {foo}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Add a certificate"
+msgstr "Προσθήκη πιστοποιητικού"
 
 #: src/components/sensors/sensor-dialog.tsx
 msgid "Add a check"
@@ -306,6 +325,10 @@ msgstr "Προσθήκη των παρακολουθήσεων δικτύου"
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "Προσθήκη URL"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Added"
+msgstr "Προστέθηκε"
 
 #: src/components/add-system.tsx
 msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
@@ -375,6 +398,10 @@ msgstr "Ιστορικό ειδοποιήσεων"
 msgid "Alert sent"
 msgstr "Η ειδοποίηση στάλθηκε"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Alert threshold (days before expiry)"
+msgstr "Όριο ειδοποίησης (ημέρες πριν τη λήξη)"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Alert types"
 msgstr "Τύποι ειδοποιήσεων"
@@ -392,6 +419,10 @@ msgstr "Ειδοποίηση όταν η κατάσταση είναι"
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is not"
 msgstr "Ειδοποίηση όταν η κατάσταση δεν είναι"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
+msgstr "Ειδοποίηση όταν το πιστοποιητικό {name} του {systemName} λήγει σε λιγότερες ημέρες από το όριο. Τα ανανεωμένα πιστοποιητικά με το ίδιο όνομα συνεχίζουν να ελέγχονται και το πιστοποιητικό γίνεται σημαντικό."
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -414,6 +445,7 @@ msgstr "Ειδοποιήσεις του {sensorName}"
 msgid "alerts per user"
 msgstr "ειδοποιήσεις ανά χρήστη"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -430,6 +462,16 @@ msgstr "Όλοι οι πράκτορες είναι ενημερωμένοι ({l
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "All alerts"
 msgstr "Όλες οι ειδοποιήσεις"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+#: src/components/routes/certificates.tsx
+#: src/lib/header-icons.ts
+#: src/lib/home-page.ts
+msgid "All certificates"
+msgstr "Όλα τα πιστοποιητικά"
 
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -748,6 +790,7 @@ msgstr "Δυνατότητα διακοπής"
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/important-targets.tsx
+#: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/sensor.tsx
@@ -783,6 +826,12 @@ msgstr "Προσοχή - πιθανή απώλεια δεδομένων"
 msgid "Celsius (°C)"
 msgstr "Κελσίου (°C)"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificate added"
+msgstr "Το πιστοποιητικό προστέθηκε"
+
+#: src/components/active-alerts.tsx
+#: src/lib/alerts.ts
 #: src/lib/quiet-hours.ts
 msgid "Certificate expiry"
 msgstr "Λήξη πιστοποιητικού"
@@ -794,6 +843,18 @@ msgstr "Το πιστοποιητικό δεν είναι έμπιστο για 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Certificate presented by the server at the last check."
 msgstr "Πιστοποιητικό που παρουσίασε ο διακομιστής στον τελευταίο έλεγχο."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificate read on the host by its agent."
+msgstr "Πιστοποιητικό που διαβάστηκε στον υπολογιστή από τον agent του."
+
+#: src/components/command-palette.tsx
+msgid "Certificates"
+msgstr "Πιστοποιητικά"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificates read"
+msgstr "Τα πιστοποιητικά διαβάστηκαν"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Chain"
@@ -889,6 +950,7 @@ msgctxt "Clean shutdown"
 msgid "Clean"
 msgstr "Κανονικό"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
@@ -946,6 +1008,7 @@ msgstr "Διάστημα συλλογής"
 msgid "Color"
 msgstr "Χρώμα"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Columns"
 msgstr "Στήλες"
@@ -1018,6 +1081,12 @@ msgstr "Συνέχεια"
 #: src/lib/utils.ts
 msgid "Copied to clipboard"
 msgstr "Αντιγράφηκε στο πρόχειρο"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Copy"
+msgstr "Αντιγραφή"
 
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
@@ -1464,6 +1533,10 @@ msgstr "Εισαγάγετε τον κωδικό μίας χρήσης."
 msgid "Ephemeral"
 msgstr "Προσωρινό"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1525,6 +1598,12 @@ msgstr "Ενεργό μετά την έξοδο"
 msgid "Expected text"
 msgstr "Αναμενόμενο κείμενο"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expired"
+msgstr "Έληξε"
+
 #: src/components/sensors/sensor-cert.tsx
 msgid "Expired certificate"
 msgstr "Ληγμένο πιστοποιητικό"
@@ -1533,9 +1612,39 @@ msgstr "Ληγμένο πιστοποιητικό"
 msgid "Expired on {expiredOn}"
 msgstr "Έληξε στις {expiredOn}"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Expired: {expired}"
+msgstr "Ληγμένα: {expired}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expires"
+msgstr "Λήγει"
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Expires after one hour or on hub restart."
 msgstr "Λήγει μετά από μία ώρα ή με επανεκκίνηση του κόμβου."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiring soon"
+msgstr "Λήγει σύντομα"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiring: {expiring}"
+msgstr "Λήγουν σύντομα: {expiring}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiry alert"
+msgstr "Ειδοποίηση λήξης"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiry alert: {alertDays} days"
+msgstr "Ειδοποίηση λήξης: {alertDays} ημέρες"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Export"
@@ -1615,6 +1724,11 @@ msgstr "Απέτυχαν: {0}"
 msgid "Fans"
 msgstr "Ανεμιστήρες"
 
+#: src/lib/certificates.ts
+msgid "File"
+msgstr "Αρχείο"
+
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -1888,6 +2002,10 @@ msgctxt "Docker image"
 msgid "Image update available"
 msgstr "Διατίθεται ενημέρωση εικόνας"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Important certificates"
+msgstr "Σημαντικά πιστοποιητικά"
+
 #: src/components/containers-table/containers-table.tsx
 msgid "Important containers"
 msgstr "Σημαντικά κοντέινερ"
@@ -1895,6 +2013,18 @@ msgstr "Σημαντικά κοντέινερ"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "Σημαντικές υπηρεσίες"
+
+#: src/lib/certificates.ts
+msgid "In IIS Manager: site {detail} > Bindings > https {location} > SSL certificate."
+msgstr "Στο IIS Manager: τοποθεσία {detail} > Bindings > https {location} > SSL certificate."
+
+#: src/lib/certificates.ts
+msgid "In IIS Manager: the site bound to https {location} > Bindings > SSL certificate."
+msgstr "Στο IIS Manager: η τοποθεσία που συνδέεται στο https {location} > Bindings > SSL certificate."
+
+#: src/lib/certificates.ts
+msgid "In Proxmox VE: node > System > Certificates."
+msgstr "Στο Proxmox VE: κόμβος > System > Certificates."
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Inactive"
@@ -1942,6 +2072,8 @@ msgstr "Διάστημα (δευτερόλεπτα)"
 msgid "Invalid email address."
 msgstr "Μη έγκυρη διεύθυνση email."
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "Issued by"
 msgstr "Εκδόθηκε από"
@@ -1957,6 +2089,10 @@ msgstr "Εκδόθηκε για"
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "Οι έλεγχοι, το ιστορικό και οι διακοπές του θα διαγραφούν."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Its expiry alert is deleted: no notification is sent before it expires."
+msgstr "Η ειδοποίηση λήξης του διαγράφεται: δεν αποστέλλεται ειδοποίηση πριν λήξει."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Its sensors are kept and moved to no group."
@@ -2111,6 +2247,9 @@ msgstr "Φόρτωση..."
 msgid "Local Disk"
 msgstr "Τοπικός δίσκος"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Location"
 msgstr "Τοποθεσία"
@@ -2276,6 +2415,8 @@ msgstr "Σημείο προσάρτησης"
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -2398,6 +2539,14 @@ msgstr "Καμία απόκριση"
 #: src/components/sensors/sensor-cert.tsx
 msgid "No certificate yet: the details appear after the next HTTPS check."
 msgstr "Δεν υπάρχει ακόμη πιστοποιητικό: οι λεπτομέρειες εμφανίζονται μετά τον επόμενο έλεγχο HTTPS."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "No certificates match the filter."
+msgstr "Κανένα πιστοποιητικό δεν ταιριάζει με το φίλτρο."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "No certificates yet. The agents (0.20.0-fork.5 or newer) read the certificates of their host every 6 hours."
+msgstr "Δεν υπάρχουν ακόμη πιστοποιητικά. Οι agents (0.20.0-fork.5 ή νεότεροι) διαβάζουν τα πιστοποιητικά του υπολογιστή τους κάθε 6 ώρες."
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
@@ -2566,6 +2715,10 @@ msgstr "Προαιρετικό, π.χ. το όνομα της υπηρεσίας
 msgid "Options"
 msgstr "Επιλογές"
 
+#: src/lib/certificates.ts
+msgid "Or change {directive} in the following file, then reload {service}:"
+msgstr "Ή αλλάξτε το {directive} στο ακόλουθο αρχείο και επαναφορτώστε το {service}:"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Ή συνεχίστε με"
@@ -2618,6 +2771,7 @@ msgstr "Ποιότητα πακέτων"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
+#: src/components/command-palette.tsx
 msgid "Page"
 msgstr "Σελίδα"
 
@@ -2655,6 +2809,14 @@ msgstr "Το αίτημα επαναφοράς κωδικού πρόσβασης
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Past"
 msgstr "Παρελθόν"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Path"
+msgstr "Διαδρομή"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Path of a certificate file on the host (PEM or DER), read by its agent with the other certificates. The agent must be allowed to read the file."
+msgstr "Διαδρομή αρχείου πιστοποιητικού στον υπολογιστή (PEM ή DER), που διαβάζεται από τον agent μαζί με τα άλλα πιστοποιητικά. Ο agent πρέπει να έχει δικαίωμα ανάγνωσης του αρχείου."
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -2884,6 +3046,10 @@ msgstr "Ανάγνωση"
 msgid "Read errors"
 msgstr "Σφάλματα ανάγνωσης"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Read now"
+msgstr "Ανάγνωση τώρα"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -2904,6 +3070,14 @@ msgstr "Ιστορικό επανεκκινήσεων"
 #: src/components/routes/system.tsx
 msgid "Reboots"
 msgstr "Επανεκκινήσεις"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Recap"
+msgstr "Σύνοψη"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Recap of the important certificates"
+msgstr "Σύνοψη των σημαντικών πιστοποιητικών"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -2935,11 +3109,17 @@ msgstr "Ανανέωση"
 msgid "Relationships"
 msgstr "Σχέσεις"
 
+#: src/lib/certificates.ts
+msgid "Remote Desktop"
+msgstr "Απομακρυσμένη επιφάνεια εργασίας"
+
+#: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/sensors/sensor-dialog.tsx
 msgid "Remove"
 msgstr "Αφαίρεση"
 
+#: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 msgid "Remove {name} from important?"
 msgstr "Αφαίρεση του {name} από τα σημαντικά;"
@@ -2949,9 +3129,21 @@ msgstr "Αφαίρεση του {name} από τα σημαντικά;"
 msgid "Remove from important"
 msgstr "Αφαίρεση από τα σημαντικά"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Remove the alert"
+msgstr "Κατάργηση ειδοποίησης"
+
 #: src/components/important-targets.tsx
 msgid "Removed from the rule, which keeps: {targets}"
 msgstr "Αφαιρέθηκε από τον κανόνα, που διατηρεί: {targets}"
+
+#: src/lib/certificates.ts
+msgid "Renewed by certbot (certbot renew), with the settings of the following file:"
+msgstr "Ανανεώνεται από το certbot (certbot renew) με τις ρυθμίσεις του ακόλουθου αρχείου:"
+
+#: src/lib/certificates.ts
+msgid "Replace the file {name} reachable at the following path:"
+msgstr "Αντικαταστήστε το αρχείο {name} που βρίσκεται στην ακόλουθη διαδρομή:"
 
 #: src/components/login/login.tsx
 msgid "Request a one-time password"
@@ -3068,6 +3260,14 @@ msgstr "Κανόνες αυτού του συστήματος"
 msgid "Run again"
 msgstr "Εκτέλεση ξανά"
 
+#: src/lib/certificates.ts
+msgid "Run the following command with the thumbprint of the new certificate (application {detail}):"
+msgstr "Εκτελέστε την ακόλουθη εντολή με το αποτύπωμα του νέου πιστοποιητικού (εφαρμογή {detail}):"
+
+#: src/lib/certificates.ts
+msgid "Run the following command with the thumbprint of the new certificate:"
+msgstr "Εκτελέστε την ακόλουθη εντολή με το αποτύπωμα του νέου πιστοποιητικού:"
+
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
 msgstr "Εκτελείται σε κοντέινερ: ενημερώστε την εικόνα του."
@@ -3085,6 +3285,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "Αυτοέλεγχος S.M.A.R.T."
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
@@ -3141,8 +3342,8 @@ msgstr "Αναζήτηση"
 #~ msgstr "Αναζήτηση συστημάτων, αισθητήρων ή ρυθμίσεων..."
 
 #: src/components/command-palette.tsx
-msgid "Search for systems, sensors, containers, services or settings..."
-msgstr "Αναζήτηση συστημάτων, αισθητήρων, κοντέινερ, υπηρεσιών ή ρυθμίσεων..."
+msgid "Search for systems, sensors, containers, services, certificates or settings..."
+msgstr "Αναζήτηση συστημάτων, αισθητήρων, κοντέινερ, υπηρεσιών, πιστοποιητικών ή ρυθμίσεων..."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -3157,6 +3358,14 @@ msgstr "Δευτερόλεπτα μεταξύ ping (προεπιλογή: 60)"
 msgid "See <0>notification settings</0> to configure how you receive alerts."
 msgstr "Δείτε τις <0>ρυθμίσεις ειδοποιήσεων</0> για να ρυθμίσετε τον τρόπο λήψης ειδοποιήσεων."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Seen by a sensor"
+msgstr "Εντοπίστηκε από αισθητήρα"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Seen by the sensors"
+msgstr "Εντοπίστηκε από τους αισθητήρες"
+
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Select"
 msgstr "Επιλογή"
@@ -3166,6 +3375,7 @@ msgstr "Επιλογή"
 msgid "Select {foo}"
 msgstr "Επιλογή {foo}"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Select a system"
 msgstr "Επιλέξτε ένα σύστημα"
@@ -3195,6 +3405,10 @@ msgstr "Επιλέξτε τα συστήματα για ενημέρωση."
 #: src/components/agent-update-dialog.tsx
 msgid "Selection"
 msgstr "Επιλογή"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Self-signed"
+msgstr "Αυτοϋπογεγραμμένο"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
@@ -3290,6 +3504,10 @@ msgstr "Ορίστε ποσοστιαία όρια για τα χρώματα τ
 msgid "Set the following environment variables on your Beszel hub to enable heartbeat monitoring:"
 msgstr "Ορίστε τις ακόλουθες μεταβλητές περιβάλλοντος στον κόμβο Beszel για να ενεργοποιήσετε την παρακολούθηση heartbeat:"
 
+#: src/lib/certificates.ts
+msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
+msgstr "Ορίστε το αποτύπωμα του νέου πιστοποιητικού στην ακόλουθη θέση (ή στην κλάση WMI Win32_TSGeneralSetting) και μετά επανεκκινήστε την υπηρεσία Απομακρυσμένης επιφάνειας εργασίας:"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Ρύθμιση"
@@ -3351,6 +3569,7 @@ msgstr "Σιγασμένες ειδοποιήσεις"
 msgid "SMTP settings"
 msgstr "Ρυθμίσεις SMTP"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
@@ -3421,6 +3640,7 @@ msgstr "Κανόνες κατάστασης"
 msgid "States"
 msgstr "Καταστάσεις"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -3435,6 +3655,10 @@ msgstr "Καταστάσεις"
 #: src/lib/alerts.ts
 msgid "Status"
 msgstr "Κατάσταση"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Stop watching"
+msgstr "Διακοπή παρακολούθησης"
 
 #: src/components/containers-table/containers-table.tsx
 msgid "Stopped"
@@ -3467,6 +3691,10 @@ msgstr "Αλλαγή θέματος"
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/navbar.tsx
@@ -3597,6 +3825,14 @@ msgstr "Δοκιμές"
 msgid "The agent can't replace its executable. Reinstall it with the current install command."
 msgstr "Ο πράκτορας δεν μπορεί να αντικαταστήσει το εκτελέσιμό του. Επανεγκαταστήστε τον με την τρέχουσα εντολή εγκατάστασης."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "The agent could not read this certificate: {error}"
+msgstr "Ο agent δεν μπόρεσε να διαβάσει αυτό το πιστοποιητικό: {error}"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "The agent of this system must be updated (0.20.0-fork.5 or newer) to read it."
+msgstr "Ο agent αυτού του συστήματος πρέπει να ενημερωθεί (0.20.0-fork.5 ή νεότερος) για να το διαβάσει."
+
 #: src/components/routes/system/agent-details.tsx
 msgid "The agent restarts and reconnects on its own."
 msgstr "Ο πράκτορας επανεκκινείται και επανασυνδέεται μόνος του."
@@ -3660,6 +3896,14 @@ msgstr "Θέμα"
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
 msgstr "Στη συνέχεια, συνδεθείτε στο backend και επαναφέρετε τον κωδικό πρόσβασης του λογαριασμού χρήστη στον πίνακα χρηστών."
+
+#: src/lib/certificates.ts
+msgid "Then restart cockpit."
+msgstr "Μετά επανεκκινήστε το cockpit."
+
+#: src/lib/certificates.ts
+msgid "Then restart pveproxy."
+msgstr "Μετά επανεκκινήστε το pveproxy."
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
@@ -3764,7 +4008,9 @@ msgctxt "Disk I/O"
 msgid "Total time spent on read/write (can exceed 100%)"
 msgstr "Συνολικός χρόνος ανάγνωσης/εγγραφής (μπορεί να υπερβαίνει το 100%)"
 
+#. placeholder {0}: all.length
 #. placeholder {0}: data.length
+#: src/components/certificates/certificates-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Total: {0}"
 msgstr "Σύνολο: {0}"
@@ -3914,6 +4160,10 @@ msgstr "Απεριόριστο"
 msgid "Unreachable"
 msgstr "Μη προσβάσιμο"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Unreadable"
+msgstr "Μη αναγνώσιμο"
+
 #. Context: System is up
 #. Context: System is up
 #. Context: System is up
@@ -4035,6 +4285,12 @@ msgstr "Χρησιμοποιήστε μόνο γράμματα, ψηφία κα�
 msgid "Used"
 msgstr "Χρησιμοποιείται"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Used by"
+msgstr "Χρησιμοποιείται από"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
@@ -4045,13 +4301,25 @@ msgctxt "Disk I/O utilization"
 msgid "Utilization"
 msgstr "Χρήση"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Valid"
+msgstr "Έγκυρο"
+
 #: src/components/sensors/sensor-cert.tsx
 msgid "Valid and trusted certificate"
 msgstr "Έγκυρο και έμπιστο πιστοποιητικό"
 
 #: src/components/sensors/sensor-cert.tsx
+msgid "Valid certificate"
+msgstr "Έγκυρο πιστοποιητικό"
+
+#: src/components/sensors/sensor-cert.tsx
 msgid "Valid from"
 msgstr "Ισχύει από"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid self-signed certificate"
+msgstr "Έγκυρο αυτοϋπογεγραμμένο πιστοποιητικό"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Valid until"
@@ -4067,6 +4335,7 @@ msgid "Version"
 msgstr "Έκδοση"
 
 #: src/components/active-alerts.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
@@ -4121,6 +4390,10 @@ msgstr "Όταν είναι ενεργοποιημένο, αυτό το διακ
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."
 msgstr "Όταν χρησιμοποιείται το POST, κάθε heartbeat περιλαμβάνει JSON payload με σύνοψη κατάστασης συστημάτων, λίστα συστημάτων εκτός λειτουργίας και ενεργοποιημένες ειδοποιήσεις."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Where to change each important certificate, for each service using it."
+msgstr "Πού να αλλάξετε κάθε σημαντικό πιστοποιητικό, για κάθε υπηρεσία που το χρησιμοποιεί."
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgctxt "Button to copy install command"
@@ -4150,6 +4423,10 @@ msgstr "Με κανόνα ειδοποίησης κατάστασης"
 #: src/components/systems-table/systems-table.tsx
 msgid "With alerts"
 msgstr "Με ειδοποιήσεις"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "With an expiry alert"
+msgstr "Με ειδοποίηση λήξης"
 
 #. Disk write
 #. Disk write

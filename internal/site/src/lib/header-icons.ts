@@ -9,6 +9,7 @@ export const headerIcons = {
 	containers: () => t`All Containers`,
 	services: () => t`All Services`,
 	reboots: () => t`All Reboots`,
+	certificates: () => t`All certificates`,
 	smart: () => "S.M.A.R.T.",
 	theme: () => t`Switch theme`,
 	add: () => t`Add`,

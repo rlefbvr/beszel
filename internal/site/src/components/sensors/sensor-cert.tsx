@@ -41,20 +41,34 @@ export function SensorCertDialog({ checks }: { checks: SensorCheckRecord[] }) {
 	)
 }
 
-function CertDetails({ cert }: { cert: SensorCertInfo }) {
+/** Certificate shown by CertDetails: the TLS details only exist for the certificates seen by a sensor */
+export type CertDetailsInfo = Pick<
+	SensorCertInfo,
+	"subject" | "subjectDN" | "issuer" | "issuerDN" | "names" | "notBefore" | "notAfter" | "serial" | "sha256"
+> &
+	Partial<Omit<SensorCertInfo, "trusted">> & {
+		/** chain checked by the hub; unknown for the certificates read on a host */
+		trusted?: boolean
+		selfSigned?: boolean
+	}
+
+/** Details of a certificate, with rows of its own (such as its place on the host) */
+export function CertDetails({ cert, children }: { cert: CertDetailsInfo; children?: ReactNode }) {
 	const now = useNow()
 	const days = Math.floor((new Date(cert.notAfter).getTime() - now.getTime()) / 86_400_000)
 	const expired = days < 0
 	const expiredOn = formatDateTime(cert.notAfter)
+	// the certificates read on a host are fine while valid, unless self-signed
+	const good = !expired && (cert.trusted ?? !cert.selfSigned)
 	return (
 		<div className="grid gap-4">
 			<div
 				className={cn(
 					"flex items-start gap-3 rounded-lg border px-4 py-3 text-sm",
-					cert.trusted && !expired ? "border-green-500/40 bg-green-500/10" : "border-orange-500/40 bg-orange-500/10"
+					good ? "border-green-500/40 bg-green-500/10" : "border-orange-500/40 bg-orange-500/10"
 				)}
 			>
-				{cert.trusted && !expired ? (
+				{good ? (
 					<ShieldCheckIcon className="size-5 shrink-0 text-green-600 dark:text-green-400" />
 				) : (
 					<ShieldAlertIcon className="size-5 shrink-0 text-orange-600 dark:text-orange-400" />
@@ -65,8 +79,12 @@ function CertDetails({ cert }: { cert: SensorCertInfo }) {
 							<Trans>Expired certificate</Trans>
 						) : cert.trusted ? (
 							<Trans>Valid and trusted certificate</Trans>
-						) : (
+						) : cert.trusted === false ? (
 							<Trans>Certificate not trusted by the hub</Trans>
+						) : cert.selfSigned ? (
+							<Trans>Valid self-signed certificate</Trans>
+						) : (
+							<Trans>Valid certificate</Trans>
 						)}
 					</p>
 					<p className="text-muted-foreground">
@@ -76,11 +94,14 @@ function CertDetails({ cert }: { cert: SensorCertInfo }) {
 							<Plural value={days} one="Expires in # day" other="Expires in # days" />
 						)}
 					</p>
-					{!cert.trusted && cert.trustError && <p className="text-muted-foreground break-words">{cert.trustError}</p>}
+					{cert.trusted === false && cert.trustError && (
+						<p className="text-muted-foreground break-words">{cert.trustError}</p>
+					)}
 				</div>
 			</div>
 
 			<dl className="grid sm:grid-cols-[10rem_minmax(0,1fr)] gap-x-4 gap-y-2 text-sm">
+				{children}
 				<Row label={<Trans>Issued to</Trans>}>
 					<span className="font-medium">{cert.subject}</span>
 					{cert.subjectDN !== cert.subject && <Muted>{cert.subjectDN}</Muted>}
@@ -106,12 +127,14 @@ function CertDetails({ cert }: { cert: SensorCertInfo }) {
 				<Row label={<Trans>Valid until</Trans>}>
 					<span className="tabular-nums">{formatDateTime(cert.notAfter)}</span>
 				</Row>
-				<Row label={<Trans>Public key</Trans>}>{cert.publicKey}</Row>
-				<Row label={<Trans>Signature</Trans>}>{cert.signature}</Row>
-				<Row label={<Trans>Protocol</Trans>}>
-					{cert.tlsVersion}
-					<Muted>{cert.cipher}</Muted>
-				</Row>
+				{cert.publicKey && <Row label={<Trans>Public key</Trans>}>{cert.publicKey}</Row>}
+				{cert.signature && <Row label={<Trans>Signature</Trans>}>{cert.signature}</Row>}
+				{cert.tlsVersion && (
+					<Row label={<Trans>Protocol</Trans>}>
+						{cert.tlsVersion}
+						<Muted>{cert.cipher}</Muted>
+					</Row>
+				)}
 				<Row label={<Trans>Serial number</Trans>}>
 					<span className="font-mono text-xs break-all">{cert.serial}</span>
 				</Row>
@@ -147,7 +170,7 @@ function CertDetails({ cert }: { cert: SensorCertInfo }) {
 	)
 }
 
-function Row({ label, children }: { label: ReactNode; children: ReactNode }) {
+export function Row({ label, children }: { label: ReactNode; children: ReactNode }) {
 	return (
 		<>
 			<dt className="text-muted-foreground">{label}</dt>
@@ -156,6 +179,6 @@ function Row({ label, children }: { label: ReactNode; children: ReactNode }) {
 	)
 }
 
-function Muted({ children }: { children: ReactNode }) {
+export function Muted({ children }: { children: ReactNode }) {
 	return <span className="text-xs text-muted-foreground break-words">{children}</span>
 }

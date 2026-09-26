@@ -27,6 +27,15 @@ func supportsForkRequests(agentVersion string) bool {
 	return version.GTE(beszel.MinVersionForkRequests)
 }
 
+// supportsCertificates reports whether an agent version reads the certificates of its host.
+func supportsCertificates(agentVersion string) bool {
+	version, err := semver.ParseTolerant(agentVersion)
+	if err != nil || len(version.Pre) == 0 || version.Pre[0].VersionStr != "fork" {
+		return false
+	}
+	return version.GTE(beszel.MinVersionCertificates)
+}
+
 // forkRequest sends a request added by this fork, if the agent supports it.
 func (sys *System) forkRequest(ctx context.Context, action common.WebSocketAction, req any, dest any) error {
 	if !sys.forkRequests.Load() {

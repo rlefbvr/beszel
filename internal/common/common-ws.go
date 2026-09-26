@@ -36,6 +36,8 @@ const (
 	GetAgentLogs
 	// Ask the agent to update itself to the latest release
 	UpdateAgent
+	// Request the server certificates of the host
+	GetCertificates
 	// Add new actions here...
 )
 

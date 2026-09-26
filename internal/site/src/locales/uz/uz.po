@@ -98,6 +98,11 @@ msgstr "{count, plural, one {# tizim} other {# tizim}}"
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} ta yangi sensor, mavjud sensorlarga {added} ta tekshiruv qo‘shildi."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "{days, plural, one {# day} other {# days}}"
+msgstr "{days, plural, other {# kun}}"
+
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
 msgstr "{days, plural, other {# kundan keyin tugaydi}}"
@@ -110,9 +115,17 @@ msgstr "{diskName} I/O"
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, one {# daqiqa} other {# daqiqa}}"
 
+#: src/components/active-alerts.tsx
+msgid "{name} expires in less than {days} days"
+msgstr "{name} muddati {days} kundan kamroq vaqtda tugaydi"
+
 #: src/components/quiet-hours-banner.tsx
 msgid "{name} until {until}"
 msgstr "{name} {until} gacha"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "{outdated} system(s) need an agent update to read their certificates."
+msgstr "{outdated} ta tizim sertifikatlarini o‘qish uchun agentni yangilashi kerak."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
@@ -256,6 +269,7 @@ msgstr "Faol ogohlantirishlar"
 msgid "Active state"
 msgstr "Faol holat"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/navbar.tsx
 #: src/lib/header-icons.ts
 msgid "Add"
@@ -266,6 +280,11 @@ msgstr "Qo‘shish"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Add {foo}"
 msgstr "{foo} qo'shish"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Add a certificate"
+msgstr "Sertifikat qo‘shish"
 
 #: src/components/sensors/sensor-dialog.tsx
 msgid "Add a check"
@@ -306,6 +325,10 @@ msgstr "Tarmoq monitorlarini qo‘shish"
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
 msgstr "URL qo'shish"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Added"
+msgstr "Qo‘shilgan"
 
 #: src/components/add-system.tsx
 msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
@@ -375,6 +398,10 @@ msgstr "Ogohlantirish tarixi"
 msgid "Alert sent"
 msgstr "Ogohlantirish yuborildi"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Alert threshold (days before expiry)"
+msgstr "Ogohlantirish chegarasi (muddat tugashidan oldingi kunlar)"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Alert types"
 msgstr "Ogohlantirish turlari"
@@ -392,6 +419,10 @@ msgstr "Holat quyidagicha bo‘lganda ogohlantirish"
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Alert when state is not"
 msgstr "Holat quyidagicha bo‘lmaganda ogohlantirish"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
+msgstr "{systemName} dagi {name} sertifikati muddati chegaradan kamroq kunda tugasa ogohlantirish. Xuddi shu nomdagi yangilangan sertifikatlar tekshirilishda davom etadi va sertifikat muhim bo‘ladi."
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -414,6 +445,7 @@ msgstr "{sensorName} ogohlantirishlari"
 msgid "alerts per user"
 msgstr "foydalanuvchi uchun ogohlantirish"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -430,6 +462,16 @@ msgstr "Barcha agentlar yangilangan ({latest})"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "All alerts"
 msgstr "Barcha ogohlantirishlar"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+#: src/components/routes/certificates.tsx
+#: src/lib/header-icons.ts
+#: src/lib/home-page.ts
+msgid "All certificates"
+msgstr "Barcha sertifikatlar"
 
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -748,6 +790,7 @@ msgstr "To'xtata oladi"
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/important-targets.tsx
+#: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/sensor.tsx
@@ -783,6 +826,12 @@ msgstr "Ehtiyot bo'ling - ma'lumotlar yo'qolishi mumkin"
 msgid "Celsius (°C)"
 msgstr "Selsiy (°C)"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificate added"
+msgstr "Sertifikat qo‘shildi"
+
+#: src/components/active-alerts.tsx
+#: src/lib/alerts.ts
 #: src/lib/quiet-hours.ts
 msgid "Certificate expiry"
 msgstr "Sertifikat muddati tugashi"
@@ -794,6 +843,18 @@ msgstr "Sertifikatga hub ishonmaydi"
 #: src/components/sensors/sensor-cert.tsx
 msgid "Certificate presented by the server at the last check."
 msgstr "Server oxirgi tekshiruvda taqdim etgan sertifikat."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificate read on the host by its agent."
+msgstr "Xostda uning agenti o‘qigan sertifikat."
+
+#: src/components/command-palette.tsx
+msgid "Certificates"
+msgstr "Sertifikatlar"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Certificates read"
+msgstr "Sertifikatlar o‘qildi"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Chain"
@@ -889,6 +950,7 @@ msgctxt "Clean shutdown"
 msgid "Clean"
 msgstr "Odatiy"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/reboots-table.tsx
@@ -946,6 +1008,7 @@ msgstr "Yig‘ish oralig‘i"
 msgid "Color"
 msgstr "Rang"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Columns"
 msgstr "Ustunlar"
@@ -1018,6 +1081,12 @@ msgstr "Davom etish"
 #: src/lib/utils.ts
 msgid "Copied to clipboard"
 msgstr "Buferga nusxalandi"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Copy"
+msgstr "Nusxalash"
 
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
@@ -1464,6 +1533,10 @@ msgstr "Bir martalik parolingizni kiriting."
 msgid "Ephemeral"
 msgstr "Vaqtinchalik"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1525,6 +1598,12 @@ msgstr "Faollikdan chiqdi"
 msgid "Expected text"
 msgstr "Kutilgan matn"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expired"
+msgstr "Muddati tugagan"
+
 #: src/components/sensors/sensor-cert.tsx
 msgid "Expired certificate"
 msgstr "Muddati o‘tgan sertifikat"
@@ -1533,9 +1612,39 @@ msgstr "Muddati o‘tgan sertifikat"
 msgid "Expired on {expiredOn}"
 msgstr "{expiredOn} da tugagan"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Expired: {expired}"
+msgstr "Muddati tugagan: {expired}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expires"
+msgstr "Muddati"
+
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgid "Expires after one hour or on hub restart."
 msgstr "Bir soatdan keyin yoki hub qayta ishga tushganda muddati tugaydi."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiring soon"
+msgstr "Muddati tugamoqda"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiring: {expiring}"
+msgstr "Muddati tugamoqda: {expiring}"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiry alert"
+msgstr "Muddat tugashi ogohlantirishi"
+
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Expiry alert: {alertDays} days"
+msgstr "Muddat tugashi ogohlantirishi: {alertDays} kun"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Export"
@@ -1615,6 +1724,11 @@ msgstr "Muvaffaqiyatsiz: {0}"
 msgid "Fans"
 msgstr "Ventilyatorlar"
 
+#: src/lib/certificates.ts
+msgid "File"
+msgstr "Fayl"
+
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
@@ -1888,6 +2002,10 @@ msgctxt "Docker image"
 msgid "Image update available"
 msgstr "Obraz yangilanishi mavjud"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Important certificates"
+msgstr "Muhim sertifikatlar"
+
 #: src/components/containers-table/containers-table.tsx
 msgid "Important containers"
 msgstr "Muhim konteynerlar"
@@ -1895,6 +2013,18 @@ msgstr "Muhim konteynerlar"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "Muhim xizmatlar"
+
+#: src/lib/certificates.ts
+msgid "In IIS Manager: site {detail} > Bindings > https {location} > SSL certificate."
+msgstr "IIS Manager da: {detail} sayti > Bindings > https {location} > SSL certificate."
+
+#: src/lib/certificates.ts
+msgid "In IIS Manager: the site bound to https {location} > Bindings > SSL certificate."
+msgstr "IIS Manager da: https {location} ga bog‘langan sayt > Bindings > SSL certificate."
+
+#: src/lib/certificates.ts
+msgid "In Proxmox VE: node > System > Certificates."
+msgstr "Proxmox VE da: tugun > System > Certificates."
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Inactive"
@@ -1942,6 +2072,8 @@ msgstr "Oraliq (soniya)"
 msgid "Invalid email address."
 msgstr "Noto'g'ri elektron pochta manzili."
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "Issued by"
 msgstr "Beruvchi"
@@ -1957,6 +2089,10 @@ msgstr "Kimga berilgan"
 #: src/components/routes/sensor.tsx
 msgid "Its checks, history and interruptions will be deleted."
 msgstr "Uning tekshiruvlari, tarixi va uzilishlari o‘chiriladi."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Its expiry alert is deleted: no notification is sent before it expires."
+msgstr "Muddati tugashi ogohlantirishi o‘chiriladi: muddati tugashidan oldin bildirishnoma yuborilmaydi."
 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Its sensors are kept and moved to no group."
@@ -2111,6 +2247,9 @@ msgstr "Yuklanmoqda..."
 msgid "Local Disk"
 msgstr "Mahalliy disk"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Location"
 msgstr "Joylashuv"
@@ -2276,6 +2415,8 @@ msgstr "Ulash nuqtasi"
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -2398,6 +2539,14 @@ msgstr "Javob yo‘q"
 #: src/components/sensors/sensor-cert.tsx
 msgid "No certificate yet: the details appear after the next HTTPS check."
 msgstr "Hali sertifikat yo‘q: tafsilotlar keyingi HTTPS tekshiruvidan so‘ng ko‘rinadi."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "No certificates match the filter."
+msgstr "Filtrga mos sertifikat yo‘q."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "No certificates yet. The agents (0.20.0-fork.5 or newer) read the certificates of their host every 6 hours."
+msgstr "Hozircha sertifikatlar yo‘q. Agentlar (0.20.0-fork.5 yoki yangiroq) har 6 soatda xostining sertifikatlarini o‘qiydi."
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
@@ -2566,6 +2715,10 @@ msgstr "Ixtiyoriy, masalan, xizmat nomi"
 msgid "Options"
 msgstr "Parametrlar"
 
+#: src/lib/certificates.ts
+msgid "Or change {directive} in the following file, then reload {service}:"
+msgstr "Yoki quyidagi faylda {directive} ni o‘zgartiring, so‘ng {service} ni qayta yuklang:"
+
 #: src/components/login/auth-form.tsx
 msgid "Or continue with"
 msgstr "Yoki bilan davom eting"
@@ -2618,6 +2771,7 @@ msgstr "Paket sifati"
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
+#: src/components/command-palette.tsx
 msgid "Page"
 msgstr "Sahifa"
 
@@ -2655,6 +2809,14 @@ msgstr "Parolni tiklash so'rovi qabul qilindi"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Past"
 msgstr "O'tgan"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Path"
+msgstr "Yo‘l"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Path of a certificate file on the host (PEM or DER), read by its agent with the other certificates. The agent must be allowed to read the file."
+msgstr "Xostdagi sertifikat faylining yo‘li (PEM yoki DER); agent uni boshqa sertifikatlar bilan birga o‘qiydi. Agentga faylni o‘qishga ruxsat berilgan bo‘lishi kerak."
 
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -2884,6 +3046,10 @@ msgstr "O'qish"
 msgid "Read errors"
 msgstr "O‘qish xatolari"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Read now"
+msgstr "Hozir o‘qish"
+
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -2904,6 +3070,14 @@ msgstr "Qayta ishga tushirish tarixi"
 #: src/components/routes/system.tsx
 msgid "Reboots"
 msgstr "Qayta ishga tushirishlar"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Recap"
+msgstr "Xulosa"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Recap of the important certificates"
+msgstr "Muhim sertifikatlar xulosasi"
 
 #: src/components/routes/system/charts/network-charts.tsx
 msgid "Received"
@@ -2935,11 +3109,17 @@ msgstr "Yangilash"
 msgid "Relationships"
 msgstr "Munosabatlar"
 
+#: src/lib/certificates.ts
+msgid "Remote Desktop"
+msgstr "Masofaviy ish stoli"
+
+#: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/sensors/sensor-dialog.tsx
 msgid "Remove"
 msgstr "Olib tashlash"
 
+#: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 msgid "Remove {name} from important?"
 msgstr "{name} muhimlardan olib tashlansinmi?"
@@ -2949,9 +3129,21 @@ msgstr "{name} muhimlardan olib tashlansinmi?"
 msgid "Remove from important"
 msgstr "Muhimlardan olib tashlash"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Remove the alert"
+msgstr "Ogohlantirishni olib tashlash"
+
 #: src/components/important-targets.tsx
 msgid "Removed from the rule, which keeps: {targets}"
 msgstr "Qoidadan olib tashlandi, qolganlar: {targets}"
+
+#: src/lib/certificates.ts
+msgid "Renewed by certbot (certbot renew), with the settings of the following file:"
+msgstr "certbot (certbot renew) tomonidan quyidagi fayl sozlamalari bilan yangilanadi:"
+
+#: src/lib/certificates.ts
+msgid "Replace the file {name} reachable at the following path:"
+msgstr "Quyidagi yo‘l orqali mavjud {name} faylini almashtiring:"
 
 #: src/components/login/login.tsx
 msgid "Request a one-time password"
@@ -3068,6 +3260,14 @@ msgstr "Ushbu tizim qoidalari"
 msgid "Run again"
 msgstr "Qayta ishga tushirish"
 
+#: src/lib/certificates.ts
+msgid "Run the following command with the thumbprint of the new certificate (application {detail}):"
+msgstr "Quyidagi buyruqni yangi sertifikat barmoq izi bilan bajaring (ilova {detail}):"
+
+#: src/lib/certificates.ts
+msgid "Run the following command with the thumbprint of the new certificate:"
+msgstr "Quyidagi buyruqni yangi sertifikat barmoq izi bilan bajaring:"
+
 #: src/lib/agent-updates.ts
 msgid "Runs in a container: update its image instead."
 msgstr "Konteynerda ishlaydi: o‘rniga uning obrazini yangilang."
@@ -3085,6 +3285,7 @@ msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. o'z-o'zini test"
 
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/systems-table/groups-dialog.tsx
@@ -3141,8 +3342,8 @@ msgstr "Qidirish"
 #~ msgstr "Tizimlar, sensorlar yoki sozlamalarni qidirish..."
 
 #: src/components/command-palette.tsx
-msgid "Search for systems, sensors, containers, services or settings..."
-msgstr "Tizimlar, sensorlar, konteynerlar, xizmatlar yoki sozlamalarni qidirish..."
+msgid "Search for systems, sensors, containers, services, certificates or settings..."
+msgstr "Tizimlar, sensorlar, konteynerlar, xizmatlar, sertifikatlar yoki sozlamalarni qidirish..."
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
@@ -3157,6 +3358,14 @@ msgstr "Pinglar orasidagi soniyalar (standart: 60)"
 msgid "See <0>notification settings</0> to configure how you receive alerts."
 msgstr "Ogohlantirishlarni qanday olishingizni sozlash uchun <0>bildirishnoma sozlamalarini</0> ko'ring."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Seen by a sensor"
+msgstr "Sensor tomonidan ko‘rilgan"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Seen by the sensors"
+msgstr "Sensorlar tomonidan ko‘rilgan"
+
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "Select"
 msgstr "Tanlash"
@@ -3166,6 +3375,7 @@ msgstr "Tanlash"
 msgid "Select {foo}"
 msgstr "{foo} tanlash"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Select a system"
 msgstr "Tizimni tanlang"
@@ -3195,6 +3405,10 @@ msgstr "Yangilanadigan tizimlarni tanlang."
 #: src/components/agent-update-dialog.tsx
 msgid "Selection"
 msgstr "Tanlov"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Self-signed"
+msgstr "O‘z-o‘zidan imzolangan"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Send a single heartbeat ping to verify your endpoint is working."
@@ -3290,6 +3504,10 @@ msgstr "O'lchagich ranglari uchun foiz chegaralarini belgilang."
 msgid "Set the following environment variables on your Beszel hub to enable heartbeat monitoring:"
 msgstr "Heartbeat monitoringni yoqish uchun Beszel hub'ingizda quyidagi muhit o'zgaruvchilarini belgilang:"
 
+#: src/lib/certificates.ts
+msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
+msgstr "Yangi sertifikat barmoq izini quyidagi joyda (yoki Win32_TSGeneralSetting WMI sinfida) belgilang, so‘ng Masofaviy ish stoli xizmatini qayta ishga tushiring:"
+
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Sozlash"
@@ -3351,6 +3569,7 @@ msgstr "O‘chirilgan ogohlantirishlar"
 msgid "SMTP settings"
 msgstr "SMTP sozlamalari"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
@@ -3421,6 +3640,7 @@ msgstr "Holat qoidalari"
 msgid "States"
 msgstr "Holatlar"
 
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/routes/system/smart-table.tsx
@@ -3435,6 +3655,10 @@ msgstr "Holatlar"
 #: src/lib/alerts.ts
 msgid "Status"
 msgstr "Holat"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Stop watching"
+msgstr "Kuzatishni to‘xtatish"
 
 #: src/components/containers-table/containers-table.tsx
 msgid "Stopped"
@@ -3467,6 +3691,10 @@ msgstr "Mavzuni almashtirish"
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/navbar.tsx
@@ -3597,6 +3825,14 @@ msgstr "Sinov"
 msgid "The agent can't replace its executable. Reinstall it with the current install command."
 msgstr "Agent o‘z bajariladigan faylini almashtira olmaydi. Uni joriy o‘rnatish buyrug‘i bilan qayta o‘rnating."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "The agent could not read this certificate: {error}"
+msgstr "Agent bu sertifikatni o‘qiy olmadi: {error}"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "The agent of this system must be updated (0.20.0-fork.5 or newer) to read it."
+msgstr "Uni o‘qish uchun ushbu tizim agentini yangilash kerak (0.20.0-fork.5 yoki yangiroq)."
+
 #: src/components/routes/system/agent-details.tsx
 msgid "The agent restarts and reconnects on its own."
 msgstr "Agent o‘zi qayta ishga tushadi va qayta ulanadi."
@@ -3660,6 +3896,14 @@ msgstr "Mavzu"
 #: src/components/login/forgot-pass-form.tsx
 msgid "Then log into the backend and reset your user account password in the users table."
 msgstr "Keyin backend'ga kiring va foydalanuvchilar jadvalidagi foydalanuvchi hisob parolingizni tiklang."
+
+#: src/lib/certificates.ts
+msgid "Then restart cockpit."
+msgstr "So‘ng cockpit ni qayta ishga tushiring."
+
+#: src/lib/certificates.ts
+msgid "Then restart pveproxy."
+msgstr "So‘ng pveproxy ni qayta ishga tushiring."
 
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
@@ -3764,7 +4008,9 @@ msgctxt "Disk I/O"
 msgid "Total time spent on read/write (can exceed 100%)"
 msgstr "O'qish/yozishga sarflangan jami vaqt (100% dan oshishi mumkin)"
 
+#. placeholder {0}: all.length
 #. placeholder {0}: data.length
+#: src/components/certificates/certificates-table.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Total: {0}"
 msgstr "Jami: {0}"
@@ -3914,6 +4160,10 @@ msgstr "Cheksiz"
 msgid "Unreachable"
 msgstr "Erishib bo‘lmaydi"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Unreadable"
+msgstr "O‘qib bo‘lmaydi"
+
 #. Context: System is up
 #. Context: System is up
 #. Context: System is up
@@ -4035,6 +4285,12 @@ msgstr "Faqat harflar, raqamlar va _ . @ - dan foydalaning."
 msgid "Used"
 msgstr "Ishlatilgan"
 
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificates-table.tsx
+msgid "Used by"
+msgstr "Foydalanuvchi"
+
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 msgid "Users"
@@ -4045,13 +4301,25 @@ msgctxt "Disk I/O utilization"
 msgid "Utilization"
 msgstr "Yuklanish"
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Valid"
+msgstr "Yaroqli"
+
 #: src/components/sensors/sensor-cert.tsx
 msgid "Valid and trusted certificate"
 msgstr "Amaldagi va ishonchli sertifikat"
 
 #: src/components/sensors/sensor-cert.tsx
+msgid "Valid certificate"
+msgstr "Yaroqli sertifikat"
+
+#: src/components/sensors/sensor-cert.tsx
 msgid "Valid from"
 msgstr "Amal qilish boshlanishi"
+
+#: src/components/sensors/sensor-cert.tsx
+msgid "Valid self-signed certificate"
+msgstr "Yaroqli o‘z-o‘zidan imzolangan sertifikat"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Valid until"
@@ -4067,6 +4335,7 @@ msgid "Version"
 msgstr "Versiya"
 
 #: src/components/active-alerts.tsx
+#: src/components/certificates/certificates-table.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
@@ -4121,6 +4390,10 @@ msgstr "Yoqilganda, ushbu token agentlarga oldindan tizim yaratmasdan o'z-o'zini
 msgid "When using POST, each heartbeat includes a JSON payload with system status summary, list of down systems, and triggered alerts."
 msgstr "POST ishlatilganda, har bir heartbeat tizim holati xulosasi, ishlamayotgan tizimlar ro'yxati va ishga tushirilgan ogohlantirishlarni o'z ichiga olgan JSON yuklamani o'z ichiga oladi."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Where to change each important certificate, for each service using it."
+msgstr "Har bir muhim sertifikatni undan foydalanadigan har bir xizmat uchun qayerda o‘zgartirish kerak."
+
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 msgctxt "Button to copy install command"
@@ -4150,6 +4423,10 @@ msgstr "Holat ogohlantirish qoidasi bilan"
 #: src/components/systems-table/systems-table.tsx
 msgid "With alerts"
 msgstr "Ogohlantirishli"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "With an expiry alert"
+msgstr "Muddat tugashi ogohlantirishi bilan"
 
 #. Disk write
 #. Disk write

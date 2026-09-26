@@ -2,6 +2,7 @@ package hub
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log/slog"
 	"net"
@@ -205,6 +206,8 @@ func (h *Hub) registerApiRoutes(se *core.ServeEvent) error {
 	apiAuth.POST("/smart/refresh", h.refreshSmartData).BindFunc(excludeReadOnlyRole)
 	// refresh ZFS pool details for a system
 	apiAuth.POST("/zfs/refresh", h.refreshZfsData).BindFunc(excludeReadOnlyRole)
+	// read the certificates of a host now
+	apiAuth.POST("/certificates/refresh", h.refreshCertificates)
 	// get systemd service details
 	apiAuth.GET("/systemd/info", h.getSystemdInfo)
 	// agent details, logs and updates
@@ -518,6 +521,28 @@ func (h *Hub) refreshSmartData(e *core.RequestEvent) error {
 		return e.InternalServerError("", err)
 	}
 
+	return e.JSON(http.StatusOK, map[string]string{"status": "ok"})
+}
+
+// refreshCertificates handles POST /api/beszel/certificates/refresh requests:
+// reads the certificates of a host now, with the files added by the users.
+func (h *Hub) refreshCertificates(e *core.RequestEvent) error {
+	systemID := e.Request.URL.Query().Get("system")
+	if systemID == "" {
+		return e.BadRequestError("Invalid system parameter", nil)
+	}
+	system, err := h.sm.GetSystem(systemID)
+	if err != nil || !system.HasUser(e.App, e.Auth) {
+		return e.NotFoundError("", nil)
+	}
+	switch err := system.SyncCertificates(e.Request.Context()); {
+	case errors.Is(err, systems.ErrAgentOutdated):
+		return e.BadRequestError("outdated", nil)
+	case errors.Is(err, systems.ErrCertificatesBusy):
+		return e.JSON(http.StatusOK, map[string]string{"status": "busy"})
+	case err != nil:
+		return e.BadRequestError(err.Error(), nil)
+	}
 	return e.JSON(http.StatusOK, map[string]string{"status": "ok"})
 }
 
