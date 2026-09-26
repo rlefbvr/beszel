@@ -86,6 +86,10 @@ msgstr "{count, plural, one {# szűrt konténer} other {# szűrt konténer}}"
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# szűrt szolgáltatás} other {# szűrt szolgáltatás}}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# selected process} other {# selected processes}}"
+msgstr "{count, plural, one {# kiválasztott folyamat} other {# kiválasztott folyamat}}"
+
 #: src/components/sensors/sensor-incidents.tsx
 msgid "{count, plural, one {# sensor} other {# sensors}}"
 msgstr "{count, plural, one {# érzékelő} other {# érzékelő}}"
@@ -95,12 +99,20 @@ msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# rendszer} other {# rendszer}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
+msgstr "{count, plural, one {A kiválasztott folyamat riasztásai ebben az időszakban nem kerülnek kiküldésre.} other {A # kiválasztott folyamat riasztásai ebben az időszakban nem kerülnek kiküldésre.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
 msgstr "{count, plural, one {A kiválasztott konténer állapotriasztásai ebben az időszakban nem kerülnek kiküldésre.} other {A kiválasztott konténerek (#) állapotriasztásai ebben az időszakban nem kerülnek kiküldésre.}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
 msgstr "{count, plural, one {A kiválasztott szolgáltatás állapotriasztásai ebben az időszakban nem kerülnek kiküldésre.} other {A kiválasztott szolgáltatások (#) állapotriasztásai ebben az időszakban nem kerülnek kiküldésre.}}"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "{count} instance(s) · CPU {cpuText}"
+msgstr "{count} példány · CPU {cpuText}"
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "{count} processes · CPU {cpuText} · Memory {memText}"
@@ -128,6 +140,14 @@ msgid "{failed} system(s) did not answer."
 msgstr "{failed} rendszer nem válaszolt."
 
 #: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more processes: use the filter to find them."
+msgstr "Még {hidden} folyamat: a szűrővel találhatja meg őket."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more programs: use the filter to find them."
+msgstr "Még {hidden} program: a szűrővel találhatja meg őket."
+
+#: src/components/processes-table/processes-overview.tsx
 msgid "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
 msgstr "{matchCount} folyamat {systemCount} rendszeren erre: „{searched}”"
 
@@ -150,6 +170,10 @@ msgstr "{outdated} rendszer ügynökét frissíteni kell (0.20.0-fork.5 vagy új
 #: src/components/certificates/certificates-table.tsx
 msgid "{outdated} system(s) need an agent update to read their certificates."
 msgstr "{outdated} rendszer ügynökét frissíteni kell a tanúsítványok beolvasásához."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{programCount} programs"
+msgstr "{programCount} program"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
@@ -459,8 +483,24 @@ msgid "Alert types"
 msgstr "Riasztástípusok"
 
 #: src/components/alerts/state-alert-rules.tsx
-msgid "Alert when services or Docker containers enter or leave a state."
-msgstr "Riasztás, amikor szolgáltatások vagy Docker-konténerek egy állapotba kerülnek vagy kilépnek belőle."
+msgid "Alert when its CPU is above"
+msgstr "Riasztás, ha a CPU meghaladja"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are fewer than"
+msgstr "Riasztás, ha kevesebb a példány, mint"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are more than"
+msgstr "Riasztás, ha több a példány, mint"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its memory is above"
+msgstr "Riasztás, ha a memória meghaladja"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when services, Docker containers or processes enter or leave a state."
+msgstr "Riasztás, ha szolgáltatások, Docker-konténerek vagy folyamatok egy állapotba lépnek vagy elhagyják azt."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
@@ -475,6 +515,14 @@ msgstr "Riasztás, ha az állapot nem"
 #: src/components/certificates/certificates-table.tsx
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "Riasztás, ha a(z) {systemName} {name} tanúsítványa a küszöbnél kevesebb nap múlva lejár. Az azonos nevű megújított tanúsítványok továbbra is ellenőrzöttek, és a tanúsítvány fontossá válik."
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is not running"
+msgstr "Riasztás, ha a folyamat nem fut"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is running"
+msgstr "Riasztás, ha a folyamat fut"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -536,6 +584,14 @@ msgstr "Összes tanúsítvány"
 msgid "All Containers"
 msgstr "Minden konténer"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "All groups"
+msgstr "Minden csoport"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "All OS"
+msgstr "Minden OS"
+
 #: src/components/agent-update-dialog.tsx
 msgid "All outdated ({outdatedCount})"
 msgstr "Összes elavult ({outdatedCount})"
@@ -578,6 +634,8 @@ msgstr "Összes szolgáltatás"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -593,6 +651,10 @@ msgstr "Minden rendszer"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "Minden rendszer eddig: {until}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "All the instances of a program count as one target, such as every chrome.exe."
+msgstr "Egy program minden példánya egy célnak számít, például minden chrome.exe."
 
 #: src/components/period-select.tsx
 msgid "All time"
@@ -841,6 +903,18 @@ msgstr "Érzékelők tömeges hozzáadása"
 msgid "Bulk copy"
 msgstr "Tömeges másolás"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on CPU first"
+msgstr "Legterheltebb CPU elöl"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on memory first"
+msgstr "Legterheltebb memória elöl"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "By name"
+msgstr "Név szerint"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Bytes (KB/s, MB/s, GB/s)"
@@ -1038,6 +1112,8 @@ msgstr "Szabályos"
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -1106,8 +1182,8 @@ msgstr "Szín"
 msgid "Columns"
 msgstr "Oszlopok"
 
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 msgid "Command"
 msgstr "Parancs"
 
@@ -1117,6 +1193,7 @@ msgid "Command line instructions"
 msgstr "Parancssori utasítások"
 
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Condition"
 msgstr "Feltétel"
@@ -1154,6 +1231,7 @@ msgstr "Konfliktusok"
 msgid "Connection is down"
 msgstr "Kapcsolat megszakadt"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Connections"
 msgstr "Kapcsolatok"
@@ -1269,16 +1347,20 @@ msgstr "Mag"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "CPU"
 msgstr "CPU"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "CPU above {threshold}%"
+msgstr "CPU {threshold}% felett"
 
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "CPU Cores"
@@ -1287,6 +1369,11 @@ msgstr "CPU magok"
 #: src/lib/alerts.ts
 msgid "CPU I/O Wait"
 msgstr "CPU I/O-várakozási idő (IOWait)"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "CPU max"
+msgstr "Max. CPU"
 
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -1549,7 +1636,6 @@ msgid "Discharging"
 msgstr "Kisül"
 
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Disk"
@@ -1559,7 +1645,8 @@ msgstr "Lemez"
 msgid "Disk I/O"
 msgstr "Lemez I/O"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk read"
 msgstr "Lemezolvasás"
@@ -1577,10 +1664,15 @@ msgstr "Lemezhasználat"
 msgid "Disk usage of {extraFsName}"
 msgstr "Lemezhasználat a {extraFsName}"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk write"
 msgstr "Lemezírás"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Disk: {diskText}"
+msgstr "Lemez: {diskText}"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Layout display options"
@@ -1963,6 +2055,10 @@ msgstr "Sikertelen: {0}"
 msgid "Fans"
 msgstr "Ventilátorok"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "fewer than {threshold} instances"
+msgstr "kevesebb mint {threshold} példány"
+
 #: src/lib/certificates.ts
 msgid "File"
 msgstr "Fájl"
@@ -1970,6 +2066,9 @@ msgstr "Fájl"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/chart-card.tsx
@@ -2265,6 +2364,10 @@ msgstr "Fontos tanúsítványok"
 msgid "Important containers"
 msgstr "Fontos konténerek"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Important processes"
+msgstr "Fontos folyamatok"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "Fontos szolgáltatások"
@@ -2308,6 +2411,12 @@ msgstr "Példány"
 #: src/components/routes/settings/general.tsx
 msgid "Instance name"
 msgstr "Példány neve"
+
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Instances"
+msgstr "Példányok"
 
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Interruptions: {incidentCount}"
@@ -2514,6 +2623,10 @@ msgstr "Terhelési átlag"
 msgid "Load state"
 msgstr "Betöltési állapot"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Loaded systems ({loadedCount})"
+msgstr "Terhelt rendszerek ({loadedCount})"
+
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
@@ -2630,10 +2743,10 @@ msgstr "Max. 1 óra"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/info-bar.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2642,6 +2755,10 @@ msgstr "Max. 1 óra"
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Memory"
 msgstr "RAM"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "memory above {threshold}%"
+msgstr "memória {threshold}% felett"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Memory limit"
@@ -2662,6 +2779,10 @@ msgstr "Memóriahasználat"
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Memory usage of containers"
 msgstr "Konténerek memóriahasználata"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Memory: {memText}"
+msgstr "Memória: {memText}"
 
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -2703,9 +2824,21 @@ msgstr "Monitorok létrehozva"
 msgid "More"
 msgstr "Továbbiak"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "more than {threshold} instances"
+msgstr "több mint {threshold} példány"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Mountpoint"
 msgstr "Csatolási pont"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must be running"
+msgstr "futnia kell"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must not be running"
+msgstr "nem futhat"
 
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
@@ -2714,9 +2847,8 @@ msgstr "Csatolási pont"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -2755,8 +2887,8 @@ msgstr "Hálózat"
 msgid "Network"
 msgstr "Hálózat"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 msgid "Network connections"
 msgstr "Hálózati kapcsolatok"
 
@@ -2891,6 +3023,11 @@ msgstr "Ebben az időszakban nem volt kimaradás."
 msgid "No logs yet."
 msgstr "Még nincsenek naplók."
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "No process started in the last 24 hours."
+msgstr "Az elmúlt 24 órában nem indult folyamat."
+
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "No processes found."
 msgstr "Nem található folyamat."
@@ -2927,6 +3064,10 @@ msgstr "Még nincs érzékelő: adja hozzá a gazdagépeket és portokat, amelye
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
 msgstr "Frissítés után egyetlen szolgáltatás sem indítja újra az ügynököt."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "No system matches the filters."
+msgstr "Egy rendszer sem felel meg a szűrőknek."
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "No systems are up."
@@ -3043,6 +3184,10 @@ msgstr "Ezt a beállítást csak rendszergazdák módosíthatják."
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Open menu"
 msgstr "Menü megnyitása"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Operating system"
+msgstr "Operációs rendszer"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Optional, such as the name of the service"
@@ -3217,6 +3362,10 @@ msgstr "Függőben"
 msgid "Per-core average utilization"
 msgstr "Átlagos kihasználtság magonként"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Percent of the whole host, all the instances of the program added up."
+msgstr "A teljes gazdagép százaléka, a program összes példányát összeadva."
+
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Percent of time the disk is busy with I/O"
 msgstr "Az az időtartam százalékban, amíg a lemez I/O műveletekkel van elfoglalva"
@@ -3334,14 +3483,36 @@ msgstr "Preferált nyelv"
 msgid "Previous page"
 msgstr "Előző oldal"
 
+#: src/lib/alerts.ts
+msgid "Process alert"
+msgstr "Folyamatriasztás"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Process alerts"
+msgstr "Folyamatriasztások"
+
+#: src/lib/alerts.ts
+msgid "Process rule matched"
+msgstr "Folyamatszabály teljesült"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Process started"
 msgstr "Folyamat elindítva"
 
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "Folyamatok"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Processes are checked every minute, only on the systems with process rules."
+msgstr "A folyamatokat percenként ellenőrizzük, csak a folyamatszabályokkal rendelkező rendszereken."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Processes started in the last 24 hours, the newest first: new programs, restarts, or a program restarting in a loop."
+msgstr "Az elmúlt 24 órában indult folyamatok, a legújabbak elöl: új programok, újraindítások vagy ciklusban újrainduló program."
 
 #: src/components/processes-table/processes-charts.tsx
 msgid "Processes that use the most resources since this page was opened. Click an area to see the process."
@@ -3350,6 +3521,14 @@ msgstr "Az oldal megnyitása óta a legtöbb erőforrást használó folyamatok.
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Production, Customers, Lab…"
 msgstr "Éles, Ügyfelek, Labor…"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Program"
+msgstr "Program"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Programs of the fleet"
+msgstr "A flotta programjai"
 
 #: src/components/routes/settings/security.tsx
 msgid "Protect your account with a second factor asked after the password."
@@ -3495,6 +3674,10 @@ msgstr "Legutóbbi ellenőrzések"
 msgid "Recently opened"
 msgstr "Nemrég megnyitott"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Recently started"
+msgstr "Nemrég indult"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Rögzítve"
@@ -3513,6 +3696,7 @@ msgstr "Hátralévő helyreállító kódok: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -3855,6 +4039,10 @@ msgstr "Összes kijelölése"
 msgid "Select matches"
 msgstr "Egyezések kijelölése"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Select programs to watch them on every system running them, or click one to find its processes."
+msgstr "Jelöljön ki programokat, hogy minden rendszeren figyelje őket, ahol futnak, vagy kattintson egyre a folyamatai megkereséséhez."
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Select row"
 msgstr "Sor kijelölése"
@@ -4092,9 +4280,9 @@ msgstr "Kezdési idő"
 msgid "Start type"
 msgstr "Indítás típusa"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Started"
 msgstr "Elindítva"
@@ -4146,9 +4334,9 @@ msgstr "Állapotok"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -4167,6 +4355,7 @@ msgid "Stop watching"
 msgstr "Figyelés leállítása"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-table.tsx
 msgid "Stopped"
 msgstr "Leállítva"
 
@@ -4212,8 +4401,9 @@ msgstr "Téma váltása"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4258,9 +4448,16 @@ msgstr "Systemd szolgáltatások"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "Rendszer"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems ({count})"
+msgstr "Rendszerek ({count})"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
@@ -4269,6 +4466,10 @@ msgstr "A rendszereket egy <0>config.yml</0> fájlban lehet kezelni az adatköny
 #: src/components/agent-update-dialog.tsx
 msgid "Systems to update ({targetCount})"
 msgstr "Frissítendő rendszerek ({targetCount})"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems using at least half of their CPU or memory"
+msgstr "Legalább a CPU-juk vagy memóriájuk felét használó rendszerek"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -4481,8 +4682,9 @@ msgstr "Ez a rendszer eddig: {until}"
 msgid "This will permanently delete all selected records from the database."
 msgstr "Ez véglegesen törli az összes kijelölt bejegyzést az adatbázisból."
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Threads"
 msgstr "Szálak"
@@ -4491,6 +4693,10 @@ msgstr "Szálak"
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Threshold"
 msgstr "Küszöb"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Threshold (%)"
+msgstr "Küszöb (%)"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -4555,6 +4761,10 @@ msgstr "Legnagyobb fogyasztók"
 msgid "Total"
 msgstr "Összesen"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Total ({count} processes)"
+msgstr "Összesen ({count} folyamat)"
+
 #: src/components/routes/system/network-sheet.tsx
 msgid "Total data received for each interface"
 msgstr "Összes fogadott adat minden interfészenként"
@@ -4566,6 +4776,15 @@ msgstr "Összes elküldött adat minden interfészenként"
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Total duration: {totalDuration}"
 msgstr "Teljes időtartam: {totalDuration}"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Total memory"
+msgstr "Teljes memória"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Total of the filtered processes ({count})"
+msgstr "A szűrt folyamatok összesen ({count})"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
@@ -4878,10 +5097,9 @@ msgstr "Felhasznált"
 msgid "Used by"
 msgstr "Használja"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/ldap.tsx

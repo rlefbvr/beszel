@@ -86,6 +86,10 @@ msgstr "{count, plural, one {# филтриран контейнер} other {# �
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# филтрирана услуга} other {# филтрирани услуги}}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# selected process} other {# selected processes}}"
+msgstr "{count, plural, one {# избран процес} other {# избрани процеса}}"
+
 #: src/components/sensors/sensor-incidents.tsx
 msgid "{count, plural, one {# sensor} other {# sensors}}"
 msgstr "{count, plural, one {# сензор} other {# сензора}}"
@@ -95,12 +99,20 @@ msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# система} other {# системи}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
+msgstr "{count, plural, one {Сигналите за избрания процес не се изпращат през този период.} other {Сигналите за # избрани процеса не се изпращат през този период.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
 msgstr "{count, plural, one {Сигналите за състоянието на избрания контейнер не се изпращат през този период.} other {Сигналите за състоянието на избраните контейнери (#) не се изпращат през този период.}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
 msgstr "{count, plural, one {Сигналите за състоянието на избраната услуга не се изпращат през този период.} other {Сигналите за състоянието на избраните услуги (#) не се изпращат през този период.}}"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "{count} instance(s) · CPU {cpuText}"
+msgstr "{count} инстанции · CPU {cpuText}"
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "{count} processes · CPU {cpuText} · Memory {memText}"
@@ -128,6 +140,14 @@ msgid "{failed} system(s) did not answer."
 msgstr "{failed} система(и) не отговориха."
 
 #: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more processes: use the filter to find them."
+msgstr "Още {hidden} процеса: използвайте филтъра, за да ги намерите."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more programs: use the filter to find them."
+msgstr "Още {hidden} програми: използвайте филтъра, за да ги намерите."
+
+#: src/components/processes-table/processes-overview.tsx
 msgid "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
 msgstr "{matchCount} процес(а) на {systemCount} система(и) за „{searched}“"
 
@@ -150,6 +170,10 @@ msgstr "{outdated} системи се нуждаят от обновяване 
 #: src/components/certificates/certificates-table.tsx
 msgid "{outdated} system(s) need an agent update to read their certificates."
 msgstr "{outdated} системи се нуждаят от обновяване на агента, за да се прочетат сертификатите им."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{programCount} programs"
+msgstr "{programCount} програми"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
@@ -459,8 +483,24 @@ msgid "Alert types"
 msgstr "Видове сигнали"
 
 #: src/components/alerts/state-alert-rules.tsx
-msgid "Alert when services or Docker containers enter or leave a state."
-msgstr "Известие, когато услуги или Docker контейнери влязат в състояние или излязат от него."
+msgid "Alert when its CPU is above"
+msgstr "Сигнал, когато CPU е над"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are fewer than"
+msgstr "Сигнал, когато инстанциите са по-малко от"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are more than"
+msgstr "Сигнал, когато инстанциите са повече от"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its memory is above"
+msgstr "Сигнал, когато паметта е над"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when services, Docker containers or processes enter or leave a state."
+msgstr "Сигнал, когато услуги, Docker контейнери или процеси влизат в или излизат от състояние."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
@@ -475,6 +515,14 @@ msgstr "Известие, когато състоянието не е"
 #: src/components/certificates/certificates-table.tsx
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "Сигнал, когато сертификатът {name} на {systemName} изтича след по-малко дни от прага. Подновените сертификати със същото име остават проверявани, а сертификатът става важен."
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is not running"
+msgstr "Сигнал, когато процесът не работи"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is running"
+msgstr "Сигнал, когато процесът работи"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -536,6 +584,14 @@ msgstr "Всички сертификати"
 msgid "All Containers"
 msgstr "Всички контейнери"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "All groups"
+msgstr "Всички групи"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "All OS"
+msgstr "Всички ОС"
+
 #: src/components/agent-update-dialog.tsx
 msgid "All outdated ({outdatedCount})"
 msgstr "Всички остарели ({outdatedCount})"
@@ -578,6 +634,8 @@ msgstr "Всички услуги"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -593,6 +651,10 @@ msgstr "Всички системи"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "Всички системи до {until}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "All the instances of a program count as one target, such as every chrome.exe."
+msgstr "Всички инстанции на програма се броят като една цел, например всеки chrome.exe."
 
 #: src/components/period-select.tsx
 msgid "All time"
@@ -841,6 +903,18 @@ msgstr "Групово добавяне на сензори"
 msgid "Bulk copy"
 msgstr "Групово копиране"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on CPU first"
+msgstr "Най-натоварени по CPU първо"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on memory first"
+msgstr "Най-натоварени по памет първо"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "By name"
+msgstr "По име"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Bytes (KB/s, MB/s, GB/s)"
@@ -1038,6 +1112,8 @@ msgstr "Нормално"
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -1106,8 +1182,8 @@ msgstr "Цвят"
 msgid "Columns"
 msgstr "Колони"
 
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 msgid "Command"
 msgstr "Команда"
 
@@ -1117,6 +1193,7 @@ msgid "Command line instructions"
 msgstr "Инструкции за командната линия"
 
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Condition"
 msgstr "Условие"
@@ -1154,6 +1231,7 @@ msgstr "Конфликти"
 msgid "Connection is down"
 msgstr "Връзката е прекъсната"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Connections"
 msgstr "Връзки"
@@ -1269,16 +1347,20 @@ msgstr "Основни"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "CPU"
 msgstr "Процесор"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "CPU above {threshold}%"
+msgstr "CPU над {threshold}%"
 
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "CPU Cores"
@@ -1287,6 +1369,11 @@ msgstr "CPU ядра"
 #: src/lib/alerts.ts
 msgid "CPU I/O Wait"
 msgstr "Изчакване на CPU за вход/изход (IOWait)"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "CPU max"
+msgstr "Макс. CPU"
 
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -1549,7 +1636,6 @@ msgid "Discharging"
 msgstr "Разреждане"
 
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Disk"
@@ -1559,7 +1645,8 @@ msgstr "Диск"
 msgid "Disk I/O"
 msgstr "Дискови операции"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk read"
 msgstr "Четене от диска"
@@ -1577,10 +1664,15 @@ msgstr "Използване на диск"
 msgid "Disk usage of {extraFsName}"
 msgstr "Изполване на диск от {extraFsName}"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk write"
 msgstr "Запис на диска"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Disk: {diskText}"
+msgstr "Диск: {diskText}"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Layout display options"
@@ -1963,6 +2055,10 @@ msgstr "Неуспешни: {0}"
 msgid "Fans"
 msgstr "Вентилатори"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "fewer than {threshold} instances"
+msgstr "по-малко от {threshold} инстанции"
+
 #: src/lib/certificates.ts
 msgid "File"
 msgstr "Файл"
@@ -1970,6 +2066,9 @@ msgstr "Файл"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/chart-card.tsx
@@ -2265,6 +2364,10 @@ msgstr "Важни сертификати"
 msgid "Important containers"
 msgstr "Важни контейнери"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Important processes"
+msgstr "Важни процеси"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "Важни услуги"
@@ -2308,6 +2411,12 @@ msgstr "Инстанция"
 #: src/components/routes/settings/general.tsx
 msgid "Instance name"
 msgstr "Име на инстанцията"
+
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Instances"
+msgstr "Инстанции"
 
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Interruptions: {incidentCount}"
@@ -2514,6 +2623,10 @@ msgstr "Средно натоварване"
 msgid "Load state"
 msgstr "Състояние на зареждане"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Loaded systems ({loadedCount})"
+msgstr "Натоварени системи ({loadedCount})"
+
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
@@ -2630,10 +2743,10 @@ msgstr "Макс. 1h"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/info-bar.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2642,6 +2755,10 @@ msgstr "Макс. 1h"
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Memory"
 msgstr "Памет"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "memory above {threshold}%"
+msgstr "памет над {threshold}%"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Memory limit"
@@ -2662,6 +2779,10 @@ msgstr "Употреба на паметта"
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Memory usage of containers"
 msgstr "Използване на паметта от контейнерите"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Memory: {memText}"
+msgstr "Памет: {memText}"
 
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -2703,9 +2824,21 @@ msgstr "Мониторите са създадени"
 msgid "More"
 msgstr "Още"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "more than {threshold} instances"
+msgstr "повече от {threshold} инстанции"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Mountpoint"
 msgstr "Точка на монтиране"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must be running"
+msgstr "трябва да работи"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must not be running"
+msgstr "не трябва да работи"
 
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
@@ -2714,9 +2847,8 @@ msgstr "Точка на монтиране"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -2755,8 +2887,8 @@ msgstr "Мрежа"
 msgid "Network"
 msgstr "Мрежа"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 msgid "Network connections"
 msgstr "Мрежови връзки"
 
@@ -2891,6 +3023,11 @@ msgstr "Няма прекъсвания за този период."
 msgid "No logs yet."
 msgstr "Все още няма журнали."
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "No process started in the last 24 hours."
+msgstr "Няма стартиран процес през последните 24 часа."
+
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "No processes found."
 msgstr "Не са намерени процеси."
@@ -2927,6 +3064,10 @@ msgstr "Все още няма сензори: добавете хостовет
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
 msgstr "Никоя услуга не рестартира агента след актуализация."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "No system matches the filters."
+msgstr "Няма система, отговаряща на филтрите."
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "No systems are up."
@@ -3043,6 +3184,10 @@ msgstr "Само администратори могат да променят �
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Open menu"
 msgstr "Отвори менюто"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Operating system"
+msgstr "Операционна система"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Optional, such as the name of the service"
@@ -3217,6 +3362,10 @@ msgstr "Изчакване"
 msgid "Per-core average utilization"
 msgstr "Средно използване на ядро"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Percent of the whole host, all the instances of the program added up."
+msgstr "Процент от целия хост, като всички инстанции на програмата се сумират."
+
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Percent of time the disk is busy with I/O"
 msgstr "Процент от времето, в което дискът е зает с I/O операции"
@@ -3334,14 +3483,36 @@ msgstr "Предпочитан език"
 msgid "Previous page"
 msgstr "Предишна страница"
 
+#: src/lib/alerts.ts
+msgid "Process alert"
+msgstr "Сигнал за процес"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Process alerts"
+msgstr "Сигнали за процеси"
+
+#: src/lib/alerts.ts
+msgid "Process rule matched"
+msgstr "Правилото за процес е изпълнено"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Process started"
 msgstr "Процесът стартира"
 
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "Процеси"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Processes are checked every minute, only on the systems with process rules."
+msgstr "Процесите се проверяват всяка минута, само в системите с правила за процеси."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Processes started in the last 24 hours, the newest first: new programs, restarts, or a program restarting in a loop."
+msgstr "Процеси, стартирани през последните 24 часа, най-новите първи: нови програми, рестартирания или програма, която се рестартира в цикъл."
 
 #: src/components/processes-table/processes-charts.tsx
 msgid "Processes that use the most resources since this page was opened. Click an area to see the process."
@@ -3350,6 +3521,14 @@ msgstr "Процесите, които използват най-много ре
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Production, Customers, Lab…"
 msgstr "Продукция, Клиенти, Лаборатория…"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Program"
+msgstr "Програма"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Programs of the fleet"
+msgstr "Програми на парка"
 
 #: src/components/routes/settings/security.tsx
 msgid "Protect your account with a second factor asked after the password."
@@ -3495,6 +3674,10 @@ msgstr "Последни проверки"
 msgid "Recently opened"
 msgstr "Наскоро отворени"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Recently started"
+msgstr "Наскоро стартирани"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Записано"
@@ -3513,6 +3696,7 @@ msgstr "Оставащи кодове за възстановяване: {recove
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -3855,6 +4039,10 @@ msgstr "Избери всички"
 msgid "Select matches"
 msgstr "Избери съвпаденията"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Select programs to watch them on every system running them, or click one to find its processes."
+msgstr "Изберете програми, за да ги наблюдавате на всяка система, която ги изпълнява, или щракнете върху една, за да намерите процесите ѝ."
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Select row"
 msgstr "Избери ред"
@@ -4092,9 +4280,9 @@ msgstr "Начален час"
 msgid "Start type"
 msgstr "Тип стартиране"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Started"
 msgstr "Стартиран"
@@ -4146,9 +4334,9 @@ msgstr "Състояния"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -4167,6 +4355,7 @@ msgid "Stop watching"
 msgstr "Спиране на наблюдението"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-table.tsx
 msgid "Stopped"
 msgstr "Спрян"
 
@@ -4212,8 +4401,9 @@ msgstr "Смени темата"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4258,9 +4448,16 @@ msgstr "Услуги на systemd"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "Системи"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems ({count})"
+msgstr "Системи ({count})"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
@@ -4269,6 +4466,10 @@ msgstr "Системите могат да бъдат управлявани в 
 #: src/components/agent-update-dialog.tsx
 msgid "Systems to update ({targetCount})"
 msgstr "Системи за актуализиране ({targetCount})"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems using at least half of their CPU or memory"
+msgstr "Системи, използващи поне половината от CPU или паметта си"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -4481,8 +4682,9 @@ msgstr "Тази система до {until}"
 msgid "This will permanently delete all selected records from the database."
 msgstr "Това ще доведе до трайно изтриване на всички избрани записи от базата данни."
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Threads"
 msgstr "Нишки"
@@ -4491,6 +4693,10 @@ msgstr "Нишки"
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Threshold"
 msgstr "Праг"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Threshold (%)"
+msgstr "Праг (%)"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -4555,6 +4761,10 @@ msgstr "Най-големи консуматори"
 msgid "Total"
 msgstr "Общо"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Total ({count} processes)"
+msgstr "Общо ({count} процеса)"
+
 #: src/components/routes/system/network-sheet.tsx
 msgid "Total data received for each interface"
 msgstr "Общо получени данни за всеки интерфейс"
@@ -4566,6 +4776,15 @@ msgstr "Общо изпратени данни за всеки интерфей�
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Total duration: {totalDuration}"
 msgstr "Обща продължителност: {totalDuration}"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Total memory"
+msgstr "Обща памет"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Total of the filtered processes ({count})"
+msgstr "Общо за филтрираните процеси ({count})"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
@@ -4878,10 +5097,9 @@ msgstr "Използвани"
 msgid "Used by"
 msgstr "Използван от"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/ldap.tsx

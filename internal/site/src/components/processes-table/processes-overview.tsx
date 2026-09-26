@@ -2,54 +2,131 @@ import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
 import { getPagePath } from "@nanostores/router"
-import { CpuIcon, LoaderCircleIcon, MemoryStickIcon, RefreshCwIcon, SearchIcon, XIcon } from "lucide-react"
-import { type FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react"
+import {
+	type ColumnDef,
+	flexRender,
+	getCoreRowModel,
+	getFilteredRowModel,
+	getSortedRowModel,
+	type RowSelectionState,
+	type SortingState,
+	useReactTable,
+} from "@tanstack/react-table"
+import {
+	ArrowRightIcon,
+	BoxesIcon,
+	ChevronDownIcon,
+	CpuIcon,
+	FlameIcon,
+	LayersIcon,
+	ListTreeIcon,
+	LoaderCircleIcon,
+	MemoryStickIcon,
+	MonitorCogIcon,
+	RefreshCwIcon,
+	SearchIcon,
+	ServerIcon,
+	XIcon,
+} from "lucide-react"
+import { type FormEvent, type ReactNode, useCallback, useEffect, useMemo, useState } from "react"
+import { BulkQuietHoursButton } from "@/components/alerts/bulk-quiet-hours"
+import { BulkStateAlertsButton, selectionColumn } from "@/components/alerts/bulk-state-alerts"
 import { $router, Link } from "@/components/router"
+import {
+	cellWidthStyle,
+	ColumnResizer,
+	ColumnsViewMenu,
+	headerWidthStyle,
+	useTableLayout,
+} from "@/components/table-layout"
 import { Button } from "@/components/ui/button"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Dialog } from "@/components/ui/dialog"
+import {
+	DropdownMenu,
+	DropdownMenuCheckboxItem,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuRadioGroup,
+	DropdownMenuRadioItem,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { pb } from "@/lib/api"
+import { isReadOnlyUser, pb } from "@/lib/api"
+import { useSystemBrands } from "@/lib/os-brands"
 import { $allSystemsById, $systems } from "@/lib/stores"
+import { systemGroup } from "@/lib/system-groups"
 import { cn } from "@/lib/utils"
-import { formatRate, formatSize, percent, ProcessDialog, type ProcessRow, usageClass } from "./process-dialog"
+import { HeaderButton, useProcessColumns } from "./process-columns"
+import { formatSize, percent, ProcessDialog, type ProcessRow, usageClass } from "./process-dialog"
+
+/** The instances of a program on a host, added up by the hub */
+interface Program {
+	name: string
+	count: number
+	cpu: number
+	mem: number
+	rss: number
+}
 
 /** Processes of a host, summed up by the hub */
 interface ProcessesOverview {
 	system: string
 	error?: string
 	count: number
+	threads: number
 	cpu: number
 	mem: number
 	topCpu: ProcessRow[]
 	topMem: ProcessRow[]
+	programs: Program[]
+	recent: ProcessRow[]
+	recentCount: number
 	matches: ProcessRow[]
 }
 
-type RawOverview = Omit<ProcessesOverview, "topCpu" | "topMem" | "matches"> & {
+type RawOverview = Omit<ProcessesOverview, "topCpu" | "topMem" | "recent" | "matches" | "programs" | "recentCount"> & {
 	topCpu?: Omit<ProcessRow, "system">[]
 	topMem?: Omit<ProcessRow, "system">[]
+	recent?: Omit<ProcessRow, "system">[]
 	matches?: Omit<ProcessRow, "system">[]
+	programs?: Program[]
+	recentCount?: number
 }
 
 /** Processes kept for each host in the top consumers */
-const topCount = 3
+const topCount = 10
+/** The processes started in the last day are the recent ones */
+const recentWindow = 24 * 3600
+/** Share of the host from which it counts as loaded */
+const loadedHost = 50
+/** Height of the tables of the page: 20 rows, then they scroll */
+const tableHeight = "max-h-[calc(20*2.5625rem+3rem)]"
 
-/** Asks the hub for the processes of the hosts: it reads the agents and keeps the top ones or the matches */
-async function fetchOverview(systems: string[], params: { top?: number; q?: string }) {
+/** Asks the hub for the processes of the hosts: it reads the agents and keeps what the page needs */
+async function fetchOverview(
+	systems: string[],
+	params: { top?: number; q?: string; programs?: number; recent?: number }
+): Promise<ProcessesOverview[]> {
 	const res = await pb.send<{ systems: RawOverview[] }>("/api/beszel/processes/overview", {
 		query: { systems: systems.join(","), ...params },
 		requestKey: null,
 	})
-	return res.systems.map(
-		(overview): ProcessesOverview => ({
-			...overview,
-			topCpu: (overview.topCpu ?? []).map((process) => ({ ...process, system: overview.system })),
-			topMem: (overview.topMem ?? []).map((process) => ({ ...process, system: overview.system })),
-			matches: (overview.matches ?? []).map((process) => ({ ...process, system: overview.system })),
-		})
-	)
+	const withSystem = (system: string, list?: Omit<ProcessRow, "system">[]) =>
+		(list ?? []).map((process) => ({ ...process, system }))
+	return res.systems.map((overview) => ({
+		...overview,
+		topCpu: withSystem(overview.system, overview.topCpu),
+		topMem: withSystem(overview.system, overview.topMem),
+		recent: withSystem(overview.system, overview.recent),
+		matches: withSystem(overview.system, overview.matches),
+		programs: overview.programs ?? [],
+		recentCount: overview.recentCount ?? 0,
+	}))
 }
 
 /** IDs of the systems that are up, the ones whose agent can answer */
@@ -63,12 +140,14 @@ function useUpSystems() {
 	return useMemo(() => (key ? key.split(",") : []), [key])
 }
 
-function SystemLink({ id }: { id: string }) {
+const systemPath = (id: string) => getPagePath($router, "system", { id })
+
+function SystemLink({ id, className }: { id: string; className?: string }) {
 	const systems = useStore($allSystemsById)
 	return (
 		<Link
-			href={getPagePath($router, "system", { id })}
-			className="font-medium hover:underline underline-offset-2"
+			href={systemPath(id)}
+			className={cn("font-medium hover:underline underline-offset-2 truncate", className)}
 			onClick={(e) => e.stopPropagation()}
 		>
 			{systems[id]?.name ?? id}
@@ -91,16 +170,193 @@ function Unanswered({ overviews }: { overviews: ProcessesOverview[] }) {
 	)
 }
 
+/** Title of a block of the page */
+function BlockHeader({ title, description }: { title: ReactNode; description: ReactNode }) {
+	return (
+		<CardHeader className="p-0 mb-4 px-2 sm:px-1">
+			<CardTitle className="mb-1.5">{title}</CardTitle>
+			<CardDescription>{description}</CardDescription>
+		</CardHeader>
+	)
+}
+
+/** Reads the processes of the fleet again: the last button of the toolbar of each block */
+function RefreshButton({ onRefresh, loading }: { onRefresh: () => void; loading: boolean }) {
+	return (
+		<Button
+			variant="outline"
+			size="icon"
+			className="shrink-0"
+			onClick={onRefresh}
+			disabled={loading}
+			aria-label={t`Refresh`}
+			title={t`Refresh`}
+		>
+			{loading ? <LoaderCircleIcon className="size-4 animate-spin" /> : <RefreshCwIcon className="size-4" />}
+		</Button>
+	)
+}
+
 /**
- * Page of all the processes: nothing is read until a search, apart from the
- * few top consumers of each host, so that it stays light with many systems.
+ * Choice of some hosts among a list, none chosen meaning all of them, and of
+ * the brand of their OS when brands are given: both in one dropdown.
+ */
+function SystemsFilter({
+	systems,
+	selected,
+	onChange,
+	brands,
+	brand = "",
+	onBrandChange,
+}: {
+	systems: string[]
+	selected: string[]
+	onChange: (selected: string[]) => void
+	/** brand of the OS of each system */
+	brands?: Record<string, string>
+	brand?: string
+	onBrandChange?: (brand: string) => void
+}) {
+	const names = useStore($allSystemsById)
+	const brandList = brands ? [...new Set(systems.map((id) => brands[id]))].sort() : []
+	const sorted = [...systems]
+		.filter((id) => !brand || brands?.[id] === brand)
+		.sort((a, b) => (names[a]?.name ?? a).localeCompare(names[b]?.name ?? b))
+	const count = selected.length
+	return (
+		<DropdownMenu>
+			<DropdownMenuTrigger asChild>
+				<Button variant="outline" className="shrink-0 gap-1.5">
+					<ServerIcon className="size-4 opacity-80" />
+					{brand && <span>{brand}</span>}
+					{brand && count > 0 && <span className="text-muted-foreground">·</span>}
+					{count ? <Trans>Systems ({count})</Trans> : !brand && <Trans>All Systems</Trans>}
+					<ChevronDownIcon className="size-4 opacity-50" />
+				</Button>
+			</DropdownMenuTrigger>
+			<DropdownMenuContent align="end" className="min-w-52 max-h-96 overflow-y-auto">
+				{brandList.length > 1 && onBrandChange && (
+					<>
+						<DropdownMenuLabel className="flex items-center gap-2">
+							<MonitorCogIcon className="size-4" />
+							<Trans>Operating system</Trans>
+						</DropdownMenuLabel>
+						<DropdownMenuRadioGroup value={brand || "all"} onValueChange={(value) => onBrandChange(value === "all" ? "" : value)}>
+							<DropdownMenuRadioItem value="all" onSelect={(e) => e.preventDefault()}>
+								<Trans>All OS</Trans>
+							</DropdownMenuRadioItem>
+							{brandList.map((value) => (
+								<DropdownMenuRadioItem key={value} value={value} onSelect={(e) => e.preventDefault()}>
+									{value}
+								</DropdownMenuRadioItem>
+							))}
+						</DropdownMenuRadioGroup>
+						<DropdownMenuSeparator />
+					</>
+				)}
+				<DropdownMenuLabel className="flex items-center gap-2">
+					<ServerIcon className="size-4" />
+					<Trans>Systems</Trans>
+				</DropdownMenuLabel>
+				<DropdownMenuItem disabled={!count} onSelect={() => onChange([])}>
+					<Trans>All Systems</Trans>
+				</DropdownMenuItem>
+				{sorted.map((id) => (
+					<DropdownMenuCheckboxItem
+						key={id}
+						checked={selected.includes(id)}
+						onSelect={(e) => e.preventDefault()}
+						onCheckedChange={(checked) =>
+							onChange(checked ? [...selected, id] : selected.filter((other) => other !== id))
+						}
+					>
+						{names[id]?.name ?? id}
+					</DropdownMenuCheckboxItem>
+				))}
+			</DropdownMenuContent>
+		</DropdownMenu>
+	)
+}
+
+/**
+ * Page of all the processes: a search on demand, then the analysis of the
+ * fleet read once from the hub (top consumers, programs, recent starts,
+ * comparison), so that it stays light with many systems.
  */
 export default function ProcessesOverviewPage() {
+	const systems = useUpSystems()
 	const [selected, setSelected] = useState<ProcessRow | null>(null)
+	const [searchRequest, setSearchRequest] = useState<{ q: string; n: number }>()
+	const [loading, setLoading] = useState(false)
+	const [overviews, setOverviews] = useState<ProcessesOverview[]>()
+
+	const load = useCallback(async () => {
+		setLoading(true)
+		try {
+			setOverviews(await fetchOverview(systems, { top: topCount, programs: 1, recent: recentWindow }))
+		} finally {
+			setLoading(false)
+		}
+	}, [systems])
+
+	// read once, when the systems are known; then on demand
+	const [loaded, setLoaded] = useState(false)
+	useEffect(() => {
+		if (!loaded && systems.length) {
+			setLoaded(true)
+			load()
+		}
+	}, [systems, load, loaded])
+
+	const search = useCallback((q: string) => {
+		setSearchRequest((current) => ({ q, n: (current?.n ?? 0) + 1 }))
+		document.getElementById("process-search")?.scrollIntoView({ behavior: "smooth", block: "start" })
+	}, [])
+
+	const answered = useMemo(() => (overviews ?? []).filter((overview) => !overview.error), [overviews])
+	const refresh = <RefreshButton onRefresh={load} loading={loading} />
+	const waiting = overviews === undefined && (
+		<div className="h-24 grid place-items-center text-muted-foreground">
+			{loading || systems.length ? <LoaderCircleIcon className="size-5 animate-spin" /> : <Trans>No systems are up.</Trans>}
+		</div>
+	)
+
 	return (
 		<>
-			<ProcessSearch onSelect={setSelected} />
-			<TopConsumers onSelect={setSelected} />
+			<div id="process-search" className="scroll-mt-20">
+				<ProcessSearch systems={systems} request={searchRequest} onSelect={setSelected} />
+			</div>
+			<Card className="w-full px-3 py-5 sm:py-6 sm:px-6">
+				<BlockHeader
+					title={<Trans>Top consumers</Trans>}
+					description={
+						<Trans>The processes that use the most CPU and memory on each system that is up, at the time of the reading.</Trans>
+					}
+				/>
+				{waiting || <TopConsumers overviews={answered} onSelect={setSelected} actions={refresh} />}
+				{overviews && <Unanswered overviews={overviews} />}
+			</Card>
+			<Card className="w-full px-3 py-5 sm:py-6 sm:px-6">
+				<BlockHeader
+					title={<Trans>Programs of the fleet</Trans>}
+					description={
+						<Trans>Select programs to watch them on every system running them, or click one to find its processes.</Trans>
+					}
+				/>
+				{waiting || <FleetPrograms overviews={answered} onSearch={search} actions={refresh} />}
+			</Card>
+			<Card className="w-full px-3 py-5 sm:py-6 sm:px-6">
+				<BlockHeader
+					title={<Trans>Recently started</Trans>}
+					description={
+						<Trans>
+							Processes started in the last 24 hours, the newest first: new programs, restarts, or a program restarting in
+							a loop.
+						</Trans>
+					}
+				/>
+				{waiting || <RecentStarts overviews={answered} onSelect={setSelected} actions={refresh} />}
+			</Card>
 			<Dialog open={!!selected} onOpenChange={(open) => !open && setSelected(null)}>
 				{selected && <ProcessDialog process={selected} />}
 			</Dialog>
@@ -108,48 +364,231 @@ export default function ProcessesOverviewPage() {
 	)
 }
 
+/* ------------------------------------------------------------------ */
+/* Tables of processes of several systems                             */
+/* ------------------------------------------------------------------ */
+
+/** Rows shown at most in a table of processes, the filters find the others */
+const maxRows = 500
+
+/**
+ * Processes of several systems, like the other tables: sortable columns with
+ * icons, "View" menu, filter, choice of the systems, selection for the
+ * alerts and quiet hours.
+ */
+function ProcessesGrid({
+	rows,
+	layoutKey,
+	hiddenByDefault,
+	initialSort,
+	onSelect,
+	emptyText,
+	actions,
+}: {
+	rows: ProcessRow[]
+	layoutKey: string
+	hiddenByDefault: readonly string[]
+	initialSort: SortingState
+	onSelect: (process: ProcessRow) => void
+	emptyText: ReactNode
+	/** buttons after the ones of the table */
+	actions?: ReactNode
+}) {
+	const [sorting, setSorting] = useState<SortingState>(initialSort)
+	const [filter, setFilter] = useState("")
+	const [shownSystems, setShownSystems] = useState<string[]>([])
+	const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
+	const layout = useTableLayout(layoutKey, hiddenByDefault)
+	const baseColumns = useProcessColumns(true)
+	const columns = useMemo(
+		() => (isReadOnlyUser() ? baseColumns : [selectionColumn<ProcessRow>(), ...baseColumns]),
+		[baseColumns]
+	)
+	const systemsOfRows = useMemo(() => [...new Set(rows.map((row) => row.system))], [rows])
+	const systems = useStore($allSystemsById)
+	const data = useMemo(
+		() => (shownSystems.length ? rows.filter((row) => shownSystems.includes(row.system)) : rows),
+		[rows, shownSystems]
+	)
+
+	const table = useReactTable({
+		data,
+		columns,
+		getRowId: (row) => `${row.system}/${row.pid}/${row.started ?? 0}`,
+		getCoreRowModel: getCoreRowModel(),
+		getSortedRowModel: getSortedRowModel(),
+		getFilteredRowModel: getFilteredRowModel(),
+		onSortingChange: setSorting,
+		onRowSelectionChange: setRowSelection,
+		onColumnVisibilityChange: layout.onColumnVisibilityChange,
+		onGlobalFilterChange: setFilter,
+		globalFilterFn: (row, _columnId, value: string) => {
+			const process = row.original
+			const text = `${process.name} ${process.pid} ${process.user ?? ""} ${process.command ?? ""} ${
+				systems[process.system]?.name ?? ""
+			}`.toLowerCase()
+			return value
+				.toLowerCase()
+				.split(" ")
+				.filter(Boolean)
+				.every((term) => text.includes(term))
+		},
+		state: { sorting, rowSelection, globalFilter: filter, columnVisibility: layout.columnVisibility },
+	})
+	const tableRows = table.getRowModel().rows
+	const selectedItems = table.getFilteredSelectedRowModel().rows.map((row) => row.original)
+	const hidden = tableRows.length - maxRows
+
+	return (
+		<>
+			<div className="flex flex-wrap items-center gap-2 mb-3">
+				<div className="relative flex-1 min-w-48 sm:max-w-64">
+					<Input
+						placeholder={t`Filter...`}
+						value={filter}
+						onChange={(e) => setFilter(e.target.value)}
+						className="ps-4 pe-10 w-full"
+					/>
+					{filter && (
+						<Button
+							type="button"
+							variant="ghost"
+							size="icon"
+							aria-label={t`Clear`}
+							className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 text-muted-foreground"
+							onClick={() => setFilter("")}
+						>
+							<XIcon className="h-4 w-4" />
+						</Button>
+					)}
+				</div>
+				<div className="flex flex-wrap gap-2 ms-auto">
+					{systemsOfRows.length > 1 && (
+						<SystemsFilter systems={systemsOfRows} selected={shownSystems} onChange={setShownSystems} />
+					)}
+					<ColumnsViewMenu table={table} />
+					<BulkStateAlertsButton kind="process" items={selectedItems} />
+					<BulkQuietHoursButton kind="process" items={selectedItems} />
+					{actions}
+				</div>
+			</div>
+			<div className={cn(tableHeight, "max-w-full relative overflow-auto border rounded-md")}>
+				<table className="text-sm w-full text-nowrap">
+					<TableHeader className="sticky top-0 z-50 w-full border-b-2">
+						{table.getHeaderGroups().map((group) => (
+							<tr key={group.id}>
+								{group.headers.map((header) => (
+									<TableHead
+										key={header.id}
+										className="px-2 relative"
+										style={headerWidthStyle(layout.widths[header.column.id])}
+									>
+										{flexRender(header.column.columnDef.header, header.getContext())}
+										<ColumnResizer columnId={header.column.id} onColumnResize={layout.onColumnResize} />
+									</TableHead>
+								))}
+							</tr>
+						))}
+					</TableHeader>
+					<TableBody>
+						{tableRows.length ? (
+							tableRows.slice(0, maxRows).map((row) => (
+								<TableRow key={row.id} className="cursor-pointer" onClick={() => onSelect(row.original)}>
+									{row.getVisibleCells().map((cell) => (
+										<TableCell
+											key={cell.id}
+											className="py-2 ps-4.5"
+											style={cellWidthStyle(layout.widths[cell.column.id], cell.column.columnDef.meta?.grow)}
+										>
+											{flexRender(cell.column.columnDef.cell, cell.getContext())}
+										</TableCell>
+									))}
+								</TableRow>
+							))
+						) : (
+							<TableRow>
+								<TableCell colSpan={columns.length} className="h-24 text-center text-muted-foreground">
+									{emptyText}
+								</TableCell>
+							</TableRow>
+						)}
+					</TableBody>
+				</table>
+			</div>
+			{hidden > 0 && (
+				<p className="text-xs text-muted-foreground mt-2">
+					<Trans>{hidden} more processes: use the filter to find them.</Trans>
+				</p>
+			)}
+		</>
+	)
+}
+
+/* ------------------------------------------------------------------ */
+/* Search                                                             */
+/* ------------------------------------------------------------------ */
+
+/** Columns of the search results hidden until the user shows them */
+const searchHiddenByDefault = ["command", "threads", "status"]
+
 /** Looks for a process on all the hosts that are up */
-function ProcessSearch({ onSelect }: { onSelect: (process: ProcessRow) => void }) {
-	const systems = useUpSystems()
+function ProcessSearch({
+	systems,
+	request,
+	onSelect,
+}: {
+	systems: string[]
+	request?: { q: string; n: number }
+	onSelect: (process: ProcessRow) => void
+}) {
 	const [query, setQuery] = useState("")
 	const [searched, setSearched] = useState("")
 	const [loading, setLoading] = useState(false)
 	const [results, setResults] = useState<ProcessesOverview[]>()
 
-	const search = async (e?: FormEvent) => {
-		e?.preventDefault()
-		const q = query.trim()
-		if (!q) {
-			return
-		}
-		setLoading(true)
-		try {
-			setResults(await fetchOverview(systems, { q }))
-			setSearched(q)
-		} finally {
-			setLoading(false)
-		}
-	}
-
-	const matches = useMemo(
-		() => (results ?? []).flatMap((overview) => overview.matches).sort((a, b) => (b.cpu ?? 0) - (a.cpu ?? 0)),
-		[results]
+	const run = useCallback(
+		async (text: string) => {
+			const q = text.trim()
+			if (!q || !systems.length) {
+				return
+			}
+			setLoading(true)
+			try {
+				setResults(await fetchOverview(systems, { q }))
+				setSearched(q)
+			} finally {
+				setLoading(false)
+			}
+		},
+		[systems]
 	)
+
+	// a program chosen in the analysis of the fleet
+	useEffect(() => {
+		if (request) {
+			setQuery(request.q)
+			run(request.q)
+		}
+	}, [request])
+
+	const matches = useMemo(() => (results ?? []).flatMap((overview) => overview.matches), [results])
 	const matchCount = matches.length
 	const systemCount = new Set(matches.map((process) => process.system)).size
 
 	return (
-		<Card className="w-full px-3 py-5 sm:py-6 sm:px-6">
-			<CardHeader className="p-0 mb-4 px-2 sm:px-1">
-				<CardTitle className="mb-1.5">
-					<Trans>Search a process</Trans>
-				</CardTitle>
-				<CardDescription>
-					<Trans>Looks for a process on all the systems that are up, by name, command, user or PID.</Trans>
-				</CardDescription>
-			</CardHeader>
-			<form onSubmit={search} className="flex gap-2 max-w-xl">
-				<div className="relative flex-1">
+		<Card className="@container w-full px-3 py-5 sm:py-6 sm:px-6">
+			<BlockHeader
+				title={<Trans>Search a process</Trans>}
+				description={<Trans>Looks for a process on all the systems that are up, by name, command, user or PID.</Trans>}
+			/>
+			<form
+				onSubmit={(e: FormEvent) => {
+					e.preventDefault()
+					run(query)
+				}}
+				className="flex flex-wrap gap-2"
+			>
+				<div className="relative flex-1 min-w-48 max-w-xl">
 					<Input
 						placeholder={t`nginx, sqlservr, java…`}
 						value={query}
@@ -172,7 +611,7 @@ function ProcessSearch({ onSelect }: { onSelect: (process: ProcessRow) => void }
 						</Button>
 					)}
 				</div>
-				<Button type="submit" disabled={loading || !query.trim() || !systems.length}>
+				<Button type="submit" variant="outline" disabled={loading || !query.trim() || !systems.length}>
 					{loading ? (
 						<LoaderCircleIcon className="me-1.5 size-4 animate-spin" />
 					) : (
@@ -183,69 +622,21 @@ function ProcessSearch({ onSelect }: { onSelect: (process: ProcessRow) => void }
 			</form>
 			{results && (
 				<div className="mt-4">
-					<p className="text-sm text-muted-foreground mb-2 px-1">
+					<p className="text-sm text-muted-foreground mb-3 px-1">
 						<Trans>
 							{matchCount} process(es) on {systemCount} system(s) for “{searched}”
 						</Trans>
 					</p>
 					{matches.length > 0 && (
-						<div className="border rounded-md overflow-auto max-h-[60dvh]">
-							<table className="text-sm w-full text-nowrap">
-								<TableHeader className="sticky top-0 z-10 bg-card">
-									<TableRow>
-										<TableHead className="px-4">
-											<Trans>System</Trans>
-										</TableHead>
-										<TableHead className="px-4">
-											<Trans>Name</Trans>
-										</TableHead>
-										<TableHead className="px-4">PID</TableHead>
-										<TableHead className="px-4">
-											<Trans>User</Trans>
-										</TableHead>
-										<TableHead className="px-4">
-											<Trans>CPU</Trans>
-										</TableHead>
-										<TableHead className="px-4">
-											<Trans>Memory</Trans>
-										</TableHead>
-										<TableHead className="px-4">
-											<Trans>Disk</Trans>
-										</TableHead>
-									</TableRow>
-								</TableHeader>
-								<TableBody>
-									{matches.map((process) => (
-										<TableRow
-											key={`${process.system}/${process.pid}`}
-											className="cursor-pointer"
-											onClick={() => onSelect(process)}
-										>
-											<TableCell className="px-4 py-2">
-												<SystemLink id={process.system} />
-											</TableCell>
-											<TableCell className="px-4 py-2 max-w-64 truncate" title={process.command || process.name}>
-												{process.name}
-											</TableCell>
-											<TableCell className="px-4 py-2 tabular-nums">{process.pid}</TableCell>
-											<TableCell className="px-4 py-2 max-w-40 truncate text-muted-foreground">
-												{process.user || "-"}
-											</TableCell>
-											<TableCell className={cn("px-4 py-2 tabular-nums", usageClass(process.cpu))}>
-												{percent(process.cpu)}
-											</TableCell>
-											<TableCell className="px-4 py-2 tabular-nums">
-												<span className={usageClass(process.mem)}>{percent(process.mem)}</span>
-												<span className="ms-1.5 text-xs text-muted-foreground">{formatSize(process.rss)}</span>
-											</TableCell>
-											<TableCell className="px-4 py-2 tabular-nums text-muted-foreground">
-												↓ {formatRate(process.dr)} · ↑ {formatRate(process.dw)}
-											</TableCell>
-										</TableRow>
-									))}
-								</TableBody>
-							</table>
-						</div>
+						<ProcessesGrid
+							key={searched}
+							rows={matches}
+							layoutKey="processes-search"
+							hiddenByDefault={searchHiddenByDefault}
+							initialSort={[{ id: "cpu", desc: true }]}
+							onSelect={onSelect}
+							emptyText={<Trans>No processes found.</Trans>}
+						/>
 					)}
 					<Unanswered overviews={results} />
 				</div>
@@ -254,96 +645,198 @@ function ProcessSearch({ onSelect }: { onSelect: (process: ProcessRow) => void }
 	)
 }
 
-/** The few processes that use the most CPU and memory on each host, read once and on demand */
-function TopConsumers({ onSelect }: { onSelect: (process: ProcessRow) => void }) {
-	const systems = useUpSystems()
-	const [loading, setLoading] = useState(false)
-	const [overviews, setOverviews] = useState<ProcessesOverview[]>()
+/* ------------------------------------------------------------------ */
+/* Top consumers                                                      */
+/* ------------------------------------------------------------------ */
 
-	const load = useCallback(async () => {
-		setLoading(true)
-		try {
-			setOverviews(await fetchOverview(systems, { top: topCount }))
-		} finally {
-			setLoading(false)
-		}
-	}, [systems])
+type TopSort = "cpu" | "mem" | "name"
 
-	// read once, when the systems are known; then on demand
-	const loaded = useRef(false)
-	useEffect(() => {
-		if (!loaded.current && systems.length) {
-			loaded.current = true
-			load()
-		}
-	}, [systems, load])
-
-	const answered = useMemo(
-		() => (overviews ?? []).filter((overview) => !overview.error).sort((a, b) => b.cpu - a.cpu),
-		[overviews]
+function TopConsumers({
+	overviews,
+	onSelect,
+	actions,
+}: {
+	overviews: ProcessesOverview[]
+	onSelect: (process: ProcessRow) => void
+	actions?: ReactNode
+}) {
+	const allSystems = useStore($allSystemsById)
+	const systemRecords = useMemo(
+		() => overviews.map((overview) => allSystems[overview.system]).filter(Boolean),
+		[overviews, allSystems]
 	)
+	const brands = useSystemBrands(systemRecords)
+	const brandKey = JSON.stringify(brands)
+	const [shownSystems, setShownSystems] = useState<string[]>([])
+	const [brand, setBrand] = useState("")
+	const [group, setGroup] = useState("")
+	const [filter, setFilter] = useState("")
+	const [loadedOnly, setLoadedOnly] = useState(false)
+	const [sort, setSort] = useState<TopSort>("cpu")
+
+	const groupList = [...new Set(systemRecords.map(systemGroup).filter(Boolean))].sort()
+	const isLoaded = (overview: ProcessesOverview) => overview.cpu >= loadedHost || overview.mem >= loadedHost
+
+	const shown = useMemo(() => {
+		const list = overviews.filter((overview) => {
+			const system = allSystems[overview.system]
+			return (
+				(!shownSystems.length || shownSystems.includes(overview.system)) &&
+				(!brand || brands[overview.system] === brand) &&
+				(!group || (system && systemGroup(system) === group)) &&
+				(!loadedOnly || isLoaded(overview))
+			)
+		})
+		// a filter keeps the systems of its name, or the processes of its name on the other systems
+		const term = filter.trim().toLowerCase()
+		const filtered = term
+			? list.flatMap((overview) => {
+					if ((allSystems[overview.system]?.name ?? "").toLowerCase().includes(term)) {
+						return [overview]
+					}
+					const matches = (process: ProcessRow) => process.name.toLowerCase().includes(term)
+					const topCpu = overview.topCpu.filter(matches)
+					const topMem = overview.topMem.filter(matches)
+					return topCpu.length || topMem.length ? [{ ...overview, topCpu, topMem }] : []
+				})
+			: list
+		const name = (overview: ProcessesOverview) => allSystems[overview.system]?.name ?? overview.system
+		return filtered.sort((a, b) =>
+			sort === "name" ? name(a).localeCompare(name(b)) : sort === "mem" ? b.mem - a.mem : b.cpu - a.cpu
+		)
+	}, [overviews, allSystems, shownSystems, brand, group, loadedOnly, sort, brandKey, filter])
+
+	const loadedCount = overviews.filter(isLoaded).length
 
 	return (
-		<Card className="w-full px-3 py-5 sm:py-6 sm:px-6">
-			<CardHeader className="p-0 mb-4 px-2 sm:px-1 flex-row items-start gap-3">
-				<div className="me-auto">
-					<CardTitle className="mb-1.5">
-						<Trans>Top consumers</Trans>
-					</CardTitle>
-					<CardDescription>
-						<Trans>The processes that use the most CPU and memory on each system that is up, at the time of the reading.</Trans>
-					</CardDescription>
-				</div>
-				<Button variant="outline" size="icon" onClick={load} disabled={loading} aria-label={t`Refresh`}>
-					{loading ? <LoaderCircleIcon className="size-4 animate-spin" /> : <RefreshCwIcon className="size-4" />}
-				</Button>
-			</CardHeader>
-			{overviews === undefined ? (
-				<div className="h-24 grid place-items-center text-muted-foreground">
-					{loading || systems.length ? (
-						<LoaderCircleIcon className="size-5 animate-spin" />
-					) : (
-						<Trans>No systems are up.</Trans>
+		<>
+			<div className="flex flex-wrap items-center gap-2 mb-3">
+				<div className="relative flex-1 min-w-48 sm:max-w-64">
+					<Input
+						placeholder={t`Filter...`}
+						value={filter}
+						onChange={(e) => setFilter(e.target.value)}
+						className="ps-4 pe-10 w-full"
+					/>
+					{filter && (
+						<Button
+							type="button"
+							variant="ghost"
+							size="icon"
+							aria-label={t`Clear`}
+							className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 text-muted-foreground"
+							onClick={() => setFilter("")}
+						>
+							<XIcon className="h-4 w-4" />
+						</Button>
 					)}
 				</div>
+				<Button
+					variant={loadedOnly ? "default" : "outline"}
+					className="gap-1.5"
+					onClick={() => setLoadedOnly(!loadedOnly)}
+					aria-pressed={loadedOnly}
+					title={t`Systems using at least half of their CPU or memory`}
+				>
+					<FlameIcon className="size-3.5" />
+					<Trans>Loaded systems ({loadedCount})</Trans>
+				</Button>
+				<div className="flex flex-wrap gap-2 ms-auto">
+					{groupList.length > 0 && (
+						<Select value={group || "all"} onValueChange={(value) => setGroup(value === "all" ? "" : value)}>
+							<SelectTrigger className="w-auto min-w-36">
+								<SelectValue />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectItem value="all">
+									<Trans>All groups</Trans>
+								</SelectItem>
+								{groupList.map((name) => (
+									<SelectItem key={name} value={name}>
+										{name}
+									</SelectItem>
+								))}
+							</SelectContent>
+						</Select>
+					)}
+					<Select value={sort} onValueChange={(value: TopSort) => setSort(value)}>
+						<SelectTrigger className="w-auto min-w-40">
+							<SelectValue />
+						</SelectTrigger>
+						<SelectContent>
+							<SelectItem value="cpu">
+								<Trans>Busiest on CPU first</Trans>
+							</SelectItem>
+							<SelectItem value="mem">
+								<Trans>Busiest on memory first</Trans>
+							</SelectItem>
+							<SelectItem value="name">
+								<Trans>By name</Trans>
+							</SelectItem>
+						</SelectContent>
+					</Select>
+					<SystemsFilter
+						systems={overviews.map((overview) => overview.system)}
+						selected={shownSystems}
+						onChange={setShownSystems}
+						brands={brands}
+						brand={brand}
+						onBrandChange={setBrand}
+					/>
+					{actions}
+				</div>
+			</div>
+			{shown.length ? (
+				<div className="grid gap-3 lg:grid-cols-2 2xl:grid-cols-3">
+					{shown.map((overview) => (
+						<HostTop key={overview.system} overview={overview} brand={brands[overview.system]} onSelect={onSelect} />
+					))}
+				</div>
 			) : (
-				<>
-					<div className={cn("grid gap-3 sm:grid-cols-2 2xl:grid-cols-3", loading && "opacity-60")}>
-						{answered.map((overview) => (
-							<HostTop key={overview.system} overview={overview} onSelect={onSelect} />
-						))}
-					</div>
-					<Unanswered overviews={overviews} />
-				</>
+				<p className="text-sm text-muted-foreground py-6 text-center">
+					<Trans>No system matches the filters.</Trans>
+				</p>
 			)}
-		</Card>
+		</>
 	)
 }
 
 function HostTop({
 	overview,
+	brand,
 	onSelect,
 }: {
 	overview: ProcessesOverview
+	brand?: string
 	onSelect: (process: ProcessRow) => void
 }) {
 	const count = overview.count
 	const cpuText = percent(overview.cpu)
 	const memText = percent(overview.mem)
 	return (
-		<div className="rounded-md border p-3">
-			<div className="flex flex-wrap items-baseline gap-x-2 mb-2">
+		<div className="rounded-lg border p-3 grid gap-2 content-start">
+			<div className="flex items-center gap-2 min-w-0">
+				<ServerIcon className="size-4 text-muted-foreground shrink-0" />
 				<SystemLink id={overview.system} />
-				<span className="ms-auto text-xs text-muted-foreground tabular-nums">
-					<Trans>
-						{count} processes · CPU {cpuText} · Memory {memText}
-					</Trans>
-				</span>
+				{brand && <span className="shrink-0 rounded border px-1.5 text-xs text-muted-foreground">{brand}</span>}
+				<Button asChild variant="ghost" size="sm" className="ms-auto h-7 gap-1.5 shrink-0 text-muted-foreground">
+					<Link href={`${systemPath(overview.system)}#processes`}>
+						<ListTreeIcon className="size-3.5" />
+						<Trans>Processes</Trans>
+						<ArrowRightIcon className="size-3.5" />
+					</Link>
+				</Button>
 			</div>
-			<div className="grid grid-cols-2 gap-3">
+			<span className="text-xs text-muted-foreground tabular-nums -mt-1">
+				<Trans>
+					{count} processes · CPU {cpuText} · Memory {memText}
+				</Trans>
+			</span>
+			<div className="grid grid-cols-2 gap-4">
 				<TopList
 					icon={CpuIcon}
 					title={t`CPU`}
+					barClass="bg-amber-500/25 dark:bg-amber-400/20"
 					processes={overview.topCpu}
 					value={(process) => process.cpu}
 					onSelect={onSelect}
@@ -351,6 +844,7 @@ function HostTop({
 				<TopList
 					icon={MemoryStickIcon}
 					title={t`Memory`}
+					barClass="bg-sky-500/25 dark:bg-sky-400/20"
 					processes={overview.topMem}
 					value={(process) => process.mem}
 					onSelect={onSelect}
@@ -363,19 +857,24 @@ function HostTop({
 function TopList({
 	icon: Icon,
 	title,
+	barClass,
 	processes,
 	value,
 	onSelect,
 }: {
 	icon: React.ElementType
 	title: string
+	/** color of the bars */
+	barClass: string
 	processes: ProcessRow[]
 	value: (process: ProcessRow) => number | undefined
 	onSelect: (process: ProcessRow) => void
 }) {
+	// bars relative to the heaviest of the list
+	const max = Math.max(...processes.map((process) => value(process) ?? 0), 0.0001)
 	return (
 		<div className="min-w-0">
-			<div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
+			<div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-1">
 				<Icon className="size-3.5" />
 				{title}
 			</div>
@@ -386,11 +885,15 @@ function TopList({
 							<button
 								type="button"
 								onClick={() => onSelect(process)}
-								className="w-full flex items-baseline gap-2 text-sm rounded px-1 -mx-1 hover:bg-accent/60 text-start"
+								className="relative w-full flex items-baseline gap-2 text-sm rounded px-1.5 py-0.5 hover:bg-accent/60 text-start overflow-hidden"
 								title={process.command || process.name}
 							>
-								<span className="truncate">{process.name}</span>
-								<span className={cn("ms-auto tabular-nums text-xs", usageClass(value(process)))}>
+								<span
+									className={cn("absolute inset-y-0 start-0 rounded", barClass)}
+									style={{ width: `${((value(process) ?? 0) / max) * 100}%` }}
+								/>
+								<span className="relative truncate">{process.name}</span>
+								<span className={cn("relative ms-auto tabular-nums text-xs", usageClass(value(process)))}>
 									{percent(value(process))}
 								</span>
 							</button>
@@ -401,5 +904,236 @@ function TopList({
 				<p className="text-sm text-muted-foreground">-</p>
 			)}
 		</div>
+	)
+}
+
+/* ------------------------------------------------------------------ */
+/* Programs of the fleet                                              */
+/* ------------------------------------------------------------------ */
+
+/** A program across the fleet: the systems running it and its instances added up */
+interface FleetProgram {
+	name: string
+	systems: string[]
+	count: number
+	/** the highest CPU of the program on a system, percent of that system */
+	cpuMax: number
+	rss: number
+}
+
+/** Rows shown at most in the table of the programs; the filter finds the others */
+const maxProgramRows = 300
+
+function FleetPrograms({
+	overviews,
+	onSearch,
+	actions,
+}: {
+	overviews: ProcessesOverview[]
+	onSearch: (q: string) => void
+	actions?: ReactNode
+}) {
+	const allSystems = useStore($allSystemsById)
+	const [filter, setFilter] = useState("")
+	const [sorting, setSorting] = useState<SortingState>([{ id: "systems", desc: true }])
+	const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
+	const [shownSystems, setShownSystems] = useState<string[]>([])
+	const layout = useTableLayout("fleet-programs")
+
+	const programs = useMemo(() => {
+		const byName = new Map<string, FleetProgram>()
+		for (const overview of overviews) {
+			if (shownSystems.length && !shownSystems.includes(overview.system)) {
+				continue
+			}
+			for (const program of overview.programs) {
+				const fleet = byName.get(program.name) ?? { name: program.name, systems: [], count: 0, cpuMax: 0, rss: 0 }
+				fleet.systems.push(overview.system)
+				fleet.count += program.count
+				fleet.cpuMax = Math.max(fleet.cpuMax, program.cpu)
+				fleet.rss += program.rss
+				byName.set(program.name, fleet)
+			}
+		}
+		return [...byName.values()]
+	}, [overviews, shownSystems])
+
+	const columns = useMemo((): ColumnDef<FleetProgram>[] => {
+		const list: ColumnDef<FleetProgram>[] = [
+			{
+				id: "name",
+				accessorFn: (row) => row.name,
+				enableHiding: false,
+				header: ({ column }) => <HeaderButton column={column} name={t`Program`} Icon={BoxesIcon} />,
+				cell: ({ row }) => <span className="ms-1.5 block max-w-72 truncate font-medium">{row.original.name}</span>,
+			},
+			{
+				id: "systems",
+				meta: { name: () => t`Systems` },
+				accessorFn: (row) => row.systems.length,
+				sortDescFirst: true,
+				header: ({ column }) => <HeaderButton column={column} name={t`Systems`} Icon={ServerIcon} />,
+				cell: ({ row }) => (
+					<span
+						className="ms-1.5 tabular-nums"
+						title={row.original.systems.map((id) => allSystems[id]?.name ?? id).join(", ")}
+					>
+						{row.original.systems.length}
+						<span className="ms-2 text-xs text-muted-foreground">
+							{row.original.systems
+								.slice(0, 3)
+								.map((id) => allSystems[id]?.name ?? id)
+								.join(", ")}
+							{row.original.systems.length > 3 && "…"}
+						</span>
+					</span>
+				),
+			},
+			{
+				id: "count",
+				meta: { name: () => t`Instances` },
+				accessorFn: (row) => row.count,
+				sortDescFirst: true,
+				header: ({ column }) => <HeaderButton column={column} name={t`Instances`} Icon={LayersIcon} />,
+				cell: ({ row }) => <span className="ms-1.5 tabular-nums">{row.original.count}</span>,
+			},
+			{
+				id: "cpu",
+				meta: { name: () => t`CPU max` },
+				accessorFn: (row) => row.cpuMax,
+				sortDescFirst: true,
+				header: ({ column }) => <HeaderButton column={column} name={t`CPU max`} Icon={CpuIcon} />,
+				cell: ({ row }) => (
+					<span className={cn("ms-1.5 tabular-nums", usageClass(row.original.cpuMax))}>
+						{percent(row.original.cpuMax)}
+					</span>
+				),
+			},
+			{
+				id: "rss",
+				meta: { name: () => t`Total memory` },
+				accessorFn: (row) => row.rss,
+				sortDescFirst: true,
+				header: ({ column }) => <HeaderButton column={column} name={t`Total memory`} Icon={MemoryStickIcon} />,
+				cell: ({ row }) => <span className="ms-1.5 tabular-nums">{formatSize(row.original.rss)}</span>,
+			},
+		]
+		return isReadOnlyUser() ? list : [selectionColumn<FleetProgram>(), ...list]
+	}, [allSystems])
+
+	const table = useReactTable({
+		data: programs,
+		columns,
+		getRowId: (row) => row.name,
+		getCoreRowModel: getCoreRowModel(),
+		getSortedRowModel: getSortedRowModel(),
+		getFilteredRowModel: getFilteredRowModel(),
+		onSortingChange: setSorting,
+		onRowSelectionChange: setRowSelection,
+		onColumnVisibilityChange: layout.onColumnVisibilityChange,
+		onGlobalFilterChange: setFilter,
+		globalFilterFn: (row, _columnId, value: string) => row.original.name.toLowerCase().includes(value.toLowerCase()),
+		state: { sorting, rowSelection, globalFilter: filter, columnVisibility: layout.columnVisibility },
+	})
+	const rows = table.getRowModel().rows
+	// the selected programs on each system running them, for the alerts and quiet hours
+	const selectedItems = table
+		.getFilteredSelectedRowModel()
+		.rows.flatMap((row) => row.original.systems.map((system) => ({ name: row.original.name, system })))
+	const programCount = programs.length
+	const hidden = rows.length - maxProgramRows
+
+	return (
+		<>
+			<p className="text-sm text-muted-foreground mb-2 px-1">
+				<Trans>{programCount} programs</Trans>
+			</p>
+			<div className="flex flex-wrap items-center gap-2 mb-3">
+				<div className="relative flex-1 min-w-48 sm:max-w-64">
+					<Input placeholder={t`Filter...`} value={filter} onChange={(e) => setFilter(e.target.value)} />
+				</div>
+				<div className="flex flex-wrap gap-2 ms-auto">
+					<SystemsFilter
+						systems={overviews.map((overview) => overview.system)}
+						selected={shownSystems}
+						onChange={setShownSystems}
+					/>
+					<ColumnsViewMenu table={table} />
+					<BulkStateAlertsButton kind="process" items={selectedItems} />
+					<BulkQuietHoursButton kind="process" items={selectedItems} />
+					{actions}
+				</div>
+			</div>
+			<div className={cn(tableHeight, "overflow-auto border rounded-md")}>
+				<table className="text-sm w-full text-nowrap">
+					<TableHeader className="sticky top-0 z-50 w-full border-b-2">
+						{table.getHeaderGroups().map((group) => (
+							<tr key={group.id}>
+								{group.headers.map((header) => (
+									<TableHead
+										key={header.id}
+										className="px-2 relative"
+										style={headerWidthStyle(layout.widths[header.column.id])}
+									>
+										{flexRender(header.column.columnDef.header, header.getContext())}
+										<ColumnResizer columnId={header.column.id} onColumnResize={layout.onColumnResize} />
+									</TableHead>
+								))}
+							</tr>
+						))}
+					</TableHeader>
+					<TableBody>
+						{rows.slice(0, maxProgramRows).map((row) => (
+							<TableRow key={row.id} className="cursor-pointer" onClick={() => onSearch(row.original.name)}>
+								{row.getVisibleCells().map((cell) => (
+									<TableCell
+										key={cell.id}
+										className="py-2 ps-4.5"
+										style={cellWidthStyle(layout.widths[cell.column.id])}
+									>
+										{flexRender(cell.column.columnDef.cell, cell.getContext())}
+									</TableCell>
+								))}
+							</TableRow>
+						))}
+					</TableBody>
+				</table>
+			</div>
+			{hidden > 0 && (
+				<p className="text-xs text-muted-foreground mt-2">
+					<Trans>{hidden} more programs: use the filter to find them.</Trans>
+				</p>
+			)}
+		</>
+	)
+}
+
+/* ------------------------------------------------------------------ */
+/* Recently started                                                   */
+/* ------------------------------------------------------------------ */
+
+/** Columns of the recent processes hidden until the user shows them */
+const recentHiddenByDefault = ["command", "threads", "status", "dr", "dw", "conns"]
+
+function RecentStarts({
+	overviews,
+	onSelect,
+	actions,
+}: {
+	overviews: ProcessesOverview[]
+	onSelect: (process: ProcessRow) => void
+	actions?: ReactNode
+}) {
+	const recent = useMemo(() => overviews.flatMap((overview) => overview.recent), [overviews])
+	return (
+		<ProcessesGrid
+			rows={recent}
+			layoutKey="processes-recent"
+			hiddenByDefault={recentHiddenByDefault}
+			initialSort={[{ id: "started", desc: true }]}
+			onSelect={onSelect}
+			emptyText={<Trans>No process started in the last 24 hours.</Trans>}
+			actions={actions}
+		/>
 	)
 }

@@ -26,7 +26,7 @@ function localInput(date: Date) {
 }
 
 /**
- * "Quiet hours" button of the services and containers pages: silences the
+ * "Quiet hours" button of the services, containers and processes tables: silences the
  * state alerts of the selected items, with one window per system.
  */
 export function BulkQuietHoursButton({ kind, items }: { kind: Kind; items: { name: string; system: string }[] }) {
@@ -143,6 +143,12 @@ function BulkQuietHoursDialog({
 						<Trans>Type</Trans>
 					</Label>
 					<Select value={type} onValueChange={(value) => setType(value as typeof type)}>
+					) : kind === "process" ? (
+						<Plural
+							value={count}
+							one="The alerts of the selected process are not sent during this window."
+							other="The alerts of the # selected processes are not sent during this window."
+						/>
 						<SelectTrigger id="bulk-quiet-type">
 							<SelectValue />
 						</SelectTrigger>

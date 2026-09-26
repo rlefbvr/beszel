@@ -189,7 +189,7 @@ func quietWindowApplies(window *core.Record, kind, ruleID, targetName string) bo
 	})
 }
 
-// quietTarget is a service or container silenced by a quiet hours window.
+// quietTarget is a service, container or process silenced by a quiet hours window.
 type quietTarget struct {
 	Kind string `json:"kind"`
 	Name string `json:"name"`
@@ -203,6 +203,8 @@ func (t quietTarget) matches(kind, name string) bool {
 		return t.Kind == stateAlertKindService && strings.EqualFold(t.Name, name)
 	case alertNameContainerState:
 		return t.Kind == stateAlertKindContainer && strings.EqualFold(t.Name, name)
+	case alertNameProcessState:
+		return t.Kind == stateAlertKindProcess && strings.EqualFold(t.Name, name)
 	}
 	return false
 }

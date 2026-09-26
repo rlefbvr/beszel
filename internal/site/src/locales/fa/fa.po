@@ -86,6 +86,10 @@ msgstr "{count, plural, one {# کانتینر فیلترشده} other {# کان�
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# سرویس فیلترشده} other {# سرویس فیلترشده}}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# selected process} other {# selected processes}}"
+msgstr "{count, plural, one {# فرایند انتخاب‌شده} other {# فرایند انتخاب‌شده}}"
+
 #: src/components/sensors/sensor-incidents.tsx
 msgid "{count, plural, one {# sensor} other {# sensors}}"
 msgstr "{count, plural, one {# حسگر} other {# حسگر}}"
@@ -95,12 +99,20 @@ msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# سیستم} other {# سیستم}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
+msgstr "{count, plural, one {هشدارهای فرایند انتخاب‌شده در این بازه ارسال نمی‌شوند.} other {هشدارهای # فرایند انتخاب‌شده در این بازه ارسال نمی‌شوند.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
 msgstr "{count, plural, one {هشدارهای وضعیت کانتینر انتخاب‌شده در این بازه ارسال نمی‌شوند.} other {هشدارهای وضعیت کانتینرهای انتخاب‌شده (#) در این بازه ارسال نمی‌شوند.}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
 msgstr "{count, plural, one {هشدارهای وضعیت سرویس انتخاب‌شده در این بازه ارسال نمی‌شوند.} other {هشدارهای وضعیت سرویس‌های انتخاب‌شده (#) در این بازه ارسال نمی‌شوند.}}"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "{count} instance(s) · CPU {cpuText}"
+msgstr "{count} نمونه · CPU {cpuText}"
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "{count} processes · CPU {cpuText} · Memory {memText}"
@@ -128,6 +140,14 @@ msgid "{failed} system(s) did not answer."
 msgstr "{failed} سیستم پاسخ ندادند."
 
 #: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more processes: use the filter to find them."
+msgstr "{hidden} فرایند دیگر: برای یافتن آن‌ها از فیلتر استفاده کنید."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more programs: use the filter to find them."
+msgstr "{hidden} برنامه دیگر: برای یافتن آن‌ها از فیلتر استفاده کنید."
+
+#: src/components/processes-table/processes-overview.tsx
 msgid "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
 msgstr "{matchCount} فرایند در {systemCount} سیستم برای «{searched}»"
 
@@ -150,6 +170,10 @@ msgstr "{outdated} سیستم به به‌روزرسانی عامل نیاز د�
 #: src/components/certificates/certificates-table.tsx
 msgid "{outdated} system(s) need an agent update to read their certificates."
 msgstr "{outdated} سیستم برای خواندن گواهی‌های خود به به‌روزرسانی عامل نیاز دارند."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{programCount} programs"
+msgstr "{programCount} برنامه"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
@@ -459,8 +483,24 @@ msgid "Alert types"
 msgstr "انواع هشدار"
 
 #: src/components/alerts/state-alert-rules.tsx
-msgid "Alert when services or Docker containers enter or leave a state."
-msgstr "هشدار هنگامی که سرویس‌ها یا کانتینرهای Docker وارد یک وضعیت شده یا از آن خارج می‌شوند."
+msgid "Alert when its CPU is above"
+msgstr "هشدار وقتی CPU آن بیشتر از"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are fewer than"
+msgstr "هشدار وقتی نمونه‌ها کمتر از"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are more than"
+msgstr "هشدار وقتی نمونه‌ها بیشتر از"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its memory is above"
+msgstr "هشدار وقتی حافظه آن بیشتر از"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when services, Docker containers or processes enter or leave a state."
+msgstr "هشدار وقتی سرویس‌ها، کانتینرهای Docker یا فرایندها وارد وضعیتی می‌شوند یا از آن خارج می‌شوند."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
@@ -475,6 +515,14 @@ msgstr "هشدار هنگامی که وضعیت برابر نیست با"
 #: src/components/certificates/certificates-table.tsx
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "هشدار وقتی گواهی {name} در {systemName} در روزهایی کمتر از آستانه منقضی شود. گواهی‌های تمدیدشده با همین نام همچنان بررسی می‌شوند و گواهی مهم می‌شود."
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is not running"
+msgstr "هشدار وقتی فرایند اجرا نمی‌شود"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is running"
+msgstr "هشدار وقتی فرایند اجرا می‌شود"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -536,6 +584,14 @@ msgstr "همه گواهی‌ها"
 msgid "All Containers"
 msgstr "همه کانتینرها"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "All groups"
+msgstr "همه گروه‌ها"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "All OS"
+msgstr "همه سیستم‌عامل‌ها"
+
 #: src/components/agent-update-dialog.tsx
 msgid "All outdated ({outdatedCount})"
 msgstr "همه قدیمی‌ها ({outdatedCount})"
@@ -578,6 +634,8 @@ msgstr "همه سرویس‌ها"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -593,6 +651,10 @@ msgstr "همه سیستم‌ها"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "همه سیستم‌ها تا {until}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "All the instances of a program count as one target, such as every chrome.exe."
+msgstr "همه نمونه‌های یک برنامه یک هدف حساب می‌شوند، مانند هر chrome.exe."
 
 #: src/components/period-select.tsx
 msgid "All time"
@@ -841,6 +903,18 @@ msgstr "افزودن گروهی حسگرها"
 msgid "Bulk copy"
 msgstr "کپی گروهی"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on CPU first"
+msgstr "پرمصرف‌ترین CPU اول"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on memory first"
+msgstr "پرمصرف‌ترین حافظه اول"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "By name"
+msgstr "بر اساس نام"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Bytes (KB/s, MB/s, GB/s)"
@@ -1038,6 +1112,8 @@ msgstr "عادی"
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -1106,8 +1182,8 @@ msgstr "رنگ"
 msgid "Columns"
 msgstr "ستون‌ها"
 
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 msgid "Command"
 msgstr "فرمان"
 
@@ -1117,6 +1193,7 @@ msgid "Command line instructions"
 msgstr "دستورالعمل‌های خط فرمان"
 
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Condition"
 msgstr "شرط"
@@ -1154,6 +1231,7 @@ msgstr "تعارض‌ها"
 msgid "Connection is down"
 msgstr "اتصال قطع است"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Connections"
 msgstr "اتصال‌ها"
@@ -1269,16 +1347,20 @@ msgstr "هسته"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "CPU"
 msgstr "پردازنده"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "CPU above {threshold}%"
+msgstr "CPU بالای {threshold}%"
 
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "CPU Cores"
@@ -1287,6 +1369,11 @@ msgstr "هسته‌های CPU"
 #: src/lib/alerts.ts
 msgid "CPU I/O Wait"
 msgstr "زمان انتظار ورودی/خروجی CPU (IOWait)"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "CPU max"
+msgstr "بیشینه CPU"
 
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -1549,7 +1636,6 @@ msgid "Discharging"
 msgstr "در حال تخلیه"
 
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Disk"
@@ -1559,7 +1645,8 @@ msgstr "دیسک"
 msgid "Disk I/O"
 msgstr "ورودی/خروجی دیسک"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk read"
 msgstr "خواندن دیسک"
@@ -1577,10 +1664,15 @@ msgstr "میزان استفاده از دیسک"
 msgid "Disk usage of {extraFsName}"
 msgstr "میزان استفاده از دیسک {extraFsName}"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk write"
 msgstr "نوشتن دیسک"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Disk: {diskText}"
+msgstr "دیسک: {diskText}"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Layout display options"
@@ -1963,6 +2055,10 @@ msgstr "ناموفق: {0}"
 msgid "Fans"
 msgstr "فن‌ها"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "fewer than {threshold} instances"
+msgstr "کمتر از {threshold} نمونه"
+
 #: src/lib/certificates.ts
 msgid "File"
 msgstr "فایل"
@@ -1970,6 +2066,9 @@ msgstr "فایل"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/chart-card.tsx
@@ -2265,6 +2364,10 @@ msgstr "گواهی‌های مهم"
 msgid "Important containers"
 msgstr "کانتینرهای مهم"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Important processes"
+msgstr "فرایندهای مهم"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "سرویس‌های مهم"
@@ -2308,6 +2411,12 @@ msgstr "نمونه"
 #: src/components/routes/settings/general.tsx
 msgid "Instance name"
 msgstr "نام نمونه"
+
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Instances"
+msgstr "نمونه‌ها"
 
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Interruptions: {incidentCount}"
@@ -2514,6 +2623,10 @@ msgstr "میانگین بار"
 msgid "Load state"
 msgstr "وضعیت بارگذاری"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Loaded systems ({loadedCount})"
+msgstr "سیستم‌های پرفشار ({loadedCount})"
+
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
@@ -2630,10 +2743,10 @@ msgstr "حداکثر ۱ ساعت"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/info-bar.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2642,6 +2755,10 @@ msgstr "حداکثر ۱ ساعت"
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Memory"
 msgstr "حافظه"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "memory above {threshold}%"
+msgstr "حافظه بالای {threshold}%"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Memory limit"
@@ -2662,6 +2779,10 @@ msgstr "میزان استفاده از حافظه"
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Memory usage of containers"
 msgstr "میزان استفاده حافظه کانتینرها"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Memory: {memText}"
+msgstr "حافظه: {memText}"
 
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -2703,9 +2824,21 @@ msgstr "مانیتورها ایجاد شدند"
 msgid "More"
 msgstr "بیشتر"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "more than {threshold} instances"
+msgstr "بیشتر از {threshold} نمونه"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Mountpoint"
 msgstr "نقطه اتصال"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must be running"
+msgstr "باید اجرا شود"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must not be running"
+msgstr "نباید اجرا شود"
 
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
@@ -2714,9 +2847,8 @@ msgstr "نقطه اتصال"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -2755,8 +2887,8 @@ msgstr "شبکه"
 msgid "Network"
 msgstr "شبکه"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 msgid "Network connections"
 msgstr "اتصال‌های شبکه"
 
@@ -2891,6 +3023,11 @@ msgstr "در این بازه قطعی‌ای نبوده است."
 msgid "No logs yet."
 msgstr "هنوز گزارشی وجود ندارد."
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "No process started in the last 24 hours."
+msgstr "در ۲۴ ساعت گذشته هیچ فرایندی شروع نشده است."
+
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "No processes found."
 msgstr "فرایندی یافت نشد."
@@ -2927,6 +3064,10 @@ msgstr "هنوز حسگری وجود ندارد: میزبان‌ها و درگا
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
 msgstr "هیچ سرویسی پس از به‌روزرسانی عامل را دوباره راه‌اندازی نمی‌کند."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "No system matches the filters."
+msgstr "هیچ سیستمی با فیلترها مطابقت ندارد."
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "No systems are up."
@@ -3043,6 +3184,10 @@ msgstr "فقط مدیران می‌توانند این تنظیم را تغیی�
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Open menu"
 msgstr "باز کردن منو"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Operating system"
+msgstr "سیستم‌عامل"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Optional, such as the name of the service"
@@ -3217,6 +3362,10 @@ msgstr "در انتظار"
 msgid "Per-core average utilization"
 msgstr "میانگین استفاده در هر هسته"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Percent of the whole host, all the instances of the program added up."
+msgstr "درصد از کل میزبان، با جمع همه نمونه‌های برنامه."
+
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Percent of time the disk is busy with I/O"
 msgstr "درصد زمانی که دیسک مشغول عملیات ورودی/خروجی است"
@@ -3334,14 +3483,36 @@ msgstr "زبان ترجیحی"
 msgid "Previous page"
 msgstr "صفحه قبلی"
 
+#: src/lib/alerts.ts
+msgid "Process alert"
+msgstr "هشدار فرایند"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Process alerts"
+msgstr "هشدارهای فرایند"
+
+#: src/lib/alerts.ts
+msgid "Process rule matched"
+msgstr "قاعده فرایند برقرار شد"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Process started"
 msgstr "فرآیند شروع شد"
 
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "فرایندها"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Processes are checked every minute, only on the systems with process rules."
+msgstr "فرایندها هر دقیقه بررسی می‌شوند، فقط در سیستم‌هایی که قاعده فرایند دارند."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Processes started in the last 24 hours, the newest first: new programs, restarts, or a program restarting in a loop."
+msgstr "فرایندهایی که در ۲۴ ساعت گذشته شروع شده‌اند، جدیدترین اول: برنامه‌های جدید، راه‌اندازی‌های مجدد یا برنامه‌ای که در حلقه راه‌اندازی مجدد می‌شود."
 
 #: src/components/processes-table/processes-charts.tsx
 msgid "Processes that use the most resources since this page was opened. Click an area to see the process."
@@ -3350,6 +3521,14 @@ msgstr "فرایندهایی که از زمان باز شدن این صفحه ب
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Production, Customers, Lab…"
 msgstr "تولید، مشتریان، آزمایشگاه…"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Program"
+msgstr "برنامه"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Programs of the fleet"
+msgstr "برنامه‌های ناوگان"
 
 #: src/components/routes/settings/security.tsx
 msgid "Protect your account with a second factor asked after the password."
@@ -3495,6 +3674,10 @@ msgstr "بررسی‌های اخیر"
 msgid "Recently opened"
 msgstr "اخیراً باز شده"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Recently started"
+msgstr "اخیراً شروع‌شده"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "ثبت‌شده"
@@ -3513,6 +3696,7 @@ msgstr "کدهای بازیابی باقی‌مانده: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -3855,6 +4039,10 @@ msgstr "انتخاب همه"
 msgid "Select matches"
 msgstr "انتخاب موارد منطبق"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Select programs to watch them on every system running them, or click one to find its processes."
+msgstr "برنامه‌ها را انتخاب کنید تا روی هر سیستمی که اجرایشان می‌کند پایش شوند، یا روی یکی کلیک کنید تا فرایندهایش را بیابید."
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Select row"
 msgstr "انتخاب ردیف"
@@ -4092,9 +4280,9 @@ msgstr "زمان شروع"
 msgid "Start type"
 msgstr "نوع راه‌اندازی"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Started"
 msgstr "شروع"
@@ -4146,9 +4334,9 @@ msgstr "وضعیت‌ها"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -4167,6 +4355,7 @@ msgid "Stop watching"
 msgstr "توقف پایش"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-table.tsx
 msgid "Stopped"
 msgstr "متوقف"
 
@@ -4212,8 +4401,9 @@ msgstr "تغییر تم"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4258,9 +4448,16 @@ msgstr "خدمات Systemd"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "سیستم‌ها"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems ({count})"
+msgstr "سیستم‌ها ({count})"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
@@ -4269,6 +4466,10 @@ msgstr "سیستم‌ها ممکن است در یک فایل <0>config.yml</0> �
 #: src/components/agent-update-dialog.tsx
 msgid "Systems to update ({targetCount})"
 msgstr "سیستم‌های نیازمند به‌روزرسانی ({targetCount})"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems using at least half of their CPU or memory"
+msgstr "سیستم‌هایی که دست‌کم نیمی از CPU یا حافظه خود را مصرف می‌کنند"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -4481,8 +4682,9 @@ msgstr "این سیستم تا {until}"
 msgid "This will permanently delete all selected records from the database."
 msgstr "این کار تمام رکوردهای انتخاب شده را برای همیشه از پایگاه داده حذف خواهد کرد."
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Threads"
 msgstr "رشته‌ها"
@@ -4491,6 +4693,10 @@ msgstr "رشته‌ها"
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Threshold"
 msgstr "آستانه"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Threshold (%)"
+msgstr "آستانه (%)"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -4555,6 +4761,10 @@ msgstr "پرمصرف‌ترین‌ها"
 msgid "Total"
 msgstr "کل"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Total ({count} processes)"
+msgstr "مجموع ({count} فرایند)"
+
 #: src/components/routes/system/network-sheet.tsx
 msgid "Total data received for each interface"
 msgstr "داده‌های کل دریافت شده برای هر رابط"
@@ -4566,6 +4776,15 @@ msgstr "داده‌های کل ارسال شده برای هر رابط"
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Total duration: {totalDuration}"
 msgstr "مدت کل: {totalDuration}"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Total memory"
+msgstr "حافظه کل"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Total of the filtered processes ({count})"
+msgstr "مجموع فرایندهای فیلترشده ({count})"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
@@ -4878,10 +5097,9 @@ msgstr "استفاده شده"
 msgid "Used by"
 msgstr "استفاده‌شده توسط"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/ldap.tsx

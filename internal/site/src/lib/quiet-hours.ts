@@ -3,6 +3,7 @@ import { map } from "nanostores"
 import { alertInfo, stateAlertHistoryInfo } from "@/lib/alerts"
 import { pb } from "@/lib/api"
 import type { QuietHoursRecord, StateAlertRecord } from "@/types"
+import { stateRuleAlertKind } from "@/lib/state-alerts"
 
 const collection = "quiet_hours"
 
@@ -132,6 +133,7 @@ export const quietHoursAlertKinds = [
 	"SystemdFailed",
 	"ServiceState",
 	"ContainerState",
+	"ProcessState",
 	"Certificate",
 	"Smart",
 	"ZFS",
@@ -177,14 +179,13 @@ export function quietHoursScopeText(
 		.map((id) => stateAlerts[id])
 		.filter(Boolean)
 		.map(
-			(rule) =>
-				`${quietHoursAlertKindLabel(rule.kind === "container" ? "ContainerState" : "ServiceState")}: ${rule.targets}`
+			(rule) => `${quietHoursAlertKindLabel(stateRuleAlertKind(rule.kind))}: ${rule.targets}`
 		)
-	// the services and containers chosen on their pages
-	const targets = (["service", "container"] as const)
+	// the services, containers and processes chosen on their pages
+	const targets = (["service", "container", "process"] as const)
 		.map((kind) => {
 			const names = (record.targets ?? []).filter((target) => target.kind === kind).map((target) => target.name)
-			const label = quietHoursAlertKindLabel(kind === "container" ? "ContainerState" : "ServiceState")
+			const label = quietHoursAlertKindLabel(stateRuleAlertKind(kind))
 			return names.length ? `${label}: ${names.join(", ")}` : ""
 		})
 		.filter(Boolean)

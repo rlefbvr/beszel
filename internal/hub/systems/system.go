@@ -72,6 +72,8 @@ type System struct {
 	certificates atomic.Bool
 	// True if the agent answers the requests added by this fork.
 	forkRequests atomic.Bool
+	// True while the processes are read for the process rules.
+	processAlertsBusy atomic.Bool
 }
 
 func (sm *SystemManager) NewSystem(systemId string) *System {
@@ -349,6 +351,7 @@ func (sys *System) createRecords(data *system.CombinedData) (*core.Record, error
 		if alertErr := hub.HandleStateAlerts(systemRecord, data); alertErr != nil {
 			hub.Logger().Error("Error handling state alerts", "err", alertErr)
 		}
+		sys.checkProcessAlerts(systemRecord)
 	}
 	return systemRecord, err
 }

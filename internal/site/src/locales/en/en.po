@@ -81,6 +81,10 @@ msgstr "{count, plural, one {# filtered container} other {# filtered containers}
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# filtered service} other {# filtered services}}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# selected process} other {# selected processes}}"
+msgstr "{count, plural, one {# selected process} other {# selected processes}}"
+
 #: src/components/sensors/sensor-incidents.tsx
 msgid "{count, plural, one {# sensor} other {# sensors}}"
 msgstr "{count, plural, one {# sensor} other {# sensors}}"
@@ -90,12 +94,20 @@ msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# system} other {# systems}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
+msgstr "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
 msgstr "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
 msgstr "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "{count} instance(s) · CPU {cpuText}"
+msgstr "{count} instance(s) · CPU {cpuText}"
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "{count} processes · CPU {cpuText} · Memory {memText}"
@@ -123,6 +135,14 @@ msgid "{failed} system(s) did not answer."
 msgstr "{failed} system(s) did not answer."
 
 #: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more processes: use the filter to find them."
+msgstr "{hidden} more processes: use the filter to find them."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more programs: use the filter to find them."
+msgstr "{hidden} more programs: use the filter to find them."
+
+#: src/components/processes-table/processes-overview.tsx
 msgid "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
 msgstr "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
 
@@ -145,6 +165,10 @@ msgstr "{outdated} system(s) need an agent update (0.20.0-fork.5 or newer)."
 #: src/components/certificates/certificates-table.tsx
 msgid "{outdated} system(s) need an agent update to read their certificates."
 msgstr "{outdated} system(s) need an agent update to read their certificates."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{programCount} programs"
+msgstr "{programCount} programs"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
@@ -454,8 +478,24 @@ msgid "Alert types"
 msgstr "Alert types"
 
 #: src/components/alerts/state-alert-rules.tsx
-msgid "Alert when services or Docker containers enter or leave a state."
-msgstr "Alert when services or Docker containers enter or leave a state."
+msgid "Alert when its CPU is above"
+msgstr "Alert when its CPU is above"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are fewer than"
+msgstr "Alert when its instances are fewer than"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are more than"
+msgstr "Alert when its instances are more than"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its memory is above"
+msgstr "Alert when its memory is above"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when services, Docker containers or processes enter or leave a state."
+msgstr "Alert when services, Docker containers or processes enter or leave a state."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
@@ -470,6 +510,14 @@ msgstr "Alert when state is not"
 #: src/components/certificates/certificates-table.tsx
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is not running"
+msgstr "Alert when the process is not running"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is running"
+msgstr "Alert when the process is running"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -531,6 +579,14 @@ msgstr "All certificates"
 msgid "All Containers"
 msgstr "All Containers"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "All groups"
+msgstr "All groups"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "All OS"
+msgstr "All OS"
+
 #: src/components/agent-update-dialog.tsx
 msgid "All outdated ({outdatedCount})"
 msgstr "All outdated ({outdatedCount})"
@@ -573,6 +629,8 @@ msgstr "All Services"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -588,6 +646,10 @@ msgstr "All Systems"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "All systems until {until}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "All the instances of a program count as one target, such as every chrome.exe."
+msgstr "All the instances of a program count as one target, such as every chrome.exe."
 
 #: src/components/period-select.tsx
 msgid "All time"
@@ -836,6 +898,18 @@ msgstr "Bulk add sensors"
 msgid "Bulk copy"
 msgstr "Bulk copy"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on CPU first"
+msgstr "Busiest on CPU first"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on memory first"
+msgstr "Busiest on memory first"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "By name"
+msgstr "By name"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Bytes (KB/s, MB/s, GB/s)"
@@ -1033,6 +1107,8 @@ msgstr "Clean"
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -1101,8 +1177,8 @@ msgstr "Color"
 msgid "Columns"
 msgstr "Columns"
 
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 msgid "Command"
 msgstr "Command"
 
@@ -1112,6 +1188,7 @@ msgid "Command line instructions"
 msgstr "Command line instructions"
 
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Condition"
 msgstr "Condition"
@@ -1149,6 +1226,7 @@ msgstr "Conflicts"
 msgid "Connection is down"
 msgstr "Connection is down"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Connections"
 msgstr "Connections"
@@ -1264,16 +1342,20 @@ msgstr "Core"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "CPU"
 msgstr "CPU"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "CPU above {threshold}%"
+msgstr "CPU above {threshold}%"
 
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "CPU Cores"
@@ -1282,6 +1364,11 @@ msgstr "CPU Cores"
 #: src/lib/alerts.ts
 msgid "CPU I/O Wait"
 msgstr "CPU I/O Wait"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "CPU max"
+msgstr "CPU max"
 
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -1544,7 +1631,6 @@ msgid "Discharging"
 msgstr "Discharging"
 
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Disk"
@@ -1554,7 +1640,8 @@ msgstr "Disk"
 msgid "Disk I/O"
 msgstr "Disk I/O"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk read"
 msgstr "Disk read"
@@ -1572,10 +1659,15 @@ msgstr "Disk Usage"
 msgid "Disk usage of {extraFsName}"
 msgstr "Disk usage of {extraFsName}"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk write"
 msgstr "Disk write"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Disk: {diskText}"
+msgstr "Disk: {diskText}"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Layout display options"
@@ -1958,6 +2050,10 @@ msgstr "Failed: {0}"
 msgid "Fans"
 msgstr "Fans"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "fewer than {threshold} instances"
+msgstr "fewer than {threshold} instances"
+
 #: src/lib/certificates.ts
 msgid "File"
 msgstr "File"
@@ -1965,6 +2061,9 @@ msgstr "File"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/chart-card.tsx
@@ -2260,6 +2359,10 @@ msgstr "Important certificates"
 msgid "Important containers"
 msgstr "Important containers"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Important processes"
+msgstr "Important processes"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "Important services"
@@ -2303,6 +2406,12 @@ msgstr "Instance"
 #: src/components/routes/settings/general.tsx
 msgid "Instance name"
 msgstr "Instance name"
+
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Instances"
+msgstr "Instances"
 
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Interruptions: {incidentCount}"
@@ -2509,6 +2618,10 @@ msgstr "Load Avg"
 msgid "Load state"
 msgstr "Load state"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Loaded systems ({loadedCount})"
+msgstr "Loaded systems ({loadedCount})"
+
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
@@ -2625,10 +2738,10 @@ msgstr "Max 1h"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/info-bar.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2637,6 +2750,10 @@ msgstr "Max 1h"
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Memory"
 msgstr "Memory"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "memory above {threshold}%"
+msgstr "memory above {threshold}%"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Memory limit"
@@ -2657,6 +2774,10 @@ msgstr "Memory Usage"
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Memory usage of containers"
 msgstr "Memory usage of containers"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Memory: {memText}"
+msgstr "Memory: {memText}"
 
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -2698,9 +2819,21 @@ msgstr "Monitors created"
 msgid "More"
 msgstr "More"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "more than {threshold} instances"
+msgstr "more than {threshold} instances"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Mountpoint"
 msgstr "Mountpoint"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must be running"
+msgstr "must be running"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must not be running"
+msgstr "must not be running"
 
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
@@ -2709,9 +2842,8 @@ msgstr "Mountpoint"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -2750,8 +2882,8 @@ msgstr "Net"
 msgid "Network"
 msgstr "Network"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 msgid "Network connections"
 msgstr "Network connections"
 
@@ -2886,6 +3018,11 @@ msgstr "No interruptions over this period."
 msgid "No logs yet."
 msgstr "No logs yet."
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "No process started in the last 24 hours."
+msgstr "No process started in the last 24 hours."
+
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "No processes found."
 msgstr "No processes found."
@@ -2922,6 +3059,10 @@ msgstr "No sensor yet: add the hosts and ports that Beszel should check."
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
 msgstr "No service restarts the agent after an update."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "No system matches the filters."
+msgstr "No system matches the filters."
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "No systems are up."
@@ -3038,6 +3179,10 @@ msgstr "Only administrators can change this setting."
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Open menu"
 msgstr "Open menu"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Operating system"
+msgstr "Operating system"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Optional, such as the name of the service"
@@ -3212,6 +3357,10 @@ msgstr "Pending"
 msgid "Per-core average utilization"
 msgstr "Per-core average utilization"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Percent of the whole host, all the instances of the program added up."
+msgstr "Percent of the whole host, all the instances of the program added up."
+
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Percent of time the disk is busy with I/O"
 msgstr "Percent of time the disk is busy with I/O"
@@ -3329,14 +3478,36 @@ msgstr "Preferred Language"
 msgid "Previous page"
 msgstr "Previous page"
 
+#: src/lib/alerts.ts
+msgid "Process alert"
+msgstr "Process alert"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Process alerts"
+msgstr "Process alerts"
+
+#: src/lib/alerts.ts
+msgid "Process rule matched"
+msgstr "Process rule matched"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Process started"
 msgstr "Process started"
 
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "Processes"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Processes are checked every minute, only on the systems with process rules."
+msgstr "Processes are checked every minute, only on the systems with process rules."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Processes started in the last 24 hours, the newest first: new programs, restarts, or a program restarting in a loop."
+msgstr "Processes started in the last 24 hours, the newest first: new programs, restarts, or a program restarting in a loop."
 
 #: src/components/processes-table/processes-charts.tsx
 msgid "Processes that use the most resources since this page was opened. Click an area to see the process."
@@ -3345,6 +3516,14 @@ msgstr "Processes that use the most resources since this page was opened. Click 
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Production, Customers, Lab…"
 msgstr "Production, Customers, Lab…"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Program"
+msgstr "Program"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Programs of the fleet"
+msgstr "Programs of the fleet"
 
 #: src/components/routes/settings/security.tsx
 msgid "Protect your account with a second factor asked after the password."
@@ -3490,6 +3669,10 @@ msgstr "Recent checks"
 msgid "Recently opened"
 msgstr "Recently opened"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Recently started"
+msgstr "Recently started"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Recorded"
@@ -3508,6 +3691,7 @@ msgstr "Recovery codes left: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -3850,6 +4034,10 @@ msgstr "Select all"
 msgid "Select matches"
 msgstr "Select matches"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Select programs to watch them on every system running them, or click one to find its processes."
+msgstr "Select programs to watch them on every system running them, or click one to find its processes."
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Select row"
 msgstr "Select row"
@@ -4087,9 +4275,9 @@ msgstr "Start Time"
 msgid "Start type"
 msgstr "Start type"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Started"
 msgstr "Started"
@@ -4141,9 +4329,9 @@ msgstr "States"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -4162,6 +4350,7 @@ msgid "Stop watching"
 msgstr "Stop watching"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-table.tsx
 msgid "Stopped"
 msgstr "Stopped"
 
@@ -4207,8 +4396,9 @@ msgstr "Switch theme"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4253,9 +4443,16 @@ msgstr "Systemd Services"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "Systems"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems ({count})"
+msgstr "Systems ({count})"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
@@ -4264,6 +4461,10 @@ msgstr "Systems may be managed in a <0>config.yml</0> file inside your data dire
 #: src/components/agent-update-dialog.tsx
 msgid "Systems to update ({targetCount})"
 msgstr "Systems to update ({targetCount})"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems using at least half of their CPU or memory"
+msgstr "Systems using at least half of their CPU or memory"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -4476,8 +4677,9 @@ msgstr "This system until {until}"
 msgid "This will permanently delete all selected records from the database."
 msgstr "This will permanently delete all selected records from the database."
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Threads"
 msgstr "Threads"
@@ -4486,6 +4688,10 @@ msgstr "Threads"
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Threshold"
 msgstr "Threshold"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Threshold (%)"
+msgstr "Threshold (%)"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -4550,6 +4756,10 @@ msgstr "Top consumers"
 msgid "Total"
 msgstr "Total"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Total ({count} processes)"
+msgstr "Total ({count} processes)"
+
 #: src/components/routes/system/network-sheet.tsx
 msgid "Total data received for each interface"
 msgstr "Total data received for each interface"
@@ -4561,6 +4771,15 @@ msgstr "Total data sent for each interface"
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Total duration: {totalDuration}"
 msgstr "Total duration: {totalDuration}"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Total memory"
+msgstr "Total memory"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Total of the filtered processes ({count})"
+msgstr "Total of the filtered processes ({count})"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
@@ -4873,10 +5092,9 @@ msgstr "Used"
 msgid "Used by"
 msgstr "Used by"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/ldap.tsx

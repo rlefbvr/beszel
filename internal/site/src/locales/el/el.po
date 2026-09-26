@@ -86,6 +86,10 @@ msgstr "{count, plural, one {# φιλτραρισμένο κοντέινερ} ot
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# φιλτραρισμένη υπηρεσία} other {# φιλτραρισμένες υπηρεσίες}}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# selected process} other {# selected processes}}"
+msgstr "{count, plural, one {# επιλεγμένη διεργασία} other {# επιλεγμένες διεργασίες}}"
+
 #: src/components/sensors/sensor-incidents.tsx
 msgid "{count, plural, one {# sensor} other {# sensors}}"
 msgstr "{count, plural, one {# αισθητήρας} other {# αισθητήρες}}"
@@ -95,12 +99,20 @@ msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# σύστημα} other {# συστήματα}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
+msgstr "{count, plural, one {Οι ειδοποιήσεις της επιλεγμένης διεργασίας δεν αποστέλλονται σε αυτό το διάστημα.} other {Οι ειδοποιήσεις των # επιλεγμένων διεργασιών δεν αποστέλλονται σε αυτό το διάστημα.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
 msgstr "{count, plural, one {Οι ειδοποιήσεις κατάστασης του επιλεγμένου κοντέινερ δεν αποστέλλονται σε αυτό το διάστημα.} other {Οι ειδοποιήσεις κατάστασης των επιλεγμένων κοντέινερ (#) δεν αποστέλλονται σε αυτό το διάστημα.}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
 msgstr "{count, plural, one {Οι ειδοποιήσεις κατάστασης της επιλεγμένης υπηρεσίας δεν αποστέλλονται σε αυτό το διάστημα.} other {Οι ειδοποιήσεις κατάστασης των επιλεγμένων υπηρεσιών (#) δεν αποστέλλονται σε αυτό το διάστημα.}}"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "{count} instance(s) · CPU {cpuText}"
+msgstr "{count} στιγμιότυπα · CPU {cpuText}"
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "{count} processes · CPU {cpuText} · Memory {memText}"
@@ -128,6 +140,14 @@ msgid "{failed} system(s) did not answer."
 msgstr "{failed} σύστημα(τα) δεν απάντησαν."
 
 #: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more processes: use the filter to find them."
+msgstr "{hidden} ακόμη διεργασίες: χρησιμοποιήστε το φίλτρο για να τις βρείτε."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more programs: use the filter to find them."
+msgstr "{hidden} ακόμη προγράμματα: χρησιμοποιήστε το φίλτρο για να τα βρείτε."
+
+#: src/components/processes-table/processes-overview.tsx
 msgid "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
 msgstr "{matchCount} διεργασία(ες) σε {systemCount} σύστημα(τα) για «{searched}»"
 
@@ -150,6 +170,10 @@ msgstr "{outdated} σύστημα(τα) χρειάζονται ενημέρωσ�
 #: src/components/certificates/certificates-table.tsx
 msgid "{outdated} system(s) need an agent update to read their certificates."
 msgstr "{outdated} σύστημα(τα) χρειάζονται ενημέρωση του agent για την ανάγνωση των πιστοποιητικών τους."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{programCount} programs"
+msgstr "{programCount} προγράμματα"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
@@ -459,8 +483,24 @@ msgid "Alert types"
 msgstr "Τύποι ειδοποιήσεων"
 
 #: src/components/alerts/state-alert-rules.tsx
-msgid "Alert when services or Docker containers enter or leave a state."
-msgstr "Ειδοποίηση όταν υπηρεσίες ή κοντέινερ Docker εισέρχονται ή εξέρχονται από μια κατάσταση."
+msgid "Alert when its CPU is above"
+msgstr "Ειδοποίηση όταν η CPU ξεπερνά"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are fewer than"
+msgstr "Ειδοποίηση όταν τα στιγμιότυπα είναι λιγότερα από"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are more than"
+msgstr "Ειδοποίηση όταν τα στιγμιότυπα είναι περισσότερα από"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its memory is above"
+msgstr "Ειδοποίηση όταν η μνήμη ξεπερνά"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when services, Docker containers or processes enter or leave a state."
+msgstr "Ειδοποίηση όταν υπηρεσίες, κοντέινερ Docker ή διεργασίες μπαίνουν ή βγαίνουν από μια κατάσταση."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
@@ -475,6 +515,14 @@ msgstr "Ειδοποίηση όταν η κατάσταση δεν είναι"
 #: src/components/certificates/certificates-table.tsx
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "Ειδοποίηση όταν το πιστοποιητικό {name} του {systemName} λήγει σε λιγότερες ημέρες από το όριο. Τα ανανεωμένα πιστοποιητικά με το ίδιο όνομα συνεχίζουν να ελέγχονται και το πιστοποιητικό γίνεται σημαντικό."
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is not running"
+msgstr "Ειδοποίηση όταν η διεργασία δεν εκτελείται"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is running"
+msgstr "Ειδοποίηση όταν η διεργασία εκτελείται"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -536,6 +584,14 @@ msgstr "Όλα τα πιστοποιητικά"
 msgid "All Containers"
 msgstr "Όλα τα κοντέινερ"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "All groups"
+msgstr "Όλες οι ομάδες"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "All OS"
+msgstr "Όλα τα ΛΣ"
+
 #: src/components/agent-update-dialog.tsx
 msgid "All outdated ({outdatedCount})"
 msgstr "Όλοι οι παρωχημένοι ({outdatedCount})"
@@ -578,6 +634,8 @@ msgstr "Όλες οι υπηρεσίες"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -593,6 +651,10 @@ msgstr "Όλα τα συστήματα"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "Όλα τα συστήματα έως {until}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "All the instances of a program count as one target, such as every chrome.exe."
+msgstr "Όλα τα στιγμιότυπα ενός προγράμματος μετρούν ως ένας στόχος, όπως κάθε chrome.exe."
 
 #: src/components/period-select.tsx
 msgid "All time"
@@ -841,6 +903,18 @@ msgstr "Μαζική προσθήκη αισθητήρων"
 msgid "Bulk copy"
 msgstr "Μαζική αντιγραφή"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on CPU first"
+msgstr "Πιο φορτωμένα σε CPU πρώτα"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on memory first"
+msgstr "Πιο φορτωμένα σε μνήμη πρώτα"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "By name"
+msgstr "Κατά όνομα"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Bytes (KB/s, MB/s, GB/s)"
@@ -1038,6 +1112,8 @@ msgstr "Κανονικό"
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -1106,8 +1182,8 @@ msgstr "Χρώμα"
 msgid "Columns"
 msgstr "Στήλες"
 
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 msgid "Command"
 msgstr "Εντολή"
 
@@ -1117,6 +1193,7 @@ msgid "Command line instructions"
 msgstr "Οδηγίες γραμμής εντολών"
 
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Condition"
 msgstr "Συνθήκη"
@@ -1154,6 +1231,7 @@ msgstr "Διενέξεις"
 msgid "Connection is down"
 msgstr "Η σύνδεση είναι εκτός λειτουργίας"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Connections"
 msgstr "Συνδέσεις"
@@ -1269,16 +1347,20 @@ msgstr "Βασικά"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "CPU"
 msgstr "CPU"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "CPU above {threshold}%"
+msgstr "CPU πάνω από {threshold}%"
 
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "CPU Cores"
@@ -1287,6 +1369,11 @@ msgstr "Πυρήνες CPU"
 #: src/lib/alerts.ts
 msgid "CPU I/O Wait"
 msgstr "Χρόνος αναμονής I/O CPU"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "CPU max"
+msgstr "Μέγ. CPU"
 
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -1549,7 +1636,6 @@ msgid "Discharging"
 msgstr "Αποφορτίζεται"
 
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Disk"
@@ -1559,7 +1645,8 @@ msgstr "Δίσκος"
 msgid "Disk I/O"
 msgstr "Ε/Ε δίσκου"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk read"
 msgstr "Ανάγνωση δίσκου"
@@ -1577,10 +1664,15 @@ msgstr "Χρήση δίσκου"
 msgid "Disk usage of {extraFsName}"
 msgstr "Χρήση δίσκου του {extraFsName}"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk write"
 msgstr "Εγγραφή δίσκου"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Disk: {diskText}"
+msgstr "Δίσκος: {diskText}"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Layout display options"
@@ -1963,6 +2055,10 @@ msgstr "Απέτυχαν: {0}"
 msgid "Fans"
 msgstr "Ανεμιστήρες"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "fewer than {threshold} instances"
+msgstr "λιγότερα από {threshold} στιγμιότυπα"
+
 #: src/lib/certificates.ts
 msgid "File"
 msgstr "Αρχείο"
@@ -1970,6 +2066,9 @@ msgstr "Αρχείο"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/chart-card.tsx
@@ -2265,6 +2364,10 @@ msgstr "Σημαντικά πιστοποιητικά"
 msgid "Important containers"
 msgstr "Σημαντικά κοντέινερ"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Important processes"
+msgstr "Σημαντικές διεργασίες"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "Σημαντικές υπηρεσίες"
@@ -2308,6 +2411,12 @@ msgstr "Εγκατάσταση"
 #: src/components/routes/settings/general.tsx
 msgid "Instance name"
 msgstr "Όνομα εγκατάστασης"
+
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Instances"
+msgstr "Στιγμιότυπα"
 
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Interruptions: {incidentCount}"
@@ -2514,6 +2623,10 @@ msgstr "Μέσ. φορτίο"
 msgid "Load state"
 msgstr "Κατάσταση φόρτωσης"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Loaded systems ({loadedCount})"
+msgstr "Φορτωμένα συστήματα ({loadedCount})"
+
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
@@ -2630,10 +2743,10 @@ msgstr "Μέγιστο 1ώρου"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/info-bar.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2642,6 +2755,10 @@ msgstr "Μέγιστο 1ώρου"
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Memory"
 msgstr "Μνήμη"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "memory above {threshold}%"
+msgstr "μνήμη πάνω από {threshold}%"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Memory limit"
@@ -2662,6 +2779,10 @@ msgstr "Χρήση μνήμης"
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Memory usage of containers"
 msgstr "Χρήση μνήμης των κοντέινερ"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Memory: {memText}"
+msgstr "Μνήμη: {memText}"
 
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -2703,9 +2824,21 @@ msgstr "Τα monitors δημιουργήθηκαν"
 msgid "More"
 msgstr "Περισσότερα"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "more than {threshold} instances"
+msgstr "περισσότερα από {threshold} στιγμιότυπα"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Mountpoint"
 msgstr "Σημείο προσάρτησης"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must be running"
+msgstr "πρέπει να εκτελείται"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must not be running"
+msgstr "δεν πρέπει να εκτελείται"
 
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
@@ -2714,9 +2847,8 @@ msgstr "Σημείο προσάρτησης"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -2755,8 +2887,8 @@ msgstr "Δίκτυο"
 msgid "Network"
 msgstr "Δίκτυο"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 msgid "Network connections"
 msgstr "Συνδέσεις δικτύου"
 
@@ -2891,6 +3023,11 @@ msgstr "Καμία διακοπή σε αυτό το διάστημα."
 msgid "No logs yet."
 msgstr "Δεν υπάρχουν ακόμη αρχεία καταγραφής."
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "No process started in the last 24 hours."
+msgstr "Καμία διεργασία δεν ξεκίνησε τις τελευταίες 24 ώρες."
+
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "No processes found."
 msgstr "Δεν βρέθηκαν διεργασίες."
@@ -2927,6 +3064,10 @@ msgstr "Δεν υπάρχει ακόμη αισθητήρας: προσθέστ�
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
 msgstr "Καμία υπηρεσία δεν επανεκκινεί τον πράκτορα μετά από ενημέρωση."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "No system matches the filters."
+msgstr "Κανένα σύστημα δεν ταιριάζει με τα φίλτρα."
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "No systems are up."
@@ -3043,6 +3184,10 @@ msgstr "Μόνο οι διαχειριστές μπορούν να αλλάξο�
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Open menu"
 msgstr "Άνοιγμα μενού"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Operating system"
+msgstr "Λειτουργικό σύστημα"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Optional, such as the name of the service"
@@ -3217,6 +3362,10 @@ msgstr "Σε αναμονή"
 msgid "Per-core average utilization"
 msgstr "Μέση χρήση ανά πυρήνα"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Percent of the whole host, all the instances of the program added up."
+msgstr "Ποσοστό ολόκληρου του κεντρικού υπολογιστή, με όλα τα στιγμιότυπα του προγράμματος αθροισμένα."
+
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Percent of time the disk is busy with I/O"
 msgstr "Ποσοστό χρόνου που ο δίσκος είναι απασχολημένος με I/O"
@@ -3334,14 +3483,36 @@ msgstr "Προτιμώμενη γλώσσα"
 msgid "Previous page"
 msgstr "Προηγούμενη σελίδα"
 
+#: src/lib/alerts.ts
+msgid "Process alert"
+msgstr "Ειδοποίηση διεργασίας"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Process alerts"
+msgstr "Ειδοποιήσεις διεργασιών"
+
+#: src/lib/alerts.ts
+msgid "Process rule matched"
+msgstr "Ο κανόνας διεργασίας ικανοποιήθηκε"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Process started"
 msgstr "Η διεργασία ξεκίνησε"
 
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "Διεργασίες"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Processes are checked every minute, only on the systems with process rules."
+msgstr "Οι διεργασίες ελέγχονται κάθε λεπτό, μόνο στα συστήματα με κανόνες διεργασιών."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Processes started in the last 24 hours, the newest first: new programs, restarts, or a program restarting in a loop."
+msgstr "Διεργασίες που ξεκίνησαν τις τελευταίες 24 ώρες, οι νεότερες πρώτες: νέα προγράμματα, επανεκκινήσεις ή πρόγραμμα που επανεκκινείται σε βρόχο."
 
 #: src/components/processes-table/processes-charts.tsx
 msgid "Processes that use the most resources since this page was opened. Click an area to see the process."
@@ -3350,6 +3521,14 @@ msgstr "Οι διεργασίες που χρησιμοποιούν τους π�
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Production, Customers, Lab…"
 msgstr "Παραγωγή, Πελάτες, Εργαστήριο…"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Program"
+msgstr "Πρόγραμμα"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Programs of the fleet"
+msgstr "Προγράμματα του στόλου"
 
 #: src/components/routes/settings/security.tsx
 msgid "Protect your account with a second factor asked after the password."
@@ -3495,6 +3674,10 @@ msgstr "Πρόσφατοι έλεγχοι"
 msgid "Recently opened"
 msgstr "Άνοιξαν πρόσφατα"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Recently started"
+msgstr "Ξεκίνησαν πρόσφατα"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Καταγράφηκε"
@@ -3513,6 +3696,7 @@ msgstr "Εναπομείναντες κωδικοί ανάκτησης: {recover
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -3855,6 +4039,10 @@ msgstr "Επιλογή όλων"
 msgid "Select matches"
 msgstr "Επιλογή αντιστοιχιών"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Select programs to watch them on every system running them, or click one to find its processes."
+msgstr "Επιλέξτε προγράμματα για να τα παρακολουθείτε σε κάθε σύστημα που τα εκτελεί ή κάντε κλικ σε ένα για να βρείτε τις διεργασίες του."
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Select row"
 msgstr "Επιλογή γραμμής"
@@ -4092,9 +4280,9 @@ msgstr "Ώρα έναρξης"
 msgid "Start type"
 msgstr "Τύπος εκκίνησης"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Started"
 msgstr "Εκκίνηση"
@@ -4146,9 +4334,9 @@ msgstr "Καταστάσεις"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -4167,6 +4355,7 @@ msgid "Stop watching"
 msgstr "Διακοπή παρακολούθησης"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-table.tsx
 msgid "Stopped"
 msgstr "Σταματημένο"
 
@@ -4212,8 +4401,9 @@ msgstr "Αλλαγή θέματος"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4258,9 +4448,16 @@ msgstr "Υπηρεσίες systemd"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "Συστήματα"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems ({count})"
+msgstr "Συστήματα ({count})"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
@@ -4269,6 +4466,10 @@ msgstr "Η διαχείριση των συστημάτων μπορεί να γ
 #: src/components/agent-update-dialog.tsx
 msgid "Systems to update ({targetCount})"
 msgstr "Συστήματα για ενημέρωση ({targetCount})"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems using at least half of their CPU or memory"
+msgstr "Συστήματα που χρησιμοποιούν τουλάχιστον το μισό της CPU ή της μνήμης τους"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -4481,8 +4682,9 @@ msgstr "Αυτό το σύστημα έως {until}"
 msgid "This will permanently delete all selected records from the database."
 msgstr "Αυτό θα διαγράψει οριστικά όλες τις επιλεγμένες εγγραφές από τη βάση δεδομένων."
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Threads"
 msgstr "Νήματα"
@@ -4491,6 +4693,10 @@ msgstr "Νήματα"
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Threshold"
 msgstr "Όριο"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Threshold (%)"
+msgstr "Όριο (%)"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -4555,6 +4761,10 @@ msgstr "Μεγαλύτεροι καταναλωτές"
 msgid "Total"
 msgstr "Σύνολο"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Total ({count} processes)"
+msgstr "Σύνολο ({count} διεργασίες)"
+
 #: src/components/routes/system/network-sheet.tsx
 msgid "Total data received for each interface"
 msgstr "Συνολικά ληφθέντα δεδομένα για κάθε interface"
@@ -4566,6 +4776,15 @@ msgstr "Συνολικά δεδομένα που στάλθηκαν για κά�
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Total duration: {totalDuration}"
 msgstr "Συνολική διάρκεια: {totalDuration}"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Total memory"
+msgstr "Συνολική μνήμη"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Total of the filtered processes ({count})"
+msgstr "Σύνολο φιλτραρισμένων διεργασιών ({count})"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
@@ -4878,10 +5097,9 @@ msgstr "Χρησιμοποιείται"
 msgid "Used by"
 msgstr "Χρησιμοποιείται από"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/ldap.tsx

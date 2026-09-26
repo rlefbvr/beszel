@@ -21,12 +21,17 @@ const (
 	// Names stored in alerts_history for state rule incidents.
 	alertNameServiceState   = "ServiceState"
 	alertNameContainerState = "ContainerState"
+	alertNameProcessState   = "ProcessState"
 
 	stateAlertKindService   = "service"
 	stateAlertKindContainer = "container"
+	stateAlertKindProcess   = "process"
 
 	stateAlertConditionIs    = "is"
 	stateAlertConditionIsNot = "is_not"
+	// conditions of the process rules on a metric
+	stateAlertConditionAbove = "above"
+	stateAlertConditionBelow = "below"
 
 	// serviceStateAbsent is the state of a service the agent no longer reports
 	// (stopped and filtered out by the agent, or removed).
@@ -34,6 +39,8 @@ const (
 	// containerStateStopped covers containers missing from the agent report:
 	// the agent only lists running containers.
 	containerStateStopped = "stopped"
+	// processStateStopped is the state of a process no longer running.
+	processStateStopped = "stopped"
 )
 
 var (
@@ -41,6 +48,10 @@ var (
 	serviceSubStates    = []string{"dead", "running", "exited", "failed", "unknown"}
 	containerStates     = []string{"running", "paused", "restarting", containerStateStopped}
 	containerHealthKeys = []string{"none", "starting", "healthy", "unhealthy"}
+	processStates       = []string{"running", processStateStopped}
+	// processMetrics are what a process rule can watch: the CPU and memory used
+	// by all the instances of the process (percent of the host), or their number
+	processMetrics = []string{"cpu", "mem", "count"}
 )
 
 // stateAlertTarget tracks one service or container matched by a rule.
@@ -60,10 +71,27 @@ type stateAlertState struct {
 	Targets map[string]*stateAlertTarget `json:"t,omitempty"`
 }
 
-// observedState is the state of a service or container in the latest report.
+// observedState is the state of a service, container or process in the latest report.
 type observedState struct {
 	state string
 	sub   string
+	// use of all the instances of a process
+	cpu   float64
+	mem   float64
+	count int
+}
+
+// metric returns the value a process rule watches.
+func (obs observedState) metric(name string) float64 {
+	switch name {
+	case "cpu":
+		return obs.cpu
+	case "mem":
+		return obs.mem
+	case "count":
+		return float64(obs.count)
+	}
+	return 0
 }
 
 // stateAlertRule is the configuration of a state_alerts record.
@@ -74,6 +102,9 @@ type stateAlertRule struct {
 	states    []string
 	subStates []string
 	cycles    int
+	// metric and threshold of the process rules on a metric
+	metric    string
+	threshold float64
 }
 
 func stateAlertRuleFromRecord(record *core.Record) stateAlertRule {
@@ -82,6 +113,8 @@ func stateAlertRuleFromRecord(record *core.Record) stateAlertRule {
 		patterns:  parseStateAlertPatterns(record.GetString("targets")),
 		condition: record.GetString("condition"),
 		cycles:    max(1, record.GetInt("cycles")),
+		metric:    record.GetString("metric"),
+		threshold: record.GetFloat("threshold"),
 	}
 	_ = record.UnmarshalJSONField("states", &rule.states)
 	_ = record.UnmarshalJSONField("sub_states", &rule.subStates)
@@ -103,12 +136,15 @@ func isLiteralPattern(pattern string) bool {
 }
 
 // stateAlertNameCandidates returns the names a pattern is matched against: the
-// full name, the systemd unit without ".service", and the Windows short service
-// name shown in parentheses ("Print Spooler (Spooler)").
+// full name, the systemd unit without ".service", the Windows program without
+// ".exe", and the Windows short service name shown in parentheses ("Print Spooler (Spooler)").
 func stateAlertNameCandidates(name string) []string {
 	lower := strings.ToLower(name)
 	candidates := []string{lower}
 	if trimmed, ok := strings.CutSuffix(lower, ".service"); ok {
+		candidates = append(candidates, trimmed)
+	}
+	if trimmed, ok := strings.CutSuffix(lower, ".exe"); ok {
 		candidates = append(candidates, trimmed)
 	}
 	if strings.HasSuffix(lower, ")") {
@@ -133,6 +169,13 @@ func (r stateAlertRule) matchesName(name string) bool {
 
 // fires reports whether an observed state should trigger the rule.
 func (r stateAlertRule) fires(obs observedState) bool {
+	if r.metric != "" {
+		value := obs.metric(r.metric)
+		if r.condition == stateAlertConditionBelow {
+			return value < r.threshold
+		}
+		return value > r.threshold
+	}
 	matches := (len(r.states) == 0 || slices.Contains(r.states, obs.state)) &&
 		(len(r.subStates) == 0 || slices.Contains(r.subStates, obs.sub))
 	if r.condition == stateAlertConditionIsNot {
@@ -143,13 +186,35 @@ func (r stateAlertRule) fires(obs observedState) bool {
 
 // validateStateAlertRule checks rule values that the collection schema can't express.
 func validateStateAlertRule(record *core.Record) error {
-	rule := stateAlertRuleFromRecord(record)
+	return stateAlertRuleFromRecord(record).validate()
+}
+
+func (rule stateAlertRule) validate() error {
 	if len(rule.patterns) == 0 {
 		return fmt.Errorf("at least one target is required")
 	}
 	allowedStates, allowedSubStates := serviceStates, serviceSubStates
-	if rule.kind == stateAlertKindContainer {
+	switch rule.kind {
+	case stateAlertKindContainer:
 		allowedStates, allowedSubStates = containerStates, containerHealthKeys
+	case stateAlertKindProcess:
+		allowedStates, allowedSubStates = processStates, nil
+	}
+	metricCondition := rule.condition == stateAlertConditionAbove || rule.condition == stateAlertConditionBelow
+	if rule.metric != "" || metricCondition {
+		switch {
+		case rule.kind != stateAlertKindProcess:
+			return fmt.Errorf("only process rules watch a metric")
+		case !slices.Contains(processMetrics, rule.metric):
+			return fmt.Errorf("invalid metric %q", rule.metric)
+		case !metricCondition:
+			return fmt.Errorf("a metric rule alerts above or below a threshold")
+		case rule.threshold < 0 || (rule.metric != "count" && rule.threshold > 100):
+			return fmt.Errorf("invalid threshold")
+		case rule.metric == "count" && rule.condition == stateAlertConditionBelow && rule.threshold < 1:
+			return fmt.Errorf("invalid threshold")
+		}
+		return nil
 	}
 	if len(rule.states) == 0 && len(rule.subStates) == 0 {
 		return fmt.Errorf("select at least one state")
@@ -190,7 +255,7 @@ func (am *AlertManager) bindStateAlertEvents() {
 		}
 		// A changed rule starts over: open incidents are resolved below.
 		changed := false
-		for _, field := range []string{"kind", "targets", "condition", "states", "sub_states", "cycles"} {
+		for _, field := range []string{"kind", "targets", "condition", "states", "sub_states", "cycles", "metric", "threshold"} {
 			if fmt.Sprint(e.Record.Get(field)) != fmt.Sprint(original.Get(field)) {
 				changed = true
 				break
@@ -357,8 +422,11 @@ func (am *AlertManager) evaluateStateAlerts(systemRecord *core.Record, kind stri
 	systemID := systemRecord.Id
 	systemName := systemRecord.GetString("name")
 	historyName, absentState := alertNameServiceState, serviceStateAbsent
-	if kind == stateAlertKindContainer {
+	switch kind {
+	case stateAlertKindContainer:
 		historyName, absentState = alertNameContainerState, containerStateStopped
+	case stateAlertKindProcess:
+		historyName, absentState = alertNameProcessState, processStateStopped
 	}
 
 	err := am.hub.RunInTransaction(func(tx core.App) error {
@@ -468,6 +536,12 @@ func formatObservedState(obs observedState) string {
 // State names are technical values shown untranslated, like in the interface.
 func formatStateAlertCondition(record *core.Record) Msg {
 	rule := stateAlertRuleFromRecord(record)
+	if rule.metric != "" {
+		return M("state.rule."+rule.condition, Args{
+			"metric":    M("process.metric."+rule.metric, nil),
+			"threshold": formatProcessMetric(rule.metric, rule.threshold),
+		})
+	}
 	var parts []string
 	if len(rule.states) > 0 {
 		parts = append(parts, strings.Join(rule.states, " / "))
@@ -482,8 +556,23 @@ func formatStateAlertCondition(record *core.Record) Msg {
 	return M(key, Args{"states": strings.Join(parts, " ")})
 }
 
+// formatProcessMetric formats a value of a process metric: a percent, or a number of instances.
+func formatProcessMetric(metric string, value float64) string {
+	if metric == "count" {
+		return fmt.Sprintf("%d", int(value))
+	}
+	return fmt.Sprintf("%.1f%%", value)
+}
+
 func stateAlertMessage(record *core.Record, kind, name, systemName string, obs observedState, triggered bool) AlertMessageData {
-	args := Args{"target": name, "system": systemName, "state": formatObservedState(obs), "rule": formatStateAlertCondition(record)}
+	var state any = formatObservedState(obs)
+	if metric := record.GetString("metric"); metric != "" {
+		state = M("process.value", Args{
+			"metric": M("process.metric."+metric, nil),
+			"value":  formatProcessMetric(metric, obs.metric(metric)),
+		})
+	}
+	args := Args{"target": name, "system": systemName, "state": state, "rule": formatStateAlertCondition(record)}
 	key := "state." + kind
 	data := AlertMessageData{
 		UserID:      record.GetString("user"),
@@ -498,8 +587,11 @@ func stateAlertMessage(record *core.Record, kind, name, systemName string, obs o
 		RuleID:      record.Id,
 		TargetName:  name,
 	}
-	if record.GetString("kind") == "container" {
+	switch record.GetString("kind") {
+	case stateAlertKindContainer:
 		data.Kind = alertNameContainerState
+	case stateAlertKindProcess:
+		data.Kind = alertNameProcessState
 	}
 	if triggered {
 		data.Title, data.Message = M(key+".triggered.title", args), M(key+".triggered.body", args)

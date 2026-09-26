@@ -86,6 +86,10 @@ msgstr "{count, plural, one {# filtrovaný kontejner} few {# filtrované kontejn
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# filtrovaná služba} few {# filtrované služby} many {# filtrované služby} other {# filtrovaných služeb}}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# selected process} other {# selected processes}}"
+msgstr "{count, plural, one {# vybraný proces} other {# vybraných procesů}}"
+
 #: src/components/sensors/sensor-incidents.tsx
 msgid "{count, plural, one {# sensor} other {# sensors}}"
 msgstr "{count, plural, one {# senzor} few {# senzory} many {# senzoru} other {# senzorů}}"
@@ -95,12 +99,20 @@ msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# systém} few {# systémy} many {# systému} other {# systémů}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
+msgstr "{count, plural, one {Upozornění vybraného procesu se v tomto okně neodesílají.} other {Upozornění # vybraných procesů se v tomto okně neodesílají.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
 msgstr "{count, plural, one {Upozornění na stav vybraného kontejneru se v tomto období neodesílají.} other {Upozornění na stav vybraných kontejnerů (#) se v tomto období neodesílají.}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
 msgstr "{count, plural, one {Upozornění na stav vybrané služby se v tomto období neodesílají.} other {Upozornění na stav vybraných služeb (#) se v tomto období neodesílají.}}"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "{count} instance(s) · CPU {cpuText}"
+msgstr "{count} instancí · CPU {cpuText}"
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "{count} processes · CPU {cpuText} · Memory {memText}"
@@ -128,6 +140,14 @@ msgid "{failed} system(s) did not answer."
 msgstr "{failed} systém(ů) neodpověděl(o)."
 
 #: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more processes: use the filter to find them."
+msgstr "Dalších {hidden} procesů: najdete je pomocí filtru."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more programs: use the filter to find them."
+msgstr "Dalších {hidden} programů: najdete je pomocí filtru."
+
+#: src/components/processes-table/processes-overview.tsx
 msgid "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
 msgstr "{matchCount} proces(ů) na {systemCount} systému/systémech pro „{searched}“"
 
@@ -150,6 +170,10 @@ msgstr "{outdated} systém(y) potřebuje aktualizaci agenta (0.20.0-fork.5 nebo 
 #: src/components/certificates/certificates-table.tsx
 msgid "{outdated} system(s) need an agent update to read their certificates."
 msgstr "{outdated} systém(y) potřebuje aktualizaci agenta pro čtení certifikátů."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{programCount} programs"
+msgstr "{programCount} programů"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
@@ -459,8 +483,24 @@ msgid "Alert types"
 msgstr "Typy upozornění"
 
 #: src/components/alerts/state-alert-rules.tsx
-msgid "Alert when services or Docker containers enter or leave a state."
-msgstr "Upozornit, když služby nebo kontejnery Docker vstoupí do stavu nebo jej opustí."
+msgid "Alert when its CPU is above"
+msgstr "Upozornit, když je CPU nad"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are fewer than"
+msgstr "Upozornit, když je instancí méně než"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are more than"
+msgstr "Upozornit, když je instancí více než"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its memory is above"
+msgstr "Upozornit, když je paměť nad"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when services, Docker containers or processes enter or leave a state."
+msgstr "Upozornit, když služby, kontejnery Docker nebo procesy vstoupí do stavu nebo jej opustí."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
@@ -475,6 +515,14 @@ msgstr "Upozornit, když stav není"
 #: src/components/certificates/certificates-table.tsx
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "Upozornit, když certifikát {name} systému {systemName} vyprší za méně dní, než je práh. Obnovené certifikáty se stejným názvem zůstávají kontrolovány a certifikát se stane důležitým."
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is not running"
+msgstr "Upozornit, když proces neběží"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is running"
+msgstr "Upozornit, když proces běží"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -536,6 +584,14 @@ msgstr "Všechny certifikáty"
 msgid "All Containers"
 msgstr "Všechny kontejnery"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "All groups"
+msgstr "Všechny skupiny"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "All OS"
+msgstr "Všechny OS"
+
 #: src/components/agent-update-dialog.tsx
 msgid "All outdated ({outdatedCount})"
 msgstr "Všichni zastaralí ({outdatedCount})"
@@ -578,6 +634,8 @@ msgstr "Všechny služby"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -593,6 +651,10 @@ msgstr "Všechny systémy"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "Všechny systémy do {until}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "All the instances of a program count as one target, such as every chrome.exe."
+msgstr "Všechny instance programu se počítají jako jeden cíl, například každý chrome.exe."
 
 #: src/components/period-select.tsx
 msgid "All time"
@@ -841,6 +903,18 @@ msgstr "Hromadné přidání senzorů"
 msgid "Bulk copy"
 msgstr "Hromadné kopírování"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on CPU first"
+msgstr "Nejvytíženější CPU nejdříve"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on memory first"
+msgstr "Nejvytíženější paměť nejdříve"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "By name"
+msgstr "Podle názvu"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Bytes (KB/s, MB/s, GB/s)"
@@ -1038,6 +1112,8 @@ msgstr "Řádné"
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -1106,8 +1182,8 @@ msgstr "Barva"
 msgid "Columns"
 msgstr "Sloupce"
 
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 msgid "Command"
 msgstr "Příkaz"
 
@@ -1117,6 +1193,7 @@ msgid "Command line instructions"
 msgstr "Instrukce příkazového řádku"
 
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Condition"
 msgstr "Podmínka"
@@ -1154,6 +1231,7 @@ msgstr "Konflikty"
 msgid "Connection is down"
 msgstr "Připojení je nedostupné"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Connections"
 msgstr "Připojení"
@@ -1269,16 +1347,20 @@ msgstr "Jádro"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "CPU"
 msgstr "Procesor"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "CPU above {threshold}%"
+msgstr "CPU nad {threshold} %"
 
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "CPU Cores"
@@ -1287,6 +1369,11 @@ msgstr "CPU jádra"
 #: src/lib/alerts.ts
 msgid "CPU I/O Wait"
 msgstr "Čekání CPU na I/O (IOWait)"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "CPU max"
+msgstr "Max. CPU"
 
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -1549,7 +1636,6 @@ msgid "Discharging"
 msgstr "Vybíjení"
 
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Disk"
@@ -1559,7 +1645,8 @@ msgstr ""
 msgid "Disk I/O"
 msgstr "Diskové I/O"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk read"
 msgstr "Čtení z disku"
@@ -1577,10 +1664,15 @@ msgstr "Využití disku"
 msgid "Disk usage of {extraFsName}"
 msgstr "Využití disku {extraFsName}"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk write"
 msgstr "Zápis na disk"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Disk: {diskText}"
+msgstr "Disk: {diskText}"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Layout display options"
@@ -1963,6 +2055,10 @@ msgstr "Neúspěšné: {0}"
 msgid "Fans"
 msgstr "Ventilátory"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "fewer than {threshold} instances"
+msgstr "méně než {threshold} instancí"
+
 #: src/lib/certificates.ts
 msgid "File"
 msgstr "Soubor"
@@ -1970,6 +2066,9 @@ msgstr "Soubor"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/chart-card.tsx
@@ -2265,6 +2364,10 @@ msgstr "Důležité certifikáty"
 msgid "Important containers"
 msgstr "Důležité kontejnery"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Important processes"
+msgstr "Důležité procesy"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "Důležité služby"
@@ -2308,6 +2411,12 @@ msgstr "Instance"
 #: src/components/routes/settings/general.tsx
 msgid "Instance name"
 msgstr "Název instance"
+
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Instances"
+msgstr "Instance"
 
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Interruptions: {incidentCount}"
@@ -2514,6 +2623,10 @@ msgstr "Prům. zatížení"
 msgid "Load state"
 msgstr "Stav načtení"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Loaded systems ({loadedCount})"
+msgstr "Vytížené systémy ({loadedCount})"
+
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
@@ -2630,10 +2743,10 @@ msgstr "Max. 1h"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/info-bar.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2642,6 +2755,10 @@ msgstr "Max. 1h"
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Memory"
 msgstr "Paměť"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "memory above {threshold}%"
+msgstr "paměť nad {threshold} %"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Memory limit"
@@ -2662,6 +2779,10 @@ msgstr "Využití paměti"
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Memory usage of containers"
 msgstr "Využití paměti kontejnery"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Memory: {memText}"
+msgstr "Paměť: {memText}"
 
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -2703,9 +2824,21 @@ msgstr "Monitory vytvořeny"
 msgid "More"
 msgstr "Další"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "more than {threshold} instances"
+msgstr "více než {threshold} instancí"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Mountpoint"
 msgstr "Bod připojení"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must be running"
+msgstr "musí běžet"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must not be running"
+msgstr "nesmí běžet"
 
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
@@ -2714,9 +2847,8 @@ msgstr "Bod připojení"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -2755,8 +2887,8 @@ msgstr "Síť"
 msgid "Network"
 msgstr "Síť"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 msgid "Network connections"
 msgstr "Síťová připojení"
 
@@ -2891,6 +3023,11 @@ msgstr "V tomto období nejsou žádné výpadky."
 msgid "No logs yet."
 msgstr "Zatím žádné protokoly."
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "No process started in the last 24 hours."
+msgstr "Za posledních 24 hodin nebyl spuštěn žádný proces."
+
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "No processes found."
 msgstr "Nebyly nalezeny žádné procesy."
@@ -2927,6 +3064,10 @@ msgstr "Zatím žádný senzor: přidejte hostitele a porty, které má Beszel k
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
 msgstr "Žádná služba po aktualizaci agenta nerestartuje."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "No system matches the filters."
+msgstr "Filtrům neodpovídá žádný systém."
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "No systems are up."
@@ -3043,6 +3184,10 @@ msgstr "Toto nastavení mohou měnit pouze administrátoři."
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Open menu"
 msgstr "Otevřít menu"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Operating system"
+msgstr "Operační systém"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Optional, such as the name of the service"
@@ -3217,6 +3362,10 @@ msgstr "Čeká"
 msgid "Per-core average utilization"
 msgstr "Průměrné využití na jádro"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Percent of the whole host, all the instances of the program added up."
+msgstr "Procento celého hostitele, všechny instance programu sečtené."
+
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Percent of time the disk is busy with I/O"
 msgstr "Procento času, po který je disk zaneprázdněn I/O operacemi"
@@ -3334,14 +3483,36 @@ msgstr "Upřednostňovaný jazyk"
 msgid "Previous page"
 msgstr "Předchozí stránka"
 
+#: src/lib/alerts.ts
+msgid "Process alert"
+msgstr "Upozornění procesu"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Process alerts"
+msgstr "Upozornění procesů"
+
+#: src/lib/alerts.ts
+msgid "Process rule matched"
+msgstr "Pravidlo procesu splněno"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Process started"
 msgstr "Proces spuštěn"
 
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "Procesy"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Processes are checked every minute, only on the systems with process rules."
+msgstr "Procesy se kontrolují každou minutu, pouze na systémech s pravidly procesů."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Processes started in the last 24 hours, the newest first: new programs, restarts, or a program restarting in a loop."
+msgstr "Procesy spuštěné za posledních 24 hodin, nejnovější první: nové programy, restarty nebo program restartující se ve smyčce."
 
 #: src/components/processes-table/processes-charts.tsx
 msgid "Processes that use the most resources since this page was opened. Click an area to see the process."
@@ -3350,6 +3521,14 @@ msgstr "Procesy s nejvyšší spotřebou prostředků od otevření této strán
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Production, Customers, Lab…"
 msgstr "Produkce, Zákazníci, Laboratoř…"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Program"
+msgstr "Program"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Programs of the fleet"
+msgstr "Programy flotily"
 
 #: src/components/routes/settings/security.tsx
 msgid "Protect your account with a second factor asked after the password."
@@ -3495,6 +3674,10 @@ msgstr "Nedávné kontroly"
 msgid "Recently opened"
 msgstr "Nedávno otevřené"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Recently started"
+msgstr "Nedávno spuštěné"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Zaznamenáno"
@@ -3513,6 +3696,7 @@ msgstr "Zbývající kódy pro obnovení: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -3855,6 +4039,10 @@ msgstr "Vybrat vše"
 msgid "Select matches"
 msgstr "Vybrat shody"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Select programs to watch them on every system running them, or click one to find its processes."
+msgstr "Vyberte programy a sledujte je na každém systému, kde běží, nebo kliknutím na program najděte jeho procesy."
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Select row"
 msgstr "Vybrat řádek"
@@ -4092,9 +4280,9 @@ msgstr "Čas začátku"
 msgid "Start type"
 msgstr "Typ spouštění"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Started"
 msgstr "Spuštěno"
@@ -4146,9 +4334,9 @@ msgstr "Stavy"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -4167,6 +4355,7 @@ msgid "Stop watching"
 msgstr "Přestat sledovat"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-table.tsx
 msgid "Stopped"
 msgstr "Zastaveno"
 
@@ -4212,8 +4401,9 @@ msgstr "Přepnout motiv"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4258,9 +4448,16 @@ msgstr "Služby systemd"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "Systémy"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems ({count})"
+msgstr "Systémy ({count})"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
@@ -4269,6 +4466,10 @@ msgstr "Systémy lze spravovat v souboru <0>config.yml</0> uvnitř datového adr
 #: src/components/agent-update-dialog.tsx
 msgid "Systems to update ({targetCount})"
 msgstr "Systémy k aktualizaci ({targetCount})"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems using at least half of their CPU or memory"
+msgstr "Systémy využívající alespoň polovinu CPU nebo paměti"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -4481,8 +4682,9 @@ msgstr "Tento systém do {until}"
 msgid "This will permanently delete all selected records from the database."
 msgstr "Tímto trvale odstraníte všechny vybrané záznamy z databáze."
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Threads"
 msgstr "Vlákna"
@@ -4491,6 +4693,10 @@ msgstr "Vlákna"
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Threshold"
 msgstr "Práh"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Threshold (%)"
+msgstr "Práh (%)"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -4555,6 +4761,10 @@ msgstr "Největší spotřebitelé"
 msgid "Total"
 msgstr "Celkem"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Total ({count} processes)"
+msgstr "Celkem ({count} procesů)"
+
 #: src/components/routes/system/network-sheet.tsx
 msgid "Total data received for each interface"
 msgstr "Celkový přijatý objem dat pro každé rozhraní"
@@ -4566,6 +4776,15 @@ msgstr "Celkový odeslaný objem dat pro každé rozhraní"
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Total duration: {totalDuration}"
 msgstr "Celková doba: {totalDuration}"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Total memory"
+msgstr "Celková paměť"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Total of the filtered processes ({count})"
+msgstr "Celkem za filtrované procesy ({count})"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
@@ -4878,10 +5097,9 @@ msgstr "Využito"
 msgid "Used by"
 msgstr "Používá"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/ldap.tsx

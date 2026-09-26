@@ -86,6 +86,10 @@ msgstr "{count, plural, one {# filtriran vsebnik} two {# filtrirana vsebnika} fe
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# filtrirana storitev} two {# filtrirani storitvi} few {# filtrirane storitve} other {# filtriranih storitev}}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# selected process} other {# selected processes}}"
+msgstr "{count, plural, one {# izbran proces} other {# izbranih procesov}}"
+
 #: src/components/sensors/sensor-incidents.tsx
 msgid "{count, plural, one {# sensor} other {# sensors}}"
 msgstr "{count, plural, one {# senzor} two {# senzorja} few {# senzorji} other {# senzorjev}}"
@@ -95,12 +99,20 @@ msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# sistem} two {# sistema} few {# sistemi} other {# sistemov}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
+msgstr "{count, plural, one {Opozorila izbranega procesa se v tem oknu ne pošiljajo.} other {Opozorila # izbranih procesov se v tem oknu ne pošiljajo.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
 msgstr "{count, plural, one {Opozorila o stanju izbranega vsebnika se v tem obdobju ne pošiljajo.} other {Opozorila o stanju izbranih vsebnikov (#) se v tem obdobju ne pošiljajo.}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
 msgstr "{count, plural, one {Opozorila o stanju izbrane storitve se v tem obdobju ne pošiljajo.} other {Opozorila o stanju izbranih storitev (#) se v tem obdobju ne pošiljajo.}}"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "{count} instance(s) · CPU {cpuText}"
+msgstr "{count} primerkov · CPE {cpuText}"
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "{count} processes · CPU {cpuText} · Memory {memText}"
@@ -128,6 +140,14 @@ msgid "{failed} system(s) did not answer."
 msgstr "{failed} sistem(ov) se ni odzvalo."
 
 #: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more processes: use the filter to find them."
+msgstr "Še {hidden} procesov: poiščite jih s filtrom."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more programs: use the filter to find them."
+msgstr "Še {hidden} programov: poiščite jih s filtrom."
+
+#: src/components/processes-table/processes-overview.tsx
 msgid "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
 msgstr "{matchCount} proces(ov) na {systemCount} sistem(ih) za »{searched}«"
 
@@ -150,6 +170,10 @@ msgstr "{outdated} sistem(ov) potrebuje posodobitev agenta (0.20.0-fork.5 ali no
 #: src/components/certificates/certificates-table.tsx
 msgid "{outdated} system(s) need an agent update to read their certificates."
 msgstr "{outdated} sistem(ov) potrebuje posodobitev agenta za branje potrdil."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{programCount} programs"
+msgstr "{programCount} programov"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
@@ -459,8 +483,24 @@ msgid "Alert types"
 msgstr "Vrste opozoril"
 
 #: src/components/alerts/state-alert-rules.tsx
-msgid "Alert when services or Docker containers enter or leave a state."
-msgstr "Opozori, ko storitve ali vsebniki Docker preidejo v stanje ali iz njega."
+msgid "Alert when its CPU is above"
+msgstr "Opozori, ko je CPE nad"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are fewer than"
+msgstr "Opozori, ko je primerkov manj kot"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are more than"
+msgstr "Opozori, ko je primerkov več kot"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its memory is above"
+msgstr "Opozori, ko je pomnilnik nad"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when services, Docker containers or processes enter or leave a state."
+msgstr "Opozori, ko storitve, vsebniki Docker ali procesi vstopijo v stanje ali ga zapustijo."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
@@ -475,6 +515,14 @@ msgstr "Opozori, ko stanje ni"
 #: src/components/certificates/certificates-table.tsx
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "Opozori, ko potrdilo {name} sistema {systemName} poteče v manj dneh od praga. Obnovljena potrdila z istim imenom se še naprej preverjajo, potrdilo pa postane pomembno."
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is not running"
+msgstr "Opozori, ko proces ne teče"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is running"
+msgstr "Opozori, ko proces teče"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -536,6 +584,14 @@ msgstr "Vsa potrdila"
 msgid "All Containers"
 msgstr "Vsi kontejnerji"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "All groups"
+msgstr "Vse skupine"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "All OS"
+msgstr "Vsi OS"
+
 #: src/components/agent-update-dialog.tsx
 msgid "All outdated ({outdatedCount})"
 msgstr "Vsi zastareli ({outdatedCount})"
@@ -578,6 +634,8 @@ msgstr "Vse storitve"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -593,6 +651,10 @@ msgstr "Vsi sistemi"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "Vsi sistemi do {until}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "All the instances of a program count as one target, such as every chrome.exe."
+msgstr "Vsi primerki programa štejejo kot en cilj, npr. vsak chrome.exe."
 
 #: src/components/period-select.tsx
 msgid "All time"
@@ -841,6 +903,18 @@ msgstr "Skupno dodajanje senzorjev"
 msgid "Bulk copy"
 msgstr "Množično kopiranje"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on CPU first"
+msgstr "Najbolj obremenjeni CPE najprej"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on memory first"
+msgstr "Najbolj obremenjen pomnilnik najprej"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "By name"
+msgstr "Po imenu"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Bytes (KB/s, MB/s, GB/s)"
@@ -1038,6 +1112,8 @@ msgstr "Običajno"
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -1106,8 +1182,8 @@ msgstr "Barva"
 msgid "Columns"
 msgstr "Stolpci"
 
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 msgid "Command"
 msgstr "Ukaz"
 
@@ -1117,6 +1193,7 @@ msgid "Command line instructions"
 msgstr "Navodila za ukazno vrstico"
 
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Condition"
 msgstr "Pogoj"
@@ -1154,6 +1231,7 @@ msgstr "Konflikti"
 msgid "Connection is down"
 msgstr "Povezava je prekinjena"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Connections"
 msgstr "Povezave"
@@ -1269,16 +1347,20 @@ msgstr "Jedro"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "CPU"
 msgstr "CPE"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "CPU above {threshold}%"
+msgstr "CPE nad {threshold} %"
 
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "CPU Cores"
@@ -1287,6 +1369,11 @@ msgstr "CPU jedra"
 #: src/lib/alerts.ts
 msgid "CPU I/O Wait"
 msgstr "Čakanje CPU na V/I (IOWait)"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "CPU max"
+msgstr "Najv. CPE"
 
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -1549,7 +1636,6 @@ msgid "Discharging"
 msgstr "Prazni se"
 
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Disk"
@@ -1559,7 +1645,8 @@ msgstr "Disk"
 msgid "Disk I/O"
 msgstr "V/I diska"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk read"
 msgstr "Branje diska"
@@ -1577,10 +1664,15 @@ msgstr "Poraba diska"
 msgid "Disk usage of {extraFsName}"
 msgstr "Poraba diska za {extraFsName}"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk write"
 msgstr "Pisanje na disk"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Disk: {diskText}"
+msgstr "Disk: {diskText}"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Layout display options"
@@ -1963,6 +2055,10 @@ msgstr "Neuspešno: {0}"
 msgid "Fans"
 msgstr "Ventilatorji"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "fewer than {threshold} instances"
+msgstr "manj kot {threshold} primerkov"
+
 #: src/lib/certificates.ts
 msgid "File"
 msgstr "Datoteka"
@@ -1970,6 +2066,9 @@ msgstr "Datoteka"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/chart-card.tsx
@@ -2265,6 +2364,10 @@ msgstr "Pomembna potrdila"
 msgid "Important containers"
 msgstr "Pomembni vsebniki"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Important processes"
+msgstr "Pomembni procesi"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "Pomembne storitve"
@@ -2308,6 +2411,12 @@ msgstr "Instanca"
 #: src/components/routes/settings/general.tsx
 msgid "Instance name"
 msgstr "Ime instance"
+
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Instances"
+msgstr "Primerki"
 
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Interruptions: {incidentCount}"
@@ -2514,6 +2623,10 @@ msgstr "Povpr. obrem."
 msgid "Load state"
 msgstr "Stanje nalaganja"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Loaded systems ({loadedCount})"
+msgstr "Obremenjeni sistemi ({loadedCount})"
+
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
@@ -2630,10 +2743,10 @@ msgstr "Najv. 1 h"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/info-bar.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2642,6 +2755,10 @@ msgstr "Najv. 1 h"
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Memory"
 msgstr "Pomnilnik"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "memory above {threshold}%"
+msgstr "pomnilnik nad {threshold} %"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Memory limit"
@@ -2662,6 +2779,10 @@ msgstr "Poraba pomnilnika"
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Memory usage of containers"
 msgstr "Poraba pomnilnika vsebnikov"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Memory: {memText}"
+msgstr "Pomnilnik: {memText}"
 
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -2703,9 +2824,21 @@ msgstr "Monitorji ustvarjeni"
 msgid "More"
 msgstr "Več"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "more than {threshold} instances"
+msgstr "več kot {threshold} primerkov"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Mountpoint"
 msgstr "Točka priklopa"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must be running"
+msgstr "mora teči"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must not be running"
+msgstr "ne sme teči"
 
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
@@ -2714,9 +2847,8 @@ msgstr "Točka priklopa"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -2755,8 +2887,8 @@ msgstr "Mreža"
 msgid "Network"
 msgstr "Omrežje"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 msgid "Network connections"
 msgstr "Omrežne povezave"
 
@@ -2891,6 +3023,11 @@ msgstr "V tem obdobju ni prekinitev."
 msgid "No logs yet."
 msgstr "Dnevnikov še ni."
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "No process started in the last 24 hours."
+msgstr "V zadnjih 24 urah se ni zagnal noben proces."
+
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "No processes found."
 msgstr "Ni najdenih procesov."
@@ -2927,6 +3064,10 @@ msgstr "Še ni senzorjev: dodajte gostitelje in vrata, ki naj jih Beszel preverj
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
 msgstr "Nobena storitev po posodobitvi ne zažene agenta znova."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "No system matches the filters."
+msgstr "Noben sistem se ne ujema s filtri."
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "No systems are up."
@@ -3043,6 +3184,10 @@ msgstr "To nastavitev lahko spremenijo samo skrbniki."
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Open menu"
 msgstr "Odpri menu"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Operating system"
+msgstr "Operacijski sistem"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Optional, such as the name of the service"
@@ -3217,6 +3362,10 @@ msgstr "V teku"
 msgid "Per-core average utilization"
 msgstr "Povprečna izkoriščenost na jedro"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Percent of the whole host, all the instances of the program added up."
+msgstr "Odstotek celotnega gostitelja, seštevek vseh primerkov programa."
+
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Percent of time the disk is busy with I/O"
 msgstr "Odstotek časa, ko je disk zaposlen z I/O operacijami"
@@ -3334,14 +3483,36 @@ msgstr "Prednostni jezik"
 msgid "Previous page"
 msgstr "Prejšnja stran"
 
+#: src/lib/alerts.ts
+msgid "Process alert"
+msgstr "Opozorilo procesa"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Process alerts"
+msgstr "Opozorila procesov"
+
+#: src/lib/alerts.ts
+msgid "Process rule matched"
+msgstr "Pravilo procesa izpolnjeno"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Process started"
 msgstr "Proces začet"
 
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "Procesi"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Processes are checked every minute, only on the systems with process rules."
+msgstr "Procesi se preverjajo vsako minuto, samo na sistemih s pravili procesov."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Processes started in the last 24 hours, the newest first: new programs, restarts, or a program restarting in a loop."
+msgstr "Procesi, zagnani v zadnjih 24 urah, najnovejši najprej: novi programi, ponovni zagoni ali program, ki se znova zaganja v zanki."
 
 #: src/components/processes-table/processes-charts.tsx
 msgid "Processes that use the most resources since this page was opened. Click an area to see the process."
@@ -3350,6 +3521,14 @@ msgstr "Procesi, ki porabijo največ virov, odkar je stran odprta. Kliknite obmo
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Production, Customers, Lab…"
 msgstr "Produkcija, Stranke, Laboratorij…"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Program"
+msgstr "Program"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Programs of the fleet"
+msgstr "Programi flote"
 
 #: src/components/routes/settings/security.tsx
 msgid "Protect your account with a second factor asked after the password."
@@ -3495,6 +3674,10 @@ msgstr "Nedavna preverjanja"
 msgid "Recently opened"
 msgstr "Nedavno odprto"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Recently started"
+msgstr "Nedavno zagnani"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Zabeleženo"
@@ -3513,6 +3696,7 @@ msgstr "Preostale obnovitvene kode: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -3855,6 +4039,10 @@ msgstr "Izberi vse"
 msgid "Select matches"
 msgstr "Izberi zadetke"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Select programs to watch them on every system running them, or click one to find its processes."
+msgstr "Izberite programe za nadzor na vseh sistemih, ki jih izvajajo, ali kliknite enega, da poiščete njegove procese."
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Select row"
 msgstr "Izberi vrstico"
@@ -4092,9 +4280,9 @@ msgstr "Čas začetka"
 msgid "Start type"
 msgstr "Vrsta zagona"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Started"
 msgstr "Zagnano"
@@ -4146,9 +4334,9 @@ msgstr "Stanja"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -4167,6 +4355,7 @@ msgid "Stop watching"
 msgstr "Prenehaj spremljati"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-table.tsx
 msgid "Stopped"
 msgstr "Ustavljeno"
 
@@ -4212,8 +4401,9 @@ msgstr "Zamenjaj temo"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4258,9 +4448,16 @@ msgstr "Systemd storitve"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "Sistemi"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems ({count})"
+msgstr "Sistemi ({count})"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
@@ -4269,6 +4466,10 @@ msgstr "Sisteme lahko upravljate v datoteki <0>config.yml</0> v vašem podatkovn
 #: src/components/agent-update-dialog.tsx
 msgid "Systems to update ({targetCount})"
 msgstr "Sistemi za posodobitev ({targetCount})"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems using at least half of their CPU or memory"
+msgstr "Sistemi, ki porabijo vsaj polovico CPE ali pomnilnika"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -4481,8 +4682,9 @@ msgstr "Ta sistem do {until}"
 msgid "This will permanently delete all selected records from the database."
 msgstr "To bo trajno izbrisalo vse izbrane zapise iz zbirke podatkov."
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Threads"
 msgstr "Niti"
@@ -4491,6 +4693,10 @@ msgstr "Niti"
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Threshold"
 msgstr "Prag"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Threshold (%)"
+msgstr "Prag (%)"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -4555,6 +4761,10 @@ msgstr "Največji porabniki"
 msgid "Total"
 msgstr "Skupaj"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Total ({count} processes)"
+msgstr "Skupaj ({count} procesov)"
+
 #: src/components/routes/system/network-sheet.tsx
 msgid "Total data received for each interface"
 msgstr "Skupni prejeti podatki za vsak vmesnik"
@@ -4566,6 +4776,15 @@ msgstr "Skupni poslani podatki za vsak vmesnik"
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Total duration: {totalDuration}"
 msgstr "Skupno trajanje: {totalDuration}"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Total memory"
+msgstr "Skupni pomnilnik"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Total of the filtered processes ({count})"
+msgstr "Skupaj filtriranih procesov ({count})"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
@@ -4878,10 +5097,9 @@ msgstr "Uporabljeno"
 msgid "Used by"
 msgstr "Uporablja"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/ldap.tsx

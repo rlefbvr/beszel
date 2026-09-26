@@ -72,8 +72,9 @@ export function useSystemData(id: string) {
 		$userSettings.setKey("displayMode", v)
 		queueUserSettings({ displayMode: v })
 	}, [])
-	const [activeTab, setActiveTabRaw] = useState("core")
-	const [mountedTabs, setMountedTabs] = useState(() => new Set<string>(["core"]))
+	// a link can open a tab of the page, such as /system/id#processes
+	const [activeTab, setActiveTabRaw] = useState(() => linkedTab() ?? "core")
+	const [mountedTabs, setMountedTabs] = useState(() => new Set<string>(["core", linkedTab() ?? "core"]))
 	const tabsRef = useRef<string[]>(["core", "disk"])
 
 	function setActiveTab(tab: string) {
@@ -373,4 +374,10 @@ export function useSystemData(id: string) {
 		hasGpuEnginesData,
 		hasGpuPowerData,
 	}
+}
+
+/** Tab named by the hash of the address, when a link opens a part of the system page */
+export function linkedTab() {
+	const tab = window.location.hash.slice(1)
+	return ["core", "network", "disk", "gpu", "containers", "processes", "services", "reboots"].includes(tab) ? tab : undefined
 }

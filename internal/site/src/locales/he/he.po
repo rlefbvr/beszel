@@ -86,6 +86,10 @@ msgstr "{count, plural, one {מכולה מסוננת אחת} two {# מכולות
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {שירות מסונן אחד} two {# שירותים מסוננים} other {# שירותים מסוננים}}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# selected process} other {# selected processes}}"
+msgstr "{count, plural, one {תהליך # נבחר} other {# תהליכים נבחרים}}"
+
 #: src/components/sensors/sensor-incidents.tsx
 msgid "{count, plural, one {# sensor} other {# sensors}}"
 msgstr "{count, plural, one {חיישן #} other {# חיישנים}}"
@@ -95,12 +99,20 @@ msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {מערכת אחת} two {# מערכות} other {# מערכות}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
+msgstr "{count, plural, one {ההתראות של התהליך הנבחר לא נשלחות בחלון זה.} other {ההתראות של # התהליכים הנבחרים לא נשלחות בחלון זה.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
 msgstr "{count, plural, one {התראות המצב של הקונטיינר שנבחר לא יישלחו בפרק זמן זה.} other {התראות המצב של הקונטיינרים שנבחרו (#) לא יישלחו בפרק זמן זה.}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
 msgstr "{count, plural, one {התראות המצב של השירות שנבחר לא יישלחו בפרק זמן זה.} other {התראות המצב של השירותים שנבחרו (#) לא יישלחו בפרק זמן זה.}}"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "{count} instance(s) · CPU {cpuText}"
+msgstr "{count} מופעים · CPU {cpuText}"
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "{count} processes · CPU {cpuText} · Memory {memText}"
@@ -128,6 +140,14 @@ msgid "{failed} system(s) did not answer."
 msgstr "{failed} מערכות לא הגיבו."
 
 #: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more processes: use the filter to find them."
+msgstr "עוד {hidden} תהליכים: השתמשו במסנן כדי למצוא אותם."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more programs: use the filter to find them."
+msgstr "עוד {hidden} תוכניות: השתמשו במסנן כדי למצוא אותן."
+
+#: src/components/processes-table/processes-overview.tsx
 msgid "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
 msgstr "{matchCount} תהליכים ב־{systemCount} מערכות עבור „{searched}”"
 
@@ -150,6 +170,10 @@ msgstr "{outdated} מערכות זקוקות לעדכון סוכן (0.20.0-fork.
 #: src/components/certificates/certificates-table.tsx
 msgid "{outdated} system(s) need an agent update to read their certificates."
 msgstr "{outdated} מערכות זקוקות לעדכון הסוכן כדי לקרוא את האישורים שלהן."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{programCount} programs"
+msgstr "{programCount} תוכניות"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
@@ -459,8 +483,24 @@ msgid "Alert types"
 msgstr "סוגי התראות"
 
 #: src/components/alerts/state-alert-rules.tsx
-msgid "Alert when services or Docker containers enter or leave a state."
-msgstr "התראה כאשר שירותים או מכולות Docker נכנסים למצב או יוצאים ממנו."
+msgid "Alert when its CPU is above"
+msgstr "התראה כשה־CPU שלו מעל"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are fewer than"
+msgstr "התראה כשיש פחות מופעים מ־"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are more than"
+msgstr "התראה כשיש יותר מופעים מ־"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its memory is above"
+msgstr "התראה כשהזיכרון שלו מעל"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when services, Docker containers or processes enter or leave a state."
+msgstr "התראה כששירותים, קונטיינרים של Docker או תהליכים נכנסים למצב או יוצאים ממנו."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
@@ -475,6 +515,14 @@ msgstr "התראה כאשר המצב אינו"
 #: src/components/certificates/certificates-table.tsx
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "התראה כאשר האישור {name} של {systemName} יפוג בפחות ימים מהסף. אישורים מחודשים באותו שם ממשיכים להיבדק, והאישור הופך לחשוב."
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is not running"
+msgstr "התראה כשהתהליך אינו רץ"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is running"
+msgstr "התראה כשהתהליך רץ"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -536,6 +584,14 @@ msgstr "כל האישורים"
 msgid "All Containers"
 msgstr "כל הקונטיינרים"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "All groups"
+msgstr "כל הקבוצות"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "All OS"
+msgstr "כל מערכות ההפעלה"
+
 #: src/components/agent-update-dialog.tsx
 msgid "All outdated ({outdatedCount})"
 msgstr "כל המיושנים ({outdatedCount})"
@@ -578,6 +634,8 @@ msgstr "כל השירותים"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -593,6 +651,10 @@ msgstr "כל המערכות"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "כל המערכות עד {until}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "All the instances of a program count as one target, such as every chrome.exe."
+msgstr "כל המופעים של תוכנית נחשבים כיעד אחד, כמו כל chrome.exe."
 
 #: src/components/period-select.tsx
 msgid "All time"
@@ -841,6 +903,18 @@ msgstr "הוספת חיישנים מרובים"
 msgid "Bulk copy"
 msgstr "העתקה מרוכזת"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on CPU first"
+msgstr "עמוסים ביותר ב־CPU תחילה"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on memory first"
+msgstr "עמוסים ביותר בזיכרון תחילה"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "By name"
+msgstr "לפי שם"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Bytes (KB/s, MB/s, GB/s)"
@@ -1038,6 +1112,8 @@ msgstr "תקין"
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -1106,8 +1182,8 @@ msgstr "צבע"
 msgid "Columns"
 msgstr "עמודות"
 
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 msgid "Command"
 msgstr "פקודה"
 
@@ -1117,6 +1193,7 @@ msgid "Command line instructions"
 msgstr "הוראות שורת פקודה"
 
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Condition"
 msgstr "תנאי"
@@ -1154,6 +1231,7 @@ msgstr "התנגשויות"
 msgid "Connection is down"
 msgstr "החיבור נפל"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Connections"
 msgstr "חיבורים"
@@ -1269,16 +1347,20 @@ msgstr "ליבה"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "CPU"
 msgstr "CPU"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "CPU above {threshold}%"
+msgstr "CPU מעל {threshold}%"
 
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "CPU Cores"
@@ -1287,6 +1369,11 @@ msgstr "ליבות CPU"
 #: src/lib/alerts.ts
 msgid "CPU I/O Wait"
 msgstr "זמן המתנת קלט/פלט של המעבד (IOWait)"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "CPU max"
+msgstr "CPU מרבי"
 
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -1549,7 +1636,6 @@ msgid "Discharging"
 msgstr "בפריקה"
 
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Disk"
@@ -1559,7 +1645,8 @@ msgstr "דיסק"
 msgid "Disk I/O"
 msgstr "קלט/פלט דיסק"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk read"
 msgstr "קריאת דיסק"
@@ -1577,10 +1664,15 @@ msgstr "שימוש בדיסק"
 msgid "Disk usage of {extraFsName}"
 msgstr "שימוש בדיסק של {extraFsName}"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk write"
 msgstr "כתיבת דיסק"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Disk: {diskText}"
+msgstr "דיסק: {diskText}"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Layout display options"
@@ -1963,6 +2055,10 @@ msgstr "נכשל: {0}"
 msgid "Fans"
 msgstr "מאווררים"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "fewer than {threshold} instances"
+msgstr "פחות מ־{threshold} מופעים"
+
 #: src/lib/certificates.ts
 msgid "File"
 msgstr "קובץ"
@@ -1970,6 +2066,9 @@ msgstr "קובץ"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/chart-card.tsx
@@ -2265,6 +2364,10 @@ msgstr "אישורים חשובים"
 msgid "Important containers"
 msgstr "מכולות חשובות"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Important processes"
+msgstr "תהליכים חשובים"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "שירותים חשובים"
@@ -2308,6 +2411,12 @@ msgstr "מופע"
 #: src/components/routes/settings/general.tsx
 msgid "Instance name"
 msgstr "שם המופע"
+
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Instances"
+msgstr "מופעים"
 
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Interruptions: {incidentCount}"
@@ -2514,6 +2623,10 @@ msgstr "ממוצע עומס"
 msgid "Load state"
 msgstr "מצב עומס"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Loaded systems ({loadedCount})"
+msgstr "מערכות עמוסות ({loadedCount})"
+
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
@@ -2630,10 +2743,10 @@ msgstr "מקסימום שעה אחת"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/info-bar.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2642,6 +2755,10 @@ msgstr "מקסימום שעה אחת"
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Memory"
 msgstr "זיכרון"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "memory above {threshold}%"
+msgstr "זיכרון מעל {threshold}%"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Memory limit"
@@ -2662,6 +2779,10 @@ msgstr "שימוש בזיכרון"
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Memory usage of containers"
 msgstr "שימוש בזיכרון של קונטיינרים"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Memory: {memText}"
+msgstr "זיכרון: {memText}"
 
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -2703,9 +2824,21 @@ msgstr "המנטרים נוצרו"
 msgid "More"
 msgstr "עוד"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "more than {threshold} instances"
+msgstr "יותר מ־{threshold} מופעים"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Mountpoint"
 msgstr "נקודת עגינה"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must be running"
+msgstr "חייב לרוץ"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must not be running"
+msgstr "אסור שירוץ"
 
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
@@ -2714,9 +2847,8 @@ msgstr "נקודת עגינה"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -2755,8 +2887,8 @@ msgstr "רשת"
 msgid "Network"
 msgstr "רשת"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 msgid "Network connections"
 msgstr "חיבורי רשת"
 
@@ -2891,6 +3023,11 @@ msgstr "אין הפסקות בתקופה זו."
 msgid "No logs yet."
 msgstr "אין עדיין יומנים."
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "No process started in the last 24 hours."
+msgstr "לא הופעל אף תהליך ב־24 השעות האחרונות."
+
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "No processes found."
 msgstr "לא נמצאו תהליכים."
@@ -2927,6 +3064,10 @@ msgstr "אין עדיין חיישנים: הוסיפו את המארחים וה�
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
 msgstr "אף שירות לא מפעיל מחדש את הסוכן לאחר עדכון."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "No system matches the filters."
+msgstr "אין מערכת שתואמת את המסננים."
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "No systems are up."
@@ -3043,6 +3184,10 @@ msgstr "רק מנהלים יכולים לשנות הגדרה זו."
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Open menu"
 msgstr "פתח תפריט"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Operating system"
+msgstr "מערכת הפעלה"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Optional, such as the name of the service"
@@ -3217,6 +3362,10 @@ msgstr "ממתין"
 msgid "Per-core average utilization"
 msgstr "ניצול ממוצע לליבה"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Percent of the whole host, all the instances of the program added up."
+msgstr "אחוז מכל המארח, כשכל מופעי התוכנית מסוכמים."
+
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Percent of time the disk is busy with I/O"
 msgstr "אחוז הזמן שבו הדיסק עסוק בפעולות קלט/פלט"
@@ -3334,14 +3483,36 @@ msgstr "שפה מועדפת"
 msgid "Previous page"
 msgstr "הדף הקודם"
 
+#: src/lib/alerts.ts
+msgid "Process alert"
+msgstr "התראת תהליך"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Process alerts"
+msgstr "התראות תהליכים"
+
+#: src/lib/alerts.ts
+msgid "Process rule matched"
+msgstr "כלל תהליך התקיים"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Process started"
 msgstr "תהליך התחיל"
 
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "תהליכים"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Processes are checked every minute, only on the systems with process rules."
+msgstr "התהליכים נבדקים כל דקה, רק במערכות עם כללי תהליכים."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Processes started in the last 24 hours, the newest first: new programs, restarts, or a program restarting in a loop."
+msgstr "תהליכים שהופעלו ב־24 השעות האחרונות, החדשים ראשונים: תוכניות חדשות, הפעלות מחדש או תוכנית שמופעלת מחדש בלולאה."
 
 #: src/components/processes-table/processes-charts.tsx
 msgid "Processes that use the most resources since this page was opened. Click an area to see the process."
@@ -3350,6 +3521,14 @@ msgstr "התהליכים שצורכים הכי הרבה משאבים מאז פת
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Production, Customers, Lab…"
 msgstr "ייצור, לקוחות, מעבדה…"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Program"
+msgstr "תוכנית"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Programs of the fleet"
+msgstr "תוכניות הצי"
 
 #: src/components/routes/settings/security.tsx
 msgid "Protect your account with a second factor asked after the password."
@@ -3495,6 +3674,10 @@ msgstr "בדיקות אחרונות"
 msgid "Recently opened"
 msgstr "נפתחו לאחרונה"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Recently started"
+msgstr "הופעלו לאחרונה"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "נרשם"
@@ -3513,6 +3696,7 @@ msgstr "קודי שחזור שנותרו: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -3855,6 +4039,10 @@ msgstr "בחר הכול"
 msgid "Select matches"
 msgstr "בחר התאמות"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Select programs to watch them on every system running them, or click one to find its processes."
+msgstr "בחרו תוכניות כדי לנטר אותן בכל מערכת שמריצה אותן, או לחצו על אחת כדי למצוא את התהליכים שלה."
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Select row"
 msgstr "בחר שורה"
@@ -4092,9 +4280,9 @@ msgstr "זמן התחלה"
 msgid "Start type"
 msgstr "סוג הפעלה"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Started"
 msgstr "הופעל"
@@ -4146,9 +4334,9 @@ msgstr "מצבים"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -4167,6 +4355,7 @@ msgid "Stop watching"
 msgstr "הפסקת המעקב"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-table.tsx
 msgid "Stopped"
 msgstr "נעצר"
 
@@ -4212,8 +4401,9 @@ msgstr "החלף ערכת נושא"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4258,9 +4448,16 @@ msgstr "שירותי Systemd"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "מערכות"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems ({count})"
+msgstr "מערכות ({count})"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
@@ -4269,6 +4466,10 @@ msgstr "מערכות יכולות להיות מנוהלות בקובץ <0>config
 #: src/components/agent-update-dialog.tsx
 msgid "Systems to update ({targetCount})"
 msgstr "מערכות לעדכון ({targetCount})"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems using at least half of their CPU or memory"
+msgstr "מערכות שמשתמשות לפחות בחצי מה־CPU או מהזיכרון"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -4481,8 +4682,9 @@ msgstr "מערכת זו עד {until}"
 msgid "This will permanently delete all selected records from the database."
 msgstr "פעולה זו תמחק לצמיתות את כל הרשומות שנבחרו ממסד הנתונים."
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Threads"
 msgstr "תהליכונים"
@@ -4491,6 +4693,10 @@ msgstr "תהליכונים"
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Threshold"
 msgstr "סף"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Threshold (%)"
+msgstr "סף (%)"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -4555,6 +4761,10 @@ msgstr "הצרכנים הגדולים"
 msgid "Total"
 msgstr "כולל"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Total ({count} processes)"
+msgstr "סה״כ ({count} תהליכים)"
+
 #: src/components/routes/system/network-sheet.tsx
 msgid "Total data received for each interface"
 msgstr "סך נתונים שהתקבלו עבור כל ממשק"
@@ -4566,6 +4776,15 @@ msgstr "סך נתונים שנשלחו עבור כל ממשק"
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Total duration: {totalDuration}"
 msgstr "משך כולל: {totalDuration}"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Total memory"
+msgstr "זיכרון כולל"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Total of the filtered processes ({count})"
+msgstr "סה״כ התהליכים המסוננים ({count})"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
@@ -4878,10 +5097,9 @@ msgstr "בשימוש"
 msgid "Used by"
 msgstr "בשימוש על ידי"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/ldap.tsx

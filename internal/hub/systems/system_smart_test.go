@@ -39,6 +39,8 @@ func (stubHub) CancelPendingStatusAlerts(systemID string)                       
 func (stubHub) CancelPendingContainerAlerts(systemID string)                             {}
 func (stubHub) OutageNotifications(*core.Record, time.Time, time.Time) map[string]string { return nil }
 func (stubHub) HandleCertificateAlerts(string) error                                     { return nil }
+func (stubHub) HasProcessAlerts(string) bool                                             { return false }
+func (stubHub) HandleProcessAlerts(*core.Record, []esystem.Process) error                { return nil }
 
 // newTestSystemWithHub creates a System backed by a real (temp) database, along
 // with a matching "systems" record, for tests that need to exercise DB reads/writes.

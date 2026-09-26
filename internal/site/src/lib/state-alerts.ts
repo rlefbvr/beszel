@@ -37,6 +37,11 @@ export function unsubscribeStateAlerts() {
 	$stateAlerts.set({})
 }
 
+/** Alert type of the history and quiet hours for a kind of state rule */
+export function stateRuleAlertKind(kind: StateAlertRecord["kind"]) {
+	return kind === "service" ? "ServiceState" : kind === "process" ? "ProcessState" : "ContainerState"
+}
+
 /** Rules of one system, oldest first */
 export function systemStateAlerts(rules: Record<string, StateAlertRecord>, systemId: string) {
 	return Object.values(rules)
@@ -62,13 +67,17 @@ export function rulePatterns(rule: StateAlertRecord): string[] {
 
 /**
  * Names a pattern is matched against, like the hub: the full name, the systemd
- * unit without ".service", and the Windows short name in parentheses.
+ * unit without ".service", the Windows program without ".exe", and the Windows
+ * short service name in parentheses.
  */
 function nameCandidates(name: string): string[] {
 	const lower = name.toLowerCase()
 	const candidates = [lower]
 	if (lower.endsWith(".service")) {
 		candidates.push(lower.slice(0, -".service".length))
+	}
+	if (lower.endsWith(".exe")) {
+		candidates.push(lower.slice(0, -".exe".length))
 	}
 	const i = lower.lastIndexOf(" (")
 	if (lower.endsWith(")") && i > 0) {

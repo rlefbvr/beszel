@@ -86,6 +86,10 @@ msgstr "{count, plural, one {# przefiltrowany kontener} few {# przefiltrowane ko
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# przefiltrowana usługa} few {# przefiltrowane usługi} many {# przefiltrowanych usług} other {# przefiltrowanej usługi}}"
 
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "{count, plural, one {# selected process} other {# selected processes}}"
+msgstr "{count, plural, one {# wybrany proces} other {# wybranych procesów}}"
+
 #: src/components/sensors/sensor-incidents.tsx
 msgid "{count, plural, one {# sensor} other {# sensors}}"
 msgstr "{count, plural, one {# czujnik} few {# czujniki} many {# czujników} other {# czujnika}}"
@@ -95,12 +99,20 @@ msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# system} few {# systemy} many {# systemów} other {# systemu}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
+msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
+msgstr "{count, plural, one {Alerty wybranego procesu nie są wysyłane w tym oknie.} other {Alerty # wybranych procesów nie są wysyłane w tym oknie.}}"
+
+#: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
 msgstr "{count, plural, one {Alerty stanu wybranego kontenera nie są wysyłane w tym okresie.} other {Alerty stanu wybranych kontenerów (#) nie są wysyłane w tym okresie.}}"
 
 #: src/components/alerts/bulk-quiet-hours.tsx
 msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
 msgstr "{count, plural, one {Alerty stanu wybranej usługi nie są wysyłane w tym okresie.} other {Alerty stanu wybranych usług (#) nie są wysyłane w tym okresie.}}"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "{count} instance(s) · CPU {cpuText}"
+msgstr "{count} instancji · CPU {cpuText}"
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "{count} processes · CPU {cpuText} · Memory {memText}"
@@ -128,6 +140,14 @@ msgid "{failed} system(s) did not answer."
 msgstr "{failed} system(y) nie odpowiedziało."
 
 #: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more processes: use the filter to find them."
+msgstr "Jeszcze {hidden} procesów: użyj filtra, aby je znaleźć."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{hidden} more programs: use the filter to find them."
+msgstr "Jeszcze {hidden} programów: użyj filtra, aby je znaleźć."
+
+#: src/components/processes-table/processes-overview.tsx
 msgid "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
 msgstr "{matchCount} proces(ów) w {systemCount} system(ach) dla „{searched}”"
 
@@ -150,6 +170,10 @@ msgstr "{outdated} system(y) wymaga aktualizacji agenta (0.20.0-fork.5 lub nowsz
 #: src/components/certificates/certificates-table.tsx
 msgid "{outdated} system(s) need an agent update to read their certificates."
 msgstr "{outdated} system(y) wymaga aktualizacji agenta, aby odczytać certyfikaty."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "{programCount} programs"
+msgstr "{programCount} programów"
 
 #: src/components/alerts/bulk-state-alerts.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
@@ -459,8 +483,24 @@ msgid "Alert types"
 msgstr "Typy alertów"
 
 #: src/components/alerts/state-alert-rules.tsx
-msgid "Alert when services or Docker containers enter or leave a state."
-msgstr "Powiadamiaj, gdy usługi lub kontenery Docker wejdą w dany stan lub z niego wyjdą."
+msgid "Alert when its CPU is above"
+msgstr "Alarmuj, gdy CPU przekracza"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are fewer than"
+msgstr "Alarmuj, gdy instancji jest mniej niż"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its instances are more than"
+msgstr "Alarmuj, gdy instancji jest więcej niż"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when its memory is above"
+msgstr "Alarmuj, gdy pamięć przekracza"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when services, Docker containers or processes enter or leave a state."
+msgstr "Alarmuj, gdy usługi, kontenery Docker lub procesy wchodzą w stan lub z niego wychodzą."
 
 #: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
@@ -475,6 +515,14 @@ msgstr "Powiadamiaj, gdy stan nie jest"
 #: src/components/certificates/certificates-table.tsx
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "Alertuj, gdy certyfikat {name} systemu {systemName} wygaśnie za mniej dni niż próg. Odnowione certyfikaty o tej samej nazwie są nadal sprawdzane, a certyfikat staje się ważny."
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is not running"
+msgstr "Alarmuj, gdy proces nie działa"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Alert when the process is running"
+msgstr "Alarmuj, gdy proces działa"
 
 #: src/components/alerts/alert-button.tsx
 #: src/components/alerts/alerts-sheet.tsx
@@ -536,6 +584,14 @@ msgstr "Wszystkie certyfikaty"
 msgid "All Containers"
 msgstr "Wszystkie kontenery"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "All groups"
+msgstr "Wszystkie grupy"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "All OS"
+msgstr "Wszystkie OS"
+
 #: src/components/agent-update-dialog.tsx
 msgid "All outdated ({outdatedCount})"
 msgstr "Wszystkie nieaktualne ({outdatedCount})"
@@ -578,6 +634,8 @@ msgstr "Wszystkie usługi"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/home.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/systems-select.tsx
@@ -593,6 +651,10 @@ msgstr "Wszystkie systemy"
 #: src/components/quiet-hours-banner.tsx
 msgid "All systems until {until}"
 msgstr "Wszystkie systemy do {until}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "All the instances of a program count as one target, such as every chrome.exe."
+msgstr "Wszystkie instancje programu liczą się jako jeden cel, np. każdy chrome.exe."
 
 #: src/components/period-select.tsx
 msgid "All time"
@@ -841,6 +903,18 @@ msgstr "Zbiorcze dodawanie czujników"
 msgid "Bulk copy"
 msgstr "Kopiuj zbiorczo"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on CPU first"
+msgstr "Najbardziej obciążone CPU najpierw"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Busiest on memory first"
+msgstr "Najbardziej obciążona pamięć najpierw"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "By name"
+msgstr "Według nazwy"
+
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/settings/general.tsx
 msgid "Bytes (KB/s, MB/s, GB/s)"
@@ -1038,6 +1112,8 @@ msgstr "Prawidłowe"
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -1106,8 +1182,8 @@ msgstr "Kolor"
 msgid "Columns"
 msgstr "Kolumny"
 
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 msgid "Command"
 msgstr "Polecenie"
 
@@ -1117,6 +1193,7 @@ msgid "Command line instructions"
 msgstr "Instrukcje wiersza poleceń"
 
 #: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Condition"
 msgstr "Warunek"
@@ -1154,6 +1231,7 @@ msgstr "Konflikty"
 msgid "Connection is down"
 msgstr "Brak połączenia"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Connections"
 msgstr "Połączenia"
@@ -1269,16 +1347,20 @@ msgstr "Główne"
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "CPU"
 msgstr "Procesor"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "CPU above {threshold}%"
+msgstr "CPU powyżej {threshold}%"
 
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "CPU Cores"
@@ -1287,6 +1369,11 @@ msgstr "Rdzenie CPU"
 #: src/lib/alerts.ts
 msgid "CPU I/O Wait"
 msgstr "Czas oczekiwania CPU na I/O (IOWait)"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "CPU max"
+msgstr "Maks. CPU"
 
 #: src/components/systemd-table/systemd-table-columns.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -1549,7 +1636,6 @@ msgid "Discharging"
 msgstr "Rozładowuje się"
 
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/routes/system.tsx
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Disk"
@@ -1559,7 +1645,8 @@ msgstr "Dysk"
 msgid "Disk I/O"
 msgstr "Operacje dyskowe"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk read"
 msgstr "Odczyt dysku"
@@ -1577,10 +1664,15 @@ msgstr "Użycie dysku"
 msgid "Disk usage of {extraFsName}"
 msgstr "Wykorzystanie dysku {extraFsName}"
 
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Disk write"
 msgstr "Zapis dysku"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Disk: {diskText}"
+msgstr "Dysk: {diskText}"
 
 #: src/components/routes/system/info-bar.tsx
 msgctxt "Layout display options"
@@ -1963,6 +2055,10 @@ msgstr "Nieudane: {0}"
 msgid "Fans"
 msgstr "Wentylatory"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "fewer than {threshold} instances"
+msgstr "mniej niż {threshold} instancji"
+
 #: src/lib/certificates.ts
 msgid "File"
 msgstr "Plik"
@@ -1970,6 +2066,9 @@ msgstr "Plik"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/system/chart-card.tsx
@@ -2265,6 +2364,10 @@ msgstr "Ważne certyfikaty"
 msgid "Important containers"
 msgstr "Ważne kontenery"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Important processes"
+msgstr "Ważne procesy"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "Ważne usługi"
@@ -2308,6 +2411,12 @@ msgstr "Instancja"
 #: src/components/routes/settings/general.tsx
 msgid "Instance name"
 msgstr "Nazwa instancji"
+
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Instances"
+msgstr "Instancje"
 
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Interruptions: {incidentCount}"
@@ -2514,6 +2623,10 @@ msgstr "Śr. obciążenie"
 msgid "Load state"
 msgstr "Stan obciążenia"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Loaded systems ({loadedCount})"
+msgstr "Obciążone systemy ({loadedCount})"
+
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Loading..."
@@ -2630,10 +2743,10 @@ msgstr "Maks. 1 godz."
 
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
 #: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/info-bar.tsx
 #: src/components/systemd-table/systemd-table-columns.tsx
@@ -2642,6 +2755,10 @@ msgstr "Maks. 1 godz."
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Memory"
 msgstr "Pamięć"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "memory above {threshold}%"
+msgstr "pamięć powyżej {threshold}%"
 
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Memory limit"
@@ -2662,6 +2779,10 @@ msgstr "Użycie pamięci"
 #: src/components/routes/system/charts/memory-charts.tsx
 msgid "Memory usage of containers"
 msgstr "Zużycie pamięci przez kontenery"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Memory: {memText}"
+msgstr "Pamięć: {memText}"
 
 #: src/components/routes/sensor.tsx
 #: src/components/sensors/sensor-incidents.tsx
@@ -2703,9 +2824,21 @@ msgstr "Utworzono monitory"
 msgid "More"
 msgstr "Więcej"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "more than {threshold} instances"
+msgstr "więcej niż {threshold} instancji"
+
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "Mountpoint"
 msgstr "Punkt montowania"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must be running"
+msgstr "musi działać"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "must not be running"
+msgstr "nie może działać"
 
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
@@ -2714,9 +2847,8 @@ msgstr "Punkt montowania"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -2755,8 +2887,8 @@ msgstr "Sieć"
 msgid "Network"
 msgstr "Sieć"
 
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 msgid "Network connections"
 msgstr "Połączenia sieciowe"
 
@@ -2891,6 +3023,11 @@ msgstr "Brak przerw w tym okresie."
 msgid "No logs yet."
 msgstr "Brak logów."
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "No process started in the last 24 hours."
+msgstr "W ciągu ostatnich 24 godzin nie uruchomiono żadnego procesu."
+
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "No processes found."
 msgstr "Nie znaleziono procesów."
@@ -2927,6 +3064,10 @@ msgstr "Brak czujników: dodaj hosty i porty, które Beszel ma sprawdzać."
 #: src/lib/agent-updates.ts
 msgid "No service restarts the agent after an update."
 msgstr "Żadna usługa nie uruchamia ponownie agenta po aktualizacji."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "No system matches the filters."
+msgstr "Żaden system nie pasuje do filtrów."
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "No systems are up."
@@ -3043,6 +3184,10 @@ msgstr "Tylko administratorzy mogą zmienić to ustawienie."
 #: src/components/systems-table/systems-table-columns.tsx
 msgid "Open menu"
 msgstr "Otwórz menu"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Operating system"
+msgstr "System operacyjny"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 msgid "Optional, such as the name of the service"
@@ -3217,6 +3362,10 @@ msgstr "Oczekujący"
 msgid "Per-core average utilization"
 msgstr "Średnie wykorzystanie na rdzeń"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Percent of the whole host, all the instances of the program added up."
+msgstr "Procent całego hosta, zsumowane wszystkie instancje programu."
+
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Percent of time the disk is busy with I/O"
 msgstr "Procent czasu, w którym dysk jest zajęty operacjami I/O"
@@ -3334,14 +3483,36 @@ msgstr "Preferowany język"
 msgid "Previous page"
 msgstr "Poprzednia strona"
 
+#: src/lib/alerts.ts
+msgid "Process alert"
+msgstr "Alert procesu"
+
+#: src/components/alerts/bulk-state-alerts.tsx
+msgid "Process alerts"
+msgstr "Alerty procesów"
+
+#: src/lib/alerts.ts
+msgid "Process rule matched"
+msgstr "Reguła procesu spełniona"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Process started"
 msgstr "Proces uruchomiony"
 
+#: src/components/alerts/state-alert-rules.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "Procesy"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Processes are checked every minute, only on the systems with process rules."
+msgstr "Procesy są sprawdzane co minutę, tylko na systemach z regułami procesów."
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Processes started in the last 24 hours, the newest first: new programs, restarts, or a program restarting in a loop."
+msgstr "Procesy uruchomione w ciągu ostatnich 24 godzin, najnowsze najpierw: nowe programy, restarty lub program restartujący się w pętli."
 
 #: src/components/processes-table/processes-charts.tsx
 msgid "Processes that use the most resources since this page was opened. Click an area to see the process."
@@ -3350,6 +3521,14 @@ msgstr "Procesy zużywające najwięcej zasobów od otwarcia tej strony. Kliknij
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Production, Customers, Lab…"
 msgstr "Produkcja, Klienci, Laboratorium…"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Program"
+msgstr "Program"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Programs of the fleet"
+msgstr "Programy floty"
 
 #: src/components/routes/settings/security.tsx
 msgid "Protect your account with a second factor asked after the password."
@@ -3495,6 +3674,10 @@ msgstr "Ostatnie sprawdzenia"
 msgid "Recently opened"
 msgstr "Ostatnio otwierane"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Recently started"
+msgstr "Niedawno uruchomione"
+
 #: src/components/reboots-table.tsx
 msgid "Recorded"
 msgstr "Zarejestrowano"
@@ -3513,6 +3696,7 @@ msgstr "Pozostałe kody odzyskiwania: {recoveryLeft}"
 
 #: src/components/containers-table/containers-table.tsx
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -3855,6 +4039,10 @@ msgstr "Zaznacz wszystko"
 msgid "Select matches"
 msgstr "Zaznacz dopasowania"
 
+#: src/components/processes-table/processes-overview.tsx
+msgid "Select programs to watch them on every system running them, or click one to find its processes."
+msgstr "Zaznacz programy, aby monitorować je na każdym systemie, na którym działają, lub kliknij jeden, aby znaleźć jego procesy."
+
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 msgid "Select row"
 msgstr "Zaznacz wiersz"
@@ -4092,9 +4280,9 @@ msgstr "Czas rozpoczęcia"
 msgid "Start type"
 msgstr "Typ uruchomienia"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/agent-details.tsx
 msgid "Started"
 msgstr "Uruchomiono"
@@ -4146,9 +4334,9 @@ msgstr "Stany"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -4167,6 +4355,7 @@ msgid "Stop watching"
 msgstr "Przestań monitorować"
 
 #: src/components/containers-table/containers-table.tsx
+#: src/components/processes-table/processes-table.tsx
 msgid "Stopped"
 msgstr "Zatrzymany"
 
@@ -4212,8 +4401,9 @@ msgstr "Zmień motyw"
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -4258,9 +4448,16 @@ msgstr "Usługi systemd"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
 #: src/components/systems-table/groups-dialog.tsx
 msgid "Systems"
 msgstr "Systemy"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems ({count})"
+msgstr "Systemy ({count})"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
@@ -4269,6 +4466,10 @@ msgstr "Systemy mogą być zarządzane w pliku <0>config.yml</0> znajdującym si
 #: src/components/agent-update-dialog.tsx
 msgid "Systems to update ({targetCount})"
 msgstr "Systemy do aktualizacji ({targetCount})"
+
+#: src/components/processes-table/processes-overview.tsx
+msgid "Systems using at least half of their CPU or memory"
+msgstr "Systemy wykorzystujące co najmniej połowę CPU lub pamięci"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
@@ -4481,8 +4682,9 @@ msgstr "Ten system do {until}"
 msgid "This will permanently delete all selected records from the database."
 msgstr "Spowoduje to trwałe usunięcie wszystkich zaznaczonych rekordów z bazy danych."
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/processes-table/processes-table.tsx
 msgid "Threads"
 msgstr "Wątki"
@@ -4491,6 +4693,10 @@ msgstr "Wątki"
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Threshold"
 msgstr "Próg"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Threshold (%)"
+msgstr "Próg (%)"
 
 #: src/components/routes/system/charts/disk-charts.tsx
 msgid "Throughput of {extraFsName}"
@@ -4555,6 +4761,10 @@ msgstr "Najwięksi konsumenci"
 msgid "Total"
 msgstr "Łącznie"
 
+#: src/components/processes-table/processes-table.tsx
+msgid "Total ({count} processes)"
+msgstr "Razem ({count} procesów)"
+
 #: src/components/routes/system/network-sheet.tsx
 msgid "Total data received for each interface"
 msgstr "Całkowita ilość danych odebranych dla każdego interfejsu"
@@ -4566,6 +4776,15 @@ msgstr "Całkowita ilość danych wysłanych dla każdego interfejsu"
 #: src/components/sensors/sensor-incidents.tsx
 msgid "Total duration: {totalDuration}"
 msgstr "Łączny czas: {totalDuration}"
+
+#: src/components/processes-table/processes-overview.tsx
+#: src/components/processes-table/processes-overview.tsx
+msgid "Total memory"
+msgstr "Pamięć łącznie"
+
+#: src/components/processes-table/processes-table.tsx
+msgid "Total of the filtered processes ({count})"
+msgstr "Suma przefiltrowanych procesów ({count})"
 
 #: src/components/routes/system/disk-io-sheet.tsx
 msgctxt "Disk I/O"
@@ -4878,10 +5097,9 @@ msgstr "Używane"
 msgid "Used by"
 msgstr "Używany przez"
 
+#: src/components/processes-table/process-columns.tsx
+#: src/components/processes-table/process-columns.tsx
 #: src/components/processes-table/process-dialog.tsx
-#: src/components/processes-table/processes-overview.tsx
-#: src/components/processes-table/processes-table.tsx
-#: src/components/processes-table/processes-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/routes/settings/ldap.tsx

@@ -58,7 +58,7 @@ import {
 	quietHoursState,
 } from "@/lib/quiet-hours"
 import { $sensors } from "@/lib/sensors"
-import { $stateAlerts, refreshStateAlerts } from "@/lib/state-alerts"
+import { $stateAlerts, refreshStateAlerts, stateRuleAlertKind } from "@/lib/state-alerts"
 import { useNow } from "@/lib/time"
 import { $allSystemsById, $systems } from "@/lib/stores"
 import { cn, formatShortDate } from "@/lib/utils"
@@ -715,7 +715,7 @@ function QuietHoursDialog({
 
 /** Label of a state rule: its kind and targets, such as "Service state: nginx, sshd" */
 function ruleLabel(rule: StateAlertRecord) {
-	const kind = quietHoursAlertKindLabel(rule.kind === "container" ? "ContainerState" : "ServiceState")
+	const kind = quietHoursAlertKindLabel(stateRuleAlertKind(rule.kind))
 	return `${kind}: ${rule.targets}`
 }
 

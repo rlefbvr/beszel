@@ -15,8 +15,17 @@ import { toast } from "@/components/ui/use-toast"
 import { isReadOnlyUser, pb } from "@/lib/api"
 import { $stateAlerts, chunkTargets } from "@/lib/state-alerts"
 import { $allSystemsById } from "@/lib/stores"
+import { cn } from "@/lib/utils"
 import type { StateAlertRecord } from "@/types"
-import { failedToast, newDraft, type RuleDraft, StateChips, stateOptions } from "./state-alert-rules"
+import {
+	failedToast,
+	newDraft,
+	ProcessRuleFields,
+	type RuleDraft,
+	ruleIsComplete,
+	StateChips,
+	stateOptions,
+} from "./state-alert-rules"
 
 type Kind = StateAlertRecord["kind"]
 
@@ -171,15 +180,25 @@ function BulkStateAlertsDialog({
 		}
 	}
 
-	const canSave = count > 0 && (draft.states.length > 0 || draft.sub_states.length > 0)
+	const canSave = count > 0 && ruleIsComplete({ ...draft, targets: "-" })
 
 	return (
 		<DialogContent className="max-w-xl">
 			<DialogHeader>
-				<DialogTitle>{kind === "service" ? <Trans>Service alerts</Trans> : <Trans>Container alerts</Trans>}</DialogTitle>
+				<DialogTitle>
+					{kind === "service" ? (
+						<Trans>Service alerts</Trans>
+					) : kind === "process" ? (
+						<Trans>Process alerts</Trans>
+					) : (
+						<Trans>Container alerts</Trans>
+					)}
+				</DialogTitle>
 				<DialogDescription>
 					{kind === "service" ? (
 						<Plural value={count} one="# filtered service" other="# filtered services" />
+					) : kind === "process" ? (
+						<Plural value={count} one="# selected process" other="# selected processes" />
 					) : (
 						<Plural value={count} one="# filtered container" other="# filtered containers" />
 					)}
@@ -191,7 +210,8 @@ function BulkStateAlertsDialog({
 			</DialogHeader>
 
 			<div className="grid gap-4">
-				<div className="grid gap-1.5">
+				{kind === "process" && <ProcessRuleFields draft={draft} onChange={setDraft} />}
+				<div className={cn("grid gap-1.5", kind === "process" && "hidden")}>
 					<Label htmlFor="bulk-condition">
 						<Trans>Condition</Trans>
 					</Label>
@@ -212,13 +232,22 @@ function BulkStateAlertsDialog({
 						</SelectContent>
 					</Select>
 				</div>
-				<StateChips label={t`States`} options={options.states} selected={draft.states} onToggle={(v) => toggle("states", v)} />
-				<StateChips
-					label={kind === "service" ? t`Sub-states (optional)` : t`Health (optional)`}
-					options={options.subStates}
-					selected={draft.sub_states}
-					onToggle={(v) => toggle("sub_states", v)}
-				/>
+				{kind !== "process" && (
+					<>
+						<StateChips
+							label={t`States`}
+							options={options.states}
+							selected={draft.states}
+							onToggle={(v) => toggle("states", v)}
+						/>
+						<StateChips
+							label={kind === "service" ? t`Sub-states (optional)` : t`Health (optional)`}
+							options={options.subStates}
+							selected={draft.sub_states}
+							onToggle={(v) => toggle("sub_states", v)}
+						/>
+					</>
+				)}
 				<div className="grid gap-1.5 sm:w-1/2">
 					<Label htmlFor="bulk-cycles">
 						<Trans>Consecutive checks</Trans>

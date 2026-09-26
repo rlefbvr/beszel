@@ -568,14 +568,21 @@ func (h *Hub) getProcesses(e *core.RequestEvent) error {
 	return e.JSON(http.StatusOK, response)
 }
 
-// getProcessesOverview handles GET /api/beszel/processes/overview?systems=&top=&q=:
-// the top consumers of each host, or the processes matching a search, read
-// from several agents at a time so that the page gets one small answer.
+// getProcessesOverview handles GET /api/beszel/processes/overview?systems=&top=&q=&programs=&recent=:
+// the top consumers of each host, its programs, the processes started in the
+// last recent seconds, or the processes matching a search, read from several
+// agents at a time so that the page gets one small answer.
 func (h *Hub) getProcessesOverview(e *core.RequestEvent) error {
 	query := e.Request.URL.Query()
 	top, _ := strconv.Atoi(query.Get("top"))
-	top = min(max(top, 0), 20)
-	search := strings.TrimSpace(query.Get("q"))
+	options := systems.OverviewOptions{
+		Top:      min(max(top, 0), 20),
+		Search:   strings.TrimSpace(query.Get("q")),
+		Programs: query.Get("programs") == "1",
+	}
+	if recent, _ := strconv.Atoi(query.Get("recent")); recent > 0 {
+		options.RecentSince = time.Now().Unix() - int64(min(recent, 7*24*3600))
+	}
 	ids := strings.Split(query.Get("systems"), ",")
 	if len(ids) > 1000 {
 		return e.BadRequestError("Too many systems", nil)
@@ -602,7 +609,7 @@ func (h *Hub) getProcessesOverview(e *core.RequestEvent) error {
 			case err != nil:
 				overview.Error = err.Error()
 			default:
-				overview = systems.SummarizeProcesses(id, response.Processes, top, search)
+				overview = systems.SummarizeProcesses(id, response.Processes, options)
 			}
 			mu.Lock()
 			results = append(results, overview)

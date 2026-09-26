@@ -14,6 +14,7 @@ import {
   ServerOffIcon,
   ShieldAlertIcon,
   TimerIcon,
+  ListTreeIcon,
 } from "lucide-react"
 import type { RecordSubscription } from "pocketbase"
 import { EthernetIcon, GpuIcon } from "@/components/ui/icons"
@@ -199,6 +200,11 @@ export const stateAlertHistoryInfo: Record<
     name: () => t`Container state`,
     icon: ContainerIcon,
     triggeredDesc: () => t`State rule matched`,
+  },
+  ProcessState: {
+    name: () => t`Process alert`,
+    icon: ListTreeIcon,
+    triggeredDesc: () => t`Process rule matched`,
   },
   Certificate: {
     name: () => t`Certificate expiry`,

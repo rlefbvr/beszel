@@ -28,8 +28,11 @@ declare module "@tanstack/react-table" {
 /** Changes the width of a column: live while dragging, saved when done; undefined resets it */
 export type ColumnResizeHandler = (columnId: string, width: number | undefined, done: boolean) => void
 
-/** Column widths and hidden columns of a table, kept in the user settings under a key */
-export function useTableLayout(key: string) {
+/**
+ * Column widths and hidden columns of a table, kept in the user settings under
+ * a key. The columns of defaultHidden are hidden until the user shows them.
+ */
+export function useTableLayout(key: string, defaultHidden: readonly string[] = []) {
 	const [layout, setLayout] = useState<TableLayout>(() => $userSettings.get().tables?.[key] ?? {})
 
 	// settings of a new device arrive after the first render
@@ -65,22 +68,33 @@ export function useTableLayout(key: string) {
 		[save]
 	)
 
-	const columnVisibility = useMemo<VisibilityState>(
-		() => Object.fromEntries((layout.hidden ?? []).map((id) => [id, false])),
-		[layout.hidden]
+	const defaults = defaultHidden.join()
+	/** hidden columns: the ones the user hid, and the ones hidden by default that the user didn't show */
+	const visibilityOf = useCallback(
+		(current: TableLayout): VisibilityState => {
+			const shown = current.shown ?? []
+			const hiddenIds = [...(current.hidden ?? []), ...defaultHidden.filter((id) => !shown.includes(id))]
+			return Object.fromEntries(hiddenIds.map((id) => [id, false]))
+		},
+		// the ids, not the array, which may be new at each render
+		[defaults]
 	)
+
+	const columnVisibility = useMemo<VisibilityState>(() => visibilityOf(layout), [layout, visibilityOf])
 
 	const onColumnVisibilityChange = useCallback(
 		(updater: Updater<VisibilityState>) =>
 			setLayout((current) => {
-				const visibility = Object.fromEntries((current.hidden ?? []).map((id) => [id, false]))
-				const nextVisibility = typeof updater === "function" ? updater(visibility) : updater
-				const hidden = Object.keys(nextVisibility).filter((id) => nextVisibility[id] === false)
-				const next = { ...current, hidden }
+				const nextVisibility = typeof updater === "function" ? updater(visibilityOf(current)) : updater
+				const isHidden = (id: string) =>
+					id in nextVisibility ? nextVisibility[id] === false : defaultHidden.includes(id) && !current.shown?.includes(id)
+				const hidden = Object.keys(nextVisibility).filter((id) => !defaultHidden.includes(id) && isHidden(id))
+				const shown = defaultHidden.filter((id) => !isHidden(id))
+				const next = { ...current, hidden, shown }
 				save(next)
 				return next
 			}),
-		[save]
+		[save, visibilityOf, defaults]
 	)
 
 	return { widths: layout.widths ?? {}, onColumnResize, columnVisibility, onColumnVisibilityChange }

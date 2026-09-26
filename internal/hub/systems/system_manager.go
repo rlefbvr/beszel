@@ -72,6 +72,8 @@ type hubLike interface {
 	CancelPendingContainerAlerts(systemID string)
 	OutageNotifications(systemRecord *core.Record, shutdown, until time.Time) map[string]string
 	HandleCertificateAlerts(systemID string) error
+	HasProcessAlerts(systemID string) bool
+	HandleProcessAlerts(systemRecord *core.Record, processes []system.Process) error
 }
 
 // NewSystemManager creates a new SystemManager instance with the provided hub.

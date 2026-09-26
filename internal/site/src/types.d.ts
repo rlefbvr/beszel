@@ -308,10 +308,14 @@ export interface SystemStatsRecord extends RecordModel {
 export interface StateAlertRecord extends RecordModel {
 	user: string
 	system: string
-	kind: "service" | "container"
+	kind: "service" | "container" | "process"
 	/** comma separated name patterns (* and ? wildcards) */
 	targets: string
-	condition: "is" | "is_not"
+	/** above and below: process rules on a metric */
+	condition: "is" | "is_not" | "above" | "below"
+	/** process rules: CPU or memory of all the instances (percent of the host), or their number */
+	metric?: "" | "cpu" | "mem" | "count"
+	threshold?: number
 	states: string[]
 	/** service sub-states or container health states */
 	sub_states: string[]
@@ -381,7 +385,7 @@ export interface QuietHoursRecord extends RecordModel {
 	/** service or container state rules silenced by the window */
 	rules?: string[]
 	/** services or containers of the system silenced by the window, from the selection of their pages */
-	targets?: { kind: "service" | "container"; name: string }[] | null
+	targets?: { kind: "service" | "container" | "process"; name: string }[] | null
 	expand?: {
 		system?: {
 			name: string
@@ -484,6 +488,8 @@ export interface UserSettings {
 interface TableLayout {
 	widths?: Record<string, number>
 	hidden?: string[]
+	/** columns hidden by default that the user shows */
+	shown?: string[]
 }
 
 type ChartDataContainer = {
