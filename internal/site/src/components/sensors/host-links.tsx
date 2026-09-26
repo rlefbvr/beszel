@@ -14,7 +14,7 @@ import { $allSystemsById } from "@/lib/stores"
 import { cn } from "@/lib/utils"
 
 /** Address compared to associate a system and a sensor: the same host or IP, without case */
-const sameHost = (a?: string, b?: string) => !!a && !!b && a.trim().toLowerCase() === b.trim().toLowerCase()
+export const sameHost = (a?: string, b?: string) => !!a && !!b && a.trim().toLowerCase() === b.trim().toLowerCase()
 
 /** System sharing the address of a sensor */
 export function useHostSystem(host: string) {

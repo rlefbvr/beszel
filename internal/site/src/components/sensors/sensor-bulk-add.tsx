@@ -142,15 +142,10 @@ export function SensorBulkAdd({ onDone }: { onDone: () => void }) {
 				<SheetTitle>
 					<Trans>Bulk add sensors</Trans>
 				</SheetTitle>
-				<SheetDescription>
-					<Trans>
-						One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port
-						numbers or protocol:port, separated by +. The lines of the same host make one sensor.
-					</Trans>
-				</SheetDescription>
+				<SheetDescription>host[,services[,label[,group[,name]]]]</SheetDescription>
 			</SheetHeader>
 			<form ref={formRef} onSubmit={submit} className="flex h-full flex-col overflow-hidden">
-				<div className="flex-1 flex flex-col gap-4 overflow-auto p-4">
+				<div className="flex-1 flex flex-col gap-4 overflow-hidden p-4">
 					<div className="grid gap-1.5">
 						<Label htmlFor="bulk-sensors-group">
 							<Trans>Group of the lines without group</Trans>
@@ -169,7 +164,7 @@ export function SensorBulkAdd({ onDone }: { onDone: () => void }) {
 							))}
 						</datalist>
 					</div>
-					<div className="grow flex flex-col gap-2">
+					<div className="grow min-h-0 flex flex-col gap-2">
 						<Label htmlFor="bulk-sensors" className="sr-only">
 							<Trans>Sensors</Trans>
 						</Label>
@@ -183,7 +178,7 @@ export function SensorBulkAdd({ onDone }: { onDone: () => void }) {
 									formRef.current?.requestSubmit()
 								}
 							}}
-							className="font-mono grow min-h-48 text-sm bg-card"
+							className="font-mono grow min-h-24 text-sm bg-card"
 							placeholder={[
 								"192.168.1.10, ping+ssh+rdp, , Servers, DC01",
 								"nas.lan, https+smb, , Storage",
@@ -193,6 +188,17 @@ export function SensorBulkAdd({ onDone }: { onDone: () => void }) {
 							].join("\n")}
 							required
 						/>
+						<div className="grid gap-1 text-xs text-muted-foreground">
+							<p className="font-mono">host[,services[,label[,group[,name]]]]</p>
+							<p>
+								<Trans>
+									One line per host. Services: known names (ping, ssh, https, rdp, dns, smb, proxmox…), TCP port numbers
+									or protocol:port (http:8080, dns:53), separated by + or spaces; ping when empty. The label names a
+									single service. The lines of the same host make one sensor; a host already checked gets the new
+									services.
+								</Trans>
+							</p>
+						</div>
 						{parsed.errors.length > 0 ? (
 							<ul className="text-xs text-destructive grid gap-0.5">
 								{parsed.errors.slice(0, 5).map((error) => (

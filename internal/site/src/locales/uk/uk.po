@@ -263,7 +263,6 @@ msgstr "Додати"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Add {foo}"
@@ -300,6 +299,10 @@ msgstr "Додати датчик"
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Add sensors"
 msgstr "Додати датчики"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add the network monitors"
+msgstr "Додати мережеві монітори"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
@@ -409,6 +412,7 @@ msgstr "сповіщень на користувача"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "Усі"
@@ -509,6 +513,10 @@ msgstr "Ви впевнені, що хочете видалити {name}?"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "Ви впевнені?"
+
+#: src/components/resolve-ip-button.tsx
+msgid "Auto-discover the IP"
+msgstr "Визначити IP автоматично"
 
 #: src/components/copy-to-clipboard.tsx
 msgid "Automatic copy requires a secure context."
@@ -642,8 +650,8 @@ msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "Нижче {0}{1} протягом {2, plural, one {останньої # хвилини} other {останніх # хвилин}}"
 
 #: src/components/sensors/sensor-dialog.tsx
-msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
-msgstr "Beszel перевіряє порти хоста з хаба. Перевірки одного хоста об’єднуються в один датчик."
+msgid "Beszel checks the ports of the host from the hub."
+msgstr "Beszel перевіряє порти хоста з хаба."
 
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
@@ -678,13 +686,14 @@ msgstr "Заголовок вкладки браузера"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "Масове додавання"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
-msgid "Bulk Add {foo}"
-msgstr "Масове додавання {foo}"
+msgid "Bulk add monitors"
+msgstr "Масове додавання моніторів"
 
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Bulk add sensors"
@@ -810,6 +819,10 @@ msgstr "Перевірте {email} для отримання посилання 
 msgid "Check logs for more details."
 msgstr "Перевірте журнали для отримання додаткової інформації."
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Check type"
+msgstr "Тип перевірки"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Check your monitoring service"
 msgstr "Перевірте ваш сервіс моніторингу"
@@ -861,6 +874,7 @@ msgid "Clear"
 msgstr "Очистити"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Clear all"
 msgstr "Очистити все"
 
@@ -1258,6 +1272,10 @@ msgstr "Визначити"
 #: src/components/routes/system/smart-table.tsx
 msgid "Device"
 msgstr "Пристрій"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Devices"
+msgstr "Пристрої"
 
 #. Context: Battery state
 #: src/lib/i18n.ts
@@ -1771,6 +1789,10 @@ msgstr "Перезавантаження хоста"
 msgid "Hosted services"
 msgstr "Розміщені служби"
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Hosts only"
+msgstr "Лише хости"
+
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "Як часто агенти збирають дані про служби systemd і Windows. Коротші інтервали раніше виявляють зміни стану, але записують більше даних. Застосовується до всіх систем."
@@ -2263,8 +2285,6 @@ msgstr "Втрати мережевого монітора"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
 #: src/lib/home-page.ts
@@ -2313,6 +2333,10 @@ msgstr "Поруч із логотипом"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No"
 msgstr "Ні"
+
+#: src/components/resolve-ip-button.tsx
+msgid "No address found for {name}"
+msgstr "Адресу для {name} не знайдено"
 
 #: src/components/reboots-table.tsx
 msgid "No alert"
@@ -2440,8 +2464,8 @@ msgstr "Одна смуга на інтервал ({every})"
 #~ msgstr "Одна смуга на хвилину"
 
 #: src/components/sensors/sensor-bulk-add.tsx
-msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
-msgstr "Один рядок на хост: хост, служби, мітка, група, назва. Служби — відомі порти (ssh, https, dns…), номери TCP-портів або протокол:порт через +. Рядки одного хоста утворюють один датчик."
+msgid "One line per host. Services: known names (ping, ssh, https, rdp, dns, smb, proxmox…), TCP port numbers or protocol:port (http:8080, dns:53), separated by + or spaces; ping when empty. The label names a single service. The lines of the same host make one sensor; a host already checked gets the new services."
+msgstr "Один рядок на хост. Служби: відомі назви (ping, ssh, https, rdp, dns, smb, proxmox…), номери портів TCP або протокол:порт (http:8080, dns:53), через + або пробіли; ping, якщо порожньо. Мітка називає одну службу. Рядки одного хоста утворюють один датчик; хост, який уже перевіряється, отримує нові служби."
 
 #: src/components/sensors/sensor-alerts.tsx
 #: src/lib/alerts.ts
@@ -2506,6 +2530,10 @@ msgstr "Або продовжити з"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "Інше"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Other devices only"
+msgstr "Лише інші пристрої"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -3519,6 +3547,10 @@ msgstr "Середній час відгуку за 10 хвилин переви
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The certificate of an HTTPS check expires within {value} days."
 msgstr "Сертифікат перевірки HTTPS спливає протягом {value} дн."
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "The checks of the same host are grouped in one sensor."
+msgstr "Перевірки одного хоста об’єднуються в один датчик."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"

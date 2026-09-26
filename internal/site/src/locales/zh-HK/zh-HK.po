@@ -263,7 +263,6 @@ msgstr "新增"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Add {foo}"
@@ -300,6 +299,10 @@ msgstr "新增感應器"
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Add sensors"
 msgstr "新增感應器"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add the network monitors"
+msgstr "新增網路監控"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
@@ -409,6 +412,7 @@ msgstr "則警報（每位使用者）"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "全部"
@@ -509,6 +513,10 @@ msgstr "您確定要刪除 {name} 嗎？"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "您確定嗎？"
+
+#: src/components/resolve-ip-button.tsx
+msgid "Auto-discover the IP"
+msgstr "自動偵測 IP"
 
 #: src/components/copy-to-clipboard.tsx
 msgid "Automatic copy requires a secure context."
@@ -642,8 +650,8 @@ msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "在過去的{2, plural, one {# 分鐘} other {# 分鐘}}中低於{0}{1}"
 
 #: src/components/sensors/sensor-dialog.tsx
-msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
-msgstr "Beszel 從中樞檢查主機的連接埠。同一主機的檢查會歸在同一個感應器。"
+msgid "Beszel checks the ports of the host from the hub."
+msgstr "Beszel 從中樞檢查主機的連接埠。"
 
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
@@ -678,13 +686,14 @@ msgstr "瀏覽器分頁標題"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "批量新增"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
-msgid "Bulk Add {foo}"
-msgstr "批量新增{foo}"
+msgid "Bulk add monitors"
+msgstr "批次新增監控"
 
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Bulk add sensors"
@@ -810,6 +819,10 @@ msgstr "檢查 {email} 以獲取重置鏈接。"
 msgid "Check logs for more details."
 msgstr "檢查日誌以取得更多資訊。"
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Check type"
+msgstr "檢查類型"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Check your monitoring service"
 msgstr "檢查您的監控服務"
@@ -861,6 +874,7 @@ msgid "Clear"
 msgstr "清除"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Clear all"
 msgstr "全部清除"
 
@@ -1257,6 +1271,10 @@ msgstr "偵測"
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/smart-table.tsx
 msgid "Device"
+msgstr "裝置"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Devices"
 msgstr "裝置"
 
 #. Context: Battery state
@@ -1771,6 +1789,10 @@ msgstr "主機重新啟動"
 msgid "Hosted services"
 msgstr "託管的服務"
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Hosts only"
+msgstr "僅主機"
+
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "代理程式收集 systemd 與 Windows 服務資料的頻率。間隔越短，越早偵測到狀態變化，但會寫入更多資料。適用於所有系統。"
@@ -2263,8 +2285,6 @@ msgstr "網絡監控封包遺失"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
 #: src/lib/home-page.ts
@@ -2313,6 +2333,10 @@ msgstr "標誌旁"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No"
 msgstr "否"
+
+#: src/components/resolve-ip-button.tsx
+msgid "No address found for {name}"
+msgstr "找不到 {name} 的位址"
 
 #: src/components/reboots-table.tsx
 msgid "No alert"
@@ -2440,8 +2464,8 @@ msgstr "每個間隔一個長條（{every}）"
 #~ msgstr "每分鐘一個長條"
 
 #: src/components/sensors/sensor-bulk-add.tsx
-msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
-msgstr "每台主機一行：主機、服務、標籤、群組、名稱。服務為常用連接埠（ssh、https、dns…）、TCP 連接埠號碼或 協定:連接埠，以 + 分隔。同一主機的各行會合併為一個感應器。"
+msgid "One line per host. Services: known names (ping, ssh, https, rdp, dns, smb, proxmox…), TCP port numbers or protocol:port (http:8080, dns:53), separated by + or spaces; ping when empty. The label names a single service. The lines of the same host make one sensor; a host already checked gets the new services."
+msgstr "每行一台主機。服務：已知名稱（ping、ssh、https、rdp、dns、smb、proxmox…）、TCP 連接埠號碼或 協定:連接埠（http:8080、dns:53），以 + 或空格分隔；空白時為 ping。標籤為單一服務命名。同一主機的各行組成一個感應器；已檢查的主機會加入新服務。"
 
 #: src/components/sensors/sensor-alerts.tsx
 #: src/lib/alerts.ts
@@ -2506,6 +2530,10 @@ msgstr "或繼續使用"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "其他"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Other devices only"
+msgstr "僅其他裝置"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -3519,6 +3547,10 @@ msgstr "10 分鐘平均回應時間超過 {value} ms。"
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The certificate of an HTTPS check expires within {value} days."
 msgstr "HTTPS 檢查的憑證將在 {value} 天內到期。"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "The checks of the same host are grouped in one sensor."
+msgstr "同一主機的檢查會歸在同一個感應器。"
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"

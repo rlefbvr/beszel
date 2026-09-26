@@ -263,7 +263,6 @@ msgstr "Hozzáadás"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Add {foo}"
@@ -300,6 +299,10 @@ msgstr "Érzékelő hozzáadása"
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Add sensors"
 msgstr "Érzékelők hozzáadása"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add the network monitors"
+msgstr "Hálózati monitorok hozzáadása"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
@@ -409,6 +412,7 @@ msgstr "riasztás felhasználónként"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "Összes"
@@ -509,6 +513,10 @@ msgstr "Biztosan törölni szeretnéd {name}-t?"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "Biztos vagy benne?"
+
+#: src/components/resolve-ip-button.tsx
+msgid "Auto-discover the IP"
+msgstr "IP automatikus felderítése"
 
 #: src/components/copy-to-clipboard.tsx
 msgid "Automatic copy requires a secure context."
@@ -642,8 +650,8 @@ msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "{0}{1} alatt az elmúlt {2, plural, one {# percben} other {# percben}}"
 
 #: src/components/sensors/sensor-dialog.tsx
-msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
-msgstr "A Beszel a hubról ellenőrzi a gazdagép portjait. Ugyanannak a gazdagépnek az ellenőrzései egy érzékelőbe kerülnek."
+msgid "Beszel checks the ports of the host from the hub."
+msgstr "A Beszel a hubról ellenőrzi a gazdagép portjait."
 
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
@@ -678,13 +686,14 @@ msgstr "Böngészőlap címe"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "Tömeges hozzáadás"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
-msgid "Bulk Add {foo}"
-msgstr "{foo} tömeges hozzáadása"
+msgid "Bulk add monitors"
+msgstr "Monitorok tömeges hozzáadása"
 
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Bulk add sensors"
@@ -810,6 +819,10 @@ msgstr "Ellenőrizd a {email} címet a visszaállító linkért."
 msgid "Check logs for more details."
 msgstr "Ellenőrizd a naplót a további részletekért."
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Check type"
+msgstr "Ellenőrzés típusa"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Check your monitoring service"
 msgstr "Ellenőrizze a megfigyelő szolgáltatást"
@@ -861,6 +874,7 @@ msgid "Clear"
 msgstr "Törlés"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Clear all"
 msgstr "Összes törlése"
 
@@ -1258,6 +1272,10 @@ msgstr "Felismerés"
 #: src/components/routes/system/smart-table.tsx
 msgid "Device"
 msgstr "Eszköz"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Devices"
+msgstr "Eszközök"
 
 #. Context: Battery state
 #: src/lib/i18n.ts
@@ -1771,6 +1789,10 @@ msgstr "Gazdagép újraindítása"
 msgid "Hosted services"
 msgstr "Futtatott szolgáltatások"
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Hosts only"
+msgstr "Csak gazdagépek"
+
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "Milyen gyakran gyűjtik az ügynökök a systemd- és Windows-szolgáltatások adatait. A rövidebb időköz hamarabb észleli az állapotváltozásokat, de több adatot ír. Minden rendszerre vonatkozik."
@@ -2263,8 +2285,6 @@ msgstr "Hálózati monitor vesztesége"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
 #: src/lib/home-page.ts
@@ -2313,6 +2333,10 @@ msgstr "A logó mellett"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No"
 msgstr "Nem"
+
+#: src/components/resolve-ip-button.tsx
+msgid "No address found for {name}"
+msgstr "Nem található cím ehhez: {name}"
 
 #: src/components/reboots-table.tsx
 msgid "No alert"
@@ -2440,8 +2464,8 @@ msgstr "Intervallumonként egy sáv ({every})"
 #~ msgstr "Percenként egy sáv"
 
 #: src/components/sensors/sensor-bulk-add.tsx
-msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
-msgstr "Gazdagépenként egy sor: gazdagép, szolgáltatások, címke, csoport, név. A szolgáltatások ismert portok (ssh, https, dns…), TCP-portszámok vagy protokoll:port, + jellel elválasztva. Ugyanannak a gazdagépnek a sorai egy érzékelőt alkotnak."
+msgid "One line per host. Services: known names (ping, ssh, https, rdp, dns, smb, proxmox…), TCP port numbers or protocol:port (http:8080, dns:53), separated by + or spaces; ping when empty. The label names a single service. The lines of the same host make one sensor; a host already checked gets the new services."
+msgstr "Soronként egy gazdagép. Szolgáltatások: ismert nevek (ping, ssh, https, rdp, dns, smb, proxmox…), TCP-portszámok vagy protokoll:port (http:8080, dns:53), + jellel vagy szóközzel elválasztva; üresen ping. A címke egyetlen szolgáltatást nevez meg. Ugyanannak a gazdagépnek a sorai egy érzékelőt alkotnak; a már ellenőrzött gazdagép megkapja az új szolgáltatásokat."
 
 #: src/components/sensors/sensor-alerts.tsx
 #: src/lib/alerts.ts
@@ -2506,6 +2530,10 @@ msgstr "Vagy folytasd ezzel"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "Egyéb"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Other devices only"
+msgstr "Csak egyéb eszközök"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -3519,6 +3547,10 @@ msgstr "A 10 perces átlagos válaszidő meghaladja a {value} ms-t."
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The certificate of an HTTPS check expires within {value} days."
 msgstr "Egy HTTPS-ellenőrzés tanúsítványa {value} napon belül lejár."
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "The checks of the same host are grouped in one sensor."
+msgstr "Ugyanannak a gazdagépnek az ellenőrzései egy érzékelőbe kerülnek."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"

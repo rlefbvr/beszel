@@ -212,6 +212,7 @@ func (h *Hub) registerApiRoutes(se *core.ServeEvent) error {
 	apiAuth.GET("/sensors/{id}/heartbeat", h.getSensorHeartbeat)
 	apiAuth.GET("/sensors/heartbeats", h.getSensorsHeartbeats)
 	apiAuth.GET("/sensors/{id}/traceroute", h.getSensorTraceroute).BindFunc(excludeReadOnlyRole)
+	apiAuth.GET("/resolve", h.resolveHost).BindFunc(excludeReadOnlyRole)
 	apiAuth.GET("/agent/logs", h.getAgentLogs)
 	apiAuth.GET("/agent/latest", h.getLatestAgentVersion)
 	apiAuth.POST("/agent/update", h.updateAgents).BindFunc(excludeReadOnlyRole)
@@ -574,6 +575,36 @@ func (h *Hub) getSensorHeartbeat(e *core.RequestEvent) error {
 		return e.NotFoundError("", nil)
 	}
 	return e.JSON(http.StatusOK, beats)
+}
+
+// resolveHost looks up the addresses of a host name from the hub, IPv4 first,
+// to fill the address of a new system or sensor.
+func (h *Hub) resolveHost(e *core.RequestEvent) error {
+	host := strings.TrimSpace(e.Request.URL.Query().Get("host"))
+	if host == "" || len(host) > 253 {
+		return e.BadRequestError("invalid host", nil)
+	}
+	if ip, err := netip.ParseAddr(host); err == nil {
+		return e.JSON(http.StatusOK, map[string][]string{"addresses": {ip.String()}})
+	}
+	ctx, cancel := context.WithTimeout(e.Request.Context(), 5*time.Second)
+	defer cancel()
+	ips, err := net.DefaultResolver.LookupNetIP(ctx, "ip", host)
+	if err != nil || len(ips) == 0 {
+		return e.NotFoundError("no address found for "+host, nil)
+	}
+	addresses := make([]string, 0, len(ips))
+	for _, ip := range ips {
+		if ip.Unmap().Is4() {
+			addresses = append(addresses, ip.Unmap().String())
+		}
+	}
+	for _, ip := range ips {
+		if !ip.Unmap().Is4() {
+			addresses = append(addresses, ip.String())
+		}
+	}
+	return e.JSON(http.StatusOK, map[string][]string{"addresses": addresses})
 }
 
 // getSensorTraceroute follows the route from the hub to the host of a network sensor.

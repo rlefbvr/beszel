@@ -69,14 +69,14 @@ export default memo(function CommandPalette({ open, setOpen }: { open: boolean; 
 			</CommandShortcut>
 		)
 		return (
-			<CommandDialog open={open} onOpenChange={setOpen}>
+			<CommandDialog open={open} onOpenChange={setOpen} className="sm:max-w-[calc(32rem+200px)]">
 				<DialogDescription className="sr-only">Command palette</DialogDescription>
 				<CommandInput
 					placeholder={t`Search for systems, sensors, containers, services or settings...`}
 					value={search}
 					onValueChange={setSearch}
 				/>
-				<CommandList>
+				<CommandList className="max-h-[min(500px,65dvh)]">
 					{search.trim() ? (
 						<SearchResults query={search.trim()} onDone={() => setOpen(false)} />
 					) : (

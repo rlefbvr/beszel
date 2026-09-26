@@ -31,6 +31,7 @@ import {
 	NetworkIcon,
 	PercentIcon,
 	PlusIcon,
+	ServerIcon,
 	Settings2Icon,
 	TableIcon,
 	TimerIcon,
@@ -47,7 +48,7 @@ import {
 	SensorDot,
 	useSensorsHeartbeats,
 } from "@/components/sensors/sensor-badges"
-import { HostBadge } from "@/components/sensors/host-links"
+import { HostBadge, sameHost } from "@/components/sensors/host-links"
 import { SensorBulkAdd } from "@/components/sensors/sensor-bulk-add"
 import { SensorDialog } from "@/components/sensors/sensor-dialog"
 import { ManageSensorGroupsDialog } from "@/components/systems-table/groups-dialog"
@@ -72,8 +73,16 @@ import { Sheet } from "@/components/ui/sheet"
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { isReadOnlyUser, queueUserSettings } from "@/lib/api"
 
-import { $checksBySensor, $sensorGroups, $sensors, $sensorsLoaded, checkName, sensorStatusLabel } from "@/lib/sensors"
-import { $userSettings } from "@/lib/stores"
+import {
+	$checksBySensor,
+	$sensorGroups,
+	$sensors,
+	$sensorsLoaded,
+	checkKind,
+	checkName,
+	sensorStatusLabel,
+} from "@/lib/sensors"
+import { $allSystemsById, $userSettings } from "@/lib/stores"
 import { formatRelativeTime, useNow } from "@/lib/time"
 import { cn, decimalString } from "@/lib/utils"
 import type { SensorCheckRecord, SensorRecord, UserSettings } from "@/types"
@@ -164,17 +173,38 @@ export default function SensorsBoard() {
 	const view = settings.sensorsView ?? "grid"
 	const byGroup = settings.sensorsByGroup ?? false
 	const status = settings.sensorsStatus ?? "all"
+	const devices = settings.sensorsDevices ?? "all"
+	const kinds = settings.sensorsKinds ?? []
+	const systems = useStore($allSystemsById)
 	const hiddenFields = settings.sensorsHiddenFields ?? []
 	const readOnly = isReadOnlyUser()
 
 	const sort = settings.sensorsSort ?? "name"
 	const all = useMemo(() => sortSensors(Object.values(sensors), sort), [sensors, sort])
 
-	// filtered on the text and status, before the group tab
+	// kinds of checks of the sensors, offered in the View menu
+	const allKinds = useMemo(() => {
+		const found = new Set<string>()
+		for (const checks of Object.values(checksBySensor)) {
+			for (const check of checks) {
+				found.add(checkKind(check))
+			}
+		}
+		return [...found].sort((a, b) => a.localeCompare(b))
+	}, [checksBySensor])
+
+	// filtered on the text, status, devices and kinds of checks, before the group tab
 	const matching = useMemo(() => {
 		const terms = filter.toLowerCase().split(" ").filter(Boolean)
+		const hosts = Object.values(systems).map((system) => system.host)
 		return all.filter((sensor) => {
 			if (status !== "all" && sensor.status !== status) {
+				return false
+			}
+			if (devices !== "all" && hosts.some((host) => sameHost(host, sensor.host)) !== (devices === "hosts")) {
+				return false
+			}
+			if (kinds.length && !(checksBySensor[sensor.id] ?? []).some((check) => kinds.includes(checkKind(check)))) {
 				return false
 			}
 			if (!terms.length) {
@@ -184,7 +214,7 @@ export default function SensorsBoard() {
 			const text = `${sensor.name} ${sensor.host} ${sensor.group} ${sensor.description} ${checks}`.toLowerCase()
 			return terms.every((term) => text.includes(term))
 		})
-	}, [all, filter, status, checksBySensor])
+	}, [all, filter, status, devices, kinds, systems, checksBySensor])
 
 	const counts = useMemo(() => {
 		const counts: Record<string, number> = { [allTab]: matching.length }
@@ -288,6 +318,9 @@ export default function SensorsBoard() {
 						<ViewMenu
 							view={view}
 							status={status}
+							devices={devices}
+							kinds={kinds}
+							allKinds={allKinds}
 							hiddenFields={hiddenFields}
 							byGroup={byGroup}
 							sort={sort}
@@ -385,7 +418,15 @@ export default function SensorsBoard() {
 			)}
 
 			<Dialog open={addOpen} onOpenChange={setAddOpen}>
-				{addOpen && <SensorDialog onDone={() => setAddOpen(false)} />}
+				{addOpen && (
+					<SensorDialog
+						onDone={() => setAddOpen(false)}
+						onOpenBulkAdd={() => {
+							setAddOpen(false)
+							setBulkOpen(true)
+						}}
+					/>
+				)}
 			</Dialog>
 			<Sheet open={bulkOpen} onOpenChange={setBulkOpen}>
 				{bulkOpen && <SensorBulkAdd onDone={() => setBulkOpen(false)} />}
@@ -436,6 +477,9 @@ function Section({ group, count, children }: { group: string | null; count: numb
 function ViewMenu({
 	view,
 	status,
+	devices,
+	kinds,
+	allKinds,
 	hiddenFields,
 	byGroup,
 	sort,
@@ -444,6 +488,9 @@ function ViewMenu({
 }: {
 	view: "grid" | "table"
 	status: string
+	devices: NonNullable<UserSettings["sensorsDevices"]>
+	kinds: string[]
+	allKinds: string[]
 	hiddenFields: string[]
 	byGroup: boolean
 	sort: SensorSort
@@ -549,6 +596,63 @@ function ViewMenu({
 								<Trans>Paused</Trans>
 							</DropdownMenuRadioItem>
 						</DropdownMenuRadioGroup>
+						<DropdownMenuSeparator />
+						<DropdownMenuLabel className="pt-2 px-3.5 flex items-center gap-2">
+							<ServerIcon className="size-4" />
+							<Trans>Devices</Trans>
+						</DropdownMenuLabel>
+						<DropdownMenuRadioGroup
+							className="px-1 pb-1"
+							value={devices}
+							onValueChange={(value) => saveSetting("sensorsDevices", value as UserSettings["sensorsDevices"])}
+						>
+							<DropdownMenuRadioItem value="all" onSelect={(e) => e.preventDefault()}>
+								<Trans>All</Trans>
+							</DropdownMenuRadioItem>
+							<DropdownMenuRadioItem value="hosts" onSelect={(e) => e.preventDefault()}>
+								<Trans>Hosts only</Trans>
+							</DropdownMenuRadioItem>
+							<DropdownMenuRadioItem value="others" onSelect={(e) => e.preventDefault()}>
+								<Trans>Other devices only</Trans>
+							</DropdownMenuRadioItem>
+						</DropdownMenuRadioGroup>
+						{allKinds.length > 0 && (
+							<>
+								<DropdownMenuSeparator />
+								<DropdownMenuLabel className="pt-2 px-3.5 flex items-center gap-2">
+									<NetworkIcon className="size-4" />
+									<Trans>Check type</Trans>
+								</DropdownMenuLabel>
+								<div className="px-1 pb-1">
+									{allKinds.map((kind) => (
+										<DropdownMenuCheckboxItem
+											key={kind}
+											onSelect={(e) => e.preventDefault()}
+											checked={kinds.includes(kind)}
+											onCheckedChange={(value) =>
+												saveSetting(
+													"sensorsKinds",
+													value ? [...kinds.filter((k) => k !== kind), kind] : kinds.filter((k) => k !== kind)
+												)
+											}
+										>
+											{kind}
+										</DropdownMenuCheckboxItem>
+									))}
+									{kinds.length > 0 && (
+										<DropdownMenuItem
+											className="text-xs text-muted-foreground"
+											onSelect={(e) => {
+												e.preventDefault()
+												saveSetting("sensorsKinds", [])
+											}}
+										>
+											<Trans>Clear all</Trans>
+										</DropdownMenuItem>
+									)}
+								</div>
+							</>
+						)}
 					</div>
 					{view === "table" && (
 						<div>

@@ -447,6 +447,10 @@ export interface UserSettings {
 	sensorsGroupTab?: string
 	sensorsStatus?: "all" | "up" | "down" | "paused"
 	sensorsHiddenFields?: string[]
+	/** network sensors: only the hosts (sharing the address of a system), only the other devices, or all */
+	sensorsDevices?: "all" | "hosts" | "others"
+	/** network sensors: kinds of checks shown (SSH, HTTPS, TCP…), all when empty */
+	sensorsKinds?: string[]
 	/** network sensors: sections by group in the All tab */
 	sensorsByGroup?: boolean
 	/** network sensors: order by name, or worst status or quality first */

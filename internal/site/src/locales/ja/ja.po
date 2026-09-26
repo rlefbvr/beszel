@@ -263,7 +263,6 @@ msgstr "追加"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Add {foo}"
@@ -300,6 +299,10 @@ msgstr "センサーを追加"
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Add sensors"
 msgstr "センサーを追加"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add the network monitors"
+msgstr "ネットワークモニターを追加"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
@@ -409,6 +412,7 @@ msgstr "件のアラート（ユーザーごと）"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "すべて"
@@ -509,6 +513,10 @@ msgstr "{name}を削除してもよろしいですか？"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "よろしいですか？"
+
+#: src/components/resolve-ip-button.tsx
+msgid "Auto-discover the IP"
+msgstr "IP を自動検出"
 
 #: src/components/copy-to-clipboard.tsx
 msgid "Automatic copy requires a secure context."
@@ -642,8 +650,8 @@ msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "過去{2, plural, one {# 分} other {# 分}}で{0}{1}を下回っています"
 
 #: src/components/sensors/sensor-dialog.tsx
-msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
-msgstr "Beszel はハブからホストのポートをチェックします。同じホストのチェックは 1 つのセンサーにまとめられます。"
+msgid "Beszel checks the ports of the host from the hub."
+msgstr "Beszel はハブからホストのポートをチェックします。"
 
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
@@ -678,13 +686,14 @@ msgstr "ブラウザタブのタイトル"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "一括追加"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
-msgid "Bulk Add {foo}"
-msgstr "{foo} を一括追加"
+msgid "Bulk add monitors"
+msgstr "モニターを一括追加"
 
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Bulk add sensors"
@@ -810,6 +819,10 @@ msgstr "{email}を確認してリセットリンクを探してください。"
 msgid "Check logs for more details."
 msgstr "詳細についてはログを確認してください。"
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Check type"
+msgstr "チェックの種類"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Check your monitoring service"
 msgstr "監視サービスを確認する"
@@ -861,6 +874,7 @@ msgid "Clear"
 msgstr "クリア"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Clear all"
 msgstr "すべてクリア"
 
@@ -1258,6 +1272,10 @@ msgstr "検出"
 #: src/components/routes/system/smart-table.tsx
 msgid "Device"
 msgstr "デバイス"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Devices"
+msgstr "機器"
 
 #. Context: Battery state
 #: src/lib/i18n.ts
@@ -1771,6 +1789,10 @@ msgstr "ホストの再起動"
 msgid "Hosted services"
 msgstr "ホストされているサービス"
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Hosts only"
+msgstr "ホストのみ"
+
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "エージェントが systemd および Windows サービスのデータを収集する頻度です。間隔を短くすると状態の変化を早く検出できますが、書き込むデータ量が増えます。すべてのシステムに適用されます。"
@@ -2263,8 +2285,6 @@ msgstr "ネットワークモニターのパケットロス"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
 #: src/lib/home-page.ts
@@ -2313,6 +2333,10 @@ msgstr "ロゴの横"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No"
 msgstr "いいえ"
+
+#: src/components/resolve-ip-button.tsx
+msgid "No address found for {name}"
+msgstr "{name} のアドレスが見つかりません"
 
 #: src/components/reboots-table.tsx
 msgid "No alert"
@@ -2440,8 +2464,8 @@ msgstr "間隔ごとに 1 本 ({every})"
 #~ msgstr "1 分ごとに 1 本"
 
 #: src/components/sensors/sensor-bulk-add.tsx
-msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
-msgstr "ホストごとに 1 行: ホスト、サービス、ラベル、グループ、名前。サービスは既知のポート (ssh、https、dns…)、TCP ポート番号、またはプロトコル:ポートで、+ で区切ります。同じホストの行は 1 つのセンサーになります。"
+msgid "One line per host. Services: known names (ping, ssh, https, rdp, dns, smb, proxmox…), TCP port numbers or protocol:port (http:8080, dns:53), separated by + or spaces; ping when empty. The label names a single service. The lines of the same host make one sensor; a host already checked gets the new services."
+msgstr "1 行に 1 ホスト。サービス: 既知の名前 (ping、ssh、https、rdp、dns、smb、proxmox…)、TCP ポート番号、またはプロトコル:ポート (http:8080、dns:53) を + または空白で区切ります。空欄の場合は ping。ラベルは単一のサービスの名前です。同じホストの行は 1 つのセンサーになり、既にチェック中のホストには新しいサービスが追加されます。"
 
 #: src/components/sensors/sensor-alerts.tsx
 #: src/lib/alerts.ts
@@ -2506,6 +2530,10 @@ msgstr "または、以下の方法でログイン"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "その他"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Other devices only"
+msgstr "その他の機器のみ"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -3519,6 +3547,10 @@ msgstr "10 分間の平均応答時間が {value} ms を超えています。"
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The certificate of an HTTPS check expires within {value} days."
 msgstr "HTTPS チェックの証明書が {value} 日以内に期限切れになります。"
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "The checks of the same host are grouped in one sensor."
+msgstr "同じホストのチェックは 1 つのセンサーにまとめられます。"
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"

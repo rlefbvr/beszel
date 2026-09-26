@@ -210,6 +210,11 @@ export function checkType(check: Pick<SensorCheckRecord, "label" | "protocol" | 
 	return !check.label && check.port ? `${protocol} ${check.port}` : protocol
 }
 
+/** Kind of a check in the filters of the sensors page: its known service (SSH, RDP…) or its protocol */
+export function checkKind(check: Pick<SensorCheckRecord, "protocol" | "port"> & { url?: string }) {
+	return presetOf(check)?.label ?? checkProtocol(check)
+}
+
 /** Name of a check: its label, or its protocol and port */
 export function checkName(check: Pick<SensorCheckRecord, "label" | "protocol" | "port">) {
 	if (check.label) {

@@ -4,6 +4,7 @@ import { useStore } from "@nanostores/react"
 import { getPagePath } from "@nanostores/router"
 import { ChevronDownIcon, ExternalLinkIcon, NetworkIcon } from "lucide-react"
 import { memo, useEffect, useRef, useState } from "react"
+import { ResolveIpButton } from "@/components/resolve-ip-button"
 import { Button } from "@/components/ui/button"
 import {
 	Dialog,
@@ -188,15 +189,18 @@ export const SystemDialog = ({ setOpen, system }: { setOpen: (open: boolean) => 
 						<Label htmlFor="host" className="xs:text-end">
 							<Trans>Host / IP</Trans>
 						</Label>
-						<Input
-							id="host"
-							name="host"
-							value={hostValue}
-							required
-							onChange={(e) => {
-								setHostValue(e.target.value)
-							}}
-						/>
+						<div className="flex gap-2">
+							<Input
+								id="host"
+								name="host"
+								value={hostValue}
+								required
+								onChange={(e) => {
+									setHostValue(e.target.value)
+								}}
+							/>
+							{!system && <ResolveIpButton host={hostValue} onResolved={setHostValue} />}
+						</div>
 						<Label htmlFor="group" className="xs:text-end">
 							<Trans>Group</Trans>
 						</Label>

@@ -263,7 +263,6 @@ msgstr "추가"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Add {foo}"
@@ -300,6 +299,10 @@ msgstr "센서 추가"
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Add sensors"
 msgstr "센서 추가"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add the network monitors"
+msgstr "네트워크 모니터 추가"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
@@ -409,6 +412,7 @@ msgstr "개 알림(사용자별)"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "전체"
@@ -509,6 +513,10 @@ msgstr "{name}을(를) 삭제하시겠습니까?"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "확실합니까?"
+
+#: src/components/resolve-ip-button.tsx
+msgid "Auto-discover the IP"
+msgstr "IP 자동 검색"
 
 #: src/components/copy-to-clipboard.tsx
 msgid "Automatic copy requires a secure context."
@@ -642,8 +650,8 @@ msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "마지막 {2, plural, one {# 분} other {# 분}} 동안 {0}{1} 미만"
 
 #: src/components/sensors/sensor-dialog.tsx
-msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
-msgstr "Beszel이 허브에서 호스트의 포트를 검사합니다. 같은 호스트의 검사는 하나의 센서로 묶입니다."
+msgid "Beszel checks the ports of the host from the hub."
+msgstr "Beszel이 허브에서 호스트의 포트를 검사합니다."
 
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
@@ -678,13 +686,14 @@ msgstr "브라우저 탭 제목"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "일괄 추가"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
-msgid "Bulk Add {foo}"
-msgstr "{foo} 일괄 추가"
+msgid "Bulk add monitors"
+msgstr "모니터 일괄 추가"
 
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Bulk add sensors"
@@ -810,6 +819,10 @@ msgstr "{email}에서 재설정 링크를 확인하세요."
 msgid "Check logs for more details."
 msgstr "자세한 내용은 로그를 확인하세요."
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Check type"
+msgstr "검사 유형"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Check your monitoring service"
 msgstr "모니터링 서비스 확인"
@@ -861,6 +874,7 @@ msgid "Clear"
 msgstr "지우기"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Clear all"
 msgstr "모두 지우기"
 
@@ -1258,6 +1272,10 @@ msgstr "감지"
 #: src/components/routes/system/smart-table.tsx
 msgid "Device"
 msgstr "장치"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Devices"
+msgstr "장비"
 
 #. Context: Battery state
 #: src/lib/i18n.ts
@@ -1771,6 +1789,10 @@ msgstr "호스트 재시작"
 msgid "Hosted services"
 msgstr "호스팅된 서비스"
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Hosts only"
+msgstr "호스트만"
+
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "에이전트가 systemd 및 Windows 서비스 데이터를 수집하는 빈도입니다. 간격이 짧을수록 상태 변화를 더 빨리 감지하지만 더 많은 데이터를 기록합니다. 모든 시스템에 적용됩니다."
@@ -2263,8 +2285,6 @@ msgstr "네트워크 모니터 패킷 손실"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
 #: src/lib/home-page.ts
@@ -2313,6 +2333,10 @@ msgstr "로고 옆"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No"
 msgstr "아니오"
+
+#: src/components/resolve-ip-button.tsx
+msgid "No address found for {name}"
+msgstr "{name}의 주소를 찾을 수 없습니다"
 
 #: src/components/reboots-table.tsx
 msgid "No alert"
@@ -2440,8 +2464,8 @@ msgstr "간격당 막대 1개 ({every})"
 #~ msgstr "1분당 막대 1개"
 
 #: src/components/sensors/sensor-bulk-add.tsx
-msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
-msgstr "호스트당 한 줄: 호스트, 서비스, 레이블, 그룹, 이름. 서비스는 알려진 포트(ssh, https, dns…), TCP 포트 번호 또는 프로토콜:포트이며 +로 구분합니다. 같은 호스트의 줄은 하나의 센서가 됩니다."
+msgid "One line per host. Services: known names (ping, ssh, https, rdp, dns, smb, proxmox…), TCP port numbers or protocol:port (http:8080, dns:53), separated by + or spaces; ping when empty. The label names a single service. The lines of the same host make one sensor; a host already checked gets the new services."
+msgstr "호스트당 한 줄. 서비스: 알려진 이름(ping, ssh, https, rdp, dns, smb, proxmox…), TCP 포트 번호 또는 프로토콜:포트(http:8080, dns:53)를 + 또는 공백으로 구분합니다. 비어 있으면 ping입니다. 레이블은 단일 서비스의 이름입니다. 같은 호스트의 줄은 하나의 센서가 되며, 이미 검사 중인 호스트에는 새 서비스가 추가됩니다."
 
 #: src/components/sensors/sensor-alerts.tsx
 #: src/lib/alerts.ts
@@ -2506,6 +2530,10 @@ msgstr "또는 아래 항목으로 진행하기"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "기타"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Other devices only"
+msgstr "기타 장비만"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -3519,6 +3547,10 @@ msgstr "10분 평균 응답 시간이 {value}ms를 초과합니다."
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The certificate of an HTTPS check expires within {value} days."
 msgstr "HTTPS 검사의 인증서가 {value}일 이내에 만료됩니다."
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "The checks of the same host are grouped in one sensor."
+msgstr "같은 호스트의 검사는 하나의 센서로 묶입니다."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"

@@ -512,7 +512,7 @@ export function AddMonitorDialog({ systemId, monitors }: { systemId?: string; mo
 				<SheetContent className="w-full sm:max-w-xl gap-0">
 					<SheetHeader className="border-b">
 						<SheetTitle>
-							<Trans>Bulk Add {{ foo: t`Network Monitors` }}</Trans>
+							<Trans>Bulk add monitors</Trans>
 						</SheetTitle>
 						<SheetDescription>target[,protocol[,port[,interval]]]</SheetDescription>
 					</SheetHeader>
@@ -555,7 +555,7 @@ export function AddMonitorDialog({ systemId, monitors }: { systemId?: string; mo
 						</div>
 						<SheetFooter className="border-t">
 							<Button type="submit" disabled={bulkLoading || (!systemId && !bulkSelectedSystemIds.size)}>
-								<Trans>Add {{ foo: t`Network Monitors` }}</Trans>
+								<Trans>Add the network monitors</Trans>
 							</Button>
 						</SheetFooter>
 					</form>

@@ -263,7 +263,6 @@ msgstr "הוספה"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Add {foo}"
@@ -300,6 +299,10 @@ msgstr "הוספת חיישן"
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Add sensors"
 msgstr "הוספת חיישנים"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add the network monitors"
+msgstr "הוספת ניטורי הרשת"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
@@ -409,6 +412,7 @@ msgstr "התראות לכל משתמש"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "הכול"
@@ -509,6 +513,10 @@ msgstr "האם אתה בטוח שברצונך למחוק את {name}?"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "האם אתה בטוח?"
+
+#: src/components/resolve-ip-button.tsx
+msgid "Auto-discover the IP"
+msgstr "גילוי אוטומטי של כתובת IP"
 
 #: src/components/copy-to-clipboard.tsx
 msgid "Automatic copy requires a secure context."
@@ -642,8 +650,8 @@ msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "מתחת ל־{0}{1} ב{2, plural, one {דקה האחרונה} other {־# הדקות האחרונות}}"
 
 #: src/components/sensors/sensor-dialog.tsx
-msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
-msgstr "Beszel בודק את הפורטים של המארח מה-hub. הבדיקות של אותו מארח מקובצות בחיישן אחד."
+msgid "Beszel checks the ports of the host from the hub."
+msgstr "Beszel בודק את הפורטים של המארח מה-hub."
 
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
@@ -678,13 +686,14 @@ msgstr "כותרת לשונית הדפדפן"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "הוספה מרוכזת"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
-msgid "Bulk Add {foo}"
-msgstr "הוספה מרוכזת של {foo}"
+msgid "Bulk add monitors"
+msgstr "הוספה מרוכזת של ניטורים"
 
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Bulk add sensors"
@@ -810,6 +819,10 @@ msgstr "בדוק את {email} לקישור איפוס."
 msgid "Check logs for more details."
 msgstr "בדוק לוגים לפרטים נוספים"
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Check type"
+msgstr "סוג בדיקה"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Check your monitoring service"
 msgstr "בדוק את שירות הניטור שלך"
@@ -861,6 +874,7 @@ msgid "Clear"
 msgstr "נקה"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Clear all"
 msgstr "נקה הכול"
 
@@ -1258,6 +1272,10 @@ msgstr "זיהוי"
 #: src/components/routes/system/smart-table.tsx
 msgid "Device"
 msgstr "התקן"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Devices"
+msgstr "התקנים"
 
 #. Context: Battery state
 #: src/lib/i18n.ts
@@ -1771,6 +1789,10 @@ msgstr "הפעלה מחדש של המארח"
 msgid "Hosted services"
 msgstr "שירותים מתארחים"
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Hosts only"
+msgstr "מארחים בלבד"
+
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "באיזו תדירות הסוכנים אוספים נתונים על שירותי systemd ו-Windows. מרווחים קצרים יותר מזהים שינויי מצב מוקדם יותר אך כותבים יותר נתונים. חל על כל המערכות."
@@ -2263,8 +2285,6 @@ msgstr "אובדן מנטר רשת"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
 #: src/lib/home-page.ts
@@ -2313,6 +2333,10 @@ msgstr "ליד הלוגו"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No"
 msgstr "לא"
+
+#: src/components/resolve-ip-button.tsx
+msgid "No address found for {name}"
+msgstr "לא נמצאה כתובת עבור {name}"
 
 #: src/components/reboots-table.tsx
 msgid "No alert"
@@ -2440,8 +2464,8 @@ msgstr "עמודה אחת לכל מרווח ({every})"
 #~ msgstr "עמודה אחת לכל דקה"
 
 #: src/components/sensors/sensor-bulk-add.tsx
-msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
-msgstr "שורה אחת לכל מארח: מארח, שירותים, תווית, קבוצה, שם. השירותים הם פורטים מוכרים (ssh, https, dns…), מספרי פורט TCP או פרוטוקול:פורט, מופרדים ב-+. שורות של אותו מארח יוצרות חיישן אחד."
+msgid "One line per host. Services: known names (ping, ssh, https, rdp, dns, smb, proxmox…), TCP port numbers or protocol:port (http:8080, dns:53), separated by + or spaces; ping when empty. The label names a single service. The lines of the same host make one sensor; a host already checked gets the new services."
+msgstr "שורה אחת לכל מארח. שירותים: שמות מוכרים (ping, ssh, https, rdp, dns, smb, proxmox…), מספרי פורטים של TCP או פרוטוקול:פורט (http:8080, dns:53), מופרדים ב-+ או ברווחים; ping אם ריק. התווית מתארת שירות יחיד. השורות של אותו מארח יוצרות חיישן אחד; מארח שכבר נבדק מקבל את השירותים החדשים."
 
 #: src/components/sensors/sensor-alerts.tsx
 #: src/lib/alerts.ts
@@ -2506,6 +2530,10 @@ msgstr "או המשך עם"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "אחר"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Other devices only"
+msgstr "התקנים אחרים בלבד"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -3519,6 +3547,10 @@ msgstr "זמן התגובה הממוצע ב-10 דקות עולה על {value} ms
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The certificate of an HTTPS check expires within {value} days."
 msgstr "האישור של בדיקת HTTPS יפוג בתוך {value} ימים."
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "The checks of the same host are grouped in one sensor."
+msgstr "הבדיקות של אותו מארח מקובצות בחיישן אחד."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"

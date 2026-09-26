@@ -38,6 +38,7 @@ import { isAdmin, isReadOnlyUser, logOut, pb } from "@/lib/api"
 import { cn, runOnce } from "@/lib/utils"
 import { AddSystemDialog } from "./add-system"
 import { Dialog } from "./ui/dialog"
+import { Sheet } from "./ui/sheet"
 import { Logo } from "./logo"
 import { homePagePath } from "@/lib/home-page"
 import { $headerLabel } from "@/lib/instance"
@@ -48,6 +49,9 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 
 const CommandPalette = lazy(() => import("./command-palette"))
 const SensorDialog = lazy(() => import("./sensors/sensor-dialog").then((module) => ({ default: module.SensorDialog })))
+const SensorBulkAdd = lazy(() =>
+	import("./sensors/sensor-bulk-add").then((module) => ({ default: module.SensorBulkAdd }))
+)
 
 const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0
 
@@ -55,6 +59,7 @@ export default function Navbar() {
 	const [addSystemDialogOpen, setAddSystemDialogOpen] = useState(false)
 	const [commandPaletteOpen, setCommandPaletteOpen] = useState(false)
 	const [addSensorOpen, setAddSensorOpen] = useState(false)
+	const [bulkSensorsOpen, setBulkSensorsOpen] = useState(false)
 
 	const AdminLinks = AdminDropdownGroup()
 
@@ -342,10 +347,23 @@ export default function Navbar() {
 				<Dialog open={addSensorOpen} onOpenChange={setAddSensorOpen}>
 					{addSensorOpen && (
 						<Suspense>
-							<SensorDialog onDone={() => setAddSensorOpen(false)} />
+							<SensorDialog
+								onDone={() => setAddSensorOpen(false)}
+								onOpenBulkAdd={() => {
+									setAddSensorOpen(false)
+									setBulkSensorsOpen(true)
+								}}
+							/>
 						</Suspense>
 					)}
 				</Dialog>
+				<Sheet open={bulkSensorsOpen} onOpenChange={setBulkSensorsOpen}>
+					{bulkSensorsOpen && (
+						<Suspense>
+							<SensorBulkAdd onDone={() => setBulkSensorsOpen(false)} />
+						</Suspense>
+					)}
+				</Sheet>
 			</div>
 		</div>
 	)

@@ -263,7 +263,6 @@ msgstr "Tilføj"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Add {foo}"
@@ -300,6 +299,10 @@ msgstr "Tilføj sensor"
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Add sensors"
 msgstr "Tilføj sensorer"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add the network monitors"
+msgstr "Tilføj netværksmonitorerne"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
@@ -409,6 +412,7 @@ msgstr "alarmer pr. bruger"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "Alle"
@@ -509,6 +513,10 @@ msgstr "Er du sikker på, at du vil slette {name}?"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "Er du sikker?"
+
+#: src/components/resolve-ip-button.tsx
+msgid "Auto-discover the IP"
+msgstr "Find IP automatisk"
 
 #: src/components/copy-to-clipboard.tsx
 msgid "Automatic copy requires a secure context."
@@ -642,8 +650,8 @@ msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "Under {0}{1} i sidste {2, plural, one {# minut} other {# minutter}}"
 
 #: src/components/sensors/sensor-dialog.tsx
-msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
-msgstr "Beszel kontrollerer værtens porte fra hubben. Kontrollerne af samme vært samles i én sensor."
+msgid "Beszel checks the ports of the host from the hub."
+msgstr "Beszel kontrollerer værtens porte fra hubben."
 
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
@@ -678,13 +686,14 @@ msgstr "Titel på browserfanen"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "Tilføj flere"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
-msgid "Bulk Add {foo}"
-msgstr "Tilføj flere {foo}"
+msgid "Bulk add monitors"
+msgstr "Masseoprettelse af monitorer"
 
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Bulk add sensors"
@@ -810,6 +819,10 @@ msgstr "Tjek {email} for et nulstillingslink."
 msgid "Check logs for more details."
 msgstr "Tjek logfiler for flere detaljer."
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Check type"
+msgstr "Kontroltype"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Check your monitoring service"
 msgstr "Tjek din overvågningstjeneste"
@@ -861,6 +874,7 @@ msgid "Clear"
 msgstr "Ryd"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Clear all"
 msgstr "Ryd alle"
 
@@ -1258,6 +1272,10 @@ msgstr "Registrer"
 #: src/components/routes/system/smart-table.tsx
 msgid "Device"
 msgstr "Enhed"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Devices"
+msgstr "Enheder"
 
 #. Context: Battery state
 #: src/lib/i18n.ts
@@ -1771,6 +1789,10 @@ msgstr "Genstart af vært"
 msgid "Hosted services"
 msgstr "Hostede tjenester"
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Hosts only"
+msgstr "Kun værter"
+
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "Hvor ofte agenter indsamler data om systemd- og Windows-tjenester. Kortere intervaller opdager tilstandsændringer hurtigere, men skriver flere data. Gælder for alle systemer."
@@ -2263,8 +2285,6 @@ msgstr "Tab på netværksovervågning"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
 #: src/lib/home-page.ts
@@ -2313,6 +2333,10 @@ msgstr "Ved siden af logoet"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No"
 msgstr "Nej"
+
+#: src/components/resolve-ip-button.tsx
+msgid "No address found for {name}"
+msgstr "Ingen adresse fundet for {name}"
 
 #: src/components/reboots-table.tsx
 msgid "No alert"
@@ -2440,8 +2464,8 @@ msgstr "Én bjælke pr. interval ({every})"
 #~ msgstr "Én bjælke pr. minut"
 
 #: src/components/sensors/sensor-bulk-add.tsx
-msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
-msgstr "Én linje pr. vært: vært, tjenester, etiket, gruppe, navn. Tjenester er kendte porte (ssh, https, dns…), TCP-portnumre eller protokol:port, adskilt med +. Linjerne for samme vært udgør én sensor."
+msgid "One line per host. Services: known names (ping, ssh, https, rdp, dns, smb, proxmox…), TCP port numbers or protocol:port (http:8080, dns:53), separated by + or spaces; ping when empty. The label names a single service. The lines of the same host make one sensor; a host already checked gets the new services."
+msgstr "Én linje pr. vært. Tjenester: kendte navne (ping, ssh, https, rdp, dns, smb, proxmox…), TCP-portnumre eller protokol:port (http:8080, dns:53), adskilt af + eller mellemrum; ping hvis tomt. Etiketten navngiver en enkelt tjeneste. Linjerne for samme vært udgør én sensor; en allerede kontrolleret vært får de nye tjenester."
 
 #: src/components/sensors/sensor-alerts.tsx
 #: src/lib/alerts.ts
@@ -2506,6 +2530,10 @@ msgstr "Eller fortsæt med"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "Andre"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Other devices only"
+msgstr "Kun andre enheder"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -3519,6 +3547,10 @@ msgstr "Den gennemsnitlige svartid over 10 minutter overstiger {value} ms."
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The certificate of an HTTPS check expires within {value} days."
 msgstr "Certifikatet for en HTTPS-kontrol udløber inden for {value} dage."
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "The checks of the same host are grouped in one sensor."
+msgstr "Kontrollerne af samme vært samles i én sensor."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"

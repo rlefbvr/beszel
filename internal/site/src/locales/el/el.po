@@ -263,7 +263,6 @@ msgstr "Προσθήκη"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Add {foo}"
@@ -300,6 +299,10 @@ msgstr "Προσθήκη αισθητήρα"
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Add sensors"
 msgstr "Προσθήκη αισθητήρων"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add the network monitors"
+msgstr "Προσθήκη των παρακολουθήσεων δικτύου"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
@@ -409,6 +412,7 @@ msgstr "ειδοποιήσεις ανά χρήστη"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "Όλα"
@@ -509,6 +513,10 @@ msgstr "Είστε βέβαιοι ότι θέλετε να διαγράψετε 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "Είστε βέβαιοι;"
+
+#: src/components/resolve-ip-button.tsx
+msgid "Auto-discover the IP"
+msgstr "Αυτόματη εύρεση IP"
 
 #: src/components/copy-to-clipboard.tsx
 msgid "Automatic copy requires a secure context."
@@ -642,8 +650,8 @@ msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "Κάτω από {0}{1} στα τελευταία {2, plural, one {# λεπτό} other {# λεπτά}}"
 
 #: src/components/sensors/sensor-dialog.tsx
-msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
-msgstr "Το Beszel ελέγχει τις θύρες του κεντρικού υπολογιστή από το hub. Οι έλεγχοι του ίδιου υπολογιστή ομαδοποιούνται σε έναν αισθητήρα."
+msgid "Beszel checks the ports of the host from the hub."
+msgstr "Το Beszel ελέγχει τις θύρες του κεντρικού υπολογιστή από το hub."
 
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
@@ -678,13 +686,14 @@ msgstr "Τίτλος καρτέλας προγράμματος περιήγησ�
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "Μαζική προσθήκη"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
-msgid "Bulk Add {foo}"
-msgstr "Μαζική προσθήκη {foo}"
+msgid "Bulk add monitors"
+msgstr "Μαζική προσθήκη παρακολουθήσεων"
 
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Bulk add sensors"
@@ -810,6 +819,10 @@ msgstr "Ελέγξτε το {email} για έναν σύνδεσμο επανα�
 msgid "Check logs for more details."
 msgstr "Ελέγξτε τα αρχεία καταγραφής για περισσότερες λεπτομέρειες."
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Check type"
+msgstr "Τύπος ελέγχου"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Check your monitoring service"
 msgstr "Ελέγξτε την υπηρεσία παρακολούθησής σας"
@@ -861,6 +874,7 @@ msgid "Clear"
 msgstr "Εκκαθάριση"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Clear all"
 msgstr "Εκκαθάριση όλων"
 
@@ -1258,6 +1272,10 @@ msgstr "Εντοπισμός"
 #: src/components/routes/system/smart-table.tsx
 msgid "Device"
 msgstr "Συσκευή"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Devices"
+msgstr "Συσκευές"
 
 #. Context: Battery state
 #: src/lib/i18n.ts
@@ -1771,6 +1789,10 @@ msgstr "Επανεκκίνηση κεντρικού υπολογιστή"
 msgid "Hosted services"
 msgstr "Φιλοξενούμενες υπηρεσίες"
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Hosts only"
+msgstr "Μόνο κεντρικοί υπολογιστές"
+
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "Πόσο συχνά οι πράκτορες συλλέγουν δεδομένα υπηρεσιών systemd και Windows. Τα μικρότερα διαστήματα εντοπίζουν νωρίτερα τις αλλαγές κατάστασης αλλά γράφουν περισσότερα δεδομένα. Ισχύει για όλα τα συστήματα."
@@ -2263,8 +2285,6 @@ msgstr "Απώλεια παρακολούθησης δικτύου"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
 #: src/lib/home-page.ts
@@ -2313,6 +2333,10 @@ msgstr "Δίπλα στο λογότυπο"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No"
 msgstr "Όχι"
+
+#: src/components/resolve-ip-button.tsx
+msgid "No address found for {name}"
+msgstr "Δεν βρέθηκε διεύθυνση για {name}"
 
 #: src/components/reboots-table.tsx
 msgid "No alert"
@@ -2440,8 +2464,8 @@ msgstr "Μία μπάρα ανά διάστημα ({every})"
 #~ msgstr "Μία μπάρα ανά λεπτό"
 
 #: src/components/sensors/sensor-bulk-add.tsx
-msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
-msgstr "Μία γραμμή ανά υπολογιστή: υπολογιστής, υπηρεσίες, ετικέτα, ομάδα, όνομα. Οι υπηρεσίες είναι γνωστές θύρες (ssh, https, dns…), αριθμοί θυρών TCP ή πρωτόκολλο:θύρα, χωρισμένα με +. Οι γραμμές του ίδιου υπολογιστή σχηματίζουν έναν αισθητήρα."
+msgid "One line per host. Services: known names (ping, ssh, https, rdp, dns, smb, proxmox…), TCP port numbers or protocol:port (http:8080, dns:53), separated by + or spaces; ping when empty. The label names a single service. The lines of the same host make one sensor; a host already checked gets the new services."
+msgstr "Μία γραμμή ανά υπολογιστή. Υπηρεσίες: γνωστά ονόματα (ping, ssh, https, rdp, dns, smb, proxmox…), αριθμοί θυρών TCP ή πρωτόκολλο:θύρα (http:8080, dns:53), χωρισμένα με + ή κενά· ping αν είναι κενό. Η ετικέτα ονομάζει μία μόνο υπηρεσία. Οι γραμμές του ίδιου υπολογιστή σχηματίζουν έναν αισθητήρα· ένας ήδη ελεγχόμενος υπολογιστής λαμβάνει τις νέες υπηρεσίες."
 
 #: src/components/sensors/sensor-alerts.tsx
 #: src/lib/alerts.ts
@@ -2506,6 +2530,10 @@ msgstr "Ή συνεχίστε με"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "Άλλο"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Other devices only"
+msgstr "Μόνο άλλες συσκευές"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -3519,6 +3547,10 @@ msgstr "Ο μέσος χρόνος απόκρισης σε 10 λεπτά υπε�
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The certificate of an HTTPS check expires within {value} days."
 msgstr "Το πιστοποιητικό ενός ελέγχου HTTPS λήγει εντός {value} ημερών."
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "The checks of the same host are grouped in one sensor."
+msgstr "Οι έλεγχοι του ίδιου υπολογιστή ομαδοποιούνται σε έναν αισθητήρα."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"

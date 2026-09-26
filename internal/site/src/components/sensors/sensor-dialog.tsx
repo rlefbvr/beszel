@@ -1,8 +1,9 @@
 import { plural, t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
-import { ChevronDownIcon, LoaderCircleIcon, PlusIcon, Settings2Icon, XIcon } from "lucide-react"
+import { ChevronDownIcon, ListIcon, LoaderCircleIcon, PlusIcon, Settings2Icon, XIcon } from "lucide-react"
 import { useId, useState } from "react"
+import { ResolveIpButton } from "@/components/resolve-ip-button"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
@@ -69,7 +70,16 @@ export function intervalLabel(seconds: number) {
 }
 
 /** Creates or edits a sensor: the host, its checks and their settings */
-export function SensorDialog({ sensor, onDone }: { sensor?: SensorRecord; onDone: () => void }) {
+export function SensorDialog({
+	sensor,
+	onDone,
+	onOpenBulkAdd,
+}: {
+	sensor?: SensorRecord
+	onDone: () => void
+	/** closes the dialog and opens the bulk add sheet, when adding */
+	onOpenBulkAdd?: () => void
+}) {
 	const groups = useStore($sensorGroups)
 	const existingChecks = useStore($checksBySensor)[sensor?.id ?? ""] ?? []
 	const [name, setName] = useState(sensor?.name ?? "")
@@ -147,9 +157,12 @@ export function SensorDialog({ sensor, onDone }: { sensor?: SensorRecord; onDone
 			<DialogHeader>
 				<DialogTitle>{sensor ? <Trans>Edit sensor</Trans> : <Trans>Add sensor</Trans>}</DialogTitle>
 				<DialogDescription>
-					<Trans>
-						Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor.
-					</Trans>
+					<span className="block">
+						<Trans>Beszel checks the ports of the host from the hub.</Trans>
+					</span>
+					<span className="block">
+						<Trans>The checks of the same host are grouped in one sensor.</Trans>
+					</span>
 				</DialogDescription>
 			</DialogHeader>
 			<form onSubmit={submit} className="grid gap-5">
@@ -164,14 +177,17 @@ export function SensorDialog({ sensor, onDone }: { sensor?: SensorRecord; onDone
 						<Label htmlFor="sensor-host">
 							<Trans>Host / IP</Trans>
 						</Label>
-						<Input
-							id="sensor-host"
-							value={host}
-							onChange={(e) => setHost(e.target.value)}
-							placeholder="192.168.1.10, nas.lan"
-							maxLength={255}
-							required
-						/>
+						<div className="flex gap-2">
+							<Input
+								id="sensor-host"
+								value={host}
+								onChange={(e) => setHost(e.target.value)}
+								placeholder="192.168.1.10, nas.lan"
+								maxLength={255}
+								required
+							/>
+							{!sensor && <ResolveIpButton host={hostOf(host)} onResolved={setHost} />}
+						</div>
 					</div>
 					<div className="grid gap-1.5 sm:col-span-2">
 						<Label htmlFor="sensor-description">
@@ -283,6 +299,12 @@ export function SensorDialog({ sensor, onDone }: { sensor?: SensorRecord; onDone
 				</div>
 
 				<DialogFooter>
+					{!sensor && onOpenBulkAdd && (
+						<Button type="button" variant="outline" className="gap-2 sm:me-auto" onClick={onOpenBulkAdd}>
+							<ListIcon className="size-4" />
+							<Trans>Bulk Add</Trans>
+						</Button>
+					)}
 					<Button type="button" variant="outline" onClick={onDone}>
 						<Trans>Cancel</Trans>
 					</Button>

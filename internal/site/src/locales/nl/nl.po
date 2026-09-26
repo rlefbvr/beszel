@@ -263,7 +263,6 @@ msgstr "Toevoegen"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Add {foo}"
@@ -300,6 +299,10 @@ msgstr "Sensor toevoegen"
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Add sensors"
 msgstr "Sensoren toevoegen"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add the network monitors"
+msgstr "Netwerkmonitors toevoegen"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
@@ -409,6 +412,7 @@ msgstr "meldingen per gebruiker"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "Alle"
@@ -509,6 +513,10 @@ msgstr "Weet je zeker dat je {name} wilt verwijderen?"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "Weet je het zeker?"
+
+#: src/components/resolve-ip-button.tsx
+msgid "Auto-discover the IP"
+msgstr "IP automatisch zoeken"
 
 #: src/components/copy-to-clipboard.tsx
 msgid "Automatic copy requires a secure context."
@@ -642,8 +650,8 @@ msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "Onder {0}{1} in de laatste {2, plural, one {# minuut} other {# minuten}}"
 
 #: src/components/sensors/sensor-dialog.tsx
-msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
-msgstr "Beszel controleert de poorten van de host vanaf de hub. De controles van dezelfde host worden in één sensor gegroepeerd."
+msgid "Beszel checks the ports of the host from the hub."
+msgstr "Beszel controleert de poorten van de host vanaf de hub."
 
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
@@ -678,13 +686,14 @@ msgstr "Titel van het browsertabblad"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "In bulk toevoegen"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
-msgid "Bulk Add {foo}"
-msgstr "{foo} in bulk toevoegen"
+msgid "Bulk add monitors"
+msgstr "Monitors in bulk toevoegen"
 
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Bulk add sensors"
@@ -810,6 +819,10 @@ msgstr "Controleer {email} op een reset link."
 msgid "Check logs for more details."
 msgstr "Controleer de logs voor meer details."
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Check type"
+msgstr "Type controle"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Check your monitoring service"
 msgstr "Controleer je monitoringservice"
@@ -861,6 +874,7 @@ msgid "Clear"
 msgstr "Wissen"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Clear all"
 msgstr "Alles wissen"
 
@@ -1258,6 +1272,10 @@ msgstr "Detecteren"
 #: src/components/routes/system/smart-table.tsx
 msgid "Device"
 msgstr "Apparaat"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Devices"
+msgstr "Apparaten"
 
 #. Context: Battery state
 #: src/lib/i18n.ts
@@ -1771,6 +1789,10 @@ msgstr "Herstart van host"
 msgid "Hosted services"
 msgstr "Gehoste services"
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Hosts only"
+msgstr "Alleen hosts"
+
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "Hoe vaak agents gegevens van systemd- en Windows-services verzamelen. Kortere intervallen detecteren statuswijzigingen sneller, maar schrijven meer gegevens. Geldt voor alle systemen."
@@ -2263,8 +2285,6 @@ msgstr "Verlies van netwerkmonitor"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
 #: src/lib/home-page.ts
@@ -2313,6 +2333,10 @@ msgstr "Naast het logo"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No"
 msgstr "Nee"
+
+#: src/components/resolve-ip-button.tsx
+msgid "No address found for {name}"
+msgstr "Geen adres gevonden voor {name}"
 
 #: src/components/reboots-table.tsx
 msgid "No alert"
@@ -2440,8 +2464,8 @@ msgstr "Eén balk per interval ({every})"
 #~ msgstr "Eén balk per minuut"
 
 #: src/components/sensors/sensor-bulk-add.tsx
-msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
-msgstr "Eén regel per host: host, diensten, label, groep, naam. Diensten zijn bekende poorten (ssh, https, dns…), TCP-poortnummers of protocol:poort, gescheiden door +. De regels van dezelfde host vormen één sensor."
+msgid "One line per host. Services: known names (ping, ssh, https, rdp, dns, smb, proxmox…), TCP port numbers or protocol:port (http:8080, dns:53), separated by + or spaces; ping when empty. The label names a single service. The lines of the same host make one sensor; a host already checked gets the new services."
+msgstr "Eén regel per host. Diensten: bekende namen (ping, ssh, https, rdp, dns, smb, proxmox…), TCP-poortnummers of protocol:poort (http:8080, dns:53), gescheiden door + of spaties; ping indien leeg. Het label benoemt één dienst. De regels van dezelfde host vormen één sensor; een al gecontroleerde host krijgt de nieuwe diensten."
 
 #: src/components/sensors/sensor-alerts.tsx
 #: src/lib/alerts.ts
@@ -2506,6 +2530,10 @@ msgstr "Of ga verder met"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "Overig"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Other devices only"
+msgstr "Alleen andere apparaten"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -3519,6 +3547,10 @@ msgstr "De gemiddelde responstijd over 10 minuten overschrijdt {value} ms."
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The certificate of an HTTPS check expires within {value} days."
 msgstr "Het certificaat van een HTTPS-controle verloopt binnen {value} dagen."
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "The checks of the same host are grouped in one sensor."
+msgstr "De controles van dezelfde host worden in één sensor gegroepeerd."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"

@@ -263,7 +263,6 @@ msgstr "Ekle"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Add {foo}"
@@ -300,6 +299,10 @@ msgstr "Sensör ekle"
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Add sensors"
 msgstr "Sensör ekle"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add the network monitors"
+msgstr "Ağ izleyicilerini ekle"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
@@ -409,6 +412,7 @@ msgstr "kullanıcı başına uyarı"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "Tümü"
@@ -509,6 +513,10 @@ msgstr "{name} silmek istediğinizden emin misiniz?"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "Emin misiniz?"
+
+#: src/components/resolve-ip-button.tsx
+msgid "Auto-discover the IP"
+msgstr "IP’yi otomatik bul"
 
 #: src/components/copy-to-clipboard.tsx
 msgid "Automatic copy requires a secure context."
@@ -642,8 +650,8 @@ msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "Son {2, plural, one {# dakika} other {# dakika}} içinde {0}{1} altında"
 
 #: src/components/sensors/sensor-dialog.tsx
-msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
-msgstr "Beszel, ana bilgisayarın portlarını hub üzerinden denetler. Aynı ana bilgisayarın denetimleri tek bir sensörde toplanır."
+msgid "Beszel checks the ports of the host from the hub."
+msgstr "Beszel, ana bilgisayarın portlarını hub üzerinden denetler."
 
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
@@ -678,13 +686,14 @@ msgstr "Tarayıcı sekmesi başlığı"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "Toplu ekle"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
-msgid "Bulk Add {foo}"
-msgstr "{foo} toplu ekle"
+msgid "Bulk add monitors"
+msgstr "Toplu izleyici ekleme"
 
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Bulk add sensors"
@@ -810,6 +819,10 @@ msgstr "Sıfırlama bağlantısı için {email} kontrol edin."
 msgid "Check logs for more details."
 msgstr "Daha fazla ayrıntı için günlükleri kontrol edin."
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Check type"
+msgstr "Kontrol türü"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Check your monitoring service"
 msgstr "İzleme servisinizi kontrol edin"
@@ -861,6 +874,7 @@ msgid "Clear"
 msgstr "Temizle"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Clear all"
 msgstr "Tümünü temizle"
 
@@ -1258,6 +1272,10 @@ msgstr "Algıla"
 #: src/components/routes/system/smart-table.tsx
 msgid "Device"
 msgstr "Cihaz"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Devices"
+msgstr "Cihazlar"
 
 #. Context: Battery state
 #: src/lib/i18n.ts
@@ -1771,6 +1789,10 @@ msgstr "Ana makinenin yeniden başlatılması"
 msgid "Hosted services"
 msgstr "Barındırılan hizmetler"
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Hosts only"
+msgstr "Yalnızca ana bilgisayarlar"
+
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "Ajanların systemd ve Windows hizmet verilerini ne sıklıkla topladığı. Daha kısa aralıklar durum değişikliklerini daha erken algılar ancak daha fazla veri yazar. Tüm sistemlere uygulanır."
@@ -2263,8 +2285,6 @@ msgstr "Ağ monitörü kaybı"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
 #: src/lib/home-page.ts
@@ -2313,6 +2333,10 @@ msgstr "Logonun yanında"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No"
 msgstr "Hayır"
+
+#: src/components/resolve-ip-button.tsx
+msgid "No address found for {name}"
+msgstr "{name} için adres bulunamadı"
 
 #: src/components/reboots-table.tsx
 msgid "No alert"
@@ -2440,8 +2464,8 @@ msgstr "Aralık başına bir çubuk ({every})"
 #~ msgstr "Dakika başına bir çubuk"
 
 #: src/components/sensors/sensor-bulk-add.tsx
-msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
-msgstr "Ana bilgisayar başına bir satır: ana bilgisayar, hizmetler, etiket, grup, ad. Hizmetler bilinen portlar (ssh, https, dns…), TCP port numaraları veya protokol:port olup + ile ayrılır. Aynı ana bilgisayarın satırları tek bir sensör oluşturur."
+msgid "One line per host. Services: known names (ping, ssh, https, rdp, dns, smb, proxmox…), TCP port numbers or protocol:port (http:8080, dns:53), separated by + or spaces; ping when empty. The label names a single service. The lines of the same host make one sensor; a host already checked gets the new services."
+msgstr "Her ana bilgisayar için bir satır. Hizmetler: bilinen adlar (ping, ssh, https, rdp, dns, smb, proxmox…), TCP port numaraları veya protokol:port (http:8080, dns:53), + ya da boşlukla ayrılır; boşsa ping. Etiket tek bir hizmeti adlandırır. Aynı ana bilgisayarın satırları tek bir sensör oluşturur; zaten denetlenen bir ana bilgisayar yeni hizmetleri alır."
 
 #: src/components/sensors/sensor-alerts.tsx
 #: src/lib/alerts.ts
@@ -2506,6 +2530,10 @@ msgstr "Veya devam et"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "Diğer"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Other devices only"
+msgstr "Yalnızca diğer cihazlar"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -3519,6 +3547,10 @@ msgstr "10 dakikalık ortalama yanıt süresi {value} ms'yi aşıyor."
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The certificate of an HTTPS check expires within {value} days."
 msgstr "Bir HTTPS denetiminin sertifikası {value} gün içinde sona eriyor."
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "The checks of the same host are grouped in one sensor."
+msgstr "Aynı ana bilgisayarın denetimleri tek bir sensörde toplanır."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"

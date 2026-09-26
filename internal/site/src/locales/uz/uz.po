@@ -263,7 +263,6 @@ msgstr "Qo‘shish"
 #: src/components/navbar.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Add {foo}"
@@ -300,6 +299,10 @@ msgstr "Sensor qo‘shish"
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Add sensors"
 msgstr "Sensorlar qo‘shish"
+
+#: src/components/network-monitors-table/monitor-dialog.tsx
+msgid "Add the network monitors"
+msgstr "Tarmoq monitorlarini qo‘shish"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Add URL"
@@ -409,6 +412,7 @@ msgstr "foydalanuvchi uchun ogohlantirish"
 
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
+#: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "All"
 msgstr "Hammasi"
@@ -509,6 +513,10 @@ msgstr "{name} ni o'chirishni xohlaysizmi?"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Are you sure?"
 msgstr "Ishonchingiz komilmi?"
+
+#: src/components/resolve-ip-button.tsx
+msgid "Auto-discover the IP"
+msgstr "IP ni avtomatik aniqlash"
 
 #: src/components/copy-to-clipboard.tsx
 msgid "Automatic copy requires a secure context."
@@ -642,8 +650,8 @@ msgid "Below {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "So'nggi {2, plural, other {# daqiqa}} da {0}{1} dan past"
 
 #: src/components/sensors/sensor-dialog.tsx
-msgid "Beszel checks the ports of the host from the hub. The checks of the same host are grouped in one sensor."
-msgstr "Beszel xost portlarini hubdan tekshiradi. Bir xostning tekshiruvlari bitta sensorga guruhlanadi."
+msgid "Beszel checks the ports of the host from the hub."
+msgstr "Beszel xost portlarini hubdan tekshiradi."
 
 #: src/components/login/auth-form.tsx
 msgid "Beszel supports OpenID Connect and many OAuth2 authentication providers."
@@ -678,13 +686,14 @@ msgstr "Brauzer yorlig‘i sarlavhasi"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Bulk Add"
 msgstr "Ommaviy qo‘shish"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
-msgid "Bulk Add {foo}"
-msgstr "{foo} ni ommaviy qo‘shish"
+msgid "Bulk add monitors"
+msgstr "Monitorlarni ommaviy qo‘shish"
 
 #: src/components/sensors/sensor-bulk-add.tsx
 msgid "Bulk add sensors"
@@ -810,6 +819,10 @@ msgstr "Tiklash havolasi uchun {email} ni tekshiring."
 msgid "Check logs for more details."
 msgstr "Batafsil ma'lumot uchun jurnallarni tekshiring."
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Check type"
+msgstr "Tekshiruv turi"
+
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Check your monitoring service"
 msgstr "Monitoring xizmatingizni tekshiring"
@@ -861,6 +874,7 @@ msgid "Clear"
 msgstr "Tozalash"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
+#: src/components/sensors/sensors-board.tsx
 msgid "Clear all"
 msgstr "Barchasini tozalash"
 
@@ -1258,6 +1272,10 @@ msgstr "Aniqlash"
 #: src/components/routes/system/smart-table.tsx
 msgid "Device"
 msgstr "Qurilma"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Devices"
+msgstr "Qurilmalar"
 
 #. Context: Battery state
 #: src/lib/i18n.ts
@@ -1771,6 +1789,10 @@ msgstr "Xostni qayta ishga tushirish"
 msgid "Hosted services"
 msgstr "Joylashtirilgan xizmatlar"
 
+#: src/components/sensors/sensors-board.tsx
+msgid "Hosts only"
+msgstr "Faqat xostlar"
+
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
 msgstr "Agentlar systemd va Windows xizmatlari ma’lumotlarini qanchalik tez-tez yig‘ishi. Qisqaroq oraliqlar holat o‘zgarishlarini tezroq aniqlaydi, lekin ko‘proq ma’lumot yozadi. Barcha tizimlarga qo‘llaniladi."
@@ -2263,8 +2285,6 @@ msgstr "Tarmoq monitori yo‘qotishi"
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
 #: src/components/navbar.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
-#: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/routes/monitors.tsx
 #: src/lib/home-page.ts
@@ -2313,6 +2333,10 @@ msgstr "Logotip yonida"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "No"
 msgstr "Yo'q"
+
+#: src/components/resolve-ip-button.tsx
+msgid "No address found for {name}"
+msgstr "{name} uchun manzil topilmadi"
 
 #: src/components/reboots-table.tsx
 msgid "No alert"
@@ -2440,8 +2464,8 @@ msgstr "Har bir oraliq uchun bitta ustun ({every})"
 #~ msgstr "Har daqiqaga bitta ustun"
 
 #: src/components/sensors/sensor-bulk-add.tsx
-msgid "One line per host: host, services, label, group, name. Services are known ports (ssh, https, dns…), TCP port numbers or protocol:port, separated by +. The lines of the same host make one sensor."
-msgstr "Har bir xost uchun bitta qator: xost, xizmatlar, yorliq, guruh, nom. Xizmatlar ma’lum portlar (ssh, https, dns…), TCP port raqamlari yoki protokol:port bo‘lib, + bilan ajratiladi. Bir xostning qatorlari bitta sensorni tashkil qiladi."
+msgid "One line per host. Services: known names (ping, ssh, https, rdp, dns, smb, proxmox…), TCP port numbers or protocol:port (http:8080, dns:53), separated by + or spaces; ping when empty. The label names a single service. The lines of the same host make one sensor; a host already checked gets the new services."
+msgstr "Har bir xost uchun bitta qator. Xizmatlar: ma’lum nomlar (ping, ssh, https, rdp, dns, smb, proxmox…), TCP port raqamlari yoki protokol:port (http:8080, dns:53), + yoki bo‘shliq bilan ajratiladi; bo‘sh bo‘lsa ping. Yorliq bitta xizmatni nomlaydi. Bir xostning qatorlari bitta sensorni tashkil etadi; allaqachon tekshirilayotgan xost yangi xizmatlarni oladi."
 
 #: src/components/sensors/sensor-alerts.tsx
 #: src/lib/alerts.ts
@@ -2506,6 +2530,10 @@ msgstr "Yoki bilan davom eting"
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
 msgstr "Boshqa"
+
+#: src/components/sensors/sensors-board.tsx
+msgid "Other devices only"
+msgstr "Faqat boshqa qurilmalar"
 
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -3519,6 +3547,10 @@ msgstr "10 daqiqalik o‘rtacha javob vaqti {value} ms dan oshadi."
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The certificate of an HTTPS check expires within {value} days."
 msgstr "HTTPS tekshiruvining sertifikati {value} kun ichida tugaydi."
+
+#: src/components/sensors/sensor-dialog.tsx
+msgid "The checks of the same host are grouped in one sensor."
+msgstr "Bir xostning tekshiruvlari bitta sensorga guruhlanadi."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
