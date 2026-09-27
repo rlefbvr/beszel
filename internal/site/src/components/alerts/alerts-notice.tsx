@@ -69,13 +69,6 @@ export function quietHoursOf(
 		.sort((a, b) => a.start.localeCompare(b.start))
 }
 
-/** State rules of their systems targeting some services, containers or processes */
-export function rulesOf(rules: Record<string, StateAlertRecord>, targets: RuleTarget[]) {
-	return Object.values(rules).filter((rule) =>
-		targets.some((target) => target.kind === rule.kind && target.system === rule.system && ruleMatchesName(rule, target.name))
-	)
-}
-
 /**
  * Quiet hours already set up for the rules or targets of a dialog, shown like
  * the banner of the active quiet hours: blue border and moon. The windows
