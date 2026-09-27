@@ -36,6 +36,7 @@ import {
 	ColumnResizer,
 	ColumnsViewMenu,
 	headerWidthStyle,
+	resizedAttr,
 	useTableLayout,
 } from "@/components/table-layout"
 import { Button } from "@/components/ui/button"
@@ -1037,25 +1038,20 @@ function FleetPrograms({
 			},
 			{
 				id: "systems",
-				meta: { name: () => t`Systems` },
+				// the names of the systems fill the width of the column, truncated only when it is too narrow
+				meta: { name: () => t`Systems`, grow: true },
 				accessorFn: (row) => row.systems.length,
 				sortDescFirst: true,
 				header: ({ column }) => <HeaderButton column={column} name={t`Systems`} Icon={ServerIcon} />,
-				cell: ({ row }) => (
-					<span
-						className="ms-1.5 tabular-nums"
-						title={row.original.systems.map((id) => allSystems[id]?.name ?? id).join(", ")}
-					>
-						{row.original.systems.length}
-						<span className="ms-2 text-xs text-muted-foreground">
-							{row.original.systems
-								.slice(0, 3)
-								.map((id) => allSystems[id]?.name ?? id)
-								.join(", ")}
-							{row.original.systems.length > 3 && "…"}
+				cell: ({ row }) => {
+					const names = row.original.systems.map((id) => allSystems[id]?.name ?? id).join(", ")
+					return (
+						<span className="ms-1.5 flex items-baseline gap-2 min-w-0" title={names}>
+							<span className="tabular-nums shrink-0">{row.original.systems.length}</span>
+							<span className="truncate text-xs text-muted-foreground">{names}</span>
 						</span>
-					</span>
-				),
+					)
+				},
 			},
 			{
 				id: "count",
@@ -1152,7 +1148,8 @@ function FleetPrograms({
 									<TableCell
 										key={cell.id}
 										className="py-2 ps-4.5"
-										style={cellWidthStyle(layout.widths[cell.column.id])}
+										style={cellWidthStyle(layout.widths[cell.column.id], cell.column.columnDef.meta?.grow)}
+										{...resizedAttr(layout.widths[cell.column.id], cell.column.columnDef.meta?.grow)}
 									>
 										{flexRender(cell.column.columnDef.cell, cell.getContext())}
 									</TableCell>
