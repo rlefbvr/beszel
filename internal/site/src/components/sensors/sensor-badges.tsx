@@ -1,6 +1,6 @@
 import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
-import { useEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import {
 	checkType,
@@ -208,15 +208,67 @@ export function useSensorsHeartbeats(bars: number) {
 	return beats
 }
 
+/**
+ * Widths of bars filling a width with a gap of one device pixel between them:
+ * whole device pixels, so that the gaps look the same everywhere (fractional
+ * widths are rounded to gaps of 0, 1 or 2 pixels). The pixels left over widen
+ * some bars, spread along the row.
+ */
+function useBarLayout(count: number) {
+	const ref = useRef<HTMLDivElement>(null)
+	const [width, setWidth] = useState(0)
+	useLayoutEffect(() => {
+		const element = ref.current
+		if (!element) {
+			return
+		}
+		// measured at once, then on each resize
+		setWidth(element.getBoundingClientRect().width)
+		const observer = new ResizeObserver(([entry]) => setWidth(entry.contentRect.width))
+		observer.observe(element)
+		return () => observer.disconnect()
+	}, [])
+	const layout = useMemo(() => {
+		const ratio = window.devicePixelRatio || 1
+		const gap = Math.max(1, Math.round(ratio))
+		const available = Math.floor(width * ratio) - gap * (count - 1)
+		if (!width || !count || available < count) {
+			return undefined
+		}
+		const base = Math.floor(available / count)
+		const extra = available - base * count
+		return {
+			gap: gap / ratio,
+			widths: Array.from(
+				{ length: count },
+				(_, i) => (base + Math.floor(((i + 1) * extra) / count) - Math.floor((i * extra) / count)) / ratio
+			),
+		}
+	}, [width, count])
+	return { ref, layout }
+}
+
 /** One bar per period, the latest on the right, colored by the share of successful probes */
 export function BeatBars({ beats, className }: { beats: Beat[]; className?: string }) {
+	const { ref, layout } = useBarLayout(beats.length)
+	// whole pixels once the row is measured, shares of the row until then
+	const barStyle = (index: number) => (layout ? { width: layout.widths[index], flex: "none" } : undefined)
 	return (
-		<div className={cn("flex items-stretch gap-px", className)} role="img" aria-label={t`Recent checks`}>
-			{beats.map(({ t: time, total, success }) =>
+		<div
+			ref={ref}
+			className={cn("flex items-stretch", !layout && "gap-px", className)}
+			style={layout ? { gap: layout.gap } : undefined}
+			role="img"
+			aria-label={t`Recent checks`}
+		>
+			{beats.map(({ t: time, total, success }, index) =>
 				total ? (
 					<Tooltip key={time}>
 						<TooltipTrigger asChild>
-							<span className={cn("flex-1 min-w-px rounded-[2px]", heartbeatColor(total, success))} />
+							<span
+								className={cn("flex-1 min-w-px rounded-[2px]", heartbeatColor(total, success))}
+								style={barStyle(index)}
+							/>
 						</TooltipTrigger>
 						<TooltipContent>
 							<p className="tabular-nums">{formatDateTime(time)}</p>
@@ -228,7 +280,7 @@ export function BeatBars({ beats, className }: { beats: Beat[]; className?: stri
 						</TooltipContent>
 					</Tooltip>
 				) : (
-					<span key={time} className="flex-1 min-w-px rounded-[2px] bg-muted" />
+					<span key={time} className="flex-1 min-w-px rounded-[2px] bg-muted" style={barStyle(index)} />
 				)
 			)}
 		</div>
