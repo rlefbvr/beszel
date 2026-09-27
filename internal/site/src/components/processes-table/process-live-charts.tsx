@@ -105,6 +105,10 @@ export function ProcessLiveCharts({
 		[history, key]
 	)
 
+	// time of the last reading, of this dialog or of the page
+	const lastTime = history.at(-1)?.time
+	const updated = lastTime === undefined ? undefined : hourWithSeconds(lastTime)
+
 	const charts: { metric: Metric; title: string; format: (value: number) => string }[] = [
 		{ metric: "cpu", title: t`CPU`, format: percentValue },
 		{ metric: "mem", title: t`Memory`, format: percentValue },
@@ -118,6 +122,11 @@ export function ProcessLiveCharts({
 					<Trans>Use of the process and of its host</Trans>
 				</span>
 				{loading && !paused && <LoaderCircleIcon className="size-3.5 animate-spin text-muted-foreground" />}
+				{updated !== undefined && (
+					<span className="text-xs text-muted-foreground tabular-nums">
+						<Trans>Updated at {updated}</Trans>
+					</span>
+				)}
 				<Button
 					type="button"
 					variant="outline"

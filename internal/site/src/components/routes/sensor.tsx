@@ -3,18 +3,24 @@ import { Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
 import { getPagePath } from "@nanostores/router"
 import {
+	ActivityIcon,
 	ArrowUpDownIcon,
 	BellIcon,
+	CircleDotIcon,
 	CirclePauseIcon,
 	CirclePlayIcon,
 	ClockIcon,
 	FolderIcon,
 	GlobeIcon,
+	HashIcon,
 	InfoIcon,
 	LoaderCircleIcon,
+	MessageSquareTextIcon,
 	PenSquareIcon,
+	PlugIcon,
 	RouteIcon,
 	ShieldCheckIcon,
+	TimerIcon,
 	Trash2Icon,
 } from "lucide-react"
 import { atom } from "nanostores"
@@ -596,12 +602,14 @@ function checkSortValue(check: SensorCheckRecord, key: CheckSortKey): string | n
 /** Header of a sortable column of the checks table */
 function SortHead({
 	name,
+	Icon,
 	sortKey,
 	sort,
 	onSort,
 	className,
 }: {
 	name: ReactNode
+	Icon: React.ElementType
 	sortKey: CheckSortKey
 	sort: { key: CheckSortKey; desc: boolean }
 	onSort: (key: CheckSortKey) => void
@@ -615,6 +623,7 @@ function SortHead({
 				className={cn("h-9 px-2 gap-2", active && "bg-accent/70 light:bg-accent text-accent-foreground/90")}
 				onClick={() => onSort(sortKey)}
 			>
+				<Icon className="size-4" />
 				{name}
 				<ArrowUpDownIcon className="size-4" />
 			</Button>
@@ -693,13 +702,13 @@ function ChecksCard({
 				<Table>
 					<TableHeader>
 						<TableRow>
-							<SortHead name={<Trans>Check</Trans>} sortKey="check" {...head} />
-							<SortHead name={<Trans>Port</Trans>} sortKey="port" {...head} />
-							<SortHead name={<Trans>State</Trans>} sortKey="status" {...head} />
-							<SortHead name={<Trans>Response</Trans>} sortKey="res" {...head} />
-							<SortHead name={<Trans>Code</Trans>} sortKey="code" {...head} />
-							<SortHead name={<Trans>Message</Trans>} sortKey="message" className="w-full" {...head} />
-							<SortHead name={<Trans>Last check</Trans>} sortKey="last_check" {...head} />
+							<SortHead name={<Trans>Check</Trans>} Icon={ActivityIcon} sortKey="check" {...head} />
+							<SortHead name={<Trans>Port</Trans>} Icon={PlugIcon} sortKey="port" {...head} />
+							<SortHead name={<Trans>State</Trans>} Icon={CircleDotIcon} sortKey="status" {...head} />
+							<SortHead name={<Trans>Response</Trans>} Icon={TimerIcon} sortKey="res" {...head} />
+							<SortHead name={<Trans>Code</Trans>} Icon={HashIcon} sortKey="code" {...head} />
+							<SortHead name={<Trans>Message</Trans>} Icon={MessageSquareTextIcon} sortKey="message" className="w-full" {...head} />
+							<SortHead name={<Trans>Last check</Trans>} Icon={ClockIcon} sortKey="last_check" {...head} />
 						</TableRow>
 					</TableHeader>
 					<TableBody>
