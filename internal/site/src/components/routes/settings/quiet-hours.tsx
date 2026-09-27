@@ -152,8 +152,9 @@ export function QuietHours({
 
 	const stateAlerts = useStore($stateAlerts)
 	/** Alerts silenced by a window: all, or its alert types and rules */
-	const scopeLabel = (record: QuietHoursRecord) =>
-		quietHoursScoped(record) ? quietHoursScopeText(record, stateAlerts) : t`All alerts`
+	// the names of the rules shown, their targets in the tooltip
+	const scopeLabel = (record: QuietHoursRecord, ruleNames = false) =>
+		quietHoursScoped(record) ? quietHoursScopeText(record, stateAlerts, ruleNames) : t`All alerts`
 
 	/** When a window runs: its dates, or its days and hours for the recurring ones */
 	const formatDateTime = (record: QuietHoursRecord) => quietHoursScheduleText(record, formatShortDate)
@@ -269,7 +270,7 @@ export function QuietHours({
 									</TableCell>
 									<TableCell className="px-4 py-3 whitespace-normal min-w-48 max-w-80">{formatDateTime(record)}</TableCell>
 									<TableCell className="px-4 py-3 max-w-60 truncate" title={scopeLabel(record)}>
-										{scopeLabel(record)}
+										{scopeLabel(record, true)}
 									</TableCell>
 									<TableCell className="px-4 py-3 max-w-60 truncate" title={quietHoursReasonLabel(record.reason)}>
 										{quietHoursReasonLabel(record.reason) || <span className="text-muted-foreground">-</span>}
@@ -512,7 +513,7 @@ function QuietHoursDialog({
 				</DialogDescription>
 			</DialogHeader>
 			<form onSubmit={handleSubmit} className="grid gap-4">
-				<div className="grid gap-4 md:grid-cols-2 md:gap-6 items-start">
+				<div className="grid gap-4 md:grid-cols-2 md:gap-6 items-start *:min-w-0">
 					{/* what the window silences, and why */}
 					<div className="grid gap-4 content-start">
 						<Tabs value={target} onValueChange={(value) => setTarget(value as typeof target)}>
@@ -777,6 +778,10 @@ function QuietHoursDialog({
 
 /** Label of a state rule: its kind and targets, such as "Service state: nginx, sshd" */
 function ruleLabel(rule: StateAlertRecord) {
+	// the name given to the rule, else its kind and targets
+	if (rule.name?.trim()) {
+		return rule.name.trim()
+	}
 	const kind = quietHoursAlertKindLabel(stateRuleAlertKind(rule.kind))
 	return `${kind}: ${rule.targets}`
 }
@@ -808,8 +813,8 @@ function QuietHoursScopePicker({
 			</Label>
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
-					<Button id="quiet-alerts" type="button" variant="outline" className="justify-between font-normal">
-						<span className="whitespace-nowrap">
+					<Button id="quiet-alerts" type="button" variant="outline" className="justify-between font-normal min-w-0">
+						<span className="truncate">
 							{count === 0 ? (
 								<Trans>All alerts</Trans>
 							) : (
@@ -862,7 +867,9 @@ function QuietHoursScopePicker({
 									onSelect={(e) => e.preventDefault()}
 									onCheckedChange={(checked) => onChange(shownKinds, toggle(shownRules, rule.id, checked === true))}
 								>
-									<span className="whitespace-nowrap">{clamp(ruleLabel(rule))}</span>
+									<span className="truncate" title={ruleLabel(rule)}>
+										{ruleLabel(rule)}
+									</span>
 								</DropdownMenuCheckboxItem>
 							))}
 						</>

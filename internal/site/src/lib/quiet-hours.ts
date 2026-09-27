@@ -276,10 +276,14 @@ export function quietHoursScoped(record: Pick<QuietHoursRecord, "alerts" | "rule
 	return !!record.alerts?.length || !!record.rules?.length || !!record.targets?.length
 }
 
-/** Alerts silenced by a window limited to some of them, such as "CPU, Service state: nginx"; empty for all */
+/**
+ * Alerts silenced by a window limited to some of them, such as "CPU, Service
+ * state: nginx"; empty for all. With ruleNames, a named rule shows its name.
+ */
 export function quietHoursScopeText(
 	record: Pick<QuietHoursRecord, "alerts" | "rules" | "targets">,
-	stateAlerts: Record<string, StateAlertRecord>
+	stateAlerts: Record<string, StateAlertRecord>,
+	ruleNames = false
 ) {
 	if (!quietHoursScoped(record)) {
 		return ""
@@ -287,8 +291,10 @@ export function quietHoursScopeText(
 	const rules = (record.rules ?? [])
 		.map((id) => stateAlerts[id])
 		.filter(Boolean)
-		.map(
-			(rule) => `${quietHoursAlertKindLabel(stateRuleAlertKind(rule.kind))}: ${rule.targets}`
+		.map((rule) =>
+			ruleNames && rule.name?.trim()
+				? rule.name.trim()
+				: `${quietHoursAlertKindLabel(stateRuleAlertKind(rule.kind))}: ${rule.targets}`
 		)
 	// the services, containers and processes chosen on their pages
 	const targets = (["service", "container", "process"] as const)
