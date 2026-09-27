@@ -2,7 +2,8 @@ import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
 import { BellRingIcon, XIcon } from "lucide-react"
 import { type ReactNode, useState } from "react"
-import { failedToast } from "@/components/alerts/state-rule-fields"
+import { type RuleDialogSubject, StateRuleDialog } from "@/components/alerts/state-rule-dialog"
+import { describeRule, failedToast } from "@/components/alerts/state-rule-fields"
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -13,8 +14,10 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
+import { Dialog } from "@/components/ui/dialog"
 import { isReadOnlyUser, pb } from "@/lib/api"
 import { $stateAlerts, planTargetRemoval } from "@/lib/state-alerts"
+import { $allSystemsById } from "@/lib/stores"
 import { cn } from "@/lib/utils"
 import type { StateAlertRecord } from "@/types"
 
@@ -50,6 +53,7 @@ export function ImportantTargets({
 }) {
 	const [removing, setRemoving] = useState<ImportantTile | null>(null)
 	const [confirming, setConfirming] = useState<ImportantTile | null>(null)
+	const [editing, setEditing] = useState<RuleDialogSubject | null>(null)
 	const canRemove = !isReadOnlyUser()
 	if (tiles.length === 0) {
 		return null
@@ -107,7 +111,19 @@ export function ImportantTargets({
 					</div>
 				))}
 			</div>
-			{removing && <RemoveImportantDialog tile={removing} onClose={() => setRemoving(null)} />}
+			{removing && (
+				<RemoveImportantDialog
+					tile={removing}
+					onClose={() => setRemoving(null)}
+					onOpenRule={(rule) => {
+						setRemoving(null)
+						setEditing({ mode: "edit", rule })
+					}}
+				/>
+			)}
+			<Dialog open={!!editing} onOpenChange={(open) => !open && setEditing(null)}>
+				{editing && <StateRuleDialog subject={editing} onClose={() => setEditing(null)} />}
+			</Dialog>
 			{confirming && <ConfirmRemoveDialog tile={confirming} onClose={() => setConfirming(null)} />}
 		</div>
 	)
@@ -158,8 +174,44 @@ function ConfirmRemoveDialog({ tile, onClose }: { tile: ImportantTile; onClose: 
 	)
 }
 
+/** A rule changed by a removal: its host (and name), the change, then its condition; a click opens the rule */
+function RuleChange({
+	rule,
+	onOpen,
+	className,
+	children,
+}: {
+	rule: StateAlertRecord
+	onOpen: (rule: StateAlertRecord) => void
+	className?: string
+	children: ReactNode
+}) {
+	const systemName = $allSystemsById.get()[rule.system]?.name ?? rule.system
+	return (
+		<li className={className}>
+			<button type="button" className="block text-start hover:underline underline-offset-2" onClick={() => onOpen(rule)}>
+				<span className="block font-medium text-foreground">
+					{systemName}
+					{rule.name && ` · ${rule.name}`}
+				</span>
+				<span className="block">{children}</span>
+				<span className="block text-xs text-muted-foreground">{describeRule(rule)}</span>
+			</button>
+		</li>
+	)
+}
+
 /** Confirms and removes a service or container from the state rules targeting it */
-function RemoveImportantDialog({ tile, onClose }: { tile: ImportantTile; onClose: () => void }) {
+function RemoveImportantDialog({
+	tile,
+	onClose,
+	onOpenRule,
+}: {
+	tile: ImportantTile
+	onClose: () => void
+	/** opens a rule listed in the confirmation, in place of the confirmation */
+	onOpenRule: (rule: StateAlertRecord) => void
+}) {
 	const [removal] = useState(() =>
 		tile.target ? planTargetRemoval($stateAlerts.get(), tile.target.kind, tile.target.system, tile.name) : undefined
 	)
@@ -206,20 +258,26 @@ function RemoveImportantDialog({ tile, onClose }: { tile: ImportantTile; onClose
 							</p>
 							<ul className="grid gap-1 list-disc ps-5">
 								{removal?.updates.map(({ rule, targets }) => (
-									<li key={rule.id}>
+									<RuleChange key={rule.id} rule={rule} onOpen={onOpenRule}>
 										<Trans>Removed from the rule, which keeps: {targets}</Trans>
-									</li>
+									</RuleChange>
 								))}
-								{removal?.deletes.map(({ id, targets }) => (
-									<li key={id}>
-										<Trans>Rule deleted: {targets}</Trans>
-									</li>
-								))}
-								{removal?.wildcards.map(({ id, targets }) => (
-									<li key={id} className="text-red-600 dark:text-red-400">
-										<Trans>Rule deleted, its pattern also covers other items: {targets}</Trans>
-									</li>
-								))}
+								{removal?.deletes.map((rule) => {
+									const targets = rule.targets
+									return (
+										<RuleChange key={rule.id} rule={rule} onOpen={onOpenRule}>
+											<Trans>Rule deleted: {targets}</Trans>
+										</RuleChange>
+									)
+								})}
+								{removal?.wildcards.map((rule) => {
+									const targets = rule.targets
+									return (
+										<RuleChange key={rule.id} rule={rule} onOpen={onOpenRule} className="text-red-600 dark:text-red-400">
+											<Trans>Rule deleted, its pattern also covers other items: {targets}</Trans>
+										</RuleChange>
+									)
+								})}
 							</ul>
 						</div>
 					</AlertDialogDescription>
