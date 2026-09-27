@@ -517,6 +517,7 @@ KEY=""
 TOKEN=""
 HUB_URL=""
 AUTO_UPDATE_FLAG="" # empty string means prompt, "true" means auto-enable, "false" means skip
+READ_ALL=true       # the agent reads the certificates and Traefik files owned by root (read only)
 # Track which of the reconfigurable values were explicitly passed as arguments,
 # so a reinstall only overwrites the fields the caller actually asked to change.
 KEY_PROVIDED=false
@@ -540,6 +541,7 @@ case "${1-}" in
   printf "  -u                    : Uninstall Beszel Agent\n"
   printf "  --auto-update [VALUE] : Control automatic daily updates\n"
   printf "                          VALUE can be true (enable) or false (disable). If not specified, will prompt.\n"
+  printf "  --no-read-all          : Don't let the agent read the files owned by root (certificates, Traefik acme.json)\n"
   printf "  --mirror [URL]        : Use GitHub proxy to resolve network timeout issues in mainland China\n"
   printf "                          URL: optional custom proxy URL (default: https://gh.beszel.dev)\n"
   printf "  -h, --help            : Display this help message\n"
@@ -615,6 +617,9 @@ while [ $# -gt 0 ]; do
     ;;
   -u)
     UNINSTALL=true
+    ;;
+  --no-read-all)
+    READ_ALL=false
     ;;
   --mirror* | --china-mirrors*)
     # Check if there's a value after the = sign
@@ -764,6 +769,8 @@ if [ "$UNINSTALL" = true ]; then
 
     echo "Removing the systemd service file..."
     rm -f /etc/systemd/system/${SERVICE_NAME}.service
+    rm -f /etc/systemd/system/${SERVICE_NAME}.service.d/read-certificates.conf
+    rmdir /etc/systemd/system/${SERVICE_NAME}.service.d 2>/dev/null || true
 
     # Remove the update timer and service if they exist
     echo "Removing the daily update service and timer..."
@@ -1413,6 +1420,16 @@ EOF
       sed -i "/^\[Service\]/a ReadWritePaths=$BIN_DIR" /etc/systemd/system/${SERVICE_NAME}.service
     fi
     chown "${AGENT_USER}:${AGENT_USER}" "$BIN_DIR"
+  fi
+
+  # Read access to the files owned by root, such as the certificates of certbot
+  # and the acme.json of Traefik, kept in a drop-in apart from the service
+  READ_ALL_CONF="/etc/systemd/system/${SERVICE_NAME}.service.d/read-certificates.conf"
+  if [ "$READ_ALL" = "true" ]; then
+    mkdir -p "/etc/systemd/system/${SERVICE_NAME}.service.d"
+    printf "[Service]\n# Read (only) the certificates and Traefik files owned by root\nAmbientCapabilities=CAP_DAC_READ_SEARCH\n" >"$READ_ALL_CONF"
+  else
+    rm -f "$READ_ALL_CONF"
   fi
 
   # Load and start the service

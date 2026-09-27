@@ -79,6 +79,7 @@ import type { CertificateAlertRecord, CertificateRecord, UserSettings } from "@/
 import { commonName, DaysLeft, expiringDays } from "./certificate-parts"
 import { sensorCertAlertOf, useWebCertificates, WebCertificates } from "./web-certificates"
 import { GuardedDialog } from "@/components/discard-guard"
+import { ReadAccessHint } from "@/components/read-access-hint"
 import {
 	cellWidthStyle,
 	type ColumnResizeHandler,
@@ -795,6 +796,7 @@ function CertificateDialog({
 					<p className="rounded-lg border border-orange-500/40 bg-orange-500/10 px-4 py-3">
 						<Trans>The agent could not read this certificate: {error}</Trans>
 					</p>
+					<ReadAccessHint error={cert.error} />
 					<dl className="grid sm:grid-cols-[10rem_minmax(0,1fr)] gap-x-4 gap-y-2">
 						<HostRows cert={cert} systemName={systems[cert.system]?.name} links={links} />
 					</dl>

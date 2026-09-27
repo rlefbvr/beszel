@@ -15,6 +15,7 @@ import {
 	WaypointsIcon,
 } from "lucide-react"
 import { useCallback, useEffect, useMemo, useState } from "react"
+import { ReadAccessHint } from "@/components/read-access-hint"
 import { $router, Link, navigate } from "@/components/router"
 import { SortableHead, type TableSort } from "@/components/sortable-head"
 import { cellWidthStyle, resizedAttr, useTableLayout } from "@/components/table-layout"
@@ -310,6 +311,7 @@ function InstanceCard({
 								{resolver.storage}
 							</span>
 						)}
+						<ReadAccessHint error={resolver.error} />
 					</div>
 				)
 			})}
