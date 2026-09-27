@@ -1,3 +1,4 @@
+import { map } from "nanostores"
 import { pb } from "@/lib/api"
 
 /** An HTTP router of a Traefik instance */
@@ -56,6 +57,9 @@ export interface TraefikOverview {
 	instances: TraefikInstance[]
 }
 
+/** The Traefik instances last read, by system: their routes give the web certificates of their host */
+export const $traefik = map<Record<string, TraefikInstance[]>>({})
+
 /** Asks the hub for the Traefik instances of the hosts, read from their agents */
 export async function fetchTraefik(systems: string[]): Promise<TraefikOverview[]> {
 	if (!systems.length) {
@@ -65,7 +69,26 @@ export async function fetchTraefik(systems: string[]): Promise<TraefikOverview[]
 		query: { systems: systems.join(",") },
 		requestKey: null,
 	})
+	for (const overview of res.systems) {
+		if (!overview.error) {
+			$traefik.setKey(overview.system, overview.instances)
+		}
+	}
 	return res.systems
+}
+
+/** Whether a certificate name covers a host: the same name, or a wildcard of its domain */
+export function nameCovers(name: string, host: string) {
+	const certName = name.toLowerCase()
+	const hostName = host.toLowerCase()
+	if (certName === hostName) {
+		return true
+	}
+	return (
+		certName.startsWith("*.") &&
+		hostName.endsWith(certName.slice(1)) &&
+		!hostName.slice(0, -certName.length + 1).includes(".")
+	)
 }
 
 /** Asks the hub for the last lines of the log, or access log, of an instance */

@@ -62,6 +62,7 @@ import {
 } from "@/lib/certificates"
 import { $sensorAlerts } from "@/lib/sensor-alerts"
 import { $checksBySensor, $sensors, checkName } from "@/lib/sensors"
+import { $traefik, nameCovers } from "@/lib/traefik"
 import { $allSystemsById, $userSettings } from "@/lib/stores"
 import { formatDateTime, useNow } from "@/lib/time"
 import { cn } from "@/lib/utils"
@@ -75,14 +76,27 @@ import type {
 } from "@/types"
 import { commonName, DaysLeft, expiringDays } from "./certificate-parts"
 
-/** A certificate served over HTTPS to a check of a sensor of a host */
+/**
+ * A certificate served over HTTPS by a host: to a check of a sensor, and/or
+ * by a route of its Traefik
+ */
 export interface WebCertificate {
 	key: string
-	sensor: SensorRecord
-	check: SensorCheckRecord
+	/** https address */
+	address: string
 	system: SystemRecord
+	/** the HTTPS check seeing it, with its sensor */
+	sensor?: SensorRecord
+	check?: SensorCheckRecord
+	/** the Traefik route serving it */
+	route?: { instance: string; router: string }
 	/** the certificate of the host serving it, read by its agent */
 	local?: CertificateRecord
+	/** the served certificate: seen by the check, else the certificate of the host */
+	notAfter: string
+	issuer: string
+	issuerDN: string
+	subject: string
 }
 
 /** Address checked by an HTTPS check: its URL, else the host and port of the sensor */
@@ -90,39 +104,117 @@ function checkAddress(sensor: SensorRecord, check: SensorCheckRecord) {
 	return check.url || `https://${sensor.host}${check.port && check.port !== 443 ? `:${check.port}` : ""}`
 }
 
-/** The certificates served over HTTPS to the checks of the sensors sharing the address of a system, soonest expiry first */
+/** Host name of an address */
+function addressHost(address: string) {
+	try {
+		return new URL(address).hostname.toLowerCase()
+	} catch {
+		return address.toLowerCase()
+	}
+}
+
+/**
+ * The certificates served over HTTPS by the hosts, soonest expiry first: the
+ * TLS routes of their Traefik, with the certificate of the host covering their
+ * name, and the HTTPS checks of the sensors sharing the address of a system or
+ * the name of a Traefik route, with the certificate of the host they see.
+ */
 export function useWebCertificates() {
 	const sensors = useStore($sensors)
 	const checksBySensor = useStore($checksBySensor)
 	const systems = useStore($allSystemsById)
 	const certificates = useStore($certificates)
+	const traefik = useStore($traefik)
 	const now = useNow()
 	return useMemo(() => {
 		const list: WebCertificate[] = []
-		for (const sensor of Object.values(sensors)) {
-			// several systems may share the address: the one holding the certificate, else the first
-			const hostSystems = Object.values(systems).filter((item) => sameHost(item.host, sensor.host))
-			if (!hostSystems.length) {
+		const byHost = new Map<string, WebCertificate>()
+		const certList = Object.values(certificates)
+		/** the certificate of a system covering a name, the one expiring last */
+		const coveringCert = (systemId: string, host: string) =>
+			certList
+				.filter(
+					(cert) => cert.system === systemId && (cert.names ?? [cert.name]).some((name) => nameCovers(name, host))
+				)
+				.sort((a, b) => b.not_after.localeCompare(a.not_after))[0]
+
+		// the TLS routes of the Traefik instances, one line per system and name
+		for (const [systemId, instances] of Object.entries(traefik)) {
+			const system = systems[systemId]
+			if (!system) {
 				continue
 			}
+			for (const instance of instances) {
+				for (const route of instance.routes ?? []) {
+					if (!route.tls || route.service === "api@internal") {
+						continue
+					}
+					for (const host of route.hosts ?? []) {
+						const hostKey = `${systemId}|${host.toLowerCase()}`
+						if (byHost.has(hostKey)) {
+							continue
+						}
+						const local = coveringCert(systemId, host)
+						const row: WebCertificate = {
+							key: `route:${hostKey}`,
+							address: `https://${host}`,
+							system,
+							route: { instance: instance.name, router: route.router },
+							local,
+							notAfter: local?.not_after ?? "",
+							issuer: local?.issuer ?? "",
+							issuerDN: local?.issuer ?? "",
+							subject: local?.subject ?? "",
+						}
+						byHost.set(hostKey, row)
+						list.push(row)
+					}
+				}
+			}
+		}
+
+		// the HTTPS checks of the sensors: on the address of a system, or on the name of a route
+		for (const sensor of Object.values(sensors)) {
 			for (const check of checksBySensor[sensor.id] ?? []) {
 				if (check.protocol !== "http" || !check.cert?.sha256) {
 					continue
 				}
+				const address = checkAddress(sensor, check)
+				const host = addressHost(address)
+				const routeRow = [...byHost.entries()].find(([hostKey]) => hostKey.endsWith(`|${host}`))?.[1]
+				const hostSystems = routeRow
+					? [routeRow.system]
+					: Object.values(systems).filter((item) => sameHost(item.host, sensor.host))
+				if (!hostSystems.length) {
+					continue
+				}
 				const fingerprint = normalizeFingerprint(check.cert.sha256)
-				const local = Object.values(certificates).find(
-					(cert) =>
-						hostSystems.some((item) => item.id === cert.system) &&
-						normalizeFingerprint(cert.fingerprint) === fingerprint
-				)
+				// several systems may share the address: the one holding the certificate, else the first
+				const local =
+					certList.find(
+						(cert) =>
+							hostSystems.some((item) => item.id === cert.system) &&
+							normalizeFingerprint(cert.fingerprint) === fingerprint
+					) ?? routeRow?.local
+				const served = {
+					notAfter: check.cert.notAfter,
+					issuer: check.cert.issuer,
+					issuerDN: check.cert.issuerDN,
+					subject: check.cert.subject,
+				}
+				if (routeRow && !routeRow.check) {
+					// the check sees the certificate of the route: one line for both
+					Object.assign(routeRow, { address, sensor, check, local, ...served })
+					continue
+				}
 				const system = hostSystems.find((item) => item.id === local?.system) ?? hostSystems[0]
-				list.push({ key: check.id, sensor, check, system, local })
+				list.push({ key: check.id, address, system, sensor, check, local, ...served })
 			}
 		}
 		const days = (row: WebCertificate) =>
-			certificateDaysLeft({ not_after: row.check.cert?.notAfter ?? "" }, now) ?? Number.MAX_SAFE_INTEGER
+			certificateDaysLeft({ not_after: row.notAfter }, now) ?? Number.MAX_SAFE_INTEGER
 		return list.sort((a, b) => days(a) - days(b) || a.system.name.localeCompare(b.system.name))
-	}, [sensors, checksBySensor, systems, certificates, now])
+	}, [sensors, checksBySensor, systems, certificates, traefik, now])
 }
 
 /** Columns the web certificates are sorted on */
@@ -194,15 +286,15 @@ export function WebCertificates({
 	const col = (id: WebSort) => ({ style: cellWidthStyle(layout.widths[id]), ...resizedAttr(layout.widths[id]) })
 	const sorted = useMemo(() => {
 		const days = (row: WebCertificate) =>
-			certificateDaysLeft({ not_after: row.check.cert?.notAfter ?? "" }, now) ?? Number.MAX_SAFE_INTEGER
+			certificateDaysLeft({ not_after: row.notAfter }, now) ?? Number.MAX_SAFE_INTEGER
 		const text = (row: WebCertificate) => {
 			switch (sort.key) {
 				case "address":
-					return checkAddress(row.sensor, row.check)
+					return row.address
 				case "system":
 					return row.system.name
 				case "issuer":
-					return commonName(row.check.cert?.issuer ?? "")
+					return commonName(row.issuer)
 				case "host":
 					return row.local?.path ?? "~"
 			}
@@ -213,33 +305,30 @@ export function WebCertificates({
 		const terms = filter.toLowerCase().split(" ").filter(Boolean)
 		return rows
 			.filter((row) => {
-				if (
-					status !== "all" &&
-					webStatus(certificateDaysLeft({ not_after: row.check.cert?.notAfter ?? "" }, now)) !== status
-				) {
+				if (status !== "all" && webStatus(certificateDaysLeft({ not_after: row.notAfter }, now)) !== status) {
 					return false
 				}
 				const words =
-					`${checkAddress(row.sensor, row.check)} ${row.sensor.name} ${row.system.name} ${row.check.cert?.issuer ?? ""} ${row.check.cert?.subject ?? ""} ${row.local?.path ?? ""} ${(row.local?.uses ?? []).map(certificateUseLabel).join(" ")}`.toLowerCase()
+					`${row.address} ${row.sensor?.name ?? ""} ${row.route ? `traefik ${row.route.router} ${row.route.instance}` : ""} ${row.system.name} ${row.issuer} ${row.subject} ${row.local?.path ?? ""} ${(row.local?.uses ?? []).map(certificateUseLabel).join(" ")}`.toLowerCase()
 				return terms.every((term) => words.includes(term))
 			})
 			.sort((a, b) => (sort.desc ? compare(b, a) : compare(a, b)))
 	}, [rows, sort, now, filter, status])
 
 	// the web certificates with an expiry alert, first, like the local ones
-	const tiles = rows.flatMap(({ key, sensor, check, system, local }): ImportantTile[] => {
+	const tiles = rows.flatMap(({ key, address, sensor, notAfter, system, local }): ImportantTile[] => {
 		const localAlert = local && certificateAlertOf(certificateAlerts, local)
-		const sensorAlert = !local && sensorCertAlertOf(alerts, sensor.id)
+		const sensorAlert = !local && sensor && sensorCertAlertOf(alerts, sensor.id)
 		const alert = localAlert || sensorAlert
 		if (!alert) {
 			return []
 		}
 		const threshold = localAlert ? localAlert.days : sensorAlert ? sensorAlert.value : 0
-		const days = certificateDaysLeft({ not_after: check.cert?.notAfter ?? "" }, now)
+		const days = certificateDaysLeft({ not_after: notAfter }, now)
 		return [
 			{
 				key,
-				name: checkAddress(sensor, check).replace(/^https:\/\//, ""),
+				name: address.replace(/^https:\/\//, ""),
 				systemName: system.name,
 				dotClass:
 					days === null
@@ -394,15 +483,13 @@ export function WebCertificates({
 						</TableRow>
 					</TableHeader>
 					<TableBody>
-						{sorted.map(({ key, sensor, check, system, local }) => {
-							const cert = check.cert
-							const days = certificateDaysLeft({ not_after: cert?.notAfter ?? "" }, now)
+						{sorted.map(({ key, address, sensor, check, route, system, local, notAfter, issuer, issuerDN }) => {
+							const days = certificateDaysLeft({ not_after: notAfter }, now)
 							// the alert of the certificate of the host when found there, else the certificate alert of the sensor
 							const localAlert = local && certificateAlertOf(certificateAlerts, local)
-							const sensorAlert = !local && sensorCertAlertOf(alerts, sensor.id)
+							const sensorAlert = !local && sensor && sensorCertAlertOf(alerts, sensor.id)
 							const alert = localAlert || sensorAlert
 							const alertDays = localAlert ? localAlert.days : sensorAlert ? sensorAlert.value : 0
-							const address = checkAddress(sensor, check)
 							const uses = [...new Set((local?.uses ?? []).map(certificateUseLabel))]
 							return (
 								<TableRow key={key} className={cn(local && "cursor-pointer")} onClick={() => local && onOpen(local)}>
@@ -413,13 +500,13 @@ export function WebCertificates({
 											className={cn("size-8", alert ? "text-primary" : "text-muted-foreground")}
 											aria-label={t`Expiry alert`}
 											title={alert ? t`Expiry alert: ${alertDays} days` : t`Expiry alert`}
-											disabled={readOnly}
+											disabled={readOnly || (!local && !sensor)}
 											onClick={(e) => {
 												e.stopPropagation()
 												if (local) {
 													onAlert(local)
 												} else {
-													setAlerting(sensor)
+													if (sensor) setAlerting(sensor)
 												}
 											}}
 										>
@@ -437,13 +524,20 @@ export function WebCertificates({
 											<span className="truncate">{address.replace(/^https:\/\//, "")}</span>
 											<ExternalLinkIcon className="size-3.5 shrink-0 opacity-60" />
 										</a>
-										<Link
-											href={getPagePath($router, "sensor", { id: sensor.id })}
-											className="block truncate text-xs text-muted-foreground hover:underline"
-											onClick={(e) => e.stopPropagation()}
-										>
-											{sensor.name} · {checkName(check)}
-										</Link>
+										{sensor && check && (
+											<Link
+												href={getPagePath($router, "sensor", { id: sensor.id })}
+												className="block truncate text-xs text-muted-foreground hover:underline"
+												onClick={(e) => e.stopPropagation()}
+											>
+												{sensor.name} · {checkName(check)}
+											</Link>
+										)}
+										{route && (
+											<span className="block truncate text-xs text-muted-foreground">
+												Traefik · {route.router} ({route.instance})
+											</span>
+										)}
 									</TableCell>
 									{show("system") && (
 										<TableCell className="py-2 whitespace-nowrap" {...col("system")}>
@@ -455,18 +549,14 @@ export function WebCertificates({
 											<span className="flex items-center gap-2">
 												<DaysLeft days={days} />
 												<span className="text-xs text-muted-foreground tabular-nums">
-													{cert?.notAfter && formatDateTime(cert.notAfter).split(" ")[0]}
+													{notAfter && formatDateTime(notAfter).split(" ")[0]}
 												</span>
 											</span>
 										</TableCell>
 									)}
 									{show("issuer") && (
-										<TableCell
-											className="py-2 max-w-48 truncate text-sm"
-											title={cert?.issuerDN || cert?.issuer}
-											{...col("issuer")}
-										>
-											{commonName(cert?.issuer ?? "")}
+										<TableCell className="py-2 max-w-48 truncate text-sm" title={issuerDN || issuer} {...col("issuer")}>
+											{commonName(issuer)}
 										</TableCell>
 									)}
 									{show("host") && (

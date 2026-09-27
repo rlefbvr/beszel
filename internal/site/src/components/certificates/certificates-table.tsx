@@ -237,7 +237,7 @@ export default function CertificatesTable() {
 	const webRecapCerts = useMemo(() => {
 		const certs: CertificateRecord[] = []
 		for (const row of webRows) {
-			const alerted = row.local && (certificateAlertOf(alerts, row.local) || sensorCertAlertOf(sensorAlerts, row.sensor.id))
+			const alerted = row.local && (certificateAlertOf(alerts, row.local) || (row.sensor && sensorCertAlertOf(sensorAlerts, row.sensor.id)))
 			if (row.local && alerted && !certs.includes(row.local)) {
 				certs.push(row.local)
 			}
