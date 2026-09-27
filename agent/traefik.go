@@ -544,6 +544,10 @@ func readAcmeStorage(path string) (map[string][]acmeCertificate, error) {
 	var storage map[string]struct {
 		Certificates []acmeCertificate `json:"certificates"`
 	}
+	// Traefik creates the storage empty, until it keeps a first certificate
+	if len(bytes.TrimSpace(data)) == 0 {
+		return map[string][]acmeCertificate{}, nil
+	}
 	if err := json.Unmarshal(data, &storage); err != nil {
 		return nil, fmt.Errorf("%s: %w", path, err)
 	}

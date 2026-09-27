@@ -118,6 +118,14 @@ providers:
 	assert.Equal(t, "app.example.com", parsed.Subject.CommonName)
 }
 
+func TestEmptyAcmeStorage(t *testing.T) {
+	file := filepath.Join(t.TempDir(), "acme.json")
+	require.NoError(t, os.WriteFile(file, nil, 0o600))
+	certs, err := readAcmeStorage(file)
+	require.NoError(t, err)
+	assert.Empty(t, certs)
+}
+
 func TestIsAccessLine(t *testing.T) {
 	assert.True(t, isAccessLine(`10.0.0.1 - - [27/Sep/2026:10:00:00 +0000] "GET / HTTP/2.0" 200 12`))
 	assert.True(t, isAccessLine(`{"RequestMethod":"GET","DownstreamStatus":200}`))
