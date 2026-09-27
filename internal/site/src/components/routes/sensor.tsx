@@ -19,6 +19,7 @@ import {
 	PenSquareIcon,
 	PlugIcon,
 	RouteIcon,
+	Settings2Icon,
 	ShieldCheckIcon,
 	TimerIcon,
 	Trash2Icon,
@@ -61,12 +62,21 @@ import { Sheet, SheetContent } from "@/components/ui/sheet"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { toast } from "@/components/ui/use-toast"
-import { isReadOnlyUser, pb } from "@/lib/api"
+import { isReadOnlyUser, pb, queueUserSettings } from "@/lib/api"
 import { usePageTitle } from "@/lib/instance"
 import { rememberRecent } from "@/lib/recent"
 import { sumStats, useSensorStats } from "@/lib/sensor-stats"
 import { $checksBySensor, $sensors, $sensorsLoaded, checkColor, checkName, protocolTransport, sensorColor } from "@/lib/sensors"
 import { $direction, $userSettings } from "@/lib/stores"
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuLabel,
+	DropdownMenuRadioGroup,
+	DropdownMenuRadioItem,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { formatDateTime, formatRelativeTime, useNow } from "@/lib/time"
 import { chartTimeData, cn, decimalString, parseSemVer } from "@/lib/utils"
 import type { ChartData, ChartTimes, SensorCheckRecord, SensorRecord, SensorStatsRecord } from "@/types"
@@ -133,6 +143,8 @@ function SensorDetail({ sensor }: { sensor: SensorRecord }) {
 	const chartTime = useStore(chartTimeStore)
 	const { stats, loading } = useSensorStats(sensor.id, chartTime)
 	const [alertsOpen, setAlertsOpen] = useState(false)
+	// the width of the charts, shared with the pages of the systems
+	const chartGrid = useStore($userSettings, { keys: ["grid"] }).grid ?? true
 	const [certOpen, setCertOpen] = useState(false)
 	const [traceOpen, setTraceOpen] = useState(false)
 	const [editOpen, setEditOpen] = useState(false)
@@ -234,7 +246,8 @@ function SensorDetail({ sensor }: { sensor: SensorRecord }) {
 								)}
 								</div>
 						</div>
-						<div className="xl:ms-auto flex flex-wrap items-center gap-2 mt-3 xl:mt-0 self-center">
+						{/* the buttons stay on one line next to the name on large screens */}
+						<div className="xl:ms-auto flex flex-wrap xl:flex-nowrap xl:shrink-0 items-center gap-2 mt-3 xl:mt-0 self-center">
 							<HostLinkButton host={sensor.host} />
 							<AlertsButton sensor={sensor} onClick={() => setAlertsOpen(true)} />
 							<QuietHoursButton sensorId={sensor.id} />
@@ -262,6 +275,7 @@ function SensorDetail({ sensor }: { sensor: SensorRecord }) {
 								chartTimeStore={chartTimeStore}
 								allowRealtime={false}
 							/>
+							<ChartWidthMenu />
 						</div>
 					</div>
 				</Card>
@@ -294,7 +308,7 @@ function SensorDetail({ sensor }: { sensor: SensorRecord }) {
 					<SensorHeartbeat sensorId={sensor.id} interval={sensor.interval || 60} />
 				</Card>
 
-				<div className="grid xl:grid-cols-2 gap-4">
+				<div className={cn("grid gap-4", chartGrid && "xl:grid-cols-2")}>
 					<ResponseChart records={records} checks={checks} chartData={chartData} empty={!records.length} />
 					<QualityChart records={records} sensor={sensor} chartData={chartData} empty={!records.length} />
 				</div>
@@ -408,6 +422,42 @@ function HeaderItem({ label, className, children }: { label: string; className?:
 	)
 }
 
+/** Width of the charts, like on the page of a system: two per row, or the full width */
+function ChartWidthMenu() {
+	const grid = useStore($userSettings, { keys: ["grid"] }).grid ?? true
+	const setGrid = (value: boolean) => {
+		$userSettings.setKey("grid", value)
+		queueUserSettings({ grid: value })
+	}
+	return (
+		<DropdownMenu>
+			<DropdownMenuTrigger asChild>
+				<Button aria-label={t`Settings`} variant="outline" size="icon" className="hidden xl:flex p-0 text-primary">
+					<Settings2Icon className="size-4 opacity-90" />
+				</Button>
+			</DropdownMenuTrigger>
+			<DropdownMenuContent align="end" className="min-w-44">
+				<DropdownMenuLabel className="px-3.5">
+					<Trans>Chart width</Trans>
+				</DropdownMenuLabel>
+				<DropdownMenuSeparator />
+				<DropdownMenuRadioGroup
+					className="px-1 pb-1"
+					value={grid ? "grid" : "full"}
+					onValueChange={(value) => setGrid(value === "grid")}
+				>
+					<DropdownMenuRadioItem value="grid" onSelect={(e) => e.preventDefault()}>
+						<Trans>Grid</Trans>
+					</DropdownMenuRadioItem>
+					<DropdownMenuRadioItem value="full" onSelect={(e) => e.preventDefault()}>
+						<Trans>Full</Trans>
+					</DropdownMenuRadioItem>
+				</DropdownMenuRadioGroup>
+			</DropdownMenuContent>
+		</DropdownMenu>
+	)
+}
+
 function ToolbarButton({ label, onClick, children }: { label: string; onClick: () => void; children: ReactNode }) {
 	return (
 		<Tooltip>
@@ -483,7 +533,8 @@ function ResponseChart({
 		[checks]
 	)
 	return (
-		<ChartCard empty={empty} title={t`Response`} description={t`Average response time of each check`} legend>
+		// the columns of the charts are chosen by their parent, from the chart width setting
+		<ChartCard grid empty={empty} title={t`Response`} description={t`Average response time of each check`} legend>
 			<LineChartDefault
 				truncate
 				chartData={chartData}
@@ -525,6 +576,7 @@ function QualityChart({
 	)
 	return (
 		<ChartCard
+			grid
 			empty={empty}
 			title={t`Packet quality`}
 			description={t`Packet loss (%) of all the checks`}
