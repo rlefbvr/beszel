@@ -48,6 +48,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
 import { SortableHead, type TableSort } from "@/components/sortable-head"
+import { cellWidthStyle, resizedAttr, useTableLayout } from "@/components/table-layout"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { isReadOnlyUser, pb, queueUserSettings } from "@/lib/api"
 import {
@@ -188,6 +189,9 @@ export function WebCertificates({
 	const readOnly = isReadOnlyUser()
 	const [alerting, setAlerting] = useState<SensorRecord | null>(null)
 	const [sort, setSort] = useState<TableSort<WebSort>>({ key: "expiry", desc: false })
+	// widths of the columns resized by the user
+	const layout = useTableLayout("web-certificates")
+	const col = (id: WebSort) => ({ style: cellWidthStyle(layout.widths[id]), ...resizedAttr(layout.widths[id]) })
 	const sorted = useMemo(() => {
 		const days = (row: WebCertificate) =>
 			certificateDaysLeft({ not_after: row.check.cert?.notAfter ?? "" }, now) ?? Number.MAX_SAFE_INTEGER
@@ -329,26 +333,61 @@ export function WebCertificates({
 					<TableHeader>
 						<TableRow>
 							<TableHead className="w-12" />
-							<SortableHead sortKey="address" sort={sort} onSort={setSort} Icon={GlobeIcon}>
+							<SortableHead
+								sortKey="address"
+								sort={sort}
+								onSort={setSort}
+								width={layout.widths.address}
+								onResize={layout.onColumnResize}
+								Icon={GlobeIcon}
+							>
 								<Trans>Address</Trans>
 							</SortableHead>
 							{show("system") && (
-								<SortableHead sortKey="system" sort={sort} onSort={setSort} Icon={ServerIcon}>
+								<SortableHead
+									sortKey="system"
+									sort={sort}
+									onSort={setSort}
+									width={layout.widths.system}
+									onResize={layout.onColumnResize}
+									Icon={ServerIcon}
+								>
 									<Trans>System</Trans>
 								</SortableHead>
 							)}
 							{show("expiry") && (
-								<SortableHead sortKey="expiry" sort={sort} onSort={setSort} Icon={CalendarClockIcon}>
+								<SortableHead
+									sortKey="expiry"
+									sort={sort}
+									onSort={setSort}
+									width={layout.widths.expiry}
+									onResize={layout.onColumnResize}
+									Icon={CalendarClockIcon}
+								>
 									<Trans>Expires</Trans>
 								</SortableHead>
 							)}
 							{show("issuer") && (
-								<SortableHead sortKey="issuer" sort={sort} onSort={setSort} Icon={BadgeCheckIcon}>
+								<SortableHead
+									sortKey="issuer"
+									sort={sort}
+									onSort={setSort}
+									width={layout.widths.issuer}
+									onResize={layout.onColumnResize}
+									Icon={BadgeCheckIcon}
+								>
 									<Trans>Issued by</Trans>
 								</SortableHead>
 							)}
 							{show("host") && (
-								<SortableHead sortKey="host" sort={sort} onSort={setSort} Icon={FolderIcon}>
+								<SortableHead
+									sortKey="host"
+									sort={sort}
+									onSort={setSort}
+									width={layout.widths.host}
+									onResize={layout.onColumnResize}
+									Icon={FolderIcon}
+								>
 									<Trans>On the host</Trans>
 								</SortableHead>
 							)}
@@ -387,7 +426,7 @@ export function WebCertificates({
 											{alert ? <BellRingIcon className="size-4" /> : <BellIcon className="size-4" />}
 										</Button>
 									</TableCell>
-									<TableCell className="py-2 max-w-80">
+									<TableCell className="py-2 max-w-80" {...col("address")}>
 										<a
 											href={address}
 											target="_blank"
@@ -406,9 +445,13 @@ export function WebCertificates({
 											{sensor.name} · {checkName(check)}
 										</Link>
 									</TableCell>
-									{show("system") && <TableCell className="py-2 whitespace-nowrap">{system.name}</TableCell>}
+									{show("system") && (
+										<TableCell className="py-2 whitespace-nowrap" {...col("system")}>
+											{system.name}
+										</TableCell>
+									)}
 									{show("expiry") && (
-										<TableCell className="py-2 whitespace-nowrap">
+										<TableCell className="py-2 whitespace-nowrap" {...col("expiry")}>
 											<span className="flex items-center gap-2">
 												<DaysLeft days={days} />
 												<span className="text-xs text-muted-foreground tabular-nums">
@@ -418,12 +461,16 @@ export function WebCertificates({
 										</TableCell>
 									)}
 									{show("issuer") && (
-										<TableCell className="py-2 max-w-48 truncate text-sm" title={cert?.issuerDN || cert?.issuer}>
+										<TableCell
+											className="py-2 max-w-48 truncate text-sm"
+											title={cert?.issuerDN || cert?.issuer}
+											{...col("issuer")}
+										>
 											{commonName(cert?.issuer ?? "")}
 										</TableCell>
 									)}
 									{show("host") && (
-										<TableCell className="py-2 max-w-80">
+										<TableCell className="py-2 max-w-80" {...col("host")}>
 											{local ? (
 												<>
 													<div className="flex flex-wrap gap-1">

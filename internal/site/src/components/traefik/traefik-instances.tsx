@@ -17,6 +17,7 @@ import {
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { $router, Link, navigate } from "@/components/router"
 import { SortableHead, type TableSort } from "@/components/sortable-head"
+import { cellWidthStyle, resizedAttr, useTableLayout } from "@/components/table-layout"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -182,6 +183,9 @@ function InstanceCard({
 	const systemRecord = useStore($allSystemsById)[system]
 	const dashboard = traefikDashboard(instance, systemRecord?.host ?? "")
 	const [sort, setSort] = useState<TableSort<RouteSort>>({ key: "router", desc: false })
+	// widths of the columns resized by the user, shared by the instances
+	const layout = useTableLayout("traefik-routes")
+	const col = (id: RouteSort) => ({ style: cellWidthStyle(layout.widths[id]), ...resizedAttr(layout.widths[id]) })
 	const routes = useMemo(() => {
 		const text = (route: TraefikRoute) => {
 			switch (sort.key) {
@@ -314,16 +318,44 @@ function InstanceCard({
 					<Table>
 						<TableHeader>
 							<TableRow>
-								<SortableHead sortKey="router" sort={sort} onSort={setSort} Icon={WaypointsIcon}>
+								<SortableHead
+									sortKey="router"
+									sort={sort}
+									onSort={setSort}
+									width={layout.widths.router}
+									onResize={layout.onColumnResize}
+									Icon={WaypointsIcon}
+								>
 									<Trans>Router</Trans>
 								</SortableHead>
-								<SortableHead sortKey="address" sort={sort} onSort={setSort} Icon={GlobeIcon}>
+								<SortableHead
+									sortKey="address"
+									sort={sort}
+									onSort={setSort}
+									width={layout.widths.address}
+									onResize={layout.onColumnResize}
+									Icon={GlobeIcon}
+								>
 									<Trans>Address</Trans>
 								</SortableHead>
-								<SortableHead sortKey="container" sort={sort} onSort={setSort} Icon={ContainerIcon}>
+								<SortableHead
+									sortKey="container"
+									sort={sort}
+									onSort={setSort}
+									width={layout.widths.container}
+									onResize={layout.onColumnResize}
+									Icon={ContainerIcon}
+								>
 									<Trans>Container</Trans>
 								</SortableHead>
-								<SortableHead sortKey="certificate" sort={sort} onSort={setSort} Icon={LockIcon}>
+								<SortableHead
+									sortKey="certificate"
+									sort={sort}
+									onSort={setSort}
+									width={layout.widths.certificate}
+									onResize={layout.onColumnResize}
+									Icon={LockIcon}
+								>
 									<Trans>Certificate</Trans>
 								</SortableHead>
 							</TableRow>
@@ -333,10 +365,10 @@ function InstanceCard({
 								const url = traefikRouteUrl(route)
 								return (
 									<TableRow key={`${route.provider}${route.router}`}>
-										<TableCell className="py-1.5 max-w-48 truncate text-sm" title={route.rule}>
+										<TableCell className="py-1.5 max-w-48 truncate text-sm" title={route.rule} {...col("router")}>
 											{route.router}
 										</TableCell>
-										<TableCell className="py-1.5 max-w-72">
+										<TableCell className="py-1.5 max-w-72" {...col("address")}>
 											{url ? (
 												<a
 													href={url}
@@ -353,10 +385,10 @@ function InstanceCard({
 												</span>
 											)}
 										</TableCell>
-										<TableCell className="py-1.5 text-sm text-muted-foreground max-w-48 truncate">
+										<TableCell className="py-1.5 text-sm text-muted-foreground max-w-48 truncate" {...col("container")}>
 											{route.container || (route.provider === "file" ? t`File` : "-")}
 										</TableCell>
-										<TableCell className="py-1.5 text-xs whitespace-nowrap">
+										<TableCell className="py-1.5 text-xs whitespace-nowrap" {...col("certificate")}>
 											{route.resolver ? (
 												<span className="rounded bg-muted px-1.5 py-0.5">Let's Encrypt · {route.resolver}</span>
 											) : route.tls ? (

@@ -1,5 +1,6 @@
 import { ArrowDownIcon, ArrowUpDownIcon, ArrowUpIcon } from "lucide-react"
 import type { ReactNode } from "react"
+import { type ColumnResizeHandler, ColumnResizer, headerWidthStyle } from "@/components/table-layout"
 import { Button } from "@/components/ui/button"
 import { TableHead } from "@/components/ui/table"
 import { cn } from "@/lib/utils"
@@ -22,6 +23,8 @@ export function SortableHead<K extends string>({
 	onSort,
 	Icon,
 	className,
+	width,
+	onResize,
 	children,
 }: {
 	sortKey: K
@@ -29,12 +32,15 @@ export function SortableHead<K extends string>({
 	onSort: (sort: TableSort<K>) => void
 	Icon: React.ElementType
 	className?: string
+	/** width chosen by the user, and the handle changing it */
+	width?: number
+	onResize?: ColumnResizeHandler
 	children: ReactNode
 }) {
 	const active = sort.key === sortKey
 	const Arrow = active ? (sort.desc ? ArrowDownIcon : ArrowUpIcon) : ArrowUpDownIcon
 	return (
-		<TableHead className={cn("px-2", className)}>
+		<TableHead className={cn("px-2 relative", className)} style={headerWidthStyle(width)}>
 			<Button
 				variant="ghost"
 				className={cn("h-9 px-2 gap-2", active && "bg-accent/70 light:bg-accent text-accent-foreground/90")}
@@ -44,6 +50,7 @@ export function SortableHead<K extends string>({
 				{children}
 				<Arrow className="size-4" />
 			</Button>
+			{onResize && <ColumnResizer columnId={sortKey} onColumnResize={onResize} />}
 		</TableHead>
 	)
 }

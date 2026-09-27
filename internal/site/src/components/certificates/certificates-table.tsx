@@ -79,6 +79,14 @@ import type { CertificateAlertRecord, CertificateRecord, UserSettings } from "@/
 import { commonName, DaysLeft, expiringDays } from "./certificate-parts"
 import { sensorCertAlertOf, useWebCertificates, WebCertificates } from "./web-certificates"
 import { GuardedDialog } from "@/components/discard-guard"
+import {
+	cellWidthStyle,
+	type ColumnResizeHandler,
+	ColumnResizer,
+	headerWidthStyle,
+	resizedAttr,
+	useTableLayout,
+} from "@/components/table-layout"
 
 
 type Sort = NonNullable<UserSettings["certificatesSort"]>
@@ -158,6 +166,9 @@ export default function CertificatesTable() {
 			saveSetting("certificatesSortDesc", false)
 		}
 	}
+	// widths of the columns resized by the user
+	const layout = useTableLayout("certificates")
+	const col = (id: Sort) => ({ style: cellWidthStyle(layout.widths[id]), ...resizedAttr(layout.widths[id]) })
 	const [selected, setSelectedState] = useState<CertificateRecord | null>(null)
 	/** opens the details of a certificate, remembered in the recent objects of the command palette */
 	const setSelected = useCallback((cert: CertificateRecord | null) => {
@@ -389,21 +400,69 @@ export default function CertificatesTable() {
 										<BellIcon className="size-4" />
 									</span>
 								</TableHead>
-								<SortHead sort={sort} value="name" onSort={setSort} Icon={FileBadgeIcon} name={t`Name`} />
+								<SortHead
+									sort={sort}
+									value="name"
+									onSort={setSort}
+									width={layout.widths.name}
+									onResize={layout.onColumnResize}
+									Icon={FileBadgeIcon}
+									name={t`Name`}
+								/>
 								{show("system") && (
-									<SortHead sort={sort} value="system" onSort={setSort} Icon={ServerIcon} name={t`System`} />
+									<SortHead
+										sort={sort}
+										value="system"
+										onSort={setSort}
+										width={layout.widths.system}
+										onResize={layout.onColumnResize}
+										Icon={ServerIcon}
+										name={t`System`}
+									/>
 								)}
 								{show("expiry") && (
-									<SortHead sort={sort} value="expiry" onSort={setSort} Icon={CalendarClockIcon} name={t`Expires`} />
+									<SortHead
+										sort={sort}
+										value="expiry"
+										onSort={setSort}
+										width={layout.widths.expiry}
+										onResize={layout.onColumnResize}
+										Icon={CalendarClockIcon}
+										name={t`Expires`}
+									/>
 								)}
 								{show("issuer") && (
-									<SortHead sort={sort} value="issuer" onSort={setSort} Icon={BadgeCheckIcon} name={t`Issued by`} />
+									<SortHead
+										sort={sort}
+										value="issuer"
+										onSort={setSort}
+										width={layout.widths.issuer}
+										onResize={layout.onColumnResize}
+										Icon={BadgeCheckIcon}
+										name={t`Issued by`}
+									/>
 								)}
 								{show("uses") && (
-									<SortHead sort={sort} value="uses" onSort={setSort} Icon={LayersIcon} name={t`Used by`} />
+									<SortHead
+										sort={sort}
+										value="uses"
+										onSort={setSort}
+										width={layout.widths.uses}
+										onResize={layout.onColumnResize}
+										Icon={LayersIcon}
+										name={t`Used by`}
+									/>
 								)}
 								{show("location") && (
-									<SortHead sort={sort} value="location" onSort={setSort} Icon={FolderIcon} name={t`Location`} />
+									<SortHead
+										sort={sort}
+										value="location"
+										onSort={setSort}
+										width={layout.widths.location}
+										onResize={layout.onColumnResize}
+										Icon={FolderIcon}
+										name={t`Location`}
+									/>
 								)}
 							</TableRow>
 						</TableHeader>
@@ -431,7 +490,7 @@ export default function CertificatesTable() {
 												{alert ? <BellRingIcon className="size-4" /> : <BellIcon className="size-4" />}
 											</Button>
 										</TableCell>
-										<TableCell className="py-2 max-w-72">
+										<TableCell className="py-2 max-w-72" {...col("name")}>
 											<div className="font-medium truncate" title={(cert.names ?? []).join(", ")}>
 												{cert.name}
 											</div>
@@ -455,12 +514,12 @@ export default function CertificatesTable() {
 											</div>
 										</TableCell>
 										{show("system") && (
-											<TableCell className="py-2 whitespace-nowrap">
+											<TableCell className="py-2 whitespace-nowrap" {...col("system")}>
 												{systems[cert.system]?.name ?? cert.system}
 											</TableCell>
 										)}
 										{show("expiry") && (
-											<TableCell className="py-2 whitespace-nowrap">
+											<TableCell className="py-2 whitespace-nowrap" {...col("expiry")}>
 												{cert.error ? (
 													<span className="text-xs text-destructive">{cert.error}</span>
 												) : (
@@ -474,12 +533,12 @@ export default function CertificatesTable() {
 											</TableCell>
 										)}
 										{show("issuer") && (
-											<TableCell className="py-2 max-w-48 truncate text-sm" title={cert.issuer}>
+											<TableCell className="py-2 max-w-48 truncate text-sm" title={cert.issuer} {...col("issuer")}>
 												{commonName(cert.issuer)}
 											</TableCell>
 										)}
 										{show("uses") && (
-											<TableCell className="py-2">
+											<TableCell className="py-2" {...col("uses")}>
 												<div className="flex flex-wrap gap-1">
 													{[...new Set((cert.uses ?? []).map(certificateUseLabel))].map((label) => (
 														<span key={label} className="rounded bg-muted px-1.5 py-0.5 text-xs whitespace-nowrap">
@@ -493,6 +552,7 @@ export default function CertificatesTable() {
 											<TableCell
 												className="py-2 max-w-72 truncate font-mono text-xs text-muted-foreground"
 												title={cert.path}
+												{...col("location")}
 											>
 												{cert.path}
 											</TableCell>
@@ -551,15 +611,20 @@ function SortHead({
 	onSort,
 	Icon,
 	name,
+	width,
+	onResize,
 }: {
 	sort: Sort
 	value: Sort
 	onSort: (sort: Sort) => void
 	Icon: React.ElementType
 	name: string
+	/** width chosen by the user, and the handle changing it */
+	width?: number
+	onResize: ColumnResizeHandler
 }) {
 	return (
-		<TableHead className="px-2">
+		<TableHead className="px-2 relative" style={headerWidthStyle(width)}>
 			<Button
 				variant="ghost"
 				className={cn(
@@ -572,6 +637,7 @@ function SortHead({
 				{name}
 				<ArrowUpDownIcon className="size-4" />
 			</Button>
+			<ColumnResizer columnId={value} onColumnResize={onResize} />
 		</TableHead>
 	)
 }
