@@ -148,7 +148,7 @@ msgstr "{hidden} program daha: bulmak için filtreyi kullanın."
 msgid "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
 msgstr "“{searched}” için {systemCount} sistemde {matchCount} işlem"
 
-#: src/components/alerts/alert-button.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, one {# dakika} other {# dakika}}"
 
@@ -180,7 +180,7 @@ msgstr "{programCount} program"
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, one {# durum kuralı oluşturuldu.} other {# durum kuralı oluşturuldu.}}"
 
-#: src/components/alerts/alert-button.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, one {# durum kuralı} other {# durum kuralı}}"
 
@@ -583,8 +583,13 @@ msgid "Alerts created"
 msgstr "Uyarılar oluşturuldu"
 
 #: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-alerts.tsx
 msgid "Alerts of {sensorName}"
 msgstr "{sensorName} uyarıları"
+
+#: src/components/alerts/alerts-sheet.tsx
+msgid "Alerts of the host {systemName}"
+msgstr "{systemName} ana makinesinin uyarıları"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
@@ -1558,7 +1563,7 @@ msgstr "Tarihler…"
 msgid "Day {dayList} of the month"
 msgstr "Ayın {dayList}. günü"
 
-#: src/components/routes/sensor.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "days"
 msgstr "gün"
@@ -3116,8 +3121,7 @@ msgstr "{name} için adres bulunamadı"
 msgid "No alert"
 msgstr "Uyarı yok"
 
-#: src/components/alerts/alert-button.tsx
-#: src/components/routes/sensor.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 msgid "No alerts configured"
 msgstr "Yapılandırılmış uyarı yok"
 
@@ -4798,6 +4802,10 @@ msgstr "Ayarlar ve hesap menüleri her zaman üst bilgide kalır."
 msgid "The system is not connected."
 msgstr "Sistem bağlı değil."
 
+#: src/components/alerts/alerts-sheet.tsx
+msgid "The system sharing the address of this sensor."
+msgstr "Bu sensörle aynı adresi paylaşan sistem."
+
 #: src/components/routes/settings/general.tsx
 msgid "The URL is set by the APP_URL environment variable of the hub."
 msgstr "URL, hub'ın APP_URL ortam değişkeniyle belirlenir."
@@ -5507,6 +5515,7 @@ msgstr "YAML Yapılandırması"
 msgid "Yes"
 msgstr "Evet"
 
+#: src/components/sensors/sensor-alerts.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Your alerts on this sensor. Quiet hours of the sensor and global ones silence them."
 msgstr "Bu sensördeki uyarılarınız. Sensörün ve genel sessiz saatler onları susturur."

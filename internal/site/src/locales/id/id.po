@@ -148,7 +148,7 @@ msgstr "{hidden} program lainnya: gunakan filter untuk menemukannya."
 msgid "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
 msgstr "{matchCount} proses di {systemCount} sistem untuk “{searched}”"
 
-#: src/components/alerts/alert-button.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, other {# menit}}"
 
@@ -180,7 +180,7 @@ msgstr "{programCount} program"
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, other {# aturan status dibuat.}}"
 
-#: src/components/alerts/alert-button.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, other {# aturan status}}"
 
@@ -583,8 +583,13 @@ msgid "Alerts created"
 msgstr "Peringatan dibuat"
 
 #: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-alerts.tsx
 msgid "Alerts of {sensorName}"
 msgstr "Peringatan {sensorName}"
+
+#: src/components/alerts/alerts-sheet.tsx
+msgid "Alerts of the host {systemName}"
+msgstr "Peringatan host {systemName}"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
@@ -1558,7 +1563,7 @@ msgstr "Tanggal…"
 msgid "Day {dayList} of the month"
 msgstr "Tanggal {dayList} setiap bulan"
 
-#: src/components/routes/sensor.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "days"
 msgstr "hari"
@@ -3116,8 +3121,7 @@ msgstr "Tidak ada alamat untuk {name}"
 msgid "No alert"
 msgstr "Tanpa peringatan"
 
-#: src/components/alerts/alert-button.tsx
-#: src/components/routes/sensor.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 msgid "No alerts configured"
 msgstr "Tidak ada peringatan yang dikonfigurasi"
 
@@ -4798,6 +4802,10 @@ msgstr "Menu pengaturan dan akun selalu tetap di kepala halaman."
 msgid "The system is not connected."
 msgstr "Sistem tidak terhubung."
 
+#: src/components/alerts/alerts-sheet.tsx
+msgid "The system sharing the address of this sensor."
+msgstr "Sistem yang berbagi alamat dengan sensor ini."
+
 #: src/components/routes/settings/general.tsx
 msgid "The URL is set by the APP_URL environment variable of the hub."
 msgstr "URL ditetapkan oleh variabel lingkungan APP_URL milik hub."
@@ -5507,6 +5515,7 @@ msgstr "Konfigurasi YAML"
 msgid "Yes"
 msgstr "Ya"
 
+#: src/components/sensors/sensor-alerts.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Your alerts on this sensor. Quiet hours of the sensor and global ones silence them."
 msgstr "Peringatan Anda untuk sensor ini. Jam tenang sensor dan jam tenang global membisukannya."

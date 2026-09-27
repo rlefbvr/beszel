@@ -148,7 +148,7 @@ msgstr "{hidden} program till: använd filtret för att hitta dem."
 msgid "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
 msgstr "{matchCount} process(er) på {systemCount} system för ”{searched}”"
 
-#: src/components/alerts/alert-button.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, one {# minut} other {# minuter}}"
 
@@ -180,7 +180,7 @@ msgstr "{programCount} program"
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, one {# tillståndsregel skapad.} other {# tillståndsregler skapade.}}"
 
-#: src/components/alerts/alert-button.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, one {# tillståndsregel} other {# tillståndsregler}}"
 
@@ -583,8 +583,13 @@ msgid "Alerts created"
 msgstr "Larm skapade"
 
 #: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-alerts.tsx
 msgid "Alerts of {sensorName}"
 msgstr "Larm för {sensorName}"
+
+#: src/components/alerts/alerts-sheet.tsx
+msgid "Alerts of the host {systemName}"
+msgstr "Larm för värden {systemName}"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
@@ -1558,7 +1563,7 @@ msgstr "Datum…"
 msgid "Day {dayList} of the month"
 msgstr "Dag {dayList} i månaden"
 
-#: src/components/routes/sensor.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "days"
 msgstr "dagar"
@@ -3116,8 +3121,7 @@ msgstr "Ingen adress hittades för {name}"
 msgid "No alert"
 msgstr "Inget larm"
 
-#: src/components/alerts/alert-button.tsx
-#: src/components/routes/sensor.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 msgid "No alerts configured"
 msgstr "Inga larm konfigurerade"
 
@@ -4798,6 +4802,10 @@ msgstr "Menyerna för inställningar och konto finns alltid kvar i sidhuvudet."
 msgid "The system is not connected."
 msgstr "Systemet är inte anslutet."
 
+#: src/components/alerts/alerts-sheet.tsx
+msgid "The system sharing the address of this sensor."
+msgstr "Systemet med samma adress som den här sensorn."
+
 #: src/components/routes/settings/general.tsx
 msgid "The URL is set by the APP_URL environment variable of the hub."
 msgstr "URL:en anges av hubbens miljövariabel APP_URL."
@@ -5507,6 +5515,7 @@ msgstr "YAML-konfiguration"
 msgid "Yes"
 msgstr "Ja"
 
+#: src/components/sensors/sensor-alerts.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Your alerts on this sensor. Quiet hours of the sensor and global ones silence them."
 msgstr "Dina larm för den här sensorn. Sensorns och de globala tysta timmarna tystar dem."

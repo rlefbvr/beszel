@@ -18,6 +18,8 @@ import { pb } from "@/lib/api"
 import { Os } from "@/lib/enums"
 import { $alerts, $systems } from "@/lib/stores"
 import { useSystemOs } from "@/lib/use-system-os"
+import { SensorAlerts } from "@/components/sensors/sensor-alerts"
+import { useHostSensor, useHostSystem } from "@/components/sensors/host-links"
 import { StateAlertRules } from "./state-alert-rules"
 import { cn, debounce } from "@/lib/utils"
 import type { AlertInfo, AlertRecord, SystemRecord } from "@/types"
@@ -185,6 +187,7 @@ export const AlertDialogContent = memo(function AlertDialogContent({ system }: {
 							/>
 						))}
 						<StateAlertRules system={system} />
+						<LinkedSensorAlerts host={system.host} />
 					</div>
 				</TabsContent>
 				<TabsContent value="global">
@@ -420,6 +423,45 @@ export function AlertContent({
           {checked && alertData.note && <span className="block col-span-full text-sm text-muted-foreground -mt-3">{alertData.note()}</span>}
 				</div>
 			)}
+		</div>
+	)
+}
+
+/** Alerts of the sensor sharing the address of the system, when there is one */
+function LinkedSensorAlerts({ host }: { host: string }) {
+	const sensor = useHostSensor(host)
+	return sensor ? <SensorAlerts sensor={sensor} embedded /> : null
+}
+
+/** In the alerts of a sensor: the alerts of the system sharing its address, when there is one */
+export function LinkedHostAlerts({ host }: { host: string }) {
+	const system = useHostSystem(host)
+	const systemAlerts = useStore($alerts)[system?.id ?? ""] ?? new Map()
+	if (!system) {
+		return null
+	}
+	const systemName = system.name
+	return (
+		<div className="grid gap-3">
+			<div className="grid gap-1 mt-2">
+				<p className="font-semibold flex gap-3 items-center">
+					<ServerIcon className="h-4 w-4 opacity-85" />
+					<Trans>Alerts of the host {systemName}</Trans>
+				</p>
+				<span className="text-sm text-muted-foreground">
+					<Trans>The system sharing the address of this sensor.</Trans>
+				</span>
+			</div>
+			{alertKeys.map((name) => (
+				<AlertContent
+					key={name}
+					alertKey={name}
+					data={alertInfo[name as keyof typeof alertInfo]}
+					alert={systemAlerts.get(name)}
+					system={system}
+				/>
+			))}
+			<StateAlertRules system={system} />
 		</div>
 	)
 }

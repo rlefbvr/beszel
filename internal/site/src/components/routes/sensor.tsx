@@ -35,7 +35,9 @@ import { ChartCard } from "@/components/routes/system/chart-card"
 
 import { CheckBadge, checkStatusLabel, heartbeatWindow, QualityBadge, SensorDot, SensorHeartbeat } from "@/components/sensors/sensor-badges"
 import { SensorAlerts } from "@/components/sensors/sensor-alerts"
-import { HostBadge, HostLinkButton, LinkedSystemDeleteOption } from "@/components/sensors/host-links"
+import { LinkedHostAlerts } from "@/components/alerts/alerts-sheet"
+import { AlertsTooltip, useAlertCounts } from "@/components/alerts/alerts-tooltip"
+import { HostBadge, HostLinkButton, LinkedSystemDeleteOption, useHostSystem } from "@/components/sensors/host-links"
 import { SensorCertDialog } from "@/components/sensors/sensor-cert"
 import { TracerouteDialog } from "@/components/sensors/traceroute-dialog"
 import { intervalLabel, SensorDialog } from "@/components/sensors/sensor-dialog"
@@ -62,7 +64,6 @@ import { toast } from "@/components/ui/use-toast"
 import { isReadOnlyUser, pb } from "@/lib/api"
 import { usePageTitle } from "@/lib/instance"
 import { rememberRecent } from "@/lib/recent"
-import { $sensorAlerts, alertsOfSensor, sensorAlertName } from "@/lib/sensor-alerts"
 import { sumStats, useSensorStats } from "@/lib/sensor-stats"
 import { $checksBySensor, $sensors, $sensorsLoaded, checkColor, checkName, protocolTransport, sensorColor } from "@/lib/sensors"
 import { $direction, $userSettings } from "@/lib/stores"
@@ -235,7 +236,7 @@ function SensorDetail({ sensor }: { sensor: SensorRecord }) {
 						</div>
 						<div className="xl:ms-auto flex flex-wrap items-center gap-2 mt-3 xl:mt-0 self-center">
 							<HostLinkButton host={sensor.host} />
-							<AlertsButton sensor={sensor} checks={checks} onClick={() => setAlertsOpen(true)} />
+							<AlertsButton sensor={sensor} onClick={() => setAlertsOpen(true)} />
 							<QuietHoursButton sensorId={sensor.id} />
 							{!readOnly && (
 								<ToolbarButton label="Traceroute" onClick={() => setTraceOpen(true)}>
@@ -306,7 +307,12 @@ function SensorDetail({ sensor }: { sensor: SensorRecord }) {
 
 			<Sheet open={alertsOpen} onOpenChange={setAlertsOpen}>
 				<SheetContent className="max-h-full overflow-auto w-160 !max-w-full p-4 sm:p-6">
-					{alertsOpen && <SensorAlerts sensor={sensor} />}
+					{alertsOpen && (
+						<div className="grid gap-4">
+							<SensorAlerts sensor={sensor} />
+							<LinkedHostAlerts host={sensor.host} />
+						</div>
+					)}
 				</SheetContent>
 			</Sheet>
 			<Dialog open={traceOpen} onOpenChange={setTraceOpen}>
@@ -346,58 +352,19 @@ function SensorDetail({ sensor }: { sensor: SensorRecord }) {
 }
 
 /** Opens the alerts of the sensor; the bell is filled when alerts are set, listed in its tooltip */
-function AlertsButton({
-	sensor,
-	checks,
-	onClick,
-}: {
-	sensor: SensorRecord
-	checks: SensorCheckRecord[]
-	onClick: () => void
-}) {
-	const alerts = alertsOfSensor(useStore($sensorAlerts), sensor.id)
-	const portNames = (ids: string[] = []) =>
-		checks
-			.filter((check) => ids.includes(check.id))
-			.map(checkName)
-			.join(", ")
+function AlertsButton({ sensor, onClick }: { sensor: SensorRecord; onClick: () => void }) {
+	// the alerts of the system sharing its address count too
+	const system = useHostSystem(sensor.host)
+	const counts = useAlertCounts(system, sensor)
 	return (
 		<Tooltip>
 			<TooltipTrigger asChild>
 				<Button variant="outline" size="icon" aria-label={t`Alerts`} onClick={onClick}>
-					<BellIcon className={cn("size-4", alerts.length > 0 && "fill-primary")} />
+					<BellIcon className={cn("size-4", (counts.sensor > 0 || counts.system > 0) && "fill-primary")} />
 				</Button>
 			</TooltipTrigger>
 			<TooltipContent className="max-w-72">
-				{alerts.length ? (
-					<ul className="grid gap-0.5">
-						{alerts.map((alert) => (
-							<li key={alert.id}>
-								<span className={cn("font-medium", alert.triggered && "text-red-500")}>
-									{sensorAlertName(alert.name)}
-								</span>
-								{alert.name === "port" && alert.checks?.length ? (
-									<span className="text-muted-foreground"> · {portNames(alert.checks)}</span>
-								) : null}
-								{(alert.name === "loss" || alert.name === "latency") && (
-									<span className="tabular-nums">
-										{" "}
-										&gt; {alert.value}
-										{alert.name === "loss" ? "%" : " ms"}
-									</span>
-								)}
-								{alert.name === "cert" && (
-									<span className="tabular-nums">
-										{" "}
-										&lt; {alert.value} {t`days`}
-									</span>
-								)}
-							</li>
-						))}
-					</ul>
-				) : (
-					<Trans>No alerts configured</Trans>
-				)}
+				<AlertsTooltip system={system} sensor={sensor} first="sensor" />
 			</TooltipContent>
 		</Tooltip>
 	)

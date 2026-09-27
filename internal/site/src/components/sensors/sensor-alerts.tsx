@@ -5,6 +5,7 @@ import {
 	BadgeAlertIcon,
 	GaugeIcon,
 	HourglassIcon,
+	NetworkIcon,
 	PercentIcon,
 	PlugZapIcon,
 	ServerOffIcon,
@@ -83,8 +84,12 @@ const kinds: AlertKind[] = [
 	},
 ]
 
-/** Alerts of the user on a sensor: down, ports, quality, packet loss, response time and certificate expiry */
-export function SensorAlerts({ sensor }: { sensor: SensorRecord }) {
+/**
+ * Alerts of the user on a sensor: down, ports, quality, packet loss, response
+ * time and certificate expiry; embedded in the alerts of its host, under a
+ * section title in place of the title of the sheet.
+ */
+export function SensorAlerts({ sensor, embedded }: { sensor: SensorRecord; embedded?: boolean }) {
 	const [records, setRecords] = useState<Record<string, SensorAlertRecord>>({})
 	const checks = useStore($checksBySensor)[sensor.id] ?? []
 	const userId = pb.authStore.record?.id ?? ""
@@ -146,14 +151,26 @@ export function SensorAlerts({ sensor }: { sensor: SensorRecord }) {
 
 	return (
 		<div className="grid gap-4">
-			<SheetHeader className="p-0">
-				<SheetTitle>
-					<Trans>Alerts of {sensorName}</Trans>
-				</SheetTitle>
-				<SheetDescription>
-					<Trans>Your alerts on this sensor. Quiet hours of the sensor and global ones silence them.</Trans>
-				</SheetDescription>
-			</SheetHeader>
+			{embedded ? (
+				<div className="grid gap-1 mt-2">
+					<p className="font-semibold flex gap-3 items-center">
+						<NetworkIcon className="h-4 w-4 opacity-85" />
+						<Trans>Alerts of {sensorName}</Trans>
+					</p>
+					<span className="text-sm text-muted-foreground">
+						<Trans>Your alerts on this sensor. Quiet hours of the sensor and global ones silence them.</Trans>
+					</span>
+				</div>
+			) : (
+				<SheetHeader className="p-0">
+					<SheetTitle>
+						<Trans>Alerts of {sensorName}</Trans>
+					</SheetTitle>
+					<SheetDescription>
+						<Trans>Your alerts on this sensor. Quiet hours of the sensor and global ones silence them.</Trans>
+					</SheetDescription>
+				</SheetHeader>
+			)}
 			{kinds.map((kind) => {
 				const record = records[kind.name]
 				const Icon = kind.icon

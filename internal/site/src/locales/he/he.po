@@ -148,7 +148,7 @@ msgstr "עוד {hidden} תוכניות: השתמשו במסנן כדי למצו�
 msgid "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
 msgstr "{matchCount} תהליכים ב־{systemCount} מערכות עבור „{searched}”"
 
-#: src/components/alerts/alert-button.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, one {דקה אחת} two {# דקות} other {# דקות}}"
 
@@ -180,7 +180,7 @@ msgstr "{programCount} תוכניות"
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, one {נוצר כלל מצב אחד.} two {נוצרו # כללי מצב.} other {נוצרו # כללי מצב.}}"
 
-#: src/components/alerts/alert-button.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, one {כלל מצב אחד} two {# כללי מצב} other {# כללי מצב}}"
 
@@ -583,8 +583,13 @@ msgid "Alerts created"
 msgstr "ההתראות נוצרו"
 
 #: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-alerts.tsx
 msgid "Alerts of {sensorName}"
 msgstr "התראות של {sensorName}"
+
+#: src/components/alerts/alerts-sheet.tsx
+msgid "Alerts of the host {systemName}"
+msgstr "התראות של המארח {systemName}"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
@@ -1558,7 +1563,7 @@ msgstr "תאריכים…"
 msgid "Day {dayList} of the month"
 msgstr "יום {dayList} בחודש"
 
-#: src/components/routes/sensor.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "days"
 msgstr "ימים"
@@ -3116,8 +3121,7 @@ msgstr "לא נמצאה כתובת עבור {name}"
 msgid "No alert"
 msgstr "אין התראה"
 
-#: src/components/alerts/alert-button.tsx
-#: src/components/routes/sensor.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 msgid "No alerts configured"
 msgstr "לא הוגדרו התראות"
 
@@ -4798,6 +4802,10 @@ msgstr "תפריטי ההגדרות והחשבון נשארים תמיד בכו�
 msgid "The system is not connected."
 msgstr "המערכת אינה מחוברת."
 
+#: src/components/alerts/alerts-sheet.tsx
+msgid "The system sharing the address of this sensor."
+msgstr "המערכת שחולקת את הכתובת של חיישן זה."
+
 #: src/components/routes/settings/general.tsx
 msgid "The URL is set by the APP_URL environment variable of the hub."
 msgstr "כתובת ה-URL נקבעת על ידי משתנה הסביבה APP_URL של הרכזת."
@@ -5507,6 +5515,7 @@ msgstr "תצורת YAML"
 msgid "Yes"
 msgstr "כן"
 
+#: src/components/sensors/sensor-alerts.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Your alerts on this sensor. Quiet hours of the sensor and global ones silence them."
 msgstr "ההתראות שלך על חיישן זה. שעות השקט של החיישן והשעות הכלליות משתיקות אותן."

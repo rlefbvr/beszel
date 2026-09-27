@@ -143,7 +143,7 @@ msgstr "{hidden} more programs: use the filter to find them."
 msgid "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
 msgstr "{matchCount} process(es) on {systemCount} system(s) for “{searched}”"
 
-#: src/components/alerts/alert-button.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, one {# minute} other {# minutes}}"
 
@@ -175,7 +175,7 @@ msgstr "{programCount} programs"
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 
-#: src/components/alerts/alert-button.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 msgid "{rulesCount, plural, one {# state rule} other {# state rules}}"
 msgstr "{rulesCount, plural, one {# state rule} other {# state rules}}"
 
@@ -578,8 +578,13 @@ msgid "Alerts created"
 msgstr "Alerts created"
 
 #: src/components/sensors/sensor-alerts.tsx
+#: src/components/sensors/sensor-alerts.tsx
 msgid "Alerts of {sensorName}"
 msgstr "Alerts of {sensorName}"
+
+#: src/components/alerts/alerts-sheet.tsx
+msgid "Alerts of the host {systemName}"
+msgstr "Alerts of the host {systemName}"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
@@ -1553,7 +1558,7 @@ msgstr "Dates…"
 msgid "Day {dayList} of the month"
 msgstr "Day {dayList} of the month"
 
-#: src/components/routes/sensor.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "days"
 msgstr "days"
@@ -3111,8 +3116,7 @@ msgstr "No address found for {name}"
 msgid "No alert"
 msgstr "No alert"
 
-#: src/components/alerts/alert-button.tsx
-#: src/components/routes/sensor.tsx
+#: src/components/alerts/alerts-tooltip.tsx
 msgid "No alerts configured"
 msgstr "No alerts configured"
 
@@ -4793,6 +4797,10 @@ msgstr "The settings and account menus always stay in the header."
 msgid "The system is not connected."
 msgstr "The system is not connected."
 
+#: src/components/alerts/alerts-sheet.tsx
+msgid "The system sharing the address of this sensor."
+msgstr "The system sharing the address of this sensor."
+
 #: src/components/routes/settings/general.tsx
 msgid "The URL is set by the APP_URL environment variable of the hub."
 msgstr "The URL is set by the APP_URL environment variable of the hub."
@@ -5502,6 +5510,7 @@ msgstr "YAML Configuration"
 msgid "Yes"
 msgstr "Yes"
 
+#: src/components/sensors/sensor-alerts.tsx
 #: src/components/sensors/sensor-alerts.tsx
 msgid "Your alerts on this sensor. Quiet hours of the sensor and global ones silence them."
 msgstr "Your alerts on this sensor. Quiet hours of the sensor and global ones silence them."

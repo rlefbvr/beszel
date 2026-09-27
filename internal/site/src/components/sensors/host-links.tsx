@@ -41,8 +41,7 @@ function LinkButton({ href, label, children }: { href: string; label: string; ch
 
 /** On a system page: the sensor sharing its address, if any */
 export function SensorLinkButton({ host }: { host: string }) {
-	const sensors = useStore($sensors)
-	const sensor = Object.values(sensors).find((item) => sameHost(item.host, host))
+	const sensor = useHostSensor(host)
 	if (!sensor) {
 		return null
 	}
@@ -51,6 +50,12 @@ export function SensorLinkButton({ host }: { host: string }) {
 			<NetworkIcon className="size-4" />
 		</LinkButton>
 	)
+}
+
+/** The sensor sharing the address of a system, if any */
+export function useHostSensor(host: string) {
+	const sensors = useStore($sensors)
+	return Object.values(sensors).find((item) => sameHost(item.host, host))
 }
 
 /** On a sensor page: the system sharing its address, if any */
@@ -96,8 +101,7 @@ export function LinkedSensorDeleteOption({
 	host: string
 	onChange: (sensorId: string | null) => void
 }) {
-	const sensors = useStore($sensors)
-	const sensor = Object.values(sensors).find((item) => sameHost(item.host, host))
+	const sensor = useHostSensor(host)
 	if (!sensor) {
 		return null
 	}
