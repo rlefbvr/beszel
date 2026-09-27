@@ -1,5 +1,5 @@
 import { t } from "@lingui/core/macro"
-import { Trans } from "@lingui/react/macro"
+import { Plural, Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
 import { getPagePath } from "@nanostores/router"
 import {
@@ -57,6 +57,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { isReadOnlyUser, pb } from "@/lib/api"
 import { useSystemBrands } from "@/lib/os-brands"
+import { $processSearch } from "@/lib/fleet-programs"
 import { $allSystemsById, $systems } from "@/lib/stores"
 import { systemGroup } from "@/lib/system-groups"
 import { cn } from "@/lib/utils"
@@ -99,6 +100,9 @@ type RawOverview = Omit<ProcessesOverview, "topCpu" | "topMem" | "recent" | "mat
 
 /** Processes kept for each host in the top consumers */
 const topCount = 10
+
+/** Hosts shown by the top consumers until the user filters or asks for more */
+const defaultTopHosts = 3
 /** The processes started in the last day are the recent ones */
 const recentWindow = 24 * 3600
 /** Share of the host from which it counts as loaded */
@@ -277,6 +281,81 @@ function SystemsFilter({
 	)
 }
 
+/** Filters of the hosts shared by the blocks: their group, the brand of their OS and some of them */
+function useHostFilters(systems: string[]) {
+	const allSystems = useStore($allSystemsById)
+	const records = useMemo(() => systems.map((id) => allSystems[id]).filter(Boolean), [systems, allSystems])
+	const brands = useSystemBrands(records)
+	const [shownSystems, setShownSystems] = useState<string[]>([])
+	const [brand, setBrand] = useState("")
+	const [group, setGroup] = useState("")
+	const groupList = useMemo(() => [...new Set(records.map(systemGroup).filter(Boolean))].sort(), [records])
+	const brandKey = JSON.stringify(brands)
+	const keeps = useCallback(
+		(id: string) => {
+			const system = allSystems[id]
+			return (
+				(!shownSystems.length || shownSystems.includes(id)) &&
+				(!brand || brands[id] === brand) &&
+				(!group || (!!system && systemGroup(system) === group))
+			)
+		},
+		// brands is a new object on each render
+		[allSystems, shownSystems, brand, group, brandKey]
+	)
+	return {
+		systems,
+		brands,
+		shownSystems,
+		setShownSystems,
+		brand,
+		setBrand,
+		group,
+		setGroup,
+		groupList,
+		keeps,
+		/** true when the user narrowed the hosts */
+		narrowed: shownSystems.length > 0 || !!brand || !!group,
+	}
+}
+
+/** Group dropdown and systems/OS dropdown of the filters of the hosts */
+function HostFilters({ filters }: { filters: ReturnType<typeof useHostFilters> }) {
+	const { groupList, group, setGroup } = filters
+	return (
+		<>
+			{groupList.length > 0 && (
+				<Select value={group || "all"} onValueChange={(value) => setGroup(value === "all" ? "" : value)}>
+					<SelectTrigger className="w-auto min-w-36 gap-2">
+						<LayersIcon className="size-4 shrink-0 opacity-70" />
+						<SelectValue />
+					</SelectTrigger>
+					<SelectContent>
+						<SelectItem value="all">
+							<Trans>All groups</Trans>
+						</SelectItem>
+						{groupList.map((name) => (
+							<SelectItem key={name} value={name}>
+								{name}
+							</SelectItem>
+						))}
+					</SelectContent>
+				</Select>
+			)}
+			{filters.systems.length > 1 && (
+				<SystemsFilter
+					systems={filters.systems}
+					selected={filters.shownSystems}
+					onChange={filters.setShownSystems}
+					brands={filters.brands}
+					brand={filters.brand}
+					onBrandChange={filters.setBrand}
+				/>
+			)}
+		</>
+	)
+}
+
 /**
  * Page of all the processes: a search on demand, then the analysis of the
  * fleet read once from the hub (top consumers, programs, recent starts,
@@ -311,6 +390,15 @@ export default function ProcessesOverviewPage() {
 		setSearchRequest((current) => ({ q, n: (current?.n ?? 0) + 1 }))
 		document.getElementById("process-search")?.scrollIntoView({ behavior: "smooth", block: "start" })
 	}, [])
+
+	// a program chosen in the command palette, looked for once the systems are known
+	const paletteSearch = useStore($processSearch)
+	useEffect(() => {
+		if (paletteSearch && systems.length) {
+			$processSearch.set(null)
+			search(paletteSearch)
+		}
+	}, [paletteSearch, systems, search])
 
 	const answered = useMemo(() => (overviews ?? []).filter((overview) => !overview.error), [overviews])
 	const refresh = <RefreshButton onRefresh={load} loading={loading} />
@@ -395,7 +483,6 @@ function ProcessesGrid({
 }) {
 	const [sorting, setSorting] = useState<SortingState>(initialSort)
 	const [filter, setFilter] = useState("")
-	const [shownSystems, setShownSystems] = useState<string[]>([])
 	const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
 	const layout = useTableLayout(layoutKey, hiddenByDefault)
 	const baseColumns = useProcessColumns(true)
@@ -404,11 +491,10 @@ function ProcessesGrid({
 		[baseColumns]
 	)
 	const systemsOfRows = useMemo(() => [...new Set(rows.map((row) => row.system))], [rows])
+	const hosts = useHostFilters(systemsOfRows)
 	const systems = useStore($allSystemsById)
-	const data = useMemo(
-		() => (shownSystems.length ? rows.filter((row) => shownSystems.includes(row.system)) : rows),
-		[rows, shownSystems]
-	)
+	const { keeps } = hosts
+	const data = useMemo(() => rows.filter((row) => keeps(row.system)), [rows, keeps])
 
 	const table = useReactTable({
 		data,
@@ -462,9 +548,7 @@ function ProcessesGrid({
 					)}
 				</div>
 				<div className="flex flex-wrap gap-2 ms-auto">
-					{systemsOfRows.length > 1 && (
-						<SystemsFilter systems={systemsOfRows} selected={shownSystems} onChange={setShownSystems} />
-					)}
+					<HostFilters filters={hosts} />
 					<ColumnsViewMenu table={table} />
 					<BulkStateAlertsButton kind="process" items={selectedItems} />
 					{actions}
@@ -576,7 +660,7 @@ function ProcessSearch({
 	return (
 		<Card className="@container w-full px-3 py-5 sm:py-6 sm:px-6">
 			<BlockHeader
-				title={<Trans>Search a process</Trans>}
+				title={<Trans>All processes</Trans>}
 				description={<Trans>Looks for a process on all the systems that are up, by name, command, user or PID.</Trans>}
 			/>
 			<form
@@ -659,32 +743,18 @@ function TopConsumers({
 	actions?: ReactNode
 }) {
 	const allSystems = useStore($allSystemsById)
-	const systemRecords = useMemo(
-		() => overviews.map((overview) => allSystems[overview.system]).filter(Boolean),
-		[overviews, allSystems]
-	)
-	const brands = useSystemBrands(systemRecords)
-	const brandKey = JSON.stringify(brands)
-	const [shownSystems, setShownSystems] = useState<string[]>([])
-	const [brand, setBrand] = useState("")
-	const [group, setGroup] = useState("")
+	const systemIds = useMemo(() => overviews.map((overview) => overview.system), [overviews])
+	const hosts = useHostFilters(systemIds)
+	const { keeps, brands } = hosts
 	const [filter, setFilter] = useState("")
 	const [loadedOnly, setLoadedOnly] = useState(false)
 	const [sort, setSort] = useState<TopSort>("cpu")
+	const [showAll, setShowAll] = useState(false)
 
-	const groupList = [...new Set(systemRecords.map(systemGroup).filter(Boolean))].sort()
 	const isLoaded = (overview: ProcessesOverview) => overview.cpu >= loadedHost || overview.mem >= loadedHost
 
-	const shown = useMemo(() => {
-		const list = overviews.filter((overview) => {
-			const system = allSystems[overview.system]
-			return (
-				(!shownSystems.length || shownSystems.includes(overview.system)) &&
-				(!brand || brands[overview.system] === brand) &&
-				(!group || (system && systemGroup(system) === group)) &&
-				(!loadedOnly || isLoaded(overview))
-			)
-		})
+	const sorted = useMemo(() => {
+		const list = overviews.filter((overview) => keeps(overview.system) && (!loadedOnly || isLoaded(overview)))
 		// a filter keeps the systems of its name, or the processes of its name on the other systems
 		const term = filter.trim().toLowerCase()
 		const filtered = term
@@ -702,7 +772,12 @@ function TopConsumers({
 		return filtered.sort((a, b) =>
 			sort === "name" ? name(a).localeCompare(name(b)) : sort === "mem" ? b.mem - a.mem : b.cpu - a.cpu
 		)
-	}, [overviews, allSystems, shownSystems, brand, group, loadedOnly, sort, brandKey, filter])
+	}, [overviews, allSystems, keeps, loadedOnly, sort, filter])
+
+	// untouched, the block shows the first hosts in the order chosen; any filter shows all its hosts
+	const limited = !showAll && !hosts.narrowed && !loadedOnly && !filter.trim()
+	const shown = limited ? sorted.slice(0, defaultTopHosts) : sorted
+	const moreHosts = sorted.length - shown.length
 
 	const loadedCount = overviews.filter(isLoaded).length
 
@@ -740,23 +815,6 @@ function TopConsumers({
 					<Trans>Loaded systems ({loadedCount})</Trans>
 				</Button>
 				<div className="flex flex-wrap gap-2 ms-auto">
-					{groupList.length > 0 && (
-						<Select value={group || "all"} onValueChange={(value) => setGroup(value === "all" ? "" : value)}>
-							<SelectTrigger className="w-auto min-w-36">
-								<SelectValue />
-							</SelectTrigger>
-							<SelectContent>
-								<SelectItem value="all">
-									<Trans>All groups</Trans>
-								</SelectItem>
-								{groupList.map((name) => (
-									<SelectItem key={name} value={name}>
-										{name}
-									</SelectItem>
-								))}
-							</SelectContent>
-						</Select>
-					)}
 					<Select value={sort} onValueChange={(value: TopSort) => setSort(value)}>
 						<SelectTrigger className="w-auto min-w-40">
 							<SelectValue />
@@ -773,14 +831,7 @@ function TopConsumers({
 							</SelectItem>
 						</SelectContent>
 					</Select>
-					<SystemsFilter
-						systems={overviews.map((overview) => overview.system)}
-						selected={shownSystems}
-						onChange={setShownSystems}
-						brands={brands}
-						brand={brand}
-						onBrandChange={setBrand}
-					/>
+					<HostFilters filters={hosts} />
 					{actions}
 				</div>
 			</div>
@@ -794,6 +845,14 @@ function TopConsumers({
 				<p className="text-sm text-muted-foreground py-6 text-center">
 					<Trans>No system matches the filters.</Trans>
 				</p>
+			)}
+			{moreHosts > 0 && (
+				<div className="flex justify-center mt-3">
+					<Button variant="ghost" size="sm" className="gap-1.5 text-muted-foreground" onClick={() => setShowAll(true)}>
+						<ChevronDownIcon className="size-4" />
+						<Plural value={moreHosts} one="Show # more system" other="Show # more systems" />
+					</Button>
+				</div>
 			)}
 		</>
 	)
@@ -944,13 +1003,15 @@ function FleetPrograms({
 	const [filter, setFilter] = useState("")
 	const [sorting, setSorting] = useState<SortingState>([{ id: "systems", desc: true }])
 	const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
-	const [shownSystems, setShownSystems] = useState<string[]>([])
 	const layout = useTableLayout("fleet-programs")
+	const systemIds = useMemo(() => overviews.map((overview) => overview.system), [overviews])
+	const hosts = useHostFilters(systemIds)
+	const { keeps } = hosts
 
 	const programs = useMemo(() => {
 		const byName = new Map<string, FleetProgram>()
 		for (const overview of overviews) {
-			if (shownSystems.length && !shownSystems.includes(overview.system)) {
+			if (!keeps(overview.system)) {
 				continue
 			}
 			for (const program of overview.programs) {
@@ -963,7 +1024,7 @@ function FleetPrograms({
 			}
 		}
 		return [...byName.values()]
-	}, [overviews, shownSystems])
+	}, [overviews, keeps])
 
 	const columns = useMemo((): ColumnDef<FleetProgram>[] => {
 		const list: ColumnDef<FleetProgram>[] = [
@@ -1060,11 +1121,7 @@ function FleetPrograms({
 					<Input placeholder={t`Filter...`} value={filter} onChange={(e) => setFilter(e.target.value)} />
 				</div>
 				<div className="flex flex-wrap gap-2 ms-auto">
-					<SystemsFilter
-						systems={overviews.map((overview) => overview.system)}
-						selected={shownSystems}
-						onChange={setShownSystems}
-					/>
+					<HostFilters filters={hosts} />
 					<ColumnsViewMenu table={table} />
 					<BulkStateAlertsButton kind="process" items={selectedItems} />
 					{actions}

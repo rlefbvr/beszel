@@ -40,6 +40,7 @@ import {
 } from "@/components/ui/command"
 import { useStore } from "@nanostores/react"
 import { isAdmin, pb } from "@/lib/api"
+import { $processSearch, type FleetProgramName, fleetProgramNames } from "@/lib/fleet-programs"
 import { $openRequest, type RecentItem } from "@/lib/recent"
 import { $checksBySensor, $sensors } from "@/lib/sensors"
 import { $allSystemsById, $systems, $userSettings } from "@/lib/stores"
@@ -80,7 +81,7 @@ export default memo(function CommandPalette({ open, setOpen }: { open: boolean; 
 			<CommandDialog open={open} onOpenChange={setOpen} className="sm:max-w-[calc(32rem+200px)]">
 				<DialogDescription className="sr-only">Command palette</DialogDescription>
 				<CommandInput
-					placeholder={t`Search for systems, sensors, containers, services, certificates or settings...`}
+					placeholder={t`Search for systems, sensors, containers, services, processes, certificates or settings...`}
 					value={search}
 					onValueChange={setSearch}
 				/>
@@ -575,6 +576,23 @@ function SearchResults({ query, onDone }: { query: string; onDone: () => void })
 		}
 	}, [query])
 
+	// the programs of the fleet, read from the agents once per search
+	const [programs, setPrograms] = useState<FleetProgramName[]>([])
+	useEffect(() => {
+		let cancelled = false
+		fleetProgramNames()
+			.then((list) => !cancelled && setPrograms(list))
+			.catch(() => {})
+		return () => {
+			cancelled = true
+		}
+	}, [])
+	const lowerQuery = query.toLowerCase()
+	const programMatches = programs
+		.filter((program) => program.name.toLowerCase().includes(lowerQuery))
+		.sort((a, b) => b.systems.length - a.systems.length || a.name.localeCompare(b.name))
+		.slice(0, 10)
+
 	const sensorList = Object.values(sensors).sort((a, b) => a.name.localeCompare(b.name))
 	return (
 		<>
@@ -636,6 +654,33 @@ function SearchResults({ query, onDone }: { query: string; onDone: () => void })
 							detail={systemsById[service.system]?.name}
 							onDone={onDone}
 						/>
+					))}
+				</CommandGroup>
+			)}
+			{programMatches.length > 0 && (
+				<CommandGroup heading={t`Processes`}>
+					{programMatches.map((program) => (
+						<CommandItem
+							key={program.name}
+							value={`process ${program.name}`}
+							keywords={[query]}
+							onSelect={() => {
+								// looked for on the page of the processes, as a program of the fleet chosen there
+								$processSearch.set(program.name)
+								navigate(getPagePath($router, "processes"))
+								onDone()
+							}}
+						>
+							<ListTreeIcon className="me-2 size-4" />
+							<span className="max-w-72 truncate">{program.name}</span>
+							<CommandShortcut className="max-w-48 truncate">
+								{program.systems
+									.slice(0, 3)
+									.map((id) => systemsById[id]?.name ?? id)
+									.join(", ")}
+								{program.systems.length > 3 && "…"}
+							</CommandShortcut>
+						</CommandItem>
 					))}
 				</CommandGroup>
 			)}

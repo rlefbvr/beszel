@@ -659,7 +659,13 @@ export default function SystemsTable() {
 							<GroupHeading name={group} count={groupRows.length} />
 							<div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 								{groupRows.map((row) => (
-									<SystemCard key={row.original.id} row={row} table={table} colLength={visibleColumns.length} />
+									<SystemCard
+										key={row.original.id}
+										row={row}
+										table={table}
+										colLength={visibleColumns.length}
+										brand={brands[row.original.id]}
+									/>
 								))}
 							</div>
 						</section>
@@ -670,7 +676,15 @@ export default function SystemsTable() {
 				<div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 					{rows?.length ? (
 						rows.map((row) => {
-							return <SystemCard key={row.original.id} row={row} table={table} colLength={visibleColumns.length} />
+							return (
+								<SystemCard
+									key={row.original.id}
+									row={row}
+									table={table}
+									colLength={visibleColumns.length}
+									brand={brands[row.original.id]}
+								/>
+							)
 						})
 					) : (
 						<div className="col-span-full text-center py-8">
@@ -964,7 +978,18 @@ const SystemTableRow = memo(
 )
 
 const SystemCard = memo(
-	({ row, table, colLength }: { row: Row<SystemRecord>; table: TableType<SystemRecord>; colLength: number }) => {
+	({
+		row,
+		table,
+		colLength,
+		brand,
+	}: {
+		row: Row<SystemRecord>
+		table: TableType<SystemRecord>
+		colLength: number
+		/** brand of its OS, shown next to its name */
+		brand?: string
+	}) => {
 		const system = row.original
 		const { t } = useLingui()
 
@@ -986,6 +1011,11 @@ const SystemCard = memo(
 								<div className="flex items-center gap-2.5 min-w-0 flex-1">
 									<IndicatorDot system={system} />
 									<span className="text-[.95em]/normal tracking-normal text-primary/90 truncate">{system.name}</span>
+									{brand && (
+										<span className="shrink-0 rounded border px-1.5 text-xs font-normal text-muted-foreground">
+											{brand}
+										</span>
+									)}
 								</div>
 							</h3>
 							{table.getColumn("actions")?.getIsVisible() && (
@@ -1032,6 +1062,6 @@ const SystemCard = memo(
 					</Link>
 				</Card>
 			)
-		}, [system, colLength, t])
+		}, [system, colLength, brand, t])
 	}
 )
