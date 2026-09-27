@@ -5,7 +5,7 @@ import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 import { useYAxisWidth } from "@/components/charts/hooks"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { chartMargin, cn, decimalString, hourWithSeconds, useBrowserStorage } from "@/lib/utils"
-import { formatRate, type ProcessRow, processKey } from "./process-dialog"
+import { formatRate, type ProcessRow, processKey } from "./process-format"
 
 /** Use of a process at a reading */
 interface ProcessPoint {

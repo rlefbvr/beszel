@@ -834,7 +834,6 @@ function HostTop({
 				<TopList
 					icon={CpuIcon}
 					title={t`CPU`}
-					barClass="bg-amber-500/25 dark:bg-amber-400/20"
 					processes={overview.topCpu}
 					value={(process) => process.cpu}
 					onSelect={onSelect}
@@ -842,7 +841,6 @@ function HostTop({
 				<TopList
 					icon={MemoryStickIcon}
 					title={t`Memory`}
-					barClass="bg-sky-500/25 dark:bg-sky-400/20"
 					processes={overview.topMem}
 					value={(process) => process.mem}
 					onSelect={onSelect}
@@ -855,15 +853,12 @@ function HostTop({
 function TopList({
 	icon: Icon,
 	title,
-	barClass,
 	processes,
 	value,
 	onSelect,
 }: {
 	icon: React.ElementType
 	title: string
-	/** color of the bars */
-	barClass: string
 	processes: ProcessRow[]
 	value: (process: ProcessRow) => number | undefined
 	onSelect: (process: ProcessRow) => void
@@ -878,7 +873,7 @@ function TopList({
 			</div>
 			{processes.length ? (
 				<ul className="grid gap-0.5">
-					{processes.map((process) => (
+					{processes.map((process, index) => (
 						<li key={process.pid}>
 							<button
 								type="button"
@@ -887,7 +882,7 @@ function TopList({
 								title={process.command || process.name}
 							>
 								<span
-									className={cn("absolute inset-y-0 start-0 rounded", barClass)}
+									className={cn("absolute inset-y-0 start-0 rounded", rankColors[index] ?? rankColors.at(-1))}
 									style={{ width: `${((value(process) ?? 0) / max) * 100}%` }}
 								/>
 								<span className="relative truncate">{process.name}</span>
@@ -904,6 +899,20 @@ function TopList({
 		</div>
 	)
 }
+
+/** Colors of the bars of the top lists, from the heaviest process to the lightest */
+const rankColors = [
+	"bg-red-500/40",
+	"bg-orange-500/35",
+	"bg-amber-500/35",
+	"bg-yellow-500/30",
+	"bg-lime-500/30",
+	"bg-green-500/30",
+	"bg-emerald-500/30",
+	"bg-teal-500/30",
+	"bg-cyan-500/30",
+	"bg-sky-500/30",
+]
 
 /* ------------------------------------------------------------------ */
 /* Programs of the fleet                                              */
