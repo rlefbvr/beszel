@@ -72,6 +72,8 @@ type System struct {
 	certificates atomic.Bool
 	// True if the agent answers the requests added by this fork.
 	forkRequests atomic.Bool
+	// True if the agent reads the Traefik instances of its host.
+	traefik atomic.Bool
 	// True while the processes are read for the process rules.
 	processAlertsBusy atomic.Bool
 }
@@ -171,6 +173,7 @@ func (sys *System) update() error {
 	if err == nil {
 		sys.forkRequests.Store(supportsForkRequests(data.Info.AgentVersion))
 		sys.certificates.Store(supportsCertificates(data.Info.AgentVersion))
+		sys.traefik.Store(supportsForkVersion(data.Info.AgentVersion, beszel.MinVersionTraefik))
 		sys.trackBoot(data.Info.Uptime, time.Now())
 		sys.maybeSyncCertificates(time.Now())
 	}

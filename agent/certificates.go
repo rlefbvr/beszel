@@ -39,6 +39,7 @@ func (h *GetCertificatesHandler) Handle(hctx *HandlerContext) error {
 	defer cancel()
 	inv := newCertInventory()
 	discoverCertificates(ctx, inv)
+	discoverTraefikCertificates(ctx, hctx.Agent.dockerManager, inv)
 	for _, path := range req.Paths {
 		inv.addCustomFile(path)
 	}

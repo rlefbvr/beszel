@@ -60,6 +60,8 @@ func NewHandlerRegistry() *HandlerRegistry {
 	registry.Register(common.UpdateAgent, &UpdateAgentHandler{})
 	registry.Register(common.GetCertificates, &GetCertificatesHandler{})
 	registry.Register(common.GetProcesses, &GetProcessesHandler{})
+	registry.Register(common.GetTraefik, &GetTraefikHandler{})
+	registry.Register(common.GetTraefikLog, &GetTraefikLogHandler{})
 
 	return registry
 }

@@ -40,6 +40,10 @@ const (
 	GetCertificates
 	// Request the processes of the host
 	GetProcesses
+	// Request the Traefik instances of the host
+	GetTraefik
+	// Request the last lines of a log of a Traefik instance
+	GetTraefikLog
 	// Add new actions here...
 )
 

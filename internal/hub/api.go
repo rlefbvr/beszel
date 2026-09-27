@@ -229,6 +229,8 @@ func (h *Hub) registerApiRoutes(se *core.ServeEvent) error {
 	// processes of a host, read from its agent
 	apiAuth.GET("/processes", h.getProcesses)
 	apiAuth.GET("/processes/overview", h.getProcessesOverview)
+	apiAuth.GET("/traefik", h.getTraefik)
+	apiAuth.GET("/traefik/log", h.getTraefikLog)
 	// get systemd service details
 	apiAuth.GET("/systemd/info", h.getSystemdInfo)
 	// agent details, logs and updates
