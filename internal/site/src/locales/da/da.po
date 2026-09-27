@@ -62,6 +62,10 @@ msgstr "{ackCount, plural, other {Vis kvitterede (#)}}"
 msgid "{certDays} days"
 msgstr "{certDays} dage"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{chosenCount, plural, one {Create # sensor} other {Create # sensors}}"
+msgstr "{chosenCount, plural, one {Opret # sensor} other {Opret # sensorer}}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# kerne} other {# kerner}}"
@@ -86,6 +90,10 @@ msgstr "{count, plural, one {# filtreret container} other {# filtrerede containe
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# filtreret tjeneste} other {# filtrerede tjenester}}"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{count, plural, one {# host has no ping (ICMP) sensor. A ping sensor shows whether it answers on the network, even when its agent is down.} other {# hosts have no ping (ICMP) sensor. A ping sensor shows whether they answer on the network, even when their agent is down.}}"
+msgstr "{count, plural, one {# vært har ingen ping-sensor (ICMP). En ping-sensor viser, om den svarer på netværket, selv når dens agent er nede.} other {# værter har ingen ping-sensor (ICMP). En ping-sensor viser, om de svarer på netværket, selv når deres agent er nede.}}"
+
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {# valgt proces} other {# valgte processer}}"
@@ -107,6 +115,7 @@ msgid "{count} processes · CPU {cpuText} · Memory {memText}"
 msgstr "{count} processer · CPU {cpuText} · Hukommelse {memText}"
 
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} nye sensorer, {added} kontroller tilføjet til eksisterende sensorer."
 
@@ -1477,6 +1486,10 @@ msgstr "Opret brugerne ved deres første login (ellers kun eksisterende brugere 
 msgid "Created"
 msgstr "Oprettet"
 
+#: src/components/routes/settings/general.tsx
+msgid "Creates a ping (ICMP) sensor for each host that doesn't have one yet."
+msgstr "Opretter en ping-sensor (ICMP) for hver vært, der endnu ikke har en."
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Critical (%)"
 msgstr "Kritisk (%)"
@@ -1786,6 +1799,10 @@ msgstr "Docker Netværk I/O"
 msgid "Documentation"
 msgstr "Dokumentation"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Don't ask again"
+msgstr "Spørg ikke igen"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Done"
@@ -1966,6 +1983,8 @@ msgstr "Efemer"
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "Fejl"
@@ -1973,6 +1992,10 @@ msgstr "Fejl"
 #: src/lib/quiet-hours.ts
 msgid "Every day"
 msgstr "Hver dag"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Every host has a ping sensor."
+msgstr "Alle værter har en ping-sensor."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2386,6 +2409,10 @@ msgstr "Hostede tjenester"
 #: src/components/sensors/sensors-board.tsx
 msgid "Hosts only"
 msgstr "Kun værter"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Hosts without ping sensor"
+msgstr "Værter uden ping-sensor"
 
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
@@ -3020,6 +3047,7 @@ msgid "Network monitors from a host"
 msgstr "Netværksmonitorer fra en vært"
 
 #: src/components/command-palette.tsx
+#: src/components/routes/settings/general.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/lib/header-icons.ts
 msgid "Network sensors"
@@ -3053,6 +3081,10 @@ msgstr "Ny gruppe"
 #: src/components/routes/settings/security.tsx
 msgid "New recovery codes"
 msgstr "Nye gendannelseskoder"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "new sensor"
+msgstr "ny sensor"
 
 #: src/components/routes/settings/audit-log.tsx
 msgid "Next page"
@@ -3191,6 +3223,10 @@ msgstr "Ingen"
 msgid "Not enabled"
 msgstr "Ikke aktiveret"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Not now"
+msgstr "Ikke nu"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
 msgstr "Ikke rapporteret"
@@ -3218,6 +3254,10 @@ msgstr "Notifikationer kan indeholde uddrag af nylige containerlogfiler."
 #: src/components/login/auth-form.tsx
 msgid "OAuth 2 / OIDC support"
 msgstr "OAuth 2 / OIDC understøttelse"
+
+#: src/components/routes/settings/general.tsx
+msgid "Offer it after each login when hosts have no ping sensor"
+msgstr "Foreslå det efter hvert login, når værter ikke har en ping-sensor"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
@@ -3501,6 +3541,14 @@ msgstr "Vedholdenhed"
 #: src/components/routes/system/raw-capacity-label.tsx
 msgid "Physical device space. True usable capacity is unknown. Pool disk usage alerts are disabled."
 msgstr "Fysisk enhedsplads. Den reelle brugbare kapacitet er ukendt. Advarsler om diskforbrug for poolen er deaktiveret."
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "ping added to the sensor {sensorName}"
+msgstr "ping tilføjes til sensoren {sensorName}"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Ping sensors created"
+msgstr "Ping-sensorer oprettet"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
@@ -4490,6 +4538,10 @@ msgstr "Swap forbrug"
 #: src/lib/header-icons.ts
 msgid "Switch theme"
 msgstr "Skift tema"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Sync hosts and sensors"
+msgstr "Synkroniser værter og sensorer"
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx

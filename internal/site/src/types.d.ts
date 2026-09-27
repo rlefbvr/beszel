@@ -475,6 +475,8 @@ export interface UserSettings {
 	sensorsKinds?: string[]
 	/** network sensors: sections by group in the All tab */
 	sensorsByGroup?: boolean
+	/** after a login: offer to create the missing ping sensors of the hosts (false: don't ask again) */
+	sensorSyncPrompt?: boolean
 	/** network sensors: order by name, or worst status or quality first */
 	sensorsSort?: "name" | "status" | "quality"
 	/** all certificates: sort, direction, status filter and hidden columns */

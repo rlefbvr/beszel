@@ -62,6 +62,10 @@ msgstr "{ackCount, plural, other {Onaylananları göster (#)}}"
 msgid "{certDays} days"
 msgstr "{certDays} gün"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{chosenCount, plural, one {Create # sensor} other {Create # sensors}}"
+msgstr "{chosenCount, plural, one {# sensör oluştur} other {# sensör oluştur}}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# çekirdek} other {# çekirdek}}"
@@ -86,6 +90,10 @@ msgstr "{count, plural, one {# filtrelenmiş kapsayıcı} other {# filtrelenmiş
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# filtrelenmiş hizmet} other {# filtrelenmiş hizmet}}"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{count, plural, one {# host has no ping (ICMP) sensor. A ping sensor shows whether it answers on the network, even when its agent is down.} other {# hosts have no ping (ICMP) sensor. A ping sensor shows whether they answer on the network, even when their agent is down.}}"
+msgstr "{count, plural, one {# ana makinenin ping (ICMP) sensörü yok. Ping sensörü, ajanı çalışmasa bile ağda yanıt verip vermediğini gösterir.} other {# ana makinenin ping (ICMP) sensörü yok. Ping sensörü, ajanları çalışmasa bile ağda yanıt verip vermediklerini gösterir.}}"
+
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {# seçili işlem} other {# seçili işlem}}"
@@ -107,6 +115,7 @@ msgid "{count} processes · CPU {cpuText} · Memory {memText}"
 msgstr "{count} işlem · CPU {cpuText} · Bellek {memText}"
 
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} yeni sensör, mevcut sensörlere {added} denetim eklendi."
 
@@ -1477,6 +1486,10 @@ msgstr "Kullanıcıları ilk oturum açışlarında oluştur (aksi halde yalnız
 msgid "Created"
 msgstr "Oluşturuldu"
 
+#: src/components/routes/settings/general.tsx
+msgid "Creates a ping (ICMP) sensor for each host that doesn't have one yet."
+msgstr "Henüz ping (ICMP) sensörü olmayan her ana makine için bir tane oluşturur."
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Critical (%)"
 msgstr "Kritik (%)"
@@ -1786,6 +1799,10 @@ msgstr "Docker Ağ G/Ç"
 msgid "Documentation"
 msgstr "Dokümantasyon"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Don't ask again"
+msgstr "Bir daha sorma"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Done"
@@ -1966,6 +1983,8 @@ msgstr "Geçici"
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "Hata"
@@ -1973,6 +1992,10 @@ msgstr "Hata"
 #: src/lib/quiet-hours.ts
 msgid "Every day"
 msgstr "Her gün"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Every host has a ping sensor."
+msgstr "Her ana makinenin bir ping sensörü var."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2386,6 +2409,10 @@ msgstr "Barındırılan hizmetler"
 #: src/components/sensors/sensors-board.tsx
 msgid "Hosts only"
 msgstr "Yalnızca ana bilgisayarlar"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Hosts without ping sensor"
+msgstr "Ping sensörü olmayan ana makineler"
 
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
@@ -3020,6 +3047,7 @@ msgid "Network monitors from a host"
 msgstr "Bir ana bilgisayardan ağ izleyicileri"
 
 #: src/components/command-palette.tsx
+#: src/components/routes/settings/general.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/lib/header-icons.ts
 msgid "Network sensors"
@@ -3053,6 +3081,10 @@ msgstr "Yeni grup"
 #: src/components/routes/settings/security.tsx
 msgid "New recovery codes"
 msgstr "Yeni kurtarma kodları"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "new sensor"
+msgstr "yeni sensör"
 
 #: src/components/routes/settings/audit-log.tsx
 msgid "Next page"
@@ -3191,6 +3223,10 @@ msgstr "Yok"
 msgid "Not enabled"
 msgstr "Etkin değil"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Not now"
+msgstr "Şimdi değil"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
 msgstr "Raporlanmadı"
@@ -3218,6 +3254,10 @@ msgstr "Bildirimler, son konteyner günlüklerinden alıntılar içerebilir."
 #: src/components/login/auth-form.tsx
 msgid "OAuth 2 / OIDC support"
 msgstr "OAuth 2 / OIDC desteği"
+
+#: src/components/routes/settings/general.tsx
+msgid "Offer it after each login when hosts have no ping sensor"
+msgstr "Ana makinelerin ping sensörü yoksa her girişten sonra öner"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
@@ -3501,6 +3541,14 @@ msgstr "Kalıcılık"
 #: src/components/routes/system/raw-capacity-label.tsx
 msgid "Physical device space. True usable capacity is unknown. Pool disk usage alerts are disabled."
 msgstr "Fiziksel cihaz alanı. Gerçek kullanılabilir kapasite bilinmiyor. Pool disk kullanımı uyarıları devre dışı."
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "ping added to the sensor {sensorName}"
+msgstr "ping, {sensorName} sensörüne eklenir"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Ping sensors created"
+msgstr "Ping sensörleri oluşturuldu"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
@@ -4490,6 +4538,10 @@ msgstr "Takas Kullanımı"
 #: src/lib/header-icons.ts
 msgid "Switch theme"
 msgstr "Temayı değiştir"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Sync hosts and sensors"
+msgstr "Ana makineleri ve sensörleri eşitle"
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx

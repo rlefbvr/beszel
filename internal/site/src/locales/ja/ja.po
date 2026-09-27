@@ -62,6 +62,10 @@ msgstr "{ackCount, plural, other {確認済みを表示 (#)}}"
 msgid "{certDays} days"
 msgstr "{certDays} 日"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{chosenCount, plural, one {Create # sensor} other {Create # sensors}}"
+msgstr "{chosenCount, plural, one {# 個のセンサーを作成} other {# 個のセンサーを作成}}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# コア} other {# コア}}"
@@ -86,6 +90,10 @@ msgstr "{count, plural, other {絞り込んだコンテナー # 件}}"
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, other {絞り込んだサービス # 件}}"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{count, plural, one {# host has no ping (ICMP) sensor. A ping sensor shows whether it answers on the network, even when its agent is down.} other {# hosts have no ping (ICMP) sensor. A ping sensor shows whether they answer on the network, even when their agent is down.}}"
+msgstr "{count, plural, one {# 台のホストに ping (ICMP) センサーがありません。ping センサーは、エージェントが停止していても、ネットワーク上で応答するかどうかを示します。} other {# 台のホストに ping (ICMP) センサーがありません。ping センサーは、エージェントが停止していても、ネットワーク上で応答するかどうかを示します。}}"
+
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {選択したプロセス # 個} other {選択したプロセス # 個}}"
@@ -107,6 +115,7 @@ msgid "{count} processes · CPU {cpuText} · Memory {memText}"
 msgstr "{count} プロセス · CPU {cpuText} · メモリ {memText}"
 
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "新しいセンサー {created} 件、既存のセンサーにチェック {added} 件を追加しました。"
 
@@ -1477,6 +1486,10 @@ msgstr "初回ログイン時にユーザーを作成する (作成しない場�
 msgid "Created"
 msgstr "作成日"
 
+#: src/components/routes/settings/general.tsx
+msgid "Creates a ping (ICMP) sensor for each host that doesn't have one yet."
+msgstr "まだ ping (ICMP) センサーがないホストごとに作成します。"
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Critical (%)"
 msgstr "致命的 (%)"
@@ -1786,6 +1799,10 @@ msgstr "DockerネットワークI/O"
 msgid "Documentation"
 msgstr "ドキュメント"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Don't ask again"
+msgstr "今後表示しない"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Done"
@@ -1966,6 +1983,8 @@ msgstr "一時的"
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "エラー"
@@ -1973,6 +1992,10 @@ msgstr "エラー"
 #: src/lib/quiet-hours.ts
 msgid "Every day"
 msgstr "毎日"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Every host has a ping sensor."
+msgstr "すべてのホストに ping センサーがあります。"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2386,6 +2409,10 @@ msgstr "ホストされているサービス"
 #: src/components/sensors/sensors-board.tsx
 msgid "Hosts only"
 msgstr "ホストのみ"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Hosts without ping sensor"
+msgstr "ping センサーのないホスト"
 
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
@@ -3020,6 +3047,7 @@ msgid "Network monitors from a host"
 msgstr "ホストからのネットワークモニター"
 
 #: src/components/command-palette.tsx
+#: src/components/routes/settings/general.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/lib/header-icons.ts
 msgid "Network sensors"
@@ -3053,6 +3081,10 @@ msgstr "新しいグループ"
 #: src/components/routes/settings/security.tsx
 msgid "New recovery codes"
 msgstr "新しいリカバリー コード"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "new sensor"
+msgstr "新しいセンサー"
 
 #: src/components/routes/settings/audit-log.tsx
 msgid "Next page"
@@ -3191,6 +3223,10 @@ msgstr "なし"
 msgid "Not enabled"
 msgstr "無効"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Not now"
+msgstr "今はしない"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
 msgstr "未報告"
@@ -3218,6 +3254,10 @@ msgstr "通知には、最近のコンテナログの抜粋が含まれる場合
 #: src/components/login/auth-form.tsx
 msgid "OAuth 2 / OIDC support"
 msgstr "OAuth 2 / OIDCサポート"
+
+#: src/components/routes/settings/general.tsx
+msgid "Offer it after each login when hosts have no ping sensor"
+msgstr "ping センサーのないホストがあるとき、ログインのたびに提案する"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
@@ -3501,6 +3541,14 @@ msgstr "永続性"
 #: src/components/routes/system/raw-capacity-label.tsx
 msgid "Physical device space. True usable capacity is unknown. Pool disk usage alerts are disabled."
 msgstr "物理デバイス容量。実際に使用可能な容量は不明です。プールのディスク使用量アラートは無効になっています。"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "ping added to the sensor {sensorName}"
+msgstr "センサー {sensorName} に ping を追加"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Ping sensors created"
+msgstr "ping センサーを作成しました"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
@@ -4490,6 +4538,10 @@ msgstr "スワップ使用量"
 #: src/lib/header-icons.ts
 msgid "Switch theme"
 msgstr "テーマを切り替え"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Sync hosts and sensors"
+msgstr "ホストとセンサーを同期"
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx

@@ -62,6 +62,10 @@ msgstr "{ackCount, plural, other {Hiện mục đã xác nhận (#)}}"
 msgid "{certDays} days"
 msgstr "{certDays} ngày"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{chosenCount, plural, one {Create # sensor} other {Create # sensors}}"
+msgstr "{chosenCount, plural, one {Tạo # cảm biến} other {Tạo # cảm biến}}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# nhân} other {# nhân}}"
@@ -86,6 +90,10 @@ msgstr "{count, plural, other {# container đã lọc}}"
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, other {# dịch vụ đã lọc}}"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{count, plural, one {# host has no ping (ICMP) sensor. A ping sensor shows whether it answers on the network, even when its agent is down.} other {# hosts have no ping (ICMP) sensor. A ping sensor shows whether they answer on the network, even when their agent is down.}}"
+msgstr "{count, plural, one {# máy chủ chưa có cảm biến ping (ICMP). Cảm biến ping cho biết máy có phản hồi trên mạng hay không, ngay cả khi tác tử của nó ngừng hoạt động.} other {# máy chủ chưa có cảm biến ping (ICMP). Cảm biến ping cho biết chúng có phản hồi trên mạng hay không, ngay cả khi tác tử ngừng hoạt động.}}"
+
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {# tiến trình đã chọn} other {# tiến trình đã chọn}}"
@@ -107,6 +115,7 @@ msgid "{count} processes · CPU {cpuText} · Memory {memText}"
 msgstr "{count} tiến trình · CPU {cpuText} · Bộ nhớ {memText}"
 
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} cảm biến mới, {added} kiểm tra được thêm vào cảm biến hiện có."
 
@@ -1477,6 +1486,10 @@ msgstr "Tạo người dùng ở lần đăng nhập đầu tiên (nếu không,
 msgid "Created"
 msgstr "Đã tạo"
 
+#: src/components/routes/settings/general.tsx
+msgid "Creates a ping (ICMP) sensor for each host that doesn't have one yet."
+msgstr "Tạo cảm biến ping (ICMP) cho mỗi máy chủ chưa có."
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Critical (%)"
 msgstr "Độ nghiêm trọng (%)"
@@ -1786,6 +1799,10 @@ msgstr "Mạng I/O Docker"
 msgid "Documentation"
 msgstr "Tài liệu"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Don't ask again"
+msgstr "Không hỏi lại"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Done"
@@ -1966,6 +1983,8 @@ msgstr "Tạm thời"
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "Lỗi"
@@ -1973,6 +1992,10 @@ msgstr "Lỗi"
 #: src/lib/quiet-hours.ts
 msgid "Every day"
 msgstr "Mỗi ngày"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Every host has a ping sensor."
+msgstr "Mọi máy chủ đều có cảm biến ping."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2386,6 +2409,10 @@ msgstr "Dịch vụ được lưu trữ"
 #: src/components/sensors/sensors-board.tsx
 msgid "Hosts only"
 msgstr "Chỉ máy chủ"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Hosts without ping sensor"
+msgstr "Máy chủ chưa có cảm biến ping"
 
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
@@ -3020,6 +3047,7 @@ msgid "Network monitors from a host"
 msgstr "Giám sát mạng từ một máy chủ"
 
 #: src/components/command-palette.tsx
+#: src/components/routes/settings/general.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/lib/header-icons.ts
 msgid "Network sensors"
@@ -3053,6 +3081,10 @@ msgstr "Nhóm mới"
 #: src/components/routes/settings/security.tsx
 msgid "New recovery codes"
 msgstr "Mã khôi phục mới"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "new sensor"
+msgstr "cảm biến mới"
 
 #: src/components/routes/settings/audit-log.tsx
 msgid "Next page"
@@ -3191,6 +3223,10 @@ msgstr "Không có"
 msgid "Not enabled"
 msgstr "Chưa bật"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Not now"
+msgstr "Để sau"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
 msgstr "Không được báo cáo"
@@ -3218,6 +3254,10 @@ msgstr "Thông báo có thể bao gồm các đoạn trích gần đây từ nh�
 #: src/components/login/auth-form.tsx
 msgid "OAuth 2 / OIDC support"
 msgstr "Hỗ trợ OAuth 2 / OIDC"
+
+#: src/components/routes/settings/general.tsx
+msgid "Offer it after each login when hosts have no ping sensor"
+msgstr "Đề xuất sau mỗi lần đăng nhập khi có máy chủ chưa có cảm biến ping"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
@@ -3501,6 +3541,14 @@ msgstr "Tính bền vững"
 #: src/components/routes/system/raw-capacity-label.tsx
 msgid "Physical device space. True usable capacity is unknown. Pool disk usage alerts are disabled."
 msgstr "Dung lượng thiết bị vật lý. Dung lượng khả dụng thực tế không xác định. Cảnh báo sử dụng đĩa pool đã bị tắt."
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "ping added to the sensor {sensorName}"
+msgstr "thêm ping vào cảm biến {sensorName}"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Ping sensors created"
+msgstr "Đã tạo cảm biến ping"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
@@ -4490,6 +4538,10 @@ msgstr "Sử dụng Hoán đổi"
 #: src/lib/header-icons.ts
 msgid "Switch theme"
 msgstr "Đổi giao diện"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Sync hosts and sensors"
+msgstr "Đồng bộ máy chủ và cảm biến"
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx

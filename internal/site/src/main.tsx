@@ -4,7 +4,7 @@ import { I18nProvider } from "@lingui/react"
 import { useStore } from "@nanostores/react"
 import { DirectionProvider } from "@radix-ui/react-direction"
 // import { Suspense, lazy, useEffect, StrictMode } from "react"
-import { lazy, memo, Suspense, useEffect } from "react"
+import { lazy, memo, Suspense, useEffect, useRef, useState } from "react"
 import ReactDOM from "react-dom/client"
 import Navbar from "@/components/navbar.tsx"
 import { ActiveAlerts } from "@/components/active-alerts"
@@ -47,6 +47,9 @@ const Monitors = lazy(() => import("@/components/routes/monitors.tsx"))
 const SystemDetail = lazy(() => import("@/components/routes/system.tsx"))
 const SensorPage = lazy(() => import("@/components/routes/sensor.tsx"))
 const CopyToClipboardDialog = lazy(() => import("@/components/copy-to-clipboard.tsx"))
+const SensorSyncAfterLogin = lazy(() =>
+	import("@/components/sensors/sensor-sync-dialog.tsx").then((m) => ({ default: m.SensorSyncAfterLogin }))
+)
 
 const App = memo(() => {
 	const page = useStore($router)
@@ -130,6 +133,17 @@ const App = memo(() => {
 
 const Layout = () => {
 	const authenticated = useStore($authenticated)
+	// a login of this page, not a session kept from before: checks the ping sensors of the hosts
+	const loggedOut = useRef(!authenticated)
+	const [justLoggedIn, setJustLoggedIn] = useState(false)
+	useEffect(() => {
+		if (!authenticated) {
+			loggedOut.current = true
+		} else if (loggedOut.current) {
+			loggedOut.current = false
+			setJustLoggedIn(true)
+		}
+	}, [authenticated])
 	const copyContent = useStore($copyContent)
 	const direction = useStore($direction)
 	const { layoutWidth } = useStore($userSettings, { keys: ["layoutWidth"] })
@@ -156,6 +170,11 @@ const Layout = () => {
 						</div>
 						<App />
 						<TitleTooltips />
+						{justLoggedIn && (
+							<Suspense>
+								<SensorSyncAfterLogin onDone={() => setJustLoggedIn(false)} />
+							</Suspense>
+						)}
 						{copyContent && (
 							<Suspense>
 								<CopyToClipboardDialog content={copyContent} />

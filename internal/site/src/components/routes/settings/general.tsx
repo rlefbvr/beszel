@@ -1,8 +1,17 @@
 /** biome-ignore-all lint/correctness/useUniqueElementIds: component is only rendered once */
 import { Trans, useLingui } from "@lingui/react/macro"
-import { DownloadIcon, GlobeIcon, LoaderCircleIcon, SaveIcon, ServerCogIcon, WandSparklesIcon } from "lucide-react"
+import {
+	DownloadIcon,
+	GlobeIcon,
+	LoaderCircleIcon,
+	NetworkIcon,
+	SaveIcon,
+	ServerCogIcon,
+	WandSparklesIcon,
+} from "lucide-react"
 import { useState } from "react"
 import { useStore } from "@nanostores/react"
+import { SensorSyncButton } from "@/components/sensors/sensor-sync-dialog"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
@@ -10,7 +19,15 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
 import { toast } from "@/components/ui/use-toast"
-import { isAdmin, saveAgentInstallDir, saveAgentServiceName, saveChartPeriods, saveServicesInterval } from "@/lib/api"
+import {
+	isAdmin,
+	isReadOnlyUser,
+	queueUserSettings,
+	saveAgentInstallDir,
+	saveAgentServiceName,
+	saveChartPeriods,
+	saveServicesInterval,
+} from "@/lib/api"
 import { HourFormat, Unit } from "@/lib/enums"
 import { $instance, saveInstance } from "@/lib/instance"
 import { $agentInstallDir, $agentServiceName, $chartPeriods, $servicesInterval } from "@/lib/stores"
@@ -314,6 +331,12 @@ export default function SettingsProfilePage({ userSettings }: { userSettings: Us
 						</div>
 					</div>
 				</div>
+				{!isReadOnlyUser() && (
+					<>
+						<Separator />
+						<SensorSyncSettings userSettings={userSettings} />
+					</>
+				)}
 				<Separator />
 				<div className="grid gap-2">
 					<div className="mb-2">
@@ -477,5 +500,37 @@ function ChartPeriods({ value, onChange }: { value: ChartTimes[]; onChange: (per
 				</div>
 			</div>
 		</>
+	)
+}
+
+/** Ping sensors of the hosts: created on demand, and the offer made after a login */
+function SensorSyncSettings({ userSettings }: { userSettings: UserSettings }) {
+	const [ask, setAsk] = useState(userSettings.sensorSyncPrompt !== false)
+	return (
+		<div className="grid gap-2">
+			<div className="mb-2">
+				<h3 className="mb-1 text-lg font-medium flex items-center gap-2">
+					<NetworkIcon className="h-4 w-4" />
+					<Trans>Network sensors</Trans>
+				</h3>
+				<p className="text-sm text-muted-foreground leading-relaxed">
+					<Trans>Creates a ping (ICMP) sensor for each host that doesn't have one yet.</Trans>
+				</p>
+			</div>
+			<SensorSyncButton />
+			<div className="flex items-center gap-2 text-sm mt-1">
+				<Checkbox
+					id="sensorSyncPrompt"
+					checked={ask}
+					onCheckedChange={(checked) => {
+						setAsk(checked === true)
+						queueUserSettings({ sensorSyncPrompt: checked === true })
+					}}
+				/>
+				<label htmlFor="sensorSyncPrompt" className="cursor-pointer">
+					<Trans>Offer it after each login when hosts have no ping sensor</Trans>
+				</label>
+			</div>
+		</div>
 	)
 }

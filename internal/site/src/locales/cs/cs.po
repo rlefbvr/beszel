@@ -62,6 +62,10 @@ msgstr "{ackCount, plural, other {Zobrazit potvrzená (#)}}"
 msgid "{certDays} days"
 msgstr "{certDays} dní"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{chosenCount, plural, one {Create # sensor} other {Create # sensors}}"
+msgstr "{chosenCount, plural, one {Vytvořit # senzor} other {Vytvořit # senzorů}}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# jádro} few {# jádra} many {# jader} other {# jader}}"
@@ -86,6 +90,10 @@ msgstr "{count, plural, one {# filtrovaný kontejner} few {# filtrované kontejn
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# filtrovaná služba} few {# filtrované služby} many {# filtrované služby} other {# filtrovaných služeb}}"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{count, plural, one {# host has no ping (ICMP) sensor. A ping sensor shows whether it answers on the network, even when its agent is down.} other {# hosts have no ping (ICMP) sensor. A ping sensor shows whether they answer on the network, even when their agent is down.}}"
+msgstr "{count, plural, one {# hostitel nemá senzor ping (ICMP). Senzor ping ukazuje, zda odpovídá v síti, i když jeho agent neběží.} other {# hostitelů nemá senzor ping (ICMP). Senzor ping ukazuje, zda odpovídají v síti, i když jejich agent neběží.}}"
+
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {# vybraný proces} other {# vybraných procesů}}"
@@ -107,6 +115,7 @@ msgid "{count} processes · CPU {cpuText} · Memory {memText}"
 msgstr "{count} procesů · CPU {cpuText} · Paměť {memText}"
 
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} nových senzorů, {added} kontrol přidáno ke stávajícím senzorům."
 
@@ -1477,6 +1486,10 @@ msgstr "Vytvořit uživatele při prvním přihlášení (jinak jen existující
 msgid "Created"
 msgstr "Vytvořeno"
 
+#: src/components/routes/settings/general.tsx
+msgid "Creates a ping (ICMP) sensor for each host that doesn't have one yet."
+msgstr "Vytvoří senzor ping (ICMP) pro každého hostitele, který ho ještě nemá."
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Critical (%)"
 msgstr "Kritické (%)"
@@ -1786,6 +1799,10 @@ msgstr "Síťové I/O Dockeru"
 msgid "Documentation"
 msgstr "Dokumentace"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Don't ask again"
+msgstr "Znovu se neptat"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Done"
@@ -1966,6 +1983,8 @@ msgstr "Efemérní"
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "Chyba"
@@ -1973,6 +1992,10 @@ msgstr "Chyba"
 #: src/lib/quiet-hours.ts
 msgid "Every day"
 msgstr "Každý den"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Every host has a ping sensor."
+msgstr "Každý hostitel má senzor ping."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2386,6 +2409,10 @@ msgstr "Hostované služby"
 #: src/components/sensors/sensors-board.tsx
 msgid "Hosts only"
 msgstr "Pouze hostitelé"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Hosts without ping sensor"
+msgstr "Hostitelé bez senzoru ping"
 
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
@@ -3020,6 +3047,7 @@ msgid "Network monitors from a host"
 msgstr "Síťové monitory z hostitele"
 
 #: src/components/command-palette.tsx
+#: src/components/routes/settings/general.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/lib/header-icons.ts
 msgid "Network sensors"
@@ -3053,6 +3081,10 @@ msgstr "Nová skupina"
 #: src/components/routes/settings/security.tsx
 msgid "New recovery codes"
 msgstr "Nové kódy pro obnovení"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "new sensor"
+msgstr "nový senzor"
 
 #: src/components/routes/settings/audit-log.tsx
 msgid "Next page"
@@ -3191,6 +3223,10 @@ msgstr "Žádné"
 msgid "Not enabled"
 msgstr "Nezapnuto"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Not now"
+msgstr "Teď ne"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
 msgstr "Nehlášeno"
@@ -3218,6 +3254,10 @@ msgstr "Oznámení mohou obsahovat nedávné výňatky z protokolů kontejnerů.
 #: src/components/login/auth-form.tsx
 msgid "OAuth 2 / OIDC support"
 msgstr "Podpora OAuth 2 / OIDC"
+
+#: src/components/routes/settings/general.tsx
+msgid "Offer it after each login when hosts have no ping sensor"
+msgstr "Nabídnout po každém přihlášení, když hostitelé nemají senzor ping"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
@@ -3501,6 +3541,14 @@ msgstr "Trvalost"
 #: src/components/routes/system/raw-capacity-label.tsx
 msgid "Physical device space. True usable capacity is unknown. Pool disk usage alerts are disabled."
 msgstr "Fyzické místo na zařízení. Skutečná využitelná kapacita není známa. Upozornění na využití disků fondu jsou vypnutá."
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "ping added to the sensor {sensorName}"
+msgstr "ping přidán do senzoru {sensorName}"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Ping sensors created"
+msgstr "Senzory ping vytvořeny"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
@@ -4490,6 +4538,10 @@ msgstr "Swap využití"
 #: src/lib/header-icons.ts
 msgid "Switch theme"
 msgstr "Přepnout motiv"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Sync hosts and sensors"
+msgstr "Synchronizovat hostitele a senzory"
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx

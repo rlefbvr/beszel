@@ -62,6 +62,10 @@ msgstr "{ackCount, plural, other {Prikaži potrjena (#)}}"
 msgid "{certDays} days"
 msgstr "{certDays} dni"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{chosenCount, plural, one {Create # sensor} other {Create # sensors}}"
+msgstr "{chosenCount, plural, one {Ustvari # senzor} other {Ustvari # senzorjev}}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# jedro} two {# jedri} few {# jedra} other {# jeder}}"
@@ -86,6 +90,10 @@ msgstr "{count, plural, one {# filtriran vsebnik} two {# filtrirana vsebnika} fe
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# filtrirana storitev} two {# filtrirani storitvi} few {# filtrirane storitve} other {# filtriranih storitev}}"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{count, plural, one {# host has no ping (ICMP) sensor. A ping sensor shows whether it answers on the network, even when its agent is down.} other {# hosts have no ping (ICMP) sensor. A ping sensor shows whether they answer on the network, even when their agent is down.}}"
+msgstr "{count, plural, one {# gostitelj nima senzorja ping (ICMP). Senzor ping pokaže, ali odgovarja v omrežju, tudi ko njegov agent ne deluje.} other {# gostiteljev nima senzorja ping (ICMP). Senzor ping pokaže, ali odgovarjajo v omrežju, tudi ko njihov agent ne deluje.}}"
+
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {# izbran proces} other {# izbranih procesov}}"
@@ -107,6 +115,7 @@ msgid "{count} processes · CPU {cpuText} · Memory {memText}"
 msgstr "{count} procesov · CPE {cpuText} · Pomnilnik {memText}"
 
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "Novih senzorjev: {created}, preverjanj dodanih obstoječim senzorjem: {added}."
 
@@ -1477,6 +1486,10 @@ msgstr "Ustvari uporabnike ob prvi prijavi (sicer le obstoječe uporabnike z ist
 msgid "Created"
 msgstr "Ustvarjeno"
 
+#: src/components/routes/settings/general.tsx
+msgid "Creates a ping (ICMP) sensor for each host that doesn't have one yet."
+msgstr "Ustvari senzor ping (ICMP) za vsakega gostitelja, ki ga še nima."
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Critical (%)"
 msgstr "Kritično (%)"
@@ -1786,6 +1799,10 @@ msgstr "Docker I/O mreže"
 msgid "Documentation"
 msgstr "Dokumentacija"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Don't ask again"
+msgstr "Ne sprašuj več"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Done"
@@ -1966,6 +1983,8 @@ msgstr "Prehodni"
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "Napaka"
@@ -1973,6 +1992,10 @@ msgstr "Napaka"
 #: src/lib/quiet-hours.ts
 msgid "Every day"
 msgstr "Vsak dan"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Every host has a ping sensor."
+msgstr "Vsak gostitelj ima senzor ping."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2386,6 +2409,10 @@ msgstr "Gostujoče storitve"
 #: src/components/sensors/sensors-board.tsx
 msgid "Hosts only"
 msgstr "Samo gostitelji"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Hosts without ping sensor"
+msgstr "Gostitelji brez senzorja ping"
 
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
@@ -3020,6 +3047,7 @@ msgid "Network monitors from a host"
 msgstr "Omrežni nadzorniki z gostitelja"
 
 #: src/components/command-palette.tsx
+#: src/components/routes/settings/general.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/lib/header-icons.ts
 msgid "Network sensors"
@@ -3053,6 +3081,10 @@ msgstr "Nova skupina"
 #: src/components/routes/settings/security.tsx
 msgid "New recovery codes"
 msgstr "Nove obnovitvene kode"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "new sensor"
+msgstr "nov senzor"
 
 #: src/components/routes/settings/audit-log.tsx
 msgid "Next page"
@@ -3191,6 +3223,10 @@ msgstr "Brez"
 msgid "Not enabled"
 msgstr "Ni omogočeno"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Not now"
+msgstr "Ne zdaj"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
 msgstr "Ni sporočeno"
@@ -3218,6 +3254,10 @@ msgstr "Obvestila lahko vključujejo nedavne izseke dnevnikov vsebnikov."
 #: src/components/login/auth-form.tsx
 msgid "OAuth 2 / OIDC support"
 msgstr "Podpora za OAuth 2 / OIDC"
+
+#: src/components/routes/settings/general.tsx
+msgid "Offer it after each login when hosts have no ping sensor"
+msgstr "Ponudi po vsaki prijavi, ko gostitelji nimajo senzorja ping"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
@@ -3501,6 +3541,14 @@ msgstr "Vztrajnost"
 #: src/components/routes/system/raw-capacity-label.tsx
 msgid "Physical device space. True usable capacity is unknown. Pool disk usage alerts are disabled."
 msgstr "Fizični prostor naprave. Dejanska uporabna zmogljivost ni znana. Opozorila o uporabi diskov poola so onemogočena."
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "ping added to the sensor {sensorName}"
+msgstr "ping dodan senzorju {sensorName}"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Ping sensors created"
+msgstr "Senzorji ping ustvarjeni"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
@@ -4490,6 +4538,10 @@ msgstr "Swap uporaba"
 #: src/lib/header-icons.ts
 msgid "Switch theme"
 msgstr "Zamenjaj temo"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Sync hosts and sensors"
+msgstr "Sinhroniziraj gostitelje in senzorje"
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx

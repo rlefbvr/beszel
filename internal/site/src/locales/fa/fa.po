@@ -62,6 +62,10 @@ msgstr "{ackCount, plural, other {نمایش تأییدشده‌ها (#)}}"
 msgid "{certDays} days"
 msgstr "{certDays} روز"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{chosenCount, plural, one {Create # sensor} other {Create # sensors}}"
+msgstr "{chosenCount, plural, one {ایجاد # حسگر} other {ایجاد # حسگر}}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# هسته} other {# هسته}}"
@@ -86,6 +90,10 @@ msgstr "{count, plural, one {# کانتینر فیلترشده} other {# کان�
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# سرویس فیلترشده} other {# سرویس فیلترشده}}"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{count, plural, one {# host has no ping (ICMP) sensor. A ping sensor shows whether it answers on the network, even when its agent is down.} other {# hosts have no ping (ICMP) sensor. A ping sensor shows whether they answer on the network, even when their agent is down.}}"
+msgstr "{count, plural, one {# میزبان حسگر پینگ (ICMP) ندارد. حسگر پینگ نشان می‌دهد که آیا در شبکه پاسخ می‌دهد، حتی وقتی عامل آن از کار افتاده است.} other {# میزبان حسگر پینگ (ICMP) ندارند. حسگر پینگ نشان می‌دهد که آیا در شبکه پاسخ می‌دهند، حتی وقتی عامل آن‌ها از کار افتاده است.}}"
+
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {# فرایند انتخاب‌شده} other {# فرایند انتخاب‌شده}}"
@@ -107,6 +115,7 @@ msgid "{count} processes · CPU {cpuText} · Memory {memText}"
 msgstr "{count} فرایند · CPU {cpuText} · حافظه {memText}"
 
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} حسگر جدید، {added} بررسی به حسگرهای موجود افزوده شد."
 
@@ -1477,6 +1486,10 @@ msgstr "ساخت کاربران در نخستین ورود (در غیر این �
 msgid "Created"
 msgstr "ایجاد شده"
 
+#: src/components/routes/settings/general.tsx
+msgid "Creates a ping (ICMP) sensor for each host that doesn't have one yet."
+msgstr "برای هر میزبانی که هنوز حسگر پینگ (ICMP) ندارد، یکی ایجاد می‌کند."
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Critical (%)"
 msgstr "بحرانی (%)"
@@ -1786,6 +1799,10 @@ msgstr "ورودی/خروجی شبکه داکر"
 msgid "Documentation"
 msgstr "مستندات"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Don't ask again"
+msgstr "دیگر نپرس"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Done"
@@ -1966,6 +1983,8 @@ msgstr "گذرا"
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "خطا"
@@ -1973,6 +1992,10 @@ msgstr "خطا"
 #: src/lib/quiet-hours.ts
 msgid "Every day"
 msgstr "هر روز"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Every host has a ping sensor."
+msgstr "هر میزبان یک حسگر پینگ دارد."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2386,6 +2409,10 @@ msgstr "سرویس‌های میزبانی‌شده"
 #: src/components/sensors/sensors-board.tsx
 msgid "Hosts only"
 msgstr "فقط میزبان‌ها"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Hosts without ping sensor"
+msgstr "میزبان‌های بدون حسگر پینگ"
 
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
@@ -3020,6 +3047,7 @@ msgid "Network monitors from a host"
 msgstr "پایشگرهای شبکه از یک میزبان"
 
 #: src/components/command-palette.tsx
+#: src/components/routes/settings/general.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/lib/header-icons.ts
 msgid "Network sensors"
@@ -3053,6 +3081,10 @@ msgstr "گروه جدید"
 #: src/components/routes/settings/security.tsx
 msgid "New recovery codes"
 msgstr "کدهای بازیابی جدید"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "new sensor"
+msgstr "حسگر جدید"
 
 #: src/components/routes/settings/audit-log.tsx
 msgid "Next page"
@@ -3191,6 +3223,10 @@ msgstr "هیچ‌کدام"
 msgid "Not enabled"
 msgstr "فعال نیست"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Not now"
+msgstr "اکنون نه"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
 msgstr "گزارش نشده"
@@ -3218,6 +3254,10 @@ msgstr "اعلان‌ها ممکن است شامل بخش‌هایی از گزا
 #: src/components/login/auth-form.tsx
 msgid "OAuth 2 / OIDC support"
 msgstr "پشتیبانی از OAuth 2 / OIDC"
+
+#: src/components/routes/settings/general.tsx
+msgid "Offer it after each login when hosts have no ping sensor"
+msgstr "پس از هر ورود، وقتی میزبان‌ها حسگر پینگ ندارند، پیشنهاد شود"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
@@ -3501,6 +3541,14 @@ msgstr "ماندگاری"
 #: src/components/routes/system/raw-capacity-label.tsx
 msgid "Physical device space. True usable capacity is unknown. Pool disk usage alerts are disabled."
 msgstr "فضای فیزیکی دستگاه. ظرفیت واقعی قابل استفاده نامشخص است. هشدارهای استفاده از دیسک استخر غیرفعال هستند."
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "ping added to the sensor {sensorName}"
+msgstr "پینگ به حسگر {sensorName} افزوده می‌شود"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Ping sensors created"
+msgstr "حسگرهای پینگ ایجاد شدند"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
@@ -4490,6 +4538,10 @@ msgstr "میزان استفاده از Swap"
 #: src/lib/header-icons.ts
 msgid "Switch theme"
 msgstr "تغییر تم"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Sync hosts and sensors"
+msgstr "همگام‌سازی میزبان‌ها و حسگرها"
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx

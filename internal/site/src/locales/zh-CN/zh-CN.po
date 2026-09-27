@@ -62,6 +62,10 @@ msgstr "{ackCount, plural, other {显示已确认 (#)}}"
 msgid "{certDays} days"
 msgstr "{certDays} 天"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{chosenCount, plural, one {Create # sensor} other {Create # sensors}}"
+msgstr "{chosenCount, plural, one {创建 # 个传感器} other {创建 # 个传感器}}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# 核心} other {# 核心}}"
@@ -86,6 +90,10 @@ msgstr "{count, plural, other {# 个筛选后的容器}}"
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, other {# 个筛选后的服务}}"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{count, plural, one {# host has no ping (ICMP) sensor. A ping sensor shows whether it answers on the network, even when its agent is down.} other {# hosts have no ping (ICMP) sensor. A ping sensor shows whether they answer on the network, even when their agent is down.}}"
+msgstr "{count, plural, one {# 台主机没有 ping (ICMP) 传感器。ping 传感器会显示主机是否在网络上响应，即使其代理已停止。} other {# 台主机没有 ping (ICMP) 传感器。ping 传感器会显示主机是否在网络上响应，即使其代理已停止。}}"
+
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {已选择 # 个进程} other {已选择 # 个进程}}"
@@ -107,6 +115,7 @@ msgid "{count} processes · CPU {cpuText} · Memory {memText}"
 msgstr "{count} 个进程 · CPU {cpuText} · 内存 {memText}"
 
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "新增 {created} 个传感器，并为现有传感器添加 {added} 项检查。"
 
@@ -1477,6 +1486,10 @@ msgstr "在首次登录时创建用户（否则仅限相同电子邮件的现有
 msgid "Created"
 msgstr "创建时间"
 
+#: src/components/routes/settings/general.tsx
+msgid "Creates a ping (ICMP) sensor for each host that doesn't have one yet."
+msgstr "为每台尚无 ping (ICMP) 传感器的主机创建一个。"
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Critical (%)"
 msgstr "临界 (%)"
@@ -1786,6 +1799,10 @@ msgstr "Docker 网络 I/O"
 msgid "Documentation"
 msgstr "文档"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Don't ask again"
+msgstr "不再询问"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Done"
@@ -1966,6 +1983,8 @@ msgstr "暂时"
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "错误"
@@ -1973,6 +1992,10 @@ msgstr "错误"
 #: src/lib/quiet-hours.ts
 msgid "Every day"
 msgstr "每天"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Every host has a ping sensor."
+msgstr "每台主机都有 ping 传感器。"
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2386,6 +2409,10 @@ msgstr "托管的服务"
 #: src/components/sensors/sensors-board.tsx
 msgid "Hosts only"
 msgstr "仅主机"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Hosts without ping sensor"
+msgstr "没有 ping 传感器的主机"
 
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
@@ -3020,6 +3047,7 @@ msgid "Network monitors from a host"
 msgstr "来自主机的网络监控"
 
 #: src/components/command-palette.tsx
+#: src/components/routes/settings/general.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/lib/header-icons.ts
 msgid "Network sensors"
@@ -3053,6 +3081,10 @@ msgstr "新建分组"
 #: src/components/routes/settings/security.tsx
 msgid "New recovery codes"
 msgstr "新的恢复码"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "new sensor"
+msgstr "新传感器"
 
 #: src/components/routes/settings/audit-log.tsx
 msgid "Next page"
@@ -3191,6 +3223,10 @@ msgstr "无"
 msgid "Not enabled"
 msgstr "未启用"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Not now"
+msgstr "暂时不要"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
 msgstr "未上报"
@@ -3218,6 +3254,10 @@ msgstr "通知可能包含近期的容器日志片段。"
 #: src/components/login/auth-form.tsx
 msgid "OAuth 2 / OIDC support"
 msgstr "支持 OAuth 2/OIDC"
+
+#: src/components/routes/settings/general.tsx
+msgid "Offer it after each login when hosts have no ping sensor"
+msgstr "每次登录后，若有主机没有 ping 传感器便提出建议"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
@@ -3501,6 +3541,14 @@ msgstr "持久性"
 #: src/components/routes/system/raw-capacity-label.tsx
 msgid "Physical device space. True usable capacity is unknown. Pool disk usage alerts are disabled."
 msgstr "物理设备空间。真实可用容量未知。存储池磁盘使用率警报已禁用。"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "ping added to the sensor {sensorName}"
+msgstr "ping 将加入传感器 {sensorName}"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Ping sensors created"
+msgstr "已创建 ping 传感器"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
@@ -4490,6 +4538,10 @@ msgstr "SWAP 使用率"
 #: src/lib/header-icons.ts
 msgid "Switch theme"
 msgstr "切换主题"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Sync hosts and sensors"
+msgstr "同步主机与传感器"
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx

@@ -62,6 +62,10 @@ msgstr "{ackCount, plural, other {Nyugtázottak megjelenítése (#)}}"
 msgid "{certDays} days"
 msgstr "{certDays} nap"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{chosenCount, plural, one {Create # sensor} other {Create # sensors}}"
+msgstr "{chosenCount, plural, one {# érzékelő létrehozása} other {# érzékelő létrehozása}}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# mag} other {# mag}}"
@@ -86,6 +90,10 @@ msgstr "{count, plural, one {# szűrt konténer} other {# szűrt konténer}}"
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# szűrt szolgáltatás} other {# szűrt szolgáltatás}}"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{count, plural, one {# host has no ping (ICMP) sensor. A ping sensor shows whether it answers on the network, even when its agent is down.} other {# hosts have no ping (ICMP) sensor. A ping sensor shows whether they answer on the network, even when their agent is down.}}"
+msgstr "{count, plural, one {# gazdagépnek nincs ping (ICMP) érzékelője. A ping érzékelő mutatja, hogy válaszol-e a hálózaton, akkor is, ha az ügynöke leállt.} other {# gazdagépnek nincs ping (ICMP) érzékelője. A ping érzékelő mutatja, hogy válaszolnak-e a hálózaton, akkor is, ha az ügynökük leállt.}}"
+
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {# kiválasztott folyamat} other {# kiválasztott folyamat}}"
@@ -107,6 +115,7 @@ msgid "{count} processes · CPU {cpuText} · Memory {memText}"
 msgstr "{count} folyamat · CPU {cpuText} · Memória {memText}"
 
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} új érzékelő, {added} ellenőrzés hozzáadva meglévő érzékelőkhöz."
 
@@ -1477,6 +1486,10 @@ msgstr "Felhasználók létrehozása az első bejelentkezéskor (egyébként csa
 msgid "Created"
 msgstr "Létrehozva"
 
+#: src/components/routes/settings/general.tsx
+msgid "Creates a ping (ICMP) sensor for each host that doesn't have one yet."
+msgstr "Ping (ICMP) érzékelőt hoz létre minden gazdagéphez, amelynek még nincs."
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Critical (%)"
 msgstr "Kritikus (%)"
@@ -1786,6 +1799,10 @@ msgstr "Docker hálózat I/O"
 msgid "Documentation"
 msgstr "Dokumentáció"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Don't ask again"
+msgstr "Ne kérdezze újra"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Done"
@@ -1966,6 +1983,8 @@ msgstr "Ideiglenes"
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "Hiba"
@@ -1973,6 +1992,10 @@ msgstr "Hiba"
 #: src/lib/quiet-hours.ts
 msgid "Every day"
 msgstr "Minden nap"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Every host has a ping sensor."
+msgstr "Minden gazdagépnek van ping érzékelője."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2386,6 +2409,10 @@ msgstr "Futtatott szolgáltatások"
 #: src/components/sensors/sensors-board.tsx
 msgid "Hosts only"
 msgstr "Csak gazdagépek"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Hosts without ping sensor"
+msgstr "Ping érzékelő nélküli gazdagépek"
 
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
@@ -3020,6 +3047,7 @@ msgid "Network monitors from a host"
 msgstr "Hálózati monitorok egy gazdagépről"
 
 #: src/components/command-palette.tsx
+#: src/components/routes/settings/general.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/lib/header-icons.ts
 msgid "Network sensors"
@@ -3053,6 +3081,10 @@ msgstr "Új csoport"
 #: src/components/routes/settings/security.tsx
 msgid "New recovery codes"
 msgstr "Új helyreállító kódok"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "new sensor"
+msgstr "új érzékelő"
 
 #: src/components/routes/settings/audit-log.tsx
 msgid "Next page"
@@ -3191,6 +3223,10 @@ msgstr "Nincs"
 msgid "Not enabled"
 msgstr "Nincs bekapcsolva"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Not now"
+msgstr "Most nem"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
 msgstr "Nincs jelentve"
@@ -3218,6 +3254,10 @@ msgstr "Az értesítések tartalmazhatnak részleteket a konténerek legutóbbi 
 #: src/components/login/auth-form.tsx
 msgid "OAuth 2 / OIDC support"
 msgstr "OAuth 2 / OIDC támogatás"
+
+#: src/components/routes/settings/general.tsx
+msgid "Offer it after each login when hosts have no ping sensor"
+msgstr "Felajánlás minden bejelentkezés után, ha gazdagépeknek nincs ping érzékelője"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
@@ -3501,6 +3541,14 @@ msgstr "Tartósság"
 #: src/components/routes/system/raw-capacity-label.tsx
 msgid "Physical device space. True usable capacity is unknown. Pool disk usage alerts are disabled."
 msgstr "Fizikai eszközterület. A valódi használható kapacitás ismeretlen. A készlet lemezhasználati riasztásai le vannak tiltva."
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "ping added to the sensor {sensorName}"
+msgstr "ping hozzáadása a(z) {sensorName} érzékelőhöz"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Ping sensors created"
+msgstr "Ping érzékelők létrehozva"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
@@ -4490,6 +4538,10 @@ msgstr "Swap használat"
 #: src/lib/header-icons.ts
 msgid "Switch theme"
 msgstr "Téma váltása"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Sync hosts and sensors"
+msgstr "Gazdagépek és érzékelők szinkronizálása"
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx

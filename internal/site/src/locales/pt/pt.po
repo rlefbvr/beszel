@@ -62,6 +62,10 @@ msgstr "{ackCount, plural, other {Mostrar reconhecidos (#)}}"
 msgid "{certDays} days"
 msgstr "{certDays} dias"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{chosenCount, plural, one {Create # sensor} other {Create # sensors}}"
+msgstr "{chosenCount, plural, one {Criar # sensor} other {Criar # sensores}}"
+
 #: src/components/routes/system/info-bar.tsx
 msgid "{cores, plural, one {# core} other {# cores}}"
 msgstr "{cores, plural, one {# núcleo} other {# núcleos}}"
@@ -86,6 +90,10 @@ msgstr "{count, plural, one {# contentor filtrado} other {# contentores filtrado
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# serviço filtrado} other {# serviços filtrados}}"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "{count, plural, one {# host has no ping (ICMP) sensor. A ping sensor shows whether it answers on the network, even when its agent is down.} other {# hosts have no ping (ICMP) sensor. A ping sensor shows whether they answer on the network, even when their agent is down.}}"
+msgstr "{count, plural, one {# anfitrião não tem sensor de ping (ICMP). Um sensor de ping mostra se responde na rede, mesmo quando o seu agente está em baixo.} other {# anfitriões não têm sensor de ping (ICMP). Um sensor de ping mostra se respondem na rede, mesmo quando o seu agente está em baixo.}}"
+
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {# processo selecionado} other {# processos selecionados}}"
@@ -107,6 +115,7 @@ msgid "{count} processes · CPU {cpuText} · Memory {memText}"
 msgstr "{count} processos · CPU {cpuText} · Memória {memText}"
 
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} novo(s) sensor(es), {added} verificação(ões) adicionada(s) a sensores existentes."
 
@@ -1477,6 +1486,10 @@ msgstr "Criar os utilizadores no primeiro início de sessão (caso contrário, a
 msgid "Created"
 msgstr "Criado"
 
+#: src/components/routes/settings/general.tsx
+msgid "Creates a ping (ICMP) sensor for each host that doesn't have one yet."
+msgstr "Cria um sensor de ping (ICMP) para cada anfitrião que ainda não tenha um."
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Critical (%)"
 msgstr "Crítico (%)"
@@ -1786,6 +1799,10 @@ msgstr "E/S de Rede do Docker"
 msgid "Documentation"
 msgstr "Documentação"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Don't ask again"
+msgstr "Não perguntar novamente"
+
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/security.tsx
 msgid "Done"
@@ -1966,6 +1983,8 @@ msgstr "Efêmero"
 #: src/components/routes/settings/security.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
 #: src/components/sensors/sensor-bulk-add.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
+#: src/components/sensors/sensor-sync-dialog.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Error"
 msgstr "Erro"
@@ -1973,6 +1992,10 @@ msgstr "Erro"
 #: src/lib/quiet-hours.ts
 msgid "Every day"
 msgstr "Todos os dias"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Every host has a ping sensor."
+msgstr "Todos os anfitriões têm um sensor de ping."
 
 #: src/components/routes/settings/heartbeat.tsx
 msgid "Example:"
@@ -2386,6 +2409,10 @@ msgstr "Serviços hospedados"
 #: src/components/sensors/sensors-board.tsx
 msgid "Hosts only"
 msgstr "Apenas hosts"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Hosts without ping sensor"
+msgstr "Anfitriões sem sensor de ping"
 
 #: src/components/routes/settings/general.tsx
 msgid "How often agents collect systemd and Windows service data. Shorter intervals detect state changes sooner but write more data. Applies to all systems."
@@ -3020,6 +3047,7 @@ msgid "Network monitors from a host"
 msgstr "Monitores de rede a partir de um anfitrião"
 
 #: src/components/command-palette.tsx
+#: src/components/routes/settings/general.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/lib/header-icons.ts
 msgid "Network sensors"
@@ -3053,6 +3081,10 @@ msgstr "Novo grupo"
 #: src/components/routes/settings/security.tsx
 msgid "New recovery codes"
 msgstr "Novos códigos de recuperação"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "new sensor"
+msgstr "novo sensor"
 
 #: src/components/routes/settings/audit-log.tsx
 msgid "Next page"
@@ -3191,6 +3223,10 @@ msgstr "Nenhum"
 msgid "Not enabled"
 msgstr "Não ativada"
 
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Not now"
+msgstr "Agora não"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Not reported"
 msgstr "Não reportado"
@@ -3218,6 +3254,10 @@ msgstr "As notificações podem incluir excertos recentes dos registos dos conte
 #: src/components/login/auth-form.tsx
 msgid "OAuth 2 / OIDC support"
 msgstr "Suporte a OAuth 2 / OIDC"
+
+#: src/components/routes/settings/general.tsx
+msgid "Offer it after each login when hosts have no ping sensor"
+msgstr "Propor após cada início de sessão quando houver anfitriões sem sensor de ping"
 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
@@ -3501,6 +3541,14 @@ msgstr "Persistência"
 #: src/components/routes/system/raw-capacity-label.tsx
 msgid "Physical device space. True usable capacity is unknown. Pool disk usage alerts are disabled."
 msgstr "Espaço físico do dispositivo. A capacidade útil real é desconhecida. Os alertas de utilização do disco do pool estão desativados."
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "ping added to the sensor {sensorName}"
+msgstr "ping adicionado ao sensor {sensorName}"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Ping sensors created"
+msgstr "Sensores de ping criados"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
@@ -4490,6 +4538,10 @@ msgstr "Uso de Swap"
 #: src/lib/header-icons.ts
 msgid "Switch theme"
 msgstr "Mudar tema"
+
+#: src/components/sensors/sensor-sync-dialog.tsx
+msgid "Sync hosts and sensors"
+msgstr "Sincronizar anfitriões e sensores"
 
 #: src/components/alerts-history-columns.tsx
 #: src/components/alerts-history-columns.tsx
