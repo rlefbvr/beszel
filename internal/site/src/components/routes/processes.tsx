@@ -12,7 +12,8 @@ export default memo(() => {
 	return useMemo(
 		() => (
 			<>
-				<div className="grid gap-4">
+				{/* the blocks shrink to the page, their long names truncated */}
+				<div className="grid gap-4 *:min-w-0">
 					<ProcessesOverviewPage />
 				</div>
 				<FooterRepoLink />

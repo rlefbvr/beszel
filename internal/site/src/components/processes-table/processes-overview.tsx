@@ -933,7 +933,7 @@ function TopList({
 			{processes.length ? (
 				<ul className="grid gap-0.5">
 					{processes.map((process, index) => (
-						<li key={process.pid}>
+						<li key={process.pid} className="min-w-0">
 							<button
 								type="button"
 								onClick={() => onSelect(process)}
@@ -944,8 +944,8 @@ function TopList({
 									className={cn("absolute inset-y-0 start-0 rounded", rankColors[index] ?? rankColors.at(-1))}
 									style={{ width: `${((value(process) ?? 0) / max) * 100}%` }}
 								/>
-								<span className="relative truncate">{process.name}</span>
-								<span className={cn("relative ms-auto tabular-nums text-xs", usageClass(value(process)))}>
+								<span className="relative min-w-0 truncate">{process.name}</span>
+								<span className={cn("relative ms-auto shrink-0 tabular-nums text-xs", usageClass(value(process)))}>
 									{percent(value(process))}
 								</span>
 							</button>
