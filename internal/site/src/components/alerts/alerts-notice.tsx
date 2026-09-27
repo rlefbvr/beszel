@@ -171,6 +171,7 @@ export function RulesNotice({
 				<ul className="grid gap-1">
 					{rules.map((rule) => (
 						<li key={rule.id} className="flex items-center gap-2 min-w-0">
+							{rule.name && <span className="font-medium truncate shrink-0 max-w-[40%]">{rule.name}</span>}
 							<span className="truncate first-letter:uppercase">{describeRule(rule)}</span>
 							<span className="truncate text-muted-foreground">· {rule.targets}</span>
 							{rule.triggered && (

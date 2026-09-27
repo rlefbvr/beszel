@@ -79,7 +79,8 @@ export function StateAlertRules({ system }: { system: SystemRecord }) {
 						<div className="grid gap-0.5 min-w-0">
 							<div className="flex items-center gap-2 min-w-0">
 								<span className="font-medium shrink-0">{kindLabel(rule.kind)}</span>
-								<span className="truncate text-muted-foreground">{rule.targets}</span>
+								{/* a named rule shows its targets under its name */}
+								{!rule.name && <span className="truncate text-muted-foreground">{rule.targets}</span>}
 								{rule.triggered && (
 									<Badge className="bg-red-100 text-red-800 border-red-200 dark:opacity-80 shrink-0">
 										<Trans>Triggered</Trans>
@@ -92,6 +93,12 @@ export function StateAlertRules({ system }: { system: SystemRecord }) {
 									/>
 								)}
 							</div>
+							{rule.name && (
+								<>
+									<span className="truncate font-medium">{rule.name}</span>
+									<span className="truncate text-muted-foreground">{rule.targets}</span>
+								</>
+							)}
 							<span className="text-muted-foreground">
 								{describeRule(rule)}
 								{rule.cycles > 1 && ` · ${t`${rule.cycles} consecutive checks`}`}

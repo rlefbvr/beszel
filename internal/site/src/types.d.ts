@@ -309,6 +309,8 @@ export interface StateAlertRecord extends RecordModel {
 	user: string
 	system: string
 	kind: "service" | "container" | "process"
+	/** optional name given by the user, shown with the rule */
+	name?: string
 	/** comma separated name patterns (* and ? wildcards) */
 	targets: string
 	/** above and below: process rules on a metric */

@@ -138,6 +138,7 @@ export function StateRuleDialog({ subject, onClose }: { subject: RuleDialogSubje
 			const collection = pb.collection<StateAlertRecord>("state_alerts")
 			const body = {
 				...draft,
+				name: draft.name?.trim() ?? "",
 				targets: draft.targets
 					.split(",")
 					.map((p) => p.trim())
@@ -152,7 +153,7 @@ export function StateRuleDialog({ subject, onClose }: { subject: RuleDialogSubje
 			} else {
 				saved = await Promise.all(
 					bySystem.flatMap(([system, names]) =>
-						chunkTargets(names).map((targets) => collection.create({ ...draft, targets, system, user: userId }))
+						chunkTargets(names).map((targets) => collection.create({ ...body, targets, system, user: userId }))
 					)
 				)
 			}
@@ -215,6 +216,18 @@ export function StateRuleDialog({ subject, onClose }: { subject: RuleDialogSubje
 			</DialogHeader>
 
 			<form onSubmit={save} className="grid gap-4">
+				<div className="grid gap-1.5">
+					<Label htmlFor="rule-name">
+						<Trans>Name (optional)</Trans>
+					</Label>
+					<Input
+						id="rule-name"
+						maxLength={100}
+						value={draft.name ?? ""}
+						placeholder={t`Web front ends`}
+						onChange={(e) => setDraft((current) => ({ ...current, name: e.target.value }))}
+					/>
+				</div>
 				{subject.mode !== "items" && (
 					<RuleTargets systemId={systemId ?? ""} draft={draft} fixedKind={!!editing} onChange={setDraft} />
 				)}
@@ -394,7 +407,7 @@ function RuleTargets({
 				<Select
 					value={draft.kind}
 					disabled={fixedKind}
-					onValueChange={(kind: Kind) => onChange({ ...newDraft(kind), targets: draft.targets, cycles: draft.cycles })}
+					onValueChange={(kind: Kind) => onChange({ ...newDraft(kind), name: draft.name, targets: draft.targets, cycles: draft.cycles })}
 				>
 					<SelectTrigger id="rule-kind">
 						<SelectValue />

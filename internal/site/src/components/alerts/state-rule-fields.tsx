@@ -14,7 +14,7 @@ import type { StateAlertRecord } from "@/types"
 export type Kind = StateAlertRecord["kind"]
 export type RuleDraft = Pick<
 	StateAlertRecord,
-	"kind" | "targets" | "condition" | "states" | "sub_states" | "cycles" | "metric" | "threshold"
+	"kind" | "name" | "targets" | "condition" | "states" | "sub_states" | "cycles" | "metric" | "threshold"
 >
 
 /** Selectable states per rule kind; values match the hub's lowercase keys */
@@ -26,6 +26,7 @@ export const stateOptions: Record<Kind, { states: readonly string[]; subStates: 
 
 export const newDraft = (kind: Kind = "service"): RuleDraft => ({
 	kind,
+	name: "",
 	targets: "",
 	condition: "is_not",
 	states: kind === "service" ? ["active"] : ["running"],
