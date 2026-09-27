@@ -19,7 +19,6 @@ import { LoaderCircleIcon } from "lucide-react"
 import { listenKeys } from "nanostores"
 import { memo, type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { getStatusColor, systemdTableCols } from "@/components/systemd-table/systemd-table-columns"
-import { BulkQuietHoursButton } from "@/components/alerts/bulk-quiet-hours"
 import { BulkStateAlertsButton, selectionColumn, targetRowId } from "@/components/alerts/bulk-state-alerts"
 import { type ImportantTile, ImportantTargets } from "@/components/important-targets"
 import { $router, Link } from "@/components/router"
@@ -37,6 +36,7 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { $openRequest, isRequested, rememberRecent } from "@/lib/recent"
+import { TargetAlerts } from "@/components/alerts/target-alerts"
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { isReadOnlyUser, pb } from "@/lib/api"
 import { Os, ServiceStatus, ServiceStatusLabels, type ServiceSubState, ServiceSubStateLabels } from "@/lib/enums"
@@ -248,7 +248,6 @@ export default function SystemdTable({ systemId }: { systemId?: string }) {
 						/>
 						<ColumnsViewMenu table={table} />
 						<BulkStateAlertsButton kind="service" items={selectedItems} />
-						<BulkQuietHoursButton kind="service" items={selectedItems} />
 					</div>
 				</div>
 			</CardHeader>
@@ -534,6 +533,7 @@ function SystemdSheet({
 					</SheetTitle>
 				</SheetHeader>
 				<div className="grid gap-6">
+					<TargetAlerts target={{ kind: "service", name: service.name, system: service.system }} />
 					{isLoading && (
 						<div className="flex items-center gap-2 text-sm text-muted-foreground">
 							<LoaderCircleIcon className="size-4 animate-spin" />

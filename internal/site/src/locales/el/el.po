@@ -78,15 +78,15 @@ msgstr "{count, plural, one {{countString} ώρα} other {{countString} ώρες
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} λεπτό} other {{countString} λεπτά}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, one {# φιλτραρισμένο κοντέινερ} other {# φιλτραρισμένα κοντέινερ}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# φιλτραρισμένη υπηρεσία} other {# φιλτραρισμένες υπηρεσίες}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {# επιλεγμένη διεργασία} other {# επιλεγμένες διεργασίες}}"
 
@@ -97,18 +97,6 @@ msgstr "{count, plural, one {# αισθητήρας} other {# αισθητήρε
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# σύστημα} other {# συστήματα}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
-msgstr "{count, plural, one {Οι ειδοποιήσεις της επιλεγμένης διεργασίας δεν αποστέλλονται σε αυτό το διάστημα.} other {Οι ειδοποιήσεις των # επιλεγμένων διεργασιών δεν αποστέλλονται σε αυτό το διάστημα.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
-msgstr "{count, plural, one {Οι ειδοποιήσεις κατάστασης του επιλεγμένου κοντέινερ δεν αποστέλλονται σε αυτό το διάστημα.} other {Οι ειδοποιήσεις κατάστασης των επιλεγμένων κοντέινερ (#) δεν αποστέλλονται σε αυτό το διάστημα.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
-msgstr "{count, plural, one {Οι ειδοποιήσεις κατάστασης της επιλεγμένης υπηρεσίας δεν αποστέλλονται σε αυτό το διάστημα.} other {Οι ειδοποιήσεις κατάστασης των επιλεγμένων υπηρεσιών (#) δεν αποστέλλονται σε αυτό το διάστημα.}}"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "{count} instance(s) · CPU {cpuText}"
@@ -175,7 +163,7 @@ msgstr "{outdated} σύστημα(τα) χρειάζονται ενημέρωσ�
 msgid "{programCount} programs"
 msgstr "{programCount} προγράμματα"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, one {Δημιουργήθηκε # κανόνας κατάστασης.} other {Δημιουργήθηκαν # κανόνες κατάστασης.}}"
 
@@ -191,13 +179,21 @@ msgstr "{seconds, plural, one {# δευτερόλεπτο} other {# δευτερ
 msgid "{sensorCount} host(s), {checkCount} check(s)"
 msgstr "{sensorCount} υπολογιστές, {checkCount} έλεγχοι"
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "{skippedCount, plural, one {# item left out: a name with a comma can't be the target of a rule.} other {# items left out: a name with a comma can't be the target of a rule.}}"
+msgstr "{skippedCount, plural, one {# στοιχείο παραλείφθηκε: Ένα όνομα με κόμμα δεν μπορεί να είναι στόχος κανόνα.} other {# στοιχεία παραλείφθηκαν: Ένα όνομα με κόμμα δεν μπορεί να είναι στόχος κανόνα.}}"
+
 #: src/components/sensors/sensor-badges.tsx
 msgid "{success} of {total} successful"
 msgstr "{success} από {total} επιτυχείς"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, one {# σύστημα} other {# συστήματα}}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{targets}: {condition}. Its alerts stop."
+msgstr "{targets}: {condition}. Οι ειδοποιήσεις του σταματούν."
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -206,6 +202,10 @@ msgstr "{threads, plural, one {# thread} other {# threads}}"
 #: src/lib/quiet-hours.ts
 msgid "{weekList} {dayList} of the month"
 msgstr "{weekList} {dayList} του μήνα"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{windowCount, plural, one {Its quiet hours window is deleted too.} other {Its # quiet hours windows are deleted too.}}"
+msgstr "{windowCount, plural, one {Το διάστημα ωρών ησυχίας του διαγράφεται επίσης.} other {Τα # διαστήματα ωρών ησυχίας του διαγράφονται επίσης.}}"
 
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
@@ -292,6 +292,10 @@ msgstr "Ένας έλεγχος του αισθητήρα δεν αποκρίν�
 msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
 msgstr "Μια ημέρα που λείπει από έναν μήνα, όπως η 31η, παραλείπεται: επιλέξτε την τελευταία ημέρα για το τέλος κάθε μήνα."
 
+#: src/components/alerts/target-alerts.tsx
+msgid "A name with a comma can't be the target of a rule."
+msgstr "Ένα όνομα με κόμμα δεν μπορεί να είναι στόχος κανόνα."
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
 msgstr "Ένας αισθητήρας ανήκει σε μία ομάδα: η επιλογή του τον μετακινεί από την τρέχουσα ομάδα του."
@@ -331,6 +335,7 @@ msgid "Actions"
 msgstr "Ενέργειες"
 
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -488,6 +493,7 @@ msgstr "Ενημέρωση agent"
 msgid "Agent updated"
 msgstr "Ο πράκτορας ενημερώθηκε"
 
+#: src/components/alerts/target-alerts.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Alert"
 msgstr "Ειδοποίηση"
@@ -510,19 +516,19 @@ msgstr "Όριο ειδοποίησης (ημέρες πριν τη λήξη)"
 msgid "Alert types"
 msgstr "Τύποι ειδοποιήσεων"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
 msgstr "Ειδοποίηση όταν η CPU ξεπερνά"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are fewer than"
 msgstr "Ειδοποίηση όταν τα στιγμιότυπα είναι λιγότερα από"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are more than"
 msgstr "Ειδοποίηση όταν τα στιγμιότυπα είναι περισσότερα από"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its memory is above"
 msgstr "Ειδοποίηση όταν η μνήμη ξεπερνά"
 
@@ -530,13 +536,11 @@ msgstr "Ειδοποίηση όταν η μνήμη ξεπερνά"
 msgid "Alert when services, Docker containers or processes enter or leave a state."
 msgstr "Ειδοποίηση όταν υπηρεσίες, κοντέινερ Docker ή διεργασίες μπαίνουν ή βγαίνουν από μια κατάσταση."
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is"
 msgstr "Ειδοποίηση όταν η κατάσταση είναι"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is not"
 msgstr "Ειδοποίηση όταν η κατάσταση δεν είναι"
 
@@ -544,11 +548,11 @@ msgstr "Ειδοποίηση όταν η κατάσταση δεν είναι"
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "Ειδοποίηση όταν το πιστοποιητικό {name} του {systemName} λήγει σε λιγότερες ημέρες από το όριο. Τα ανανεωμένα πιστοποιητικά με το ίδιο όνομα συνεχίζουν να ελέγχονται και το πιστοποιητικό γίνεται σημαντικό."
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is not running"
 msgstr "Ειδοποίηση όταν η διεργασία δεν εκτελείται"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is running"
 msgstr "Ειδοποίηση όταν η διεργασία εκτελείται"
 
@@ -561,7 +565,7 @@ msgstr "Ειδοποίηση όταν η διεργασία εκτελείται
 msgid "Alerts"
 msgstr "Ειδοποιήσεις"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alerts created"
 msgstr "Οι ειδοποιήσεις δημιουργήθηκαν"
 
@@ -572,6 +576,10 @@ msgstr "Ειδοποιήσεις του {sensorName}"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "ειδοποιήσεις ανά χρήστη"
+
+#: src/components/alerts/alerts-notice.tsx
+msgid "Alerts set up"
+msgstr "Ρυθμισμένες ειδοποιήσεις"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -658,6 +666,7 @@ msgstr "Όλοι οι αισθητήρες"
 msgid "All Services"
 msgstr "Όλες οι υπηρεσίες"
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -681,7 +690,7 @@ msgstr "Όλα τα συστήματα"
 msgid "All systems until {until}"
 msgstr "Όλα τα συστήματα έως {until}"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "All the instances of a program count as one target, such as every chrome.exe."
 msgstr "Όλα τα στιγμιότυπα ενός προγράμματος μετρούν ως ένας στόχος, όπως κάθε chrome.exe."
 
@@ -966,8 +975,9 @@ msgid "Can stop"
 msgstr "Δυνατότητα διακοπής"
 
 #: src/components/agent-update-dialog.tsx
-#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1128,7 +1138,7 @@ msgstr "Σφάλματα αθροίσματος ελέγχου"
 msgid "Choose a known port"
 msgstr "Επιλέξτε γνωστή θύρα"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one day."
 msgstr "Επιλέξτε τουλάχιστον μία ημέρα."
@@ -1137,7 +1147,7 @@ msgstr "Επιλέξτε τουλάχιστον μία ημέρα."
 msgid "Choose at least one port."
 msgstr "Επιλέξτε τουλάχιστον μία θύρα."
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one week of the month."
 msgstr "Επιλέξτε τουλάχιστον μία εβδομάδα του μήνα."
@@ -1231,9 +1241,8 @@ msgstr "Εντολή"
 msgid "Command line instructions"
 msgstr "Οδηγίες γραμμής εντολών"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Condition"
 msgstr "Συνθήκη"
 
@@ -1275,8 +1284,7 @@ msgstr "Η σύνδεση είναι εκτός λειτουργίας"
 msgid "Connections"
 msgstr "Συνδέσεις"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Consecutive checks"
 msgstr "Διαδοχικοί έλεγχοι"
 
@@ -1285,7 +1293,7 @@ msgstr "Διαδοχικοί έλεγχοι"
 msgid "Container"
 msgstr "Κοντέινερ"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Container alerts"
 msgstr "Ειδοποιήσεις κοντέινερ"
 
@@ -1297,7 +1305,7 @@ msgstr "Υγεία κοντέινερ"
 msgid "Container state"
 msgstr "Κατάσταση κοντέινερ"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
@@ -1397,7 +1405,7 @@ msgstr "Βασικά"
 msgid "CPU"
 msgstr "CPU"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "CPU above {threshold}%"
 msgstr "CPU πάνω από {threshold}%"
 
@@ -1443,7 +1451,7 @@ msgstr "Χρήση CPU"
 msgid "CPU: {cpuText}"
 msgstr "CPU: {cpuText}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Create"
 msgstr "Δημιουργία"
 
@@ -1505,7 +1513,7 @@ msgstr "Τρέχουσα κατάσταση"
 msgid "Cycles"
 msgstr "Κύκλοι"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Daily"
@@ -1578,6 +1586,11 @@ msgstr "Υποβαθμισμένη"
 msgid "Degraded or bad"
 msgstr "Υποβαθμισμένη ή κακή"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
@@ -1611,6 +1624,10 @@ msgstr "Διαγραφή ομάδας"
 msgid "Delete the group {originalName}?"
 msgstr "Διαγραφή της ομάδας {originalName};"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Delete the rule?"
+msgstr "Διαγραφή του κανόνα;"
+
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
 msgstr "Διαγραφή των επιλεγμένων επανεκκινήσεων;"
@@ -1631,7 +1648,8 @@ msgstr "Εξαρτήσεις"
 msgid "Deployment"
 msgstr "Ανάπτυξη"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "Περιγράψτε τον λόγο"
@@ -1809,6 +1827,8 @@ msgstr "Σύρετε για αλλαγή μεγέθους, διπλό κλικ �
 msgid "Duration"
 msgstr "Διάρκεια"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -1829,6 +1849,10 @@ msgstr "Επεξεργασία της παρακολούθησης δικτύο�
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit the quiet hours"
 msgstr "Επεξεργασία των ωρών ησυχίας"
+
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "Edit the rule"
+msgstr "Επεξεργασία του κανόνα"
 
 #: src/components/add-system.tsx
 msgid "Edit the system"
@@ -1870,7 +1894,7 @@ msgstr "Ενεργοποίηση σύνδεσης με τον κατάλογο"
 msgid "End"
 msgstr "Λήξη"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1908,7 +1932,6 @@ msgstr "Εισαγάγετε τον κωδικό μίας χρήσης."
 msgid "Ephemeral"
 msgstr "Προσωρινό"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2101,7 +2124,7 @@ msgid "Failed to send test notification"
 msgstr "Αποτυχία αποστολής δοκιμαστικής ειδοποίησης"
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Failed to update alert"
 msgstr "Αποτυχία ενημέρωσης ειδοποίησης"
 
@@ -2118,7 +2141,7 @@ msgstr "Απέτυχαν: {0}"
 msgid "Fans"
 msgstr "Ανεμιστήρες"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "fewer than {threshold} instances"
 msgstr "λιγότερα από {threshold} στιγμιότυπα"
 
@@ -2288,8 +2311,7 @@ msgstr "Εικονίδια κεφαλίδας"
 msgid "Health"
 msgstr "Υγεία"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Health (optional)"
 msgstr "Υγεία (προαιρετικά)"
 
@@ -2475,7 +2497,7 @@ msgstr "Εγκατάσταση"
 msgid "Instance name"
 msgstr "Όνομα εγκατάστασης"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 msgid "Instances"
@@ -2831,7 +2853,7 @@ msgstr "Μέγιστο 1ώρου"
 msgid "Memory"
 msgstr "Μνήμη"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "memory above {threshold}%"
 msgstr "μνήμη πάνω από {threshold}%"
 
@@ -2889,7 +2911,7 @@ msgstr "Μοντέλο"
 msgid "Monitors created"
 msgstr "Τα monitors δημιουργήθηκαν"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Monthly"
@@ -2900,7 +2922,7 @@ msgstr "Μηνιαία"
 msgid "More"
 msgstr "Περισσότερα"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "more than {threshold} instances"
 msgstr "περισσότερα από {threshold} στιγμιότυπα"
 
@@ -2908,11 +2930,11 @@ msgstr "περισσότερα από {threshold} στιγμιότυπα"
 msgid "Mountpoint"
 msgstr "Σημείο προσάρτησης"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must be running"
 msgstr "πρέπει να εκτελείται"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must not be running"
 msgstr "δεν πρέπει να εκτελείται"
 
@@ -2949,7 +2971,7 @@ msgstr "Όνομα της υπηρεσίας που δημιουργείται �
 msgid "Name to resolve"
 msgstr "Όνομα προς επίλυση"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
 msgstr "Ονόματα χωρισμένα με κόμματα. Χρησιμοποιήστε * ως μπαλαντέρ. Ένας στόχος που δεν αναφέρεται πλέον θεωρείται σταματημένος."
 
@@ -3151,7 +3173,7 @@ msgid "No systems found."
 msgstr "Δεν βρέθηκαν συστήματα."
 
 #: src/components/add-system.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -3227,7 +3249,7 @@ msgstr "Ένα ή περισσότερα monitors υπερβαίνουν απώ�
 msgid "One or more services are in a failed state"
 msgstr "Μία ή περισσότερες υπηρεσίες βρίσκονται σε κατάσταση αποτυχίας"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "One-time"
@@ -3286,7 +3308,7 @@ msgstr "Ή συνεχίστε με"
 msgid "Or enter this key in the app:"
 msgstr "Ή πληκτρολογήστε αυτό το κλειδί στην εφαρμογή:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3434,7 +3456,7 @@ msgstr "Σε αναμονή"
 msgid "Per-core average utilization"
 msgstr "Μέση χρήση ανά πυρήνα"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Percent of the whole host, all the instances of the program added up."
 msgstr "Ποσοστό ολόκληρου του κεντρικού υπολογιστή, με όλα τα στιγμιότυπα του προγράμματος αθροισμένα."
 
@@ -3471,7 +3493,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "Παρακαλώ <0>ρυθμίστε έναν διακομιστή SMTP</0> για να διασφαλίσετε την παράδοση των ειδοποιήσεων."
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Please check logs for more details."
 msgstr "Ελέγξτε τα αρχεία καταγραφής για περισσότερες λεπτομέρειες."
 
@@ -3559,7 +3581,7 @@ msgstr "Προηγούμενη σελίδα"
 msgid "Process alert"
 msgstr "Ειδοποίηση διεργασίας"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Process alerts"
 msgstr "Ειδοποιήσεις διεργασιών"
 
@@ -3571,14 +3593,14 @@ msgstr "Ο κανόνας διεργασίας ικανοποιήθηκε"
 msgid "Process started"
 msgstr "Η διεργασία ξεκίνησε"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "Διεργασίες"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Processes are checked every minute, only on the systems with process rules."
 msgstr "Οι διεργασίες ελέγχονται κάθε λεπτό, μόνο στα συστήματα με κανόνες διεργασιών."
 
@@ -3635,11 +3657,11 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Βάθος ουράς"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 msgid "Quiet hours"
 msgstr "Ώρες ησυχίας"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3656,9 +3678,9 @@ msgstr "Οι ώρες ησυχίας είναι ενεργές"
 msgid "Quiet hours active: notifications are not sent"
 msgstr "Ώρες ησυχίας ενεργές: οι ειδοποιήσεις δεν αποστέλλονται"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Quiet hours set up"
-msgstr "Οι ώρες σιγής ρυθμίστηκαν"
+#: src/components/alerts/alerts-notice.tsx
+msgid "Quiet hours set up: the alerts are not sent during these windows"
+msgstr "Ρυθμισμένες ώρες ησυχίας: οι ειδοποιήσεις δεν αποστέλλονται σε αυτά τα διαστήματα"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3702,8 +3724,8 @@ msgstr "Μόνο ανάγνωση"
 msgid "Read-only group"
 msgstr "Ομάδα μόνο ανάγνωσης"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3963,7 +3985,7 @@ msgstr "Λεπτομέρειες S.M.A.R.T."
 msgid "S.M.A.R.T. Self-Test"
 msgstr "Αυτοέλεγχος S.M.A.R.T."
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -4212,7 +4234,7 @@ msgstr "Υπηρεσία"
 msgid "Service account"
 msgstr "Λογαριασμός υπηρεσίας"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Service alerts"
 msgstr "Ειδοποιήσεις υπηρεσιών"
 
@@ -4229,7 +4251,7 @@ msgstr "Όνομα υπηρεσίας"
 msgid "Service state"
 msgstr "Κατάσταση υπηρεσίας"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
@@ -4237,7 +4259,7 @@ msgstr "Κατάσταση υπηρεσίας"
 msgid "Services"
 msgstr "Υπηρεσίες"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Services are checked at each collection, containers every minute."
 msgstr "Οι υπηρεσίες ελέγχονται σε κάθε συλλογή, τα κοντέινερ κάθε λεπτό."
 
@@ -4253,20 +4275,16 @@ msgstr "Ορίστε τις ακόλουθες μεταβλητές περιβά
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "Ορίστε το αποτύπωμα του νέου πιστοποιητικού στην ακόλουθη θέση (ή στην κλάση WMI Win32_TSGeneralSetting) και μετά επανεκκινήστε την υπηρεσία Απομακρυσμένης επιφάνειας εργασίας:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Ρύθμιση"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "Ρύθμιση ωρών σιγής"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Set up quiet hours for the selection below"
-msgstr "Ρύθμιση ωρών σιγής για την παρακάτω επιλογή"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -4344,7 +4362,7 @@ msgstr "Πηγή"
 msgid "Start"
 msgstr "Έναρξη"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4379,11 +4397,11 @@ msgstr "Εκκίνηση χειροκίνητα"
 msgid "State"
 msgstr "Κατάσταση"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is"
 msgstr "η κατάσταση είναι"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is not"
 msgstr "η κατάσταση δεν είναι"
 
@@ -4401,8 +4419,7 @@ msgstr "Ο κανόνας κατάστασης ικανοποιήθηκε"
 msgid "State rules"
 msgstr "Κανόνες κατάστασης"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "States"
 msgstr "Καταστάσεις"
 
@@ -4439,8 +4456,7 @@ msgstr "Σταματημένο"
 msgid "Sub State"
 msgstr "Υποκατάσταση"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Sub-states (optional)"
 msgstr "Υποκαταστάσεις (προαιρετικά)"
 
@@ -4561,11 +4577,11 @@ msgstr "Καρτέλες"
 msgid "Target"
 msgstr "Στόχος"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets"
 msgstr "Στόχοι"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets by system"
 msgstr "Στόχοι ανά σύστημα"
 
@@ -4645,6 +4661,10 @@ msgstr "Ο πράκτορας επανεκκινείται και επανασυ
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "Οι πράκτορες κατεβάζουν την έκδοση {latest} από το GitHub και επανεκκινούνται."
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "The alerts of these rules are not sent during this window. It goes with the rules when they are deleted."
+msgstr "Οι ειδοποιήσεις αυτών των κανόνων δεν αποστέλλονται σε αυτό το διάστημα. Διαγράφεται μαζί με τους κανόνες."
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The average response time over 10 minutes exceeds {value} ms."
 msgstr "Ο μέσος χρόνος απόκρισης σε 10 λεπτά υπερβαίνει τα {value} ms."
@@ -4664,6 +4684,10 @@ msgstr "Οι έλεγχοι του ίδιου υπολογιστή ομαδοπ�
 #: src/components/routes/settings/security.tsx
 msgid "The code by email needs the mail settings of the hub."
 msgstr "Ο κωδικός μέσω email απαιτεί τις ρυθμίσεις αλληλογραφίας του hub."
+
+#: src/components/alerts/quiet-hours-fields.tsx
+msgid "The end must come after the start."
+msgstr "Το τέλος πρέπει να είναι μετά την αρχή."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
@@ -4693,7 +4717,7 @@ msgstr "Δεν ήταν δυνατή η ανάγνωση των διεργασι
 msgid "The processes that use the most CPU and memory on each system that is up, at the time of the reading."
 msgstr "Οι διεργασίες με τη μεγαλύτερη χρήση CPU και μνήμης σε κάθε ενεργό σύστημα, τη στιγμή της μέτρησης."
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "The rules are created on each system."
 msgstr "Οι κανόνες δημιουργούνται σε κάθε σύστημα."
 
@@ -4767,7 +4791,7 @@ msgstr "Νήματα"
 msgid "Threshold"
 msgstr "Όριο"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Threshold (%)"
 msgstr "Όριο (%)"
 
@@ -4882,6 +4906,7 @@ msgstr "Σύνολο: {totalCount}"
 msgid "Traced with the traceroute command of the hub."
 msgstr "Ανιχνεύθηκε με την εντολή traceroute του hub."
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
 msgstr "Ενεργοποιήθηκε"
@@ -4966,8 +4991,8 @@ msgstr "Ενεργοποιείται όταν η χρήση οποιουδήπο
 msgid "Two-factor authentication"
 msgstr "Έλεγχος ταυτότητας δύο παραγόντων"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -5307,7 +5332,7 @@ msgstr "Σαββατοκύριακο"
 msgid "Weekly"
 msgstr "Εβδομαδιαία"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Weekly, on some days"
 msgstr "Εβδομαδιαία, σε ορισμένες ημέρες"

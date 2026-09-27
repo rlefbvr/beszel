@@ -78,15 +78,15 @@ msgstr "{count, plural, one {{countString} 시간} other {{countString} 시간}}
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} 분} few {{countString} 분} many {{countString} 분} other {{countString} 분}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, other {필터링된 컨테이너 #개}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, other {필터링된 서비스 #개}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {선택한 프로세스 #개} other {선택한 프로세스 #개}}"
 
@@ -97,18 +97,6 @@ msgstr "{count, plural, other {센서 #개}}"
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, other {시스템 #개}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
-msgstr "{count, plural, one {선택한 프로세스의 알림은 이 시간대에 전송되지 않습니다.} other {선택한 프로세스 #개의 알림은 이 시간대에 전송되지 않습니다.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
-msgstr "{count, plural, one {선택한 컨테이너의 상태 알림은 이 시간 동안 전송되지 않습니다.} other {선택한 컨테이너 #개의 상태 알림은 이 시간 동안 전송되지 않습니다.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
-msgstr "{count, plural, one {선택한 서비스의 상태 알림은 이 시간 동안 전송되지 않습니다.} other {선택한 서비스 #개의 상태 알림은 이 시간 동안 전송되지 않습니다.}}"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "{count} instance(s) · CPU {cpuText}"
@@ -175,7 +163,7 @@ msgstr "인증서를 읽으려면 {outdated}개 시스템의 에이전트를 업
 msgid "{programCount} programs"
 msgstr "프로그램 {programCount}개"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, other {상태 규칙 #개를 만들었습니다.}}"
 
@@ -191,13 +179,21 @@ msgstr "{seconds, plural, other {#초}}"
 msgid "{sensorCount} host(s), {checkCount} check(s)"
 msgstr "호스트 {sensorCount}개, 검사 {checkCount}개"
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "{skippedCount, plural, one {# item left out: a name with a comma can't be the target of a rule.} other {# items left out: a name with a comma can't be the target of a rule.}}"
+msgstr "{skippedCount, plural, one {#개 항목 제외: 쉼표가 포함된 이름은 규칙의 대상이 될 수 없습니다.} other {#개 항목 제외: 쉼표가 포함된 이름은 규칙의 대상이 될 수 없습니다.}}"
+
 #: src/components/sensors/sensor-badges.tsx
 msgid "{success} of {total} successful"
 msgstr "{total}개 중 {success}개 성공"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, other {시스템 #개}}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{targets}: {condition}. Its alerts stop."
+msgstr "{targets}: {condition}. 알림이 중지됩니다."
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -206,6 +202,10 @@ msgstr "{threads, plural, one {# 스레드} other {# 스레드}}"
 #: src/lib/quiet-hours.ts
 msgid "{weekList} {dayList} of the month"
 msgstr "매월 {weekList} {dayList}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{windowCount, plural, one {Its quiet hours window is deleted too.} other {Its # quiet hours windows are deleted too.}}"
+msgstr "{windowCount, plural, one {방해 금지 시간대도 삭제됩니다.} other {방해 금지 시간대 #개도 삭제됩니다.}}"
 
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
@@ -292,6 +292,10 @@ msgstr "센서의 검사가 응답하지 않습니다."
 msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
 msgstr "31일처럼 달에 없는 날은 건너뜁니다. 매월 말일은 마지막 날을 선택하세요."
 
+#: src/components/alerts/target-alerts.tsx
+msgid "A name with a comma can't be the target of a rule."
+msgstr "쉼표가 포함된 이름은 규칙의 대상이 될 수 없습니다."
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
 msgstr "센서는 하나의 그룹에만 속합니다. 선택하면 현재 그룹에서 이동됩니다."
@@ -331,6 +335,7 @@ msgid "Actions"
 msgstr "작업"
 
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -488,6 +493,7 @@ msgstr "에이전트 업데이트"
 msgid "Agent updated"
 msgstr "에이전트가 업데이트됨"
 
+#: src/components/alerts/target-alerts.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Alert"
 msgstr "알림"
@@ -510,19 +516,19 @@ msgstr "알림 임계값 (만료 전 일수)"
 msgid "Alert types"
 msgstr "알림 유형"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
 msgstr "CPU가 다음보다 높으면 알림"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are fewer than"
 msgstr "인스턴스 수가 다음보다 적으면 알림"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are more than"
 msgstr "인스턴스 수가 다음보다 많으면 알림"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its memory is above"
 msgstr "메모리가 다음보다 높으면 알림"
 
@@ -530,13 +536,11 @@ msgstr "메모리가 다음보다 높으면 알림"
 msgid "Alert when services, Docker containers or processes enter or leave a state."
 msgstr "서비스, Docker 컨테이너 또는 프로세스가 상태에 들어가거나 벗어나면 알립니다."
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is"
 msgstr "상태가 다음일 때 알림"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is not"
 msgstr "상태가 다음이 아닐 때 알림"
 
@@ -544,11 +548,11 @@ msgstr "상태가 다음이 아닐 때 알림"
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "{systemName}의 인증서 {name}이(가) 임계값보다 적은 일수 안에 만료되면 알립니다. 같은 이름으로 갱신된 인증서도 계속 검사되며 이 인증서는 중요로 표시됩니다."
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is not running"
 msgstr "프로세스가 실행 중이 아니면 알림"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is running"
 msgstr "프로세스가 실행 중이면 알림"
 
@@ -561,7 +565,7 @@ msgstr "프로세스가 실행 중이면 알림"
 msgid "Alerts"
 msgstr "알림"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alerts created"
 msgstr "알림이 생성됨"
 
@@ -572,6 +576,10 @@ msgstr "{sensorName} 알림"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "개 알림(사용자별)"
+
+#: src/components/alerts/alerts-notice.tsx
+msgid "Alerts set up"
+msgstr "설정된 알림"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -658,6 +666,7 @@ msgstr "모든 센서"
 msgid "All Services"
 msgstr "모든 서비스"
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -681,7 +690,7 @@ msgstr "모든 시스템"
 msgid "All systems until {until}"
 msgstr "모든 시스템 ({until}까지)"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "All the instances of a program count as one target, such as every chrome.exe."
 msgstr "프로그램의 모든 인스턴스는 하나의 대상으로 계산됩니다(예: 모든 chrome.exe)."
 
@@ -966,8 +975,9 @@ msgid "Can stop"
 msgstr "중지 가능"
 
 #: src/components/agent-update-dialog.tsx
-#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1128,7 +1138,7 @@ msgstr "체크섬 오류"
 msgid "Choose a known port"
 msgstr "알려진 포트 선택"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one day."
 msgstr "하루 이상 선택하세요."
@@ -1137,7 +1147,7 @@ msgstr "하루 이상 선택하세요."
 msgid "Choose at least one port."
 msgstr "포트를 하나 이상 선택하세요."
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one week of the month."
 msgstr "월의 주를 하나 이상 선택하세요."
@@ -1231,9 +1241,8 @@ msgstr "명령"
 msgid "Command line instructions"
 msgstr "명령어 사용 지침"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Condition"
 msgstr "조건"
 
@@ -1275,8 +1284,7 @@ msgstr "연결이 끊겼습니다"
 msgid "Connections"
 msgstr "연결"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Consecutive checks"
 msgstr "연속 확인 횟수"
 
@@ -1285,7 +1293,7 @@ msgstr "연속 확인 횟수"
 msgid "Container"
 msgstr "컨테이너"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Container alerts"
 msgstr "컨테이너 알림"
 
@@ -1297,7 +1305,7 @@ msgstr "컨테이너 상태"
 msgid "Container state"
 msgstr "컨테이너 상태"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
@@ -1397,7 +1405,7 @@ msgstr "코어"
 msgid "CPU"
 msgstr "CPU"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "CPU above {threshold}%"
 msgstr "CPU {threshold}% 초과"
 
@@ -1443,7 +1451,7 @@ msgstr "CPU 사용량"
 msgid "CPU: {cpuText}"
 msgstr "CPU: {cpuText}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Create"
 msgstr "생성"
 
@@ -1505,7 +1513,7 @@ msgstr "현재 상태"
 msgid "Cycles"
 msgstr "사이클"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Daily"
@@ -1578,6 +1586,11 @@ msgstr "저하"
 msgid "Degraded or bad"
 msgstr "저하 또는 나쁨"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
@@ -1611,6 +1624,10 @@ msgstr "그룹 삭제"
 msgid "Delete the group {originalName}?"
 msgstr "{originalName} 그룹을 삭제할까요?"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Delete the rule?"
+msgstr "규칙을 삭제할까요?"
+
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
 msgstr "선택한 재부팅을 삭제할까요?"
@@ -1631,7 +1648,8 @@ msgstr "종속성"
 msgid "Deployment"
 msgstr "배포"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "사유를 입력하세요"
@@ -1809,6 +1827,8 @@ msgstr "끌어서 크기 조정, 두 번 클릭하여 초기화"
 msgid "Duration"
 msgstr "기간"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -1829,6 +1849,10 @@ msgstr "네트워크 모니터 편집"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit the quiet hours"
 msgstr "방해 금지 시간 편집"
+
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "Edit the rule"
+msgstr "규칙 편집"
 
 #: src/components/add-system.tsx
 msgid "Edit the system"
@@ -1870,7 +1894,7 @@ msgstr "디렉터리 로그인 사용"
 msgid "End"
 msgstr "종료"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1908,7 +1932,6 @@ msgstr "OTP를 입력하세요."
 msgid "Ephemeral"
 msgstr "일시적"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2101,7 +2124,7 @@ msgid "Failed to send test notification"
 msgstr "테스트 알림 전송 실패"
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Failed to update alert"
 msgstr "알림 수정 실패"
 
@@ -2118,7 +2141,7 @@ msgstr "실패: {0}"
 msgid "Fans"
 msgstr "팬"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "fewer than {threshold} instances"
 msgstr "인스턴스 {threshold}개 미만"
 
@@ -2288,8 +2311,7 @@ msgstr "헤더 아이콘"
 msgid "Health"
 msgstr "상태"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Health (optional)"
 msgstr "상태 검사 (선택 사항)"
 
@@ -2475,7 +2497,7 @@ msgstr "인스턴스"
 msgid "Instance name"
 msgstr "인스턴스 이름"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 msgid "Instances"
@@ -2831,7 +2853,7 @@ msgstr "1시간 최대"
 msgid "Memory"
 msgstr "메모리"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "memory above {threshold}%"
 msgstr "메모리 {threshold}% 초과"
 
@@ -2889,7 +2911,7 @@ msgstr "모델"
 msgid "Monitors created"
 msgstr "모니터가 생성되었습니다"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Monthly"
@@ -2900,7 +2922,7 @@ msgstr "매월"
 msgid "More"
 msgstr "더 보기"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "more than {threshold} instances"
 msgstr "인스턴스 {threshold}개 초과"
 
@@ -2908,11 +2930,11 @@ msgstr "인스턴스 {threshold}개 초과"
 msgid "Mountpoint"
 msgstr "마운트 지점"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must be running"
 msgstr "실행 중이어야 함"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must not be running"
 msgstr "실행 중이면 안 됨"
 
@@ -2949,7 +2971,7 @@ msgstr "Linux 또는 Windows 명령으로 에이전트를 설치할 때 생성�
 msgid "Name to resolve"
 msgstr "확인할 이름"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
 msgstr "이름을 쉼표로 구분합니다. *를 와일드카드로 사용하세요. 더 이상 보고되지 않는 대상은 중지된 것으로 간주됩니다."
 
@@ -3151,7 +3173,7 @@ msgid "No systems found."
 msgstr "시스템을 찾을 수 없습니다."
 
 #: src/components/add-system.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -3227,7 +3249,7 @@ msgstr "하나 이상의 모니터에서 패킷 손실률이 {0}%를 초과했�
 msgid "One or more services are in a failed state"
 msgstr "하나 이상의 서비스가 실패 상태입니다"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "One-time"
@@ -3286,7 +3308,7 @@ msgstr "또는 아래 항목으로 진행하기"
 msgid "Or enter this key in the app:"
 msgstr "또는 앱에 이 키를 입력하세요:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3434,7 +3456,7 @@ msgstr "대기 중"
 msgid "Per-core average utilization"
 msgstr "코어별 평균 사용률"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Percent of the whole host, all the instances of the program added up."
 msgstr "전체 호스트 대비 비율이며, 프로그램의 모든 인스턴스를 합산합니다."
 
@@ -3471,7 +3493,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "알림이 전달되도록 <0>SMTP 서버를 구성</0>하세요."
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Please check logs for more details."
 msgstr "자세한 내용은 로그를 확인하세요."
 
@@ -3559,7 +3581,7 @@ msgstr "이전 페이지"
 msgid "Process alert"
 msgstr "프로세스 알림"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Process alerts"
 msgstr "프로세스 알림"
 
@@ -3571,14 +3593,14 @@ msgstr "프로세스 규칙 일치"
 msgid "Process started"
 msgstr "프로세스 시작됨"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "프로세스"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Processes are checked every minute, only on the systems with process rules."
 msgstr "프로세스는 매분 확인되며, 프로세스 규칙이 있는 시스템만 해당됩니다."
 
@@ -3635,11 +3657,11 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "대기열 깊이"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 msgid "Quiet hours"
 msgstr "방해 금지 시간"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3656,9 +3678,9 @@ msgstr "방해 금지 시간 활성화됨"
 msgid "Quiet hours active: notifications are not sent"
 msgstr "방해 금지 시간 활성: 알림이 전송되지 않습니다"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Quiet hours set up"
-msgstr "방해 금지 시간이 설정됨"
+#: src/components/alerts/alerts-notice.tsx
+msgid "Quiet hours set up: the alerts are not sent during these windows"
+msgstr "방해 금지 시간 설정됨: 이 시간대에는 알림을 보내지 않습니다"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3702,8 +3724,8 @@ msgstr "읽기 전용"
 msgid "Read-only group"
 msgstr "읽기 전용 그룹"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3963,7 +3985,7 @@ msgstr "S.M.A.R.T. 세부 정보"
 msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. 자체 테스트"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -4212,7 +4234,7 @@ msgstr "서비스"
 msgid "Service account"
 msgstr "서비스 계정"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Service alerts"
 msgstr "서비스 알림"
 
@@ -4229,7 +4251,7 @@ msgstr "서비스 이름"
 msgid "Service state"
 msgstr "서비스 상태"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
@@ -4237,7 +4259,7 @@ msgstr "서비스 상태"
 msgid "Services"
 msgstr "서비스"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Services are checked at each collection, containers every minute."
 msgstr "서비스는 수집할 때마다, 컨테이너는 매분 확인됩니다."
 
@@ -4253,20 +4275,16 @@ msgstr "하트비트 모니터링을 활성화하려면 Beszel 허브에 다음 
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "다음 위치(또는 WMI 클래스 Win32_TSGeneralSetting)에 새 인증서의 지문을 설정한 다음 원격 데스크톱 서비스를 다시 시작합니다:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "설정"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "방해 금지 시간 설정"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Set up quiet hours for the selection below"
-msgstr "아래 선택 항목에 방해 금지 시간 설정"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -4344,7 +4362,7 @@ msgstr "출처"
 msgid "Start"
 msgstr "시작"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4379,11 +4397,11 @@ msgstr "수동으로 시작됨"
 msgid "State"
 msgstr "상태"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is"
 msgstr "상태가 다음임"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is not"
 msgstr "상태가 다음이 아님"
 
@@ -4401,8 +4419,7 @@ msgstr "상태 규칙 충족"
 msgid "State rules"
 msgstr "상태 규칙"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "States"
 msgstr "상태"
 
@@ -4439,8 +4456,7 @@ msgstr "중지됨"
 msgid "Sub State"
 msgstr "하위 상태"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Sub-states (optional)"
 msgstr "하위 상태 (선택 사항)"
 
@@ -4561,11 +4577,11 @@ msgstr "탭"
 msgid "Target"
 msgstr "대상"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets"
 msgstr "대상"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets by system"
 msgstr "시스템별 대상"
 
@@ -4645,6 +4661,10 @@ msgstr "에이전트가 자동으로 다시 시작되고 다시 연결됩니다.
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "에이전트가 GitHub에서 버전 {latest}을(를) 다운로드한 후 다시 시작합니다."
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "The alerts of these rules are not sent during this window. It goes with the rules when they are deleted."
+msgstr "이 시간대에는 이 규칙들의 알림을 보내지 않습니다. 규칙을 삭제하면 함께 삭제됩니다."
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The average response time over 10 minutes exceeds {value} ms."
 msgstr "10분 평균 응답 시간이 {value}ms를 초과합니다."
@@ -4664,6 +4684,10 @@ msgstr "같은 호스트의 검사는 하나의 센서로 묶입니다."
 #: src/components/routes/settings/security.tsx
 msgid "The code by email needs the mail settings of the hub."
 msgstr "이메일 코드를 사용하려면 허브의 메일 설정이 필요합니다."
+
+#: src/components/alerts/quiet-hours-fields.tsx
+msgid "The end must come after the start."
+msgstr "종료는 시작 이후여야 합니다."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
@@ -4693,7 +4717,7 @@ msgstr "프로세스를 읽을 수 없습니다."
 msgid "The processes that use the most CPU and memory on each system that is up, at the time of the reading."
 msgstr "읽은 시점에 실행 중인 각 시스템에서 CPU와 메모리를 가장 많이 사용하는 프로세스입니다."
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "The rules are created on each system."
 msgstr "규칙은 각 시스템에 생성됩니다."
 
@@ -4767,7 +4791,7 @@ msgstr "스레드"
 msgid "Threshold"
 msgstr "임계값"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Threshold (%)"
 msgstr "임계값(%)"
 
@@ -4882,6 +4906,7 @@ msgstr "합계: {totalCount}"
 msgid "Traced with the traceroute command of the hub."
 msgstr "허브의 traceroute 명령으로 추적했습니다."
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
 msgstr "트리거됨"
@@ -4966,8 +4991,8 @@ msgstr "디스크 사용량이 임계값을 초과할 때 트리거됩니다."
 msgid "Two-factor authentication"
 msgstr "2단계 인증"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -5307,7 +5332,7 @@ msgstr "주말"
 msgid "Weekly"
 msgstr "매주"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Weekly, on some days"
 msgstr "매주(특정 요일)"

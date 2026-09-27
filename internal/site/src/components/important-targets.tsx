@@ -2,7 +2,7 @@ import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
 import { BellRingIcon, XIcon } from "lucide-react"
 import { type ReactNode, useState } from "react"
-import { failedToast } from "@/components/alerts/state-alert-rules"
+import { failedToast } from "@/components/alerts/state-rule-fields"
 import {
 	AlertDialog,
 	AlertDialogAction,

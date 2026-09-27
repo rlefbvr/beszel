@@ -276,6 +276,14 @@ func (am *AlertManager) bindStateAlertEvents() {
 		}
 		return nil
 	})
+	// the quiet hours of a rule go with it, before PocketBase unsets the rule
+	// from them and leaves them silencing all the alerts of the system
+	am.hub.OnRecordDelete(stateAlertsCollection).BindFunc(func(e *core.RecordEvent) error {
+		if err := removeRuleQuietHours(e.App, e.Record); err != nil {
+			return err
+		}
+		return e.Next()
+	})
 	am.hub.OnRecordAfterDeleteSuccess(stateAlertsCollection).BindFunc(func(e *core.RecordEvent) error {
 		if err := e.Next(); err != nil {
 			return err

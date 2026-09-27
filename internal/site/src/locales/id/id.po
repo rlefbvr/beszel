@@ -78,15 +78,15 @@ msgstr "{count, plural, one {{countString} jam} other {{countString} jam}}"
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} menit} few {{countString} menit} many {{countString} menit} other {{countString} menit}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, other {# kontainer terfilter}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, other {# layanan terfilter}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {# proses dipilih} other {# proses dipilih}}"
 
@@ -97,18 +97,6 @@ msgstr "{count, plural, other {# sensor}}"
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, other {# sistem}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
-msgstr "{count, plural, one {Peringatan proses yang dipilih tidak dikirim selama jendela ini.} other {Peringatan # proses yang dipilih tidak dikirim selama jendela ini.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
-msgstr "{count, plural, one {Peringatan status kontainer yang dipilih tidak dikirim selama periode ini.} other {Peringatan status kontainer yang dipilih (#) tidak dikirim selama periode ini.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
-msgstr "{count, plural, one {Peringatan status layanan yang dipilih tidak dikirim selama periode ini.} other {Peringatan status layanan yang dipilih (#) tidak dikirim selama periode ini.}}"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "{count} instance(s) · CPU {cpuText}"
@@ -175,7 +163,7 @@ msgstr "{outdated} sistem perlu pembaruan agen untuk membaca sertifikatnya."
 msgid "{programCount} programs"
 msgstr "{programCount} program"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, other {# aturan status dibuat.}}"
 
@@ -191,13 +179,21 @@ msgstr "{seconds, plural, other {# detik}}"
 msgid "{sensorCount} host(s), {checkCount} check(s)"
 msgstr "{sensorCount} host, {checkCount} pemeriksaan"
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "{skippedCount, plural, one {# item left out: a name with a comma can't be the target of a rule.} other {# items left out: a name with a comma can't be the target of a rule.}}"
+msgstr "{skippedCount, plural, one {# item dilewati: Nama dengan koma tidak dapat menjadi target aturan.} other {# item dilewati: Nama dengan koma tidak dapat menjadi target aturan.}}"
+
 #: src/components/sensors/sensor-badges.tsx
 msgid "{success} of {total} successful"
 msgstr "{success} dari {total} berhasil"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, other {# sistem}}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{targets}: {condition}. Its alerts stop."
+msgstr "{targets}: {condition}. Peringatannya berhenti."
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -206,6 +202,10 @@ msgstr "{threads, plural, one {# thread} other {# thread}}"
 #: src/lib/quiet-hours.ts
 msgid "{weekList} {dayList} of the month"
 msgstr "{dayList} {weekList} setiap bulan"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{windowCount, plural, one {Its quiet hours window is deleted too.} other {Its # quiet hours windows are deleted too.}}"
+msgstr "{windowCount, plural, one {Jendela jam tenangnya juga dihapus.} other {# jendela jam tenangnya juga dihapus.}}"
 
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
@@ -292,6 +292,10 @@ msgstr "Salah satu pemeriksaan sensor tidak merespons."
 msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
 msgstr "Hari yang tidak ada dalam sebulan, seperti tanggal 31, dilewati: pilih hari terakhir untuk akhir setiap bulan."
 
+#: src/components/alerts/target-alerts.tsx
+msgid "A name with a comma can't be the target of a rule."
+msgstr "Nama dengan koma tidak dapat menjadi target aturan."
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
 msgstr "Sensor hanya termasuk dalam satu grup: mencentangnya memindahkannya dari grup saat ini."
@@ -331,6 +335,7 @@ msgid "Actions"
 msgstr "Aksi"
 
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -488,6 +493,7 @@ msgstr "Pembaruan agen"
 msgid "Agent updated"
 msgstr "Agen diperbarui"
 
+#: src/components/alerts/target-alerts.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Alert"
 msgstr "Peringatan"
@@ -510,19 +516,19 @@ msgstr "Ambang peringatan (hari sebelum kedaluwarsa)"
 msgid "Alert types"
 msgstr "Jenis peringatan"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
 msgstr "Peringatkan saat CPU-nya di atas"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are fewer than"
 msgstr "Peringatkan saat instans kurang dari"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are more than"
 msgstr "Peringatkan saat instans lebih dari"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its memory is above"
 msgstr "Peringatkan saat memorinya di atas"
 
@@ -530,13 +536,11 @@ msgstr "Peringatkan saat memorinya di atas"
 msgid "Alert when services, Docker containers or processes enter or leave a state."
 msgstr "Peringatkan saat layanan, kontainer Docker, atau proses masuk atau keluar dari suatu status."
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is"
 msgstr "Beri peringatan saat status adalah"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is not"
 msgstr "Beri peringatan saat status bukan"
 
@@ -544,11 +548,11 @@ msgstr "Beri peringatan saat status bukan"
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "Beri peringatan saat sertifikat {name} di {systemName} kedaluwarsa dalam hari yang lebih sedikit dari ambang. Sertifikat yang diperbarui dengan nama sama tetap diperiksa, dan sertifikat menjadi penting."
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is not running"
 msgstr "Peringatkan saat proses tidak berjalan"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is running"
 msgstr "Peringatkan saat proses berjalan"
 
@@ -561,7 +565,7 @@ msgstr "Peringatkan saat proses berjalan"
 msgid "Alerts"
 msgstr "Peringatan"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alerts created"
 msgstr "Peringatan dibuat"
 
@@ -572,6 +576,10 @@ msgstr "Peringatan {sensorName}"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "peringatan per pengguna"
+
+#: src/components/alerts/alerts-notice.tsx
+msgid "Alerts set up"
+msgstr "Peringatan yang diatur"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -658,6 +666,7 @@ msgstr "Semua sensor"
 msgid "All Services"
 msgstr "Semua layanan"
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -681,7 +690,7 @@ msgstr "Semua Sistem"
 msgid "All systems until {until}"
 msgstr "Semua sistem hingga {until}"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "All the instances of a program count as one target, such as every chrome.exe."
 msgstr "Semua instans program dihitung sebagai satu target, seperti setiap chrome.exe."
 
@@ -966,8 +975,9 @@ msgid "Can stop"
 msgstr "Dapat diberhentikan"
 
 #: src/components/agent-update-dialog.tsx
-#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1128,7 +1138,7 @@ msgstr "Kesalahan checksum"
 msgid "Choose a known port"
 msgstr "Pilih port yang dikenal"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one day."
 msgstr "Pilih setidaknya satu hari."
@@ -1137,7 +1147,7 @@ msgstr "Pilih setidaknya satu hari."
 msgid "Choose at least one port."
 msgstr "Pilih setidaknya satu port."
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one week of the month."
 msgstr "Pilih setidaknya satu minggu dalam bulan."
@@ -1231,9 +1241,8 @@ msgstr "Perintah"
 msgid "Command line instructions"
 msgstr "Instruksi command line"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Condition"
 msgstr "Kondisi"
 
@@ -1275,8 +1284,7 @@ msgstr "Koneksi terputus"
 msgid "Connections"
 msgstr "Koneksi"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Consecutive checks"
 msgstr "Pemeriksaan berturut-turut"
 
@@ -1285,7 +1293,7 @@ msgstr "Pemeriksaan berturut-turut"
 msgid "Container"
 msgstr "Kontainer"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Container alerts"
 msgstr "Peringatan kontainer"
 
@@ -1297,7 +1305,7 @@ msgstr "Kesehatan Kontainer"
 msgid "Container state"
 msgstr "Status kontainer"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
@@ -1397,7 +1405,7 @@ msgstr "Inti"
 msgid "CPU"
 msgstr "CPU"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "CPU above {threshold}%"
 msgstr "CPU di atas {threshold}%"
 
@@ -1443,7 +1451,7 @@ msgstr "Penggunaan CPU"
 msgid "CPU: {cpuText}"
 msgstr "CPU: {cpuText}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Create"
 msgstr "Buat"
 
@@ -1505,7 +1513,7 @@ msgstr "Status saat ini"
 msgid "Cycles"
 msgstr "Siklus"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Daily"
@@ -1578,6 +1586,11 @@ msgstr "Menurun"
 msgid "Degraded or bad"
 msgstr "Menurun atau buruk"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
@@ -1611,6 +1624,10 @@ msgstr "Hapus grup"
 msgid "Delete the group {originalName}?"
 msgstr "Hapus grup {originalName}?"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Delete the rule?"
+msgstr "Hapus aturan?"
+
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
 msgstr "Hapus mulai ulang yang dipilih?"
@@ -1631,7 +1648,8 @@ msgstr "Dependensi"
 msgid "Deployment"
 msgstr "Penerapan"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "Jelaskan alasannya"
@@ -1809,6 +1827,8 @@ msgstr "Seret untuk mengubah ukuran, klik dua kali untuk mengatur ulang"
 msgid "Duration"
 msgstr "Durasi"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -1829,6 +1849,10 @@ msgstr "Edit monitor jaringan"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit the quiet hours"
 msgstr "Edit jam tenang"
+
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "Edit the rule"
+msgstr "Edit aturan"
 
 #: src/components/add-system.tsx
 msgid "Edit the system"
@@ -1870,7 +1894,7 @@ msgstr "Aktifkan login dengan direktori"
 msgid "End"
 msgstr "Selesai"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1908,7 +1932,6 @@ msgstr "Masukkan otp anda."
 msgid "Ephemeral"
 msgstr "Sementara"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2101,7 +2124,7 @@ msgid "Failed to send test notification"
 msgstr "Gagal mengirim tes notifikasi"
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Failed to update alert"
 msgstr "Gagal memperbarui peringatan"
 
@@ -2118,7 +2141,7 @@ msgstr "Gagal: {0}"
 msgid "Fans"
 msgstr "Kipas"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "fewer than {threshold} instances"
 msgstr "kurang dari {threshold} instans"
 
@@ -2288,8 +2311,7 @@ msgstr "Ikon kepala halaman"
 msgid "Health"
 msgstr "Kesehatan"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Health (optional)"
 msgstr "Kesehatan (opsional)"
 
@@ -2475,7 +2497,7 @@ msgstr "Instans"
 msgid "Instance name"
 msgstr "Nama instans"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 msgid "Instances"
@@ -2831,7 +2853,7 @@ msgstr "Maks. 1 jam"
 msgid "Memory"
 msgstr "Memori"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "memory above {threshold}%"
 msgstr "memori di atas {threshold}%"
 
@@ -2889,7 +2911,7 @@ msgstr "Model"
 msgid "Monitors created"
 msgstr "Monitor dibuat"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Monthly"
@@ -2900,7 +2922,7 @@ msgstr "Bulanan"
 msgid "More"
 msgstr "Lainnya"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "more than {threshold} instances"
 msgstr "lebih dari {threshold} instans"
 
@@ -2908,11 +2930,11 @@ msgstr "lebih dari {threshold} instans"
 msgid "Mountpoint"
 msgstr "Titik kait"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must be running"
 msgstr "harus berjalan"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must not be running"
 msgstr "tidak boleh berjalan"
 
@@ -2949,7 +2971,7 @@ msgstr "Nama layanan yang dibuat saat memasang agen dengan perintah Linux atau W
 msgid "Name to resolve"
 msgstr "Nama yang akan di-resolve"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
 msgstr "Nama dipisahkan dengan koma. Gunakan * sebagai wildcard. Target yang tidak lagi dilaporkan dianggap berhenti."
 
@@ -3151,7 +3173,7 @@ msgid "No systems found."
 msgstr "Sistem tidak ditemukan."
 
 #: src/components/add-system.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -3227,7 +3249,7 @@ msgstr "Satu atau beberapa monitor melebihi kehilangan paket {0}%"
 msgid "One or more services are in a failed state"
 msgstr "Satu atau beberapa layanan berada dalam status gagal"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "One-time"
@@ -3286,7 +3308,7 @@ msgstr "Atau lanjutkan dengan"
 msgid "Or enter this key in the app:"
 msgstr "Atau masukkan kunci ini di aplikasi:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3434,7 +3456,7 @@ msgstr "Tertunda"
 msgid "Per-core average utilization"
 msgstr "Rata-rata utilisasi per-inti"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Percent of the whole host, all the instances of the program added up."
 msgstr "Persentase dari seluruh host, semua instans program dijumlahkan."
 
@@ -3471,7 +3493,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "Silakan <0>konfigurasi server SMTP</0> untuk memastikan peringatan dikirimkan."
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Please check logs for more details."
 msgstr "Silakan periksa log untuk detail lebih lanjut."
 
@@ -3559,7 +3581,7 @@ msgstr "Halaman sebelumnya"
 msgid "Process alert"
 msgstr "Peringatan proses"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Process alerts"
 msgstr "Peringatan proses"
 
@@ -3571,14 +3593,14 @@ msgstr "Aturan proses terpenuhi"
 msgid "Process started"
 msgstr "Proses dimulai"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "Proses"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Processes are checked every minute, only on the systems with process rules."
 msgstr "Proses diperiksa setiap menit, hanya pada sistem dengan aturan proses."
 
@@ -3635,11 +3657,11 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Kedalaman Antrian"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 msgid "Quiet hours"
 msgstr "Jam tenang"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3656,9 +3678,9 @@ msgstr "Jam tenang aktif"
 msgid "Quiet hours active: notifications are not sent"
 msgstr "Jam tenang aktif: notifikasi tidak dikirim"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Quiet hours set up"
-msgstr "Jam tenang diatur"
+#: src/components/alerts/alerts-notice.tsx
+msgid "Quiet hours set up: the alerts are not sent during these windows"
+msgstr "Jam tenang diatur: peringatan tidak dikirim selama jendela ini"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3702,8 +3724,8 @@ msgstr "Hanya baca"
 msgid "Read-only group"
 msgstr "Grup hanya baca"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3963,7 +3985,7 @@ msgstr "Detail S.M.A.R.T."
 msgid "S.M.A.R.T. Self-Test"
 msgstr "Self-Test S.M.A.R.T."
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -4212,7 +4234,7 @@ msgstr "Layanan"
 msgid "Service account"
 msgstr "Akun layanan"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Service alerts"
 msgstr "Peringatan layanan"
 
@@ -4229,7 +4251,7 @@ msgstr "Nama layanan"
 msgid "Service state"
 msgstr "Status layanan"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
@@ -4237,7 +4259,7 @@ msgstr "Status layanan"
 msgid "Services"
 msgstr "Layanan"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Services are checked at each collection, containers every minute."
 msgstr "Layanan diperiksa pada setiap pengumpulan, kontainer setiap menit."
 
@@ -4253,20 +4275,16 @@ msgstr "Setel variabel lingkungan berikut di hub Beszel Anda untuk mengaktifkan 
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "Atur thumbprint sertifikat baru di tempat berikut (atau di kelas WMI Win32_TSGeneralSetting), lalu mulai ulang layanan Desktop Jarak Jauh:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Atur"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "Atur jam tenang"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Set up quiet hours for the selection below"
-msgstr "Atur jam tenang untuk pilihan di bawah"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -4344,7 +4362,7 @@ msgstr "Sumber"
 msgid "Start"
 msgstr "Mulai"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4379,11 +4397,11 @@ msgstr "Dimulai secara manual"
 msgid "State"
 msgstr "Status"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is"
 msgstr "status adalah"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is not"
 msgstr "status bukan"
 
@@ -4401,8 +4419,7 @@ msgstr "Aturan status terpenuhi"
 msgid "State rules"
 msgstr "Aturan status"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "States"
 msgstr "Status"
 
@@ -4439,8 +4456,7 @@ msgstr "Berhenti"
 msgid "Sub State"
 msgstr "Sub Status"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Sub-states (optional)"
 msgstr "Substatus (opsional)"
 
@@ -4561,11 +4577,11 @@ msgstr "Tab"
 msgid "Target"
 msgstr "Target"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets"
 msgstr "Target"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets by system"
 msgstr "Target per sistem"
 
@@ -4645,6 +4661,10 @@ msgstr "Agen memulai ulang dan terhubung kembali dengan sendirinya."
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "Agen mengunduh versi {latest} dari GitHub, lalu memulai ulang."
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "The alerts of these rules are not sent during this window. It goes with the rules when they are deleted."
+msgstr "Peringatan aturan ini tidak dikirim selama jendela ini. Jendela ikut dihapus bersama aturannya."
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The average response time over 10 minutes exceeds {value} ms."
 msgstr "Waktu respons rata-rata selama 10 menit melebihi {value} ms."
@@ -4664,6 +4684,10 @@ msgstr "Pemeriksaan untuk host yang sama dikelompokkan dalam satu sensor."
 #: src/components/routes/settings/security.tsx
 msgid "The code by email needs the mail settings of the hub."
 msgstr "Kode melalui email memerlukan pengaturan email hub."
+
+#: src/components/alerts/quiet-hours-fields.tsx
+msgid "The end must come after the start."
+msgstr "Akhir harus setelah awal."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
@@ -4693,7 +4717,7 @@ msgstr "Proses tidak dapat dibaca."
 msgid "The processes that use the most CPU and memory on each system that is up, at the time of the reading."
 msgstr "Proses yang paling banyak memakai CPU dan memori di setiap sistem aktif, pada saat pembacaan."
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "The rules are created on each system."
 msgstr "Aturan dibuat di setiap sistem."
 
@@ -4767,7 +4791,7 @@ msgstr "Thread"
 msgid "Threshold"
 msgstr "Ambang"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Threshold (%)"
 msgstr "Ambang (%)"
 
@@ -4882,6 +4906,7 @@ msgstr "Total: {totalCount}"
 msgid "Traced with the traceroute command of the hub."
 msgstr "Dilacak dengan perintah traceroute pada hub."
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
 msgstr "Terpicu"
@@ -4966,8 +4991,8 @@ msgstr "Dipicu ketika penggunaan disk apa pun melebihi ambang batas"
 msgid "Two-factor authentication"
 msgstr "Autentikasi dua faktor"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -5307,7 +5332,7 @@ msgstr "Akhir pekan"
 msgid "Weekly"
 msgstr "Mingguan"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Weekly, on some days"
 msgstr "Mingguan, pada hari tertentu"

@@ -78,15 +78,15 @@ msgstr "{count, plural, one {{countString} óra} other {{countString} óra}}"
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} perc} few {{countString} perc} many {{countString} perc} other {{countString} perc}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, one {# szűrt konténer} other {# szűrt konténer}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# szűrt szolgáltatás} other {# szűrt szolgáltatás}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {# kiválasztott folyamat} other {# kiválasztott folyamat}}"
 
@@ -97,18 +97,6 @@ msgstr "{count, plural, one {# érzékelő} other {# érzékelő}}"
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# rendszer} other {# rendszer}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
-msgstr "{count, plural, one {A kiválasztott folyamat riasztásai ebben az időszakban nem kerülnek kiküldésre.} other {A # kiválasztott folyamat riasztásai ebben az időszakban nem kerülnek kiküldésre.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
-msgstr "{count, plural, one {A kiválasztott konténer állapotriasztásai ebben az időszakban nem kerülnek kiküldésre.} other {A kiválasztott konténerek (#) állapotriasztásai ebben az időszakban nem kerülnek kiküldésre.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
-msgstr "{count, plural, one {A kiválasztott szolgáltatás állapotriasztásai ebben az időszakban nem kerülnek kiküldésre.} other {A kiválasztott szolgáltatások (#) állapotriasztásai ebben az időszakban nem kerülnek kiküldésre.}}"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "{count} instance(s) · CPU {cpuText}"
@@ -175,7 +163,7 @@ msgstr "{outdated} rendszer ügynökét frissíteni kell a tanúsítványok beol
 msgid "{programCount} programs"
 msgstr "{programCount} program"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, one {# állapotszabály létrehozva.} other {# állapotszabály létrehozva.}}"
 
@@ -191,13 +179,21 @@ msgstr "{seconds, plural, one {# másodperc} other {# másodperc}}"
 msgid "{sensorCount} host(s), {checkCount} check(s)"
 msgstr "{sensorCount} gazdagép, {checkCount} ellenőrzés"
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "{skippedCount, plural, one {# item left out: a name with a comma can't be the target of a rule.} other {# items left out: a name with a comma can't be the target of a rule.}}"
+msgstr "{skippedCount, plural, one {# elem kimaradt: Vesszőt tartalmazó név nem lehet szabály célpontja.} other {# elem kimaradt: Vesszőt tartalmazó név nem lehet szabály célpontja.}}"
+
 #: src/components/sensors/sensor-badges.tsx
 msgid "{success} of {total} successful"
 msgstr "{total} közül {success} sikeres"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, one {# rendszer} other {# rendszer}}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{targets}: {condition}. Its alerts stop."
+msgstr "{targets}: {condition}. A riasztásai leállnak."
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -206,6 +202,10 @@ msgstr "{threads, plural, one {# szál} other {# szál}}"
 #: src/lib/quiet-hours.ts
 msgid "{weekList} {dayList} of the month"
 msgstr "A hónap {weekList} {dayList}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{windowCount, plural, one {Its quiet hours window is deleted too.} other {Its # quiet hours windows are deleted too.}}"
+msgstr "{windowCount, plural, one {A csendes órák időszaka is törlődik.} other {A # csendes órák időszaka is törlődik.}}"
 
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
@@ -292,6 +292,10 @@ msgstr "Az érzékelő egyik ellenőrzése nem válaszol."
 msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
 msgstr "A hónapból hiányzó nap, például a 31., kimarad: a hónap végéhez válassza az utolsó napot."
 
+#: src/components/alerts/target-alerts.tsx
+msgid "A name with a comma can't be the target of a rule."
+msgstr "Vesszőt tartalmazó név nem lehet szabály célpontja."
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
 msgstr "Egy érzékelő egy csoporthoz tartozik: bejelölése áthelyezi a jelenlegi csoportjából."
@@ -331,6 +335,7 @@ msgid "Actions"
 msgstr "Műveletek"
 
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -488,6 +493,7 @@ msgstr "Ügynök frissítése"
 msgid "Agent updated"
 msgstr "Ügynök frissítve"
 
+#: src/components/alerts/target-alerts.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Alert"
 msgstr "Riasztás"
@@ -510,19 +516,19 @@ msgstr "Riasztási küszöb (nap a lejárat előtt)"
 msgid "Alert types"
 msgstr "Riasztástípusok"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
 msgstr "Riasztás, ha a CPU meghaladja"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are fewer than"
 msgstr "Riasztás, ha kevesebb a példány, mint"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are more than"
 msgstr "Riasztás, ha több a példány, mint"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its memory is above"
 msgstr "Riasztás, ha a memória meghaladja"
 
@@ -530,13 +536,11 @@ msgstr "Riasztás, ha a memória meghaladja"
 msgid "Alert when services, Docker containers or processes enter or leave a state."
 msgstr "Riasztás, ha szolgáltatások, Docker-konténerek vagy folyamatok egy állapotba lépnek vagy elhagyják azt."
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is"
 msgstr "Riasztás, ha az állapot"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is not"
 msgstr "Riasztás, ha az állapot nem"
 
@@ -544,11 +548,11 @@ msgstr "Riasztás, ha az állapot nem"
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "Riasztás, ha a(z) {systemName} {name} tanúsítványa a küszöbnél kevesebb nap múlva lejár. Az azonos nevű megújított tanúsítványok továbbra is ellenőrzöttek, és a tanúsítvány fontossá válik."
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is not running"
 msgstr "Riasztás, ha a folyamat nem fut"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is running"
 msgstr "Riasztás, ha a folyamat fut"
 
@@ -561,7 +565,7 @@ msgstr "Riasztás, ha a folyamat fut"
 msgid "Alerts"
 msgstr "Riasztások"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alerts created"
 msgstr "Riasztások létrehozva"
 
@@ -572,6 +576,10 @@ msgstr "{sensorName} riasztásai"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "riasztás felhasználónként"
+
+#: src/components/alerts/alerts-notice.tsx
+msgid "Alerts set up"
+msgstr "Beállított riasztások"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -658,6 +666,7 @@ msgstr "Minden érzékelő"
 msgid "All Services"
 msgstr "Összes szolgáltatás"
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -681,7 +690,7 @@ msgstr "Minden rendszer"
 msgid "All systems until {until}"
 msgstr "Minden rendszer eddig: {until}"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "All the instances of a program count as one target, such as every chrome.exe."
 msgstr "Egy program minden példánya egy célnak számít, például minden chrome.exe."
 
@@ -966,8 +975,9 @@ msgid "Can stop"
 msgstr "Leállítható"
 
 #: src/components/agent-update-dialog.tsx
-#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1128,7 +1138,7 @@ msgstr "Ellenőrzőösszeg-hibák"
 msgid "Choose a known port"
 msgstr "Válasszon ismert portot"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one day."
 msgstr "Válasszon legalább egy napot."
@@ -1137,7 +1147,7 @@ msgstr "Válasszon legalább egy napot."
 msgid "Choose at least one port."
 msgstr "Válasszon legalább egy portot."
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one week of the month."
 msgstr "Válasszon legalább egy hetet a hónapból."
@@ -1231,9 +1241,8 @@ msgstr "Parancs"
 msgid "Command line instructions"
 msgstr "Parancssori utasítások"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Condition"
 msgstr "Feltétel"
 
@@ -1275,8 +1284,7 @@ msgstr "Kapcsolat megszakadt"
 msgid "Connections"
 msgstr "Kapcsolatok"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Consecutive checks"
 msgstr "Egymást követő ellenőrzések"
 
@@ -1285,7 +1293,7 @@ msgstr "Egymást követő ellenőrzések"
 msgid "Container"
 msgstr "Konténer"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Container alerts"
 msgstr "Konténerriasztások"
 
@@ -1297,7 +1305,7 @@ msgstr "Konténer állapota"
 msgid "Container state"
 msgstr "Konténer állapota"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
@@ -1397,7 +1405,7 @@ msgstr "Mag"
 msgid "CPU"
 msgstr "CPU"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "CPU above {threshold}%"
 msgstr "CPU {threshold}% felett"
 
@@ -1443,7 +1451,7 @@ msgstr "CPU használat"
 msgid "CPU: {cpuText}"
 msgstr "CPU: {cpuText}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Create"
 msgstr "Létrehozás"
 
@@ -1505,7 +1513,7 @@ msgstr "Jelenlegi állapot"
 msgid "Cycles"
 msgstr "Ciklusok"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Daily"
@@ -1578,6 +1586,11 @@ msgstr "Romlott"
 msgid "Degraded or bad"
 msgstr "Romlott vagy rossz"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
@@ -1611,6 +1624,10 @@ msgstr "Csoport törlése"
 msgid "Delete the group {originalName}?"
 msgstr "Törli a(z) {originalName} csoportot?"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Delete the rule?"
+msgstr "Törli a szabályt?"
+
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
 msgstr "Törli a kijelölt újraindításokat?"
@@ -1631,7 +1648,8 @@ msgstr "Függőségek"
 msgid "Deployment"
 msgstr "Telepítés"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "Adja meg az okot"
@@ -1809,6 +1827,8 @@ msgstr "Húzza az átméretezéshez, dupla kattintással visszaállít"
 msgid "Duration"
 msgstr "Időtartam"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -1829,6 +1849,10 @@ msgstr "Hálózatfigyelő szerkesztése"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit the quiet hours"
 msgstr "Csendes órák szerkesztése"
+
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "Edit the rule"
+msgstr "Szabály szerkesztése"
 
 #: src/components/add-system.tsx
 msgid "Edit the system"
@@ -1870,7 +1894,7 @@ msgstr "Bejelentkezés engedélyezése a címtárral"
 msgid "End"
 msgstr "Vége"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1908,7 +1932,6 @@ msgstr "Adja meg az egyszeri jelszavát."
 msgid "Ephemeral"
 msgstr "Ideiglenes"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2101,7 +2124,7 @@ msgid "Failed to send test notification"
 msgstr "Teszt értesítés elküldése sikertelen"
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Failed to update alert"
 msgstr "Nem sikerült frissíteni a riasztást"
 
@@ -2118,7 +2141,7 @@ msgstr "Sikertelen: {0}"
 msgid "Fans"
 msgstr "Ventilátorok"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "fewer than {threshold} instances"
 msgstr "kevesebb mint {threshold} példány"
 
@@ -2288,8 +2311,7 @@ msgstr "Fejléc ikonjai"
 msgid "Health"
 msgstr "Egészség"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Health (optional)"
 msgstr "Egészség (nem kötelező)"
 
@@ -2475,7 +2497,7 @@ msgstr "Példány"
 msgid "Instance name"
 msgstr "Példány neve"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 msgid "Instances"
@@ -2831,7 +2853,7 @@ msgstr "Max. 1 óra"
 msgid "Memory"
 msgstr "RAM"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "memory above {threshold}%"
 msgstr "memória {threshold}% felett"
 
@@ -2889,7 +2911,7 @@ msgstr "Modell"
 msgid "Monitors created"
 msgstr "Monitorok létrehozva"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Monthly"
@@ -2900,7 +2922,7 @@ msgstr "Havonta"
 msgid "More"
 msgstr "Továbbiak"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "more than {threshold} instances"
 msgstr "több mint {threshold} példány"
 
@@ -2908,11 +2930,11 @@ msgstr "több mint {threshold} példány"
 msgid "Mountpoint"
 msgstr "Csatolási pont"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must be running"
 msgstr "futnia kell"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must not be running"
 msgstr "nem futhat"
 
@@ -2949,7 +2971,7 @@ msgstr "Az ügynök Linux vagy Windows parancsokkal történő telepítésekor l
 msgid "Name to resolve"
 msgstr "Feloldandó név"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
 msgstr "Vesszővel elválasztott nevek. Használja a * karaktert helyettesítőként. A már nem jelentett cél leállítottnak számít."
 
@@ -3151,7 +3173,7 @@ msgid "No systems found."
 msgstr "Nem található rendszer."
 
 #: src/components/add-system.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -3227,7 +3249,7 @@ msgstr "Egy vagy több monitor vesztesége meghaladja a(z) {0}%-ot"
 msgid "One or more services are in a failed state"
 msgstr "Egy vagy több szolgáltatás sikertelen állapotban van"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "One-time"
@@ -3286,7 +3308,7 @@ msgstr "Vagy folytasd ezzel"
 msgid "Or enter this key in the app:"
 msgstr "Vagy írja be ezt a kulcsot az alkalmazásba:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3434,7 +3456,7 @@ msgstr "Függőben"
 msgid "Per-core average utilization"
 msgstr "Átlagos kihasználtság magonként"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Percent of the whole host, all the instances of the program added up."
 msgstr "A teljes gazdagép százaléka, a program összes példányát összeadva."
 
@@ -3471,7 +3493,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "Kérjük, <0>konfigurálj egy SMTP szervert</0> az értesítések kézbesítésének biztosítása érdekében."
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Please check logs for more details."
 msgstr "Kérjük, ellenőrizd a naplókat a további részletekért."
 
@@ -3559,7 +3581,7 @@ msgstr "Előző oldal"
 msgid "Process alert"
 msgstr "Folyamatriasztás"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Process alerts"
 msgstr "Folyamatriasztások"
 
@@ -3571,14 +3593,14 @@ msgstr "Folyamatszabály teljesült"
 msgid "Process started"
 msgstr "Folyamat elindítva"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "Folyamatok"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Processes are checked every minute, only on the systems with process rules."
 msgstr "A folyamatokat percenként ellenőrizzük, csak a folyamatszabályokkal rendelkező rendszereken."
 
@@ -3635,11 +3657,11 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Várakozási sor mélysége"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 msgid "Quiet hours"
 msgstr "Csendes órák"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3656,9 +3678,9 @@ msgstr "Csendes órák aktívak"
 msgid "Quiet hours active: notifications are not sent"
 msgstr "Csendes órák aktívak: az értesítések nem kerülnek kiküldésre"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Quiet hours set up"
-msgstr "Csendes órák beállítva"
+#: src/components/alerts/alerts-notice.tsx
+msgid "Quiet hours set up: the alerts are not sent during these windows"
+msgstr "Beállított csendes órák: ezekben az időszakokban nem küldünk riasztást"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3702,8 +3724,8 @@ msgstr "Csak olvasás"
 msgid "Read-only group"
 msgstr "Csak olvasási csoport"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3963,7 +3985,7 @@ msgstr "S.M.A.R.T. Részletek"
 msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. Önteszt"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -4212,7 +4234,7 @@ msgstr "Szolgáltatás"
 msgid "Service account"
 msgstr "Szolgáltatásfiók"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Service alerts"
 msgstr "Szolgáltatásriasztások"
 
@@ -4229,7 +4251,7 @@ msgstr "Szolgáltatás neve"
 msgid "Service state"
 msgstr "Szolgáltatás állapota"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
@@ -4237,7 +4259,7 @@ msgstr "Szolgáltatás állapota"
 msgid "Services"
 msgstr "Szolgáltatások"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Services are checked at each collection, containers every minute."
 msgstr "A szolgáltatások minden gyűjtéskor, a konténerek percenként kerülnek ellenőrzésre."
 
@@ -4253,20 +4275,16 @@ msgstr "Állítsa be a következő környezeti változókat a Beszel hubon a hea
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "Állítsa be az új tanúsítvány ujjlenyomatát a következő helyen (vagy a Win32_TSGeneralSetting WMI-osztályban), majd indítsa újra a Távoli asztal szolgáltatást:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Beállítás"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "Csendes órák beállítása"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Set up quiet hours for the selection below"
-msgstr "Csendes órák beállítása az alábbi kijelöléshez"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -4344,7 +4362,7 @@ msgstr "Forrás"
 msgid "Start"
 msgstr "Kezdete"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4379,11 +4397,11 @@ msgstr "Kézzel indítva"
 msgid "State"
 msgstr "Állapot"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is"
 msgstr "az állapot"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is not"
 msgstr "az állapot nem"
 
@@ -4401,8 +4419,7 @@ msgstr "Állapotszabály teljesült"
 msgid "State rules"
 msgstr "Állapotszabályok"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "States"
 msgstr "Állapotok"
 
@@ -4439,8 +4456,7 @@ msgstr "Leállítva"
 msgid "Sub State"
 msgstr "Részállapot"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Sub-states (optional)"
 msgstr "Alállapotok (nem kötelező)"
 
@@ -4561,11 +4577,11 @@ msgstr "Lapok"
 msgid "Target"
 msgstr "Cél"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets"
 msgstr "Célok"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets by system"
 msgstr "Célok rendszerenként"
 
@@ -4645,6 +4661,10 @@ msgstr "Az ügynök magától újraindul és újracsatlakozik."
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "Az ügynökök letöltik a(z) {latest} verziót a GitHubról, majd újraindulnak."
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "The alerts of these rules are not sent during this window. It goes with the rules when they are deleted."
+msgstr "Ezeknek a szabályoknak a riasztásait ebben az időszakban nem küldjük. A szabályokkal együtt törlődik."
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The average response time over 10 minutes exceeds {value} ms."
 msgstr "A 10 perces átlagos válaszidő meghaladja a {value} ms-t."
@@ -4664,6 +4684,10 @@ msgstr "Ugyanannak a gazdagépnek az ellenőrzései egy érzékelőbe kerülnek.
 #: src/components/routes/settings/security.tsx
 msgid "The code by email needs the mail settings of the hub."
 msgstr "Az e-mailes kódhoz a hub levelezési beállításai szükségesek."
+
+#: src/components/alerts/quiet-hours-fields.tsx
+msgid "The end must come after the start."
+msgstr "A végének a kezdet után kell lennie."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
@@ -4693,7 +4717,7 @@ msgstr "A folyamatokat nem sikerült beolvasni."
 msgid "The processes that use the most CPU and memory on each system that is up, at the time of the reading."
 msgstr "Az egyes futó rendszereken a legtöbb CPU-t és memóriát használó folyamatok a mérés pillanatában."
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "The rules are created on each system."
 msgstr "A szabályok minden rendszeren létrejönnek."
 
@@ -4767,7 +4791,7 @@ msgstr "Szálak"
 msgid "Threshold"
 msgstr "Küszöb"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Threshold (%)"
 msgstr "Küszöb (%)"
 
@@ -4882,6 +4906,7 @@ msgstr "Összesen: {totalCount}"
 msgid "Traced with the traceroute command of the hub."
 msgstr "A hub traceroute parancsával követve."
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
 msgstr "Kiváltva"
@@ -4966,8 +4991,8 @@ msgstr "Riaszt, ha a lemezhasználat túllép egy küszöbértéket"
 msgid "Two-factor authentication"
 msgstr "Kétlépcsős hitelesítés"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -5307,7 +5332,7 @@ msgstr "Hétvége"
 msgid "Weekly"
 msgstr "Hetente"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Weekly, on some days"
 msgstr "Hetente, bizonyos napokon"

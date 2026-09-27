@@ -78,15 +78,15 @@ msgstr "{count, plural, one {{countString} час} other {{countString} часа
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} минута} few {{countString} минути} many {{countString} минути} other {{countString} минути}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, one {# филтриран контейнер} other {# филтрирани контейнера}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# филтрирана услуга} other {# филтрирани услуги}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {# избран процес} other {# избрани процеса}}"
 
@@ -97,18 +97,6 @@ msgstr "{count, plural, one {# сензор} other {# сензора}}"
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# система} other {# системи}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
-msgstr "{count, plural, one {Сигналите за избрания процес не се изпращат през този период.} other {Сигналите за # избрани процеса не се изпращат през този период.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
-msgstr "{count, plural, one {Сигналите за състоянието на избрания контейнер не се изпращат през този период.} other {Сигналите за състоянието на избраните контейнери (#) не се изпращат през този период.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
-msgstr "{count, plural, one {Сигналите за състоянието на избраната услуга не се изпращат през този период.} other {Сигналите за състоянието на избраните услуги (#) не се изпращат през този период.}}"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "{count} instance(s) · CPU {cpuText}"
@@ -175,7 +163,7 @@ msgstr "{outdated} системи се нуждаят от обновяване 
 msgid "{programCount} programs"
 msgstr "{programCount} програми"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, one {Създадено е # правило за състояние.} other {Създадени са # правила за състояние.}}"
 
@@ -191,13 +179,21 @@ msgstr "{seconds, plural, one {# секунда} other {# секунди}}"
 msgid "{sensorCount} host(s), {checkCount} check(s)"
 msgstr "{sensorCount} хост(а), {checkCount} проверка(и)"
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "{skippedCount, plural, one {# item left out: a name with a comma can't be the target of a rule.} other {# items left out: a name with a comma can't be the target of a rule.}}"
+msgstr "{skippedCount, plural, one {# изключен елемент: Име със запетая не може да бъде цел на правило.} other {# изключени елемента: Име със запетая не може да бъде цел на правило.}}"
+
 #: src/components/sensors/sensor-badges.tsx
 msgid "{success} of {total} successful"
 msgstr "{success} от {total} успешни"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, one {# система} other {# системи}}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{targets}: {condition}. Its alerts stop."
+msgstr "{targets}: {condition}. Сигналите ѝ спират."
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -206,6 +202,10 @@ msgstr "{threads, plural, one {# нишка} other {# нишки}}"
 #: src/lib/quiet-hours.ts
 msgid "{weekList} {dayList} of the month"
 msgstr "{weekList} {dayList} от месеца"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{windowCount, plural, one {Its quiet hours window is deleted too.} other {Its # quiet hours windows are deleted too.}}"
+msgstr "{windowCount, plural, one {Периодът ѝ на тихи часове също се изтрива.} other {# периода на тихи часове също се изтриват.}}"
 
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
@@ -292,6 +292,10 @@ msgstr "Проверка на сензора не отговаря."
 msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
 msgstr "Ден, който липсва в даден месец, като 31-ви, се пропуска: изберете последния ден за края на всеки месец."
 
+#: src/components/alerts/target-alerts.tsx
+msgid "A name with a comma can't be the target of a rule."
+msgstr "Име със запетая не може да бъде цел на правило."
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
 msgstr "Сензорът принадлежи към една група: отметването го премества от текущата му група."
@@ -331,6 +335,7 @@ msgid "Actions"
 msgstr "Действия"
 
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -488,6 +493,7 @@ msgstr "Обновяване на агента"
 msgid "Agent updated"
 msgstr "Агентът е актуализиран"
 
+#: src/components/alerts/target-alerts.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Alert"
 msgstr "Сигнал"
@@ -510,19 +516,19 @@ msgstr "Праг на сигнала (дни преди изтичане)"
 msgid "Alert types"
 msgstr "Видове сигнали"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
 msgstr "Сигнал, когато CPU е над"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are fewer than"
 msgstr "Сигнал, когато инстанциите са по-малко от"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are more than"
 msgstr "Сигнал, когато инстанциите са повече от"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its memory is above"
 msgstr "Сигнал, когато паметта е над"
 
@@ -530,13 +536,11 @@ msgstr "Сигнал, когато паметта е над"
 msgid "Alert when services, Docker containers or processes enter or leave a state."
 msgstr "Сигнал, когато услуги, Docker контейнери или процеси влизат в или излизат от състояние."
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is"
 msgstr "Известие, когато състоянието е"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is not"
 msgstr "Известие, когато състоянието не е"
 
@@ -544,11 +548,11 @@ msgstr "Известие, когато състоянието не е"
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "Сигнал, когато сертификатът {name} на {systemName} изтича след по-малко дни от прага. Подновените сертификати със същото име остават проверявани, а сертификатът става важен."
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is not running"
 msgstr "Сигнал, когато процесът не работи"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is running"
 msgstr "Сигнал, когато процесът работи"
 
@@ -561,7 +565,7 @@ msgstr "Сигнал, когато процесът работи"
 msgid "Alerts"
 msgstr "Тревоги"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alerts created"
 msgstr "Известията са създадени"
 
@@ -572,6 +576,10 @@ msgstr "Сигнали за {sensorName}"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "известия на потребител"
+
+#: src/components/alerts/alerts-notice.tsx
+msgid "Alerts set up"
+msgstr "Настроени сигнали"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -658,6 +666,7 @@ msgstr "Всички сензори"
 msgid "All Services"
 msgstr "Всички услуги"
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -681,7 +690,7 @@ msgstr "Всички системи"
 msgid "All systems until {until}"
 msgstr "Всички системи до {until}"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "All the instances of a program count as one target, such as every chrome.exe."
 msgstr "Всички инстанции на програма се броят като една цел, например всеки chrome.exe."
 
@@ -966,8 +975,9 @@ msgid "Can stop"
 msgstr "Може да се спре"
 
 #: src/components/agent-update-dialog.tsx
-#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1128,7 +1138,7 @@ msgstr "Грешки в контролната сума"
 msgid "Choose a known port"
 msgstr "Изберете известен порт"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one day."
 msgstr "Изберете поне един ден."
@@ -1137,7 +1147,7 @@ msgstr "Изберете поне един ден."
 msgid "Choose at least one port."
 msgstr "Изберете поне един порт."
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one week of the month."
 msgstr "Изберете поне една седмица от месеца."
@@ -1231,9 +1241,8 @@ msgstr "Команда"
 msgid "Command line instructions"
 msgstr "Инструкции за командната линия"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Condition"
 msgstr "Условие"
 
@@ -1275,8 +1284,7 @@ msgstr "Връзката е прекъсната"
 msgid "Connections"
 msgstr "Връзки"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Consecutive checks"
 msgstr "Последователни проверки"
 
@@ -1285,7 +1293,7 @@ msgstr "Последователни проверки"
 msgid "Container"
 msgstr "Контейнер"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Container alerts"
 msgstr "Известия за контейнери"
 
@@ -1297,7 +1305,7 @@ msgstr "Здраве на контейнера"
 msgid "Container state"
 msgstr "Състояние на контейнер"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
@@ -1397,7 +1405,7 @@ msgstr "Основни"
 msgid "CPU"
 msgstr "Процесор"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "CPU above {threshold}%"
 msgstr "CPU над {threshold}%"
 
@@ -1443,7 +1451,7 @@ msgstr "Употреба на процесор"
 msgid "CPU: {cpuText}"
 msgstr "CPU: {cpuText}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Create"
 msgstr "Създай"
 
@@ -1505,7 +1513,7 @@ msgstr "Текущо състояние"
 msgid "Cycles"
 msgstr "Цикли"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Daily"
@@ -1578,6 +1586,11 @@ msgstr "Влошено"
 msgid "Degraded or bad"
 msgstr "Влошено или лошо"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
@@ -1611,6 +1624,10 @@ msgstr "Изтриване на групата"
 msgid "Delete the group {originalName}?"
 msgstr "Изтриване на групата {originalName}?"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Delete the rule?"
+msgstr "Изтриване на правилото?"
+
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
 msgstr "Изтриване на избраните рестартирания?"
@@ -1631,7 +1648,8 @@ msgstr "Зависимости"
 msgid "Deployment"
 msgstr "Внедряване"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "Опишете причината"
@@ -1809,6 +1827,8 @@ msgstr "Плъзнете за преоразмеряване, щракнете �
 msgid "Duration"
 msgstr "Продължителност"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -1829,6 +1849,10 @@ msgstr "Редактиране на мрежовия монитор"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit the quiet hours"
 msgstr "Редактиране на тихите часове"
+
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "Edit the rule"
+msgstr "Редактиране на правилото"
 
 #: src/components/add-system.tsx
 msgid "Edit the system"
@@ -1870,7 +1894,7 @@ msgstr "Включване на входа чрез директорията"
 msgid "End"
 msgstr "Край"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1908,7 +1932,6 @@ msgstr "Въведете Вашата еднократна парола."
 msgid "Ephemeral"
 msgstr "Ефимерен"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2101,7 +2124,7 @@ msgid "Failed to send test notification"
 msgstr "Неуспешно изпрати тестова нотификация"
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Failed to update alert"
 msgstr "Неуспешно обнови тревога"
 
@@ -2118,7 +2141,7 @@ msgstr "Неуспешни: {0}"
 msgid "Fans"
 msgstr "Вентилатори"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "fewer than {threshold} instances"
 msgstr "по-малко от {threshold} инстанции"
 
@@ -2288,8 +2311,7 @@ msgstr "Икони в заглавната лента"
 msgid "Health"
 msgstr "Здраве"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Health (optional)"
 msgstr "Здраве (по избор)"
 
@@ -2475,7 +2497,7 @@ msgstr "Инстанция"
 msgid "Instance name"
 msgstr "Име на инстанцията"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 msgid "Instances"
@@ -2831,7 +2853,7 @@ msgstr "Макс. 1h"
 msgid "Memory"
 msgstr "Памет"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "memory above {threshold}%"
 msgstr "памет над {threshold}%"
 
@@ -2889,7 +2911,7 @@ msgstr "Модел"
 msgid "Monitors created"
 msgstr "Мониторите са създадени"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Monthly"
@@ -2900,7 +2922,7 @@ msgstr "Месечно"
 msgid "More"
 msgstr "Още"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "more than {threshold} instances"
 msgstr "повече от {threshold} инстанции"
 
@@ -2908,11 +2930,11 @@ msgstr "повече от {threshold} инстанции"
 msgid "Mountpoint"
 msgstr "Точка на монтиране"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must be running"
 msgstr "трябва да работи"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must not be running"
 msgstr "не трябва да работи"
 
@@ -2949,7 +2971,7 @@ msgstr "Име на услугата, създавана при инсталир
 msgid "Name to resolve"
 msgstr "Име за разрешаване"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
 msgstr "Имена, разделени със запетаи. Използвайте * като заместващ знак. Цел, която вече не се докладва, се счита за спряна."
 
@@ -3151,7 +3173,7 @@ msgid "No systems found."
 msgstr "Няма намерени системи."
 
 #: src/components/add-system.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -3227,7 +3249,7 @@ msgstr "Един или повече монитори надвишават {0}% 
 msgid "One or more services are in a failed state"
 msgstr "Една или повече услуги са в състояние на грешка"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "One-time"
@@ -3286,7 +3308,7 @@ msgstr "Или продължи с"
 msgid "Or enter this key in the app:"
 msgstr "Или въведете този ключ в приложението:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3434,7 +3456,7 @@ msgstr "Изчакване"
 msgid "Per-core average utilization"
 msgstr "Средно използване на ядро"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Percent of the whole host, all the instances of the program added up."
 msgstr "Процент от целия хост, като всички инстанции на програмата се сумират."
 
@@ -3471,7 +3493,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "Моля <0>конфигурурай SMTP сървър</0> за да се подсигуриш, че тревогите са доставени."
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Please check logs for more details."
 msgstr "Моля провери log-овете за повече информация."
 
@@ -3559,7 +3581,7 @@ msgstr "Предишна страница"
 msgid "Process alert"
 msgstr "Сигнал за процес"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Process alerts"
 msgstr "Сигнали за процеси"
 
@@ -3571,14 +3593,14 @@ msgstr "Правилото за процес е изпълнено"
 msgid "Process started"
 msgstr "Процесът стартира"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "Процеси"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Processes are checked every minute, only on the systems with process rules."
 msgstr "Процесите се проверяват всяка минута, само в системите с правила за процеси."
 
@@ -3635,11 +3657,11 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Дълбочина на опашката"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 msgid "Quiet hours"
 msgstr "Тихи часове"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3656,9 +3678,9 @@ msgstr "Тихите часове са активни"
 msgid "Quiet hours active: notifications are not sent"
 msgstr "Тихите часове са активни: известията не се изпращат"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Quiet hours set up"
-msgstr "Тихите часове са настроени"
+#: src/components/alerts/alerts-notice.tsx
+msgid "Quiet hours set up: the alerts are not sent during these windows"
+msgstr "Настроени тихи часове: сигналите не се изпращат в тези периоди"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3702,8 +3724,8 @@ msgstr "Само за четене"
 msgid "Read-only group"
 msgstr "Група само за четене"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3963,7 +3985,7 @@ msgstr "S.M.A.R.T. Детайли"
 msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. Самотест"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -4212,7 +4234,7 @@ msgstr "Услуга"
 msgid "Service account"
 msgstr "Служебен акаунт"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Service alerts"
 msgstr "Известия за услуги"
 
@@ -4229,7 +4251,7 @@ msgstr "Име на услугата"
 msgid "Service state"
 msgstr "Състояние на услуга"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
@@ -4237,7 +4259,7 @@ msgstr "Състояние на услуга"
 msgid "Services"
 msgstr "Услуги"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Services are checked at each collection, containers every minute."
 msgstr "Услугите се проверяват при всяко събиране, контейнерите – всяка минута."
 
@@ -4253,20 +4275,16 @@ msgstr "Задайте следните променливи на средата
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "Задайте отпечатъка на новия сертификат на следното място (или в WMI класа Win32_TSGeneralSetting), след това рестартирайте услугата за отдалечен работен плот:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Настройване"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "Настройване на тихи часове"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Set up quiet hours for the selection below"
-msgstr "Настройване на тихи часове за избраното по-долу"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -4344,7 +4362,7 @@ msgstr "Източник"
 msgid "Start"
 msgstr "Начало"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4379,11 +4397,11 @@ msgstr "Стартиран ръчно"
 msgid "State"
 msgstr "Състояние"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is"
 msgstr "състоянието е"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is not"
 msgstr "състоянието не е"
 
@@ -4401,8 +4419,7 @@ msgstr "Правилото за състояние е изпълнено"
 msgid "State rules"
 msgstr "Правила за състояние"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "States"
 msgstr "Състояния"
 
@@ -4439,8 +4456,7 @@ msgstr "Спрян"
 msgid "Sub State"
 msgstr "Подсъстояние"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Sub-states (optional)"
 msgstr "Подсъстояния (по избор)"
 
@@ -4561,11 +4577,11 @@ msgstr "Табове"
 msgid "Target"
 msgstr "Цел"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets"
 msgstr "Цели"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets by system"
 msgstr "Цели по система"
 
@@ -4645,6 +4661,10 @@ msgstr "Агентът се рестартира и се свързва отно
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "Агентите изтеглят версия {latest} от GitHub и се рестартират."
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "The alerts of these rules are not sent during this window. It goes with the rules when they are deleted."
+msgstr "Сигналите на тези правила не се изпращат през този период. Той се изтрива заедно с правилата."
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The average response time over 10 minutes exceeds {value} ms."
 msgstr "Средното време за реакция за 10 минути надвишава {value} ms."
@@ -4664,6 +4684,10 @@ msgstr "Проверките на един и същ хост са групир�
 #: src/components/routes/settings/security.tsx
 msgid "The code by email needs the mail settings of the hub."
 msgstr "Кодът по имейл изисква пощенските настройки на хъба."
+
+#: src/components/alerts/quiet-hours-fields.tsx
+msgid "The end must come after the start."
+msgstr "Краят трябва да е след началото."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
@@ -4693,7 +4717,7 @@ msgstr "Процесите не можаха да бъдат прочетени.
 msgid "The processes that use the most CPU and memory on each system that is up, at the time of the reading."
 msgstr "Процесите, които използват най-много CPU и памет на всяка работеща система, към момента на отчитането."
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "The rules are created on each system."
 msgstr "Правилата се създават за всяка система."
 
@@ -4767,7 +4791,7 @@ msgstr "Нишки"
 msgid "Threshold"
 msgstr "Праг"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Threshold (%)"
 msgstr "Праг (%)"
 
@@ -4882,6 +4906,7 @@ msgstr "Общо: {totalCount}"
 msgid "Traced with the traceroute command of the hub."
 msgstr "Проследено с командата traceroute на хъба."
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
 msgstr "Задействано"
@@ -4966,8 +4991,8 @@ msgstr "Задейства се, когато употребата на няко
 msgid "Two-factor authentication"
 msgstr "Двуфакторно удостоверяване"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -5307,7 +5332,7 @@ msgstr "Уикенд"
 msgid "Weekly"
 msgstr "Седмично"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Weekly, on some days"
 msgstr "Седмично, в определени дни"

@@ -78,15 +78,15 @@ msgstr "{count, plural, other {{countString} soat}}"
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, other {{countString} daqiqa}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, one {# ta saralangan konteyner} other {# ta saralangan konteyner}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# ta saralangan xizmat} other {# ta saralangan xizmat}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {# ta tanlangan jarayon} other {# ta tanlangan jarayon}}"
 
@@ -97,18 +97,6 @@ msgstr "{count, plural, one {# sensor} other {# sensor}}"
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# tizim} other {# tizim}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
-msgstr "{count, plural, one {Tanlangan jarayon ogohlantirishlari bu oraliqda yuborilmaydi.} other {Tanlangan # ta jarayon ogohlantirishlari bu oraliqda yuborilmaydi.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
-msgstr "{count, plural, one {Tanlangan konteyner holati ogohlantirishlari bu davrda yuborilmaydi.} other {Tanlangan konteynerlar (#) holati ogohlantirishlari bu davrda yuborilmaydi.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
-msgstr "{count, plural, one {Tanlangan xizmat holati ogohlantirishlari bu davrda yuborilmaydi.} other {Tanlangan xizmatlar (#) holati ogohlantirishlari bu davrda yuborilmaydi.}}"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "{count} instance(s) · CPU {cpuText}"
@@ -175,7 +163,7 @@ msgstr "{outdated} ta tizim sertifikatlarini o‘qish uchun agentni yangilashi k
 msgid "{programCount} programs"
 msgstr "{programCount} ta dastur"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, one {# ta holat qoidasi yaratildi.} other {# ta holat qoidasi yaratildi.}}"
 
@@ -191,13 +179,21 @@ msgstr "{seconds, plural, one {# soniya} other {# soniya}}"
 msgid "{sensorCount} host(s), {checkCount} check(s)"
 msgstr "{sensorCount} ta xost, {checkCount} ta tekshiruv"
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "{skippedCount, plural, one {# item left out: a name with a comma can't be the target of a rule.} other {# items left out: a name with a comma can't be the target of a rule.}}"
+msgstr "{skippedCount, plural, one {# ta element chetda qoldi: Vergulli nom qoida nishoni bo‘la olmaydi.} other {# ta element chetda qoldi: Vergulli nom qoida nishoni bo‘la olmaydi.}}"
+
 #: src/components/sensors/sensor-badges.tsx
 msgid "{success} of {total} successful"
 msgstr "{total} tadan {success} muvaffaqiyatli"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, one {# ta tizim} other {# ta tizim}}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{targets}: {condition}. Its alerts stop."
+msgstr "{targets}: {condition}. Uning ogohlantirishlari to‘xtaydi."
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -206,6 +202,10 @@ msgstr "{threads, plural, other {# ip}}"
 #: src/lib/quiet-hours.ts
 msgid "{weekList} {dayList} of the month"
 msgstr "Oyning {weekList} {dayList}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{windowCount, plural, one {Its quiet hours window is deleted too.} other {Its # quiet hours windows are deleted too.}}"
+msgstr "{windowCount, plural, one {Uning sokin soatlar oralig‘i ham o‘chiriladi.} other {Uning # ta sokin soatlar oralig‘i ham o‘chiriladi.}}"
 
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
@@ -292,6 +292,10 @@ msgstr "Sensor tekshiruvi javob bermayapti."
 msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
 msgstr "Oyda yo‘q kun, masalan 31, o‘tkazib yuboriladi: har oy oxiri uchun oxirgi kunni tanlang."
 
+#: src/components/alerts/target-alerts.tsx
+msgid "A name with a comma can't be the target of a rule."
+msgstr "Vergulli nom qoida nishoni bo‘la olmaydi."
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
 msgstr "Sensor bitta guruhga tegishli: belgilash uni joriy guruhidan ko‘chiradi."
@@ -331,6 +335,7 @@ msgid "Actions"
 msgstr "Amallar"
 
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -488,6 +493,7 @@ msgstr "Agentni yangilash"
 msgid "Agent updated"
 msgstr "Agent yangilandi"
 
+#: src/components/alerts/target-alerts.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Alert"
 msgstr "Ogohlantirish"
@@ -510,19 +516,19 @@ msgstr "Ogohlantirish chegarasi (muddat tugashidan oldingi kunlar)"
 msgid "Alert types"
 msgstr "Ogohlantirish turlari"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
 msgstr "CPU quyidagidan yuqori bo‘lsa ogohlantirish"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are fewer than"
 msgstr "Nusxalar quyidagidan kam bo‘lsa ogohlantirish"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are more than"
 msgstr "Nusxalar quyidagidan ko‘p bo‘lsa ogohlantirish"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its memory is above"
 msgstr "Xotira quyidagidan yuqori bo‘lsa ogohlantirish"
 
@@ -530,13 +536,11 @@ msgstr "Xotira quyidagidan yuqori bo‘lsa ogohlantirish"
 msgid "Alert when services, Docker containers or processes enter or leave a state."
 msgstr "Xizmatlar, Docker konteynerlari yoki jarayonlar holatga kirganda yoki undan chiqqanda ogohlantirish."
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is"
 msgstr "Holat quyidagicha bo‘lganda ogohlantirish"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is not"
 msgstr "Holat quyidagicha bo‘lmaganda ogohlantirish"
 
@@ -544,11 +548,11 @@ msgstr "Holat quyidagicha bo‘lmaganda ogohlantirish"
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "{systemName} dagi {name} sertifikati muddati chegaradan kamroq kunda tugasa ogohlantirish. Xuddi shu nomdagi yangilangan sertifikatlar tekshirilishda davom etadi va sertifikat muhim bo‘ladi."
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is not running"
 msgstr "Jarayon ishlamayotganda ogohlantirish"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is running"
 msgstr "Jarayon ishlayotganda ogohlantirish"
 
@@ -561,7 +565,7 @@ msgstr "Jarayon ishlayotganda ogohlantirish"
 msgid "Alerts"
 msgstr "Ogohlantirishlar"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alerts created"
 msgstr "Ogohlantirishlar yaratildi"
 
@@ -572,6 +576,10 @@ msgstr "{sensorName} ogohlantirishlari"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "foydalanuvchi uchun ogohlantirish"
+
+#: src/components/alerts/alerts-notice.tsx
+msgid "Alerts set up"
+msgstr "Sozlangan ogohlantirishlar"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -658,6 +666,7 @@ msgstr "Barcha sensorlar"
 msgid "All Services"
 msgstr "Barcha xizmatlar"
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -681,7 +690,7 @@ msgstr "Barcha tizimlar"
 msgid "All systems until {until}"
 msgstr "Barcha tizimlar {until} gacha"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "All the instances of a program count as one target, such as every chrome.exe."
 msgstr "Dasturning barcha nusxalari bitta nishon hisoblanadi, masalan har bir chrome.exe."
 
@@ -966,8 +975,9 @@ msgid "Can stop"
 msgstr "To'xtata oladi"
 
 #: src/components/agent-update-dialog.tsx
-#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1128,7 +1138,7 @@ msgstr "Nazorat summasi xatolari"
 msgid "Choose a known port"
 msgstr "Ma’lum portni tanlang"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one day."
 msgstr "Kamida bitta kunni tanlang."
@@ -1137,7 +1147,7 @@ msgstr "Kamida bitta kunni tanlang."
 msgid "Choose at least one port."
 msgstr "Kamida bitta portni tanlang."
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one week of the month."
 msgstr "Oyning kamida bitta haftasini tanlang."
@@ -1231,9 +1241,8 @@ msgstr "Buyruq"
 msgid "Command line instructions"
 msgstr "Buyruq qatori ko'rsatmalari"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Condition"
 msgstr "Shart"
 
@@ -1275,8 +1284,7 @@ msgstr "Ulanish uzildi"
 msgid "Connections"
 msgstr "Ulanishlar"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Consecutive checks"
 msgstr "Ketma-ket tekshiruvlar"
 
@@ -1285,7 +1293,7 @@ msgstr "Ketma-ket tekshiruvlar"
 msgid "Container"
 msgstr "Konteyner"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Container alerts"
 msgstr "Konteyner ogohlantirishlari"
 
@@ -1297,7 +1305,7 @@ msgstr "Konteyner holati"
 msgid "Container state"
 msgstr "Konteyner holati"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
@@ -1397,7 +1405,7 @@ msgstr "Asosiy"
 msgid "CPU"
 msgstr "CPU"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "CPU above {threshold}%"
 msgstr "CPU {threshold}% dan yuqori"
 
@@ -1443,7 +1451,7 @@ msgstr "CPU yuklanishi"
 msgid "CPU: {cpuText}"
 msgstr "CPU: {cpuText}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Create"
 msgstr "Yaratish"
 
@@ -1505,7 +1513,7 @@ msgstr "Joriy holat"
 msgid "Cycles"
 msgstr "Sikllar"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Daily"
@@ -1578,6 +1586,11 @@ msgstr "Pasaygan"
 msgid "Degraded or bad"
 msgstr "Pasaygan yoki yomon"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
@@ -1611,6 +1624,10 @@ msgstr "Guruhni o‘chirish"
 msgid "Delete the group {originalName}?"
 msgstr "{originalName} guruhi o‘chirilsinmi?"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Delete the rule?"
+msgstr "Qoida o‘chirilsinmi?"
+
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
 msgstr "Tanlangan qayta ishga tushirishlar o‘chirilsinmi?"
@@ -1631,7 +1648,8 @@ msgstr "Bog‘liqliklar"
 msgid "Deployment"
 msgstr "Joylashtirish"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "Sababini yozing"
@@ -1809,6 +1827,8 @@ msgstr "O‘lchamini o‘zgartirish uchun torting, tiklash uchun ikki marta bosi
 msgid "Duration"
 msgstr "Davomiylik"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -1829,6 +1849,10 @@ msgstr "Tarmoq monitorini tahrirlash"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit the quiet hours"
 msgstr "Sokin soatlarni tahrirlash"
+
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "Edit the rule"
+msgstr "Qoidani tahrirlash"
 
 #: src/components/add-system.tsx
 msgid "Edit the system"
@@ -1870,7 +1894,7 @@ msgstr "Katalog orqali kirishni yoqish"
 msgid "End"
 msgstr "Tugash"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1908,7 +1932,6 @@ msgstr "Bir martalik parolingizni kiriting."
 msgid "Ephemeral"
 msgstr "Vaqtinchalik"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2101,7 +2124,7 @@ msgid "Failed to send test notification"
 msgstr "Test bildirishnoma yuborish muvaffaqiyatsiz tugadi"
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Failed to update alert"
 msgstr "Ogohlantirishni yangilash muvaffaqiyatsiz tugadi"
 
@@ -2118,7 +2141,7 @@ msgstr "Muvaffaqiyatsiz: {0}"
 msgid "Fans"
 msgstr "Ventilyatorlar"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "fewer than {threshold} instances"
 msgstr "{threshold} ta nusxadan kam"
 
@@ -2288,8 +2311,7 @@ msgstr "Sarlavha belgilari"
 msgid "Health"
 msgstr "Sog'lik"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Health (optional)"
 msgstr "Sog‘lomlik (ixtiyoriy)"
 
@@ -2475,7 +2497,7 @@ msgstr "Nusxa"
 msgid "Instance name"
 msgstr "Nusxa nomi"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 msgid "Instances"
@@ -2831,7 +2853,7 @@ msgstr "1 soat maksimal"
 msgid "Memory"
 msgstr "Xotira"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "memory above {threshold}%"
 msgstr "xotira {threshold}% dan yuqori"
 
@@ -2889,7 +2911,7 @@ msgstr "Model"
 msgid "Monitors created"
 msgstr "Monitorlar yaratildi"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Monthly"
@@ -2900,7 +2922,7 @@ msgstr "Har oy"
 msgid "More"
 msgstr "Ko‘proq"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "more than {threshold} instances"
 msgstr "{threshold} ta nusxadan ko‘p"
 
@@ -2908,11 +2930,11 @@ msgstr "{threshold} ta nusxadan ko‘p"
 msgid "Mountpoint"
 msgstr "Ulash nuqtasi"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must be running"
 msgstr "ishlashi kerak"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must not be running"
 msgstr "ishlamasligi kerak"
 
@@ -2949,7 +2971,7 @@ msgstr "Agent Linux yoki Windows buyruqlari bilan o‘rnatilganda yaratiladigan 
 msgid "Name to resolve"
 msgstr "Aniqlanadigan nom"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
 msgstr "Nomlarni vergul bilan ajrating. * belgisidan joker sifatida foydalaning. Endi xabar berilmayotgan nishon to‘xtatilgan hisoblanadi."
 
@@ -3151,7 +3173,7 @@ msgid "No systems found."
 msgstr "Tizimlar topilmadi."
 
 #: src/components/add-system.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -3227,7 +3249,7 @@ msgstr "Bir yoki bir nechta monitor {0}% yo‘qotishdan oshdi"
 msgid "One or more services are in a failed state"
 msgstr "Bir yoki bir nechta xizmat ishlamay qolgan holatda"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "One-time"
@@ -3286,7 +3308,7 @@ msgstr "Yoki bilan davom eting"
 msgid "Or enter this key in the app:"
 msgstr "Yoki ushbu kalitni ilovaga kiriting:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3434,7 +3456,7 @@ msgstr "Kutilmoqda"
 msgid "Per-core average utilization"
 msgstr "Har yadro uchun o'rtacha yuklanish"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Percent of the whole host, all the instances of the program added up."
 msgstr "Butun xostga nisbatan foiz, dasturning barcha nusxalari qo‘shiladi."
 
@@ -3471,7 +3493,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "Ogohlantirishlar yetkazilishini ta'minlash uchun <0>SMTP serverni sozlang</0>."
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Please check logs for more details."
 msgstr "Batafsil ma'lumot uchun jurnallarni tekshiring."
 
@@ -3559,7 +3581,7 @@ msgstr "Oldingi sahifa"
 msgid "Process alert"
 msgstr "Jarayon ogohlantirishi"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Process alerts"
 msgstr "Jarayon ogohlantirishlari"
 
@@ -3571,14 +3593,14 @@ msgstr "Jarayon qoidasi bajarildi"
 msgid "Process started"
 msgstr "Jarayon boshlandi"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "Jarayonlar"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Processes are checked every minute, only on the systems with process rules."
 msgstr "Jarayonlar har daqiqada tekshiriladi, faqat jarayon qoidalari bor tizimlarda."
 
@@ -3635,11 +3657,11 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Navbat chuqurligi"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 msgid "Quiet hours"
 msgstr "Sokin soatlar"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3656,9 +3678,9 @@ msgstr "Sokin soatlar faol"
 msgid "Quiet hours active: notifications are not sent"
 msgstr "Sokin soatlar faol: bildirishnomalar yuborilmaydi"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Quiet hours set up"
-msgstr "Sokin soatlar sozlandi"
+#: src/components/alerts/alerts-notice.tsx
+msgid "Quiet hours set up: the alerts are not sent during these windows"
+msgstr "Sokin soatlar sozlangan: bu oraliqlarda ogohlantirishlar yuborilmaydi"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3702,8 +3724,8 @@ msgstr "Faqat o‘qish"
 msgid "Read-only group"
 msgstr "Faqat o‘qish guruhi"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3963,7 +3985,7 @@ msgstr "S.M.A.R.T. tafsilotlar"
 msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. o'z-o'zini test"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -4212,7 +4234,7 @@ msgstr "Xizmat"
 msgid "Service account"
 msgstr "Xizmat hisobi"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Service alerts"
 msgstr "Xizmat ogohlantirishlari"
 
@@ -4229,7 +4251,7 @@ msgstr "Xizmat nomi"
 msgid "Service state"
 msgstr "Xizmat holati"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
@@ -4237,7 +4259,7 @@ msgstr "Xizmat holati"
 msgid "Services"
 msgstr "Xizmatlar"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Services are checked at each collection, containers every minute."
 msgstr "Xizmatlar har bir yig‘ishda, konteynerlar har daqiqada tekshiriladi."
 
@@ -4253,20 +4275,16 @@ msgstr "Heartbeat monitoringni yoqish uchun Beszel hub'ingizda quyidagi muhit o'
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "Yangi sertifikat barmoq izini quyidagi joyda (yoki Win32_TSGeneralSetting WMI sinfida) belgilang, so‘ng Masofaviy ish stoli xizmatini qayta ishga tushiring:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Sozlash"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "Sokin soatlarni sozlash"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Set up quiet hours for the selection below"
-msgstr "Quyidagi tanlov uchun sokin soatlarni sozlash"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -4344,7 +4362,7 @@ msgstr "Manba"
 msgid "Start"
 msgstr "Boshlanish"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4379,11 +4397,11 @@ msgstr "Qo‘lda ishga tushirilgan"
 msgid "State"
 msgstr "Holat"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is"
 msgstr "holat"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is not"
 msgstr "holat emas"
 
@@ -4401,8 +4419,7 @@ msgstr "Holat qoidasi bajarildi"
 msgid "State rules"
 msgstr "Holat qoidalari"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "States"
 msgstr "Holatlar"
 
@@ -4439,8 +4456,7 @@ msgstr "To‘xtatilgan"
 msgid "Sub State"
 msgstr "Kichik holat"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Sub-states (optional)"
 msgstr "Quyi holatlar (ixtiyoriy)"
 
@@ -4561,11 +4577,11 @@ msgstr "Yorliqlar"
 msgid "Target"
 msgstr "Maqsad"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets"
 msgstr "Nishonlar"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets by system"
 msgstr "Tizim bo‘yicha maqsadlar"
 
@@ -4645,6 +4661,10 @@ msgstr "Agent o‘zi qayta ishga tushadi va qayta ulanadi."
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "Agentlar GitHub’dan {latest} versiyasini yuklab oladi va qayta ishga tushadi."
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "The alerts of these rules are not sent during this window. It goes with the rules when they are deleted."
+msgstr "Bu qoidalarning ogohlantirishlari bu oraliqda yuborilmaydi. Qoidalar o‘chirilganda u ham o‘chiriladi."
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The average response time over 10 minutes exceeds {value} ms."
 msgstr "10 daqiqalik o‘rtacha javob vaqti {value} ms dan oshadi."
@@ -4664,6 +4684,10 @@ msgstr "Bir xostning tekshiruvlari bitta sensorga guruhlanadi."
 #: src/components/routes/settings/security.tsx
 msgid "The code by email needs the mail settings of the hub."
 msgstr "Elektron pochta kodi uchun hubning pochta sozlamalari kerak."
+
+#: src/components/alerts/quiet-hours-fields.tsx
+msgid "The end must come after the start."
+msgstr "Tugash boshlanishdan keyin bo‘lishi kerak."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
@@ -4693,7 +4717,7 @@ msgstr "Jarayonlarni o‘qib bo‘lmadi."
 msgid "The processes that use the most CPU and memory on each system that is up, at the time of the reading."
 msgstr "O‘lchov paytida har bir ishlayotgan tizimda eng ko‘p CPU va xotira sarflayotgan jarayonlar."
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "The rules are created on each system."
 msgstr "Qoidalar har bir tizimda yaratiladi."
 
@@ -4767,7 +4791,7 @@ msgstr "Oqimlar"
 msgid "Threshold"
 msgstr "Chegara"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Threshold (%)"
 msgstr "Chegara (%)"
 
@@ -4882,6 +4906,7 @@ msgstr "Jami: {totalCount}"
 msgid "Traced with the traceroute command of the hub."
 msgstr "Hubning traceroute buyrug‘i bilan kuzatildi."
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
 msgstr "Ishga tushgan"
@@ -4966,8 +4991,8 @@ msgstr "Biron-bir disk ishlatilishi chegaradan oshganda ishga tushadi"
 msgid "Two-factor authentication"
 msgstr "Ikki bosqichli autentifikatsiya"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -5307,7 +5332,7 @@ msgstr "Dam olish kunlari"
 msgid "Weekly"
 msgstr "Har hafta"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Weekly, on some days"
 msgstr "Har hafta, ayrim kunlarda"

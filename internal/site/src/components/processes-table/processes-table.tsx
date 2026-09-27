@@ -32,7 +32,6 @@ import {
 	headerWidthStyle,
 	useTableLayout,
 } from "@/components/table-layout"
-import { BulkQuietHoursButton } from "@/components/alerts/bulk-quiet-hours"
 import { BulkStateAlertsButton, selectionColumn } from "@/components/alerts/bulk-state-alerts"
 import { type ImportantTile, ImportantTargets } from "@/components/important-targets"
 import { Button } from "@/components/ui/button"
@@ -300,7 +299,6 @@ export default function ProcessesTable({ systemId }: { systemId: string }) {
 						</div>
 						<ColumnsViewMenu table={table} />
 						<BulkStateAlertsButton kind="process" items={selectedItems} />
-						<BulkQuietHoursButton kind="process" items={selectedItems} />
 						<Button
 							variant="outline"
 							size="icon"

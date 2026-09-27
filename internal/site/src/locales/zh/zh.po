@@ -78,15 +78,15 @@ msgstr "{count, plural, one {{countString} 小時} other {{countString} 小時}}
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} 分鐘} few {{countString} 分鐘} many {{countString} 分鐘} other {{countString} 分鐘}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, other {# 個篩選後的容器}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, other {# 個篩選後的服務}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {已選取 # 個處理程序} other {已選取 # 個處理程序}}"
 
@@ -97,18 +97,6 @@ msgstr "{count, plural, other {# 個感測器}}"
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, other {# 個系統}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
-msgstr "{count, plural, one {所選處理程序的警示在此時段內不會傳送。} other {所選 # 個處理程序的警示在此時段內不會傳送。}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
-msgstr "{count, plural, one {此時段內不會傳送所選容器的狀態警示。} other {此時段內不會傳送所選 # 個容器的狀態警示。}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
-msgstr "{count, plural, one {此時段內不會傳送所選服務的狀態警示。} other {此時段內不會傳送所選 # 個服務的狀態警示。}}"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "{count} instance(s) · CPU {cpuText}"
@@ -175,7 +163,7 @@ msgstr "{outdated} 個系統需要更新代理程式才能讀取憑證。"
 msgid "{programCount} programs"
 msgstr "{programCount} 個程式"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, other {已建立 # 條狀態規則。}}"
 
@@ -191,13 +179,21 @@ msgstr "{seconds, plural, other {# 秒}}"
 msgid "{sensorCount} host(s), {checkCount} check(s)"
 msgstr "{sensorCount} 台主機，{checkCount} 項檢查"
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "{skippedCount, plural, one {# item left out: a name with a comma can't be the target of a rule.} other {# items left out: a name with a comma can't be the target of a rule.}}"
+msgstr "{skippedCount, plural, one {已略過 # 項：包含逗號的名稱不能作為規則的目標。} other {已略過 # 項：包含逗號的名稱不能作為規則的目標。}}"
+
 #: src/components/sensors/sensor-badges.tsx
 msgid "{success} of {total} successful"
 msgstr "{total} 次中成功 {success} 次"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, other {# 個系統}}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{targets}: {condition}. Its alerts stop."
+msgstr "{targets}：{condition}。其警示會停止。"
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -206,6 +202,10 @@ msgstr "{threads, plural, one {# 執行緒} other {# 執行緒}}"
 #: src/lib/quiet-hours.ts
 msgid "{weekList} {dayList} of the month"
 msgstr "每月{weekList}{dayList}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{windowCount, plural, one {Its quiet hours window is deleted too.} other {Its # quiet hours windows are deleted too.}}"
+msgstr "{windowCount, plural, one {其靜音時段也會刪除。} other {其 # 個靜音時段也會刪除。}}"
 
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
@@ -292,6 +292,10 @@ msgstr "感測器的某項檢查沒有回應。"
 msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
 msgstr "月份中不存在的日期（例如 31 日）會略過：月底請選擇「最後一天」。"
 
+#: src/components/alerts/target-alerts.tsx
+msgid "A name with a comma can't be the target of a rule."
+msgstr "包含逗號的名稱不能作為規則的目標。"
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
 msgstr "感測器只屬於一個群組：勾選後會從目前群組移出。"
@@ -331,6 +335,7 @@ msgid "Actions"
 msgstr "操作"
 
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -488,6 +493,7 @@ msgstr "代理程式更新"
 msgid "Agent updated"
 msgstr "代理程式已更新"
 
+#: src/components/alerts/target-alerts.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Alert"
 msgstr "警示"
@@ -510,19 +516,19 @@ msgstr "警示門檻（到期前天數）"
 msgid "Alert types"
 msgstr "警示類型"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
 msgstr "CPU 高於下列值時警示"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are fewer than"
 msgstr "執行個體少於下列數量時警示"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are more than"
 msgstr "執行個體多於下列數量時警示"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its memory is above"
 msgstr "記憶體高於下列值時警示"
 
@@ -530,13 +536,11 @@ msgstr "記憶體高於下列值時警示"
 msgid "Alert when services, Docker containers or processes enter or leave a state."
 msgstr "當服務、Docker 容器或處理程序進入或離開某個狀態時發出警示。"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is"
 msgstr "當狀態為下列時發出警報"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is not"
 msgstr "當狀態不為下列時發出警報"
 
@@ -544,11 +548,11 @@ msgstr "當狀態不為下列時發出警報"
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "當 {systemName} 的憑證 {name} 在少於門檻的天數內到期時發出警示。同名的續期憑證會持續檢查，且此憑證會標示為重要。"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is not running"
 msgstr "處理程序未執行時警示"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is running"
 msgstr "處理程序執行時警示"
 
@@ -561,7 +565,7 @@ msgstr "處理程序執行時警示"
 msgid "Alerts"
 msgstr "警報"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alerts created"
 msgstr "已建立警報"
 
@@ -572,6 +576,10 @@ msgstr "{sensorName} 的警報"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "則警報（每位使用者）"
+
+#: src/components/alerts/alerts-notice.tsx
+msgid "Alerts set up"
+msgstr "已設定的警示"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -658,6 +666,7 @@ msgstr "所有感測器"
 msgid "All Services"
 msgstr "所有服務"
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -681,7 +690,7 @@ msgstr "所有系統"
 msgid "All systems until {until}"
 msgstr "所有系統，直到 {until}"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "All the instances of a program count as one target, such as every chrome.exe."
 msgstr "程式的所有執行個體視為一個目標，例如每個 chrome.exe。"
 
@@ -966,8 +975,9 @@ msgid "Can stop"
 msgstr "可停止"
 
 #: src/components/agent-update-dialog.tsx
-#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1128,7 +1138,7 @@ msgstr "校驗和錯誤"
 msgid "Choose a known port"
 msgstr "選擇常用連接埠"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one day."
 msgstr "請至少選擇一天。"
@@ -1137,7 +1147,7 @@ msgstr "請至少選擇一天。"
 msgid "Choose at least one port."
 msgstr "請至少選擇一個連接埠。"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one week of the month."
 msgstr "請至少選擇月份中的一週。"
@@ -1231,9 +1241,8 @@ msgstr "命令"
 msgid "Command line instructions"
 msgstr "命令列指令"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Condition"
 msgstr "條件"
 
@@ -1275,8 +1284,7 @@ msgstr "連線中斷"
 msgid "Connections"
 msgstr "連線"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Consecutive checks"
 msgstr "連續檢查次數"
 
@@ -1285,7 +1293,7 @@ msgstr "連續檢查次數"
 msgid "Container"
 msgstr "容器"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Container alerts"
 msgstr "容器警報"
 
@@ -1297,7 +1305,7 @@ msgstr "容器健康狀態"
 msgid "Container state"
 msgstr "容器狀態"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
@@ -1397,7 +1405,7 @@ msgstr "核心指標"
 msgid "CPU"
 msgstr "CPU"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "CPU above {threshold}%"
 msgstr "CPU 高於 {threshold}%"
 
@@ -1443,7 +1451,7 @@ msgstr "CPU 使用率"
 msgid "CPU: {cpuText}"
 msgstr "CPU：{cpuText}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Create"
 msgstr "建立"
 
@@ -1505,7 +1513,7 @@ msgstr "目前狀態"
 msgid "Cycles"
 msgstr "循環"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Daily"
@@ -1578,6 +1586,11 @@ msgstr "下降"
 msgid "Degraded or bad"
 msgstr "下降或不佳"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
@@ -1611,6 +1624,10 @@ msgstr "刪除群組"
 msgid "Delete the group {originalName}?"
 msgstr "要刪除群組 {originalName} 嗎？"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Delete the rule?"
+msgstr "刪除規則？"
+
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
 msgstr "要刪除選取的重新開機紀錄嗎？"
@@ -1631,7 +1648,8 @@ msgstr "相依元件"
 msgid "Deployment"
 msgstr "部署"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "描述原因"
@@ -1809,6 +1827,8 @@ msgstr "拖曳以調整大小，按兩下以重設"
 msgid "Duration"
 msgstr "持續時間"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -1829,6 +1849,10 @@ msgstr "編輯網路監控"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit the quiet hours"
 msgstr "編輯靜音時段"
+
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "Edit the rule"
+msgstr "編輯規則"
 
 #: src/components/add-system.tsx
 msgid "Edit the system"
@@ -1870,7 +1894,7 @@ msgstr "啟用目錄登入"
 msgid "End"
 msgstr "結束"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1908,7 +1932,6 @@ msgstr "輸入您的一次性密碼。"
 msgid "Ephemeral"
 msgstr "臨時"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2101,7 +2124,7 @@ msgid "Failed to send test notification"
 msgstr "發送測試通知失敗"
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Failed to update alert"
 msgstr "更新警報失敗"
 
@@ -2118,7 +2141,7 @@ msgstr "失敗：{0}"
 msgid "Fans"
 msgstr "風扇"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "fewer than {threshold} instances"
 msgstr "少於 {threshold} 個執行個體"
 
@@ -2288,8 +2311,7 @@ msgstr "頁首圖示"
 msgid "Health"
 msgstr "健康狀態"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Health (optional)"
 msgstr "健康狀態（選填）"
 
@@ -2475,7 +2497,7 @@ msgstr "執行個體"
 msgid "Instance name"
 msgstr "執行個體名稱"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 msgid "Instances"
@@ -2831,7 +2853,7 @@ msgstr "1 小時最大"
 msgid "Memory"
 msgstr "記憶體"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "memory above {threshold}%"
 msgstr "記憶體高於 {threshold}%"
 
@@ -2889,7 +2911,7 @@ msgstr "型號"
 msgid "Monitors created"
 msgstr "已建立監控"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Monthly"
@@ -2900,7 +2922,7 @@ msgstr "每月"
 msgid "More"
 msgstr "更多"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "more than {threshold} instances"
 msgstr "多於 {threshold} 個執行個體"
 
@@ -2908,11 +2930,11 @@ msgstr "多於 {threshold} 個執行個體"
 msgid "Mountpoint"
 msgstr "掛載點"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must be running"
 msgstr "必須執行中"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must not be running"
 msgstr "不得執行"
 
@@ -2949,7 +2971,7 @@ msgstr "使用 Linux 或 Windows 指令安裝代理程式時所建立的服務�
 msgid "Name to resolve"
 msgstr "要解析的名稱"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
 msgstr "名稱以逗號分隔。使用 * 作為萬用字元。不再回報的目標會視為已停止。"
 
@@ -3151,7 +3173,7 @@ msgid "No systems found."
 msgstr "找不到任何系統。"
 
 #: src/components/add-system.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -3227,7 +3249,7 @@ msgstr "一個或多個監控的封包遺失率超過 {0}%"
 msgid "One or more services are in a failed state"
 msgstr "一個或多個服務處於失敗狀態"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "One-time"
@@ -3286,7 +3308,7 @@ msgstr "或繼續使用"
 msgid "Or enter this key in the app:"
 msgstr "或在應用程式中輸入此金鑰："
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3434,7 +3456,7 @@ msgstr "等待中"
 msgid "Per-core average utilization"
 msgstr "核心平均使用率"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Percent of the whole host, all the instances of the program added up."
 msgstr "占整部主機的百分比，程式的所有執行個體加總。"
 
@@ -3471,7 +3493,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "請<0>設定一個 SMTP 伺服器</0>以確保能傳送警報。"
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Please check logs for more details."
 msgstr "請檢查系統記錄以取得更多資訊。"
 
@@ -3559,7 +3581,7 @@ msgstr "上一頁"
 msgid "Process alert"
 msgstr "處理程序警示"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Process alerts"
 msgstr "處理程序警示"
 
@@ -3571,14 +3593,14 @@ msgstr "處理程序規則已觸發"
 msgid "Process started"
 msgstr "進程啟動"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "處理程序"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Processes are checked every minute, only on the systems with process rules."
 msgstr "處理程序每分鐘檢查一次，僅限有處理程序規則的系統。"
 
@@ -3635,11 +3657,11 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "隊列深度"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 msgid "Quiet hours"
 msgstr "靜音時段"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3656,9 +3678,9 @@ msgstr "靜音時段已啟用"
 msgid "Quiet hours active: notifications are not sent"
 msgstr "靜音時段啟用中：不會傳送通知"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Quiet hours set up"
-msgstr "已設定靜音時段"
+#: src/components/alerts/alerts-notice.tsx
+msgid "Quiet hours set up: the alerts are not sent during these windows"
+msgstr "已設定靜音時段：這些時段內不會傳送警示"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3702,8 +3724,8 @@ msgstr "唯讀"
 msgid "Read-only group"
 msgstr "唯讀群組"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3963,7 +3985,7 @@ msgstr "S.M.A.R.T. 詳細資訊"
 msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. 自我測試"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -4212,7 +4234,7 @@ msgstr "服務"
 msgid "Service account"
 msgstr "服務帳戶"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Service alerts"
 msgstr "服務警報"
 
@@ -4229,7 +4251,7 @@ msgstr "服務名稱"
 msgid "Service state"
 msgstr "服務狀態"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
@@ -4237,7 +4259,7 @@ msgstr "服務狀態"
 msgid "Services"
 msgstr "服務"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Services are checked at each collection, containers every minute."
 msgstr "服務會在每次收集時檢查，容器每分鐘檢查一次。"
 
@@ -4253,20 +4275,16 @@ msgstr "設定以下環境變數至 Beszel Hub 以啟用 Heartbeat 監控："
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "在以下位置（或 WMI 類別 Win32_TSGeneralSetting）設定新憑證的指紋，然後重新啟動遠端桌面服務："
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "設定"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "設定靜音時段"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Set up quiet hours for the selection below"
-msgstr "為下方所選項目設定靜音時段"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -4344,7 +4362,7 @@ msgstr "來源"
 msgid "Start"
 msgstr "開始"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4379,11 +4397,11 @@ msgstr "手動啟動"
 msgid "State"
 msgstr "狀態"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is"
 msgstr "狀態為"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is not"
 msgstr "狀態不為"
 
@@ -4401,8 +4419,7 @@ msgstr "狀態規則已符合"
 msgid "State rules"
 msgstr "狀態規則"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "States"
 msgstr "狀態"
 
@@ -4439,8 +4456,7 @@ msgstr "已停止"
 msgid "Sub State"
 msgstr "子狀態"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Sub-states (optional)"
 msgstr "子狀態（選填）"
 
@@ -4561,11 +4577,11 @@ msgstr "分頁"
 msgid "Target"
 msgstr "目標"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets"
 msgstr "目標"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets by system"
 msgstr "依系統分組的目標"
 
@@ -4645,6 +4661,10 @@ msgstr "代理程式會自行重新啟動並重新連線。"
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "代理程式會從 GitHub 下載 {latest} 版，然後重新啟動。"
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "The alerts of these rules are not sent during this window. It goes with the rules when they are deleted."
+msgstr "此時段內不會傳送這些規則的警示。刪除規則時會一併刪除。"
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The average response time over 10 minutes exceeds {value} ms."
 msgstr "10 分鐘平均回應時間超過 {value} ms。"
@@ -4664,6 +4684,10 @@ msgstr "同一主機的檢查會歸在同一個感測器。"
 #: src/components/routes/settings/security.tsx
 msgid "The code by email needs the mail settings of the hub."
 msgstr "電子郵件代碼需要中樞的郵件設定。"
+
+#: src/components/alerts/quiet-hours-fields.tsx
+msgid "The end must come after the start."
+msgstr "結束時間必須晚於開始時間。"
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
@@ -4693,7 +4717,7 @@ msgstr "無法讀取處理程序。"
 msgid "The processes that use the most CPU and memory on each system that is up, at the time of the reading."
 msgstr "讀取當下，各運作中系統上使用最多 CPU 與記憶體的處理程序。"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "The rules are created on each system."
 msgstr "規則會建立在各個系統上。"
 
@@ -4767,7 +4791,7 @@ msgstr "執行緒"
 msgid "Threshold"
 msgstr "閾值"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Threshold (%)"
 msgstr "閾值 (%)"
 
@@ -4882,6 +4906,7 @@ msgstr "總計: {totalCount}"
 msgid "Traced with the traceroute command of the hub."
 msgstr "使用中樞的 traceroute 命令追蹤。"
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
 msgstr "已觸發"
@@ -4966,8 +4991,8 @@ msgstr "當任何磁碟使用率超過閾值時觸發"
 msgid "Two-factor authentication"
 msgstr "雙因素驗證"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -5307,7 +5332,7 @@ msgstr "週末"
 msgid "Weekly"
 msgstr "每週"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Weekly, on some days"
 msgstr "每週（指定日）"

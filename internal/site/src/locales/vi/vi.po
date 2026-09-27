@@ -78,15 +78,15 @@ msgstr "{count, plural, one {{countString} giờ} other {{countString} giờ}}"
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} phút} few {{countString} phút} many {{countString} phút} other {{countString} phút}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, other {# container đã lọc}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, other {# dịch vụ đã lọc}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {# tiến trình đã chọn} other {# tiến trình đã chọn}}"
 
@@ -97,18 +97,6 @@ msgstr "{count, plural, other {# cảm biến}}"
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, other {# hệ thống}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
-msgstr "{count, plural, one {Cảnh báo của tiến trình đã chọn không được gửi trong khung giờ này.} other {Cảnh báo của # tiến trình đã chọn không được gửi trong khung giờ này.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
-msgstr "{count, plural, one {Cảnh báo trạng thái của container đã chọn không được gửi trong khoảng thời gian này.} other {Cảnh báo trạng thái của # container đã chọn không được gửi trong khoảng thời gian này.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
-msgstr "{count, plural, one {Cảnh báo trạng thái của dịch vụ đã chọn không được gửi trong khoảng thời gian này.} other {Cảnh báo trạng thái của # dịch vụ đã chọn không được gửi trong khoảng thời gian này.}}"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "{count} instance(s) · CPU {cpuText}"
@@ -175,7 +163,7 @@ msgstr "{outdated} hệ thống cần cập nhật tác nhân để đọc chứ
 msgid "{programCount} programs"
 msgstr "{programCount} chương trình"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, other {Đã tạo # quy tắc trạng thái.}}"
 
@@ -191,13 +179,21 @@ msgstr "{seconds, plural, other {# giây}}"
 msgid "{sensorCount} host(s), {checkCount} check(s)"
 msgstr "{sensorCount} máy chủ, {checkCount} kiểm tra"
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "{skippedCount, plural, one {# item left out: a name with a comma can't be the target of a rule.} other {# items left out: a name with a comma can't be the target of a rule.}}"
+msgstr "{skippedCount, plural, one {# mục bị bỏ qua: Tên có dấu phẩy không thể là mục tiêu của quy tắc.} other {# mục bị bỏ qua: Tên có dấu phẩy không thể là mục tiêu của quy tắc.}}"
+
 #: src/components/sensors/sensor-badges.tsx
 msgid "{success} of {total} successful"
 msgstr "{success}/{total} thành công"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, other {# hệ thống}}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{targets}: {condition}. Its alerts stop."
+msgstr "{targets}: {condition}. Cảnh báo của nó dừng lại."
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -206,6 +202,10 @@ msgstr "{threads, plural, one {# luồng} other {# luồng}}"
 #: src/lib/quiet-hours.ts
 msgid "{weekList} {dayList} of the month"
 msgstr "{dayList} {weekList} của tháng"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{windowCount, plural, one {Its quiet hours window is deleted too.} other {Its # quiet hours windows are deleted too.}}"
+msgstr "{windowCount, plural, one {Khung giờ yên lặng của nó cũng bị xóa.} other {# khung giờ yên lặng của nó cũng bị xóa.}}"
 
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
@@ -292,6 +292,10 @@ msgstr "Một kiểm tra của cảm biến không phản hồi."
 msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
 msgstr "Ngày không có trong tháng, như ngày 31, sẽ bị bỏ qua: chọn ngày cuối cho cuối mỗi tháng."
 
+#: src/components/alerts/target-alerts.tsx
+msgid "A name with a comma can't be the target of a rule."
+msgstr "Tên có dấu phẩy không thể là mục tiêu của quy tắc."
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
 msgstr "Một cảm biến chỉ thuộc một nhóm: chọn nó sẽ chuyển nó khỏi nhóm hiện tại."
@@ -331,6 +335,7 @@ msgid "Actions"
 msgstr "Hành động"
 
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -488,6 +493,7 @@ msgstr "Cập nhật tác nhân"
 msgid "Agent updated"
 msgstr "Đã cập nhật tác nhân"
 
+#: src/components/alerts/target-alerts.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Alert"
 msgstr "Cảnh báo"
@@ -510,19 +516,19 @@ msgstr "Ngưỡng cảnh báo (số ngày trước khi hết hạn)"
 msgid "Alert types"
 msgstr "Loại cảnh báo"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
 msgstr "Cảnh báo khi CPU vượt quá"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are fewer than"
 msgstr "Cảnh báo khi số phiên bản ít hơn"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are more than"
 msgstr "Cảnh báo khi số phiên bản nhiều hơn"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its memory is above"
 msgstr "Cảnh báo khi bộ nhớ vượt quá"
 
@@ -530,13 +536,11 @@ msgstr "Cảnh báo khi bộ nhớ vượt quá"
 msgid "Alert when services, Docker containers or processes enter or leave a state."
 msgstr "Cảnh báo khi dịch vụ, container Docker hoặc tiến trình vào hoặc rời một trạng thái."
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is"
 msgstr "Cảnh báo khi trạng thái là"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is not"
 msgstr "Cảnh báo khi trạng thái không phải là"
 
@@ -544,11 +548,11 @@ msgstr "Cảnh báo khi trạng thái không phải là"
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "Cảnh báo khi chứng chỉ {name} của {systemName} hết hạn trong số ngày ít hơn ngưỡng. Các chứng chỉ được gia hạn cùng tên vẫn được kiểm tra và chứng chỉ trở thành quan trọng."
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is not running"
 msgstr "Cảnh báo khi tiến trình không chạy"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is running"
 msgstr "Cảnh báo khi tiến trình đang chạy"
 
@@ -561,7 +565,7 @@ msgstr "Cảnh báo khi tiến trình đang chạy"
 msgid "Alerts"
 msgstr "Cảnh báo"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alerts created"
 msgstr "Đã tạo cảnh báo"
 
@@ -572,6 +576,10 @@ msgstr "Cảnh báo của {sensorName}"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "cảnh báo mỗi người dùng"
+
+#: src/components/alerts/alerts-notice.tsx
+msgid "Alerts set up"
+msgstr "Cảnh báo đã thiết lập"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -658,6 +666,7 @@ msgstr "Tất cả cảm biến"
 msgid "All Services"
 msgstr "Tất cả dịch vụ"
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -681,7 +690,7 @@ msgstr "Tất cả Hệ thống"
 msgid "All systems until {until}"
 msgstr "Tất cả hệ thống đến {until}"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "All the instances of a program count as one target, such as every chrome.exe."
 msgstr "Tất cả phiên bản của một chương trình được tính là một mục tiêu, như mọi chrome.exe."
 
@@ -966,8 +975,9 @@ msgid "Can stop"
 msgstr "Có thể dừng"
 
 #: src/components/agent-update-dialog.tsx
-#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1128,7 +1138,7 @@ msgstr "Lỗi checksum"
 msgid "Choose a known port"
 msgstr "Chọn một cổng phổ biến"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one day."
 msgstr "Chọn ít nhất một ngày."
@@ -1137,7 +1147,7 @@ msgstr "Chọn ít nhất một ngày."
 msgid "Choose at least one port."
 msgstr "Chọn ít nhất một cổng."
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one week of the month."
 msgstr "Chọn ít nhất một tuần trong tháng."
@@ -1231,9 +1241,8 @@ msgstr "Lệnh"
 msgid "Command line instructions"
 msgstr "Hướng dẫn dòng lệnh"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Condition"
 msgstr "Điều kiện"
 
@@ -1275,8 +1284,7 @@ msgstr "Mất kết nối"
 msgid "Connections"
 msgstr "Kết nối"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Consecutive checks"
 msgstr "Số lần kiểm tra liên tiếp"
 
@@ -1285,7 +1293,7 @@ msgstr "Số lần kiểm tra liên tiếp"
 msgid "Container"
 msgstr "Container"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Container alerts"
 msgstr "Cảnh báo container"
 
@@ -1297,7 +1305,7 @@ msgstr "Tình trạng sức khỏe container"
 msgid "Container state"
 msgstr "Trạng thái container"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
@@ -1397,7 +1405,7 @@ msgstr "Lõi"
 msgid "CPU"
 msgstr "CPU"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "CPU above {threshold}%"
 msgstr "CPU trên {threshold}%"
 
@@ -1443,7 +1451,7 @@ msgstr "Sử dụng CPU"
 msgid "CPU: {cpuText}"
 msgstr "CPU: {cpuText}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Create"
 msgstr "Tạo"
 
@@ -1505,7 +1513,7 @@ msgstr "Trạng thái hiện tại"
 msgid "Cycles"
 msgstr "Chu kỳ"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Daily"
@@ -1578,6 +1586,11 @@ msgstr "Suy giảm"
 msgid "Degraded or bad"
 msgstr "Suy giảm hoặc kém"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
@@ -1611,6 +1624,10 @@ msgstr "Xóa nhóm"
 msgid "Delete the group {originalName}?"
 msgstr "Xóa nhóm {originalName}?"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Delete the rule?"
+msgstr "Xóa quy tắc?"
+
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
 msgstr "Xóa các lần khởi động lại đã chọn?"
@@ -1631,7 +1648,8 @@ msgstr "Phụ thuộc"
 msgid "Deployment"
 msgstr "Triển khai"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "Mô tả lý do"
@@ -1809,6 +1827,8 @@ msgstr "Kéo để đổi kích thước, nhấp đúp để đặt lại"
 msgid "Duration"
 msgstr "Thời lượng"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -1829,6 +1849,10 @@ msgstr "Sửa trình giám sát mạng"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit the quiet hours"
 msgstr "Sửa giờ yên lặng"
+
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "Edit the rule"
+msgstr "Sửa quy tắc"
 
 #: src/components/add-system.tsx
 msgid "Edit the system"
@@ -1870,7 +1894,7 @@ msgstr "Bật đăng nhập bằng thư mục"
 msgid "End"
 msgstr "Kết thúc"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1908,7 +1932,6 @@ msgstr "Nhập mật khẩu một lần của bạn."
 msgid "Ephemeral"
 msgstr "Tạm thời"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2101,7 +2124,7 @@ msgid "Failed to send test notification"
 msgstr "Gửi thông báo thử nghiệm thất bại"
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Failed to update alert"
 msgstr "Cập nhật cảnh báo thất bại"
 
@@ -2118,7 +2141,7 @@ msgstr "Thất bại: {0}"
 msgid "Fans"
 msgstr "Quạt"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "fewer than {threshold} instances"
 msgstr "ít hơn {threshold} phiên bản"
 
@@ -2288,8 +2311,7 @@ msgstr "Biểu tượng đầu trang"
 msgid "Health"
 msgstr "Sức khỏe"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Health (optional)"
 msgstr "Tình trạng (tùy chọn)"
 
@@ -2475,7 +2497,7 @@ msgstr "Phiên bản"
 msgid "Instance name"
 msgstr "Tên phiên bản"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 msgid "Instances"
@@ -2831,7 +2853,7 @@ msgstr "Tối đa 1 giờ"
 msgid "Memory"
 msgstr "Bộ nhớ"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "memory above {threshold}%"
 msgstr "bộ nhớ trên {threshold}%"
 
@@ -2889,7 +2911,7 @@ msgstr "Mô hình"
 msgid "Monitors created"
 msgstr "Đã tạo trình giám sát"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Monthly"
@@ -2900,7 +2922,7 @@ msgstr "Hằng tháng"
 msgid "More"
 msgstr "Thêm"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "more than {threshold} instances"
 msgstr "nhiều hơn {threshold} phiên bản"
 
@@ -2908,11 +2930,11 @@ msgstr "nhiều hơn {threshold} phiên bản"
 msgid "Mountpoint"
 msgstr "Điểm gắn kết"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must be running"
 msgstr "phải đang chạy"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must not be running"
 msgstr "không được chạy"
 
@@ -2949,7 +2971,7 @@ msgstr "Tên dịch vụ được tạo khi cài đặt tác nhân bằng lệnh
 msgid "Name to resolve"
 msgstr "Tên cần phân giải"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
 msgstr "Các tên cách nhau bằng dấu phẩy. Dùng * làm ký tự đại diện. Mục tiêu không còn được báo cáo sẽ được coi là đã dừng."
 
@@ -3151,7 +3173,7 @@ msgid "No systems found."
 msgstr "Không tìm thấy hệ thống."
 
 #: src/components/add-system.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -3227,7 +3249,7 @@ msgstr "Một hoặc nhiều trình giám sát có tỷ lệ mất gói vượt 
 msgid "One or more services are in a failed state"
 msgstr "Một hoặc nhiều dịch vụ đang ở trạng thái thất bại"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "One-time"
@@ -3286,7 +3308,7 @@ msgstr "Hoặc tiếp tục với"
 msgid "Or enter this key in the app:"
 msgstr "Hoặc nhập khóa này vào ứng dụng:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3434,7 +3456,7 @@ msgstr "Đang chờ"
 msgid "Per-core average utilization"
 msgstr "Tỷ lệ sử dụng trung bình mỗi nhân"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Percent of the whole host, all the instances of the program added up."
 msgstr "Phần trăm của toàn bộ máy chủ, cộng dồn mọi phiên bản của chương trình."
 
@@ -3471,7 +3493,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "Vui lòng <0>cấu hình máy chủ SMTP</0> để đảm bảo cảnh báo được gửi đi."
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Please check logs for more details."
 msgstr "Vui lòng kiểm tra nhật ký để biết thêm chi tiết."
 
@@ -3559,7 +3581,7 @@ msgstr "Trang trước"
 msgid "Process alert"
 msgstr "Cảnh báo tiến trình"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Process alerts"
 msgstr "Cảnh báo tiến trình"
 
@@ -3571,14 +3593,14 @@ msgstr "Quy tắc tiến trình đã khớp"
 msgid "Process started"
 msgstr "Tiến trình đã khởi động"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "Tiến trình"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Processes are checked every minute, only on the systems with process rules."
 msgstr "Tiến trình được kiểm tra mỗi phút, chỉ trên các hệ thống có quy tắc tiến trình."
 
@@ -3635,11 +3657,11 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Độ sâu hàng đợi"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 msgid "Quiet hours"
 msgstr "Giờ yên tĩnh"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3656,9 +3678,9 @@ msgstr "Giờ yên lặng đang bật"
 msgid "Quiet hours active: notifications are not sent"
 msgstr "Giờ yên tĩnh đang bật: không gửi thông báo"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Quiet hours set up"
-msgstr "Đã thiết lập giờ yên lặng"
+#: src/components/alerts/alerts-notice.tsx
+msgid "Quiet hours set up: the alerts are not sent during these windows"
+msgstr "Đã thiết lập giờ yên lặng: không gửi cảnh báo trong các khung giờ này"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3702,8 +3724,8 @@ msgstr "Chỉ đọc"
 msgid "Read-only group"
 msgstr "Nhóm chỉ đọc"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3963,7 +3985,7 @@ msgstr "Chi tiết S.M.A.R.T."
 msgid "S.M.A.R.T. Self-Test"
 msgstr "Tự kiểm tra S.M.A.R.T."
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -4212,7 +4234,7 @@ msgstr "Dịch vụ"
 msgid "Service account"
 msgstr "Tài khoản dịch vụ"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Service alerts"
 msgstr "Cảnh báo dịch vụ"
 
@@ -4229,7 +4251,7 @@ msgstr "Tên dịch vụ"
 msgid "Service state"
 msgstr "Trạng thái dịch vụ"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
@@ -4237,7 +4259,7 @@ msgstr "Trạng thái dịch vụ"
 msgid "Services"
 msgstr "Dịch vụ"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Services are checked at each collection, containers every minute."
 msgstr "Dịch vụ được kiểm tra ở mỗi lần thu thập, container mỗi phút."
 
@@ -4253,20 +4275,16 @@ msgstr "Thiết lập các biến môi trường sau trên hub Beszel của bạ
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "Đặt thumbprint của chứng chỉ mới tại vị trí sau (hoặc trong lớp WMI Win32_TSGeneralSetting), rồi khởi động lại dịch vụ Máy tính từ xa:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Thiết lập"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "Thiết lập giờ yên lặng"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Set up quiet hours for the selection below"
-msgstr "Thiết lập giờ yên lặng cho mục đã chọn bên dưới"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -4344,7 +4362,7 @@ msgstr "Nguồn"
 msgid "Start"
 msgstr "Bắt đầu"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4379,11 +4397,11 @@ msgstr "Khởi động thủ công"
 msgid "State"
 msgstr "Trạng thái"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is"
 msgstr "trạng thái là"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is not"
 msgstr "trạng thái không phải là"
 
@@ -4401,8 +4419,7 @@ msgstr "Quy tắc trạng thái đã khớp"
 msgid "State rules"
 msgstr "Quy tắc trạng thái"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "States"
 msgstr "Trạng thái"
 
@@ -4439,8 +4456,7 @@ msgstr "Đã dừng"
 msgid "Sub State"
 msgstr "Trạng thái phụ"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Sub-states (optional)"
 msgstr "Trạng thái con (tùy chọn)"
 
@@ -4561,11 +4577,11 @@ msgstr "Tab"
 msgid "Target"
 msgstr "Mục tiêu"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets"
 msgstr "Mục tiêu"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets by system"
 msgstr "Mục tiêu theo hệ thống"
 
@@ -4645,6 +4661,10 @@ msgstr "Tác nhân sẽ tự khởi động lại và kết nối lại."
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "Các tác nhân tải phiên bản {latest} từ GitHub rồi khởi động lại."
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "The alerts of these rules are not sent during this window. It goes with the rules when they are deleted."
+msgstr "Cảnh báo của các quy tắc này không được gửi trong khung giờ này. Nó bị xóa cùng các quy tắc."
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The average response time over 10 minutes exceeds {value} ms."
 msgstr "Thời gian phản hồi trung bình trong 10 phút vượt quá {value} ms."
@@ -4664,6 +4684,10 @@ msgstr "Các kiểm tra của cùng một máy chủ được gộp vào một c
 #: src/components/routes/settings/security.tsx
 msgid "The code by email needs the mail settings of the hub."
 msgstr "Mã qua email cần cài đặt thư của hub."
+
+#: src/components/alerts/quiet-hours-fields.tsx
+msgid "The end must come after the start."
+msgstr "Thời điểm kết thúc phải sau thời điểm bắt đầu."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
@@ -4693,7 +4717,7 @@ msgstr "Không thể đọc các tiến trình."
 msgid "The processes that use the most CPU and memory on each system that is up, at the time of the reading."
 msgstr "Các tiến trình dùng nhiều CPU và bộ nhớ nhất trên mỗi hệ thống đang hoạt động, tại thời điểm đọc."
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "The rules are created on each system."
 msgstr "Các quy tắc được tạo trên từng hệ thống."
 
@@ -4767,7 +4791,7 @@ msgstr "Luồng"
 msgid "Threshold"
 msgstr "Ngưỡng"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Threshold (%)"
 msgstr "Ngưỡng (%)"
 
@@ -4882,6 +4906,7 @@ msgstr "Tổng: {totalCount}"
 msgid "Traced with the traceroute command of the hub."
 msgstr "Được dò bằng lệnh traceroute của hub."
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
 msgstr "Đã kích hoạt"
@@ -4966,8 +4991,8 @@ msgstr "Kích hoạt khi sử dụng bất kỳ đĩa nào vượt quá ngưỡn
 msgid "Two-factor authentication"
 msgstr "Xác thực hai yếu tố"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -5307,7 +5332,7 @@ msgstr "Cuối tuần"
 msgid "Weekly"
 msgstr "Hằng tuần"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Weekly, on some days"
 msgstr "Hằng tuần, vào một số ngày"

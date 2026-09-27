@@ -78,15 +78,15 @@ msgstr "{count, plural, one {{countString} saat} other {{countString} saat}}"
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} dakika} few {{countString} dakika} many {{countString} dakika} other {{countString} dakika}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, one {# filtrelenmiş kapsayıcı} other {# filtrelenmiş kapsayıcı}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# filtrelenmiş hizmet} other {# filtrelenmiş hizmet}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {# seçili işlem} other {# seçili işlem}}"
 
@@ -97,18 +97,6 @@ msgstr "{count, plural, one {# sensör} other {# sensör}}"
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# sistem} other {# sistem}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
-msgstr "{count, plural, one {Seçili işlemin uyarıları bu zaman aralığında gönderilmez.} other {Seçili # işlemin uyarıları bu zaman aralığında gönderilmez.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
-msgstr "{count, plural, one {Seçilen konteynerin durum uyarıları bu süre boyunca gönderilmez.} other {Seçilen konteynerlerin (#) durum uyarıları bu süre boyunca gönderilmez.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
-msgstr "{count, plural, one {Seçilen hizmetin durum uyarıları bu süre boyunca gönderilmez.} other {Seçilen hizmetlerin (#) durum uyarıları bu süre boyunca gönderilmez.}}"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "{count} instance(s) · CPU {cpuText}"
@@ -175,7 +163,7 @@ msgstr "{outdated} sistemin sertifikalarını okumak için ajan güncellemesi ge
 msgid "{programCount} programs"
 msgstr "{programCount} program"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, one {# durum kuralı oluşturuldu.} other {# durum kuralı oluşturuldu.}}"
 
@@ -191,13 +179,21 @@ msgstr "{seconds, plural, one {# saniye} other {# saniye}}"
 msgid "{sensorCount} host(s), {checkCount} check(s)"
 msgstr "{sensorCount} ana bilgisayar, {checkCount} denetim"
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "{skippedCount, plural, one {# item left out: a name with a comma can't be the target of a rule.} other {# items left out: a name with a comma can't be the target of a rule.}}"
+msgstr "{skippedCount, plural, one {# öğe dışarıda bırakıldı: Virgül içeren bir ad bir kuralın hedefi olamaz.} other {# öğe dışarıda bırakıldı: Virgül içeren bir ad bir kuralın hedefi olamaz.}}"
+
 #: src/components/sensors/sensor-badges.tsx
 msgid "{success} of {total} successful"
 msgstr "{total} denetimden {success} başarılı"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, one {# sistem} other {# sistem}}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{targets}: {condition}. Its alerts stop."
+msgstr "{targets}: {condition}. Uyarıları durur."
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -206,6 +202,10 @@ msgstr "{threads, plural, one {# iş parçacığı} other {# iş parçacığı}}
 #: src/lib/quiet-hours.ts
 msgid "{weekList} {dayList} of the month"
 msgstr "Ayın {weekList} {dayList}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{windowCount, plural, one {Its quiet hours window is deleted too.} other {Its # quiet hours windows are deleted too.}}"
+msgstr "{windowCount, plural, one {Sessiz saat aralığı da silinir.} other {# sessiz saat aralığı da silinir.}}"
 
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
@@ -292,6 +292,10 @@ msgstr "Sensörün bir denetimi yanıt vermiyor."
 msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
 msgstr "Bir ayda olmayan gün, örneğin 31'i, atlanır: her ayın sonu için son günü seçin."
 
+#: src/components/alerts/target-alerts.tsx
+msgid "A name with a comma can't be the target of a rule."
+msgstr "Virgül içeren bir ad bir kuralın hedefi olamaz."
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
 msgstr "Bir sensör tek bir gruba aittir: işaretlemek onu mevcut grubundan taşır."
@@ -331,6 +335,7 @@ msgid "Actions"
 msgstr "Eylemler"
 
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -488,6 +493,7 @@ msgstr "Ajan güncellemesi"
 msgid "Agent updated"
 msgstr "Aracı güncellendi"
 
+#: src/components/alerts/target-alerts.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Alert"
 msgstr "Uyarı"
@@ -510,19 +516,19 @@ msgstr "Uyarı eşiği (sona ermeden önceki gün)"
 msgid "Alert types"
 msgstr "Uyarı türleri"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
 msgstr "CPU şunun üzerindeyse uyar"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are fewer than"
 msgstr "Örnek sayısı şundan azsa uyar"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are more than"
 msgstr "Örnek sayısı şundan fazlaysa uyar"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its memory is above"
 msgstr "Bellek şunun üzerindeyse uyar"
 
@@ -530,13 +536,11 @@ msgstr "Bellek şunun üzerindeyse uyar"
 msgid "Alert when services, Docker containers or processes enter or leave a state."
 msgstr "Hizmetler, Docker kapsayıcıları veya işlemler bir duruma girdiğinde ya da çıktığında uyar."
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is"
 msgstr "Durum şu olduğunda uyar"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is not"
 msgstr "Durum şu olmadığında uyar"
 
@@ -544,11 +548,11 @@ msgstr "Durum şu olmadığında uyar"
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "{systemName} üzerindeki {name} sertifikasının süresi eşikten daha az günde dolduğunda uyar. Aynı adla yenilenen sertifikalar denetlenmeye devam eder ve sertifika önemli olur."
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is not running"
 msgstr "İşlem çalışmıyorsa uyar"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is running"
 msgstr "İşlem çalışıyorsa uyar"
 
@@ -561,7 +565,7 @@ msgstr "İşlem çalışıyorsa uyar"
 msgid "Alerts"
 msgstr "Uyarılar"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alerts created"
 msgstr "Uyarılar oluşturuldu"
 
@@ -572,6 +576,10 @@ msgstr "{sensorName} uyarıları"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "kullanıcı başına uyarı"
+
+#: src/components/alerts/alerts-notice.tsx
+msgid "Alerts set up"
+msgstr "Ayarlı uyarılar"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -658,6 +666,7 @@ msgstr "Tüm sensörler"
 msgid "All Services"
 msgstr "Tüm hizmetler"
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -681,7 +690,7 @@ msgstr "Tüm Sistemler"
 msgid "All systems until {until}"
 msgstr "Tüm sistemler {until} saatine kadar"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "All the instances of a program count as one target, such as every chrome.exe."
 msgstr "Bir programın tüm örnekleri tek hedef sayılır, örneğin her chrome.exe."
 
@@ -966,8 +975,9 @@ msgid "Can stop"
 msgstr "Durdurulabilir"
 
 #: src/components/agent-update-dialog.tsx
-#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1128,7 +1138,7 @@ msgstr "Sağlama toplamı hataları"
 msgid "Choose a known port"
 msgstr "Bilinen bir port seçin"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one day."
 msgstr "En az bir gün seçin."
@@ -1137,7 +1147,7 @@ msgstr "En az bir gün seçin."
 msgid "Choose at least one port."
 msgstr "En az bir port seçin."
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one week of the month."
 msgstr "Ayın en az bir haftasını seçin."
@@ -1231,9 +1241,8 @@ msgstr "Komut"
 msgid "Command line instructions"
 msgstr "Komut satırı talimatları"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Condition"
 msgstr "Koşul"
 
@@ -1275,8 +1284,7 @@ msgstr "Bağlantı kesildi"
 msgid "Connections"
 msgstr "Bağlantılar"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Consecutive checks"
 msgstr "Ardışık kontroller"
 
@@ -1285,7 +1293,7 @@ msgstr "Ardışık kontroller"
 msgid "Container"
 msgstr "Konteyner"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Container alerts"
 msgstr "Kapsayıcı uyarıları"
 
@@ -1297,7 +1305,7 @@ msgstr "Konteyner Sağlığı"
 msgid "Container state"
 msgstr "Kapsayıcı durumu"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
@@ -1397,7 +1405,7 @@ msgstr "Çekirdek"
 msgid "CPU"
 msgstr "İşlemci"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "CPU above {threshold}%"
 msgstr "CPU %{threshold} üzerinde"
 
@@ -1443,7 +1451,7 @@ msgstr "CPU Kullanımı"
 msgid "CPU: {cpuText}"
 msgstr "CPU: {cpuText}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Create"
 msgstr "Oluştur"
 
@@ -1505,7 +1513,7 @@ msgstr "Mevcut durum"
 msgid "Cycles"
 msgstr "Döngüler"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Daily"
@@ -1578,6 +1586,11 @@ msgstr "Düşük"
 msgid "Degraded or bad"
 msgstr "Düşük veya kötü"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
@@ -1611,6 +1624,10 @@ msgstr "Grubu sil"
 msgid "Delete the group {originalName}?"
 msgstr "{originalName} grubu silinsin mi?"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Delete the rule?"
+msgstr "Kural silinsin mi?"
+
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
 msgstr "Seçili yeniden başlatmalar silinsin mi?"
@@ -1631,7 +1648,8 @@ msgstr "Bağımlılıklar"
 msgid "Deployment"
 msgstr "Dağıtım"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "Nedeni açıklayın"
@@ -1809,6 +1827,8 @@ msgstr "Yeniden boyutlandırmak için sürükleyin, sıfırlamak için çift tı
 msgid "Duration"
 msgstr "Süre"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -1829,6 +1849,10 @@ msgstr "Ağ izleyicisini düzenle"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit the quiet hours"
 msgstr "Sessiz saatleri düzenle"
+
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "Edit the rule"
+msgstr "Kuralı düzenle"
 
 #: src/components/add-system.tsx
 msgid "Edit the system"
@@ -1870,7 +1894,7 @@ msgstr "Dizinle oturum açmayı etkinleştir"
 msgid "End"
 msgstr "Bitiş"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1908,7 +1932,6 @@ msgstr "Tek kullanımlık şifrenizi girin."
 msgid "Ephemeral"
 msgstr "Geçici"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2101,7 +2124,7 @@ msgid "Failed to send test notification"
 msgstr "Test bildirimi gönderilemedi"
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Failed to update alert"
 msgstr "Uyarı güncellenemedi"
 
@@ -2118,7 +2141,7 @@ msgstr "Başarısız: {0}"
 msgid "Fans"
 msgstr "Fanlar"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "fewer than {threshold} instances"
 msgstr "{threshold} örnekten az"
 
@@ -2288,8 +2311,7 @@ msgstr "Üst bilgi simgeleri"
 msgid "Health"
 msgstr "Sağlık"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Health (optional)"
 msgstr "Sağlık (isteğe bağlı)"
 
@@ -2475,7 +2497,7 @@ msgstr "Örnek"
 msgid "Instance name"
 msgstr "Örnek adı"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 msgid "Instances"
@@ -2831,7 +2853,7 @@ msgstr "Maks. 1 saat"
 msgid "Memory"
 msgstr "Bellek"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "memory above {threshold}%"
 msgstr "bellek %{threshold} üzerinde"
 
@@ -2889,7 +2911,7 @@ msgstr "Model"
 msgid "Monitors created"
 msgstr "Monitörler oluşturuldu"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Monthly"
@@ -2900,7 +2922,7 @@ msgstr "Aylık"
 msgid "More"
 msgstr "Daha fazla"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "more than {threshold} instances"
 msgstr "{threshold} örnekten fazla"
 
@@ -2908,11 +2930,11 @@ msgstr "{threshold} örnekten fazla"
 msgid "Mountpoint"
 msgstr "Bağlama noktası"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must be running"
 msgstr "çalışıyor olmalı"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must not be running"
 msgstr "çalışmamalı"
 
@@ -2949,7 +2971,7 @@ msgstr "Linux veya Windows komutlarıyla aracı kurulurken oluşturulan hizmetin
 msgid "Name to resolve"
 msgstr "Çözümlenecek ad"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
 msgstr "Adları virgülle ayırın. Joker karakter olarak * kullanın. Artık raporlanmayan bir hedef durdurulmuş sayılır."
 
@@ -3151,7 +3173,7 @@ msgid "No systems found."
 msgstr "Sistem bulunamadı."
 
 #: src/components/add-system.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -3227,7 +3249,7 @@ msgstr "Bir veya daha fazla monitör %{0} kaybı aşıyor"
 msgid "One or more services are in a failed state"
 msgstr "Bir veya daha fazla hizmet başarısız durumda"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "One-time"
@@ -3286,7 +3308,7 @@ msgstr "Veya devam et"
 msgid "Or enter this key in the app:"
 msgstr "Veya bu anahtarı uygulamaya girin:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3434,7 +3456,7 @@ msgstr "Beklemede"
 msgid "Per-core average utilization"
 msgstr "Çekirdek başına ortalama kullanım"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Percent of the whole host, all the instances of the program added up."
 msgstr "Tüm ana bilgisayarın yüzdesi, programın tüm örnekleri toplanır."
 
@@ -3471,7 +3493,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "Uyarıların teslim edilmesini sağlamak için lütfen bir SMTP sunucusu <0>yapılandırın</0>."
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Please check logs for more details."
 msgstr "Daha fazla ayrıntı için lütfen günlükleri kontrol edin."
 
@@ -3559,7 +3581,7 @@ msgstr "Önceki sayfa"
 msgid "Process alert"
 msgstr "İşlem uyarısı"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Process alerts"
 msgstr "İşlem uyarıları"
 
@@ -3571,14 +3593,14 @@ msgstr "İşlem kuralı eşleşti"
 msgid "Process started"
 msgstr "Süreç başlatıldı"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "İşlemler"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Processes are checked every minute, only on the systems with process rules."
 msgstr "İşlemler her dakika denetlenir, yalnızca işlem kuralı olan sistemlerde."
 
@@ -3635,11 +3657,11 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Kuyruk Derinliği"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 msgid "Quiet hours"
 msgstr "Sessiz saatler"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3656,9 +3678,9 @@ msgstr "Sessiz saatler etkin"
 msgid "Quiet hours active: notifications are not sent"
 msgstr "Sessiz saatler etkin: bildirimler gönderilmiyor"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Quiet hours set up"
-msgstr "Sessiz saatler ayarlandı"
+#: src/components/alerts/alerts-notice.tsx
+msgid "Quiet hours set up: the alerts are not sent during these windows"
+msgstr "Sessiz saatler ayarlı: bu aralıklarda uyarı gönderilmez"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3702,8 +3724,8 @@ msgstr "Salt okunur"
 msgid "Read-only group"
 msgstr "Salt okunur grup"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3963,7 +3985,7 @@ msgstr "S.M.A.R.T. Ayrıntıları"
 msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T. Kendiliğinden Test"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -4212,7 +4234,7 @@ msgstr "Hizmet"
 msgid "Service account"
 msgstr "Hizmet hesabı"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Service alerts"
 msgstr "Hizmet uyarıları"
 
@@ -4229,7 +4251,7 @@ msgstr "Hizmet adı"
 msgid "Service state"
 msgstr "Hizmet durumu"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
@@ -4237,7 +4259,7 @@ msgstr "Hizmet durumu"
 msgid "Services"
 msgstr "Hizmetler"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Services are checked at each collection, containers every minute."
 msgstr "Hizmetler her toplamada, kapsayıcılar her dakika kontrol edilir."
 
@@ -4253,20 +4275,16 @@ msgstr "Heartbeat izlemeyi etkinleştirmek için Beszel hub'ınızda aşağıdak
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "Yeni sertifikanın parmak izini aşağıdaki yerde (veya Win32_TSGeneralSetting WMI sınıfında) ayarlayın, ardından Uzak Masaüstü hizmetini yeniden başlatın:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Ayarla"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "Sessiz saatleri ayarla"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Set up quiet hours for the selection below"
-msgstr "Aşağıdaki seçim için sessiz saatleri ayarla"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -4344,7 +4362,7 @@ msgstr "Kaynak"
 msgid "Start"
 msgstr "Başlangıç"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4379,11 +4397,11 @@ msgstr "Elle başlatıldı"
 msgid "State"
 msgstr "Durum"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is"
 msgstr "durum şu"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is not"
 msgstr "durum şu değil"
 
@@ -4401,8 +4419,7 @@ msgstr "Durum kuralı eşleşti"
 msgid "State rules"
 msgstr "Durum kuralları"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "States"
 msgstr "Durumlar"
 
@@ -4439,8 +4456,7 @@ msgstr "Durduruldu"
 msgid "Sub State"
 msgstr "Alt Durum"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Sub-states (optional)"
 msgstr "Alt durumlar (isteğe bağlı)"
 
@@ -4561,11 +4577,11 @@ msgstr "Sekmeler"
 msgid "Target"
 msgstr "Hedef"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets"
 msgstr "Hedefler"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets by system"
 msgstr "Sisteme göre hedefler"
 
@@ -4645,6 +4661,10 @@ msgstr "Aracı kendi kendine yeniden başlar ve yeniden bağlanır."
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "Aracılar GitHub’dan {latest} sürümünü indirir ve ardından yeniden başlar."
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "The alerts of these rules are not sent during this window. It goes with the rules when they are deleted."
+msgstr "Bu kuralların uyarıları bu aralıkta gönderilmez. Kurallar silinince o da silinir."
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The average response time over 10 minutes exceeds {value} ms."
 msgstr "10 dakikalık ortalama yanıt süresi {value} ms'yi aşıyor."
@@ -4664,6 +4684,10 @@ msgstr "Aynı ana bilgisayarın denetimleri tek bir sensörde toplanır."
 #: src/components/routes/settings/security.tsx
 msgid "The code by email needs the mail settings of the hub."
 msgstr "E-postayla kod için hub’ın posta ayarları gerekir."
+
+#: src/components/alerts/quiet-hours-fields.tsx
+msgid "The end must come after the start."
+msgstr "Bitiş, başlangıçtan sonra olmalıdır."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
@@ -4693,7 +4717,7 @@ msgstr "İşlemler okunamadı."
 msgid "The processes that use the most CPU and memory on each system that is up, at the time of the reading."
 msgstr "Okuma anında çalışan her sistemde en çok CPU ve bellek kullanan işlemler."
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "The rules are created on each system."
 msgstr "Kurallar her sistemde oluşturulur."
 
@@ -4767,7 +4791,7 @@ msgstr "İş parçacıkları"
 msgid "Threshold"
 msgstr "Eşik"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Threshold (%)"
 msgstr "Eşik (%)"
 
@@ -4882,6 +4906,7 @@ msgstr "Toplam: {totalCount}"
 msgid "Traced with the traceroute command of the hub."
 msgstr "Hub'ın traceroute komutuyla izlendi."
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
 msgstr "Tetiklendi"
@@ -4966,8 +4991,8 @@ msgstr "Herhangi bir diskin kullanımı bir eşiği aştığında tetiklenir"
 msgid "Two-factor authentication"
 msgstr "İki faktörlü kimlik doğrulama"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -5307,7 +5332,7 @@ msgstr "Hafta sonu"
 msgid "Weekly"
 msgstr "Haftalık"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Weekly, on some days"
 msgstr "Haftalık, belirli günlerde"

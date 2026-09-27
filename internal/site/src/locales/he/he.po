@@ -78,15 +78,15 @@ msgstr "{count, plural, one {{countString} שעה} two {{countString} שעות} 
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} דקה} two {{countString} דקות} other {{countString} דקות}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, one {מכולה מסוננת אחת} two {# מכולות מסוננות} other {# מכולות מסוננות}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {שירות מסונן אחד} two {# שירותים מסוננים} other {# שירותים מסוננים}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {תהליך # נבחר} other {# תהליכים נבחרים}}"
 
@@ -97,18 +97,6 @@ msgstr "{count, plural, one {חיישן #} other {# חיישנים}}"
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {מערכת אחת} two {# מערכות} other {# מערכות}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
-msgstr "{count, plural, one {ההתראות של התהליך הנבחר לא נשלחות בחלון זה.} other {ההתראות של # התהליכים הנבחרים לא נשלחות בחלון זה.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
-msgstr "{count, plural, one {התראות המצב של הקונטיינר שנבחר לא יישלחו בפרק זמן זה.} other {התראות המצב של הקונטיינרים שנבחרו (#) לא יישלחו בפרק זמן זה.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
-msgstr "{count, plural, one {התראות המצב של השירות שנבחר לא יישלחו בפרק זמן זה.} other {התראות המצב של השירותים שנבחרו (#) לא יישלחו בפרק זמן זה.}}"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "{count} instance(s) · CPU {cpuText}"
@@ -175,7 +163,7 @@ msgstr "{outdated} מערכות זקוקות לעדכון הסוכן כדי לק
 msgid "{programCount} programs"
 msgstr "{programCount} תוכניות"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, one {נוצר כלל מצב אחד.} two {נוצרו # כללי מצב.} other {נוצרו # כללי מצב.}}"
 
@@ -191,13 +179,21 @@ msgstr "{seconds, plural, one {שנייה אחת} other {# שניות}}"
 msgid "{sensorCount} host(s), {checkCount} check(s)"
 msgstr "{sensorCount} מארחים, {checkCount} בדיקות"
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "{skippedCount, plural, one {# item left out: a name with a comma can't be the target of a rule.} other {# items left out: a name with a comma can't be the target of a rule.}}"
+msgstr "{skippedCount, plural, one {פריט # הושמט: שם עם פסיק לא יכול להיות יעד של כלל.} other {# פריטים הושמטו: שם עם פסיק לא יכול להיות יעד של כלל.}}"
+
 #: src/components/sensors/sensor-badges.tsx
 msgid "{success} of {total} successful"
 msgstr "{success} מתוך {total} הצליחו"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, one {מערכת אחת} two {# מערכות} other {# מערכות}}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{targets}: {condition}. Its alerts stop."
+msgstr "{targets}: {condition}. ההתראות שלו נפסקות."
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -206,6 +202,10 @@ msgstr "{threads, plural, one {# תהליכון} other {# תהליכונים}}"
 #: src/lib/quiet-hours.ts
 msgid "{weekList} {dayList} of the month"
 msgstr "{weekList} {dayList} בחודש"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{windowCount, plural, one {Its quiet hours window is deleted too.} other {Its # quiet hours windows are deleted too.}}"
+msgstr "{windowCount, plural, one {חלון שעות השקט שלו נמחק גם כן.} other {# חלונות שעות השקט שלו נמחקים גם כן.}}"
 
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
@@ -292,6 +292,10 @@ msgstr "בדיקה של החיישן אינה מגיבה."
 msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
 msgstr "יום שחסר בחודש, כמו ה־31, מדולג: בחרו ביום האחרון לסוף כל חודש."
 
+#: src/components/alerts/target-alerts.tsx
+msgid "A name with a comma can't be the target of a rule."
+msgstr "שם עם פסיק לא יכול להיות יעד של כלל."
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
 msgstr "חיישן שייך לקבוצה אחת: סימונו מעביר אותו מהקבוצה הנוכחית שלו."
@@ -331,6 +335,7 @@ msgid "Actions"
 msgstr "פעולות"
 
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -488,6 +493,7 @@ msgstr "עדכון סוכן"
 msgid "Agent updated"
 msgstr "הסוכן עודכן"
 
+#: src/components/alerts/target-alerts.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Alert"
 msgstr "התראה"
@@ -510,19 +516,19 @@ msgstr "סף התראה (ימים לפני תפוגה)"
 msgid "Alert types"
 msgstr "סוגי התראות"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
 msgstr "התראה כשה־CPU שלו מעל"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are fewer than"
 msgstr "התראה כשיש פחות מופעים מ־"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are more than"
 msgstr "התראה כשיש יותר מופעים מ־"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its memory is above"
 msgstr "התראה כשהזיכרון שלו מעל"
 
@@ -530,13 +536,11 @@ msgstr "התראה כשהזיכרון שלו מעל"
 msgid "Alert when services, Docker containers or processes enter or leave a state."
 msgstr "התראה כששירותים, קונטיינרים של Docker או תהליכים נכנסים למצב או יוצאים ממנו."
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is"
 msgstr "התראה כאשר המצב הוא"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is not"
 msgstr "התראה כאשר המצב אינו"
 
@@ -544,11 +548,11 @@ msgstr "התראה כאשר המצב אינו"
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "התראה כאשר האישור {name} של {systemName} יפוג בפחות ימים מהסף. אישורים מחודשים באותו שם ממשיכים להיבדק, והאישור הופך לחשוב."
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is not running"
 msgstr "התראה כשהתהליך אינו רץ"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is running"
 msgstr "התראה כשהתהליך רץ"
 
@@ -561,7 +565,7 @@ msgstr "התראה כשהתהליך רץ"
 msgid "Alerts"
 msgstr "התראות"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alerts created"
 msgstr "ההתראות נוצרו"
 
@@ -572,6 +576,10 @@ msgstr "התראות של {sensorName}"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "התראות לכל משתמש"
+
+#: src/components/alerts/alerts-notice.tsx
+msgid "Alerts set up"
+msgstr "התראות מוגדרות"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -658,6 +666,7 @@ msgstr "כל החיישנים"
 msgid "All Services"
 msgstr "כל השירותים"
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -681,7 +690,7 @@ msgstr "כל המערכות"
 msgid "All systems until {until}"
 msgstr "כל המערכות עד {until}"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "All the instances of a program count as one target, such as every chrome.exe."
 msgstr "כל המופעים של תוכנית נחשבים כיעד אחד, כמו כל chrome.exe."
 
@@ -966,8 +975,9 @@ msgid "Can stop"
 msgstr "יכול לעצור"
 
 #: src/components/agent-update-dialog.tsx
-#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1128,7 +1138,7 @@ msgstr "שגיאות סכום ביקורת"
 msgid "Choose a known port"
 msgstr "בחרו פורט מוכר"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one day."
 msgstr "בחרו לפחות יום אחד."
@@ -1137,7 +1147,7 @@ msgstr "בחרו לפחות יום אחד."
 msgid "Choose at least one port."
 msgstr "בחרו לפחות פורט אחד."
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one week of the month."
 msgstr "בחרו לפחות שבוע אחד בחודש."
@@ -1231,9 +1241,8 @@ msgstr "פקודה"
 msgid "Command line instructions"
 msgstr "הוראות שורת פקודה"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Condition"
 msgstr "תנאי"
 
@@ -1275,8 +1284,7 @@ msgstr "החיבור נפל"
 msgid "Connections"
 msgstr "חיבורים"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Consecutive checks"
 msgstr "בדיקות רצופות"
 
@@ -1285,7 +1293,7 @@ msgstr "בדיקות רצופות"
 msgid "Container"
 msgstr "קונטיינר"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Container alerts"
 msgstr "התראות מכולות"
 
@@ -1297,7 +1305,7 @@ msgstr "בריאות הקונטיינר"
 msgid "Container state"
 msgstr "מצב מכולה"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
@@ -1397,7 +1405,7 @@ msgstr "ליבה"
 msgid "CPU"
 msgstr "CPU"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "CPU above {threshold}%"
 msgstr "CPU מעל {threshold}%"
 
@@ -1443,7 +1451,7 @@ msgstr "שימוש CPU"
 msgid "CPU: {cpuText}"
 msgstr "מעבד: {cpuText}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Create"
 msgstr "צור"
 
@@ -1505,7 +1513,7 @@ msgstr "מצב נוכחי"
 msgid "Cycles"
 msgstr "מחזורים"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Daily"
@@ -1578,6 +1586,11 @@ msgstr "ירודה"
 msgid "Degraded or bad"
 msgstr "ירודה או גרועה"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
@@ -1611,6 +1624,10 @@ msgstr "מחיקת קבוצה"
 msgid "Delete the group {originalName}?"
 msgstr "למחוק את הקבוצה {originalName}?"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Delete the rule?"
+msgstr "למחוק את הכלל?"
+
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
 msgstr "למחוק את האתחולים שנבחרו?"
@@ -1631,7 +1648,8 @@ msgstr "תלויות"
 msgid "Deployment"
 msgstr "פריסה"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "תאר את הסיבה"
@@ -1809,6 +1827,8 @@ msgstr "גרור כדי לשנות גודל, לחיצה כפולה לאיפוס"
 msgid "Duration"
 msgstr "משך זמן"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -1829,6 +1849,10 @@ msgstr "עריכת ניטור הרשת"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit the quiet hours"
 msgstr "עריכת שעות השקט"
+
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "Edit the rule"
+msgstr "עריכת הכלל"
 
 #: src/components/add-system.tsx
 msgid "Edit the system"
@@ -1870,7 +1894,7 @@ msgstr "הפעלת התחברות באמצעות הספרייה"
 msgid "End"
 msgstr "סיום"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1908,7 +1932,6 @@ msgstr "הכנס את הסיסמה החד-פעמית שלך."
 msgid "Ephemeral"
 msgstr "זמני"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2101,7 +2124,7 @@ msgid "Failed to send test notification"
 msgstr "שליחת התראת בדיקה נכשלה"
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Failed to update alert"
 msgstr "עדכון התראה נכשל"
 
@@ -2118,7 +2141,7 @@ msgstr "נכשל: {0}"
 msgid "Fans"
 msgstr "מאווררים"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "fewer than {threshold} instances"
 msgstr "פחות מ־{threshold} מופעים"
 
@@ -2288,8 +2311,7 @@ msgstr "סמלי הכותרת"
 msgid "Health"
 msgstr "בריאות"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Health (optional)"
 msgstr "תקינות (אופציונלי)"
 
@@ -2475,7 +2497,7 @@ msgstr "מופע"
 msgid "Instance name"
 msgstr "שם המופע"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 msgid "Instances"
@@ -2831,7 +2853,7 @@ msgstr "מקסימום שעה אחת"
 msgid "Memory"
 msgstr "זיכרון"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "memory above {threshold}%"
 msgstr "זיכרון מעל {threshold}%"
 
@@ -2889,7 +2911,7 @@ msgstr "דגם"
 msgid "Monitors created"
 msgstr "המנטרים נוצרו"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Monthly"
@@ -2900,7 +2922,7 @@ msgstr "חודשי"
 msgid "More"
 msgstr "עוד"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "more than {threshold} instances"
 msgstr "יותר מ־{threshold} מופעים"
 
@@ -2908,11 +2930,11 @@ msgstr "יותר מ־{threshold} מופעים"
 msgid "Mountpoint"
 msgstr "נקודת עגינה"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must be running"
 msgstr "חייב לרוץ"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must not be running"
 msgstr "אסור שירוץ"
 
@@ -2949,7 +2971,7 @@ msgstr "שם השירות שנוצר בעת התקנת סוכן באמצעות �
 msgid "Name to resolve"
 msgstr "שם לפענוח"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
 msgstr "שמות מופרדים בפסיקים. השתמשו ב-* כתו כללי. יעד שאינו מדווח עוד נחשב כעצור."
 
@@ -3151,7 +3173,7 @@ msgid "No systems found."
 msgstr "לא נמצאו מערכות."
 
 #: src/components/add-system.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -3227,7 +3249,7 @@ msgstr "מנטר אחד או יותר חורגים מאובדן של {0}%"
 msgid "One or more services are in a failed state"
 msgstr "שירות אחד או יותר נמצאים במצב כשל"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "One-time"
@@ -3286,7 +3308,7 @@ msgstr "או המשך עם"
 msgid "Or enter this key in the app:"
 msgstr "או הזינו את המפתח הזה באפליקציה:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3434,7 +3456,7 @@ msgstr "ממתין"
 msgid "Per-core average utilization"
 msgstr "ניצול ממוצע לליבה"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Percent of the whole host, all the instances of the program added up."
 msgstr "אחוז מכל המארח, כשכל מופעי התוכנית מסוכמים."
 
@@ -3471,7 +3493,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "אנא <0>הגדר שרת SMTP</0> כדי להבטיח שהתראות יישלחו."
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Please check logs for more details."
 msgstr "אנא בדוק יומנים לפרטים נוספים."
 
@@ -3559,7 +3581,7 @@ msgstr "הדף הקודם"
 msgid "Process alert"
 msgstr "התראת תהליך"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Process alerts"
 msgstr "התראות תהליכים"
 
@@ -3571,14 +3593,14 @@ msgstr "כלל תהליך התקיים"
 msgid "Process started"
 msgstr "תהליך התחיל"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "תהליכים"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Processes are checked every minute, only on the systems with process rules."
 msgstr "התהליכים נבדקים כל דקה, רק במערכות עם כללי תהליכים."
 
@@ -3635,11 +3657,11 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "עומק תור"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 msgid "Quiet hours"
 msgstr "שעות שקטות"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3656,9 +3678,9 @@ msgstr "שעות שקט פעילות"
 msgid "Quiet hours active: notifications are not sent"
 msgstr "שעות שקטות פעילות: התראות אינן נשלחות"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Quiet hours set up"
-msgstr "השעות השקטות הוגדרו"
+#: src/components/alerts/alerts-notice.tsx
+msgid "Quiet hours set up: the alerts are not sent during these windows"
+msgstr "שעות שקט מוגדרות: ההתראות לא נשלחות בחלונות אלה"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3702,8 +3724,8 @@ msgstr "קריאה בלבד"
 msgid "Read-only group"
 msgstr "קבוצת קריאה בלבד"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3963,7 +3985,7 @@ msgstr "פרטי S.M.A.R.T."
 msgid "S.M.A.R.T. Self-Test"
 msgstr "בדיקה עצמית S.M.A.R.T."
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -4212,7 +4234,7 @@ msgstr "שירות"
 msgid "Service account"
 msgstr "חשבון שירות"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Service alerts"
 msgstr "התראות שירותים"
 
@@ -4229,7 +4251,7 @@ msgstr "שם השירות"
 msgid "Service state"
 msgstr "מצב שירות"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
@@ -4237,7 +4259,7 @@ msgstr "מצב שירות"
 msgid "Services"
 msgstr "שירותים"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Services are checked at each collection, containers every minute."
 msgstr "שירותים נבדקים בכל איסוף, מכולות בכל דקה."
 
@@ -4253,20 +4275,16 @@ msgstr "הגדר את משתני הסביבה הבאים ב-Beszel hub שלך כ
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "הגדירו את טביעת האצבע של האישור החדש במיקום הבא (או במחלקת WMI בשם Win32_TSGeneralSetting), ולאחר מכן הפעילו מחדש את שירות שולחן העבודה המרוחק:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "הגדרה"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "הגדרת שעות שקטות"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Set up quiet hours for the selection below"
-msgstr "הגדרת שעות שקטות לבחירה שלמטה"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -4344,7 +4362,7 @@ msgstr "מקור"
 msgid "Start"
 msgstr "התחלה"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4379,11 +4397,11 @@ msgstr "הופעל ידנית"
 msgid "State"
 msgstr "מצב"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is"
 msgstr "המצב הוא"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is not"
 msgstr "המצב אינו"
 
@@ -4401,8 +4419,7 @@ msgstr "כלל מצב התקיים"
 msgid "State rules"
 msgstr "כללי מצב"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "States"
 msgstr "מצבים"
 
@@ -4439,8 +4456,7 @@ msgstr "נעצר"
 msgid "Sub State"
 msgstr "מצב משני"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Sub-states (optional)"
 msgstr "תת-מצבים (אופציונלי)"
 
@@ -4561,11 +4577,11 @@ msgstr "לשוניות"
 msgid "Target"
 msgstr "יעד"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets"
 msgstr "יעדים"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets by system"
 msgstr "יעדים לפי מערכת"
 
@@ -4645,6 +4661,10 @@ msgstr "הסוכן מופעל מחדש ומתחבר שוב בעצמו."
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "הסוכנים מורידים את גרסה {latest} מ-GitHub ואז מופעלים מחדש."
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "The alerts of these rules are not sent during this window. It goes with the rules when they are deleted."
+msgstr "ההתראות של כללים אלה לא נשלחות בחלון זה. הוא נמחק יחד עם הכללים."
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The average response time over 10 minutes exceeds {value} ms."
 msgstr "זמן התגובה הממוצע ב-10 דקות עולה על {value} ms."
@@ -4664,6 +4684,10 @@ msgstr "הבדיקות של אותו מארח מקובצות בחיישן אחד
 #: src/components/routes/settings/security.tsx
 msgid "The code by email needs the mail settings of the hub."
 msgstr "קוד בדוא״ל דורש את הגדרות הדואר של השרת."
+
+#: src/components/alerts/quiet-hours-fields.tsx
+msgid "The end must come after the start."
+msgstr "הסיום חייב להיות אחרי ההתחלה."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
@@ -4693,7 +4717,7 @@ msgstr "לא ניתן היה לקרוא את התהליכים."
 msgid "The processes that use the most CPU and memory on each system that is up, at the time of the reading."
 msgstr "התהליכים שצורכים הכי הרבה CPU וזיכרון בכל מערכת פעילה, בזמן הקריאה."
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "The rules are created on each system."
 msgstr "הכללים נוצרים בכל מערכת."
 
@@ -4767,7 +4791,7 @@ msgstr "תהליכונים"
 msgid "Threshold"
 msgstr "סף"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Threshold (%)"
 msgstr "סף (%)"
 
@@ -4882,6 +4906,7 @@ msgstr "סה״כ: {totalCount}"
 msgid "Traced with the traceroute command of the hub."
 msgstr "נותב באמצעות פקודת traceroute של ה-hub."
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
 msgstr "הופעל"
@@ -4966,8 +4991,8 @@ msgstr "מופעל כאשר שימוש בכל דיסק עולה על סף"
 msgid "Two-factor authentication"
 msgstr "אימות דו-שלבי"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -5307,7 +5332,7 @@ msgstr "סוף שבוע"
 msgid "Weekly"
 msgstr "שבועי"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Weekly, on some days"
 msgstr "שבועי, בימים מסוימים"

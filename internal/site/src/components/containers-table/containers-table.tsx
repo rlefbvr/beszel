@@ -2,8 +2,8 @@
 import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
-import { BulkQuietHoursButton } from "@/components/alerts/bulk-quiet-hours"
 import { BulkStateAlertsButton, selectionColumn, targetRowId } from "@/components/alerts/bulk-state-alerts"
+import { TargetAlerts } from "@/components/alerts/target-alerts"
 import { type ImportantTile, ImportantTargets } from "@/components/important-targets"
 import {
 	cellWidthStyle,
@@ -318,7 +318,6 @@ export default function ContainersTable({ systemId }: { systemId?: string }) {
 							}
 						/>
 						<BulkStateAlertsButton kind="container" items={selectedItems} />
-						<BulkQuietHoursButton kind="container" items={selectedItems} />
 					</div>
 				</div>
 			</CardHeader>
@@ -565,6 +564,9 @@ function ContainerSheet({
 						</SheetDescription>
 					</SheetHeader>
 					<div className="px-3 pb-3 -mt-4 flex flex-col gap-3 h-full items-start">
+						<div className="w-full">
+							<TargetAlerts target={{ kind: "container", name: container.name, system: container.system }} />
+						</div>
 						<div className="flex items-center w-full">
 							<h3>{t`Logs`}</h3>
 							<Button

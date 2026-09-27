@@ -78,15 +78,15 @@ msgstr "{count, plural, one {{countString} ora} other {{countString} ore}}"
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} minuto} other {{countString} minuti}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, one {# container filtrato} other {# container filtrati}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# servizio filtrato} other {# servizi filtrati}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {# processo selezionato} other {# processi selezionati}}"
 
@@ -97,18 +97,6 @@ msgstr "{count, plural, one {# sensore} other {# sensori}}"
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# sistema} other {# sistemi}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
-msgstr "{count, plural, one {Gli avvisi del processo selezionato non vengono inviati durante questa finestra.} other {Gli avvisi dei # processi selezionati non vengono inviati durante questa finestra.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
-msgstr "{count, plural, one {Gli avvisi di stato del container selezionato non vengono inviati in questa fascia.} other {Gli avvisi di stato dei # container selezionati non vengono inviati in questa fascia.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
-msgstr "{count, plural, one {Gli avvisi di stato del servizio selezionato non vengono inviati in questa fascia.} other {Gli avvisi di stato dei # servizi selezionati non vengono inviati in questa fascia.}}"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "{count} instance(s) · CPU {cpuText}"
@@ -175,7 +163,7 @@ msgstr "{outdated} sistema/i richiedono l’aggiornamento dell’agente per legg
 msgid "{programCount} programs"
 msgstr "{programCount} programmi"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, one {# regola di stato creata.} other {# regole di stato create.}}"
 
@@ -191,13 +179,21 @@ msgstr "{seconds, plural, one {# secondo} other {# secondi}}"
 msgid "{sensorCount} host(s), {checkCount} check(s)"
 msgstr "{sensorCount} host, {checkCount} controlli"
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "{skippedCount, plural, one {# item left out: a name with a comma can't be the target of a rule.} other {# items left out: a name with a comma can't be the target of a rule.}}"
+msgstr "{skippedCount, plural, one {# elemento escluso: Un nome con una virgola non può essere l’obiettivo di una regola.} other {# elementi esclusi: Un nome con una virgola non può essere l’obiettivo di una regola.}}"
+
 #: src/components/sensors/sensor-badges.tsx
 msgid "{success} of {total} successful"
 msgstr "{success} su {total} riusciti"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, one {# sistema} other {# sistemi}}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{targets}: {condition}. Its alerts stop."
+msgstr "{targets}: {condition}. I suoi avvisi si interrompono."
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -206,6 +202,10 @@ msgstr "{threads, plural, one {# thread} other {# thread}}"
 #: src/lib/quiet-hours.ts
 msgid "{weekList} {dayList} of the month"
 msgstr "{weekList} {dayList} del mese"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{windowCount, plural, one {Its quiet hours window is deleted too.} other {Its # quiet hours windows are deleted too.}}"
+msgstr "{windowCount, plural, one {Anche la sua fascia di ore di silenzio viene eliminata.} other {Anche le sue # fasce di ore di silenzio vengono eliminate.}}"
 
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
@@ -292,6 +292,10 @@ msgstr "Un controllo del sensore non risponde."
 msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
 msgstr "Un giorno assente in un mese, come il 31, viene saltato: scegli l’ultimo giorno per la fine di ogni mese."
 
+#: src/components/alerts/target-alerts.tsx
+msgid "A name with a comma can't be the target of a rule."
+msgstr "Un nome con una virgola non può essere l’obiettivo di una regola."
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
 msgstr "Un sensore appartiene a un solo gruppo: selezionarlo lo sposta dal gruppo attuale."
@@ -331,6 +335,7 @@ msgid "Actions"
 msgstr "Azioni"
 
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -488,6 +493,7 @@ msgstr "Aggiornamento dell’agente"
 msgid "Agent updated"
 msgstr "Agente aggiornato"
 
+#: src/components/alerts/target-alerts.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Alert"
 msgstr "Avviso"
@@ -510,19 +516,19 @@ msgstr "Soglia di avviso (giorni prima della scadenza)"
 msgid "Alert types"
 msgstr "Tipi di avviso"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
 msgstr "Avvisa quando la CPU supera"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are fewer than"
 msgstr "Avvisa quando le istanze sono meno di"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are more than"
 msgstr "Avvisa quando le istanze sono più di"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its memory is above"
 msgstr "Avvisa quando la memoria supera"
 
@@ -530,13 +536,11 @@ msgstr "Avvisa quando la memoria supera"
 msgid "Alert when services, Docker containers or processes enter or leave a state."
 msgstr "Avvisa quando servizi, container Docker o processi entrano o escono da uno stato."
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is"
 msgstr "Avvisa quando lo stato è"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is not"
 msgstr "Avvisa quando lo stato non è"
 
@@ -544,11 +548,11 @@ msgstr "Avvisa quando lo stato non è"
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "Avvisa quando il certificato {name} di {systemName} scade in meno giorni della soglia. I certificati rinnovati con lo stesso nome restano controllati e il certificato diventa importante."
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is not running"
 msgstr "Avvisa quando il processo non è in esecuzione"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is running"
 msgstr "Avvisa quando il processo è in esecuzione"
 
@@ -561,7 +565,7 @@ msgstr "Avvisa quando il processo è in esecuzione"
 msgid "Alerts"
 msgstr "Avvisi"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alerts created"
 msgstr "Avvisi creati"
 
@@ -572,6 +576,10 @@ msgstr "Avvisi di {sensorName}"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "avvisi per utente"
+
+#: src/components/alerts/alerts-notice.tsx
+msgid "Alerts set up"
+msgstr "Avvisi configurati"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -658,6 +666,7 @@ msgstr "Tutti i sensori"
 msgid "All Services"
 msgstr "Tutti i servizi"
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -681,7 +690,7 @@ msgstr "Tutti i Sistemi"
 msgid "All systems until {until}"
 msgstr "Tutti i sistemi fino alle {until}"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "All the instances of a program count as one target, such as every chrome.exe."
 msgstr "Tutte le istanze di un programma contano come un solo obiettivo, come ogni chrome.exe."
 
@@ -966,8 +975,9 @@ msgid "Can stop"
 msgstr "Può fermare"
 
 #: src/components/agent-update-dialog.tsx
-#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1128,7 +1138,7 @@ msgstr "Errori di checksum"
 msgid "Choose a known port"
 msgstr "Scegli una porta nota"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one day."
 msgstr "Scegli almeno un giorno."
@@ -1137,7 +1147,7 @@ msgstr "Scegli almeno un giorno."
 msgid "Choose at least one port."
 msgstr "Scegli almeno una porta."
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one week of the month."
 msgstr "Scegli almeno una settimana del mese."
@@ -1231,9 +1241,8 @@ msgstr "Comando"
 msgid "Command line instructions"
 msgstr "Istruzioni da riga di comando"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Condition"
 msgstr "Condizione"
 
@@ -1275,8 +1284,7 @@ msgstr "La connessione è interrotta"
 msgid "Connections"
 msgstr "Connessioni"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Consecutive checks"
 msgstr "Controlli consecutivi"
 
@@ -1285,7 +1293,7 @@ msgstr "Controlli consecutivi"
 msgid "Container"
 msgstr "Container"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Container alerts"
 msgstr "Avvisi dei container"
 
@@ -1297,7 +1305,7 @@ msgstr "Stato del container"
 msgid "Container state"
 msgstr "Stato del container"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
@@ -1397,7 +1405,7 @@ msgstr "Interne"
 msgid "CPU"
 msgstr "CPU"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "CPU above {threshold}%"
 msgstr "CPU sopra il {threshold}%"
 
@@ -1443,7 +1451,7 @@ msgstr "Utilizzo CPU"
 msgid "CPU: {cpuText}"
 msgstr "CPU: {cpuText}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Create"
 msgstr "Crea"
 
@@ -1505,7 +1513,7 @@ msgstr "Stato attuale"
 msgid "Cycles"
 msgstr "Cicli"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Daily"
@@ -1578,6 +1586,11 @@ msgstr "Degradata"
 msgid "Degraded or bad"
 msgstr "Degradata o scarsa"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
@@ -1611,6 +1624,10 @@ msgstr "Elimina gruppo"
 msgid "Delete the group {originalName}?"
 msgstr "Eliminare il gruppo {originalName}?"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Delete the rule?"
+msgstr "Eliminare la regola?"
+
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
 msgstr "Eliminare i riavvii selezionati?"
@@ -1631,7 +1648,8 @@ msgstr "Dipendenze"
 msgid "Deployment"
 msgstr "Distribuzione"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "Descrivi il motivo"
@@ -1809,6 +1827,8 @@ msgstr "Trascina per ridimensionare, doppio clic per reimpostare"
 msgid "Duration"
 msgstr "Durata"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -1829,6 +1849,10 @@ msgstr "Modifica il monitor di rete"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit the quiet hours"
 msgstr "Modifica le ore di silenzio"
+
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "Edit the rule"
+msgstr "Modifica la regola"
 
 #: src/components/add-system.tsx
 msgid "Edit the system"
@@ -1870,7 +1894,7 @@ msgstr "Attiva l’accesso con la directory"
 msgid "End"
 msgstr "Fine"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1908,7 +1932,6 @@ msgstr "Inserisci la tua password monouso."
 msgid "Ephemeral"
 msgstr "Effimero"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2101,7 +2124,7 @@ msgid "Failed to send test notification"
 msgstr "Invio della notifica di test fallito"
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Failed to update alert"
 msgstr "Aggiornamento dell'avviso fallito"
 
@@ -2118,7 +2141,7 @@ msgstr "Fallito: {0}"
 msgid "Fans"
 msgstr "Ventole"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "fewer than {threshold} instances"
 msgstr "meno di {threshold} istanze"
 
@@ -2288,8 +2311,7 @@ msgstr "Icone dell’intestazione"
 msgid "Health"
 msgstr "Stato"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Health (optional)"
 msgstr "Salute (facoltativo)"
 
@@ -2475,7 +2497,7 @@ msgstr "Istanza"
 msgid "Instance name"
 msgstr "Nome dell’istanza"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 msgid "Instances"
@@ -2831,7 +2853,7 @@ msgstr "Max 1 h"
 msgid "Memory"
 msgstr "Memoria"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "memory above {threshold}%"
 msgstr "memoria sopra il {threshold}%"
 
@@ -2889,7 +2911,7 @@ msgstr "Modello"
 msgid "Monitors created"
 msgstr "Monitor creati"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Monthly"
@@ -2900,7 +2922,7 @@ msgstr "Mensile"
 msgid "More"
 msgstr "Altro"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "more than {threshold} instances"
 msgstr "più di {threshold} istanze"
 
@@ -2908,11 +2930,11 @@ msgstr "più di {threshold} istanze"
 msgid "Mountpoint"
 msgstr "Punto di montaggio"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must be running"
 msgstr "deve essere in esecuzione"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must not be running"
 msgstr "non deve essere in esecuzione"
 
@@ -2949,7 +2971,7 @@ msgstr "Nome del servizio creato durante l’installazione di un agente con i co
 msgid "Name to resolve"
 msgstr "Nome da risolvere"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
 msgstr "Nomi separati da virgole. Usa * come carattere jolly. Un obiettivo non più segnalato è considerato arrestato."
 
@@ -3151,7 +3173,7 @@ msgid "No systems found."
 msgstr "Nessun sistema trovato."
 
 #: src/components/add-system.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -3227,7 +3249,7 @@ msgstr "Uno o più monitor superano una perdita del {0}%"
 msgid "One or more services are in a failed state"
 msgstr "Uno o più servizi sono in stato di errore"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "One-time"
@@ -3286,7 +3308,7 @@ msgstr "Oppure continua con"
 msgid "Or enter this key in the app:"
 msgstr "Oppure inserisci questa chiave nell’app:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3434,7 +3456,7 @@ msgstr "In attesa"
 msgid "Per-core average utilization"
 msgstr "Utilizzo medio per core"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Percent of the whole host, all the instances of the program added up."
 msgstr "Percentuale dell’intero host, sommando tutte le istanze del programma."
 
@@ -3471,7 +3493,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "Si prega di <0>configurare un server SMTP</0> per garantire la consegna degli avvisi."
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Please check logs for more details."
 msgstr "Si prega di controllare i log per maggiori dettagli."
 
@@ -3559,7 +3581,7 @@ msgstr "Pagina precedente"
 msgid "Process alert"
 msgstr "Avviso processo"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Process alerts"
 msgstr "Avvisi dei processi"
 
@@ -3571,14 +3593,14 @@ msgstr "Regola del processo soddisfatta"
 msgid "Process started"
 msgstr "Processo avviato"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "Processi"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Processes are checked every minute, only on the systems with process rules."
 msgstr "I processi sono controllati ogni minuto, solo sui sistemi con regole dei processi."
 
@@ -3635,11 +3657,11 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "Profondità coda"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 msgid "Quiet hours"
 msgstr "Ore di silenzio"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3656,9 +3678,9 @@ msgstr "Ore di silenzio attive"
 msgid "Quiet hours active: notifications are not sent"
 msgstr "Ore di silenzio attive: le notifiche non vengono inviate"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Quiet hours set up"
-msgstr "Ore di silenzio impostate"
+#: src/components/alerts/alerts-notice.tsx
+msgid "Quiet hours set up: the alerts are not sent during these windows"
+msgstr "Ore di silenzio configurate: gli avvisi non vengono inviati in queste fasce"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3702,8 +3724,8 @@ msgstr "Sola lettura"
 msgid "Read-only group"
 msgstr "Gruppo di sola lettura"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3963,7 +3985,7 @@ msgstr "Dettagli S.M.A.R.T."
 msgid "S.M.A.R.T. Self-Test"
 msgstr "Autotest S.M.A.R.T."
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -4212,7 +4234,7 @@ msgstr "Servizio"
 msgid "Service account"
 msgstr "Account di servizio"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Service alerts"
 msgstr "Avvisi dei servizi"
 
@@ -4229,7 +4251,7 @@ msgstr "Nome del servizio"
 msgid "Service state"
 msgstr "Stato del servizio"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
@@ -4237,7 +4259,7 @@ msgstr "Stato del servizio"
 msgid "Services"
 msgstr "Servizi"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Services are checked at each collection, containers every minute."
 msgstr "I servizi vengono controllati a ogni raccolta, i container ogni minuto."
 
@@ -4253,20 +4275,16 @@ msgstr "Imposta le seguenti variabili d'ambiente sul tuo Beszel hub per abilitar
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "Imposta l’impronta del nuovo certificato nel percorso seguente (o nella classe WMI Win32_TSGeneralSetting), poi riavvia il servizio Desktop remoto:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "Imposta"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "Imposta ore di silenzio"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Set up quiet hours for the selection below"
-msgstr "Imposta ore di silenzio per la selezione qui sotto"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -4344,7 +4362,7 @@ msgstr "Origine"
 msgid "Start"
 msgstr "Inizio"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4379,11 +4397,11 @@ msgstr "Avviato manualmente"
 msgid "State"
 msgstr "Stato"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is"
 msgstr "lo stato è"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is not"
 msgstr "lo stato non è"
 
@@ -4401,8 +4419,7 @@ msgstr "Regola di stato soddisfatta"
 msgid "State rules"
 msgstr "Regole di stato"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "States"
 msgstr "Stati"
 
@@ -4439,8 +4456,7 @@ msgstr "Arrestato"
 msgid "Sub State"
 msgstr "Sotto-stato"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Sub-states (optional)"
 msgstr "Sottostati (facoltativo)"
 
@@ -4561,11 +4577,11 @@ msgstr "Schede"
 msgid "Target"
 msgstr "Destinazione"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets"
 msgstr "Obiettivi"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets by system"
 msgstr "Obiettivi per sistema"
 
@@ -4645,6 +4661,10 @@ msgstr "L’agente si riavvia e si riconnette da solo."
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "Gli agenti scaricano la versione {latest} da GitHub, poi si riavviano."
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "The alerts of these rules are not sent during this window. It goes with the rules when they are deleted."
+msgstr "Gli avvisi di queste regole non vengono inviati in questa fascia. Viene eliminata insieme alle regole."
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The average response time over 10 minutes exceeds {value} ms."
 msgstr "Il tempo di risposta medio su 10 minuti supera {value} ms."
@@ -4664,6 +4684,10 @@ msgstr "I controlli dello stesso host sono raggruppati in un solo sensore."
 #: src/components/routes/settings/security.tsx
 msgid "The code by email needs the mail settings of the hub."
 msgstr "Il codice via email richiede le impostazioni di posta dell’hub."
+
+#: src/components/alerts/quiet-hours-fields.tsx
+msgid "The end must come after the start."
+msgstr "La fine deve essere dopo l’inizio."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
@@ -4693,7 +4717,7 @@ msgstr "Impossibile leggere i processi."
 msgid "The processes that use the most CPU and memory on each system that is up, at the time of the reading."
 msgstr "I processi che usano più CPU e memoria su ogni sistema attivo, al momento della lettura."
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "The rules are created on each system."
 msgstr "Le regole vengono create su ogni sistema."
 
@@ -4767,7 +4791,7 @@ msgstr "Thread"
 msgid "Threshold"
 msgstr "Soglia"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Threshold (%)"
 msgstr "Soglia (%)"
 
@@ -4882,6 +4906,7 @@ msgstr "Totale: {totalCount}"
 msgid "Traced with the traceroute command of the hub."
 msgstr "Tracciato con il comando traceroute dell'hub."
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
 msgstr "Attivata"
@@ -4966,8 +4991,8 @@ msgstr "Attiva quando l'utilizzo di un disco supera una soglia"
 msgid "Two-factor authentication"
 msgstr "Autenticazione a due fattori"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -5307,7 +5332,7 @@ msgstr "Fine settimana"
 msgid "Weekly"
 msgstr "Settimanale"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Weekly, on some days"
 msgstr "Settimanale, in alcuni giorni"

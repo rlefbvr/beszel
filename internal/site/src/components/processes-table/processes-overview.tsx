@@ -29,7 +29,6 @@ import {
 	XIcon,
 } from "lucide-react"
 import { type FormEvent, type ReactNode, useCallback, useEffect, useMemo, useState } from "react"
-import { BulkQuietHoursButton } from "@/components/alerts/bulk-quiet-hours"
 import { BulkStateAlertsButton, selectionColumn } from "@/components/alerts/bulk-state-alerts"
 import { $router, Link } from "@/components/router"
 import {
@@ -468,7 +467,6 @@ function ProcessesGrid({
 					)}
 					<ColumnsViewMenu table={table} />
 					<BulkStateAlertsButton kind="process" items={selectedItems} />
-					<BulkQuietHoursButton kind="process" items={selectedItems} />
 					{actions}
 				</div>
 			</div>
@@ -1060,7 +1058,6 @@ function FleetPrograms({
 					/>
 					<ColumnsViewMenu table={table} />
 					<BulkStateAlertsButton kind="process" items={selectedItems} />
-					<BulkQuietHoursButton kind="process" items={selectedItems} />
 					{actions}
 				</div>
 			</div>

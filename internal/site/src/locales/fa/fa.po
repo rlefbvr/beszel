@@ -78,15 +78,15 @@ msgstr "{count, plural, one {{countString} ساعت} other {{countString} ساع
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} دقیقه} few {{countString} دقیقه} many {{countString} دقیقه} other {{countString} دقیقه}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, one {# کانتینر فیلترشده} other {# کانتینر فیلترشده}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, one {# سرویس فیلترشده} other {# سرویس فیلترشده}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {# فرایند انتخاب‌شده} other {# فرایند انتخاب‌شده}}"
 
@@ -97,18 +97,6 @@ msgstr "{count, plural, one {# حسگر} other {# حسگر}}"
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, one {# سیستم} other {# سیستم}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
-msgstr "{count, plural, one {هشدارهای فرایند انتخاب‌شده در این بازه ارسال نمی‌شوند.} other {هشدارهای # فرایند انتخاب‌شده در این بازه ارسال نمی‌شوند.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
-msgstr "{count, plural, one {هشدارهای وضعیت کانتینر انتخاب‌شده در این بازه ارسال نمی‌شوند.} other {هشدارهای وضعیت کانتینرهای انتخاب‌شده (#) در این بازه ارسال نمی‌شوند.}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
-msgstr "{count, plural, one {هشدارهای وضعیت سرویس انتخاب‌شده در این بازه ارسال نمی‌شوند.} other {هشدارهای وضعیت سرویس‌های انتخاب‌شده (#) در این بازه ارسال نمی‌شوند.}}"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "{count} instance(s) · CPU {cpuText}"
@@ -175,7 +163,7 @@ msgstr "{outdated} سیستم برای خواندن گواهی‌های خود �
 msgid "{programCount} programs"
 msgstr "{programCount} برنامه"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, one {# قانون وضعیت ایجاد شد.} other {# قانون وضعیت ایجاد شد.}}"
 
@@ -191,13 +179,21 @@ msgstr "{seconds, plural, one {# ثانیه} other {# ثانیه}}"
 msgid "{sensorCount} host(s), {checkCount} check(s)"
 msgstr "{sensorCount} میزبان، {checkCount} بررسی"
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "{skippedCount, plural, one {# item left out: a name with a comma can't be the target of a rule.} other {# items left out: a name with a comma can't be the target of a rule.}}"
+msgstr "{skippedCount, plural, one {# مورد کنار گذاشته شد: نامی که ویرگول دارد نمی‌تواند هدف یک قاعده باشد.} other {# مورد کنار گذاشته شدند: نامی که ویرگول دارد نمی‌تواند هدف یک قاعده باشد.}}"
+
 #: src/components/sensors/sensor-badges.tsx
 msgid "{success} of {total} successful"
 msgstr "{success} از {total} موفق"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, one {# سیستم} other {# سیستم}}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{targets}: {condition}. Its alerts stop."
+msgstr "{targets}: {condition}. هشدارهای آن متوقف می‌شوند."
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -206,6 +202,10 @@ msgstr "{threads, plural, one {# رشته} other {# رشته}}"
 #: src/lib/quiet-hours.ts
 msgid "{weekList} {dayList} of the month"
 msgstr "{weekList} {dayList} ماه"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{windowCount, plural, one {Its quiet hours window is deleted too.} other {Its # quiet hours windows are deleted too.}}"
+msgstr "{windowCount, plural, one {بازه ساعات سکوت آن نیز حذف می‌شود.} other {# بازه ساعات سکوت آن نیز حذف می‌شوند.}}"
 
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
@@ -292,6 +292,10 @@ msgstr "یکی از بررسی‌های حسگر پاسخ نمی‌دهد."
 msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
 msgstr "روزی که در یک ماه وجود ندارد، مانند ۳۱، نادیده گرفته می‌شود: برای پایان هر ماه روز آخر را انتخاب کنید."
 
+#: src/components/alerts/target-alerts.tsx
+msgid "A name with a comma can't be the target of a rule."
+msgstr "نامی که ویرگول دارد نمی‌تواند هدف یک قاعده باشد."
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
 msgstr "هر حسگر به یک گروه تعلق دارد: انتخاب آن، حسگر را از گروه فعلی‌اش جابه‌جا می‌کند."
@@ -331,6 +335,7 @@ msgid "Actions"
 msgstr "عملیات"
 
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -488,6 +493,7 @@ msgstr "به‌روزرسانی عامل"
 msgid "Agent updated"
 msgstr "عامل به‌روزرسانی شد"
 
+#: src/components/alerts/target-alerts.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Alert"
 msgstr "هشدار"
@@ -510,19 +516,19 @@ msgstr "آستانه هشدار (روز پیش از انقضا)"
 msgid "Alert types"
 msgstr "انواع هشدار"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
 msgstr "هشدار وقتی CPU آن بیشتر از"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are fewer than"
 msgstr "هشدار وقتی نمونه‌ها کمتر از"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are more than"
 msgstr "هشدار وقتی نمونه‌ها بیشتر از"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its memory is above"
 msgstr "هشدار وقتی حافظه آن بیشتر از"
 
@@ -530,13 +536,11 @@ msgstr "هشدار وقتی حافظه آن بیشتر از"
 msgid "Alert when services, Docker containers or processes enter or leave a state."
 msgstr "هشدار وقتی سرویس‌ها، کانتینرهای Docker یا فرایندها وارد وضعیتی می‌شوند یا از آن خارج می‌شوند."
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is"
 msgstr "هشدار هنگامی که وضعیت برابر است با"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is not"
 msgstr "هشدار هنگامی که وضعیت برابر نیست با"
 
@@ -544,11 +548,11 @@ msgstr "هشدار هنگامی که وضعیت برابر نیست با"
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "هشدار وقتی گواهی {name} در {systemName} در روزهایی کمتر از آستانه منقضی شود. گواهی‌های تمدیدشده با همین نام همچنان بررسی می‌شوند و گواهی مهم می‌شود."
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is not running"
 msgstr "هشدار وقتی فرایند اجرا نمی‌شود"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is running"
 msgstr "هشدار وقتی فرایند اجرا می‌شود"
 
@@ -561,7 +565,7 @@ msgstr "هشدار وقتی فرایند اجرا می‌شود"
 msgid "Alerts"
 msgstr "هشدارها"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alerts created"
 msgstr "هشدارها ایجاد شدند"
 
@@ -572,6 +576,10 @@ msgstr "هشدارهای {sensorName}"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "هشدار برای هر کاربر"
+
+#: src/components/alerts/alerts-notice.tsx
+msgid "Alerts set up"
+msgstr "هشدارهای تنظیم‌شده"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -658,6 +666,7 @@ msgstr "همه حسگرها"
 msgid "All Services"
 msgstr "همه سرویس‌ها"
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -681,7 +690,7 @@ msgstr "همه سیستم‌ها"
 msgid "All systems until {until}"
 msgstr "همه سیستم‌ها تا {until}"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "All the instances of a program count as one target, such as every chrome.exe."
 msgstr "همه نمونه‌های یک برنامه یک هدف حساب می‌شوند، مانند هر chrome.exe."
 
@@ -966,8 +975,9 @@ msgid "Can stop"
 msgstr "می‌تواند متوقف شود"
 
 #: src/components/agent-update-dialog.tsx
-#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1128,7 +1138,7 @@ msgstr "خطاهای مجموع بررسی"
 msgid "Choose a known port"
 msgstr "یک درگاه شناخته‌شده انتخاب کنید"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one day."
 msgstr "دست‌کم یک روز انتخاب کنید."
@@ -1137,7 +1147,7 @@ msgstr "دست‌کم یک روز انتخاب کنید."
 msgid "Choose at least one port."
 msgstr "دست‌کم یک درگاه انتخاب کنید."
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one week of the month."
 msgstr "دست‌کم یک هفته از ماه را انتخاب کنید."
@@ -1231,9 +1241,8 @@ msgstr "فرمان"
 msgid "Command line instructions"
 msgstr "دستورالعمل‌های خط فرمان"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Condition"
 msgstr "شرط"
 
@@ -1275,8 +1284,7 @@ msgstr "اتصال قطع است"
 msgid "Connections"
 msgstr "اتصال‌ها"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Consecutive checks"
 msgstr "بررسی‌های متوالی"
 
@@ -1285,7 +1293,7 @@ msgstr "بررسی‌های متوالی"
 msgid "Container"
 msgstr "کانتینر"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Container alerts"
 msgstr "هشدارهای کانتینر"
 
@@ -1297,7 +1305,7 @@ msgstr "سلامت کانتینر"
 msgid "Container state"
 msgstr "وضعیت کانتینر"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
@@ -1397,7 +1405,7 @@ msgstr "هسته"
 msgid "CPU"
 msgstr "پردازنده"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "CPU above {threshold}%"
 msgstr "CPU بالای {threshold}%"
 
@@ -1443,7 +1451,7 @@ msgstr "میزان استفاده از پردازنده"
 msgid "CPU: {cpuText}"
 msgstr "پردازنده: {cpuText}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Create"
 msgstr "ایجاد"
 
@@ -1505,7 +1513,7 @@ msgstr "وضعیت فعلی"
 msgid "Cycles"
 msgstr "چرخه‌ها"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Daily"
@@ -1578,6 +1586,11 @@ msgstr "افت‌کرده"
 msgid "Degraded or bad"
 msgstr "افت‌کرده یا بد"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
@@ -1611,6 +1624,10 @@ msgstr "حذف گروه"
 msgid "Delete the group {originalName}?"
 msgstr "گروه {originalName} حذف شود؟"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Delete the rule?"
+msgstr "قاعده حذف شود؟"
+
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
 msgstr "راه‌اندازی‌های مجدد انتخاب‌شده حذف شوند؟"
@@ -1631,7 +1648,8 @@ msgstr "وابستگی‌ها"
 msgid "Deployment"
 msgstr "استقرار"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "دلیل را شرح دهید"
@@ -1809,6 +1827,8 @@ msgstr "برای تغییر اندازه بکشید، برای بازنشانی 
 msgid "Duration"
 msgstr "مدت زمان"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -1829,6 +1849,10 @@ msgstr "ویرایش پایشگر شبکه"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit the quiet hours"
 msgstr "ویرایش ساعات سکوت"
+
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "Edit the rule"
+msgstr "ویرایش قاعده"
 
 #: src/components/add-system.tsx
 msgid "Edit the system"
@@ -1870,7 +1894,7 @@ msgstr "فعال‌سازی ورود با دایرکتوری"
 msgid "End"
 msgstr "پایان"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1908,7 +1932,6 @@ msgstr "رمز عبور یک‌بار مصرف خود را وارد کنید."
 msgid "Ephemeral"
 msgstr "گذرا"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2101,7 +2124,7 @@ msgid "Failed to send test notification"
 msgstr "ارسال اعلان آزمایشی ناموفق بود"
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Failed to update alert"
 msgstr "به‌روزرسانی هشدار ناموفق بود"
 
@@ -2118,7 +2141,7 @@ msgstr "ناموفق: {0}"
 msgid "Fans"
 msgstr "فن‌ها"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "fewer than {threshold} instances"
 msgstr "کمتر از {threshold} نمونه"
 
@@ -2288,8 +2311,7 @@ msgstr "نمادهای سربرگ"
 msgid "Health"
 msgstr "سلامتی"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Health (optional)"
 msgstr "سلامت (اختیاری)"
 
@@ -2475,7 +2497,7 @@ msgstr "نمونه"
 msgid "Instance name"
 msgstr "نام نمونه"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 msgid "Instances"
@@ -2831,7 +2853,7 @@ msgstr "حداکثر ۱ ساعت"
 msgid "Memory"
 msgstr "حافظه"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "memory above {threshold}%"
 msgstr "حافظه بالای {threshold}%"
 
@@ -2889,7 +2911,7 @@ msgstr "مدل"
 msgid "Monitors created"
 msgstr "مانیتورها ایجاد شدند"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Monthly"
@@ -2900,7 +2922,7 @@ msgstr "ماهانه"
 msgid "More"
 msgstr "بیشتر"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "more than {threshold} instances"
 msgstr "بیشتر از {threshold} نمونه"
 
@@ -2908,11 +2930,11 @@ msgstr "بیشتر از {threshold} نمونه"
 msgid "Mountpoint"
 msgstr "نقطه اتصال"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must be running"
 msgstr "باید اجرا شود"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must not be running"
 msgstr "نباید اجرا شود"
 
@@ -2949,7 +2971,7 @@ msgstr "نام سرویسی که هنگام نصب عامل با دستورات 
 msgid "Name to resolve"
 msgstr "نامی که باید تفکیک شود"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
 msgstr "نام‌ها را با کاما جدا کنید. از * به عنوان نویسه جایگزین استفاده کنید. هدفی که دیگر گزارش نمی‌شود متوقف در نظر گرفته می‌شود."
 
@@ -3151,7 +3173,7 @@ msgid "No systems found."
 msgstr "هیچ سیستمی یافت نشد."
 
 #: src/components/add-system.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -3227,7 +3249,7 @@ msgstr "یک یا چند مانیتور از افت {0}% فراتر رفته‌�
 msgid "One or more services are in a failed state"
 msgstr "یک یا چند سرویس در وضعیت ناموفق هستند"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "One-time"
@@ -3286,7 +3308,7 @@ msgstr "یا ادامه با"
 msgid "Or enter this key in the app:"
 msgstr "یا این کلید را در برنامه وارد کنید:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3434,7 +3456,7 @@ msgstr "در انتظار"
 msgid "Per-core average utilization"
 msgstr "میانگین استفاده در هر هسته"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Percent of the whole host, all the instances of the program added up."
 msgstr "درصد از کل میزبان، با جمع همه نمونه‌های برنامه."
 
@@ -3471,7 +3493,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "لطفاً برای اطمینان از تحویل هشدارها، یک <0>سرور SMTP پیکربندی کنید</0>."
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Please check logs for more details."
 msgstr "لطفاً برای جزئیات بیشتر، لاگ‌ها را بررسی کنید."
 
@@ -3559,7 +3581,7 @@ msgstr "صفحه قبلی"
 msgid "Process alert"
 msgstr "هشدار فرایند"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Process alerts"
 msgstr "هشدارهای فرایند"
 
@@ -3571,14 +3593,14 @@ msgstr "قاعده فرایند برقرار شد"
 msgid "Process started"
 msgstr "فرآیند شروع شد"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "فرایندها"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Processes are checked every minute, only on the systems with process rules."
 msgstr "فرایندها هر دقیقه بررسی می‌شوند، فقط در سیستم‌هایی که قاعده فرایند دارند."
 
@@ -3635,11 +3657,11 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "عمق صف"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 msgid "Quiet hours"
 msgstr "ساعات سکوت"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3656,9 +3678,9 @@ msgstr "ساعات سکوت فعال است"
 msgid "Quiet hours active: notifications are not sent"
 msgstr "ساعات سکوت فعال است: اعلان‌ها ارسال نمی‌شوند"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Quiet hours set up"
-msgstr "ساعات سکوت تنظیم شد"
+#: src/components/alerts/alerts-notice.tsx
+msgid "Quiet hours set up: the alerts are not sent during these windows"
+msgstr "ساعات سکوت تنظیم شده: هشدارها در این بازه‌ها ارسال نمی‌شوند"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3702,8 +3724,8 @@ msgstr "فقط خواندنی"
 msgid "Read-only group"
 msgstr "گروه فقط‌خواندنی"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3963,7 +3985,7 @@ msgstr "جزئیات S.M.A.R.T"
 msgid "S.M.A.R.T. Self-Test"
 msgstr "تست خود S.M.A.R.T"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -4212,7 +4234,7 @@ msgstr "سرویس"
 msgid "Service account"
 msgstr "حساب سرویس"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Service alerts"
 msgstr "هشدارهای سرویس"
 
@@ -4229,7 +4251,7 @@ msgstr "نام سرویس"
 msgid "Service state"
 msgstr "وضعیت سرویس"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
@@ -4237,7 +4259,7 @@ msgstr "وضعیت سرویس"
 msgid "Services"
 msgstr "سرویس‌ها"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Services are checked at each collection, containers every minute."
 msgstr "سرویس‌ها در هر جمع‌آوری و کانتینرها هر دقیقه بررسی می‌شوند."
 
@@ -4253,20 +4275,16 @@ msgstr "متغیرهای محیطی زیر را در هاب Beszel خود تنظ
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "اثرانگشت گواهی جدید را در محل زیر (یا در کلاس WMI با نام Win32_TSGeneralSetting) تنظیم کنید، سپس سرویس دسکتاپ از راه دور را دوباره راه‌اندازی کنید:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "تنظیم"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "تنظیم ساعات سکوت"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Set up quiet hours for the selection below"
-msgstr "تنظیم ساعات سکوت برای موارد انتخاب‌شده در پایین"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -4344,7 +4362,7 @@ msgstr "منبع"
 msgid "Start"
 msgstr "شروع"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4379,11 +4397,11 @@ msgstr "دستی شروع شده"
 msgid "State"
 msgstr "وضعیت"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is"
 msgstr "وضعیت برابر است با"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is not"
 msgstr "وضعیت برابر نیست با"
 
@@ -4401,8 +4419,7 @@ msgstr "قانون وضعیت برقرار شد"
 msgid "State rules"
 msgstr "قوانین وضعیت"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "States"
 msgstr "وضعیت‌ها"
 
@@ -4439,8 +4456,7 @@ msgstr "متوقف"
 msgid "Sub State"
 msgstr "وضعیت فرعی"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Sub-states (optional)"
 msgstr "زیروضعیت‌ها (اختیاری)"
 
@@ -4561,11 +4577,11 @@ msgstr "تب‌ها"
 msgid "Target"
 msgstr "هدف"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets"
 msgstr "اهداف"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets by system"
 msgstr "اهداف بر اساس سیستم"
 
@@ -4645,6 +4661,10 @@ msgstr "عامل خودش دوباره راه‌اندازی و وصل می‌ش
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "عامل‌ها نسخه {latest} را از GitHub دانلود کرده و دوباره راه‌اندازی می‌شوند."
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "The alerts of these rules are not sent during this window. It goes with the rules when they are deleted."
+msgstr "هشدارهای این قاعده‌ها در این بازه ارسال نمی‌شوند. با حذف قاعده‌ها حذف می‌شود."
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The average response time over 10 minutes exceeds {value} ms."
 msgstr "میانگین زمان پاسخ در ۱۰ دقیقه از {value} میلی‌ثانیه بیشتر است."
@@ -4664,6 +4684,10 @@ msgstr "بررسی‌های یک میزبان در یک حسگر گروه‌بن
 #: src/components/routes/settings/security.tsx
 msgid "The code by email needs the mail settings of the hub."
 msgstr "کد ایمیلی به تنظیمات ایمیل هاب نیاز دارد."
+
+#: src/components/alerts/quiet-hours-fields.tsx
+msgid "The end must come after the start."
+msgstr "پایان باید پس از شروع باشد."
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
@@ -4693,7 +4717,7 @@ msgstr "فرایندها خوانده نشدند."
 msgid "The processes that use the most CPU and memory on each system that is up, at the time of the reading."
 msgstr "فرایندهایی که در لحظه خوانش بیشترین CPU و حافظه را در هر سیستم روشن مصرف می‌کنند."
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "The rules are created on each system."
 msgstr "قوانین روی هر سیستم ایجاد می‌شوند."
 
@@ -4767,7 +4791,7 @@ msgstr "رشته‌ها"
 msgid "Threshold"
 msgstr "آستانه"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Threshold (%)"
 msgstr "آستانه (%)"
 
@@ -4882,6 +4906,7 @@ msgstr "مجموع: {totalCount}"
 msgid "Traced with the traceroute command of the hub."
 msgstr "با فرمان traceroute هاب ردیابی شد."
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
 msgstr "فعال‌شده"
@@ -4966,8 +4991,8 @@ msgstr "هنگامی که استفاده از هر دیسکی از یک آستا
 msgid "Two-factor authentication"
 msgstr "احراز هویت دومرحله‌ای"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -5307,7 +5332,7 @@ msgstr "آخر هفته"
 msgid "Weekly"
 msgstr "هفتگی"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Weekly, on some days"
 msgstr "هفتگی، در برخی روزها"

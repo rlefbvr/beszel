@@ -78,15 +78,15 @@ msgstr "{count, plural, one {{countString} 時間} other {{countString} 時間}}
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} 分} few {{countString} 分} many {{countString} 分} other {{countString} 分}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, other {絞り込んだコンテナー # 件}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered service} other {# filtered services}}"
 msgstr "{count, plural, other {絞り込んだサービス # 件}}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# selected process} other {# selected processes}}"
 msgstr "{count, plural, one {選択したプロセス # 個} other {選択したプロセス # 個}}"
 
@@ -97,18 +97,6 @@ msgstr "{count, plural, other {# 個のセンサー}}"
 #: src/components/systems-select.tsx
 msgid "{count, plural, one {# system} other {# systems}}"
 msgstr "{count, plural, other {# 台のシステム}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The alerts of the selected process are not sent during this window.} other {The alerts of the # selected processes are not sent during this window.}}"
-msgstr "{count, plural, one {選択したプロセスのアラートはこの時間帯に送信されません。} other {選択した # 個のプロセスのアラートはこの時間帯に送信されません。}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected container are not sent during this window.} other {The state alerts of the # selected containers are not sent during this window.}}"
-msgstr "{count, plural, one {選択したコンテナーの状態アラートはこの期間中送信されません。} other {選択した # 件のコンテナーの状態アラートはこの期間中送信されません。}}"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "{count, plural, one {The state alerts of the selected service are not sent during this window.} other {The state alerts of the # selected services are not sent during this window.}}"
-msgstr "{count, plural, one {選択したサービスの状態アラートはこの期間中送信されません。} other {選択した # 件のサービスの状態アラートはこの期間中送信されません。}}"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "{count} instance(s) · CPU {cpuText}"
@@ -175,7 +163,7 @@ msgstr "{outdated} 台のシステムは証明書を読み取るためにエー�
 msgid "{programCount} programs"
 msgstr "{programCount} 個のプログラム"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{ruleCount, plural, one {# state rule created.} other {# state rules created.}}"
 msgstr "{ruleCount, plural, other {状態ルールを # 件作成しました。}}"
 
@@ -191,13 +179,21 @@ msgstr "{seconds, plural, other {# 秒}}"
 msgid "{sensorCount} host(s), {checkCount} check(s)"
 msgstr "ホスト {sensorCount} 件、チェック {checkCount} 件"
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "{skippedCount, plural, one {# item left out: a name with a comma can't be the target of a rule.} other {# items left out: a name with a comma can't be the target of a rule.}}"
+msgstr "{skippedCount, plural, one {# 件を除外：カンマを含む名前はルールの対象にできません。} other {# 件を除外：カンマを含む名前はルールの対象にできません。}}"
+
 #: src/components/sensors/sensor-badges.tsx
 msgid "{success} of {total} successful"
 msgstr "{total} 件中 {success} 件成功"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "{systemCount, plural, one {# system} other {# systems}}"
 msgstr "{systemCount, plural, other {# システム}}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{targets}: {condition}. Its alerts stop."
+msgstr "{targets}: {condition}。アラートは停止します。"
 
 #: src/components/routes/system/info-bar.tsx
 msgid "{threads, plural, one {# thread} other {# threads}}"
@@ -206,6 +202,10 @@ msgstr "{threads, plural, one {# スレッド} other {# スレッド}}"
 #: src/lib/quiet-hours.ts
 msgid "{weekList} {dayList} of the month"
 msgstr "毎月 {weekList} {dayList}"
+
+#: src/components/alerts/state-alert-rules.tsx
+msgid "{windowCount, plural, one {Its quiet hours window is deleted too.} other {Its # quiet hours windows are deleted too.}}"
+msgstr "{windowCount, plural, one {サイレント時間帯も削除されます。} other {# 件のサイレント時間帯も削除されます。}}"
 
 #: src/components/period-select.tsx
 #: src/lib/utils.ts
@@ -292,6 +292,10 @@ msgstr "センサーのチェックが応答しません。"
 msgid "A day missing in a month, such as the 31st, is skipped: choose the last day for the end of each month."
 msgstr "31日のように月に存在しない日はスキップされます。月末には「最終日」を選んでください。"
 
+#: src/components/alerts/target-alerts.tsx
+msgid "A name with a comma can't be the target of a rule."
+msgstr "カンマを含む名前はルールの対象にできません。"
+
 #: src/components/systems-table/groups-dialog.tsx
 msgid "A sensor belongs to one group: checking it moves it from its current group."
 msgstr "センサーは 1 つのグループに属します。チェックすると現在のグループから移動します。"
@@ -331,6 +335,7 @@ msgid "Actions"
 msgstr "アクション"
 
 #: src/components/alerts-history-columns.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/heartbeat.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -488,6 +493,7 @@ msgstr "エージェントの更新"
 msgid "Agent updated"
 msgstr "エージェントを更新しました"
 
+#: src/components/alerts/target-alerts.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Alert"
 msgstr "アラート"
@@ -510,19 +516,19 @@ msgstr "アラートのしきい値 (期限切れまでの日数)"
 msgid "Alert types"
 msgstr "アラートの種類"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
 msgstr "CPU が次を超えたら通知"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are fewer than"
 msgstr "インスタンス数が次より少ないとき通知"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its instances are more than"
 msgstr "インスタンス数が次より多いとき通知"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its memory is above"
 msgstr "メモリが次を超えたら通知"
 
@@ -530,13 +536,11 @@ msgstr "メモリが次を超えたら通知"
 msgid "Alert when services, Docker containers or processes enter or leave a state."
 msgstr "サービス、Docker コンテナー、プロセスが状態に入ったり出たりしたときに通知します。"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is"
 msgstr "状態が次の場合に通知"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alert when state is not"
 msgstr "状態が次でない場合に通知"
 
@@ -544,11 +548,11 @@ msgstr "状態が次でない場合に通知"
 msgid "Alert when the certificate {name} of {systemName} expires in fewer days than the threshold. Renewed certificates of the same name stay checked, and the certificate becomes important."
 msgstr "{systemName} の証明書 {name} の期限切れまでの日数がしきい値を下回ったら通知します。同じ名前で更新された証明書も引き続きチェックされ、この証明書は重要になります。"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is not running"
 msgstr "プロセスが実行されていないとき通知"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when the process is running"
 msgstr "プロセスが実行中のとき通知"
 
@@ -561,7 +565,7 @@ msgstr "プロセスが実行中のとき通知"
 msgid "Alerts"
 msgstr "アラート"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Alerts created"
 msgstr "アラートを作成しました"
 
@@ -572,6 +576,10 @@ msgstr "{sensorName} のアラート"
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "alerts per user"
 msgstr "件のアラート（ユーザーごと）"
+
+#: src/components/alerts/alerts-notice.tsx
+msgid "Alerts set up"
+msgstr "設定済みのアラート"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -658,6 +666,7 @@ msgstr "すべてのセンサー"
 msgid "All Services"
 msgstr "すべてのサービス"
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/alerts-sheet.tsx
 #: src/components/command-palette.tsx
 #: src/components/navbar.tsx
@@ -681,7 +690,7 @@ msgstr "すべてのシステム"
 msgid "All systems until {until}"
 msgstr "すべてのシステム（{until} まで）"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "All the instances of a program count as one target, such as every chrome.exe."
 msgstr "プログラムのすべてのインスタンスは 1 つの対象として数えます（例: すべての chrome.exe）。"
 
@@ -966,8 +975,9 @@ msgid "Can stop"
 msgstr "停止可能"
 
 #: src/components/agent-update-dialog.tsx
-#: src/components/alerts/bulk-state-alerts.tsx
 #: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/important-targets.tsx
 #: src/components/important-targets.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -1128,7 +1138,7 @@ msgstr "チェックサムエラー"
 msgid "Choose a known port"
 msgstr "既知のポートを選択"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one day."
 msgstr "1 日以上選択してください。"
@@ -1137,7 +1147,7 @@ msgstr "1 日以上選択してください。"
 msgid "Choose at least one port."
 msgstr "ポートを 1 つ以上選択してください。"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Choose at least one week of the month."
 msgstr "月の週を 1 つ以上選択してください。"
@@ -1231,9 +1241,8 @@ msgstr "コマンド"
 msgid "Command line instructions"
 msgstr "コマンドラインの指示"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Condition"
 msgstr "条件"
 
@@ -1275,8 +1284,7 @@ msgstr "接続が切断されました"
 msgid "Connections"
 msgstr "接続"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Consecutive checks"
 msgstr "連続チェック回数"
 
@@ -1285,7 +1293,7 @@ msgstr "連続チェック回数"
 msgid "Container"
 msgstr "コンテナ"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Container alerts"
 msgstr "コンテナーのアラート"
 
@@ -1297,7 +1305,7 @@ msgstr "コンテナのヘルス"
 msgid "Container state"
 msgstr "コンテナーの状態"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/system.tsx
 msgid "Containers"
@@ -1397,7 +1405,7 @@ msgstr "コア"
 msgid "CPU"
 msgstr "CPU"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "CPU above {threshold}%"
 msgstr "CPU {threshold}% 超"
 
@@ -1443,7 +1451,7 @@ msgstr "CPU使用率"
 msgid "CPU: {cpuText}"
 msgstr "CPU: {cpuText}"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Create"
 msgstr "作成"
 
@@ -1505,7 +1513,7 @@ msgstr "現在の状態"
 msgid "Cycles"
 msgstr "サイクル"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Daily"
@@ -1578,6 +1586,11 @@ msgstr "低下"
 msgid "Degraded or bad"
 msgstr "低下または不良"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/reboots-table.tsx
@@ -1611,6 +1624,10 @@ msgstr "グループを削除"
 msgid "Delete the group {originalName}?"
 msgstr "グループ {originalName} を削除しますか？"
 
+#: src/components/alerts/state-alert-rules.tsx
+msgid "Delete the rule?"
+msgstr "ルールを削除しますか?"
+
 #: src/components/reboots-table.tsx
 msgid "Delete the selected reboots?"
 msgstr "選択した再起動を削除しますか？"
@@ -1631,7 +1648,8 @@ msgstr "依存関係"
 msgid "Deployment"
 msgstr "デプロイ"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Describe the reason"
 msgstr "理由を入力"
@@ -1809,6 +1827,8 @@ msgstr "ドラッグでサイズ変更、ダブルクリックでリセット"
 msgid "Duration"
 msgstr "期間"
 
+#: src/components/alerts/alerts-notice.tsx
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 #: src/components/network-monitors-table/network-monitors-columns.tsx
 #: src/components/routes/sensor.tsx
@@ -1829,6 +1849,10 @@ msgstr "ネットワークモニターを編集"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Edit the quiet hours"
 msgstr "サイレント時間を編集"
+
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "Edit the rule"
+msgstr "ルールを編集"
 
 #: src/components/add-system.tsx
 msgid "Edit the system"
@@ -1870,7 +1894,7 @@ msgstr "ディレクトリでのログインを有効にする"
 msgid "End"
 msgstr "終了"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "End Time"
@@ -1908,7 +1932,6 @@ msgstr "ワンタイムパスワードを入力してください。"
 msgid "Ephemeral"
 msgstr "一時的"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
@@ -2101,7 +2124,7 @@ msgid "Failed to send test notification"
 msgstr "テスト通知の送信に失敗しました"
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Failed to update alert"
 msgstr "アラートの更新に失敗しました"
 
@@ -2118,7 +2141,7 @@ msgstr "失敗: {0}"
 msgid "Fans"
 msgstr "ファン"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "fewer than {threshold} instances"
 msgstr "インスタンス {threshold} 未満"
 
@@ -2288,8 +2311,7 @@ msgstr "ヘッダーのアイコン"
 msgid "Health"
 msgstr "ヘルス"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Health (optional)"
 msgstr "ヘルス（任意）"
 
@@ -2475,7 +2497,7 @@ msgstr "インスタンス"
 msgid "Instance name"
 msgstr "インスタンス名"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-overview.tsx
 msgid "Instances"
@@ -2831,7 +2853,7 @@ msgstr "1時間最大"
 msgid "Memory"
 msgstr "メモリ"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "memory above {threshold}%"
 msgstr "メモリ {threshold}% 超"
 
@@ -2889,7 +2911,7 @@ msgstr "モデル"
 msgid "Monitors created"
 msgstr "モニターを作成しました"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "Monthly"
@@ -2900,7 +2922,7 @@ msgstr "毎月"
 msgid "More"
 msgstr "その他"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "more than {threshold} instances"
 msgstr "インスタンス {threshold} 超"
 
@@ -2908,11 +2930,11 @@ msgstr "インスタンス {threshold} 超"
 msgid "Mountpoint"
 msgstr "マウントポイント"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must be running"
 msgstr "実行中である必要あり"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "must not be running"
 msgstr "実行されていてはならない"
 
@@ -2949,7 +2971,7 @@ msgstr "Linux または Windows のコマンドでエージェントをインス
 msgid "Name to resolve"
 msgstr "名前解決する名前"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Names separated by commas. Use * as a wildcard. A target that is no longer reported counts as stopped."
 msgstr "名前はカンマで区切ります。* をワイルドカードとして使用できます。報告されなくなった対象は停止中とみなされます。"
 
@@ -3151,7 +3173,7 @@ msgid "No systems found."
 msgstr "システムが見つかりませんでした。"
 
 #: src/components/add-system.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "None"
@@ -3227,7 +3249,7 @@ msgstr "1つ以上のモニターでパケットロス率が{0}%を超えてい�
 msgid "One or more services are in a failed state"
 msgstr "いずれかのサービスが失敗状態です"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/lib/quiet-hours.ts
 msgid "One-time"
@@ -3286,7 +3308,7 @@ msgstr "または、以下の方法でログイン"
 msgid "Or enter this key in the app:"
 msgstr "またはこのキーをアプリに入力します:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/system/cpu-sheet.tsx
 msgid "Other"
@@ -3434,7 +3456,7 @@ msgstr "保留中"
 msgid "Per-core average utilization"
 msgstr "コアごとの平均使用率"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Percent of the whole host, all the instances of the program added up."
 msgstr "ホスト全体に対する割合。プログラムのすべてのインスタンスを合算します。"
 
@@ -3471,7 +3493,7 @@ msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "アラートが配信されるように<0>SMTPサーバーを設定</0>してください。"
 
 #: src/components/alerts/alerts-sheet.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Please check logs for more details."
 msgstr "詳細についてはログを確認してください。"
 
@@ -3559,7 +3581,7 @@ msgstr "前のページ"
 msgid "Process alert"
 msgstr "プロセスアラート"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Process alerts"
 msgstr "プロセスアラート"
 
@@ -3571,14 +3593,14 @@ msgstr "プロセスルールに一致"
 msgid "Process started"
 msgstr "プロセス開始"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/processes-table/processes-overview.tsx
 #: src/components/processes-table/processes-table.tsx
 #: src/components/routes/system.tsx
 msgid "Processes"
 msgstr "プロセス"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Processes are checked every minute, only on the systems with process rules."
 msgstr "プロセスは毎分チェックされます（プロセスルールのあるシステムのみ）。"
 
@@ -3635,11 +3657,11 @@ msgctxt "Disk I/O average queue depth"
 msgid "Queue Depth"
 msgstr "キューの深さ"
 
+#: src/components/alerts/state-alert-rules.tsx
 #: src/components/reboots-table.tsx
 msgid "Quiet hours"
 msgstr "サイレント時間"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
 #: src/components/quiet-hours-banner.tsx
@@ -3656,9 +3678,9 @@ msgstr "サイレント時間が有効です"
 msgid "Quiet hours active: notifications are not sent"
 msgstr "サイレント時間中: 通知は送信されません"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Quiet hours set up"
-msgstr "サイレント時間を設定しました"
+#: src/components/alerts/alerts-notice.tsx
+msgid "Quiet hours set up: the alerts are not sent during these windows"
+msgstr "サイレント時間を設定済み: これらの時間帯はアラートを送信しません"
 
 #: src/components/quiet-hours-banner.tsx
 msgid "Quiet hours until {until}"
@@ -3702,8 +3724,8 @@ msgstr "読み取り専用"
 msgid "Read-only group"
 msgstr "読み取り専用グループ"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -3963,7 +3985,7 @@ msgstr "S.M.A.R.T.詳細"
 msgid "S.M.A.R.T. Self-Test"
 msgstr "S.M.A.R.T.セルフテスト"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
@@ -4212,7 +4234,7 @@ msgstr "サービス"
 msgid "Service account"
 msgstr "サービス アカウント"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Service alerts"
 msgstr "サービスのアラート"
 
@@ -4229,7 +4251,7 @@ msgstr "サービス名"
 msgid "Service state"
 msgstr "サービスの状態"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 #: src/components/command-palette.tsx
 #: src/components/routes/settings/general.tsx
 #: src/components/routes/system.tsx
@@ -4237,7 +4259,7 @@ msgstr "サービスの状態"
 msgid "Services"
 msgstr "サービス"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Services are checked at each collection, containers every minute."
 msgstr "サービスは収集ごとに、コンテナーは毎分チェックされます。"
 
@@ -4253,20 +4275,16 @@ msgstr "ハートビート監視を有効にするには、Beszel ハブで次�
 msgid "Set the thumbprint of the new certificate in the following place (or in the Win32_TSGeneralSetting WMI class), then restart the Remote Desktop service:"
 msgstr "次の場所 (または WMI クラス Win32_TSGeneralSetting) に新しい証明書の拇印を設定してから、リモート デスクトップ サービスを再起動します:"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up"
 msgstr "設定"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/state-rule-dialog.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Set up quiet hours"
 msgstr "サイレント時間を設定"
-
-#: src/components/alerts/bulk-quiet-hours.tsx
-msgid "Set up quiet hours for the selection below"
-msgstr "以下の選択項目にサイレント時間を設定"
 
 #: src/components/command-palette.tsx
 #: src/components/command-palette.tsx
@@ -4344,7 +4362,7 @@ msgstr "ソース"
 msgid "Start"
 msgstr "開始"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Start Time"
@@ -4379,11 +4397,11 @@ msgstr "手動で起動"
 msgid "State"
 msgstr "状態"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is"
 msgstr "状態が次の場合"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "state is not"
 msgstr "状態が次でない場合"
 
@@ -4401,8 +4419,7 @@ msgstr "状態ルールに一致"
 msgid "State rules"
 msgstr "状態ルール"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "States"
 msgstr "状態"
 
@@ -4439,8 +4456,7 @@ msgstr "停止"
 msgid "Sub State"
 msgstr "サブ状態"
 
-#: src/components/alerts/bulk-state-alerts.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Sub-states (optional)"
 msgstr "サブ状態（任意）"
 
@@ -4561,11 +4577,11 @@ msgstr "タブ"
 msgid "Target"
 msgstr "対象"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets"
 msgstr "対象"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "Targets by system"
 msgstr "システム別の対象"
 
@@ -4645,6 +4661,10 @@ msgstr "エージェントは自動的に再起動して再接続します。"
 msgid "The agents download version {latest} from GitHub, then restart."
 msgstr "エージェントは GitHub からバージョン {latest} をダウンロードして再起動します。"
 
+#: src/components/alerts/state-rule-dialog.tsx
+msgid "The alerts of these rules are not sent during this window. It goes with the rules when they are deleted."
+msgstr "この時間帯はこれらのルールのアラートを送信しません。ルールを削除すると一緒に削除されます。"
+
 #: src/components/sensors/sensor-alerts.tsx
 msgid "The average response time over 10 minutes exceeds {value} ms."
 msgstr "10 分間の平均応答時間が {value} ms を超えています。"
@@ -4664,6 +4684,10 @@ msgstr "同じホストのチェックは 1 つのセンサーにまとめられ
 #: src/components/routes/settings/security.tsx
 msgid "The code by email needs the mail settings of the hub."
 msgstr "メールのコードにはハブのメール設定が必要です。"
+
+#: src/components/alerts/quiet-hours-fields.tsx
+msgid "The end must come after the start."
+msgstr "終了は開始より後にしてください。"
 
 #: src/components/agent-update-dialog.tsx
 msgid "The latest agent version is not known yet"
@@ -4693,7 +4717,7 @@ msgstr "プロセスを読み取れませんでした。"
 msgid "The processes that use the most CPU and memory on each system that is up, at the time of the reading."
 msgstr "読み取り時点で、稼働中の各システムで CPU とメモリを最も使っているプロセス。"
 
-#: src/components/alerts/bulk-state-alerts.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 msgid "The rules are created on each system."
 msgstr "ルールは各システムに作成されます。"
 
@@ -4767,7 +4791,7 @@ msgstr "スレッド"
 msgid "Threshold"
 msgstr "しきい値"
 
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/state-rule-fields.tsx
 msgid "Threshold (%)"
 msgstr "しきい値 (%)"
 
@@ -4882,6 +4906,7 @@ msgstr "合計: {totalCount}"
 msgid "Traced with the traceroute command of the hub."
 msgstr "ハブの traceroute コマンドで追跡しました。"
 
+#: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
 msgid "Triggered"
 msgstr "トリガー済み"
@@ -4966,8 +4991,8 @@ msgstr "ディスクの使用量がしきい値を超えたときにトリガー
 msgid "Two-factor authentication"
 msgstr "2 要素認証"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
-#: src/components/alerts/state-alert-rules.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
+#: src/components/alerts/state-rule-dialog.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
 #: src/components/reboots-table.tsx
@@ -5307,7 +5332,7 @@ msgstr "週末"
 msgid "Weekly"
 msgstr "毎週"
 
-#: src/components/alerts/bulk-quiet-hours.tsx
+#: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Weekly, on some days"
 msgstr "毎週（指定した曜日）"
