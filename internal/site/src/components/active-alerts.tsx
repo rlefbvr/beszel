@@ -6,7 +6,18 @@ import { $stateAlerts, stateRuleAlertKind, triggeredTargets } from "@/lib/state-
 import { $alerts, $allSystemsById, $userSettings } from "@/lib/stores"
 import { queueUserSettings } from "@/lib/api"
 import { cn } from "@/lib/utils"
-import { CheckCheckIcon, CheckIcon, EyeIcon, EyeOffIcon, FileBadgeIcon, NetworkIcon, UndoIcon } from "lucide-react"
+import {
+	ArrowDownWideNarrowIcon,
+	ArrowUpNarrowWideIcon,
+	CheckCheckIcon,
+	CheckIcon,
+	ClipboardListIcon,
+	EyeIcon,
+	EyeOffIcon,
+	FileBadgeIcon,
+	NetworkIcon,
+	UndoIcon,
+} from "lucide-react"
 import { t } from "@lingui/core/macro"
 import { Plural, Trans } from "@lingui/react/macro"
 import { useStore } from "@nanostores/react"
@@ -19,12 +30,21 @@ import type { StateAlertRecord } from "@/types"
 import { $router, Link, navigate } from "./router"
 import { Button } from "./ui/button"
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./ui/dialog"
+import { Input } from "./ui/input"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 
 /** An active alert of the panel: its card and the key of its current episode */
 interface ActiveItem {
 	/** changes when the alert triggers again, so an acknowledgement covers one episode only */
 	key: string
+	/** kind and subject of the alert, sorted and searched in the recap */
+	kind: string
+	subject: string
+	/** other words found by the search of the recap */
+	search: string
+	/** last change of the alert, for the most recent first */
+	since: string
 	card: (acknowledged: boolean, onToggle: () => void) => ReactNode
 }
 
@@ -55,6 +75,9 @@ function openObject(href: string, request?: OpenRequest) {
 	}
 }
 
+/** Alerts shown on every page; the others are in the recap */
+const maxCards = 4
+
 /** Active alerts of all the systems and sensors, on top of every page */
 export const ActiveAlerts = () => {
 	const alerts = useStore($alerts)
@@ -66,6 +89,7 @@ export const ActiveAlerts = () => {
 	const certificateAlerts = useStore($certificateAlerts)
 	const acknowledged = useStore($userSettings).ackAlerts
 	const [showAcknowledged, setShowAcknowledged] = useState(false)
+	const [recapOpen, setRecapOpen] = useState(false)
 
 	const items = useMemo(() => {
 		const items: ActiveItem[] = []
@@ -78,6 +102,10 @@ export const ActiveAlerts = () => {
 				const info = alertInfo[alert.name as keyof typeof alertInfo]
 				items.push({
 					key: episodeKey(alert),
+					kind: info.name(),
+					subject: systems[alert.system]?.name ?? "",
+					search: alert.name,
+					since: alert.updated ?? "",
 					card: (ack, onToggle) => (
 						<AlertCard
 							key={alert.id}
@@ -125,6 +153,10 @@ export const ActiveAlerts = () => {
 			items.push({
 				// the rule is saved on each check: its episode is the open incident of each target
 				key: `${rule.id}:${targets.map((name) => rule.state?.t?.[name]?.h).join()}`,
+				kind: info.name(),
+				subject: systems[rule.system]?.name ?? "",
+				search: `${rule.name ?? ""} ${describeRule(rule)} ${targets.join(" ")}`,
+				since: rule.updated ?? "",
 				card: (ack, onToggle) => (
 					<AlertCard
 						key={rule.id}
@@ -155,6 +187,10 @@ export const ActiveAlerts = () => {
 				.map((check) => checkName(check))
 			items.push({
 				key: episodeKey(alert),
+				kind: sensorAlertName(alert.name),
+				subject: sensor?.name ?? "",
+				search: `${sensor?.host ?? ""} ${ports.join(" ")}`,
+				since: alert.updated ?? "",
 				card: (ack, onToggle) => (
 					<AlertCard
 						key={alert.id}
@@ -181,6 +217,10 @@ export const ActiveAlerts = () => {
 			const name = alert.name
 			items.push({
 				key: `${alert.id}:${alert.history}`,
+				kind: t`Certificate expiry`,
+				subject: systems[alert.system]?.name ?? "",
+				search: alert.name,
+				since: alert.updated ?? "",
 				card: (ack, onToggle) => (
 					<AlertCard
 						key={alert.id}
@@ -218,6 +258,21 @@ export const ActiveAlerts = () => {
 	const pending = items.filter((item) => !ackKeys.has(item.key))
 	const ackCount = items.length - pending.length
 	const shown = showAcknowledged ? items : pending
+	// the first ones on every page, all of them in the recap
+	const visible = shown.slice(0, maxCards)
+	const moreCount = shown.length - visible.length
+	const count = items.length
+	const recap = (
+		<Button variant="outline" size="sm" className="h-8 gap-1.5" onClick={() => setRecapOpen(true)}>
+			<ClipboardListIcon className="size-4" />
+			<Trans>Recap</Trans>
+		</Button>
+	)
+	const recapDialog = (
+		<Dialog open={recapOpen} onOpenChange={setRecapOpen}>
+			{recapOpen && <AlertsRecap items={items} ackKeys={ackKeys} onToggle={toggle} />}
+		</Dialog>
+	)
 
 	// all acknowledged and hidden: a discreet line
 	if (!shown.length) {
@@ -229,6 +284,8 @@ export const ActiveAlerts = () => {
 					<EyeIcon className="size-4" />
 					<Trans>Show</Trans>
 				</Button>
+				{recap}
+				{recapDialog}
 			</Card>
 		)
 	}
@@ -237,9 +294,19 @@ export const ActiveAlerts = () => {
 		<Card className="border-red-500/60 bg-red-500/5 dark:bg-red-500/10">
 			<CardHeader className="pt-4 pb-4 px-2 sm:px-6 max-sm:pt-3 max-sm:pb-1">
 				<div className="px-2 sm:px-1 flex flex-wrap items-center gap-2">
-					<CardTitle className="text-red-600 dark:text-red-400 me-auto">
-						<Trans>Active Alerts</Trans>
+					<CardTitle className="text-red-600 dark:text-red-400">
+						<Plural value={count} one="Active alert" other="# active alerts" />
 					</CardTitle>
+					{moreCount > 0 && (
+						<button
+							type="button"
+							className="text-sm text-muted-foreground hover:text-foreground hover:underline underline-offset-2"
+							onClick={() => setRecapOpen(true)}
+						>
+							<Plural value={moreCount} one="+ # more alert" other="+ # more alerts" />
+						</button>
+					)}
+					<span className="me-auto" />
 					{ackCount > 0 && (
 						<Button
 							variant="ghost"
@@ -266,14 +333,124 @@ export const ActiveAlerts = () => {
 							<Trans>Acknowledge all</Trans>
 						</Button>
 					)}
+					{recap}
 				</div>
 			</CardHeader>
 			<CardContent className="max-sm:p-2">
 				<div className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
-					{shown.map((item) => item.card(ackKeys.has(item.key), () => toggle(item.key)))}
+					{visible.map((item) => item.card(ackKeys.has(item.key), () => toggle(item.key)))}
 				</div>
 			</CardContent>
+			{recapDialog}
 		</Card>
+	)
+}
+
+/** Orders of the recap of the alerts */
+type RecapSort = "recent" | "kind" | "subject"
+
+/**
+ * All the active alerts in a dialog, acknowledged ones included: searched,
+ * sorted by their last change, kind or subject, each one acknowledged or not.
+ */
+function AlertsRecap({
+	items,
+	ackKeys,
+	onToggle,
+}: {
+	items: ActiveItem[]
+	ackKeys: Set<string>
+	onToggle: (key: string) => void
+}) {
+	const [query, setQuery] = useState("")
+	const [sort, setSort] = useState<RecapSort>("recent")
+	// a second click on the sort in use reverses it
+	const [reversed, setReversed] = useState(false)
+	const terms = query.toLowerCase().split(" ").filter(Boolean)
+	const list = items
+		.filter((item) => {
+			const text = `${item.kind} ${item.subject} ${item.search}`.toLowerCase()
+			return terms.every((term) => text.includes(term))
+		})
+		.sort((a, b) => {
+			const order = (() => {
+				switch (sort) {
+					case "kind":
+						return a.kind.localeCompare(b.kind) || a.subject.localeCompare(b.subject)
+					case "subject":
+						return a.subject.localeCompare(b.subject) || a.kind.localeCompare(b.kind)
+				}
+				return b.since.localeCompare(a.since)
+			})()
+			return reversed ? -order : order
+		})
+	const count = items.length
+	const pendingKeys = items.filter((item) => !ackKeys.has(item.key)).map((item) => item.key)
+	const sorts: { value: RecapSort; label: string }[] = [
+		{ value: "recent", label: t`Most recent` },
+		{ value: "kind", label: t`Type` },
+		{ value: "subject", label: t`Name` },
+	]
+	return (
+		<DialogContent className="w-[calc(100vw-2rem)] max-w-5xl max-h-[calc(100dvh-2rem)] flex flex-col">
+			<DialogHeader>
+				<DialogTitle className="text-red-600 dark:text-red-400">
+					<Plural value={count} one="Active alert" other="# active alerts" />
+				</DialogTitle>
+				<DialogDescription>
+					<Trans>All the active alerts, acknowledged ones included.</Trans>
+				</DialogDescription>
+			</DialogHeader>
+			<div className="flex flex-wrap items-center gap-2">
+				<Input
+					placeholder={t`Filter...`}
+					value={query}
+					onChange={(e) => setQuery(e.target.value)}
+					className="flex-1 min-w-48"
+				/>
+				<div className="flex rounded-md border p-0.5 gap-0.5">
+					{sorts.map((option) => (
+						<Button
+							key={option.value}
+							variant={sort === option.value ? "secondary" : "ghost"}
+							size="sm"
+							className="h-8 gap-1.5"
+							onClick={() => {
+								setReversed(sort === option.value ? !reversed : false)
+								setSort(option.value)
+							}}
+						>
+							{sort === option.value &&
+								(reversed ? (
+									<ArrowUpNarrowWideIcon className="size-3.5" />
+								) : (
+									<ArrowDownWideNarrowIcon className="size-3.5" />
+								))}
+							{option.label}
+						</Button>
+					))}
+				</div>
+				{pendingKeys.length > 0 && (
+					<Button
+						variant="outline"
+						size="sm"
+						className="h-9 gap-1.5"
+						onClick={() => saveAcknowledged([...ackKeys, ...pendingKeys])}
+					>
+						<CheckCheckIcon className="size-4" />
+						<Trans>Acknowledge all</Trans>
+					</Button>
+				)}
+			</div>
+			<div className="grid sm:grid-cols-2 gap-3 overflow-y-auto min-h-0 pe-1 -me-1 py-0.5">
+				{list.map((item) => item.card(ackKeys.has(item.key), () => onToggle(item.key)))}
+				{!list.length && (
+					<p className="text-sm text-muted-foreground py-6 text-center sm:col-span-2">
+						<Trans>No alerts match the filter.</Trans>
+					</p>
+				)}
+			</div>
+		</DialogContent>
 	)
 }
 
