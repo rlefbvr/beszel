@@ -82,6 +82,10 @@ msgstr "{count, plural, one {{countString} 小时} other {{countString} 小时}}
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} 分钟} few {{countString} 分钟} many {{countString} 分钟} other {{countString} 分钟}}"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "{count, plural, one {# certificate} other {# certificates}}"
+msgstr "{count, plural, one {# 个证书} other {# 个证书}}"
+
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, other {# 个筛选后的容器}}"
@@ -119,11 +123,12 @@ msgstr "{count} 个进程 · CPU {cpuText} · 内存 {memText}"
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "新增 {created} 个传感器，并为现有传感器添加 {added} 项检查。"
 
-#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificate-parts.tsx
 msgid "{days, plural, one {# day} other {# days}}"
 msgstr "{days, plural, other {# 天}}"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
 msgstr "{days, plural, other {# 天后到期}}"
@@ -163,6 +168,10 @@ msgstr "{name} 将在 {days} 天内过期"
 #: src/components/quiet-hours-banner.tsx
 msgid "{name} until {until}"
 msgstr "{name}，直到 {until}"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "{outdated, plural, one {# system needs an agent update (0.20.0-fork.6 or newer) to find its Traefik.} other {# systems need an agent update (0.20.0-fork.6 or newer) to find their Traefik.}}"
+msgstr "{outdated, plural, one {# 个系统需要更新代理（0.20.0-fork.6 或更高版本）才能找到其 Traefik。} other {# 个系统需要更新代理（0.20.0-fork.6 或更高版本）才能找到其 Traefik。}}"
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "{outdated} system(s) need an agent update (0.20.0-fork.5 or newer)."
@@ -321,6 +330,18 @@ msgstr "每个系统只属于一个分组：勾选后会从当前分组移出。
 msgid "Accepted status codes"
 msgstr "接受的状态码"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Access logs"
+msgstr "访问日志"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Access logs are not enabled on this instance."
+msgstr "此实例未启用访问日志。"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Access logs of {instance}"
+msgstr "{instance} 的访问日志"
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
@@ -438,9 +459,12 @@ msgstr "已添加"
 msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
 msgstr "添加主机会自动创建一个 ICMP (Ping) 类型的传感器。"
 
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/traceroute-dialog.tsx
+#: src/components/traefik/traefik-instances.tsx
 msgid "Address"
 msgstr "地址"
 
@@ -522,12 +546,17 @@ msgid "Alert sent"
 msgstr "已发送警报"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Alert threshold (days before expiry)"
 msgstr "告警阈值（过期前天数）"
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Alert types"
 msgstr "告警类型"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Alert when a certificate served over HTTPS to the checks of {sensorName} expires in fewer days than the threshold. It is the certificate alert of the sensor."
+msgstr "当通过 HTTPS 提供给 {sensorName} 检查的证书在少于阈值的天数内到期时发出警报。这是传感器的证书警报。"
 
 #: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
@@ -600,6 +629,7 @@ msgid "Alerts set up"
 msgstr "已设置的警报"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -617,16 +647,6 @@ msgstr "所有代理均为最新版本（{latest}）"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "All alerts"
 msgstr "所有告警"
-
-#: src/components/certificates/certificates-table.tsx
-#: src/components/command-palette.tsx
-#: src/components/navbar.tsx
-#: src/components/navbar.tsx
-#: src/components/routes/certificates.tsx
-#: src/lib/header-icons.ts
-#: src/lib/home-page.ts
-msgid "All certificates"
-msgstr "所有证书"
 
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -1034,6 +1054,10 @@ msgstr "注意 - 潜在数据已经丢失"
 msgid "Celsius (°C)"
 msgstr "摄氏度 (°C)"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Certificate"
+msgstr "证书"
+
 #: src/components/certificates/certificates-table.tsx
 msgid "Certificate added"
 msgstr "已添加证书"
@@ -1067,6 +1091,10 @@ msgstr "证书"
 #: src/components/certificates/certificates-table.tsx
 msgid "Certificates read"
 msgstr "已读取证书"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Certificates served over HTTPS by the hosts, seen by the HTTPS checks of their sensors, with the certificate of the host serving them."
+msgstr "主机通过 HTTPS 提供的证书（由其传感器的 HTTPS 检查所见），以及提供它们的主机证书。"
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Chain"
@@ -1177,6 +1205,7 @@ msgid "Clean"
 msgstr "正常"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
@@ -1246,6 +1275,7 @@ msgid "Color"
 msgstr "颜色"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Columns"
 msgstr "列"
@@ -1308,6 +1338,8 @@ msgid "Consecutive checks"
 msgstr "连续检查次数"
 
 #: src/components/routes/system/agent-details.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "容器"
@@ -1546,6 +1578,10 @@ msgstr "每日"
 #: src/components/routes/settings/appearance.tsx
 msgid "Dark"
 msgstr "深色"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Dashboard"
+msgstr "仪表板"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Data directory"
@@ -1965,6 +2001,7 @@ msgstr "暂时"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -2041,9 +2078,11 @@ msgstr "退出活动状态"
 msgid "Expected text"
 msgstr "预期文本"
 
+#: src/components/certificates/certificate-parts.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
-#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expired"
 msgstr "已过期"
 
@@ -2061,6 +2100,8 @@ msgstr "已过期：{expired}"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expires"
 msgstr "过期"
 
@@ -2069,6 +2110,7 @@ msgid "Expires after one hour or on hub restart."
 msgstr "将在一小时后，或Hub重启时失效。"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expiring soon"
 msgstr "即将过期"
 
@@ -2081,12 +2123,16 @@ msgstr "即将过期：{expiring}"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Expiry alert"
 msgstr "过期告警"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expiry alert: {alertDays} days"
 msgstr "过期告警：{alertDays} 天"
 
@@ -2180,11 +2226,13 @@ msgstr "风扇"
 msgid "fewer than {threshold} instances"
 msgstr "少于 {threshold} 个实例"
 
+#: src/components/traefik/traefik-instances.tsx
 #: src/lib/certificates.ts
 msgid "File"
 msgstr "文件"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
@@ -2480,13 +2528,13 @@ msgctxt "Docker image"
 msgid "Image update available"
 msgstr "有可用的镜像更新"
 
-#: src/components/certificates/certificates-table.tsx
-msgid "Important certificates"
-msgstr "重要证书"
-
 #: src/components/containers-table/containers-table.tsx
 msgid "Important containers"
 msgstr "重要容器"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Important local certificates"
+msgstr "重要的本地证书"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "Important processes"
@@ -2495,6 +2543,10 @@ msgstr "重要进程"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "重要服务"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Important web certificates"
+msgstr "重要的网页证书"
 
 #: src/lib/certificates.ts
 msgid "In IIS Manager: site {detail} > Bindings > https {location} > SSL certificate."
@@ -2563,6 +2615,8 @@ msgstr "无效的电子邮件地址。"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "Issued by"
 msgstr "颁发者"
@@ -2575,6 +2629,10 @@ msgstr "由 {linkIssuer} 颁发，有效期至 {linkUntil}"
 msgid "Issued to"
 msgstr "颁发对象"
 
+#: src/lib/certificates.ts
+msgid "It is declared in the following file of the Traefik file provider, reloaded automatically:"
+msgstr "它声明于 Traefik 文件提供程序的以下文件中，会自动重新加载："
+
 #: src/components/routes/settings/ldap.tsx
 msgid "It works."
 msgstr "运行正常。"
@@ -2584,6 +2642,7 @@ msgid "Its checks, history and interruptions will be deleted."
 msgstr "其检查、历史记录和中断记录将被删除。"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Its expiry alert is deleted: no notification is sent before it expires."
 msgstr "其到期警报将被删除：到期前不会发送任何通知。"
 
@@ -2701,6 +2760,10 @@ msgstr "ldaps://dc.example.com:636，或使用 StartTLS 的 ldap://dc.example.co
 msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
 msgstr "允许用户使用 Active Directory 等 LDAP 目录的账户登录。角色取决于其所属组；每个用户的第二因素仍然适用。"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Let's Encrypt resolver {resolverName}"
+msgstr "Let's Encrypt 解析器 {resolverName}"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
 msgstr "生命周期"
@@ -2768,6 +2831,10 @@ msgstr "高负载系统 ({loadedCount})"
 msgid "Loading..."
 msgstr "加载中..."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Local certificates"
+msgstr "本地证书"
+
 #: src/lib/utils.ts
 msgid "Local Disk"
 msgstr "本地磁盘"
@@ -2814,8 +2881,13 @@ msgstr "Beszel 的登录（成功或失败）与敏感更改：谁、何时、�
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/system/agent-details.tsx
+#: src/components/traefik/traefik-instances.tsx
 msgid "Logs"
 msgstr "日志"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Logs of {instance}"
+msgstr "{instance} 的日志"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
@@ -3134,12 +3206,17 @@ msgid "No certificate yet: the details appear after the next HTTPS check."
 msgstr "暂无证书：详细信息将在下次 HTTPS 检查后显示。"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "No certificates match the filter."
 msgstr "没有符合筛选条件的证书。"
 
 #: src/components/certificates/certificates-table.tsx
 msgid "No certificates yet. The agents (0.20.0-fork.5 or newer) read the certificates of their host every 6 hours."
 msgstr "暂无证书。代理（0.20.0-fork.5 或更高版本）每 6 小时读取一次主机的证书。"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "No dashboard found in the configuration of this instance."
+msgstr "此实例的配置中未找到仪表板。"
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
@@ -3156,9 +3233,17 @@ msgstr "没有条目。"
 msgid "No group"
 msgstr "无分组"
 
+#: src/components/certificates/web-certificates.tsx
+msgid "No HTTPS check on a sensor sharing the address of a system."
+msgstr "没有与系统地址相同的传感器的 HTTPS 检查。"
+
 #: src/components/sensors/sensor-incidents.tsx
 msgid "No interruptions over this period."
 msgstr "此期间没有中断。"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "No lines."
+msgstr "没有内容。"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -3220,6 +3305,10 @@ msgstr "没有运行中的系统。"
 msgid "No systems found."
 msgstr "未找到系统。"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "No Traefik found on the systems that are up."
+msgstr "运行中的系统上未找到 Traefik。"
+
 #: src/components/add-system.tsx
 #: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -3230,6 +3319,10 @@ msgstr "无"
 #: src/components/routes/settings/security.tsx
 msgid "Not enabled"
 msgstr "未启用"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Not found among the certificates read on the host"
+msgstr "未在主机上读取的证书中找到"
 
 #: src/components/sensors/sensor-sync-dialog.tsx
 msgid "Not now"
@@ -3270,6 +3363,11 @@ msgstr "每次登录后，若有主机没有 ping 传感器便提出建议"
 #: src/components/routes/settings/config-yaml.tsx
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
 msgstr "每次重启时，数据库中的系统将更新以匹配文件中定义的系统。"
+
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
+msgid "On the host"
+msgstr "主机上"
 
 #: src/components/routes/sensor.tsx
 #~ msgid "One bar per 15 seconds"
@@ -3382,6 +3480,10 @@ msgstr "其他端口…"
 #: src/components/processes-table/process-live-charts.tsx
 msgid "Other processes"
 msgstr "其他进程"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Output of the container"
+msgstr "容器输出"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "Overwrite existing alerts"
@@ -3647,6 +3749,10 @@ msgstr "首选语言"
 msgid "Previous page"
 msgstr "上一页"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Process"
+msgstr "进程"
+
 #: src/lib/alerts.ts
 msgid "Process alert"
 msgstr "进程警报"
@@ -3819,6 +3925,7 @@ msgid "Reboots"
 msgstr "重启"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Recap"
 msgstr "摘要"
 
@@ -3869,6 +3976,10 @@ msgstr "剩余恢复码：{recoveryLeft}"
 #: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
 msgid "Refresh"
 msgstr "刷新"
 
@@ -3904,12 +4015,17 @@ msgid "Remove from important"
 msgstr "从重要项移除"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Remove the alert"
 msgstr "移除告警"
 
 #: src/components/important-targets.tsx
 msgid "Removed from the rule, which keeps: {targets}"
 msgstr "已从规则移除，保留：{targets}"
+
+#: src/lib/certificates.ts
+msgid "Renewed automatically by Traefik with Let's Encrypt (resolver {resolver}). Its certificates are kept in the following file:"
+msgstr "由 Traefik 通过 Let's Encrypt 自动续期（解析器 {resolver}）。其证书保存在以下文件中："
 
 #: src/lib/certificates.ts
 msgid "Renewed by certbot (certbot renew), with the settings of the following file:"
@@ -4001,6 +4117,15 @@ msgstr "保留：每位用户最近的 {count} 条警报"
 msgid "Retries"
 msgstr "重试次数"
 
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+#: src/components/routes/certificates.tsx
+#: src/lib/header-icons.ts
+#: src/lib/home-page.ts
+msgid "Reverse proxy and certificates"
+msgstr "反向代理与证书"
+
 #: src/lib/utils.ts
 msgctxt "Root disk label"
 msgid "Root"
@@ -4013,6 +4138,10 @@ msgstr "轮换令牌"
 #: src/components/sensors/traceroute-dialog.tsx
 msgid "Route from the hub to {sensorHost}."
 msgstr "从中心到 {sensorHost} 的路由。"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Router"
+msgstr "路由器"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
@@ -4060,6 +4189,7 @@ msgstr "S.M.A.R.T. 自检"
 
 #: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -4332,6 +4462,14 @@ msgstr "服务"
 msgid "Services are checked at each collection, containers every minute."
 msgstr "服务在每次收集时检查，容器每分钟检查一次。"
 
+#: src/components/certificates/web-certificates.tsx
+msgid "Set an expiry alert (bell) on a web certificate found on its host to get its recap."
+msgstr "请为在其主机上找到的网页证书设置到期警报（铃铛）以获取其摘要。"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Set an expiry alert (bell) on at least one certificate to get its recap."
+msgstr "请至少为一个证书设置到期警报（铃铛）以获取其摘要。"
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Set percentage thresholds for meter colors."
 msgstr "设置仪表颜色的百分比阈值。"
@@ -4415,6 +4553,7 @@ msgid "SMTP settings"
 msgstr "SMTP 设置"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
@@ -4493,6 +4632,7 @@ msgid "States"
 msgstr "状态"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/processes-table/process-columns.tsx
@@ -4557,6 +4697,8 @@ msgstr "同步主机与传感器"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/navbar.tsx
@@ -4806,6 +4948,10 @@ msgstr "系统未连接。"
 msgid "The system sharing the address of this sensor."
 msgstr "与此传感器地址相同的系统。"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "The Traefik instances of the systems that are up, with their dashboard, logs, Let's Encrypt resolvers and the addresses of their containers."
+msgstr "运行中系统的 Traefik 实例，包括仪表板、日志、Let's Encrypt 解析器及其容器地址。"
+
 #: src/components/routes/settings/general.tsx
 msgid "The URL is set by the APP_URL environment variable of the hub."
 msgstr "网址由中心的 APP_URL 环境变量设置。"
@@ -4982,6 +5128,10 @@ msgstr "总计: {totalCount}"
 #: src/components/sensors/traceroute-dialog.tsx
 msgid "Traced with the traceroute command of the hub."
 msgstr "使用中心的 traceroute 命令追踪。"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Traefik reverse proxy"
+msgstr "Traefik 反向代理"
 
 #: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
@@ -5316,6 +5466,7 @@ msgid "Utilization"
 msgstr "利用率"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Valid"
 msgstr "有效"
 
@@ -5355,6 +5506,7 @@ msgstr "版本"
 #: src/components/active-alerts.tsx
 #: src/components/active-alerts.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
@@ -5401,6 +5553,10 @@ msgstr "警告 (%)"
 #: src/components/routes/settings/appearance.tsx
 msgid "Warning thresholds"
 msgstr "警告阈值"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Web certificates"
+msgstr "网页证书"
 
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "Web front ends"
@@ -5482,6 +5638,7 @@ msgid "With alerts"
 msgstr "有警报"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "With an expiry alert"
 msgstr "设有过期告警"
 

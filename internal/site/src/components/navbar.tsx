@@ -170,7 +170,7 @@ export default function Navbar() {
 								className="flex items-center"
 							>
 								<FileBadgeIcon className="h-4 w-4 me-2.5" strokeWidth={1.5} />
-								<Trans>All certificates</Trans>
+								<Trans>Reverse proxy and certificates</Trans>
 							</DropdownMenuItem>
 							<DropdownMenuItem onClick={() => navigate(getPagePath($router, "smart"))} className="flex items-center">
 								<HardDriveIcon className="h-4 w-4 me-2.5" strokeWidth={1.5} />
@@ -332,7 +332,7 @@ export default function Navbar() {
 							</Link>
 						</TooltipTrigger>
 						<TooltipContent>
-							<Trans>All certificates</Trans>
+							<Trans>Reverse proxy and certificates</Trans>
 						</TooltipContent>
 					</Tooltip>
 				)}

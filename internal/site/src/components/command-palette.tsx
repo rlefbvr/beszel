@@ -181,7 +181,7 @@ export default memo(function CommandPalette({ open, setOpen }: { open: boolean; 
 							</CommandShortcut>
 						</CommandItem>
 						<CommandItem
-							keywords={["certificate", "tls", "ssl", "https", "expiry"]}
+							keywords={["certificate", "tls", "ssl", "https", "expiry", "traefik", "reverse", "proxy"]}
 							onSelect={() => {
 								navigate(getPagePath($router, "certificates"))
 								setOpen(false)
@@ -189,7 +189,7 @@ export default memo(function CommandPalette({ open, setOpen }: { open: boolean; 
 						>
 							<FileBadgeIcon className="me-2 size-4" />
 							<span>
-								<Trans>All certificates</Trans>
+								<Trans>Reverse proxy and certificates</Trans>
 							</span>
 							<CommandShortcut>
 								<Trans>Page</Trans>

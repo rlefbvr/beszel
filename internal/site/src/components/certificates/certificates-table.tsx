@@ -67,17 +67,19 @@ import {
 	certificateUseSteps,
 	certificateUseLabel,
 	defaultCertificateAlertDays,
+	normalizeFingerprint,
 } from "@/lib/certificates"
 import { $openRequest, isRequested, rememberRecent } from "@/lib/recent"
+import { $sensorAlerts } from "@/lib/sensor-alerts"
 import { $checksBySensor, $sensors, checkName } from "@/lib/sensors"
 import { $allSystemsById, $userSettings } from "@/lib/stores"
 import { formatDateTime, useNow } from "@/lib/time"
 import { cn, copyToClipboard } from "@/lib/utils"
 import type { CertificateAlertRecord, CertificateRecord, UserSettings } from "@/types"
+import { commonName, DaysLeft, expiringDays } from "./certificate-parts"
+import { sensorCertAlertOf, useWebCertificates, WebCertificates } from "./web-certificates"
 import { GuardedDialog } from "@/components/discard-guard"
 
-/** Days before expiry when a certificate shows as expiring */
-const expiringDays = 30
 
 type Sort = NonNullable<UserSettings["certificatesSort"]>
 type Status = NonNullable<UserSettings["certificatesStatus"]>
@@ -107,32 +109,6 @@ function certificateStatus(cert: CertificateRecord, now: Date): Exclude<Status, 
 	return days < 0 ? "expired" : days <= expiringDays ? "expiring" : "valid"
 }
 
-/** Common name of a distinguished name, such as R11 in CN=R11,O=Let's Encrypt,C=US */
-function commonName(dn: string) {
-	return /(?:^|,)\s*CN=([^,]+)/.exec(dn)?.[1] ?? dn
-}
-
-/** Color of the days left: red once expired, orange when expiring, green otherwise */
-function daysClass(days: number | null) {
-	if (days === null) {
-		return "bg-muted text-muted-foreground"
-	}
-	if (days < 0) {
-		return "bg-red-500/15 text-red-700 dark:text-red-400"
-	}
-	if (days <= expiringDays) {
-		return "bg-orange-500/15 text-orange-700 dark:text-orange-400"
-	}
-	return "bg-green-500/15 text-green-700 dark:text-green-400"
-}
-
-function DaysLeft({ days }: { days: number | null }) {
-	return (
-		<span className={cn("rounded px-1.5 py-0.5 text-xs font-medium tabular-nums whitespace-nowrap", daysClass(days))}>
-			{days === null ? "-" : days < 0 ? <Trans>Expired</Trans> : <Plural value={days} one="# day" other="# days" />}
-		</span>
-	)
-}
 
 /** HTTPS checks of the sensors of the host of a certificate that see the same certificate */
 function useSensorLinks() {
@@ -148,13 +124,16 @@ function useSensorLinks() {
 			.filter((sensor) => sameHost(sensor.host, host))
 			.flatMap((sensor) =>
 				(checksBySensor[sensor.id] ?? [])
-					.filter((check) => check.cert?.sha256?.toLowerCase() === cert.fingerprint.toLowerCase())
+					.filter((check) => normalizeFingerprint(check.cert?.sha256) === normalizeFingerprint(cert.fingerprint))
 					.map((check) => ({ sensor, check }))
 			)
 	}
 }
 
-/** All the certificates of the hosts, with the important ones (with an expiry alert) first */
+/**
+ * The certificates of the hosts, with the important ones (with an expiry alert)
+ * first, after the web certificates seen by the HTTPS checks of their sensors.
+ */
 export default function CertificatesTable() {
 	const certificates = useStore($certificates)
 	const alerts = useStore($certificateAlerts)
@@ -241,6 +220,24 @@ export default function CertificatesTable() {
 
 	/** certificates with an expiry alert of the user */
 	const important = useMemo(() => all.filter((cert) => certificateAlertOf(alerts, cert)), [all, alerts])
+	// the web certificates with the certificate alert of their sensor join the recap, where found on their host
+	const webRows = useWebCertificates()
+	const sensorAlerts = useStore($sensorAlerts)
+	const webRecapCerts = useMemo(() => {
+		const certs: CertificateRecord[] = []
+		for (const row of webRows) {
+			const alerted = row.local && (certificateAlertOf(alerts, row.local) || sensorCertAlertOf(sensorAlerts, row.sensor.id))
+			if (row.local && alerted && !certs.includes(row.local)) {
+				certs.push(row.local)
+			}
+		}
+		return certs
+	}, [webRows, sensorAlerts, alerts])
+	const recapCerts = useMemo(
+		() => [...important, ...webRecapCerts.filter((cert) => !important.includes(cert))],
+		[important, webRecapCerts]
+	)
+	const [webRecapOpen, setWebRecapOpen] = useState(false)
 	const expiring = all.filter((cert) => {
 		const days = certificateDaysLeft(cert, now)
 		return days !== null && days >= 0 && days <= expiringDays
@@ -300,232 +297,250 @@ export default function CertificatesTable() {
 	}
 
 	return (
-		<Card className="@container w-full px-3 py-5 sm:py-6 sm:px-6">
-			<CardHeader className="p-0 mb-3 sm:mb-4">
-				<div className="grid md:flex gap-x-5 gap-y-3 w-full items-end">
-					<div className="px-2 sm:px-1">
-						<CardTitle className="mb-2">
-							<Trans>All certificates</Trans>
-						</CardTitle>
-						<div className="text-sm text-muted-foreground flex items-center flex-wrap">
-							<Trans>Total: {all.length}</Trans>
-							<Separator orientation="vertical" className="h-4 mx-2 bg-primary/40" />
-							<Trans>Expiring: {expiring}</Trans>
-							<Separator orientation="vertical" className="h-4 mx-2 bg-primary/40" />
-							<Trans>Expired: {expired}</Trans>
+		<>
+			<WebCertificates
+				rows={webRows}
+				onOpen={setSelected}
+				onAlert={setAlerting}
+				recapCount={webRecapCerts.length}
+				onRecap={() => setWebRecapOpen(true)}
+			/>
+			<Dialog open={webRecapOpen} onOpenChange={setWebRecapOpen}>
+				{webRecapOpen && <RecapDialog certs={webRecapCerts} />}
+			</Dialog>
+			<Card className="@container w-full px-3 py-5 sm:py-6 sm:px-6">
+				<CardHeader className="p-0 mb-3 sm:mb-4">
+					<div className="grid md:flex gap-x-5 gap-y-3 w-full items-end">
+						<div className="px-2 sm:px-1">
+							<CardTitle className="mb-2">
+								<Trans>Local certificates</Trans>
+							</CardTitle>
+							<div className="text-sm text-muted-foreground flex items-center flex-wrap">
+								<Trans>Total: {all.length}</Trans>
+								<Separator orientation="vertical" className="h-4 mx-2 bg-primary/40" />
+								<Trans>Expiring: {expiring}</Trans>
+								<Separator orientation="vertical" className="h-4 mx-2 bg-primary/40" />
+								<Trans>Expired: {expired}</Trans>
+							</div>
 						</div>
-					</div>
-					<div className="flex flex-wrap gap-2 ms-auto w-full md:w-auto">
-						<div className="relative flex-1 md:w-56">
-							<Input
-								placeholder={t`Filter...`}
-								value={filter}
-								onChange={(e) => setFilter(e.target.value)}
-								className="ps-4 pe-10 w-full"
-							/>
-							{filter && (
+						<div className="flex flex-wrap gap-2 ms-auto w-full md:w-auto">
+							<div className="relative flex-1 md:w-56">
+								<Input
+									placeholder={t`Filter...`}
+									value={filter}
+									onChange={(e) => setFilter(e.target.value)}
+									className="ps-4 pe-10 w-full"
+								/>
+								{filter && (
+									<Button
+										type="button"
+										variant="ghost"
+										size="icon"
+										aria-label={t`Clear`}
+										className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 text-muted-foreground"
+										onClick={() => setFilter("")}
+									>
+										<XIcon className="h-4 w-4" />
+									</Button>
+								)}
+							</div>
+							<ViewMenu sort={sort} status={status} hidden={hidden} onSort={setSort} />
+							<Button variant="outline" className="gap-1.5" onClick={refreshAll} disabled={refreshing}>
+								{refreshing ? <LoaderCircleIcon className="size-4 animate-spin" /> : <RefreshCwIcon className="size-4" />}
+								<Trans>Read now</Trans>
+							</Button>
+							{/* a disabled button gets no hover: its wrapper tells why it is disabled */}
+							<span
+								className="inline-flex"
+								title={recapCerts.length ? undefined : t`Set an expiry alert (bell) on at least one certificate to get its recap.`}
+							>
 								<Button
-									type="button"
-									variant="ghost"
-									size="icon"
-									aria-label={t`Clear`}
-									className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 text-muted-foreground"
-									onClick={() => setFilter("")}
+									variant="outline"
+									className="gap-1.5"
+									onClick={() => setRecapOpen(true)}
+									disabled={!recapCerts.length}
 								>
-									<XIcon className="h-4 w-4" />
+									<ClipboardListIcon className="size-4" />
+									<Trans>Recap</Trans>
+								</Button>
+							</span>
+							{!readOnly && (
+								<Button variant="outline" className="gap-1.5" onClick={() => setAddOpen(true)}>
+									<PlusIcon className="size-4" />
+									<Trans>Add a certificate</Trans>
 								</Button>
 							)}
 						</div>
-						<ViewMenu sort={sort} status={status} hidden={hidden} onSort={setSort} />
-						<Button variant="outline" className="gap-1.5" onClick={refreshAll} disabled={refreshing}>
-							{refreshing ? <LoaderCircleIcon className="size-4 animate-spin" /> : <RefreshCwIcon className="size-4" />}
-							<Trans>Read now</Trans>
-						</Button>
-						<Button
-							variant="outline"
-							className="gap-1.5"
-							onClick={() => setRecapOpen(true)}
-							disabled={!important.length}
-						>
-							<ClipboardListIcon className="size-4" />
-							<Trans>Recap</Trans>
-						</Button>
-						{!readOnly && (
-							<Button variant="outline" className="gap-1.5" onClick={() => setAddOpen(true)}>
-								<PlusIcon className="size-4" />
-								<Trans>Add a certificate</Trans>
-							</Button>
-						)}
 					</div>
-				</div>
-			</CardHeader>
+				</CardHeader>
 
-			<ImportantTargets
-				title={<Trans>Important certificates</Trans>}
-				subtitle={<Trans>With an expiry alert</Trans>}
-				tiles={tiles}
-			/>
+				<ImportantTargets
+					title={<Trans>Important local certificates</Trans>}
+					subtitle={<Trans>With an expiry alert</Trans>}
+					tiles={tiles}
+				/>
 
-			<div className="rounded-md border overflow-x-auto">
-				<Table>
-					<TableHeader>
-						<TableRow>
-							<TableHead className="w-10 px-2">
-								<span className="h-9 px-3 flex items-center" title={t`Expiry alert`}>
-									<BellIcon className="size-4" />
-								</span>
-							</TableHead>
-							<SortHead sort={sort} value="name" onSort={setSort} Icon={FileBadgeIcon} name={t`Name`} />
-							{show("system") && (
-								<SortHead sort={sort} value="system" onSort={setSort} Icon={ServerIcon} name={t`System`} />
-							)}
-							{show("expiry") && (
-								<SortHead sort={sort} value="expiry" onSort={setSort} Icon={CalendarClockIcon} name={t`Expires`} />
-							)}
-							{show("issuer") && (
-								<SortHead sort={sort} value="issuer" onSort={setSort} Icon={BadgeCheckIcon} name={t`Issued by`} />
-							)}
-							{show("uses") && (
-								<SortHead sort={sort} value="uses" onSort={setSort} Icon={LayersIcon} name={t`Used by`} />
-							)}
-							{show("location") && (
-								<SortHead sort={sort} value="location" onSort={setSort} Icon={FolderIcon} name={t`Location`} />
-							)}
-						</TableRow>
-					</TableHeader>
-					<TableBody>
-						{shown.map((cert) => {
-							const alert = certificateAlertOf(alerts, cert)
-							const alertDays = alert?.days ?? 0
-							const days = certificateDaysLeft(cert, now)
-							const links = sensorLinks(cert)
-							return (
-								<TableRow key={cert.id} className="cursor-pointer" onClick={() => setSelected(cert)}>
-									<TableCell className="py-2">
-										<Button
-											variant="ghost"
-											size="icon"
-											className={cn("size-8", alert ? "text-primary" : "text-muted-foreground")}
-											aria-label={t`Expiry alert`}
-											title={alert ? t`Expiry alert: ${alertDays} days` : t`Expiry alert`}
-											disabled={readOnly}
-											onClick={(e) => {
-												e.stopPropagation()
-												setAlerting(cert)
-											}}
-										>
-											{alert ? <BellRingIcon className="size-4" /> : <BellIcon className="size-4" />}
-										</Button>
-									</TableCell>
-									<TableCell className="py-2 max-w-72">
-										<div className="font-medium truncate" title={(cert.names ?? []).join(", ")}>
-											{cert.name}
-										</div>
-										<div className="flex flex-wrap gap-1 mt-0.5">
-											{cert.self_signed && (
-												<Badge variant="outline" className="text-[0.7rem] px-1.5 py-0">
-													<Trans>Self-signed</Trans>
-												</Badge>
-											)}
-											{cert.custom && (
-												<Badge variant="outline" className="text-[0.7rem] px-1.5 py-0">
-													<Trans>Added</Trans>
-												</Badge>
-											)}
-											{links.length > 0 && (
-												<Badge variant="outline" className="text-[0.7rem] px-1.5 py-0 gap-1">
-													<NetworkIcon className="size-3" />
-													<Trans>Seen by a sensor</Trans>
-												</Badge>
-											)}
-										</div>
-									</TableCell>
-									{show("system") && (
-										<TableCell className="py-2 whitespace-nowrap">
-											{systems[cert.system]?.name ?? cert.system}
-										</TableCell>
-									)}
-									{show("expiry") && (
-										<TableCell className="py-2 whitespace-nowrap">
-											{cert.error ? (
-												<span className="text-xs text-destructive">{cert.error}</span>
-											) : (
-												<span className="flex items-center gap-2">
-													<DaysLeft days={days} />
-													<span className="text-xs text-muted-foreground tabular-nums">
-														{cert.not_after && formatDateTime(cert.not_after).split(" ")[0]}
-													</span>
-												</span>
-											)}
-										</TableCell>
-									)}
-									{show("issuer") && (
-										<TableCell className="py-2 max-w-48 truncate text-sm" title={cert.issuer}>
-											{commonName(cert.issuer)}
-										</TableCell>
-									)}
-									{show("uses") && (
+				<div className="rounded-md border overflow-x-auto">
+					<Table>
+						<TableHeader>
+							<TableRow>
+								<TableHead className="w-10 px-2">
+									<span className="h-9 px-3 flex items-center" title={t`Expiry alert`}>
+										<BellIcon className="size-4" />
+									</span>
+								</TableHead>
+								<SortHead sort={sort} value="name" onSort={setSort} Icon={FileBadgeIcon} name={t`Name`} />
+								{show("system") && (
+									<SortHead sort={sort} value="system" onSort={setSort} Icon={ServerIcon} name={t`System`} />
+								)}
+								{show("expiry") && (
+									<SortHead sort={sort} value="expiry" onSort={setSort} Icon={CalendarClockIcon} name={t`Expires`} />
+								)}
+								{show("issuer") && (
+									<SortHead sort={sort} value="issuer" onSort={setSort} Icon={BadgeCheckIcon} name={t`Issued by`} />
+								)}
+								{show("uses") && (
+									<SortHead sort={sort} value="uses" onSort={setSort} Icon={LayersIcon} name={t`Used by`} />
+								)}
+								{show("location") && (
+									<SortHead sort={sort} value="location" onSort={setSort} Icon={FolderIcon} name={t`Location`} />
+								)}
+							</TableRow>
+						</TableHeader>
+						<TableBody>
+							{shown.map((cert) => {
+								const alert = certificateAlertOf(alerts, cert)
+								const alertDays = alert?.days ?? 0
+								const days = certificateDaysLeft(cert, now)
+								const links = sensorLinks(cert)
+								return (
+									<TableRow key={cert.id} className="cursor-pointer" onClick={() => setSelected(cert)}>
 										<TableCell className="py-2">
-											<div className="flex flex-wrap gap-1">
-												{[...new Set((cert.uses ?? []).map(certificateUseLabel))].map((label) => (
-													<span key={label} className="rounded bg-muted px-1.5 py-0.5 text-xs whitespace-nowrap">
-														{label}
-													</span>
-												))}
+											<Button
+												variant="ghost"
+												size="icon"
+												className={cn("size-8", alert ? "text-primary" : "text-muted-foreground")}
+												aria-label={t`Expiry alert`}
+												title={alert ? t`Expiry alert: ${alertDays} days` : t`Expiry alert`}
+												disabled={readOnly}
+												onClick={(e) => {
+													e.stopPropagation()
+													setAlerting(cert)
+												}}
+											>
+												{alert ? <BellRingIcon className="size-4" /> : <BellIcon className="size-4" />}
+											</Button>
+										</TableCell>
+										<TableCell className="py-2 max-w-72">
+											<div className="font-medium truncate" title={(cert.names ?? []).join(", ")}>
+												{cert.name}
+											</div>
+											<div className="flex flex-wrap gap-1 mt-0.5">
+												{cert.self_signed && (
+													<Badge variant="outline" className="text-[0.7rem] px-1.5 py-0">
+														<Trans>Self-signed</Trans>
+													</Badge>
+												)}
+												{cert.custom && (
+													<Badge variant="outline" className="text-[0.7rem] px-1.5 py-0">
+														<Trans>Added</Trans>
+													</Badge>
+												)}
+												{links.length > 0 && (
+													<Badge variant="outline" className="text-[0.7rem] px-1.5 py-0 gap-1">
+														<NetworkIcon className="size-3" />
+														<Trans>Seen by a sensor</Trans>
+													</Badge>
+												)}
 											</div>
 										</TableCell>
-									)}
-									{show("location") && (
-										<TableCell
-											className="py-2 max-w-72 truncate font-mono text-xs text-muted-foreground"
-											title={cert.path}
-										>
-											{cert.path}
-										</TableCell>
-									)}
+										{show("system") && (
+											<TableCell className="py-2 whitespace-nowrap">
+												{systems[cert.system]?.name ?? cert.system}
+											</TableCell>
+										)}
+										{show("expiry") && (
+											<TableCell className="py-2 whitespace-nowrap">
+												{cert.error ? (
+													<span className="text-xs text-destructive">{cert.error}</span>
+												) : (
+													<span className="flex items-center gap-2">
+														<DaysLeft days={days} />
+														<span className="text-xs text-muted-foreground tabular-nums">
+															{cert.not_after && formatDateTime(cert.not_after).split(" ")[0]}
+														</span>
+													</span>
+												)}
+											</TableCell>
+										)}
+										{show("issuer") && (
+											<TableCell className="py-2 max-w-48 truncate text-sm" title={cert.issuer}>
+												{commonName(cert.issuer)}
+											</TableCell>
+										)}
+										{show("uses") && (
+											<TableCell className="py-2">
+												<div className="flex flex-wrap gap-1">
+													{[...new Set((cert.uses ?? []).map(certificateUseLabel))].map((label) => (
+														<span key={label} className="rounded bg-muted px-1.5 py-0.5 text-xs whitespace-nowrap">
+															{label}
+														</span>
+													))}
+												</div>
+											</TableCell>
+										)}
+										{show("location") && (
+											<TableCell
+												className="py-2 max-w-72 truncate font-mono text-xs text-muted-foreground"
+												title={cert.path}
+											>
+												{cert.path}
+											</TableCell>
+										)}
+									</TableRow>
+								)
+							})}
+							{!shown.length && (
+								<TableRow>
+									<TableCell
+										colSpan={2 + Object.keys(optionalColumns).length - hidden.length}
+										className="h-24 text-center text-muted-foreground"
+									>
+										{all.length ? (
+											<Trans>No certificates match the filter.</Trans>
+										) : (
+											<Trans>
+												No certificates yet. The agents (0.20.0-fork.5 or newer) read the certificates of their host every
+												6 hours.
+											</Trans>
+										)}
+									</TableCell>
 								</TableRow>
-							)
-						})}
-						{!shown.length && (
-							<TableRow>
-								<TableCell
-									colSpan={2 + Object.keys(optionalColumns).length - hidden.length}
-									className="h-24 text-center text-muted-foreground"
-								>
-									{all.length ? (
-										<Trans>No certificates match the filter.</Trans>
-									) : (
-										<Trans>
-											No certificates yet. The agents (0.20.0-fork.5 or newer) read the certificates of their host every
-											6 hours.
-										</Trans>
-									)}
-								</TableCell>
-							</TableRow>
-						)}
-					</TableBody>
-				</Table>
-			</div>
+							)}
+						</TableBody>
+					</Table>
+				</div>
 
-			<Dialog open={!!selected} onOpenChange={(open) => !open && setSelected(null)}>
-				{selected && (
-					<CertificateDialog
-						cert={certificates[selected.id] ?? selected}
-						onAlert={() => setAlerting(selected)}
-						onClose={() => setSelected(null)}
-					/>
-				)}
-			</Dialog>
-			<Dialog open={!!alerting} onOpenChange={(open) => !open && setAlerting(null)}>
-				{alerting && <CertificateAlertDialog cert={alerting} onClose={() => setAlerting(null)} />}
-			</Dialog>
-			<GuardedDialog open={addOpen} onOpenChange={setAddOpen}>
-				{addOpen && <AddCertificateDialog onClose={() => setAddOpen(false)} />}
-			</GuardedDialog>
-			<Dialog open={recapOpen} onOpenChange={setRecapOpen}>
-				{recapOpen && <RecapDialog certs={important} />}
-			</Dialog>
-		</Card>
+				<Dialog open={!!selected} onOpenChange={(open) => !open && setSelected(null)}>
+					{selected && (
+						<CertificateDialog
+							cert={certificates[selected.id] ?? selected}
+							onAlert={() => setAlerting(selected)}
+							onClose={() => setSelected(null)}
+						/>
+					)}
+				</Dialog>
+				<Dialog open={!!alerting} onOpenChange={(open) => !open && setAlerting(null)}>
+					{alerting && <CertificateAlertDialog cert={alerting} onClose={() => setAlerting(null)} />}
+				</Dialog>
+				<GuardedDialog open={addOpen} onOpenChange={setAddOpen}>
+					{addOpen && <AddCertificateDialog onClose={() => setAddOpen(false)} />}
+				</GuardedDialog>
+				<Dialog open={recapOpen} onOpenChange={setRecapOpen}>
+					{recapOpen && <RecapDialog certs={recapCerts} />}
+				</Dialog>
+			</Card>
+		</>
 	)
 }
 

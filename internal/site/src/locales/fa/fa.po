@@ -82,6 +82,10 @@ msgstr "{count, plural, one {{countString} ساعت} other {{countString} ساع
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} دقیقه} few {{countString} دقیقه} many {{countString} دقیقه} other {{countString} دقیقه}}"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "{count, plural, one {# certificate} other {# certificates}}"
+msgstr "{count, plural, one {# گواهی} other {# گواهی}}"
+
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, one {# کانتینر فیلترشده} other {# کانتینر فیلترشده}}"
@@ -119,11 +123,12 @@ msgstr "{count} فرایند · CPU {cpuText} · حافظه {memText}"
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} حسگر جدید، {added} بررسی به حسگرهای موجود افزوده شد."
 
-#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificate-parts.tsx
 msgid "{days, plural, one {# day} other {# days}}"
 msgstr "{days, plural, other {# روز}}"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
 msgstr "{days, plural, other {# روز دیگر منقضی می‌شود}}"
@@ -163,6 +168,10 @@ msgstr "{name} کمتر از {days} روز دیگر منقضی می‌شود"
 #: src/components/quiet-hours-banner.tsx
 msgid "{name} until {until}"
 msgstr "{name} تا {until}"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "{outdated, plural, one {# system needs an agent update (0.20.0-fork.6 or newer) to find its Traefik.} other {# systems need an agent update (0.20.0-fork.6 or newer) to find their Traefik.}}"
+msgstr "{outdated, plural, one {# سیستم برای یافتن Traefik خود به به‌روزرسانی عامل (0.20.0-fork.6 یا جدیدتر) نیاز دارد.} other {# سیستم برای یافتن Traefik خود به به‌روزرسانی عامل (0.20.0-fork.6 یا جدیدتر) نیاز دارند.}}"
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "{outdated} system(s) need an agent update (0.20.0-fork.5 or newer)."
@@ -321,6 +330,18 @@ msgstr "هر سیستم به یک گروه تعلق دارد: انتخاب آن�
 msgid "Accepted status codes"
 msgstr "کدهای وضعیت پذیرفته"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Access logs"
+msgstr "گزارش‌های دسترسی"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Access logs are not enabled on this instance."
+msgstr "گزارش‌های دسترسی در این نمونه فعال نیستند."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Access logs of {instance}"
+msgstr "گزارش‌های دسترسی {instance}"
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
@@ -438,9 +459,12 @@ msgstr "افزوده"
 msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
 msgstr "افزودن میزبان به‌طور خودکار یک حسگر از نوع ICMP (Ping) ایجاد می‌کند."
 
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/traceroute-dialog.tsx
+#: src/components/traefik/traefik-instances.tsx
 msgid "Address"
 msgstr "نشانی"
 
@@ -522,12 +546,17 @@ msgid "Alert sent"
 msgstr "هشدار ارسال شد"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Alert threshold (days before expiry)"
 msgstr "آستانه هشدار (روز پیش از انقضا)"
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Alert types"
 msgstr "انواع هشدار"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Alert when a certificate served over HTTPS to the checks of {sensorName} expires in fewer days than the threshold. It is the certificate alert of the sensor."
+msgstr "هشدار وقتی گواهی ارائه‌شده از طریق HTTPS به بررسی‌های {sensorName} در کمتر از روزهای آستانه منقضی شود. این هشدار گواهی حسگر است."
 
 #: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
@@ -600,6 +629,7 @@ msgid "Alerts set up"
 msgstr "هشدارهای تنظیم‌شده"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -617,16 +647,6 @@ msgstr "همه عامل‌ها به‌روز هستند ({latest})"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "All alerts"
 msgstr "همه هشدارها"
-
-#: src/components/certificates/certificates-table.tsx
-#: src/components/command-palette.tsx
-#: src/components/navbar.tsx
-#: src/components/navbar.tsx
-#: src/components/routes/certificates.tsx
-#: src/lib/header-icons.ts
-#: src/lib/home-page.ts
-msgid "All certificates"
-msgstr "همه گواهی‌ها"
 
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -1034,6 +1054,10 @@ msgstr "احتیاط - احتمال از دست رفتن داده‌ها"
 msgid "Celsius (°C)"
 msgstr "سلسیوس (°C)"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Certificate"
+msgstr "گواهی"
+
 #: src/components/certificates/certificates-table.tsx
 msgid "Certificate added"
 msgstr "گواهی افزوده شد"
@@ -1067,6 +1091,10 @@ msgstr "گواهی‌ها"
 #: src/components/certificates/certificates-table.tsx
 msgid "Certificates read"
 msgstr "گواهی‌ها خوانده شدند"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Certificates served over HTTPS by the hosts, seen by the HTTPS checks of their sensors, with the certificate of the host serving them."
+msgstr "گواهی‌هایی که میزبان‌ها از طریق HTTPS ارائه می‌دهند، آن‌طور که بررسی‌های HTTPS حسگرهایشان می‌بینند، همراه با گواهی میزبانی که آن‌ها را ارائه می‌دهد."
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Chain"
@@ -1177,6 +1205,7 @@ msgid "Clean"
 msgstr "عادی"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
@@ -1246,6 +1275,7 @@ msgid "Color"
 msgstr "رنگ"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Columns"
 msgstr "ستون‌ها"
@@ -1308,6 +1338,8 @@ msgid "Consecutive checks"
 msgstr "بررسی‌های متوالی"
 
 #: src/components/routes/system/agent-details.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "کانتینر"
@@ -1546,6 +1578,10 @@ msgstr "روزانه"
 #: src/components/routes/settings/appearance.tsx
 msgid "Dark"
 msgstr "تیره"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Dashboard"
+msgstr "داشبورد"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Data directory"
@@ -1965,6 +2001,7 @@ msgstr "گذرا"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -2041,9 +2078,11 @@ msgstr "خروج فعال"
 msgid "Expected text"
 msgstr "متن مورد انتظار"
 
+#: src/components/certificates/certificate-parts.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
-#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expired"
 msgstr "منقضی"
 
@@ -2061,6 +2100,8 @@ msgstr "منقضی: {expired}"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expires"
 msgstr "انقضا"
 
@@ -2069,6 +2110,7 @@ msgid "Expires after one hour or on hub restart."
 msgstr "پس از یک ساعت یا راه‌اندازی مجدد هاب منقضی می‌شود."
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expiring soon"
 msgstr "نزدیک به انقضا"
 
@@ -2081,12 +2123,16 @@ msgstr "نزدیک به انقضا: {expiring}"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Expiry alert"
 msgstr "هشدار انقضا"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expiry alert: {alertDays} days"
 msgstr "هشدار انقضا: {alertDays} روز"
 
@@ -2180,11 +2226,13 @@ msgstr "فن‌ها"
 msgid "fewer than {threshold} instances"
 msgstr "کمتر از {threshold} نمونه"
 
+#: src/components/traefik/traefik-instances.tsx
 #: src/lib/certificates.ts
 msgid "File"
 msgstr "فایل"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
@@ -2480,13 +2528,13 @@ msgctxt "Docker image"
 msgid "Image update available"
 msgstr "به‌روزرسانی image موجود است"
 
-#: src/components/certificates/certificates-table.tsx
-msgid "Important certificates"
-msgstr "گواهی‌های مهم"
-
 #: src/components/containers-table/containers-table.tsx
 msgid "Important containers"
 msgstr "کانتینرهای مهم"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Important local certificates"
+msgstr "گواهی‌های محلی مهم"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "Important processes"
@@ -2495,6 +2543,10 @@ msgstr "فرایندهای مهم"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "سرویس‌های مهم"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Important web certificates"
+msgstr "گواهی‌های وب مهم"
 
 #: src/lib/certificates.ts
 msgid "In IIS Manager: site {detail} > Bindings > https {location} > SSL certificate."
@@ -2563,6 +2615,8 @@ msgstr "آدرس ایمیل نامعتبر است."
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "Issued by"
 msgstr "صادرشده توسط"
@@ -2575,6 +2629,10 @@ msgstr "صادرشده توسط {linkIssuer}، معتبر تا {linkUntil}"
 msgid "Issued to"
 msgstr "صادرشده برای"
 
+#: src/lib/certificates.ts
+msgid "It is declared in the following file of the Traefik file provider, reloaded automatically:"
+msgstr "در فایل زیر از ارائه‌دهنده فایل Traefik تعریف شده که به‌طور خودکار دوباره بارگذاری می‌شود:"
+
 #: src/components/routes/settings/ldap.tsx
 msgid "It works."
 msgstr "کار می‌کند."
@@ -2584,6 +2642,7 @@ msgid "Its checks, history and interruptions will be deleted."
 msgstr "بررسی‌ها، تاریخچه و قطعی‌های آن حذف خواهند شد."
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Its expiry alert is deleted: no notification is sent before it expires."
 msgstr "هشدار انقضای آن حذف می‌شود: پیش از انقضا هیچ اعلانی ارسال نمی‌شود."
 
@@ -2701,6 +2760,10 @@ msgstr "ldaps://dc.example.com:636، یا ldap://dc.example.com:389 با StartTL
 msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
 msgstr "به کاربران اجازه دهید با حساب خود در یک دایرکتوری LDAP مانند Active Directory وارد شوند. نقش آن‌ها از گروه‌هایشان پیروی می‌کند و عامل دوم هر کاربر همچنان اعمال می‌شود."
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Let's Encrypt resolver {resolverName}"
+msgstr "حل‌کننده Let's Encrypt {resolverName}"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
 msgstr "چرخه حیات"
@@ -2768,6 +2831,10 @@ msgstr "سیستم‌های پرفشار ({loadedCount})"
 msgid "Loading..."
 msgstr "در حال بارگذاری..."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Local certificates"
+msgstr "گواهی‌های محلی"
+
 #: src/lib/utils.ts
 msgid "Local Disk"
 msgstr "دیسک محلی"
@@ -2814,8 +2881,13 @@ msgstr "ورودها به Beszel، موفق یا ناموفق، و تغییرا�
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/system/agent-details.tsx
+#: src/components/traefik/traefik-instances.tsx
 msgid "Logs"
 msgstr "لاگ‌ها"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Logs of {instance}"
+msgstr "گزارش‌های {instance}"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
@@ -3134,12 +3206,17 @@ msgid "No certificate yet: the details appear after the next HTTPS check."
 msgstr "هنوز گواهی‌ای نیست: جزئیات پس از بررسی HTTPS بعدی نمایش داده می‌شود."
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "No certificates match the filter."
 msgstr "هیچ گواهی‌ای با فیلتر مطابقت ندارد."
 
 #: src/components/certificates/certificates-table.tsx
 msgid "No certificates yet. The agents (0.20.0-fork.5 or newer) read the certificates of their host every 6 hours."
 msgstr "هنوز گواهی‌ای وجود ندارد. عامل‌ها (0.20.0-fork.5 یا جدیدتر) هر ۶ ساعت گواهی‌های میزبان خود را می‌خوانند."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "No dashboard found in the configuration of this instance."
+msgstr "هیچ داشبوردی در پیکربندی این نمونه یافت نشد."
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
@@ -3156,9 +3233,17 @@ msgstr "موردی نیست."
 msgid "No group"
 msgstr "بدون گروه"
 
+#: src/components/certificates/web-certificates.tsx
+msgid "No HTTPS check on a sensor sharing the address of a system."
+msgstr "هیچ بررسی HTTPS روی حسگری با نشانی یک سیستم وجود ندارد."
+
 #: src/components/sensors/sensor-incidents.tsx
 msgid "No interruptions over this period."
 msgstr "در این بازه قطعی‌ای نبوده است."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "No lines."
+msgstr "خطی وجود ندارد."
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -3220,6 +3305,10 @@ msgstr "هیچ سیستمی روشن نیست."
 msgid "No systems found."
 msgstr "هیچ سیستمی یافت نشد."
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "No Traefik found on the systems that are up."
+msgstr "هیچ Traefik روی سیستم‌های فعال یافت نشد."
+
 #: src/components/add-system.tsx
 #: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -3230,6 +3319,10 @@ msgstr "هیچ‌کدام"
 #: src/components/routes/settings/security.tsx
 msgid "Not enabled"
 msgstr "فعال نیست"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Not found among the certificates read on the host"
+msgstr "در میان گواهی‌های خوانده‌شده روی میزبان یافت نشد"
 
 #: src/components/sensors/sensor-sync-dialog.tsx
 msgid "Not now"
@@ -3270,6 +3363,11 @@ msgstr "پس از هر ورود، وقتی میزبان‌ها حسگر پینگ
 #: src/components/routes/settings/config-yaml.tsx
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
 msgstr "در هر بار راه‌اندازی مجدد، سیستم‌های موجود در پایگاه داده با سیستم‌های تعریف شده در فایل مطابقت داده می‌شوند."
+
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
+msgid "On the host"
+msgstr "روی میزبان"
 
 #: src/components/routes/sensor.tsx
 #~ msgid "One bar per 15 seconds"
@@ -3382,6 +3480,10 @@ msgstr "درگاه دیگر…"
 #: src/components/processes-table/process-live-charts.tsx
 msgid "Other processes"
 msgstr "فرایندهای دیگر"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Output of the container"
+msgstr "خروجی کانتینر"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "Overwrite existing alerts"
@@ -3647,6 +3749,10 @@ msgstr "زبان ترجیحی"
 msgid "Previous page"
 msgstr "صفحه قبلی"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Process"
+msgstr "فرایند"
+
 #: src/lib/alerts.ts
 msgid "Process alert"
 msgstr "هشدار فرایند"
@@ -3819,6 +3925,7 @@ msgid "Reboots"
 msgstr "راه‌اندازی‌های مجدد"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Recap"
 msgstr "خلاصه"
 
@@ -3869,6 +3976,10 @@ msgstr "کدهای بازیابی باقی‌مانده: {recoveryLeft}"
 #: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
 msgid "Refresh"
 msgstr "تازه‌سازی"
 
@@ -3904,12 +4015,17 @@ msgid "Remove from important"
 msgstr "حذف از موارد مهم"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Remove the alert"
 msgstr "حذف هشدار"
 
 #: src/components/important-targets.tsx
 msgid "Removed from the rule, which keeps: {targets}"
 msgstr "از قانون حذف شد؛ موارد باقی‌مانده: {targets}"
+
+#: src/lib/certificates.ts
+msgid "Renewed automatically by Traefik with Let's Encrypt (resolver {resolver}). Its certificates are kept in the following file:"
+msgstr "Traefik آن را به‌طور خودکار با Let's Encrypt تمدید می‌کند (حل‌کننده {resolver}). گواهی‌هایش در فایل زیر نگهداری می‌شوند:"
 
 #: src/lib/certificates.ts
 msgid "Renewed by certbot (certbot renew), with the settings of the following file:"
@@ -4001,6 +4117,15 @@ msgstr "نگه‌داری: {count} هشدار آخر هر کاربر"
 msgid "Retries"
 msgstr "تلاش‌های مجدد"
 
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+#: src/components/routes/certificates.tsx
+#: src/lib/header-icons.ts
+#: src/lib/home-page.ts
+msgid "Reverse proxy and certificates"
+msgstr "پراکسی معکوس و گواهی‌ها"
+
 #: src/lib/utils.ts
 msgctxt "Root disk label"
 msgid "Root"
@@ -4013,6 +4138,10 @@ msgstr "چرخش توکن"
 #: src/components/sensors/traceroute-dialog.tsx
 msgid "Route from the hub to {sensorHost}."
 msgstr "مسیر از هاب تا {sensorHost}."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Router"
+msgstr "مسیریاب"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
@@ -4060,6 +4189,7 @@ msgstr "تست خود S.M.A.R.T"
 
 #: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -4332,6 +4462,14 @@ msgstr "سرویس‌ها"
 msgid "Services are checked at each collection, containers every minute."
 msgstr "سرویس‌ها در هر جمع‌آوری و کانتینرها هر دقیقه بررسی می‌شوند."
 
+#: src/components/certificates/web-certificates.tsx
+msgid "Set an expiry alert (bell) on a web certificate found on its host to get its recap."
+msgstr "برای دریافت خلاصه، روی گواهی وبی که روی میزبانش یافت شده هشدار انقضا (زنگ) تنظیم کنید."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Set an expiry alert (bell) on at least one certificate to get its recap."
+msgstr "برای دریافت خلاصه، دست‌کم روی یک گواهی هشدار انقضا (زنگ) تنظیم کنید."
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Set percentage thresholds for meter colors."
 msgstr "آستانه های درصدی را برای رنگ های متر تنظیم کنید."
@@ -4415,6 +4553,7 @@ msgid "SMTP settings"
 msgstr "تنظیمات SMTP"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
@@ -4493,6 +4632,7 @@ msgid "States"
 msgstr "وضعیت‌ها"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/processes-table/process-columns.tsx
@@ -4557,6 +4697,8 @@ msgstr "همگام‌سازی میزبان‌ها و حسگرها"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/navbar.tsx
@@ -4806,6 +4948,10 @@ msgstr "سیستم متصل نیست."
 msgid "The system sharing the address of this sensor."
 msgstr "سیستمی که نشانی این حسگر را دارد."
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "The Traefik instances of the systems that are up, with their dashboard, logs, Let's Encrypt resolvers and the addresses of their containers."
+msgstr "نمونه‌های Traefik سیستم‌های فعال، با داشبورد، گزارش‌ها، حل‌کننده‌های Let's Encrypt و نشانی کانتینرهایشان."
+
 #: src/components/routes/settings/general.tsx
 msgid "The URL is set by the APP_URL environment variable of the hub."
 msgstr "نشانی با متغیر محیطی APP_URL هاب تعیین شده است."
@@ -4982,6 +5128,10 @@ msgstr "مجموع: {totalCount}"
 #: src/components/sensors/traceroute-dialog.tsx
 msgid "Traced with the traceroute command of the hub."
 msgstr "با فرمان traceroute هاب ردیابی شد."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Traefik reverse proxy"
+msgstr "پراکسی معکوس Traefik"
 
 #: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
@@ -5316,6 +5466,7 @@ msgid "Utilization"
 msgstr "بهره‌وری"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Valid"
 msgstr "معتبر"
 
@@ -5355,6 +5506,7 @@ msgstr "نسخه"
 #: src/components/active-alerts.tsx
 #: src/components/active-alerts.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
@@ -5401,6 +5553,10 @@ msgstr "هشدار (%)"
 #: src/components/routes/settings/appearance.tsx
 msgid "Warning thresholds"
 msgstr "آستانه های هشدار"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Web certificates"
+msgstr "گواهی‌های وب"
 
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "Web front ends"
@@ -5482,6 +5638,7 @@ msgid "With alerts"
 msgstr "دارای هشدار"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "With an expiry alert"
 msgstr "با هشدار انقضا"
 

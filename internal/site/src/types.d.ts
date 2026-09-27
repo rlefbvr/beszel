@@ -496,6 +496,9 @@ export interface UserSettings {
 	ackAlerts?: string[]
 	/** objects opened recently, listed first by the command palette */
 	recent?: import("@/lib/recent").RecentItem[]
+	/** web certificates: status filter and hidden columns */
+	webCertificatesStatus?: "all" | "valid" | "expiring" | "expired"
+	webCertificatesHidden?: string[]
 	/** other tables: widths of the resized columns and hidden columns, by table */
 	tables?: Record<string, TableLayout>
 }

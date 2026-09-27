@@ -82,6 +82,10 @@ msgstr "{count, plural, one {{countString} giờ} other {{countString} giờ}}"
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} phút} few {{countString} phút} many {{countString} phút} other {{countString} phút}}"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "{count, plural, one {# certificate} other {# certificates}}"
+msgstr "{count, plural, one {# chứng chỉ} other {# chứng chỉ}}"
+
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, other {# container đã lọc}}"
@@ -119,11 +123,12 @@ msgstr "{count} tiến trình · CPU {cpuText} · Bộ nhớ {memText}"
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} cảm biến mới, {added} kiểm tra được thêm vào cảm biến hiện có."
 
-#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificate-parts.tsx
 msgid "{days, plural, one {# day} other {# days}}"
 msgstr "{days, plural, other {# ngày}}"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
 msgstr "{days, plural, other {Hết hạn sau # ngày}}"
@@ -163,6 +168,10 @@ msgstr "{name} hết hạn trong chưa đầy {days} ngày"
 #: src/components/quiet-hours-banner.tsx
 msgid "{name} until {until}"
 msgstr "{name} đến {until}"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "{outdated, plural, one {# system needs an agent update (0.20.0-fork.6 or newer) to find its Traefik.} other {# systems need an agent update (0.20.0-fork.6 or newer) to find their Traefik.}}"
+msgstr "{outdated, plural, one {# hệ thống cần cập nhật tác tử (0.20.0-fork.6 trở lên) để tìm Traefik của nó.} other {# hệ thống cần cập nhật tác tử (0.20.0-fork.6 trở lên) để tìm Traefik của chúng.}}"
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "{outdated} system(s) need an agent update (0.20.0-fork.5 or newer)."
@@ -321,6 +330,18 @@ msgstr "Mỗi hệ thống thuộc một nhóm: chọn nó sẽ chuyển nó kh�
 msgid "Accepted status codes"
 msgstr "Mã trạng thái được chấp nhận"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Access logs"
+msgstr "Nhật ký truy cập"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Access logs are not enabled on this instance."
+msgstr "Nhật ký truy cập chưa được bật trên phiên bản này."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Access logs of {instance}"
+msgstr "Nhật ký truy cập của {instance}"
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
@@ -438,9 +459,12 @@ msgstr "Đã thêm"
 msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
 msgstr "Việc thêm máy chủ sẽ tự động tạo một cảm biến loại ICMP (Ping)."
 
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/traceroute-dialog.tsx
+#: src/components/traefik/traefik-instances.tsx
 msgid "Address"
 msgstr "Địa chỉ"
 
@@ -522,12 +546,17 @@ msgid "Alert sent"
 msgstr "Đã gửi cảnh báo"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Alert threshold (days before expiry)"
 msgstr "Ngưỡng cảnh báo (số ngày trước khi hết hạn)"
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Alert types"
 msgstr "Loại cảnh báo"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Alert when a certificate served over HTTPS to the checks of {sensorName} expires in fewer days than the threshold. It is the certificate alert of the sensor."
+msgstr "Cảnh báo khi chứng chỉ được phục vụ qua HTTPS cho các kiểm tra của {sensorName} hết hạn trong ít ngày hơn ngưỡng. Đây là cảnh báo chứng chỉ của cảm biến."
 
 #: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
@@ -600,6 +629,7 @@ msgid "Alerts set up"
 msgstr "Cảnh báo đã thiết lập"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -617,16 +647,6 @@ msgstr "Tất cả tác nhân đều đã cập nhật ({latest})"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "All alerts"
 msgstr "Tất cả cảnh báo"
-
-#: src/components/certificates/certificates-table.tsx
-#: src/components/command-palette.tsx
-#: src/components/navbar.tsx
-#: src/components/navbar.tsx
-#: src/components/routes/certificates.tsx
-#: src/lib/header-icons.ts
-#: src/lib/home-page.ts
-msgid "All certificates"
-msgstr "Tất cả chứng chỉ"
 
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -1034,6 +1054,10 @@ msgstr "Cẩn thận - có thể mất dữ liệu"
 msgid "Celsius (°C)"
 msgstr "Độ C (°C)"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Certificate"
+msgstr "Chứng chỉ"
+
 #: src/components/certificates/certificates-table.tsx
 msgid "Certificate added"
 msgstr "Đã thêm chứng chỉ"
@@ -1067,6 +1091,10 @@ msgstr "Chứng chỉ"
 #: src/components/certificates/certificates-table.tsx
 msgid "Certificates read"
 msgstr "Đã đọc chứng chỉ"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Certificates served over HTTPS by the hosts, seen by the HTTPS checks of their sensors, with the certificate of the host serving them."
+msgstr "Chứng chỉ mà các máy chủ phục vụ qua HTTPS, theo các kiểm tra HTTPS của cảm biến, cùng chứng chỉ của máy chủ phục vụ chúng."
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Chain"
@@ -1177,6 +1205,7 @@ msgid "Clean"
 msgstr "Bình thường"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
@@ -1246,6 +1275,7 @@ msgid "Color"
 msgstr "Màu"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Columns"
 msgstr "Cột"
@@ -1308,6 +1338,8 @@ msgid "Consecutive checks"
 msgstr "Số lần kiểm tra liên tiếp"
 
 #: src/components/routes/system/agent-details.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Container"
@@ -1546,6 +1578,10 @@ msgstr "Hàng ngày"
 #: src/components/routes/settings/appearance.tsx
 msgid "Dark"
 msgstr "Tối"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Dashboard"
+msgstr "Bảng điều khiển"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Data directory"
@@ -1965,6 +2001,7 @@ msgstr "Tạm thời"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -2041,9 +2078,11 @@ msgstr "Đã thoát khi hoạt động"
 msgid "Expected text"
 msgstr "Văn bản mong đợi"
 
+#: src/components/certificates/certificate-parts.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
-#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expired"
 msgstr "Đã hết hạn"
 
@@ -2061,6 +2100,8 @@ msgstr "Đã hết hạn: {expired}"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expires"
 msgstr "Hết hạn"
 
@@ -2069,6 +2110,7 @@ msgid "Expires after one hour or on hub restart."
 msgstr "Hết hạn sau một giờ hoặc khi khởi động lại hub."
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expiring soon"
 msgstr "Sắp hết hạn"
 
@@ -2081,12 +2123,16 @@ msgstr "Sắp hết hạn: {expiring}"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Expiry alert"
 msgstr "Cảnh báo hết hạn"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expiry alert: {alertDays} days"
 msgstr "Cảnh báo hết hạn: {alertDays} ngày"
 
@@ -2180,11 +2226,13 @@ msgstr "Quạt"
 msgid "fewer than {threshold} instances"
 msgstr "ít hơn {threshold} phiên bản"
 
+#: src/components/traefik/traefik-instances.tsx
 #: src/lib/certificates.ts
 msgid "File"
 msgstr "Tệp"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
@@ -2480,13 +2528,13 @@ msgctxt "Docker image"
 msgid "Image update available"
 msgstr "Có bản cập nhật image"
 
-#: src/components/certificates/certificates-table.tsx
-msgid "Important certificates"
-msgstr "Chứng chỉ quan trọng"
-
 #: src/components/containers-table/containers-table.tsx
 msgid "Important containers"
 msgstr "Container quan trọng"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Important local certificates"
+msgstr "Chứng chỉ cục bộ quan trọng"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "Important processes"
@@ -2495,6 +2543,10 @@ msgstr "Tiến trình quan trọng"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "Dịch vụ quan trọng"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Important web certificates"
+msgstr "Chứng chỉ web quan trọng"
 
 #: src/lib/certificates.ts
 msgid "In IIS Manager: site {detail} > Bindings > https {location} > SSL certificate."
@@ -2563,6 +2615,8 @@ msgstr "Địa chỉ email không hợp lệ."
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "Issued by"
 msgstr "Cấp bởi"
@@ -2575,6 +2629,10 @@ msgstr "Cấp bởi {linkIssuer}, hiệu lực đến {linkUntil}"
 msgid "Issued to"
 msgstr "Cấp cho"
 
+#: src/lib/certificates.ts
+msgid "It is declared in the following file of the Traefik file provider, reloaded automatically:"
+msgstr "Được khai báo trong tệp sau của trình cung cấp tệp Traefik, tự động tải lại:"
+
 #: src/components/routes/settings/ldap.tsx
 msgid "It works."
 msgstr "Hoạt động."
@@ -2584,6 +2642,7 @@ msgid "Its checks, history and interruptions will be deleted."
 msgstr "Các kiểm tra, lịch sử và gián đoạn của nó sẽ bị xóa."
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Its expiry alert is deleted: no notification is sent before it expires."
 msgstr "Cảnh báo hết hạn của nó bị xóa: sẽ không có thông báo nào trước khi hết hạn."
 
@@ -2701,6 +2760,10 @@ msgstr "ldaps://dc.example.com:636, hoặc ldap://dc.example.com:389 với Start
 msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
 msgstr "Cho phép người dùng đăng nhập bằng tài khoản trong thư mục LDAP như Active Directory. Vai trò theo nhóm của họ; yếu tố thứ hai của mỗi người dùng vẫn được áp dụng."
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Let's Encrypt resolver {resolverName}"
+msgstr "Trình phân giải Let's Encrypt {resolverName}"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
 msgstr "Vòng đời"
@@ -2768,6 +2831,10 @@ msgstr "Hệ thống tải cao ({loadedCount})"
 msgid "Loading..."
 msgstr "Đang tải..."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Local certificates"
+msgstr "Chứng chỉ cục bộ"
+
 #: src/lib/utils.ts
 msgid "Local Disk"
 msgstr "Đĩa cục bộ"
@@ -2814,8 +2881,13 @@ msgstr "Các lần đăng nhập Beszel, thành công hoặc thất bại, và c
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/system/agent-details.tsx
+#: src/components/traefik/traefik-instances.tsx
 msgid "Logs"
 msgstr "Nhật ký"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Logs of {instance}"
+msgstr "Nhật ký của {instance}"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
@@ -3134,12 +3206,17 @@ msgid "No certificate yet: the details appear after the next HTTPS check."
 msgstr "Chưa có chứng chỉ: chi tiết sẽ xuất hiện sau lần kiểm tra HTTPS tiếp theo."
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "No certificates match the filter."
 msgstr "Không có chứng chỉ nào khớp với bộ lọc."
 
 #: src/components/certificates/certificates-table.tsx
 msgid "No certificates yet. The agents (0.20.0-fork.5 or newer) read the certificates of their host every 6 hours."
 msgstr "Chưa có chứng chỉ. Các tác nhân (0.20.0-fork.5 trở lên) đọc chứng chỉ của máy chủ mỗi 6 giờ."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "No dashboard found in the configuration of this instance."
+msgstr "Không tìm thấy bảng điều khiển trong cấu hình của phiên bản này."
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
@@ -3156,9 +3233,17 @@ msgstr "Không có mục nào."
 msgid "No group"
 msgstr "Không có nhóm"
 
+#: src/components/certificates/web-certificates.tsx
+msgid "No HTTPS check on a sensor sharing the address of a system."
+msgstr "Không có kiểm tra HTTPS nào trên cảm biến có cùng địa chỉ với một hệ thống."
+
 #: src/components/sensors/sensor-incidents.tsx
 msgid "No interruptions over this period."
 msgstr "Không có gián đoạn trong khoảng thời gian này."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "No lines."
+msgstr "Không có dòng nào."
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -3220,6 +3305,10 @@ msgstr "Không có hệ thống nào hoạt động."
 msgid "No systems found."
 msgstr "Không tìm thấy hệ thống."
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "No Traefik found on the systems that are up."
+msgstr "Không tìm thấy Traefik trên các hệ thống đang chạy."
+
 #: src/components/add-system.tsx
 #: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -3230,6 +3319,10 @@ msgstr "Không có"
 #: src/components/routes/settings/security.tsx
 msgid "Not enabled"
 msgstr "Chưa bật"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Not found among the certificates read on the host"
+msgstr "Không có trong các chứng chỉ đọc được trên máy chủ"
 
 #: src/components/sensors/sensor-sync-dialog.tsx
 msgid "Not now"
@@ -3270,6 +3363,11 @@ msgstr "Đề xuất sau mỗi lần đăng nhập khi có máy chủ chưa có 
 #: src/components/routes/settings/config-yaml.tsx
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
 msgstr "Mỗi khi khởi động lại, các hệ thống trong cơ sở dữ liệu sẽ được cập nhật để khớp với các hệ thống được định nghĩa trong tệp."
+
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
+msgid "On the host"
+msgstr "Trên máy chủ"
 
 #: src/components/routes/sensor.tsx
 #~ msgid "One bar per 15 seconds"
@@ -3382,6 +3480,10 @@ msgstr "Cổng khác…"
 #: src/components/processes-table/process-live-charts.tsx
 msgid "Other processes"
 msgstr "Tiến trình khác"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Output of the container"
+msgstr "Đầu ra của container"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "Overwrite existing alerts"
@@ -3647,6 +3749,10 @@ msgstr "Ngôn ngữ Ưa thích"
 msgid "Previous page"
 msgstr "Trang trước"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Process"
+msgstr "Tiến trình"
+
 #: src/lib/alerts.ts
 msgid "Process alert"
 msgstr "Cảnh báo tiến trình"
@@ -3819,6 +3925,7 @@ msgid "Reboots"
 msgstr "Khởi động lại"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Recap"
 msgstr "Tóm tắt"
 
@@ -3869,6 +3976,10 @@ msgstr "Mã khôi phục còn lại: {recoveryLeft}"
 #: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
 msgid "Refresh"
 msgstr "Làm mới"
 
@@ -3904,12 +4015,17 @@ msgid "Remove from important"
 msgstr "Xóa khỏi mục quan trọng"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Remove the alert"
 msgstr "Xóa cảnh báo"
 
 #: src/components/important-targets.tsx
 msgid "Removed from the rule, which keeps: {targets}"
 msgstr "Đã xóa khỏi quy tắc, còn lại: {targets}"
+
+#: src/lib/certificates.ts
+msgid "Renewed automatically by Traefik with Let's Encrypt (resolver {resolver}). Its certificates are kept in the following file:"
+msgstr "Được Traefik tự động gia hạn với Let's Encrypt (trình phân giải {resolver}). Chứng chỉ được lưu trong tệp sau:"
 
 #: src/lib/certificates.ts
 msgid "Renewed by certbot (certbot renew), with the settings of the following file:"
@@ -4001,6 +4117,15 @@ msgstr "Lưu giữ: {count} cảnh báo gần nhất của mỗi người dùng"
 msgid "Retries"
 msgstr "Thử lại"
 
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+#: src/components/routes/certificates.tsx
+#: src/lib/header-icons.ts
+#: src/lib/home-page.ts
+msgid "Reverse proxy and certificates"
+msgstr "Reverse proxy và chứng chỉ"
+
 #: src/lib/utils.ts
 msgctxt "Root disk label"
 msgid "Root"
@@ -4013,6 +4138,10 @@ msgstr "Xoay vòng token"
 #: src/components/sensors/traceroute-dialog.tsx
 msgid "Route from the hub to {sensorHost}."
 msgstr "Đường đi từ hub tới {sensorHost}."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Router"
+msgstr "Bộ định tuyến"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
@@ -4060,6 +4189,7 @@ msgstr "Tự kiểm tra S.M.A.R.T."
 
 #: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -4332,6 +4462,14 @@ msgstr "Dịch vụ"
 msgid "Services are checked at each collection, containers every minute."
 msgstr "Dịch vụ được kiểm tra ở mỗi lần thu thập, container mỗi phút."
 
+#: src/components/certificates/web-certificates.tsx
+msgid "Set an expiry alert (bell) on a web certificate found on its host to get its recap."
+msgstr "Đặt cảnh báo hết hạn (chuông) cho một chứng chỉ web tìm thấy trên máy chủ của nó để nhận bản tóm tắt."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Set an expiry alert (bell) on at least one certificate to get its recap."
+msgstr "Đặt cảnh báo hết hạn (chuông) cho ít nhất một chứng chỉ để nhận bản tóm tắt."
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Set percentage thresholds for meter colors."
 msgstr "Đặt ngưỡng cho màu sắc đồng hồ."
@@ -4415,6 +4553,7 @@ msgid "SMTP settings"
 msgstr "Cài đặt SMTP"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
@@ -4493,6 +4632,7 @@ msgid "States"
 msgstr "Trạng thái"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/processes-table/process-columns.tsx
@@ -4557,6 +4697,8 @@ msgstr "Đồng bộ máy chủ và cảm biến"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/navbar.tsx
@@ -4806,6 +4948,10 @@ msgstr "Hệ thống chưa được kết nối."
 msgid "The system sharing the address of this sensor."
 msgstr "Hệ thống có cùng địa chỉ với cảm biến này."
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "The Traefik instances of the systems that are up, with their dashboard, logs, Let's Encrypt resolvers and the addresses of their containers."
+msgstr "Các phiên bản Traefik của hệ thống đang chạy, với bảng điều khiển, nhật ký, trình phân giải Let's Encrypt và địa chỉ container."
+
 #: src/components/routes/settings/general.tsx
 msgid "The URL is set by the APP_URL environment variable of the hub."
 msgstr "URL được đặt bởi biến môi trường APP_URL của hub."
@@ -4982,6 +5128,10 @@ msgstr "Tổng: {totalCount}"
 #: src/components/sensors/traceroute-dialog.tsx
 msgid "Traced with the traceroute command of the hub."
 msgstr "Được dò bằng lệnh traceroute của hub."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Traefik reverse proxy"
+msgstr "Reverse proxy Traefik"
 
 #: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
@@ -5316,6 +5466,7 @@ msgid "Utilization"
 msgstr "Sử dụng"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Valid"
 msgstr "Hợp lệ"
 
@@ -5355,6 +5506,7 @@ msgstr "Phiên bản"
 #: src/components/active-alerts.tsx
 #: src/components/active-alerts.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
@@ -5401,6 +5553,10 @@ msgstr "Cảnh báo (%)"
 #: src/components/routes/settings/appearance.tsx
 msgid "Warning thresholds"
 msgstr "Ngưỡng cảnh báo"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Web certificates"
+msgstr "Chứng chỉ web"
 
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "Web front ends"
@@ -5482,6 +5638,7 @@ msgid "With alerts"
 msgstr "Có cảnh báo"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "With an expiry alert"
 msgstr "Có cảnh báo hết hạn"
 

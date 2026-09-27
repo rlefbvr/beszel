@@ -82,6 +82,10 @@ msgstr "{count, plural, one {{countString} saat} other {{countString} saat}}"
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} dakika} few {{countString} dakika} many {{countString} dakika} other {{countString} dakika}}"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "{count, plural, one {# certificate} other {# certificates}}"
+msgstr "{count, plural, one {# sertifika} other {# sertifika}}"
+
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, one {# filtrelenmiş kapsayıcı} other {# filtrelenmiş kapsayıcı}}"
@@ -119,11 +123,12 @@ msgstr "{count} işlem · CPU {cpuText} · Bellek {memText}"
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} yeni sensör, mevcut sensörlere {added} denetim eklendi."
 
-#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificate-parts.tsx
 msgid "{days, plural, one {# day} other {# days}}"
 msgstr "{days, plural, other {# gün}}"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
 msgstr "{days, plural, other {# gün içinde sona eriyor}}"
@@ -163,6 +168,10 @@ msgstr "{name} {days} günden kısa sürede sona eriyor"
 #: src/components/quiet-hours-banner.tsx
 msgid "{name} until {until}"
 msgstr "{name} {until} saatine kadar"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "{outdated, plural, one {# system needs an agent update (0.20.0-fork.6 or newer) to find its Traefik.} other {# systems need an agent update (0.20.0-fork.6 or newer) to find their Traefik.}}"
+msgstr "{outdated, plural, one {# sistemin Traefik’i bulması için ajan güncellemesi (0.20.0-fork.6 veya daha yeni) gerekiyor.} other {# sistemin Traefik’i bulması için ajan güncellemesi (0.20.0-fork.6 veya daha yeni) gerekiyor.}}"
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "{outdated} system(s) need an agent update (0.20.0-fork.5 or newer)."
@@ -321,6 +330,18 @@ msgstr "Bir sistem tek bir gruba aittir: işaretlemek onu mevcut grubundan taş�
 msgid "Accepted status codes"
 msgstr "Kabul edilen durum kodları"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Access logs"
+msgstr "Erişim günlükleri"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Access logs are not enabled on this instance."
+msgstr "Bu örnekte erişim günlükleri etkin değil."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Access logs of {instance}"
+msgstr "{instance} erişim günlükleri"
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
@@ -438,9 +459,12 @@ msgstr "Eklendi"
 msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
 msgstr "Ana bilgisayarın eklenmesi otomatik olarak ICMP (Ping) türünde bir sensör oluşturur."
 
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/traceroute-dialog.tsx
+#: src/components/traefik/traefik-instances.tsx
 msgid "Address"
 msgstr "Adres"
 
@@ -522,12 +546,17 @@ msgid "Alert sent"
 msgstr "Uyarı gönderildi"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Alert threshold (days before expiry)"
 msgstr "Uyarı eşiği (sona ermeden önceki gün)"
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Alert types"
 msgstr "Uyarı türleri"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Alert when a certificate served over HTTPS to the checks of {sensorName} expires in fewer days than the threshold. It is the certificate alert of the sensor."
+msgstr "{sensorName} denetimlerine HTTPS üzerinden sunulan bir sertifikanın süresi eşikten daha az gün içinde dolduğunda uyar. Bu, sensörün sertifika uyarısıdır."
 
 #: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
@@ -600,6 +629,7 @@ msgid "Alerts set up"
 msgstr "Ayarlı uyarılar"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -617,16 +647,6 @@ msgstr "Tüm aracılar güncel ({latest})"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "All alerts"
 msgstr "Tüm uyarılar"
-
-#: src/components/certificates/certificates-table.tsx
-#: src/components/command-palette.tsx
-#: src/components/navbar.tsx
-#: src/components/navbar.tsx
-#: src/components/routes/certificates.tsx
-#: src/lib/header-icons.ts
-#: src/lib/home-page.ts
-msgid "All certificates"
-msgstr "Tüm sertifikalar"
 
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -1034,6 +1054,10 @@ msgstr "Dikkat - potansiyel veri kaybı"
 msgid "Celsius (°C)"
 msgstr "Santigrat (°C)"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Certificate"
+msgstr "Sertifika"
+
 #: src/components/certificates/certificates-table.tsx
 msgid "Certificate added"
 msgstr "Sertifika eklendi"
@@ -1067,6 +1091,10 @@ msgstr "Sertifikalar"
 #: src/components/certificates/certificates-table.tsx
 msgid "Certificates read"
 msgstr "Sertifikalar okundu"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Certificates served over HTTPS by the hosts, seen by the HTTPS checks of their sensors, with the certificate of the host serving them."
+msgstr "Ana makinelerin HTTPS üzerinden sunduğu sertifikalar, sensörlerinin HTTPS denetimlerinin gördüğü şekilde, onları sunan ana makine sertifikasıyla."
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Chain"
@@ -1177,6 +1205,7 @@ msgid "Clean"
 msgstr "Normal"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
@@ -1246,6 +1275,7 @@ msgid "Color"
 msgstr "Renk"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Columns"
 msgstr "Sütunlar"
@@ -1308,6 +1338,8 @@ msgid "Consecutive checks"
 msgstr "Ardışık kontroller"
 
 #: src/components/routes/system/agent-details.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Konteyner"
@@ -1546,6 +1578,10 @@ msgstr "Günlük"
 #: src/components/routes/settings/appearance.tsx
 msgid "Dark"
 msgstr "Koyu"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Dashboard"
+msgstr "Pano"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Data directory"
@@ -1965,6 +2001,7 @@ msgstr "Geçici"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -2041,9 +2078,11 @@ msgstr "Aktif olarak çıktı"
 msgid "Expected text"
 msgstr "Beklenen metin"
 
+#: src/components/certificates/certificate-parts.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
-#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expired"
 msgstr "Süresi doldu"
 
@@ -2061,6 +2100,8 @@ msgstr "Süresi dolan: {expired}"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expires"
 msgstr "Sona erme"
 
@@ -2069,6 +2110,7 @@ msgid "Expires after one hour or on hub restart."
 msgstr "Bir saat sonra veya hub yeniden başlatıldığında sona erer."
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expiring soon"
 msgstr "Süresi dolmak üzere"
 
@@ -2081,12 +2123,16 @@ msgstr "Süresi dolmak üzere: {expiring}"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Expiry alert"
 msgstr "Süre dolumu uyarısı"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expiry alert: {alertDays} days"
 msgstr "Süre dolumu uyarısı: {alertDays} gün"
 
@@ -2180,11 +2226,13 @@ msgstr "Fanlar"
 msgid "fewer than {threshold} instances"
 msgstr "{threshold} örnekten az"
 
+#: src/components/traefik/traefik-instances.tsx
 #: src/lib/certificates.ts
 msgid "File"
 msgstr "Dosya"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
@@ -2480,13 +2528,13 @@ msgctxt "Docker image"
 msgid "Image update available"
 msgstr "Görüntü güncellemesi mevcut"
 
-#: src/components/certificates/certificates-table.tsx
-msgid "Important certificates"
-msgstr "Önemli sertifikalar"
-
 #: src/components/containers-table/containers-table.tsx
 msgid "Important containers"
 msgstr "Önemli kapsayıcılar"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Important local certificates"
+msgstr "Önemli yerel sertifikalar"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "Important processes"
@@ -2495,6 +2543,10 @@ msgstr "Önemli işlemler"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "Önemli hizmetler"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Important web certificates"
+msgstr "Önemli web sertifikaları"
 
 #: src/lib/certificates.ts
 msgid "In IIS Manager: site {detail} > Bindings > https {location} > SSL certificate."
@@ -2563,6 +2615,8 @@ msgstr "Geçersiz e-posta adresi."
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "Issued by"
 msgstr "Veren"
@@ -2575,6 +2629,10 @@ msgstr "Veren {linkIssuer}, {linkUntil} tarihine kadar geçerli"
 msgid "Issued to"
 msgstr "Verildiği"
 
+#: src/lib/certificates.ts
+msgid "It is declared in the following file of the Traefik file provider, reloaded automatically:"
+msgstr "Traefik dosya sağlayıcısının otomatik olarak yeniden yüklenen şu dosyasında tanımlanmıştır:"
+
 #: src/components/routes/settings/ldap.tsx
 msgid "It works."
 msgstr "Çalışıyor."
@@ -2584,6 +2642,7 @@ msgid "Its checks, history and interruptions will be deleted."
 msgstr "Denetimleri, geçmişi ve kesintileri silinecek."
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Its expiry alert is deleted: no notification is sent before it expires."
 msgstr "Süre sonu uyarısı silinir: süresi dolmadan önce bildirim gönderilmez."
 
@@ -2701,6 +2760,10 @@ msgstr "ldaps://dc.example.com:636 veya StartTLS ile ldap://dc.example.com:389."
 msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
 msgstr "Kullanıcıların Active Directory gibi bir LDAP dizinindeki hesaplarıyla oturum açmasına izin verin. Rolleri gruplarına göre belirlenir; her kullanıcının ikinci faktörü geçerliliğini korur."
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Let's Encrypt resolver {resolverName}"
+msgstr "Let's Encrypt çözümleyicisi {resolverName}"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
 msgstr "Yaşam döngüsü"
@@ -2768,6 +2831,10 @@ msgstr "Yüklü sistemler ({loadedCount})"
 msgid "Loading..."
 msgstr "Yükleniyor..."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Local certificates"
+msgstr "Yerel sertifikalar"
+
 #: src/lib/utils.ts
 msgid "Local Disk"
 msgstr "Yerel Disk"
@@ -2814,8 +2881,13 @@ msgstr "Beszel’e başarılı veya başarısız oturum açmalar ve hassas deği
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/system/agent-details.tsx
+#: src/components/traefik/traefik-instances.tsx
 msgid "Logs"
 msgstr "Günlükler"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Logs of {instance}"
+msgstr "{instance} günlükleri"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
@@ -3134,12 +3206,17 @@ msgid "No certificate yet: the details appear after the next HTTPS check."
 msgstr "Henüz sertifika yok: ayrıntılar sonraki HTTPS denetiminden sonra görünür."
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "No certificates match the filter."
 msgstr "Filtreyle eşleşen sertifika yok."
 
 #: src/components/certificates/certificates-table.tsx
 msgid "No certificates yet. The agents (0.20.0-fork.5 or newer) read the certificates of their host every 6 hours."
 msgstr "Henüz sertifika yok. Ajanlar (0.20.0-fork.5 veya üstü) ana bilgisayarlarının sertifikalarını her 6 saatte bir okur."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "No dashboard found in the configuration of this instance."
+msgstr "Bu örneğin yapılandırmasında pano bulunamadı."
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
@@ -3156,9 +3233,17 @@ msgstr "Kayıt yok."
 msgid "No group"
 msgstr "Grupsuz"
 
+#: src/components/certificates/web-certificates.tsx
+msgid "No HTTPS check on a sensor sharing the address of a system."
+msgstr "Bir sistemin adresini paylaşan sensörde HTTPS denetimi yok."
+
 #: src/components/sensors/sensor-incidents.tsx
 msgid "No interruptions over this period."
 msgstr "Bu dönemde kesinti yok."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "No lines."
+msgstr "Satır yok."
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -3220,6 +3305,10 @@ msgstr "Çalışan sistem yok."
 msgid "No systems found."
 msgstr "Sistem bulunamadı."
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "No Traefik found on the systems that are up."
+msgstr "Çalışan sistemlerde Traefik bulunamadı."
+
 #: src/components/add-system.tsx
 #: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -3230,6 +3319,10 @@ msgstr "Yok"
 #: src/components/routes/settings/security.tsx
 msgid "Not enabled"
 msgstr "Etkin değil"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Not found among the certificates read on the host"
+msgstr "Ana makinede okunan sertifikalar arasında bulunamadı"
 
 #: src/components/sensors/sensor-sync-dialog.tsx
 msgid "Not now"
@@ -3270,6 +3363,11 @@ msgstr "Ana makinelerin ping sensörü yoksa her girişten sonra öner"
 #: src/components/routes/settings/config-yaml.tsx
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
 msgstr "Her yeniden başlatmada, veritabanındaki sistemler dosyada tanımlanan sistemlerle eşleşecek şekilde güncellenecektir."
+
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
+msgid "On the host"
+msgstr "Ana makinede"
 
 #: src/components/routes/sensor.tsx
 #~ msgid "One bar per 15 seconds"
@@ -3382,6 +3480,10 @@ msgstr "Başka port…"
 #: src/components/processes-table/process-live-charts.tsx
 msgid "Other processes"
 msgstr "Diğer işlemler"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Output of the container"
+msgstr "Konteyner çıktısı"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "Overwrite existing alerts"
@@ -3647,6 +3749,10 @@ msgstr "Tercih Edilen Dil"
 msgid "Previous page"
 msgstr "Önceki sayfa"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Process"
+msgstr "İşlem"
+
 #: src/lib/alerts.ts
 msgid "Process alert"
 msgstr "İşlem uyarısı"
@@ -3819,6 +3925,7 @@ msgid "Reboots"
 msgstr "Yeniden başlatmalar"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Recap"
 msgstr "Özet"
 
@@ -3869,6 +3976,10 @@ msgstr "Kalan kurtarma kodları: {recoveryLeft}"
 #: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
 msgid "Refresh"
 msgstr "Yenile"
 
@@ -3904,12 +4015,17 @@ msgid "Remove from important"
 msgstr "Önemlilerden kaldır"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Remove the alert"
 msgstr "Uyarıyı kaldır"
 
 #: src/components/important-targets.tsx
 msgid "Removed from the rule, which keeps: {targets}"
 msgstr "Kuraldan kaldırıldı, kalanlar: {targets}"
+
+#: src/lib/certificates.ts
+msgid "Renewed automatically by Traefik with Let's Encrypt (resolver {resolver}). Its certificates are kept in the following file:"
+msgstr "Traefik tarafından Let's Encrypt ile otomatik yenilenir (çözümleyici {resolver}). Sertifikaları şu dosyada tutulur:"
 
 #: src/lib/certificates.ts
 msgid "Renewed by certbot (certbot renew), with the settings of the following file:"
@@ -4001,6 +4117,15 @@ msgstr "Saklama: her kullanıcının son {count} uyarısı"
 msgid "Retries"
 msgstr "Yeniden denemeler"
 
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+#: src/components/routes/certificates.tsx
+#: src/lib/header-icons.ts
+#: src/lib/home-page.ts
+msgid "Reverse proxy and certificates"
+msgstr "Ters vekil ve sertifikalar"
+
 #: src/lib/utils.ts
 msgctxt "Root disk label"
 msgid "Root"
@@ -4013,6 +4138,10 @@ msgstr "Token'ı döndür"
 #: src/components/sensors/traceroute-dialog.tsx
 msgid "Route from the hub to {sensorHost}."
 msgstr "Hub'dan {sensorHost} hedefine rota."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Router"
+msgstr "Yönlendirici"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
@@ -4060,6 +4189,7 @@ msgstr "S.M.A.R.T. Kendiliğinden Test"
 
 #: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -4332,6 +4462,14 @@ msgstr "Hizmetler"
 msgid "Services are checked at each collection, containers every minute."
 msgstr "Hizmetler her toplamada, kapsayıcılar her dakika kontrol edilir."
 
+#: src/components/certificates/web-certificates.tsx
+msgid "Set an expiry alert (bell) on a web certificate found on its host to get its recap."
+msgstr "Özetini almak için ana makinesinde bulunan bir web sertifikasında süre sonu uyarısı (zil) ayarlayın."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Set an expiry alert (bell) on at least one certificate to get its recap."
+msgstr "Özetini almak için en az bir sertifikada süre sonu uyarısı (zil) ayarlayın."
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Set percentage thresholds for meter colors."
 msgstr "Sayaç renkleri için yüzde eşiklerini ayarlayın."
@@ -4415,6 +4553,7 @@ msgid "SMTP settings"
 msgstr "SMTP ayarları"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
@@ -4493,6 +4632,7 @@ msgid "States"
 msgstr "Durumlar"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/processes-table/process-columns.tsx
@@ -4557,6 +4697,8 @@ msgstr "Ana makineleri ve sensörleri eşitle"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/navbar.tsx
@@ -4806,6 +4948,10 @@ msgstr "Sistem bağlı değil."
 msgid "The system sharing the address of this sensor."
 msgstr "Bu sensörle aynı adresi paylaşan sistem."
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "The Traefik instances of the systems that are up, with their dashboard, logs, Let's Encrypt resolvers and the addresses of their containers."
+msgstr "Çalışan sistemlerin Traefik örnekleri; panoları, günlükleri, Let's Encrypt çözümleyicileri ve konteynerlerinin adresleriyle."
+
 #: src/components/routes/settings/general.tsx
 msgid "The URL is set by the APP_URL environment variable of the hub."
 msgstr "URL, hub'ın APP_URL ortam değişkeniyle belirlenir."
@@ -4982,6 +5128,10 @@ msgstr "Toplam: {totalCount}"
 #: src/components/sensors/traceroute-dialog.tsx
 msgid "Traced with the traceroute command of the hub."
 msgstr "Hub'ın traceroute komutuyla izlendi."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Traefik reverse proxy"
+msgstr "Traefik ters vekil"
 
 #: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
@@ -5316,6 +5466,7 @@ msgid "Utilization"
 msgstr "Kullanım"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Valid"
 msgstr "Geçerli"
 
@@ -5355,6 +5506,7 @@ msgstr "Sürüm"
 #: src/components/active-alerts.tsx
 #: src/components/active-alerts.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
@@ -5401,6 +5553,10 @@ msgstr "Uyarı (%)"
 #: src/components/routes/settings/appearance.tsx
 msgid "Warning thresholds"
 msgstr "Uyarı eşikleri"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Web certificates"
+msgstr "Web sertifikaları"
 
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "Web front ends"
@@ -5482,6 +5638,7 @@ msgid "With alerts"
 msgstr "Uyarılı"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "With an expiry alert"
 msgstr "Süre dolumu uyarısı olan"
 

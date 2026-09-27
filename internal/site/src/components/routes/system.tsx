@@ -36,6 +36,7 @@ import {
 import { GpuIcon } from "../ui/icons"
 import SystemdTable from "../systemd-table/systemd-table"
 import ContainersTable from "../containers-table/containers-table"
+import { TraefikInstances } from "@/components/traefik/traefik-instances"
 import ProcessesTable from "../processes-table/processes-table"
 
 const SEMVER_0_14_0 = parseSemVer("0.14.0")
@@ -174,6 +175,8 @@ export default memo(function SystemDetail({ id }: { id: string }) {
 
 				{hasContainersTable && <LazyContainersTable systemId={system.id} />}
 
+				{hasContainersTable && <TraefikInstances systemId={system.id} />}
+
 				<LazyProcessesTable systemId={system.id} />
 
 				{hasSystemd && <LazySystemdTable systemId={system.id} />}
@@ -309,6 +312,7 @@ export default memo(function SystemDetail({ id }: { id: string }) {
 									/>
 								</div>
 								{hasContainersTable && <ContainersTable systemId={system.id} />}
+								{hasContainersTable && <TraefikInstances systemId={system.id} />}
 							</>
 						)}
 					</TabsContent>

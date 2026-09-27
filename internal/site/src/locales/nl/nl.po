@@ -82,6 +82,10 @@ msgstr "{count, plural, one {{countString} uur} other {{countString} uren}}"
 msgid "{count, plural, one {{countString} minute} few {{countString} minutes} many {{countString} minutes} other {{countString} minutes}}"
 msgstr "{count, plural, one {{countString} minuut} other {{countString} minuten}}"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "{count, plural, one {# certificate} other {# certificates}}"
+msgstr "{count, plural, one {# certificaat} other {# certificaten}}"
+
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "{count, plural, one {# filtered container} other {# filtered containers}}"
 msgstr "{count, plural, one {# gefilterde container} other {# gefilterde containers}}"
@@ -119,11 +123,12 @@ msgstr "{count} processen · CPU {cpuText} · Geheugen {memText}"
 msgid "{created} new sensor(s), {added} check(s) added to existing sensors."
 msgstr "{created} nieuwe sensor(en), {added} controle(s) toegevoegd aan bestaande sensoren."
 
-#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/certificate-parts.tsx
 msgid "{days, plural, one {# day} other {# days}}"
 msgstr "{days, plural, one {# dag} other {# dagen}}"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "{days, plural, one {Expires in # day} other {Expires in # days}}"
 msgstr "{days, plural, one {Verloopt over # dag} other {Verloopt over # dagen}}"
@@ -163,6 +168,10 @@ msgstr "{name} verloopt over minder dan {days} dagen"
 #: src/components/quiet-hours-banner.tsx
 msgid "{name} until {until}"
 msgstr "{name} tot {until}"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "{outdated, plural, one {# system needs an agent update (0.20.0-fork.6 or newer) to find its Traefik.} other {# systems need an agent update (0.20.0-fork.6 or newer) to find their Traefik.}}"
+msgstr "{outdated, plural, one {# systeem moet zijn agent bijwerken (0.20.0-fork.6 of nieuwer) om zijn Traefik te vinden.} other {# systemen moeten hun agent bijwerken (0.20.0-fork.6 of nieuwer) om hun Traefik te vinden.}}"
 
 #: src/components/processes-table/processes-overview.tsx
 msgid "{outdated} system(s) need an agent update (0.20.0-fork.5 or newer)."
@@ -321,6 +330,18 @@ msgstr "Een systeem hoort bij één groep: aanvinken verplaatst het uit de huidi
 msgid "Accepted status codes"
 msgstr "Geaccepteerde statuscodes"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Access logs"
+msgstr "Toegangslogboeken"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Access logs are not enabled on this instance."
+msgstr "Toegangslogboeken zijn niet ingeschakeld op deze instantie."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Access logs of {instance}"
+msgstr "Toegangslogboeken van {instance}"
+
 #: src/components/routes/system/agent-details.tsx
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Account"
@@ -438,9 +459,12 @@ msgstr "Toegevoegd"
 msgid "Adding the host automatically creates a sensor of type ICMP (Ping)."
 msgstr "Het toevoegen van de host maakt automatisch een sensor van het type ICMP (Ping) aan."
 
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/sensors/sensor-dialog.tsx
 #: src/components/sensors/traceroute-dialog.tsx
+#: src/components/traefik/traefik-instances.tsx
 msgid "Address"
 msgstr "Adres"
 
@@ -522,12 +546,17 @@ msgid "Alert sent"
 msgstr "Waarschuwing verzonden"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Alert threshold (days before expiry)"
 msgstr "Meldingsdrempel (dagen voor verloop)"
 
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "Alert types"
 msgstr "Meldingstypen"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Alert when a certificate served over HTTPS to the checks of {sensorName} expires in fewer days than the threshold. It is the certificate alert of the sensor."
+msgstr "Waarschuwen wanneer een certificaat dat via HTTPS aan de controles van {sensorName} wordt geserveerd binnen minder dagen dan de drempel verloopt. Dit is de certificaatwaarschuwing van de sensor."
 
 #: src/components/alerts/state-rule-fields.tsx
 msgid "Alert when its CPU is above"
@@ -600,6 +629,7 @@ msgid "Alerts set up"
 msgstr "Ingestelde waarschuwingen"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/sensors/sensors-board.tsx
@@ -617,16 +647,6 @@ msgstr "Alle agents zijn bijgewerkt ({latest})"
 #: src/components/routes/settings/quiet-hours.tsx
 msgid "All alerts"
 msgstr "Alle meldingen"
-
-#: src/components/certificates/certificates-table.tsx
-#: src/components/command-palette.tsx
-#: src/components/navbar.tsx
-#: src/components/navbar.tsx
-#: src/components/routes/certificates.tsx
-#: src/lib/header-icons.ts
-#: src/lib/home-page.ts
-msgid "All certificates"
-msgstr "Alle certificaten"
 
 #: src/components/command-palette.tsx
 #: src/components/containers-table/containers-table.tsx
@@ -1034,6 +1054,10 @@ msgstr "Opgelet - potentieel gegevensverlies"
 msgid "Celsius (°C)"
 msgstr "Celsius (°C)"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Certificate"
+msgstr "Certificaat"
+
 #: src/components/certificates/certificates-table.tsx
 msgid "Certificate added"
 msgstr "Certificaat toegevoegd"
@@ -1067,6 +1091,10 @@ msgstr "Certificaten"
 #: src/components/certificates/certificates-table.tsx
 msgid "Certificates read"
 msgstr "Certificaten gelezen"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Certificates served over HTTPS by the hosts, seen by the HTTPS checks of their sensors, with the certificate of the host serving them."
+msgstr "Certificaten die de hosts via HTTPS serveren, zoals de HTTPS-controles van hun sensoren ze zien, met het certificaat van de host dat ze serveert."
 
 #: src/components/sensors/sensor-cert.tsx
 msgid "Chain"
@@ -1177,6 +1205,7 @@ msgid "Clean"
 msgstr "Normaal"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
@@ -1246,6 +1275,7 @@ msgid "Color"
 msgstr "Kleur"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensors-board.tsx
 msgid "Columns"
 msgstr "Kolommen"
@@ -1308,6 +1338,8 @@ msgid "Consecutive checks"
 msgstr "Opeenvolgende controles"
 
 #: src/components/routes/system/agent-details.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
 #: src/lib/alerts.ts
 msgid "Container"
 msgstr "Container"
@@ -1546,6 +1578,10 @@ msgstr "Dagelijks"
 #: src/components/routes/settings/appearance.tsx
 msgid "Dark"
 msgstr "Donker"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Dashboard"
+msgstr "Dashboard"
 
 #: src/components/routes/system/agent-details.tsx
 msgid "Data directory"
@@ -1965,6 +2001,7 @@ msgstr "Tijdelijk"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/monitor-dialog.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
@@ -2041,9 +2078,11 @@ msgstr "Beëindigd actief"
 msgid "Expected text"
 msgstr "Verwachte tekst"
 
+#: src/components/certificates/certificate-parts.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
-#: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expired"
 msgstr "Verlopen"
 
@@ -2061,6 +2100,8 @@ msgstr "Verlopen: {expired}"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expires"
 msgstr "Verloopt"
 
@@ -2069,6 +2110,7 @@ msgid "Expires after one hour or on hub restart."
 msgstr "Verloopt na één uur of bij hub-herstart."
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expiring soon"
 msgstr "Verloopt binnenkort"
 
@@ -2081,12 +2123,16 @@ msgstr "Verloopt binnenkort: {expiring}"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/audit-log.tsx
 msgid "Expiry alert"
 msgstr "Verloopmelding"
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Expiry alert: {alertDays} days"
 msgstr "Verloopmelding: {alertDays} dagen"
 
@@ -2180,11 +2226,13 @@ msgstr "Ventilatoren"
 msgid "fewer than {threshold} instances"
 msgstr "minder dan {threshold} instanties"
 
+#: src/components/traefik/traefik-instances.tsx
 #: src/lib/certificates.ts
 msgid "File"
 msgstr "Bestand"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table.tsx
 #: src/components/network-monitors-table/network-monitors-table.tsx
 #: src/components/processes-table/processes-overview.tsx
@@ -2480,13 +2528,13 @@ msgctxt "Docker image"
 msgid "Image update available"
 msgstr "Image-update beschikbaar"
 
-#: src/components/certificates/certificates-table.tsx
-msgid "Important certificates"
-msgstr "Belangrijke certificaten"
-
 #: src/components/containers-table/containers-table.tsx
 msgid "Important containers"
 msgstr "Belangrijke containers"
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Important local certificates"
+msgstr "Belangrijke lokale certificaten"
 
 #: src/components/processes-table/processes-table.tsx
 msgid "Important processes"
@@ -2495,6 +2543,10 @@ msgstr "Belangrijke processen"
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Important services"
 msgstr "Belangrijke services"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Important web certificates"
+msgstr "Belangrijke webcertificaten"
 
 #: src/lib/certificates.ts
 msgid "In IIS Manager: site {detail} > Bindings > https {location} > SSL certificate."
@@ -2563,6 +2615,8 @@ msgstr "Ongeldig e-mailadres."
 
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensor-cert.tsx
 msgid "Issued by"
 msgstr "Uitgegeven door"
@@ -2575,6 +2629,10 @@ msgstr "Uitgegeven door {linkIssuer}, geldig tot {linkUntil}"
 msgid "Issued to"
 msgstr "Uitgegeven aan"
 
+#: src/lib/certificates.ts
+msgid "It is declared in the following file of the Traefik file provider, reloaded automatically:"
+msgstr "Het is gedeclareerd in het volgende bestand van de bestandsprovider van Traefik, dat automatisch opnieuw wordt geladen:"
+
 #: src/components/routes/settings/ldap.tsx
 msgid "It works."
 msgstr "Het werkt."
@@ -2584,6 +2642,7 @@ msgid "Its checks, history and interruptions will be deleted."
 msgstr "De controles, geschiedenis en onderbrekingen worden verwijderd."
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Its expiry alert is deleted: no notification is sent before it expires."
 msgstr "De verloopwaarschuwing wordt verwijderd: er wordt geen melding verzonden voordat het verloopt."
 
@@ -2701,6 +2760,10 @@ msgstr "ldaps://dc.example.com:636, of ldap://dc.example.com:389 met StartTLS."
 msgid "Let the users log in with their account of an LDAP directory such as Active Directory. Their role follows their groups; the second factor of each user still applies."
 msgstr "Laat gebruikers aanmelden met hun account van een LDAP-adreslijst zoals Active Directory. Hun rol volgt hun groepen; de tweede factor van elke gebruiker blijft gelden."
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Let's Encrypt resolver {resolverName}"
+msgstr "Let's Encrypt-resolver {resolverName}"
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Lifecycle"
 msgstr "Levenscyclus"
@@ -2768,6 +2831,10 @@ msgstr "Belaste systemen ({loadedCount})"
 msgid "Loading..."
 msgstr "Laden..."
 
+#: src/components/certificates/certificates-table.tsx
+msgid "Local certificates"
+msgstr "Lokale certificaten"
+
 #: src/lib/utils.ts
 msgid "Local Disk"
 msgstr "Lokale schijf"
@@ -2814,8 +2881,13 @@ msgstr "Aanmeldingen bij Beszel, geslaagd of mislukt, en de gevoelige wijziginge
 #: src/components/containers-table/containers-table.tsx
 #: src/components/navbar.tsx
 #: src/components/routes/system/agent-details.tsx
+#: src/components/traefik/traefik-instances.tsx
 msgid "Logs"
 msgstr "Logboeken"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Logs of {instance}"
+msgstr "Logboeken van {instance}"
 
 #: src/components/routes/settings/notifications.tsx
 msgid "Looking instead for where to create alerts? Click the bell <0/> icons in the systems table."
@@ -3134,12 +3206,17 @@ msgid "No certificate yet: the details appear after the next HTTPS check."
 msgstr "Nog geen certificaat: de details verschijnen na de volgende HTTPS-controle."
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "No certificates match the filter."
 msgstr "Geen certificaten komen overeen met het filter."
 
 #: src/components/certificates/certificates-table.tsx
 msgid "No certificates yet. The agents (0.20.0-fork.5 or newer) read the certificates of their host every 6 hours."
 msgstr "Nog geen certificaten. De agents (0.20.0-fork.5 of nieuwer) lezen elke 6 uur de certificaten van hun host."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "No dashboard found in the configuration of this instance."
+msgstr "Geen dashboard gevonden in de configuratie van deze instantie."
 
 #: src/components/routes/system/storage-pools-table.tsx
 msgid "No detail data for this pool."
@@ -3156,9 +3233,17 @@ msgstr "Geen items."
 msgid "No group"
 msgstr "Geen groep"
 
+#: src/components/certificates/web-certificates.tsx
+msgid "No HTTPS check on a sensor sharing the address of a system."
+msgstr "Geen HTTPS-controle op een sensor met het adres van een systeem."
+
 #: src/components/sensors/sensor-incidents.tsx
 msgid "No interruptions over this period."
 msgstr "Geen onderbrekingen in deze periode."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "No lines."
+msgstr "Geen regels."
 
 #: src/components/routes/system/agent-details.tsx
 msgid "No logs yet."
@@ -3220,6 +3305,10 @@ msgstr "Geen systemen actief."
 msgid "No systems found."
 msgstr "Geen systemen gevonden."
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "No Traefik found on the systems that are up."
+msgstr "Geen Traefik gevonden op de actieve systemen."
+
 #: src/components/add-system.tsx
 #: src/components/alerts/quiet-hours-fields.tsx
 #: src/components/routes/settings/quiet-hours.tsx
@@ -3230,6 +3319,10 @@ msgstr "Geen"
 #: src/components/routes/settings/security.tsx
 msgid "Not enabled"
 msgstr "Niet ingeschakeld"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Not found among the certificates read on the host"
+msgstr "Niet gevonden tussen de certificaten die op de host zijn gelezen"
 
 #: src/components/sensors/sensor-sync-dialog.tsx
 msgid "Not now"
@@ -3270,6 +3363,11 @@ msgstr "Na elke aanmelding voorstellen wanneer hosts geen ping-sensor hebben"
 #: src/components/routes/settings/config-yaml.tsx
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
 msgstr "Bij elke herstart zullen systemen in de database worden bijgewerkt om overeen te komen met de systemen die in het bestand zijn gedefinieerd."
+
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
+msgid "On the host"
+msgstr "Op de host"
 
 #: src/components/routes/sensor.tsx
 #~ msgid "One bar per 15 seconds"
@@ -3382,6 +3480,10 @@ msgstr "Andere poort…"
 #: src/components/processes-table/process-live-charts.tsx
 msgid "Other processes"
 msgstr "Andere processen"
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Output of the container"
+msgstr "Uitvoer van de container"
 
 #: src/components/alerts/alerts-sheet.tsx
 msgid "Overwrite existing alerts"
@@ -3647,6 +3749,10 @@ msgstr "Voorkeurstaal"
 msgid "Previous page"
 msgstr "Vorige pagina"
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "Process"
+msgstr "Proces"
+
 #: src/lib/alerts.ts
 msgid "Process alert"
 msgstr "Proceswaarschuwing"
@@ -3819,6 +3925,7 @@ msgid "Reboots"
 msgstr "Herstarts"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Recap"
 msgstr "Overzicht"
 
@@ -3869,6 +3976,10 @@ msgstr "Resterende herstelcodes: {recoveryLeft}"
 #: src/components/routes/system/agent-details.tsx
 #: src/components/routes/system/smart-table.tsx
 #: src/components/routes/system/storage-pools-table.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
+#: src/components/traefik/traefik-instances.tsx
 msgid "Refresh"
 msgstr "Vernieuwen"
 
@@ -3904,12 +4015,17 @@ msgid "Remove from important"
 msgstr "Verwijderen uit belangrijke"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Remove the alert"
 msgstr "Melding verwijderen"
 
 #: src/components/important-targets.tsx
 msgid "Removed from the rule, which keeps: {targets}"
 msgstr "Verwijderd uit de regel, die behoudt: {targets}"
+
+#: src/lib/certificates.ts
+msgid "Renewed automatically by Traefik with Let's Encrypt (resolver {resolver}). Its certificates are kept in the following file:"
+msgstr "Automatisch vernieuwd door Traefik met Let's Encrypt (resolver {resolver}). De certificaten staan in het volgende bestand:"
 
 #: src/lib/certificates.ts
 msgid "Renewed by certbot (certbot renew), with the settings of the following file:"
@@ -4001,6 +4117,15 @@ msgstr "Bewaring: de laatste {count} meldingen van elke gebruiker"
 msgid "Retries"
 msgstr "Herhalingen"
 
+#: src/components/command-palette.tsx
+#: src/components/navbar.tsx
+#: src/components/navbar.tsx
+#: src/components/routes/certificates.tsx
+#: src/lib/header-icons.ts
+#: src/lib/home-page.ts
+msgid "Reverse proxy and certificates"
+msgstr "Reverse proxy en certificaten"
+
 #: src/lib/utils.ts
 msgctxt "Root disk label"
 msgid "Root"
@@ -4013,6 +4138,10 @@ msgstr "Roteer Token"
 #: src/components/sensors/traceroute-dialog.tsx
 msgid "Route from the hub to {sensorHost}."
 msgstr "Route van de hub naar {sensorHost}."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Router"
+msgstr "Router"
 
 #: src/components/routes/settings/alerts-history-data-table.tsx
 msgid "Rows per page"
@@ -4060,6 +4189,7 @@ msgstr "S.M.A.R.T. Zelf-test"
 
 #: src/components/alerts/state-rule-dialog.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/audit-log.tsx
 #: src/components/sensors/sensor-dialog.tsx
@@ -4332,6 +4462,14 @@ msgstr "Services"
 msgid "Services are checked at each collection, containers every minute."
 msgstr "Services worden bij elke verzameling gecontroleerd, containers elke minuut."
 
+#: src/components/certificates/web-certificates.tsx
+msgid "Set an expiry alert (bell) on a web certificate found on its host to get its recap."
+msgstr "Stel een vervalwaarschuwing (bel) in op een webcertificaat dat op de host is gevonden om het overzicht te krijgen."
+
+#: src/components/certificates/certificates-table.tsx
+msgid "Set an expiry alert (bell) on at least one certificate to get its recap."
+msgstr "Stel een vervalwaarschuwing (bel) in op minstens één certificaat om het overzicht te krijgen."
+
 #: src/components/routes/settings/appearance.tsx
 msgid "Set percentage thresholds for meter colors."
 msgstr "Stel percentagedrempels in voor meterkleuren."
@@ -4415,6 +4553,7 @@ msgid "SMTP settings"
 msgstr "SMTP-instellingen"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 msgid "Sort By"
@@ -4493,6 +4632,7 @@ msgid "States"
 msgstr "Statussen"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/processes-table/process-columns.tsx
@@ -4557,6 +4697,8 @@ msgstr "Hosts en sensoren synchroniseren"
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
 #: src/components/navbar.tsx
@@ -4806,6 +4948,10 @@ msgstr "Het systeem is niet verbonden."
 msgid "The system sharing the address of this sensor."
 msgstr "Het systeem met hetzelfde adres als deze sensor."
 
+#: src/components/traefik/traefik-instances.tsx
+msgid "The Traefik instances of the systems that are up, with their dashboard, logs, Let's Encrypt resolvers and the addresses of their containers."
+msgstr "De Traefik-instanties van de actieve systemen, met hun dashboard, logboeken, Let's Encrypt-resolvers en de adressen van hun containers."
+
 #: src/components/routes/settings/general.tsx
 msgid "The URL is set by the APP_URL environment variable of the hub."
 msgstr "De URL wordt ingesteld door de omgevingsvariabele APP_URL van de hub."
@@ -4982,6 +5128,10 @@ msgstr "Totaal: {totalCount}"
 #: src/components/sensors/traceroute-dialog.tsx
 msgid "Traced with the traceroute command of the hub."
 msgstr "Gevolgd met het traceroute-commando van de hub."
+
+#: src/components/traefik/traefik-instances.tsx
+msgid "Traefik reverse proxy"
+msgstr "Traefik reverse proxy"
 
 #: src/components/alerts/alerts-notice.tsx
 #: src/components/alerts/state-alert-rules.tsx
@@ -5316,6 +5466,7 @@ msgid "Utilization"
 msgstr "Gebruik"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "Valid"
 msgstr "Geldig"
 
@@ -5355,6 +5506,7 @@ msgstr "Versie"
 #: src/components/active-alerts.tsx
 #: src/components/active-alerts.tsx
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 #: src/components/sensors/sensors-board.tsx
 #: src/components/systems-table/systems-table.tsx
 #: src/components/table-layout.tsx
@@ -5401,6 +5553,10 @@ msgstr "Waarschuwing (%)"
 #: src/components/routes/settings/appearance.tsx
 msgid "Warning thresholds"
 msgstr "Waarschuwingsdrempels"
+
+#: src/components/certificates/web-certificates.tsx
+msgid "Web certificates"
+msgstr "Webcertificaten"
 
 #: src/components/alerts/state-rule-dialog.tsx
 msgid "Web front ends"
@@ -5482,6 +5638,7 @@ msgid "With alerts"
 msgstr "Met waarschuwingen"
 
 #: src/components/certificates/certificates-table.tsx
+#: src/components/certificates/web-certificates.tsx
 msgid "With an expiry alert"
 msgstr "Met een verloopmelding"
 

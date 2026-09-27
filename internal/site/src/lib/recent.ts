@@ -65,7 +65,9 @@ export function isRequested(
 	if (request.id) {
 		return item.id === request.id
 	}
-	return item.system === request.system && item.name.toLowerCase() === request.name?.toLowerCase()
+	// a Windows process is asked for without its .exe
+	const name = (value = "") => (kind === "process" ? value.toLowerCase().replace(/\.exe$/, "") : value.toLowerCase())
+	return item.system === request.system && name(item.name) === name(request.name)
 }
 
 /** Remembers the systems whose page is opened, once the user settings are loaded; returns the function stopping it */

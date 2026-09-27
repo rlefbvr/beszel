@@ -11,7 +11,7 @@ export const homePages = {
 	containers: () => t`All Containers`,
 	services: () => t`All Services`,
 	reboots: () => t`All Reboots`,
-	certificates: () => t`All certificates`,
+	certificates: () => t`Reverse proxy and certificates`,
 } as const
 
 export type HomePage = keyof typeof homePages

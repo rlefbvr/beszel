@@ -80,11 +80,24 @@ export const certificateUseLabels: Record<string, () => string> = {
 	httpsys: () => "HTTP.sys",
 	rdp: () => t`Remote Desktop`,
 	winrm: () => "WinRM",
+	traefik: () => "Traefik",
 	file: () => t`File`,
 }
 
-export function certificateUseLabel(use: Pick<CertificateUse, "kind">) {
+/** A certificate obtained by an ACME resolver of Traefik, kept in its acme.json */
+const isTraefikAcme = (use: Pick<CertificateUse, "kind" | "location">) =>
+	use.kind === "traefik" && /acme\.json$/i.test(use.location ?? "")
+
+export function certificateUseLabel(use: Pick<CertificateUse, "kind" | "location">) {
+	if (isTraefikAcme(use)) {
+		return "Traefik · Let's Encrypt"
+	}
 	return certificateUseLabels[use.kind]?.() ?? use.kind
+}
+
+/** A SHA-256 fingerprint in one form: hex in lower case, without the colons the sensors write */
+export function normalizeFingerprint(fingerprint?: string) {
+	return (fingerprint ?? "").replace(/[^0-9a-f]/gi, "").toLowerCase()
 }
 
 /** A step of the recap: a sentence, the part of it shown in bold, and a path or command to copy */
@@ -165,6 +178,21 @@ export function certificateUseSteps(use: CertificateUse, cert: Pick<CertificateR
 					code: `winrm set ${location} @{CertificateThumbprint="<thumbprint>"}`,
 				},
 			]
+		case "traefik": {
+			if (isTraefikAcme(use)) {
+				const resolver = detail.split("ACME ").pop() ?? ""
+				return [
+					{
+						text: t`Renewed automatically by Traefik with Let's Encrypt (resolver ${resolver}). Its certificates are kept in the following file:`,
+						code: location,
+					},
+				]
+			}
+			return [
+				replace(path),
+				{ text: t`It is declared in the following file of the Traefik file provider, reloaded automatically:`, code: location },
+			]
+		}
 		case "file":
 			return [replace(location)]
 	}
